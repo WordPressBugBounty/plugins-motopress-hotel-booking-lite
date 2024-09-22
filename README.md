@@ -1,0 +1,1 @@
+# plugins-motopress-hotel-booking-lite
