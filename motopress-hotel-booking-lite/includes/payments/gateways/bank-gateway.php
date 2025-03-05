@@ -27,8 +27,10 @@ class BankGateway extends Gateway {
 
 		parent::__construct();
 
+		// we must do it on init because we can not use translations
+		// earlier after WordPress 6.7
 		add_action(
-			'plugins_loaded',
+			'init',
 			function() {
 
 				$emailTemplater = \MPHB\Emails\Templaters\EmailTemplater::create(

@@ -87,7 +87,9 @@ abstract class AbstractEmail {
 
 		// TODO set description and label or remove it from constructor
 
-		add_action( 'plugins_loaded', array( $this, 'initStrings' ) );
+		// we must do it on init because we can not use translations
+		// earlier after WordPress 6.7
+		add_action( 'init', array( $this, 'initStrings' ) );
 	}
 
 	// TODO: remove this method and do not use it in \MPHB\Notifier\Emails\NotificationEmail

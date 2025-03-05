@@ -8,7 +8,9 @@ abstract class AbstractTemplater {
 
 	public function __construct() {
 
-		add_action( 'plugins_loaded', array( $this, 'setupTags' ), 11 );
+		// we must do it on init because we can not use translations
+		// earlier after WordPress 6.7
+		add_action( 'init', array( $this, 'setupTags' ) );
 	}
 
 	abstract public function setupTags();

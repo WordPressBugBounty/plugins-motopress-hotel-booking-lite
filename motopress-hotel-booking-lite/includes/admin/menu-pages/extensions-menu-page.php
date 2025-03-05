@@ -145,6 +145,7 @@ class ExtensionsMenuPage extends AbstractMenuPage {
 							array(
 								'utm_source' => 'customer_website_dashboard',
 								'utm_medium' => $product['slug'],
+								'utm_campaign' => get_template()
 							),
 							$product['link']
 						);

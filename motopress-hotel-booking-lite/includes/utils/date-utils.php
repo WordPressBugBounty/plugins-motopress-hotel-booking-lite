@@ -45,7 +45,7 @@ class DateUtils {
 	 *
 	 * @param string $dateString
 	 * @param string|null $format Optional. 'Y-m-d' by default.
-	 * @return \DateTime|null
+	 * @return \DateTime|null - DateTIme in WP time zone
 	 */
 	public static function createDateTime( $dateString, $format = null ) {
 		if ( ! empty( $dateString ) ) {
@@ -68,16 +68,18 @@ class DateUtils {
 	 * @param string $format See http://php.net/manual/ru/datetime.formats.php
 	 * @param string $date
 	 * @param bool   $needSetTime
-	 * @return \DateTime|bool
+	 * @return \DateTime|bool - DateTIme in UTC time zone
 	 */
 	public static function createCheckInDate( $format, $date, $needSetTime = true ) {
-		$dateObj = \DateTime::createFromFormat( $format, $date );
+
+		$dateObj = \DateTime::createFromFormat( $format, $date, self::getSiteTimeZone() );
+
 		if ( $dateObj && $needSetTime ) {
 			$checkInTime = MPHB()->settings()->dateTime()->getCheckInTime( true );
 			$dateObj->setTime( $checkInTime[0], $checkInTime[1], $checkInTime[2] );
 		}
 
-		return $dateObj ? $dateObj : false;
+		return $dateObj ? $dateObj->setTimezone( new \DateTimeZone( 'UTC' ) ) : false;
 	}
 
 	/**
@@ -85,15 +87,18 @@ class DateUtils {
 	 * @param string $format See http://php.net/manual/ru/datetime.formats.php
 	 * @param string $date
 	 * @param bool   $needSetTime
-	 * @return \DateTime|bool
+	 * @return \DateTime|bool - DateTIme in UTC time zone
 	 */
 	public static function createCheckOutDate( $format, $date, $needSetTime = true ) {
-		$dateObj = \DateTime::createFromFormat( $format, $date );
+
+		$dateObj = \DateTime::createFromFormat( $format, $date, self::getSiteTimeZone() );
+
 		if ( $dateObj && $needSetTime ) {
 			$checkOutTime = MPHB()->settings()->dateTime()->getCheckOutTime( true );
 			$dateObj->setTime( $checkOutTime[0], $checkOutTime[1], $checkOutTime[2] );
 		}
-		return $dateObj ? $dateObj : false;
+
+		return $dateObj ? $dateObj->setTimezone( new \DateTimeZone( 'UTC' ) ) : false;
 	}
 
 	/**
@@ -106,7 +111,9 @@ class DateUtils {
 	 */
 	public static function calcNightsSinceToday( $eventDate ) {
 		$today = new \DateTime( 'today', self::getSiteTimeZone() );
-		return self::calcNights( $today, $eventDate );
+		$eventDateClone = clone $eventDate;
+		$eventDateClone->setTimezone( self::getSiteTimeZone() );
+		return self::calcNights( $today, $eventDateClone );
 	}
 
 	/**

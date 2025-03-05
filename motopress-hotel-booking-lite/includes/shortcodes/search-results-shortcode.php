@@ -124,12 +124,19 @@ class SearchResultsShortcode extends AbstractShortcode {
 	private $stickedRoomType;
 
 	public function addActions() {
+
 		parent::addActions();
+
 		add_action( 'wp', array( $this, 'setup' ) );
 
 		add_filter( 'the_posts', array( $this, 'stickRequestedRoomType' ), 10, 2 );
 
-		add_action( 'mphb_sc_search_results_before_loop', array( $this, 'renderRecommendation' ) );
+		add_action(
+			'mphb_sc_search_results_before_loop',
+			function ( $roomTypesQuery ) {
+				$this->renderRecommendation( $roomTypesQuery );
+			}
+		);
 		add_action( 'mphb_sc_search_results_before_loop', array( $this, 'renderReservationCart' ) );
 
 		add_action( 'mphb_sc_search_results_render_gallery', array( '\MPHB\Views\LoopRoomTypeView', 'renderGallery' ) );
@@ -496,6 +503,48 @@ class SearchResultsShortcode extends AbstractShortcode {
 
 			$this->availableRoomsCount = array_combine( $ids, $counts );
 		}
+
+		if ( ! empty( $this->availableRoomsCount ) &&
+			MPHB()->settings()->main()->isRecommendAndSearchSingleRoomTypeForRequestedGuestsCount()
+		) {
+
+			// filter room types to show only those which can have all guests inside one room type
+
+			$availableRoomsData = array();
+
+			foreach ( $this->availableRoomsCount as $roomTypeOriginalId => $availableRoomsCount ) {
+
+				$roomType = MPHB()->getRoomTypeRepository()->findById( $roomTypeOriginalId );
+
+				$roomTotalCapacity = $roomType->getTotalCapacity();
+				
+				if ( '' === $roomType->getTotalCapacity() ) {
+
+					$roomTotalCapacity = $roomType->getAdultsCapacity() + $roomType->getChildrenCapacity();
+				}
+
+				if ( 0 < $roomTotalCapacity &&
+					( 0 < $roomType->getAdultsCapacity() || 0 < $roomType->getChildrenCapacity() )
+				) {
+
+					$roomMaxAdultsCount      = min( $roomType->getAdultsCapacity(), $roomTotalCapacity );
+					$roomMaxChildrenCount    = min( $roomType->getChildrenCapacity(), $roomTotalCapacity );
+					$roomMaxTotalGuestsCount = min( $roomTotalCapacity, $roomType->getAdultsCapacity() + $roomType->getChildrenCapacity() );
+
+					$minRoomsCountForAdults      = 0 < $roomMaxAdultsCount ? (int) ceil( $this->adults / $roomMaxAdultsCount ) : 0;
+					$minRoomsCountForChildren    = 0 < $roomMaxChildrenCount ? (int) ceil( $this->children / $roomMaxChildrenCount ) : 0;
+					$minRoomsCountForTotalGuests = 0 < $roomMaxTotalGuestsCount ? (int) ceil( ( $this->adults + $this->children ) / $roomMaxTotalGuestsCount ) : 0;
+			
+					$maxRequiredRoomsCount = max( $minRoomsCountForAdults, $minRoomsCountForChildren, $minRoomsCountForTotalGuests );
+
+					if ( $maxRequiredRoomsCount <= $availableRoomsCount ) {
+						$availableRoomsData[ $roomTypeOriginalId ] = $availableRoomsCount;
+					}
+				}
+			}
+
+			$this->availableRoomsCount = $availableRoomsData;
+		}
 	}
 
 	private function setupSearchData() {
@@ -730,11 +779,8 @@ class SearchResultsShortcode extends AbstractShortcode {
 		do_action( 'mphb_sc_search_results_reservation_cart_after' );
 	}
 
-	/**
-	 *
-	 * @param \WP_Query $roomTypesQuery
-	 */
-	public function renderRecommendation( $roomTypesQuery ) {
+
+	public function renderRecommendation( \WP_Query $roomTypesQuery ) {
 
 		if ( ! MPHB()->settings()->main()->isEnabledRecommendation() ) {
 			return;
@@ -913,7 +959,8 @@ class SearchResultsShortcode extends AbstractShortcode {
 	 * @param bool  $strict Optional. Forbid incomplete allocation. Default FALSE.
 	 * @return array
 	 */
-	private function generateRecommmendation( $adults, $children, $availableRooms, $strict = false ) {
+	private function generateRecommmendation( $adults, $children, $availableRooms ): array {
+
 		$adults   = max( 0, $adults );
 		$children = max( 0, $children );
 
@@ -921,8 +968,11 @@ class SearchResultsShortcode extends AbstractShortcode {
 			return array();
 		}
 
-		$recommendation = new \MPHB\Recommendation( $availableRooms );
-		return $recommendation->generate( $adults, $children, $strict );
+		return mphb_availability_facade()->getRecommendedRoomsCombination(
+			$availableRooms,
+			$adults,
+			$children
+		);
 	}
 
 	public function renderBookButton() {

@@ -51,6 +51,7 @@ class Autoloader {
 		$this->customPathList['Core\\RoomHelper']                     = 'includes/core/helpers/room-helper.php';
 		$this->customPathList['Core\\PriceBreakdownHelper']           = 'includes/core/helpers/price-breakdown-helper.php';
 		$this->customPathList['Core\\PriceHelper']                    = 'includes/core/helpers/price-helper.php';
+		$this->customPathList['Core\\RoomsRecommendationsHelper']     = 'includes/core/helpers/rooms-recommendation-helper.php';
 
 		$this->customPathList['AjaxApi\\AbstractAjaxApiAction']       = 'includes/ajax-api/ajax-actions/abstract-ajax-api-action.php';
 		$this->customPathList['AjaxApi\\GetRoomTypeCalendarData']     = 'includes/ajax-api/ajax-actions/get-room-type-calendar-data.php';

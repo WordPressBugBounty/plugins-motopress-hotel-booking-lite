@@ -281,7 +281,7 @@ class PriceBreakdownHelper {
 		$totalPrice = (float) array_sum( $dayPrices );
 
 		// Calc discount
-		if ( ! is_null( $this->coupon ) && $this->coupon->isApplicableForRoomType( $roomTypeId ) ) {
+		if ( ! is_null( $this->coupon ) && $this->coupon->isApplicableForRoomType( $roomType->getOriginalId() ) ) {
 			$discount = $this->coupon->calcRoomDiscount( $dayPrices );
 		} else {
 			$discount = 0.0;

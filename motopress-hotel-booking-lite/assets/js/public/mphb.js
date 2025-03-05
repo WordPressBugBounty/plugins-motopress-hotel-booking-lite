@@ -125,9 +125,19 @@
        * @param {int} calendarMode 1 - availability calendar, 2 - check-in calendar, 3 - check-out calendar
        * @param {Date} date processing date
        * @param {boolean} isCurrentMonth
+       * @param {Date} checkInDate selected check-in date required for check-out calendar
+       * @param {Date} minStayDateAfterCheckIn required for check-out calendar
+       * @param {Date} maxStayDateAfterCheckIn required for check-out calendar
+       * @param {Date} minCheckOutDateForSelection required for check-out calendar
+       * @param {Date} maxCheckOutDateForSelection required for check-out calendar
        */
       getCalendarDateAttributesFromAvailability: function getCalendarDateAttributesFromAvailability(calendarMode, date, isCurrentMonth, roomTypeCalendarData) {
         var isShowPrices = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+        var checkInDate = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : null;
+        var minStayDateAfterCheckIn = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : null;
+        var maxStayDateAfterCheckIn = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : null;
+        var minCheckOutDateForSelection = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : null;
+        var maxCheckOutDateForSelection = arguments.length > 9 && arguments[9] !== undefined ? arguments[9] : null;
         var calendarDateAttributes = {
           selectable: false,
           dateClass: 'mphb-date-cell',
@@ -173,93 +183,34 @@
             isCheckOutNotAllowed = roomTypeData.hasOwnProperty('isCheckOutNotAllowed') && roomTypeData.isCheckOutNotAllowed,
             isEarlierThanMinAdvanceDate = roomTypeData.hasOwnProperty('isEarlierThanMinAdvanceDate') && roomTypeData.isEarlierThanMinAdvanceDate,
             isLaterThanMaxAdvanceDate = roomTypeData.hasOwnProperty('isLaterThanMaxAdvanceDate') && roomTypeData.isLaterThanMaxAdvanceDate,
-            isDateOutOfSeasons = isDateNotAvailable && !isStayInNotAllowed && roomTypeData.hasOwnProperty('availableRoomsCount') && 0 < roomTypeData.availableRoomsCount; // fill calendar date data by booking status of the processing date
+            isDateOutOfSeasons = isDateNotAvailable && !isStayInNotAllowed && roomTypeData.hasOwnProperty('availableRoomsCount') && 0 < roomTypeData.availableRoomsCount;
 
-        switch (roomTypeData.roomTypeStatus) {
-          case MPHB.calendarHelper.ROOM_STATUS_PAST:
-            calendarDateAttributes.dateClass += ' mphb-past-date';
-            calendarDateAttributes.title += MPHB._data.translations.past; // custom attribute for later processing
+        if (MPHB.calendarHelper.ROOM_STATUS_PAST === roomTypeData.roomTypeStatus) {
+          calendarDateAttributes.dateClass += ' mphb-past-date'; // custom attribute for later processing
 
-            calendarDateAttributes.isPastDate = true;
-            break;
-
-          case MPHB.calendarHelper.ROOM_STATUS_AVAILABLE:
+          calendarDateAttributes.isPastDate = true;
+        } else {
+          if (MPHB.calendarHelper.ROOM_STATUS_AVAILABLE === roomTypeData.roomTypeStatus) {
             calendarDateAttributes.dateClass += ' mphb-available-date';
-
-            if (isCheckOutDate) {
-              calendarDateAttributes.dateClass += ' mphb-date-check-out';
-            }
-
-            var availableRoomsCount = 'undefined';
-
-            if (roomTypeData.hasOwnProperty('availableRoomsCount')) {
-              availableRoomsCount = roomTypeData.availableRoomsCount;
-            }
-
-            calendarDateAttributes.title += MPHB._data.translations.available + ' (' + availableRoomsCount + ')';
-            break;
-
-          case MPHB.calendarHelper.ROOM_STATUS_NOT_AVAILABLE:
+          } else if (MPHB.calendarHelper.ROOM_STATUS_NOT_AVAILABLE === roomTypeData.roomTypeStatus) {
             calendarDateAttributes.dateClass += ' mphb-not-available-date';
-
-            if (isCheckOutDate) {
-              calendarDateAttributes.dateClass += ' mphb-date-check-out';
-            }
-
-            calendarDateAttributes.title += MPHB._data.translations.notAvailable;
-            break;
-
-          case MPHB.calendarHelper.ROOM_STATUS_BOOKED:
+          } else if (MPHB.calendarHelper.ROOM_STATUS_BOOKED === roomTypeData.roomTypeStatus) {
             calendarDateAttributes.dateClass += ' mphb-booked-date';
+          }
 
-            if (isCheckInDate) {
-              calendarDateAttributes.dateClass += ' mphb-date-check-in';
-            } else if (isCheckOutDate) {
-              calendarDateAttributes.dateClass += ' mphb-date-check-out';
+          if (isCheckInDate) {
+            calendarDateAttributes.dateClass += ' mphb-date-check-in';
+          } else if (isCheckOutDate) {
+            calendarDateAttributes.dateClass += ' mphb-date-check-out';
+
+            if (MPHB.calendarHelper.ROOM_STATUS_EARLIER_MIN_ADVANCE === roomTypeData.roomTypeStatus || MPHB.calendarHelper.ROOM_STATUS_LATER_MAX_ADVANCE === roomTypeData.roomTypeStatus) {
+              calendarDateAttributes.dateClass += ' mphb-booked-date mphb-available-date';
             }
-
-            calendarDateAttributes.title += MPHB._data.translations.booked;
-            break;
-
-          case MPHB.calendarHelper.ROOM_STATUS_EARLIER_MIN_ADVANCE:
-          case MPHB.calendarHelper.ROOM_STATUS_LATER_MAX_ADVANCE:
-            if (isCheckOutDate) {
-              calendarDateAttributes.dateClass += ' mphb-booked-date mphb-date-check-out mphb-available-date';
-            }
-
-            calendarDateAttributes.title += MPHB._data.translations.notAvailable;
-            break;
+          }
         }
-
-        var rulesTitles = []; // complete calendar date data by booking rules for the processing date
 
         if (isStayInNotAllowed) {
-          rulesTitles.push(MPHB._data.translations.notStayIn);
           calendarDateAttributes.dateClass += ' mphb-not-stay-in-date';
-        }
-
-        if (isCheckInNotAllowed) {
-          rulesTitles.push(MPHB._data.translations.notCheckIn);
-        }
-
-        if (isCheckOutNotAllowed) {
-          rulesTitles.push(MPHB._data.translations.notCheckOut);
-        }
-
-        if (isEarlierThanMinAdvanceDate) {
-          rulesTitles.push(MPHB._data.translations.earlierMinAdvance);
-        }
-
-        if (isLaterThanMaxAdvanceDate) {
-          rulesTitles.push(MPHB._data.translations.laterMaxAdvance);
-        }
-
-        if (rulesTitles.length) {
-          calendarDateAttributes.title += '\n' + MPHB._data.translations.rules + ' ' + rulesTitles.join(', ');
-        }
-
-        if (isShowPrices && roomTypeData.hasOwnProperty('price')) {
-          calendarDateAttributes.content = date.getDate() + '<span class="mphb-date-cell__price">' + roomTypeData.price + '</span>';
         }
 
         if (isDateOutOfSeasons && isCheckOutNotAllowed) {
@@ -329,6 +280,101 @@
 
 
             calendarDateAttributes.isUnavailableCheckOut = true;
+          }
+        } // set title
+
+
+        calendarDateAttributes.title = '';
+        var rulesTitles = [];
+
+        if (MPHB.calendarHelper.ROOM_STATUS_PAST === roomTypeData.roomTypeStatus) {
+          calendarDateAttributes.title = MPHB._data.translations.past;
+        } else {
+          if (MPHB.calendarHelper.ROOM_STATUS_AVAILABLE === roomTypeData.roomTypeStatus) {
+            calendarDateAttributes.title = MPHB._data.translations.available + ' (' + (roomTypeData.hasOwnProperty('availableRoomsCount') ? roomTypeData.availableRoomsCount : 'undefined') + ')';
+          }
+
+          if (MPHB.calendarHelper.ROOM_STATUS_NOT_AVAILABLE === roomTypeData.roomTypeStatus) {
+            calendarDateAttributes.title = MPHB._data.translations.notAvailable;
+          }
+
+          if (MPHB.calendarHelper.ROOM_STATUS_BOOKED === roomTypeData.roomTypeStatus) {
+            calendarDateAttributes.title = MPHB._data.translations.booked;
+          }
+
+          if (MPHB.calendarHelper.ROOM_STATUS_EARLIER_MIN_ADVANCE === roomTypeData.roomTypeStatus || MPHB.calendarHelper.ROOM_STATUS_LATER_MAX_ADVANCE === roomTypeData.roomTypeStatus) {
+            calendarDateAttributes.title = MPHB._data.translations.notAvailable;
+          }
+
+          if ((MPHB.calendarHelper.ROOM_STATUS_NOT_AVAILABLE === roomTypeData.roomTypeStatus || MPHB.calendarHelper.ROOM_STATUS_BOOKED === roomTypeData.roomTypeStatus) && 3 === calendarMode && !isCheckOutNotAllowed) {
+            // we can not keep title empty so for checkout calendar we mark
+            // unavailable days as available because user can select such dates
+            calendarDateAttributes.title = MPHB._data.translations.available;
+          }
+
+          if (isStayInNotAllowed && 3 !== calendarMode) {
+            rulesTitles.push(MPHB._data.translations.notStayIn);
+          }
+
+          if (isEarlierThanMinAdvanceDate || MPHB.calendarHelper.ROOM_STATUS_EARLIER_MIN_ADVANCE === roomTypeData.roomTypeStatus) {
+            rulesTitles.push(MPHB._data.translations.earlierMinAdvance);
+          }
+
+          if (isLaterThanMaxAdvanceDate || MPHB.calendarHelper.ROOM_STATUS_LATER_MAX_ADVANCE === roomTypeData.roomTypeStatus) {
+            rulesTitles.push(MPHB._data.translations.laterMaxAdvance);
+          }
+
+          if (isCheckInNotAllowed && 3 !== calendarMode) {
+            rulesTitles.push(MPHB._data.translations.notCheckIn);
+          }
+
+          if (isCheckOutNotAllowed && 2 !== calendarMode) {
+            rulesTitles.push(MPHB._data.translations.notCheckOut);
+          }
+        }
+
+        if (rulesTitles.length) {
+          calendarDateAttributes.title += '\n' + MPHB._data.translations.rules + ' ' + rulesTitles.join(', ');
+        } // set price
+
+
+        if (isShowPrices && roomTypeData.hasOwnProperty('price')) {
+          calendarDateAttributes.content = date.getDate() + '<span class="mphb-date-cell__price">' + roomTypeData.price + '</span>';
+        } // set selectable class and flag for Check-In and Check-Out calendars
+
+
+        if (2 === calendarMode) {
+          // check-in calendar
+          if (!isCurrentMonth || calendarDateAttributes.isPastDate || calendarDateAttributes.isUnavailable || calendarDateAttributes.isUnavailableCheckIn) {
+            calendarDateAttributes.dateClass += ' mphb-unselectable-date';
+          } else {
+            calendarDateAttributes.selectable = true;
+            calendarDateAttributes.dateClass += ' mphb-selectable-date';
+          }
+        } else if (3 === calendarMode) {
+          // check-out calendar
+          if (isCurrentMonth) {
+            if (null !== checkInDate && MPHB.Utils.formatDateToCompare(date) === MPHB.Utils.formatDateToCompare(checkInDate)) {
+              calendarDateAttributes.title += ' ' + MPHB._data.translations.checkInDate;
+              calendarDateAttributes.dateClass += ' mphb-check-in-date';
+            }
+
+            if (null !== minStayDateAfterCheckIn && minStayDateAfterCheckIn.getTime() > date.getTime()) {
+              calendarDateAttributes.title += '\n' + MPHB._data.translations.lessThanMinDaysStay;
+              calendarDateAttributes.dateClass += ' mphb-earlier-min-date';
+            }
+
+            if (null !== maxStayDateAfterCheckIn && maxStayDateAfterCheckIn.getTime() < date.getTime()) {
+              calendarDateAttributes.title += '\n' + MPHB._data.translations.moreThanMaxDaysStay;
+              calendarDateAttributes.dateClass += ' mphb-later-max-date';
+            }
+          }
+
+          if ((null === minCheckOutDateForSelection || minCheckOutDateForSelection.getTime() <= date.getTime()) && (null === maxCheckOutDateForSelection || maxCheckOutDateForSelection.getTime() >= date.getTime()) && !calendarDateAttributes.isUnavailableCheckOut && !calendarDateAttributes.isUnavailable) {
+            calendarDateAttributes.selectable = true;
+            calendarDateAttributes.dateClass += ' mphb-selectable-date';
+          } else {
+            calendarDateAttributes.dateClass += ' mphb-unselectable-date';
           }
         }
 
@@ -2992,14 +3038,6 @@
           onDate: function onDate(date, isCurrentMonth) {
             var roomTypeCalendarData = MPHB.ajaxApiHelper.getLoadedRoomTypeCalendarData(self.roomTypeId);
             var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(2, date, isCurrentMonth, roomTypeCalendarData);
-
-            if (!isCurrentMonth || calendarDateAttributes.isPastDate || calendarDateAttributes.isUnavailable || calendarDateAttributes.isUnavailableCheckIn) {
-              calendarDateAttributes.dateClass += ' mphb-unselectable-date';
-            } else {
-              calendarDateAttributes.selectable = true;
-              calendarDateAttributes.dateClass += ' mphb-selectable-date';
-            }
-
             return calendarDateAttributes;
           },
           pickerClass: 'mphb-datepick-popup mphb-check-in-datepick ' + MPHB._data.settings.datepickerClass
@@ -3070,34 +3108,7 @@
           },
           onDate: function onDate(date, isCurrentMonth) {
             var roomTypeCalendarData = MPHB.ajaxApiHelper.getLoadedRoomTypeCalendarData(self.roomTypeId);
-            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(3, date, isCurrentMonth, roomTypeCalendarData);
-
-            if (isCurrentMonth) {
-              var checkInDate = self.form.checkInDatepicker.getDate();
-
-              if (null !== checkInDate && MPHB.Utils.formatDateToCompare(date) === MPHB.Utils.formatDateToCompare(checkInDate)) {
-                calendarDateAttributes.title += ' ' + MPHB._data.translations.checkInDate;
-                calendarDateAttributes.dateClass += ' mphb-check-in-date';
-              }
-
-              if (null !== self.minStayDateAfterCheckIn && self.minStayDateAfterCheckIn.getTime() > date.getTime()) {
-                calendarDateAttributes.title += '\n' + MPHB._data.translations.lessThanMinDaysStay;
-                calendarDateAttributes.dateClass += ' mphb-earlier-min-date';
-              }
-
-              if (null !== self.maxStayDateAfterCheckIn && self.maxStayDateAfterCheckIn.getTime() < date.getTime()) {
-                calendarDateAttributes.title += '\n' + MPHB._data.translations.moreThanMaxDaysStay;
-                calendarDateAttributes.dateClass += ' mphb-later-max-date';
-              }
-            }
-
-            if ((null === self.minCheckOutDateForSelection || self.minCheckOutDateForSelection.getTime() <= date.getTime()) && (null === self.maxCheckOutDateForSelection || self.maxCheckOutDateForSelection.getTime() >= date.getTime()) && !calendarDateAttributes.isUnavailableCheckOut && !calendarDateAttributes.isUnavailable) {
-              calendarDateAttributes.selectable = true;
-              calendarDateAttributes.dateClass += ' mphb-selectable-date';
-            } else {
-              calendarDateAttributes.dateClass += ' mphb-unselectable-date';
-            }
-
+            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(3, date, isCurrentMonth, roomTypeCalendarData, false, self.form.checkInDatepicker.getDate(), self.minStayDateAfterCheckIn, self.maxStayDateAfterCheckIn, self.minCheckOutDateForSelection, self.maxCheckOutDateForSelection);
             return calendarDateAttributes;
           },
           pickerClass: 'mphb-datepick-popup mphb-check-out-datepick ' + MPHB._data.settings.datepickerClass
@@ -3141,14 +3152,6 @@
           onDate: function onDate(date, isCurrentMonth) {
             var roomTypeCalendarData = MPHB.ajaxApiHelper.getLoadedRoomTypeCalendarData(0);
             var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(2, date, isCurrentMonth, roomTypeCalendarData);
-
-            if (!isCurrentMonth || calendarDateAttributes.isPastDate || calendarDateAttributes.isUnavailable || calendarDateAttributes.isUnavailableCheckIn) {
-              calendarDateAttributes.dateClass += ' mphb-unselectable-date';
-            } else {
-              calendarDateAttributes.selectable = true;
-              calendarDateAttributes.dateClass += ' mphb-selectable-date';
-            }
-
             return calendarDateAttributes;
           },
           pickerClass: 'mphb-datepick-popup mphb-check-in-datepick ' + MPHB._data.settings.datepickerClass
@@ -3226,34 +3229,7 @@
           },
           onDate: function onDate(date, isCurrentMonth) {
             var roomTypeCalendarData = MPHB.ajaxApiHelper.getLoadedRoomTypeCalendarData(0);
-            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(3, date, isCurrentMonth, roomTypeCalendarData);
-
-            if (isCurrentMonth) {
-              var checkInDate = self.form.checkInDatepicker.getDate();
-
-              if (null !== checkInDate && MPHB.Utils.formatDateToCompare(date) === MPHB.Utils.formatDateToCompare(checkInDate)) {
-                calendarDateAttributes.title += ' ' + MPHB._data.translations.checkInDate;
-                calendarDateAttributes.dateClass += ' mphb-check-in-date';
-              }
-
-              if (null !== self.minStayDateAfterCheckIn && self.minStayDateAfterCheckIn.getTime() > date.getTime()) {
-                calendarDateAttributes.title += '\n' + MPHB._data.translations.lessThanMinDaysStay;
-                calendarDateAttributes.dateClass += ' mphb-earlier-min-date';
-              }
-
-              if (null !== self.maxStayDateAfterCheckIn && self.maxStayDateAfterCheckIn.getTime() < date.getTime()) {
-                calendarDateAttributes.title += '\n' + MPHB._data.translations.moreThanMaxDaysStay;
-                calendarDateAttributes.dateClass += ' mphb-later-max-date';
-              }
-            }
-
-            if ((null === self.minCheckOutDateForSelection || self.minCheckOutDateForSelection.getTime() <= date.getTime()) && (null === self.maxCheckOutDateForSelection || self.maxCheckOutDateForSelection.getTime() >= date.getTime()) && !calendarDateAttributes.isUnavailableCheckOut && !calendarDateAttributes.isUnavailable) {
-              calendarDateAttributes.selectable = true;
-              calendarDateAttributes.dateClass += ' mphb-selectable-date';
-            } else {
-              calendarDateAttributes.dateClass += ' mphb-unselectable-date';
-            }
-
+            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(3, date, isCurrentMonth, roomTypeCalendarData, false, self.form.checkInDatepicker.getDate(), self.minStayDateAfterCheckIn, self.maxStayDateAfterCheckIn, self.minCheckOutDateForSelection, self.maxCheckOutDateForSelection);
             return calendarDateAttributes;
           },
           pickerClass: 'mphb-datepick-popup mphb-check-out-datepick ' + MPHB._data.settings.datepickerClass

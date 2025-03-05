@@ -478,6 +478,11 @@ class MainSettings {
 		return (bool) get_option( 'mphb_use_occupancy_presets_on_checkout', false );
 	}
 
+
+	public function isRecommendAndSearchSingleRoomTypeForRequestedGuestsCount(): bool {
+		return (bool) get_option( 'mphb_recommend_and_search_single_room_type_for_requested_guests_count', false );
+	}
+
 	/**
 	 *
 	 * @return bool
@@ -610,6 +615,7 @@ class MainSettings {
 		return get_option( 'mphb_do_not_apply_booking_rules_for_admin', false ) &&
 			(
 				( isset( $_REQUEST[ \MPHB\AjaxApi\AbstractAjaxApiAction::REQUEST_DATA_IS_ADMIN ] ) &&
+					// phpcs:ignore
 					filter_var( $_REQUEST[ \MPHB\AjaxApi\AbstractAjaxApiAction::REQUEST_DATA_IS_ADMIN ], FILTER_VALIDATE_BOOLEAN )
 				) ||
 				( is_admin() &&

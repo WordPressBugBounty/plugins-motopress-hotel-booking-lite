@@ -292,15 +292,6 @@ class SettingsMenuPage extends AbstractMenuPage {
 				)
 			),
 			Fields\FieldFactory::create(
-				'mphb_enable_recommendation',
-				array(
-					'type'        => 'checkbox',
-					'label'       => __( 'Recommendation', 'motopress-hotel-booking' ),
-					'inner_label' => __( 'Enable search form to recommend the best set of accommodations according to a number of guests.', 'motopress-hotel-booking' ),
-					'default'     => true,
-				)
-			),
-			Fields\FieldFactory::create(
 				'mphb_enable_coupons',
 				array(
 					'type'        => 'checkbox',
@@ -545,6 +536,33 @@ class SettingsMenuPage extends AbstractMenuPage {
 				)
 			),
 			Fields\FieldFactory::create(
+				'mphb_recommend_and_search_single_room_type_for_requested_guests_count',
+				array(
+					'type'        => 'checkbox',
+					'label'       => __( 'Search Results', 'motopress-hotel-booking' ),
+					'inner_label' => esc_html__( "Limit search results based on the requested number of guests.", 'motopress-hotel-booking' ),
+					'default'     => false,
+				)
+			),
+			Fields\FieldFactory::create(
+				'mphb_direct_search_results',
+				array(
+					'type'        => 'checkbox',
+					'label'       => __( 'Book button behavior on the search results page', 'motopress-hotel-booking' ),
+					'inner_label' => __( 'Redirect to the checkout page immediately after successful addition to reservation.', 'motopress-hotel-booking' ),
+					'default'     => false,
+				)
+			),
+			Fields\FieldFactory::create(
+				'mphb_enable_recommendation',
+				array(
+					'type'        => 'checkbox',
+					'label'       => __( 'Recommendation', 'motopress-hotel-booking' ),
+					'inner_label' => __( 'Enable search form to recommend the best set of accommodations according to a number of guests.', 'motopress-hotel-booking' ),
+					'default'     => true,
+				)
+			),
+			Fields\FieldFactory::create(
 				'mphb_direct_booking',
 				array(
 					'type'        => 'checkbox',
@@ -564,15 +582,6 @@ class SettingsMenuPage extends AbstractMenuPage {
 						'capacity' => __( 'Show price together with adults and children fields', 'motopress-hotel-booking' ),
 					),
 					'default' => 'disabled',
-				)
-			),
-			Fields\FieldFactory::create(
-				'mphb_direct_search_results',
-				array(
-					'type'        => 'checkbox',
-					'label'       => __( 'Book button behavior on the search results page', 'motopress-hotel-booking' ),
-					'inner_label' => __( 'Redirect to the checkout page immediately after successful addition to reservation.', 'motopress-hotel-booking' ),
-					'default'     => false,
 				)
 			),
 			Fields\FieldFactory::create(
@@ -1314,7 +1323,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 						),
 						admin_url( 'admin.php' )
 					)
-				) . '" class="nav-tab' . $class . '">' . esc_html( $tab->getLabel() ) . '</a>';
+				) . '" class="nav-tab' . esc_attr( $class ) . '">' . esc_html( $tab->getLabel() ) . '</a>';
 			}
 		}
 		echo '</h1>';

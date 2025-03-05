@@ -491,14 +491,36 @@ class BookingRulesData {
 		return $this->cachedRulesByDates[ $requestedDateString ][ $roomTypeOriginalId ];
 	}
 
+	private static function getCheckInWithCorrectTimeInUTC( \DateTime $checkInDate ): \DateTime {
+
+		$checkInDateTime = clone $checkInDate;
+		$checkInDateTime->setTimezone( DateUtils::getSiteTimeZone() );
+		$checkInTime = MPHB()->settings()->dateTime()->getCheckInTime( true );
+		$checkInDateTime->setTime( $checkInTime[0], $checkInTime[1], $checkInTime[2] );
+		$checkInDateTime->setTimezone( new \DateTimeZone( 'UTC' ) );
+		return $checkInDateTime;
+	}
+
+	private static function getCheckOutWithCorrectTimeInUTC( \DateTime $checkOutDate ): \DateTime {
+
+		$checkOutDateTime = clone $checkOutDate;
+		$checkOutDateTime->setTimezone( DateUtils::getSiteTimeZone() );
+		$checkOutTime = MPHB()->settings()->dateTime()->getCheckOutTime( true );
+		$checkOutDateTime->setTime( $checkOutTime[0], $checkOutTime[1], $checkOutTime[2] );
+		$checkOutDateTime->setTimezone( new \DateTimeZone( 'UTC' ) );
+		return $checkOutDateTime;
+	}
+
 
 	public function isCheckInEarlierThanMinAdvanceDate( int $roomTypeOriginalId, \DateTime $checkInDate, bool $isIgnoreBookingRules ) {
 
+		$checkInDateTime = self::getCheckInWithCorrectTimeInUTC( $checkInDate );
+
 		return ! $isIgnoreBookingRules &&
 			$this->hasMinAdvanceReservationRules &&
-			DateUtils::calcNightsSinceToday( $checkInDate ) < $this->getMinAdvanceReservationDaysCount(
+			DateUtils::calcNightsSinceToday( $checkInDateTime ) < $this->getMinAdvanceReservationDaysCount(
 				$roomTypeOriginalId,
-				$checkInDate,
+				$checkInDateTime,
 				$isIgnoreBookingRules
 			);
 	}
@@ -510,7 +532,8 @@ class BookingRulesData {
 
 		if ( ! $isIgnoreBookingRules && $this->hasMinAdvanceReservationRules ) {
 
-			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $requestedDate );
+			$checkInDateTime = self::getCheckInWithCorrectTimeInUTC( $requestedDate );
+			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDateTime );
 			$result = $bookingRules['min_advance_reservation'];
 		}
 
@@ -520,16 +543,18 @@ class BookingRulesData {
 
 	public function isCheckInLaterThanMaxAdvanceDate( int $roomTypeOriginalId, \DateTime $checkInDate, bool $isIgnoreBookingRules ) {
 
+		$checkInDateTime = self::getCheckInWithCorrectTimeInUTC( $checkInDate );
+
 		$maxStayDaysCount = $this->getMaxAdvanceReservationDaysCount(
 			$roomTypeOriginalId,
-			$checkInDate,
+			$checkInDateTime,
 			$isIgnoreBookingRules
 		);
 
 		return ! $isIgnoreBookingRules &&
 			$this->hasMaxAdvanceReservationRules &&
 			0 < $maxStayDaysCount &&
-			DateUtils::calcNightsSinceToday( $checkInDate ) > $maxStayDaysCount;
+			DateUtils::calcNightsSinceToday( $checkInDateTime ) > $maxStayDaysCount;
 	}
 
 
@@ -539,7 +564,8 @@ class BookingRulesData {
 
 		if ( ! $isIgnoreBookingRules && $this->hasMaxAdvanceReservationRules ) {
 
-			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $requestedDate );
+			$checkInDateTime = self::getCheckInWithCorrectTimeInUTC( $requestedDate );
+			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDateTime );
 			$result = $bookingRules['max_advance_reservation'];
 		}
 
@@ -570,11 +596,14 @@ class BookingRulesData {
 
 	public function isMinStayNightsRuleViolated( int $roomTypeOriginalId, \DateTime $checkInDate, \DateTime $checkOutDate, bool $isIgnoreBookingRules ) {
 
+		$checkInDateTime = self::getCheckInWithCorrectTimeInUTC( $checkInDate );
+		$checkOutDateTime = self::getCheckOutWithCorrectTimeInUTC( $checkOutDate );
+
 		return ! $isIgnoreBookingRules &&
 			$this->hasMinStayLengthRules &&
-			DateUtils::calcNights( $checkInDate, $checkOutDate ) < $this->getMinStayNightsCount(
+			DateUtils::calcNights( $checkInDateTime, $checkOutDateTime ) < $this->getMinStayNightsCount(
 				$roomTypeOriginalId,
-				$checkInDate,
+				$checkInDateTime,
 				$isIgnoreBookingRules
 			);
 	}
@@ -586,7 +615,8 @@ class BookingRulesData {
 
 		if ( ! $isIgnoreBookingRules && $this->hasMinStayLengthRules ) {
 
-			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $requestedDate );
+			$checkInDateTime = self::getCheckInWithCorrectTimeInUTC( $requestedDate );
+			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDateTime );
 			$result = $bookingRules['min_stay_length'];
 		}
 
@@ -596,16 +626,19 @@ class BookingRulesData {
 
 	public function isMaxStayNightsRuleViolated( int $roomTypeOriginalId, \DateTime $checkInDate, \DateTime $checkOutDate, bool $isIgnoreBookingRules ) {
 
+		$checkInDateTime = self::getCheckInWithCorrectTimeInUTC( $checkInDate );
+		$checkOutDateTime = self::getCheckOutWithCorrectTimeInUTC( $checkOutDate );
+
 		$maxStayDaysCount = $this->getMaxStayNightsCount(
 			$roomTypeOriginalId,
-			$checkInDate,
+			$checkInDateTime,
 			$isIgnoreBookingRules
 		);
 
 		return ! $isIgnoreBookingRules &&
 			$this->hasMaxStayLengthRules &&
 			0 < $maxStayDaysCount &&
-			DateUtils::calcNights( $checkInDate, $checkOutDate ) > $maxStayDaysCount;
+			DateUtils::calcNights( $checkInDateTime, $checkOutDateTime ) > $maxStayDaysCount;
 	}
 
 
@@ -615,7 +648,8 @@ class BookingRulesData {
 
 		if ( ! $isIgnoreBookingRules && $this->hasMaxStayLengthRules ) {
 
-			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $requestedDate );
+			$checkInDateTime = self::getCheckInWithCorrectTimeInUTC( $requestedDate );
+			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDateTime );
 			$result = $bookingRules['max_stay_length'];
 		}
 
@@ -635,7 +669,8 @@ class BookingRulesData {
 
 		if ( ! $isIgnoreBookingRules && $this->hasBufferDaysRules ) {
 
-			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $requestedDate );
+			$checkInDateTime = self::getCheckInWithCorrectTimeInUTC( $requestedDate );
+			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDateTime );
 			$result = $bookingRules['buffer_days'];
 		}
 
@@ -653,7 +688,8 @@ class BookingRulesData {
 
 			if ( 0 < $availableRoomsCount ) {
 
-				$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $requestedDate );
+				$checkInDateTime = self::getCheckInWithCorrectTimeInUTC( $requestedDate );
+				$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDateTime );
 
 				if ( $bookingRules['not_stay_in'] ) {
 
@@ -683,7 +719,8 @@ class BookingRulesData {
 			( $this->hasNotCheckInRules || $this->hasCheckInDaysRules )
 		) {
 
-			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDate );
+			$checkInDateTime = self::getCheckInWithCorrectTimeInUTC( $checkInDate );
+			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDateTime );
 			$result = $bookingRules['not_check_in'] || ! $bookingRules['in_check_in_days'];
 		}
 
@@ -699,7 +736,8 @@ class BookingRulesData {
 			( $this->hasNotCheckOutRules || $this->hasCheckOutDaysRules )
 		) {
 
-			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkOutDate );
+			$checkOutDateTime = self::getCheckOutWithCorrectTimeInUTC( $checkOutDate );
+			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkOutDateTime );
 			$result = $bookingRules['not_check_out'] || ! $bookingRules['in_check_out_days'];
 		}
 
@@ -710,8 +748,8 @@ class BookingRulesData {
 
 		if ( ! $isIgnoreBookingRules && $this->hasNotStayInRules ) {
 
-			$testingDate = clone $checkInDate;
-			$checkOutDateString = $checkOutDate->format('Ymd');
+			$testingDate = self::getCheckInWithCorrectTimeInUTC( $checkInDate );
+			$checkOutDateString = self::getCheckOutWithCorrectTimeInUTC( $checkOutDate )->format('Ymd');
 
 			do {
 
@@ -734,6 +772,7 @@ class BookingRulesData {
 
 	public function isBookingRulesViolated( int $roomTypeOriginalId, \DateTime $checkInDate, \DateTime $checkOutDate, bool $isIgnoreBookingRules ): bool {
 
+		// do not correct check-in check-out dates because we do this in each method separatly
 		return $this->isCheckInEarlierThanMinAdvanceDate( $roomTypeOriginalId, $checkInDate, $isIgnoreBookingRules ) ||
 			$this->isCheckInLaterThanMaxAdvanceDate( $roomTypeOriginalId, $checkInDate, $isIgnoreBookingRules ) ||
 			$this->isMinStayNightsRuleViolated( $roomTypeOriginalId, $checkInDate, $checkOutDate, $isIgnoreBookingRules ) ||
@@ -748,6 +787,9 @@ class BookingRulesData {
 	 */
 	public function getUnavailableRoomIds( int $roomTypeOriginalId, \DateTime $checkInDate, \DateTime $checkOutDate, bool $isIgnoreBookingRules ) {
 
+		$checkInDateTime = self::getCheckInWithCorrectTimeInUTC( $checkInDate );
+		$checkOutDateTime = self::getCheckOutWithCorrectTimeInUTC( $checkOutDate );
+
 		if ( $isIgnoreBookingRules ) {
 			return array();
 
@@ -758,15 +800,15 @@ class BookingRulesData {
 		) {
 			return array();
 
-		} elseif ( $this->isBookingRulesViolated( $roomTypeOriginalId, $checkInDate, $checkOutDate, $isIgnoreBookingRules ) ) {
+		} elseif ( $this->isBookingRulesViolated( $roomTypeOriginalId, $checkInDateTime, $checkOutDateTime, $isIgnoreBookingRules ) ) {
 
 			return MPHB()->getRoomPersistence()->findAllIdsByType( $roomTypeOriginalId );
 		}
 
 		$unavailableRoomIds = array();
 
-		$testingDate = clone $checkInDate;
-		$checkOutDateString = $checkOutDate->format('Ymd');
+		$testingDate = clone $checkInDateTime;
+		$checkOutDateString = $checkOutDateTime->format('Ymd');
 
 		do {
 

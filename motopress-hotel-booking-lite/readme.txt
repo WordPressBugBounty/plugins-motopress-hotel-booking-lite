@@ -3,8 +3,8 @@ Contributors: MotoPress
 Donate link: https://motopress.com/
 Requires at least: 5.2
 Tags: hotel booking, reservation, hotel, booking engine, booking, booking calendar, booking system, calendar, online booking, airbnb, booking.com, homeaway, vrbo, tripadvisor, booking form, availability calendar, channel manager, property management system, vacation, travel
-Tested up to: 6.6
-Stable tag: 5.0.3
+Tested up to: 6.7
+Stable tag: 5.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -164,6 +164,15 @@ Hotel Booking Lite plugin, Copyright (C) 2016, MotoPress https://motopress.com/
 Hotel Booking Lite plugin is distributed under the terms of the GNU GPL.
 
 == Changelog ==
+
+= 5.1.0, Mar 5 2025 =
+* Added the ability to limit search results based on the requested number of guests.
+* Improved tooltips in the calendar date picker.
+* Fixed a time zone issue affecting the Minimum Advance Reservation booking rule.
+* Fixed an issue where coupons were not applied correctly in languages other than English on the checkout page.
+
+= 5.0.4, Oct 9 2024 =
+* Fixed compatibility issues with other plugins that occurred when connecting to the Stripe library.
 
 = 5.0.3, Jul 31 2024 =
 * Refactored the code used to translate the My Account page with the WPML plugin.

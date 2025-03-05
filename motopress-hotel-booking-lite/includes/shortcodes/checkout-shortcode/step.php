@@ -41,7 +41,10 @@ abstract class Step {
 
 		mphb_set_cookie( 'mphb_check_in_date', $dateString );
 
-		$checkInDate = \DateTime::createFromFormat( MPHB()->settings()->dateTime()->getDateTransferFormat(), $dateString );
+		$checkInDate = \MPHB\Utils\DateUtils::createCheckInDate(
+			MPHB()->settings()->dateTime()->getDateTransferFormat(),
+			$dateString
+		);
 		$todayDate   = \DateTime::createFromFormat( 'Y-m-d', mphb_current_time( 'Y-m-d' ) );
 
 		$checkInDate = apply_filters( 'mphb_sc_checkout_parse_check_in_date', $checkInDate, $dateString, $todayDate );
