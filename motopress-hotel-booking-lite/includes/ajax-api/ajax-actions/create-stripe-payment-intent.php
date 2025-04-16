@@ -13,6 +13,7 @@ class CreateStripePaymentIntent extends AbstractAjaxApiAction {
 	const REQUEST_DATA_PAYMENT_METHOD_TYPE = 'paymentMethodType'; // for example: card
 	const REQUEST_DATA_PAYMENT_METHOD_ID = 'paymentMethodId';
 	const REQUEST_DATA_IDEMPOTENCY_KEY = 'idempotencyKey';
+	const REQUEST_DATA_ROOM_TYPE_IDS = 'roomTypeIds';
 
 
 	public static function getAjaxActionNameWithouPrefix() {
@@ -39,6 +40,7 @@ class CreateStripePaymentIntent extends AbstractAjaxApiAction {
 		$requestData[ static::REQUEST_DATA_PAYMENT_METHOD_TYPE ] = static::getStringFromRequest( static::REQUEST_DATA_PAYMENT_METHOD_TYPE, true );
 		$requestData[ static::REQUEST_DATA_PAYMENT_METHOD_ID ] = static::getStringFromRequest( static::REQUEST_DATA_PAYMENT_METHOD_ID, true );
 		$requestData[ static::REQUEST_DATA_IDEMPOTENCY_KEY ] = static::getStringFromRequest( static::REQUEST_DATA_IDEMPOTENCY_KEY );
+		$requestData[ static::REQUEST_DATA_ROOM_TYPE_IDS ] = static::getIdListFromRequest( static::REQUEST_DATA_ROOM_TYPE_IDS );
 
 		return $requestData;
 	}
@@ -57,6 +59,11 @@ class CreateStripePaymentIntent extends AbstractAjaxApiAction {
 				)
 			);
 		}
+
+		/**
+		 * @param int[] $roomTypeIds
+		 */
+		do_action( 'mphb_create_stripe_payment_intent_for_room_types', $requestData[ static::REQUEST_DATA_ROOM_TYPE_IDS ] );
 
 		$response = $stripeApi->createPaymentIntent(
 			$requestData[ static::REQUEST_DATA_PAYMENT_METHOD_TYPE ],

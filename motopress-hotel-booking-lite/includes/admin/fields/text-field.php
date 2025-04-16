@@ -10,6 +10,7 @@ class TextField extends InputField {
 	protected $size        = 'regular';
 	protected $placeholder = '';
 	protected $list        = array();
+	protected $isEncoded   = false;
 
 	/**
 	 * @var string
@@ -25,7 +26,9 @@ class TextField extends InputField {
 	protected $inputMode = '';
 
 	public function __construct( $name, $details, $value = '' ) {
+
 		parent::__construct( $name, $details, $value );
+
 		$this->size        = ( isset( $details['size'] ) ) ? $details['size'] : $this->size;
 		$this->placeholder = ( isset( $details['placeholder'] ) ) ? $details['placeholder'] : $this->placeholder;
 		if ( ! isset( $this->inputType ) ) {
@@ -37,7 +40,26 @@ class TextField extends InputField {
 		if ( ! empty( $details['inputMode'] ) && in_array( $details['inputMode'], array( 'none', 'text', 'decimal', 'numeric', 'tel', 'search', 'email', 'url' ) ) ) {
 			$this->inputMode = $details['inputMode'];
 		}
+
+		$this->isEncoded = isset( $details['encoded'] ) ? $details['encoded'] : false;
+		// encode value if needed
+		$this->setValue( $this->getValue() );
 	}
+
+	public function isEncoded(): bool {
+		return $this->isEncoded;
+	}
+
+	public function setValue( $value ) {
+
+		if ( $this->isEncoded() ) {
+
+			$value = \MPHB\Core\StringEncryptHelper::decryptString( $value );
+		}
+
+		parent::setValue( $value );
+	}
+
 
 	protected function renderInput() {
 		$result = '<input name="' . esc_attr( $this->getName() ) . '" value="' . esc_attr( $this->value ) . '" id="' . MPHB()->addPrefix( $this->getName() ) . '" class="' . $this->generateSizeClasses() . '"' . $this->generateAttrs() . '/>';

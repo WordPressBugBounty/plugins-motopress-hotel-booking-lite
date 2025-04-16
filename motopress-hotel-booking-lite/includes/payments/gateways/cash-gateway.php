@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class CashGateway extends Gateway {
+	public const GATEWAY_ID = 'cash';
 
 	public function __construct() {
 
@@ -20,10 +21,6 @@ class CashGateway extends Gateway {
 			10,
 			2
 		);
-	}
-
-	protected function initId() {
-		return 'cash';
 	}
 
 	/**

@@ -39,7 +39,7 @@ class Room {
 		}
 
 		$this->status       = isset( $atts['status'] ) ? $atts['status'] : 'publish';
-		$this->room_type_id = isset( $atts['room_type_id'] ) ? $atts['room_type_id'] : 0;
+		$this->room_type_id = isset( $atts['room_type_id'] ) ? (int) $atts['room_type_id'] : 0;
 		$this->title        = isset( $atts['title'] ) ? $atts['title'] : '';
 		$this->description  = isset( $atts['description'] ) ? $atts['description'] : '';
 	}

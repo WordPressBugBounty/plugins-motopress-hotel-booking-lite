@@ -155,4 +155,19 @@ class EditCPTPage {
 		}
 		return $atts;
 	}
+
+	public function getPostId(): int {
+		$postId = 0;
+
+		if ( isset( $_GET['post'] ) && is_numeric( $_GET['post'] ) ) {
+			// On post edit page
+			$postId = intval( $_GET['post'] );
+
+		} elseif ( isset( $_POST['post_ID'] ) && is_numeric( $_POST['post_ID'] ) ) {
+			// On post update
+			$postId = intval( $_POST['post_ID'] );
+		}
+
+		return $postId;
+	}
 }

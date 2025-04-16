@@ -389,6 +389,11 @@ class StepBooking extends Step {
 
 		$this->booking = $booking;
 
+		/**
+		 * @param Entities\Booking $booking
+		 */
+		do_action( 'mphb_focus_on_booking', $this->booking );
+
 		return true;
 	}
 

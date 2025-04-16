@@ -73,7 +73,7 @@ class Rate {
 		$this->originalId   = MPHB()->translation()->getOriginalId( $this->id, MPHB()->postTypes()->rate()->getPostType() );
 		$this->title        = $atts['title'];
 		$this->description  = $atts['description'];
-		$this->roomTypeId   = $atts['room_type_id'];
+		$this->roomTypeId   = (int) $atts['room_type_id'];
 		$this->seasonPrices = array_reverse( $atts['season_prices'] );
 		$this->isActive     = $atts['active'];
 	}

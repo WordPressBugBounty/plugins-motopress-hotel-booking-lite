@@ -179,7 +179,7 @@ class Statuses extends AbstractCPT\Statuses {
 
 						$booking->addLog( sprintf( __( 'Payment (#%s) for this booking is on hold', 'motopress-hotel-booking' ), $payment->getId() ) );
 
-						if ( \MPHB\Payments\Gateways\BankGateway::PAYMENT_GATEWAY_ID == $payment->getGatewayId() ) {
+						if ( \MPHB\Payments\Gateways\BankGateway::GATEWAY_ID == $payment->getGatewayId() ) {
 
 							$booking->setStatus( \MPHB\PostTypes\BookingCPT\Statuses::STATUS_PENDING_PAYMENT );
 

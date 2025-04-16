@@ -337,6 +337,11 @@ class BookingConfirmationShortcode extends AbstractShortcode {
 		$this->booking = $this->findBookingByCredentials();
 
 		if ( ! is_null( $this->booking ) ) {
+			/**
+			 * @param Booking $booking
+			 */
+			do_action( 'mphb_focus_on_booking', $this->booking );
+
 			$this->payments = mphb_bookings_facade()->findPaymentsByBookingId( $this->booking->getId() );
 		}
 

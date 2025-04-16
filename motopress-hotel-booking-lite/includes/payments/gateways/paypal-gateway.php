@@ -11,6 +11,7 @@ use MPHB\Payments\Gateways\Paypal\IpnListener;
  * https://developer.paypal.com/api/nvp-soap/paypal-payments-standard/integration-guide/Appx-websitestandard-htmlvariables/
  */
 class PaypalGateway extends Gateway {
+	public const GATEWAY_ID = 'paypal';
 
 	/**
 	 * @var Paypal\IpnListener
@@ -37,13 +38,11 @@ class PaypalGateway extends Gateway {
 
 		// init notification listener
 		$ipnListnerArgs    = array(
-			'gatewayId'            => $this->getId(),
-			'sandbox'              => $this->isSandbox,
 			'verificationDisabled' => (bool) $this->getOption( 'disable_ipn_verification' ),
 			'businessEmail'        => $this->businessEmail,
 		);
 
-		$this->ipnListener = new Paypal\IpnListener( $ipnListnerArgs );
+		$this->ipnListener = new Paypal\IpnListener( $this, $ipnListnerArgs );
 	}
 
 	/**
@@ -66,12 +65,6 @@ class PaypalGateway extends Gateway {
 		parent::setupProperties();
 		$this->adminTitle    = __( 'PayPal', 'motopress-hotel-booking' );
 		$this->businessEmail = sanitize_email( $this->getOption( 'business_email' ) );
-
-		if ( $this->isSandbox ) {
-
-			$this->description .= ' ' . sprintf( __( 'Use the card number %1$s with CVC %2$s and a valid expiration date to test a payment.', 'motopress-hotel-booking' ), '5555555555554444', '123' );
-			$this->description  = trim( $this->description );
-		}
 	}
 
 	protected function initDefaultOptions() {
@@ -88,10 +81,6 @@ class PaypalGateway extends Gateway {
 		return array_merge( parent::initDefaultOptions(), $defaults );
 	}
 
-	protected function initId() {
-		return 'paypal';
-	}
-
 	/**
 	 * @return bool
 	 */
@@ -99,6 +88,39 @@ class PaypalGateway extends Gateway {
 		return parent::isActive() && $this->isSupportCurrency();
 	}
 
+	/**
+	 * @return string
+	 */
+	public function getDescription() {
+		$description = parent::getDescription();
+
+		if ( $this->isSandbox() ) {
+			$description .= ' ' . sprintf( __( 'Use the card number %1$s with CVC %2$s and a valid expiration date to test a payment.', 'motopress-hotel-booking' ), '5555555555554444', '123' );
+			$description = trim( $description );
+		}
+
+		return $description;
+	}
+
+	protected function initOptionFields(): array {
+		$fields = parent::initOptionFields();
+
+		$fields += array(
+			'business_email' => array(
+				'type'    => 'email',
+				'label'   => __( 'Paypal Business Email', 'motopress-hotel-booking' ),
+				'default' => $this->getDefaultOption( 'business_email' ),
+			),
+			'disable_ipn_verification' => array(
+				'type'        => 'checkbox',
+				'inner_label' => __( 'Disable IPN Verification', 'motopress-hotel-booking' ),
+				'description' => __( 'Specify an IPN listener for a specific payment instead of the listeners specified in your PayPal Profile.', 'motopress-hotel-booking' ),
+				'default'     => $this->getDefaultOption( 'disable_ipn_verification' ),
+			),
+		);
+
+		return $fields;
+	}
 
 	/**
 	 * @param \MPHB\Admin\Tabs\SettingsSubTab $subTab
@@ -107,26 +129,13 @@ class PaypalGateway extends Gateway {
 
 		parent::registerOptionsFields( $subTab );
 
+		$fields = $this->getFields();
+
 		$group = new Groups\SettingsGroup( "mphb_payments_{$this->id}_group2", '', $subTab->getOptionGroupName() );
 
 		$groupFields = array(
-			Fields\FieldFactory::create(
-				"mphb_payment_gateway_{$this->id}_business_email",
-				array(
-					'type'    => 'email',
-					'label'   => __( 'Paypal Business Email', 'motopress-hotel-booking' ),
-					'default' => $this->getDefaultOption( 'business_email' ),
-				)
-			),
-			Fields\FieldFactory::create(
-				"mphb_payment_gateway_{$this->id}_disable_ipn_verification",
-				array(
-					'type'        => 'checkbox',
-					'inner_label' => __( 'Disable IPN Verification', 'motopress-hotel-booking' ),
-					'default'     => $this->getDefaultOption( 'disable_ipn_verification' ),
-					'description' => __( 'Specify an IPN listener for a specific payment instead of the listeners specified in your PayPal Profile.', 'motopress-hotel-booking' ),
-				)
-			),
+			Fields\FieldFactory::create( "mphb_payment_gateway_{$this->id}_business_email", $fields['business_email'] ),
+			Fields\FieldFactory::create( "mphb_payment_gateway_{$this->id}_disable_ipn_verification", $fields['disable_ipn_verification'] ),
 		);
 
 		$group->addFields( $groupFields );
@@ -165,7 +174,7 @@ class PaypalGateway extends Gateway {
 			'no_note'       => '1', // Do not prompt buyers to include a note // Deprecated
 		);
 
-		if ( $this->isSandbox ) {
+		if ( $this->isSandbox() ) {
 
 			$paymentParameters['test_ipn'] = '1';
 		}
@@ -197,7 +206,7 @@ class PaypalGateway extends Gateway {
 			PHP_QUERY_RFC3986
 		);
 
-		$paypalUrl = ( $this->isSandbox ? IpnListener::SANDBOX_URL : IpnListener::LIVE_URL ) . '?' . $paypalUrl;
+		$paypalUrl = ( $this->isSandbox() ? IpnListener::SANDBOX_URL : IpnListener::LIVE_URL ) . '?' . $paypalUrl;
 
 		// Redirect to paypal checkout
 		wp_redirect( $paypalUrl );

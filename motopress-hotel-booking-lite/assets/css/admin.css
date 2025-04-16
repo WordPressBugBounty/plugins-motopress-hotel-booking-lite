@@ -245,6 +245,16 @@ table.wp-list-table.posts tbody td.column-handle {
   user-select: all;
   cursor: pointer;
 }
+.mphb-heading-row th,
+.mphb-heading-row td {
+  padding: 0;
+}
+#poststuff .mphb-ctrl-heading h2 {
+  font-size: 1.3em;
+  font-weight: 600;
+  margin: 1em 0;
+  padding: 0;
+}
 .mphb-price-text {
   width: 80px;
 }
@@ -258,7 +268,7 @@ table.wp-list-table.posts tbody td.column-handle {
   width: 90%;
 }
 .mphb-preloader {
-  background-image: url("../../images/loading.gif?ver=5.1.0");
+  background-image: url("../../images/loading.gif?ver=5.2.0");
   width: 20px;
   height: 20px;
   display: inline-block;

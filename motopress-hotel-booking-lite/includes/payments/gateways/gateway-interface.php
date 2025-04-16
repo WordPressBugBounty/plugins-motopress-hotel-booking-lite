@@ -11,6 +11,7 @@ interface GatewayInterface {
 	public function getAdminDescription();
 	/** @since 3.6.1 */
 	public function getInstructions();
+	public function getFields( bool $forceReload = false ): array;
 	public function registerOptionsFields( &$subTab );
 	public function isEnabled();
 	public function isActive();

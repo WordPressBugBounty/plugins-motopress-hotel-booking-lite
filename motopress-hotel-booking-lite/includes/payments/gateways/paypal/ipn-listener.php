@@ -5,6 +5,10 @@ namespace MPHB\Payments\Gateways\Paypal;
 use \MPHB\Payments\Gateways;
 
 class IpnListener extends Gateways\AbstractNotificationListener {
+	/**
+	 * @var Gateways\PaypalGateway
+	 */
+	protected $gateway;
 
 	const SANDBOX_URL = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
 	const LIVE_URL    = 'https://www.paypal.com/cgi-bin/webscr';
@@ -21,8 +25,8 @@ class IpnListener extends Gateways\AbstractNotificationListener {
 	 */
 	private $verificationDisabled = false;
 
-	public function __construct( $atts = array() ) {
-		parent::__construct( $atts );
+	public function __construct( $gateway, $atts = array() ) {
+		parent::__construct( $gateway, $atts );
 		$this->businessEmail        = $atts['businessEmail'];
 		$this->verificationDisabled = $atts['verificationDisabled'];
 	}
@@ -91,7 +95,7 @@ class IpnListener extends Gateways\AbstractNotificationListener {
 			'user-agent'  => 'MPHB/' . MPHB()->getVersion(),
 		);
 
-		$response = wp_safe_remote_post( $this->isSandbox ? self::SANDBOX_URL : self::LIVE_URL, $params );
+		$response = wp_safe_remote_post( $this->gateway->isSandbox() ? self::SANDBOX_URL : self::LIVE_URL, $params );
 
 		if ( is_wp_error( $response ) ) {
 			return false;

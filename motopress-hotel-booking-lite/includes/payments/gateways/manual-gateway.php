@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class ManualGateway extends Gateway {
+	public const GATEWAY_ID = 'manual';
 
 	protected function setupProperties() {
 		parent::setupProperties();
@@ -21,10 +22,6 @@ class ManualGateway extends Gateway {
 			'enabled'     => false,
 		);
 		return array_merge( parent::initDefaultOptions(), $defaults );
-	}
-
-	protected function initId() {
-		return 'manual';
 	}
 
 	public function processPayment( \MPHB\Entities\Booking $booking, \MPHB\Entities\Payment $payment ) {

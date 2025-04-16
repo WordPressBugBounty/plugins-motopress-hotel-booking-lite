@@ -1073,6 +1073,27 @@
 
         this.notifySelectedGateway();
       },
+      getBookingDetails: function getBookingDetails() {
+        return this.parentForm.parseFormToJSON();
+      },
+      getRoomDetails: function getRoomDetails() {
+        var bookingDetails = this.getBookingDetails();
+        return bookingDetails['mphb_room_details'] || {};
+      },
+      getRoomTypeIds: function getRoomTypeIds() {
+        var roomDetails = this.getRoomDetails();
+        var roomTypeIds = [];
+
+        for (var index in roomDetails) {
+          var roomTypeId = parseInt(roomDetails[index]['room_type_id']);
+
+          if (!isNaN(roomTypeId) && roomTypeIds.indexOf(roomTypeId) == -1) {
+            roomTypeIds.push(roomTypeId);
+          }
+        }
+
+        return roomTypeIds;
+      },
       updateBillingInfo: function updateBillingInfo(el, e) {
         var self = this;
         var gatewayId = el.val();
@@ -1080,7 +1101,7 @@
         this.billingFieldsWrapperEl.empty().addClass('mphb-billing-fields-hidden');
         clearTimeout(this.updateBillingFieldsTimeout);
         this.updateBillingFieldsTimeout = setTimeout(function () {
-          var formData = self.parentForm.parseFormToJSON();
+          var formData = self.getBookingDetails();
           $.ajax({
             url: MPHB._data.ajaxUrl,
             type: 'GET',
@@ -1883,7 +1904,6 @@
       api: null,
       elements: null,
       cardControl: null,
-      idealControl: null,
       sepaDebitControl: null,
       // Own controls
       payments: null,
@@ -1918,9 +1938,6 @@
         this.cardControl = this.elements.create('card', {
           style: this.style,
           hidePostalCode: this.fullAddressRequired
-        });
-        this.idealControl = this.elements.create('idealBank', {
-          style: this.style
         });
         this.sepaDebitControl = this.elements.create('iban', {
           style: this.style,
@@ -1974,10 +1991,6 @@
 
         this.cardControl.mount('#mphb-stripe-card-element');
 
-        if (this.payments.isEnabled('ideal')) {
-          this.idealControl.mount('#mphb-stripe-ideal-element');
-        }
-
         if (this.payments.isEnabled('sepa_debit')) {
           this.sepaDebitControl.mount('#mphb-stripe-iban-element');
         } // Mount payments control
@@ -1990,10 +2003,6 @@
           switch (self.payments.currentPayment) {
             case 'card':
               self.cardControl.clear();
-              break;
-
-            case 'ideal':
-              self.idealControl.clear();
               break;
 
             case 'sepa_debit':
@@ -2014,10 +2023,6 @@
         this.errorsWrapper = null; // Unmount all controls
 
         this.cardControl.unmount();
-
-        if (this.payments.isEnabled('ideal')) {
-          this.idealControl.unmount();
-        }
 
         if (this.payments.isEnabled('sepa_debit')) {
           this.sepaDebitControl.unmount();
@@ -2078,7 +2083,11 @@
         } else if ('ideal' === this.payments.currentPayment) {
           return this.api.createPaymentMethod({
             type: 'ideal',
-            ideal: this.idealControl,
+            // Stop sending the "bank" parameter (iDEAL 2.0, MPI-13077)
+            ideal: {
+              bank: null,
+              bic: null
+            },
             billing_details: {
               name: this.customer.name,
               email: this.customer.email
@@ -2122,7 +2131,8 @@
             description: self.paymentDescription,
             paymentMethodType: paymentMethodData.paymentMethod.type,
             paymentMethodId: paymentMethodData.paymentMethod.id,
-            idempotencyKey: self.idempotencyKey
+            idempotencyKey: self.idempotencyKey,
+            roomTypeIds: self.billingSection.getRoomTypeIds()
           }, {
             success: function success(response) {
               if (response.hasOwnProperty('success') && response.success) {
@@ -2268,10 +2278,6 @@
             html += this.cardHtml();
             break;
 
-          case 'ideal':
-            html += this.idealHtml();
-            break;
-
           case 'sepa_debit':
             html += this.ibanHtml();
             break;
@@ -2299,9 +2305,6 @@
 
         html += '<div id="mphb-stripe-card-element" class="mphb-stripe-element"></div>';
         return html;
-      },
-      idealHtml: function idealHtml() {
-        return '<label for="mphb-stripe-ideal-element">' + this.i18n.ideal_bank + '</label>' + '<div id="mphb-stripe-ideal-element" class="mphb-stripe-element"></div>';
       },
       ibanHtml: function ibanHtml() {
         return '<label for="mphb-stripe-iban-element">' + this.i18n.iban + '</label>' + '<div id="mphb-stripe-iban-element" class="mphb-stripe-element"></div>';

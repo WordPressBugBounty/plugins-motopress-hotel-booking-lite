@@ -3,6 +3,7 @@
 namespace MPHB\Payments\Gateways;
 
 use \MPHB\Admin\Tabs;
+use MPHB\Entities\Booking;
 
 class GatewayManager {
 
@@ -15,7 +16,7 @@ class GatewayManager {
 	public function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'initPrebuiltGateways' ) );
 		add_action( 'init', array( $this, 'registerGateways' ), 5 );
-		add_action( 'mphb_generate_settings_payments', array( $this, 'generateSubTabs' ), 10, 2 );
+		add_action( 'mphb_generate_settings_payments', array( $this, 'generateSubTabs' ) );
 	}
 
 	/**
@@ -44,15 +45,26 @@ class GatewayManager {
 	}
 
 	public function initPrebuiltGateways() {
-		new ManualGateway();
-		new TestGateway();
-		new CashGateway();
-		new BankGateway();
-		new PaypalGateway();
-		new TwoCheckoutGateway();
-		new StripeGateway();
-		new BraintreeGateway();
-		new BeanstreamGateway();
+		$prebuildGateways = array(
+			ManualGateway::GATEWAY_ID      => ManualGateway::class,
+			TestGateway::GATEWAY_ID        => TestGateway::class,
+			CashGateway::GATEWAY_ID        => CashGateway::class,
+			BankGateway::GATEWAY_ID        => BankGateway::class,
+			PaypalGateway::GATEWAY_ID      => PaypalGateway::class,
+			TwoCheckoutGateway::GATEWAY_ID => TwoCheckoutGateway::class,
+			StripeGateway::GATEWAY_ID      => StripeGateway::class,
+			BraintreeGateway::GATEWAY_ID   => BraintreeGateway::class,
+			BeanstreamGateway::GATEWAY_ID  => BeanstreamGateway::class,
+		);
+
+		/**
+		 * @param string[] <code>[ Key => Payment gateway class ]</code>
+		 */
+		$prebuildGateways = apply_filters( 'mphb_prebuild_gateways', $prebuildGateways );
+
+		foreach ( $prebuildGateways as $gateway_class ) {
+			new $gateway_class();
+		}
 	}
 
 	/**
@@ -61,6 +73,10 @@ class GatewayManager {
 	 */
 	public function addGateway( GatewayInterface $gateway ) {
 		$this->gateways[ $gateway->getId() ] = $gateway;
+	}
+
+	public function hasGateway( string $id ): bool {
+		return isset( $this->gateways[ $id ] );
 	}
 
 	/**

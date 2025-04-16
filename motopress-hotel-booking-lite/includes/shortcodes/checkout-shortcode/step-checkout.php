@@ -119,6 +119,11 @@ class StepCheckout extends Step {
 
 			$this->stepValid();
 
+			/**
+			 * @param Entities\Booking $booking
+			 */
+			do_action( 'mphb_focus_on_booking', $this->booking );
+
 			mphb_set_cookie( 'mphb_checkout_step', \MPHB\Shortcodes\CheckoutShortcode::STEP_CHECKOUT );
 		}
 	}
@@ -172,8 +177,13 @@ class StepCheckout extends Step {
 		}
 
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		$selectedRooms = ! empty( $roomDetails ) && is_array( $roomDetails ) ? $roomDetails : array();
-		$selectedRooms = apply_filters( 'mphb_sc_checkout_step_checkout_selected_rooms', $selectedRooms );
+		$selectedRooms = apply_filters( 'mphb_sc_checkout_step_checkout_selected_rooms', $roomDetails );
+
+		$this->errors = apply_filters( 'mphb_sc_checkout_step_checkout_pre_validate_selected_rooms', $this->errors, $selectedRooms );
+
+		if ( ! empty( $this->errors ) ) {
+			return false;
+		}
 
 		$this->reservedRooms = $reservedRooms = array();
 		$this->roomDetails   = $roomDetails = array();

@@ -4,7 +4,7 @@
  * Plugin Name: Hotel Booking Lite
  * Plugin URI: https://motopress.com/products/hotel-booking/
  * Description: Manage your hotel booking services. Perfect for hotels, villas, guest houses, hostels, and apartments of all sizes.
- * Version: 5.1.0
+ * Version: 5.2.0
  * Requires at least: 5.2
  * Requires PHP: 7.4
  * Author: MotoPress
@@ -27,6 +27,7 @@ if ( $mphbActive || class_exists( 'HotelBookingPlugin' ) ) { // Second check req
 } else {
 
 	define( 'MPHB_PLUGIN_FILE', __FILE__ );
+	define( 'MPHB_IS_LITE', true );
 
 	require plugin_dir_path( __FILE__ ) . 'plugin.php';
 

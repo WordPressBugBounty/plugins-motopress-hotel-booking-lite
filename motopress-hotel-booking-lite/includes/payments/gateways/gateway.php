@@ -30,32 +30,6 @@ abstract class Gateway implements GatewayInterface {
 	protected $title = '';
 
 	/**
-	 * @var string
-	 */
-	protected $description = '';
-
-	/**
-	 * @var string
-	 */
-	protected $adminDescription = '';
-
-	/**
-	 * @var string
-	 * @since 3.6.1
-	 */
-	protected $instructions = '';
-
-	/**
-	 * @var boolean
-	 */
-	protected $enabled = false;
-
-	/**
-	 * @var boolean
-	 */
-	protected $isSandbox = false;
-
-	/**
 	 * @var array
 	 */
 	protected $paymentFieldsErrors = array();
@@ -82,6 +56,11 @@ abstract class Gateway implements GatewayInterface {
 	 * @var bool
 	 */
 	protected $isSuspended = false;
+
+	/**
+	 * A list of fields for FieldFactory.
+	 */
+	private array $optionFields = array();
 
 	public function __construct() {
 
@@ -116,7 +95,7 @@ abstract class Gateway implements GatewayInterface {
 	 * @return strings
 	 */
 	public function getAdminDescription() {
-		return $this->adminDescription;
+		return '';
 	}
 
 	/**
@@ -131,14 +110,14 @@ abstract class Gateway implements GatewayInterface {
 	 * @since 3.6.1
 	 */
 	public function getInstructions() {
-		return $this->instructions;
+		return $this->getOption( 'instructions' );
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isEnabled() {
-		return $this->enabled;
+		return (bool) $this->getOption( 'enable' );
 	}
 
 	/**
@@ -147,14 +126,14 @@ abstract class Gateway implements GatewayInterface {
 	 * @return boolean
 	 */
 	public function isActive() {
-		return $this->enabled && ! $this->isSuspended;
+		return $this->isEnabled() && ! $this->isSuspended;
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getDescription() {
-		return $this->description;
+		return $this->getOption( 'description' );
 	}
 
 	/**
@@ -171,12 +150,7 @@ abstract class Gateway implements GatewayInterface {
 	}
 
 	protected function setupProperties() {
-
-		$this->title        = $this->getOption( 'title' );
-		$this->description  = $this->getOption( 'description' );
-		$this->instructions = $this->getOption( 'instructions' );
-		$this->enabled      = $this->getOption( 'enable' );
-		$this->isSandbox    = $this->getOption( 'is_sandbox' );
+		$this->title = $this->getOption( 'title' );
 	}
 
 	/**
@@ -206,7 +180,9 @@ abstract class Gateway implements GatewayInterface {
 		return isset( $this->defaultOptions[ $optionName ] ) ? $this->defaultOptions[ $optionName ] : '';
 	}
 
-	abstract protected function initId();
+	protected function initId() {
+		return static::GATEWAY_ID;
+	}
 
 	public function setupPaymentFields() {
 
@@ -258,7 +234,7 @@ abstract class Gateway implements GatewayInterface {
 	 */
 	public function getMode() {
 
-		return $this->isSandbox ? self::MODE_SANDBOX : self::MODE_LIVE;
+		return $this->isSandbox() ? self::MODE_SANDBOX : self::MODE_LIVE;
 	}
 
 	/**
@@ -454,71 +430,76 @@ abstract class Gateway implements GatewayInterface {
 		return MPHB()->paymentManager()->refundPayment( $payment );
 	}
 
+	public function getFields( bool $forceReload = false ): array {
+		if ( empty( $this->optionFields ) || $forceReload ) {
+			$this->optionFields = $this->initOptionFields();
+		}
+
+		return $this->optionFields;
+	}
+
+	protected function initOptionFields(): array {
+		return array(
+			'enable' => array(
+				'type'        => 'checkbox',
+				// translators: %s is the payment gateway title.
+				'inner_label' => sprintf( __( 'Enable "%s"', 'motopress-hotel-booking' ), $this->title ),
+				'default'     => $this->getDefaultOption( 'enable' ),
+			),
+			'is_sandbox' => array(
+				'type'        => 'checkbox',
+				'label'       => __( 'Test Mode', 'motopress-hotel-booking' ),
+				'inner_label' => __( 'Enable Sandbox Mode', 'motopress-hotel-booking' ),
+				'description' => __( 'Sandbox can be used to test payments.', 'motopress-hotel-booking' ),
+				'default'     => $this->getDefaultOption( 'is_sandbox' ),
+			),
+			'title' => array(
+				'type'         => 'text',
+				'label'        => __( 'Title', 'motopress-hotel-booking' ),
+				'description'  => __( 'Payment method title that the customer will see on your website.', 'motopress-hotel-booking' ),
+				'default'      => $this->getDefaultOption( 'title' ),
+				'translatable' => true,
+			),
+			'description' => array(
+				'type'         => 'textarea',
+				'label'        => __( 'Description', 'motopress-hotel-booking' ),
+				'description'  => __( 'Payment method description that the customer will see on your website.', 'motopress-hotel-booking' ),
+				'default'      => $this->getDefaultOption( 'description' ),
+				'translatable' => true,
+			),
+			'instructions' => array(
+				'type'         => 'textarea',
+				'label'        => __( 'Instructions', 'motopress-hotel-booking' ),
+				'description'  => __( 'Instructions for a customer on how to complete the payment.', 'motopress-hotel-booking' ),
+				'default'      => $this->getDefaultOption( 'instructions' ),
+				'translatable' => true,
+			),
+		);
+	}
+
 	/**
 	 * @param \MPHB\Admin\Tabs\SettingsSubTab $subTab
 	 * @since 3.6.1 added new filter - "mphb_gateway_has_instructions".
 	 */
 	public function registerOptionsFields( &$subTab ) {
+		$fields = $this->getFields();
 
 		$mainGroup = new Groups\SettingsGroup( "mphb_payments_{$this->id}_group", '', $subTab->getOptionGroupName() );
 
 		$mainGroupFields = array();
-		// Braintree gateway disables this field if something goes wrong
-		$mainGroupFields[] = Fields\FieldFactory::create(
-			"mphb_payment_gateway_{$this->id}_enable",
-			array(
-				'type'        => 'checkbox',
-				// translators: %s is the payment gateway title.
-				'inner_label' => sprintf( __( 'Enable "%s"', 'motopress-hotel-booking' ), $this->title ),
-				'default'     => $this->getDefaultOption( 'enable' ),
-			)
-		);
+
+		// Gateways will disable this field if something goes wrong
+		$mainGroupFields[] = Fields\FieldFactory::create( "mphb_payment_gateway_{$this->id}_enable", $fields['enable'] );
 
 		if ( apply_filters( 'mphb_gateway_has_sandbox', true, $this->getId() ) ) {
-			$mainGroupFields[] = Fields\FieldFactory::create(
-				"mphb_payment_gateway_{$this->id}_is_sandbox",
-				array(
-					'type'        => 'checkbox',
-					'label'       => __( 'Test Mode', 'motopress-hotel-booking' ),
-					'inner_label' => __( 'Enable Sandbox Mode', 'motopress-hotel-booking' ),
-					'default'     => $this->getDefaultOption( 'is_sandbox' ),
-					'description' => __( 'Sandbox can be used to test payments.', 'motopress-hotel-booking' ),
-				)
-			);
+			$mainGroupFields[] = Fields\FieldFactory::create( "mphb_payment_gateway_{$this->id}_is_sandbox", $fields['is_sandbox'] );
 		}
 
-		$mainGroupFields[] = Fields\FieldFactory::create(
-			"mphb_payment_gateway_{$this->id}_title",
-			array(
-				'type'         => 'text',
-				'label'        => __( 'Title', 'motopress-hotel-booking' ),
-				'default'      => $this->getDefaultOption( 'title' ),
-				'description'  => __( 'Payment method title that the customer will see on your website.', 'motopress-hotel-booking' ),
-				'translatable' => true,
-			)
-		);
-		$mainGroupFields[] = Fields\FieldFactory::create(
-			"mphb_payment_gateway_{$this->id}_description",
-			array(
-				'type'         => 'textarea',
-				'label'        => __( 'Description', 'motopress-hotel-booking' ),
-				'default'      => $this->getDefaultOption( 'description' ),
-				'description'  => __( 'Payment method description that the customer will see on your website.', 'motopress-hotel-booking' ),
-				'translatable' => true,
-			)
-		);
+		$mainGroupFields[] = Fields\FieldFactory::create( "mphb_payment_gateway_{$this->id}_title", $fields['title'] );
+		$mainGroupFields[] = Fields\FieldFactory::create( "mphb_payment_gateway_{$this->id}_description", $fields['description'] );
 
 		if ( apply_filters( 'mphb_gateway_has_instructions', true, $this->getId() ) ) {
-			$mainGroupFields[] = Fields\FieldFactory::create(
-				"mphb_payment_gateway_{$this->id}_instructions",
-				array(
-					'type'         => 'textarea',
-					'label'        => __( 'Instructions', 'motopress-hotel-booking' ),
-					'default'      => $this->getDefaultOption( 'instructions' ),
-					'description'  => __( 'Instructions for a customer on how to complete the payment.', 'motopress-hotel-booking' ),
-					'translatable' => true,
-				)
-			);
+			$mainGroupFields[] = Fields\FieldFactory::create( "mphb_payment_gateway_{$this->id}_instructions", $fields['instructions'] );
 		}
 
 		$mainGroup->addFields( $mainGroupFields );
@@ -530,7 +511,7 @@ abstract class Gateway implements GatewayInterface {
 	 * @return bool
 	 */
 	public function isSandbox() {
-		return $this->isSandbox;
+		return (bool) $this->getOption( 'is_sandbox' );
 	}
 
 	/**

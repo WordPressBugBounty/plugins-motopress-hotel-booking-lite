@@ -111,6 +111,9 @@ class FieldFactory {
 			case 'thousand-separator':
 				return new ThousandSeparatorField( $name, $details, $value );
 				break;
+			case 'heading':
+				return new HeadingField( $name, $details, $value );
+				break;
 			default:
 				$type = str_replace( '-', '_', $details['type'] );
 				return apply_filters( "mphb_create_{$type}_field", null, $name, $details, $value );

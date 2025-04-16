@@ -2,11 +2,10 @@
 
 namespace MPHB;
 
+use MPHB\Entities\Booking;
 use \MPHB\Entities;
 use \MPHB\Views;
-use \MPHB\Utils\DateUtils;
 use \MPHB\Utils\ThirdPartyPluginsUtils;
-use \MPHB\Utils\ValidateUtils;
 
 /**
  * TODO move each ajax controller to separate class
@@ -280,6 +279,11 @@ class Ajax {
 		);
 
 		$booking = Entities\Booking::create( $bookingAtts );
+
+		/**
+		 * @param Booking $booking
+		 */
+		do_action( 'mphb_focus_on_booking', $booking );
 
 		if ( MPHB()->settings()->main()->isCouponsEnabled() && ! empty( $input['formValues']['mphb_coupon_id'] ) ) {
 			$coupon = MPHB()->getCouponRepository()->findById( intval( $input['formValues']['mphb_coupon_id'] ) );
@@ -587,6 +591,11 @@ class Ajax {
 
 		$booking = $this->parseCheckoutFormBooking( $input );
 
+		/**
+		 * @param Booking $booking
+		 */
+		do_action( 'mphb_focus_on_booking', $booking );
+
 		$total = $booking->calcPrice();
 
 		$priceHtml = mphb_format_price( $total );
@@ -620,6 +629,13 @@ class Ajax {
 
 		$input = $this->retrieveInput( __FUNCTION__ );
 
+		$booking = $this->parseCheckoutFormBooking( $input );
+
+		/**
+		 * @param Booking $booking
+		 */
+		do_action( 'mphb_focus_on_booking', $booking );
+
 		$gatewayId = ! empty( $input['mphb_gateway_id'] ) ? mphb_clean( $input['mphb_gateway_id'] ) : '';
 
 		if ( ! array_key_exists( $gatewayId, MPHB()->gatewayManager()->getListActive() ) ) {
@@ -629,8 +645,6 @@ class Ajax {
 				)
 			);
 		}
-
-		$booking = $this->parseCheckoutFormBooking( $input );
 
 		ob_start();
 		MPHB()->gatewayManager()->getGateway( $gatewayId )->renderPaymentFields( $booking );
@@ -689,6 +703,11 @@ class Ajax {
 		$input = $this->retrieveInput( __FUNCTION__ );
 
 		$booking = $this->parseCheckoutFormBooking( $input );
+
+		/**
+		 * @param Booking $booking
+		 */
+		do_action( 'mphb_focus_on_booking', $booking );
 
 		$responseData = array();
 

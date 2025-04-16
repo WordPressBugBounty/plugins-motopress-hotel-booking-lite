@@ -122,6 +122,31 @@ abstract class AbstractAjaxApiAction {
 		return $result;
 	}
 
+	protected static function getIdListFromRequest( string $requestDataName, bool $isRequired = false, array $defaultValue = array() ) {
+
+		$result = $defaultValue;
+
+		if ( isset( $_REQUEST[ $requestDataName ] ) && is_array( $_REQUEST[ $requestDataName ] ) ) {
+
+			$result = array();
+
+			foreach ( $_REQUEST[ $requestDataName ] as $stringData ) {
+				$resultId = intval( wp_unslash( $stringData ) );
+
+				if ( $resultId > 0 ) {
+					$result[] = $resultId;
+				} else {
+					throw new \Exception( 'Parameter ' . $requestDataName . ' must contain ID values but (' . $stringData . ') was given.' );
+				}
+			}
+
+		} elseif ( $isRequired ) {
+			throw new \Exception( 'Required array parameter ' . $requestDataName . ' is missing in request.' );
+		}
+
+		return $result;
+	}
+
 	protected static function isValidateWPNonce(): bool {
 		return true;
 	}

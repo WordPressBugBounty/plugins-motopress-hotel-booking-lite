@@ -2,6 +2,9 @@
 
 namespace MPHB\Admin\Groups;
 
+use MPHB\Admin\Fields\TextField;
+use MPHB\Core\StringEncryptHelper;
+
 class MetaBoxGroup extends InputGroup {
 
 	protected $postType;
@@ -27,6 +30,10 @@ class MetaBoxGroup extends InputGroup {
 		$this->context  = $context;
 		$this->priority = $priority;
 		$this->atts     = $atts;
+	}
+
+	public function getPostType(): string {
+		return $this->postType;
 	}
 
 	public function getPostId() {
@@ -72,28 +79,34 @@ class MetaBoxGroup extends InputGroup {
 	}
 
 	private function renderRegularMetaBox() {
-		$result = '<table class="form-table">'
-			. '<tbody>';
+		$result = '<table class="form-table">';
+		$result .= '<tbody>';
+
 		foreach ( $this->fields as $field ) {
 
 			// Prevent render untranslatable field on non-default languages
-			if ( MPHB()->translation()->isTranslationPage() && MPHB()->translation()->isTranslatablePostType( $this->postType ) && ! $field->isTranslatable() ) {
+			if ( MPHB()->translation()->isTranslationPage()
+				&& MPHB()->translation()->isTranslatablePostType( $this->getPostType() )
+				&& ! $field->isTranslatable()
+			) {
 				continue;
 			}
 
-			$result .= '<tr>';
-			if ( $field->hasLabel() ) {
-				$result .= '<th>';
-				$result .= $field->getLabelTag();
-				$result .= '</th>';
-			}
-			$result .= '<td colspan="' . ( $field->hasLabel() ? 1 : 2 ) . '">';
-			$result .= $field->render();
-			$result .= '</td>'
-				. '</tr>';
+			$result .= '<tr class="' . esc_attr( 'mphb-' . $field->getType() . '-row' ) . '">';
+				if ( $field->hasLabel() ) {
+					$result .= '<th>';
+					$result .= $field->getLabelTag();
+					$result .= '</th>';
+				}
+
+				$result .= '<td colspan="' . ( $field->hasLabel() ? 1 : 2 ) . '">';
+				$result .= $field->render();
+				$result .= '</td>';
+			$result .= '</tr>';
 		}
-		$result .= '</tbody>'
-			. '</table>';
+
+		$result .= '</tbody>';
+		$result .= '</table>';
 
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $result;
@@ -170,6 +183,10 @@ class MetaBoxGroup extends InputGroup {
 				}
 
 				$value = $metaValues[ $name ];
+
+				if ( $field instanceof TextField && $field->isEncoded() ) {
+					$value = StringEncryptHelper::encryptString( $value );
+				}
 
 				if ( $field->isUnique() || ! is_array( $value ) ) {
 					update_post_meta( $this->postId, $name, $value );

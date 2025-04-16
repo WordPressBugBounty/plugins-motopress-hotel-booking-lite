@@ -113,6 +113,11 @@ class SettingsGroup extends InputGroup {
 				$value = wp_unslash( $_POST[ $field->getName() ] );
 				$value = $field->sanitize( $value );
 
+				if ( $field instanceof \MPHB\Admin\Fields\TextField && $field->isEncoded() ) {
+
+					$value = \MPHB\Core\StringEncryptHelper::encryptString( $value );
+				}
+
 				update_option( $field->getName(), $value );
 
 				if ( $field->isTranslatable() ) {

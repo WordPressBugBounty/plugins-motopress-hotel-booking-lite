@@ -2,13 +2,13 @@
 
 namespace MPHB\Payments\Gateways;
 
-abstract class AbstractNotificationListener {
+use MPHB\Entities\Payment;
 
+abstract class AbstractNotificationListener {
 	/**
-	 *
-	 * @var bool
+	 * @var Gateway
 	 */
-	protected $isSandbox = false;
+	protected $gateway;
 
 	/**
 	 *
@@ -21,12 +21,6 @@ abstract class AbstractNotificationListener {
 	 * @var string
 	 */
 	protected $urlValue = '';
-
-	/**
-	 *
-	 * @var string
-	 */
-	protected $gatewayId = '';
 
 	/**
 	 *
@@ -44,10 +38,8 @@ abstract class AbstractNotificationListener {
 	 *
 	 * @param array $atts
 	 */
-	public function __construct( $atts = array() ) {
-
-		$this->gatewayId = $atts['gatewayId'];
-		$this->isSandbox = $atts['sandbox'];
+	public function __construct( $gateway, $atts = array() ) {
+		$this->gateway = $gateway;
 
 		add_action( 'init', array( $this, 'checkRequest' ) );
 
@@ -80,10 +72,15 @@ abstract class AbstractNotificationListener {
 
 		$payment = $this->retrievePayment();
 
-		if ( ! $payment || $payment->getGatewayId() !== $this->gatewayId ) {
+		if ( ! $payment || $payment->getGatewayId() !== $this->gateway->getId() ) {
 			$this->fireExit( false );
 		}
 		$this->payment = $payment;
+
+		/**
+		 * @param Payment $payment
+		 */
+		do_action( 'mphb_focus_on_payment', $payment );
 
 		$this->process();
 
@@ -122,7 +119,7 @@ abstract class AbstractNotificationListener {
 	}
 
 	/**
-	 * @return string
+	 * @return string "stripe", "paypal-ipn" etc.
 	 */
 	abstract protected function initUrlIdentificationValue();
 

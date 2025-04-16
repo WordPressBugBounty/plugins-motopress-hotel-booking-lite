@@ -1,15 +1,15 @@
-# Copyright (C) 2024 MotoPress
+# Copyright (C) 2025 MotoPress
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Hotel Booking 5.1.0\n"
+"Project-Id-Version: Hotel Booking 5.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/motopress-hotel-booking\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-10T10:51:07+00:00\n"
+"POT-Creation-Date: 2025-04-14T20:04:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: motopress-hotel-booking\n"
@@ -3505,6 +3505,7 @@ msgstr ""
 msgid "Check-out"
 msgstr ""
 
+#. translators: The value a hotel wishes to sell their rooms. Also called the Cost, Value, Tariff or Room charge.
 msgid "Rate"
 msgstr ""
 
@@ -4023,22 +4024,13 @@ msgstr ""
 msgid "Beanstream/Bambora"
 msgstr ""
 
-msgid "Use the card number %1$s with CVC %2$s and a valid expiration date to test a payment."
-msgstr ""
-
 msgid "Pay by Card (Beanstream)"
 msgstr ""
 
 msgid "Pay with your credit card via Beanstream."
 msgstr ""
 
-msgid "%1$s is enabled, but the <a href=\"%2$s\">Force Secure Checkout</a> option is disabled. Please enable SSL and ensure your server has a valid SSL certificate. Otherwise, %1$s will only work in Test Mode."
-msgstr ""
-
-msgid "The <a href=\"%2$s\">Force Secure Checkout</a> option is disabled. Please enable SSL and ensure your server has a valid SSL certificate. Otherwise, %1$s will only work in Test Mode."
-msgstr ""
-
-msgid "Beanstream"
+msgid "Use the card number %1$s with CVC %2$s and a valid expiration date to test a payment."
 msgstr ""
 
 msgid "Merchant ID"
@@ -4053,6 +4045,15 @@ msgstr ""
 msgid "To generate the passcode, navigate to Administration > Account Settings > Order Settings in the sidebar, then scroll to Payment Gateway > Security/Authentication"
 msgstr ""
 
+msgid "%1$s is enabled, but the <a href=\"%2$s\">Force Secure Checkout</a> option is disabled. Please enable SSL and ensure your server has a valid SSL certificate. Otherwise, %1$s will only work in Test Mode."
+msgstr ""
+
+msgid "The <a href=\"%2$s\">Force Secure Checkout</a> option is disabled. Please enable SSL and ensure your server has a valid SSL certificate. Otherwise, %1$s will only work in Test Mode."
+msgstr ""
+
+msgid "Beanstream"
+msgstr ""
+
 msgid "Beanstream Payment Error: %s"
 msgstr ""
 
@@ -4062,16 +4063,13 @@ msgstr ""
 msgid "Braintree"
 msgstr ""
 
-msgid "Webhooks Destination URL: %s"
-msgstr ""
-
 msgid "Pay by Card (Braintree)"
 msgstr ""
 
 msgid "Pay with your credit card via Braintree."
 msgstr ""
 
-msgid "Braintree gateway cannot be enabled due to some problems: %s"
+msgid "Webhooks Destination URL: %s"
 msgstr ""
 
 msgid "In your Braintree account select Account > My User > View Authorizations."
@@ -4087,6 +4085,9 @@ msgid "Merchant Account ID"
 msgstr ""
 
 msgid "In case the site currency differs from default currency in your Braintree account, you can set specific merchant account to avoid <a href=\"%s\">complications with currencty conversions</a>. Otherwise leave the field empty."
+msgstr ""
+
+msgid "Braintree gateway cannot be enabled due to some problems: %s"
 msgstr ""
 
 msgid "Braintree submitted for settlement (Transaction ID: %s)"
@@ -4225,10 +4226,10 @@ msgstr ""
 msgid "PayPal Refund Transaction ID: %s"
 msgstr ""
 
-msgid "Stripe"
+msgid "Use the card number %1$s with CVC %2$s, a valid expiration date and random 5-digit ZIP-code to test a payment."
 msgstr ""
 
-msgid "Use the card number %1$s with CVC %2$s, a valid expiration date and random 5-digit ZIP-code to test a payment."
+msgid "Stripe"
 msgstr ""
 
 msgid "Pay by Card (Stripe)"
@@ -4237,6 +4238,7 @@ msgstr ""
 msgid "Pay with your credit card via Stripe."
 msgstr ""
 
+#. translators: %1$s - names of payment methods, %2$s - currency codes
 msgid "Bancontact"
 msgstr ""
 
@@ -4249,6 +4251,8 @@ msgstr ""
 msgid "SEPA Direct Debit"
 msgstr ""
 
+#. translators: %1$s - name of payment method, %2$s - currency codes
+#. translators: %s - payment method name
 msgid "Klarna"
 msgstr ""
 
@@ -4377,9 +4381,6 @@ msgid "Credit or debit card"
 msgstr ""
 
 msgid "IBAN"
-msgstr ""
-
-msgid "Select iDEAL Bank"
 msgstr ""
 
 msgid "You will be redirected to a secure page to complete the payment."

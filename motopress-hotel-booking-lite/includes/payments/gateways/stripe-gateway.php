@@ -3,6 +3,7 @@
 namespace MPHB\Payments\Gateways;
 
 class StripeGateway implements GatewayInterface {
+	public const GATEWAY_ID = 'stripe';
 
 	public function __construct() {
 		add_action( 'mphb_init_gateways', array( $this, 'register' ) );
@@ -17,7 +18,7 @@ class StripeGateway implements GatewayInterface {
 	}
 
 	public function getId() {
-		return 'stripe';
+		return static::GATEWAY_ID;
 	}
 
 	public function getTitle() {
@@ -33,6 +34,10 @@ class StripeGateway implements GatewayInterface {
 			__( '<a href="%s">Upgrade to Premium</a> version to enable this payment gateway for online bookings.', 'motopress-hotel-booking' ),
 			esc_url( admin_url( 'admin.php?page=mphb_premium' ) )
 		);
+	}
+
+	public function getFields( bool $forceReload = false ): array {
+		return array();
 	}
 
 	/**

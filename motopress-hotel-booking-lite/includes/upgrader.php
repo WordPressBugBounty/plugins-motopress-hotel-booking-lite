@@ -126,6 +126,9 @@ class Upgrader {
 		'5.0.2' => array(
 			'fixOldSeasonPricesForV5_0_2',
 		),
+		'5.2.0' => array(
+			'fixForV5_2_0',
+		),
 	);
 
 	public function __construct() {
@@ -1156,6 +1159,30 @@ class Upgrader {
 
 			if ( $pricesUpdated ) {
 				update_post_meta( $rateId, 'mphb_season_prices', $seasonPrices );
+			}
+		}
+	}
+
+	public function fixForV5_2_0() {
+
+		$encodingOptions = array(
+			'mphb_payment_gateway_2checkout_secret_word',
+			'mphb_payment_gateway_stripe_public_key',
+			'mphb_payment_gateway_stripe_secret_key',
+			'mphb_payment_gateway_braintree_public_key',
+			'mphb_payment_gateway_braintree_private_key',
+			'mphb_payment_gateway_beanstream_api_key',
+		);
+
+		foreach ( $encodingOptions as $encodingOption ) {
+
+			$optionValue = get_option( $encodingOption, false );
+
+			if ( ! empty( $optionValue ) ) {
+
+				$optionValue = \MPHB\Core\StringEncryptHelper::encryptString( $optionValue );
+
+				update_option( $encodingOption, $optionValue, true );
 			}
 		}
 	}

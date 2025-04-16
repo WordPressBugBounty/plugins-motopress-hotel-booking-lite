@@ -2,6 +2,8 @@
 
 namespace MPHB\Payments\Gateways;
 
+use MPHB\Admin\Fields\FieldFactory;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -11,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class BankGateway extends Gateway {
 
-	const PAYMENT_GATEWAY_ID = 'bank';
+	public const GATEWAY_ID = 'bank';
 
 
 	public function __construct() {
@@ -56,10 +58,6 @@ class BankGateway extends Gateway {
 		);
 	}
 
-	protected function initId() {
-		return static::PAYMENT_GATEWAY_ID;
-	}
-
 	/**
 	 * @return string
 	 */
@@ -97,10 +95,34 @@ class BankGateway extends Gateway {
 		);
 	}
 
+	protected function initOptionFields(): array {
+		$fields = parent::initOptionFields();
+
+		$fields += array(
+			'is_auto_abandon_bookings' => array(
+				'type'        => 'checkbox',
+				'inner_label' => __( 'Enable Auto-Abandonment', 'motopress-hotel-booking' ),
+				'description' => __( 'Automatically abandon bookings and release reserved slots if payment is not received within a specified time period. You need to manually set the status of paid payments to Completed to avoid automatic abandonment.', 'motopress-hotel-booking' ),
+				'default'     => $this->getDefaultOption( 'is_auto_abandon_bookings' ),
+			),
+			'payment_and_booking_pending_time' => array(
+				'type'        => 'number',
+				'label'       => __( 'Pending Payment Time', 'motopress-hotel-booking' ),
+				'description' => __( 'Period of time in hours a user has to pay for a booking. Unpaid bookings become abandoned, and accommodations become available for others.', 'motopress-hotel-booking' ),
+				'min'         => 1,
+				'step'        => 1,
+				'default'     => $this->getDefaultOption( 'payment_and_booking_pending_time' ),
+			),
+		);
+
+		return $fields;
+	}
+
 	/**
 	 * @param \MPHB\Admin\Tabs\SettingsSubTab $subTab
 	 */
 	public function registerOptionsFields( &$subTab ) {
+		$fields = $this->getFields();
 
 		parent::registerOptionsFields( $subTab );
 
@@ -111,26 +133,8 @@ class BankGateway extends Gateway {
 		);
 
 		$groupFields = array(
-			\MPHB\Admin\Fields\FieldFactory::create(
-				"mphb_payment_gateway_{$this->getId()}_is_auto_abandon_bookings",
-				array(
-					'type'        => 'checkbox',
-					'inner_label' => __( 'Enable Auto-Abandonment', 'motopress-hotel-booking' ),
-					'description' => __( 'Automatically abandon bookings and release reserved slots if payment is not received within a specified time period. You need to manually set the status of paid payments to Completed to avoid automatic abandonment.', 'motopress-hotel-booking' ),
-					'default'     => $this->getDefaultOption( 'is_auto_abandon_bookings' ),
-				)
-			),
-			\MPHB\Admin\Fields\FieldFactory::create(
-				"mphb_payment_gateway_{$this->getId()}_payment_and_booking_pending_time",
-				array(
-					'type'        => 'number',
-					'label'       => __( 'Pending Payment Time', 'motopress-hotel-booking' ),
-					'description' => __( 'Period of time in hours a user has to pay for a booking. Unpaid bookings become abandoned, and accommodations become available for others.', 'motopress-hotel-booking' ),
-					'min'         => 1,
-					'step'        => 1,
-					'default'     => $this->getDefaultOption( 'payment_and_booking_pending_time' ),
-				)
-			),
+			FieldFactory::create( "mphb_payment_gateway_{$this->getId()}_is_auto_abandon_bookings", $fields['is_auto_abandon_bookings'] ),
+			FieldFactory::create( "mphb_payment_gateway_{$this->getId()}_payment_and_booking_pending_time", $fields['payment_and_booking_pending_time'] ),
 		);
 
 		$group->addFields( $groupFields );
