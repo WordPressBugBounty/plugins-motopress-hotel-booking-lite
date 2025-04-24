@@ -25,9 +25,13 @@ class RecurrentSeason extends Season {
 	private $periods = [];
 
 	protected function setupDates() {
+
 		if ( is_null( $this->startDate ) || is_null( $this->endDate ) ) {
 			return;
 		}
+
+		$this->startDate->setTime( 0, 0 );
+		$this->endDate->setTime( 23, 59, 59, 999 );
 
 		$startDate = clone $this->startDate;
 		$endDate   = clone $this->endDate;
@@ -72,6 +76,7 @@ class RecurrentSeason extends Season {
 	}
 
 	protected function addDatesForPeriod( DateTime $startDate, DateTime $endDate ) {
+
 		parent::addDatesForPeriod( $startDate, $endDate );
 
 		// Save current period

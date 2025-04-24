@@ -86,12 +86,15 @@ class Season {
 	}
 
 	protected function setupDates() {
-		if ( ! is_null( $this->startDate ) && ! is_null( $this->endDate ) ) {
-			$this->startDate->setTime( 0, 0 );
-			$this->endDate->setTime( 23, 59, 59, 999 );
 
-			$this->addDatesForPeriod( $this->startDate, $this->endDate );
+		if ( is_null( $this->startDate ) || is_null( $this->endDate ) ) {
+			return;
 		}
+
+		$this->startDate->setTime( 0, 0 );
+		$this->endDate->setTime( 23, 59, 59, 999 );
+
+		$this->addDatesForPeriod( $this->startDate, $this->endDate );
 	}
 
 	/**

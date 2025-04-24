@@ -28,12 +28,16 @@ class LinkedRooms {
 	protected $comment = '';
 
 	public function __construct() {
-		$this->comment = esc_html__( 'Blocked because the linked accommodation is booked', 'motopress-hotel-booking' );
 
-		$this->addFilters();
-	}
+		// we must init translated strings after init hook
+		add_action(
+			'init',
+			function () {
 
-	protected function addFilters() {
+				$this->comment = esc_html__( 'Blocked because the linked accommodation is booked', 'motopress-hotel-booking' );
+			}
+		);
+
 		add_filter( 'mphb_has_not_stay_in_rules', array( $this, 'checkForLinkedBookings' ) );
 		add_filter( 'mphb_get_booking_rules_for_date', array( $this, 'extendBookingRulesForDate' ), 10, 3 );
 		add_filter( 'mphb_get_admin_blocks_for_export', array( $this, 'extendAdminBlocksForExport' ), 10, 3 );

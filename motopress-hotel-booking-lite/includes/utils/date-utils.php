@@ -28,7 +28,7 @@ class DateUtils {
 	 * @return string Localized date in WP format.
 	 */
 	public static function formatDateWPFront( \DateTime $date ) {
-		return date_i18n( MPHB()->settings()->dateTime()->getDateFormatWP(), $date->format( 'U' ) );
+		return date_i18n( MPHB()->settings()->dateTime()->getDateFormatWP(), $date->getTimestamp() + $date->getOffset() );
 	}
 
 	/**
@@ -37,7 +37,7 @@ class DateUtils {
 	 * @return string Localized time in WP format.
 	 */
 	public static function formatTimeWPFront( \DateTime $date ) {
-		return date_i18n( get_option( 'time_format' ), $date->format( 'U' ) );
+		return date_i18n( get_option( 'time_format' ), $date->getTimestamp() );
 	}
 
 	/**
@@ -79,7 +79,7 @@ class DateUtils {
 			$dateObj->setTime( $checkInTime[0], $checkInTime[1], $checkInTime[2] );
 		}
 
-		return $dateObj ? $dateObj->setTimezone( new \DateTimeZone( 'UTC' ) ) : false;
+		return $dateObj ? $dateObj : false;
 	}
 
 	/**
@@ -98,7 +98,7 @@ class DateUtils {
 			$dateObj->setTime( $checkOutTime[0], $checkOutTime[1], $checkOutTime[2] );
 		}
 
-		return $dateObj ? $dateObj->setTimezone( new \DateTimeZone( 'UTC' ) ) : false;
+		return $dateObj ? $dateObj : false;
 	}
 
 	/**

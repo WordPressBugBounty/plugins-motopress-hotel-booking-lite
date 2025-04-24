@@ -14,7 +14,7 @@ class GatewayManager {
 	private $gateways = array();
 
 	public function __construct() {
-		add_action( 'plugins_loaded', array( $this, 'initPrebuiltGateways' ) );
+		add_action( 'init', array( $this, 'initPrebuiltGateways' ), -1 );
 		add_action( 'init', array( $this, 'registerGateways' ), 5 );
 		add_action( 'mphb_generate_settings_payments', array( $this, 'generateSubTabs' ) );
 	}

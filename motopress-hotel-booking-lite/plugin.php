@@ -371,7 +371,7 @@ private $upgradeToPremiumMenuPage;
 		$this->requireOnce( 'includes/libraries/wp-session-manager/wp-session.php' );
 		$this->requireOnce( 'includes/libraries/wp-background-processing/wp-background-processing.php' );
 
-		add_action( 'plugins_loaded', array( $this, 'loadTextdomain' ) );
+		add_action( 'plugins_loaded', array( $this, 'loadTextDomain' ) );
 		add_action( 'init', array( $this, 'rewriteRules' ) );
 		add_action( 'admin_init', array( $this, 'initAutoUpdater' ), 9 );
 		// add_action( 'wp', array( $this, 'setupRoomTypeMicrodata' ) );
@@ -1255,7 +1255,7 @@ private $upgradeToPremiumMenuPage;
 	 *
 	 * @param string $version version to compare with wp version
 	 * @param string $operator Optional. Possible operators are: <, lt, <=, le, >, gt, >=, ge, ==, =, eq, !=, <>, ne respectively. Default =.
-	  This parameter is case-sensitive, values should be lowercase.
+	 * This parameter is case-sensitive, values should be lowercase.
 	 * @return bool
 	 */
 	public function isWPVersion( $version, $operator = '=' ) {
@@ -1307,7 +1307,6 @@ private $upgradeToPremiumMenuPage;
 		// This method will be called only once with first activated plugin - Premium or Lite
 		MPHB()->postTypes()->flushRewriteRules();
 		mphb_create_uploads_dir();
-
 
 		/**
 		 * @since 3.9.4
@@ -1464,7 +1463,9 @@ private $upgradeToPremiumMenuPage;
 		}
 
 		if ( $mphbActiveCount <= 1 ) {
+
 			flush_rewrite_rules();
+			MPHB()->cronManager()->do_on_plugin_deactivation();
 		}
 	}
 

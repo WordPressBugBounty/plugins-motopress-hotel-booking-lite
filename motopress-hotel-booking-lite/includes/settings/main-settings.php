@@ -20,29 +20,40 @@ class MainSettings {
 	 */
 	private $adminDatepickThemes;
 
+
 	public function __construct() {
-		$this->datepickThemes      = array(
-			''               => __( 'Default', 'motopress-hotel-booking' ),
-			'dark-blue'      => __( 'Dark Blue', 'motopress-hotel-booking' ),
-			'dark-green'     => __( 'Dark Green', 'motopress-hotel-booking' ),
-			'dark-red'       => __( 'Dark Red', 'motopress-hotel-booking' ),
-			'grayscale'      => __( 'Grayscale', 'motopress-hotel-booking' ),
-			'light-blue'     => __( 'Light Blue', 'motopress-hotel-booking' ),
-			'light-coral'    => __( 'Light Coral', 'motopress-hotel-booking' ),
-			'light-green'    => __( 'Light Green', 'motopress-hotel-booking' ),
-			'light-yellow'   => __( 'Light Yellow', 'motopress-hotel-booking' ),
-			'minimal-blue'   => __( 'Minimal Blue', 'motopress-hotel-booking' ),
-			'minimal-orange' => __( 'Minimal Orange', 'motopress-hotel-booking' ),
-			'minimal'        => __( 'Minimal', 'motopress-hotel-booking' ),
-			'peru'           => __( 'Peru', 'motopress-hotel-booking' ),
-			'sky-blue'       => __( 'Sky Blue', 'motopress-hotel-booking' ),
-			'slate-blue'     => __( 'Slate Blue', 'motopress-hotel-booking' ),
-			'turquoise'      => __( 'Turquoise', 'motopress-hotel-booking' ),
+
+		// we must init translated strings after init hook 
+		add_action(
+			'init',
+			function () {
+
+				$this->datepickThemes = array(
+					''               => __( 'Default', 'motopress-hotel-booking' ),
+					'dark-blue'      => __( 'Dark Blue', 'motopress-hotel-booking' ),
+					'dark-green'     => __( 'Dark Green', 'motopress-hotel-booking' ),
+					'dark-red'       => __( 'Dark Red', 'motopress-hotel-booking' ),
+					'grayscale'      => __( 'Grayscale', 'motopress-hotel-booking' ),
+					'light-blue'     => __( 'Light Blue', 'motopress-hotel-booking' ),
+					'light-coral'    => __( 'Light Coral', 'motopress-hotel-booking' ),
+					'light-green'    => __( 'Light Green', 'motopress-hotel-booking' ),
+					'light-yellow'   => __( 'Light Yellow', 'motopress-hotel-booking' ),
+					'minimal-blue'   => __( 'Minimal Blue', 'motopress-hotel-booking' ),
+					'minimal-orange' => __( 'Minimal Orange', 'motopress-hotel-booking' ),
+					'minimal'        => __( 'Minimal', 'motopress-hotel-booking' ),
+					'peru'           => __( 'Peru', 'motopress-hotel-booking' ),
+					'sky-blue'       => __( 'Sky Blue', 'motopress-hotel-booking' ),
+					'slate-blue'     => __( 'Slate Blue', 'motopress-hotel-booking' ),
+					'turquoise'      => __( 'Turquoise', 'motopress-hotel-booking' ),
+				);
+
+				$this->adminDatepickThemes = array(
+					'admin' => __( 'Default', 'motopress-hotel-booking' ),
+				);
+			}
 		);
-		$this->adminDatepickThemes = array(
-			'admin' => __( 'Default', 'motopress-hotel-booking' ),
-		);
-		$this->countriesBundle     = new \MPHB\Bundles\CountriesBundle();
+
+		$this->countriesBundle = new \MPHB\Bundles\CountriesBundle();
 	}
 
 	function getDefaultUserApprovalTime() {

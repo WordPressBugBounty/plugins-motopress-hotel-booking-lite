@@ -3,8 +3,8 @@ Contributors: MotoPress
 Donate link: https://motopress.com/
 Requires at least: 5.2
 Tags: hotel booking, reservation, hotel, booking engine, booking, booking calendar, booking system, calendar, online booking, airbnb, booking.com, homeaway, vrbo, tripadvisor, booking form, availability calendar, channel manager, property management system, vacation, travel
-Tested up to: 6.7
-Stable tag: 5.2.0
+Tested up to: 6.8
+Stable tag: 5.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -164,6 +164,12 @@ Hotel Booking Lite plugin, Copyright (C) 2016, MotoPress https://motopress.com/
 Hotel Booking Lite plugin is distributed under the terms of the GNU GPL.
 
 == Changelog ==
+
+= 5.2.1, Apr 18 2025 =
+* Fixed an issue with annual season rules overriding the minimum stay setting.
+* Fixed an issue where the calendar synchronization schedule might not start.
+* Improved compatibility with WordPress 6.8, addressing the _load_textdomain_just_in_time notice.
+* Resolved several issues related to site timezone settings.
 
 = 5.2.0, Apr 14 2025 =
 * Added support for the Hotel Booking Accommodation-Based Payments add-on.

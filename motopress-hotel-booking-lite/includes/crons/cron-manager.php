@@ -19,15 +19,21 @@ class CronManager {
 	const INTERVAL_HOURLY      = 'hourly';
 
 	/**
-	 *
 	 * @var Cron[]
 	 */
 	private $crons = array();
 
 	public function __construct() {
+
 		add_filter( 'cron_schedules', array( $this, 'createCronIntervals' ) );
 
 		$this->initCrons();
+
+		// schedule all necessary crons
+		// MPHB\Libraries\WP_SessionManager starts its own cron
+
+		$this->getCron( 'check_license_status' )->schedule();
+
 	}
 
 	/**
@@ -60,20 +66,11 @@ class CronManager {
 		}
 	}
 
-	/**
-	 *
-	 * @param Cron $cron
-	 */
-	public function addCron( $cron ) {
+	public function addCron( AbstractCron $cron ): void {
 		$this->crons[ $cron->getId() ] = $cron;
 	}
 
-	/**
-	 *
-	 * @param string $id
-	 * @return Cron|null
-	 */
-	public function getCron( $id ) {
+	public function getCron( string $id ): ?AbstractCron {
 		return isset( $this->crons[ $id ] ) ? $this->crons[ $id ] : null;
 	}
 
@@ -121,4 +118,17 @@ class CronManager {
 	}
 
 
+	public function do_on_plugin_deactivation() {
+
+		if ( ! empty( $this->crons ) ) {
+
+			foreach ( $this->crons as $cron ) {
+
+					
+				$cron->unschedule();
+			}
+		}
+
+		wp_clear_scheduled_hook( 'mphb_wp_session_garbage_collection' );
+	}
 }

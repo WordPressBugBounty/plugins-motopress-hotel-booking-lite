@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Hotel Booking 5.2.0\n"
+"Project-Id-Version: Hotel Booking 5.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/motopress-hotel-booking\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-14T20:04:26+00:00\n"
+"POT-Creation-Date: 2025-04-17T09:50:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: motopress-hotel-booking\n"
@@ -3505,7 +3505,6 @@ msgstr ""
 msgid "Check-out"
 msgstr ""
 
-#. translators: The value a hotel wishes to sell their rooms. Also called the Cost, Value, Tariff or Room charge.
 msgid "Rate"
 msgstr ""
 
@@ -4238,7 +4237,6 @@ msgstr ""
 msgid "Pay with your credit card via Stripe."
 msgstr ""
 
-#. translators: %1$s - names of payment methods, %2$s - currency codes
 msgid "Bancontact"
 msgstr ""
 
@@ -4251,8 +4249,6 @@ msgstr ""
 msgid "SEPA Direct Debit"
 msgstr ""
 
-#. translators: %1$s - name of payment method, %2$s - currency codes
-#. translators: %s - payment method name
 msgid "Klarna"
 msgstr ""
 
