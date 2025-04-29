@@ -658,7 +658,7 @@ class SearchResultsShortcode extends AbstractShortcode {
 	 * @return boolean
 	 */
 	private function parseCheckInDate( $date ) {
-		$checkInDateObj = \DateTime::createFromFormat( MPHB()->settings()->dateTime()->getDateTransferFormat(), $date );
+		$checkInDateObj = \MPHB\Utils\DateUtils::createCheckInDate( MPHB()->settings()->dateTime()->getDateTransferFormat(), $date );
 		$todayDate      = \DateTime::createFromFormat( 'Y-m-d', mphb_current_time( 'Y-m-d' ) );
 
 		if ( ! $checkInDateObj ) {

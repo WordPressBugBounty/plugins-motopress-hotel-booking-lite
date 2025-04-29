@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-02-19T19:58:50+00:00\n"
-"PO-Revision-Date: 2025-03-05 20:50\n"
+"PO-Revision-Date: 2025-04-29 09:39\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: motopress-hotel-booking\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -83,7 +83,7 @@ msgstr "Fout"
 #: includes/post-types/room-type-cpt.php:354
 #: templates/account/bookings.php:80
 msgid "View"
-msgstr "Bekijk"
+msgstr "Uitzicht"
 
 #: includes/admin/customers-list-table.php:147
 #: includes/admin/fields/abstract-complex-field.php:25
