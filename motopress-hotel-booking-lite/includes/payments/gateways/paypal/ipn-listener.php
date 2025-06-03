@@ -13,24 +13,6 @@ class IpnListener extends Gateways\AbstractNotificationListener {
 	const SANDBOX_URL = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
 	const LIVE_URL    = 'https://www.paypal.com/cgi-bin/webscr';
 
-	/**
-	 *
-	 * @var string
-	 */
-	private $businessEmail;
-
-	/**
-	 *
-	 * @var bool
-	 */
-	private $verificationDisabled = false;
-
-	public function __construct( $gateway, $atts = array() ) {
-		parent::__construct( $gateway, $atts );
-		$this->businessEmail        = $atts['businessEmail'];
-		$this->verificationDisabled = $atts['verificationDisabled'];
-	}
-
 	protected function initUrlIdentificationValue() {
 		return 'paypal-ipn';
 	}
@@ -41,7 +23,7 @@ class IpnListener extends Gateways\AbstractNotificationListener {
 	 * @return boolean
 	 */
 	protected function validate( $input ) {
-		return $this->verificationDisabled || $this->verifyRequest( $input );
+		return $this->gateway->isIpnVerificationDisabled() || $this->verifyRequest( $input );
 	}
 
 	/**
@@ -183,7 +165,7 @@ class IpnListener extends Gateways\AbstractNotificationListener {
 	private function checkBusinessEmail() {
 		$businessEmail = isset( $this->input['business'] ) && is_email( $this->input['business'] ) ? trim( $this->input['business'] ) : trim( $this->input['receiver_email'] );
 
-		if ( strcasecmp( $businessEmail, $this->businessEmail ) != 0 ) {
+		if ( strcasecmp( $businessEmail, $this->gateway->getBusinessEmail() ) != 0 ) {
 			$log = __( 'Payment failed due to invalid PayPal business email.', 'motopress-hotel-booking' );
 			$this->paymentFailed( $log );
 			return false;

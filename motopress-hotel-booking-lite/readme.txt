@@ -4,7 +4,7 @@ Donate link: https://motopress.com/
 Requires at least: 5.2
 Tags: hotel booking, reservation, hotel, booking engine, booking, booking calendar, booking system, calendar, online booking, airbnb, booking.com, homeaway, vrbo, tripadvisor, booking form, availability calendar, channel manager, property management system, vacation, travel
 Tested up to: 6.8
-Stable tag: 5.2.2
+Stable tag: 5.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,6 +87,8 @@ The user area for customers allows them to log in, view bookings and speed up al
 
 ### Booking Calendar
 
+Hotel Booking is one of the top [WordPress calendar plugins](https://motopress.com/products/category/wordpress-calendar-plugins/) from MotoPress.
+
 Display per-day pricing in the calendar and enable guests to book rooms using a calendar date picker. Your guest can simply click on the available dates right in the calendar when they want to stay and then follow the simple steps to complete their booking.
 
 ### REST API
@@ -106,9 +108,10 @@ We provide a free app for both [Android](https://play.google.com/store/apps/deta
 * [Reviews and Rating](https://motopress.com/products/hotel-booking-reviews/?utm_source=wp-org-hb-lite-page&utm_medium=text-link&utm_content=hotel-booking-reviews-rating-addon) addon - allow guests to rate and review your property.
 * [Elementor Integration](https://wordpress.org/plugins/mphb-elementor/) addon - helps speed up the work with your Elementor hotel website.
 * [Divi Integration](https://wordpress.org/plugins/mphb-divi/) addon - integrates Divi theme with the MotoPress Hotel Booking plugin to modify content and styles visually via Divi builder.
-* [Hotel Booking Notifier](https://motopress.com/products/hotel-booking-notifier?utm_source=wp_org_hb_page&utm_medium=hotel-booking-notifier) addon - create automated event-driven emails before and after arrival/departure.
-* [Hotel Booking Checkout Fields](https://motopress.com/products/hotel-booking-checkout-fields/) addon - edit the form at the checkout by customizing current fields or adding new ones.
-* [PriceLabs Integration](https://motopress.com/products/hotel-booking-pricelabs/) addon - earn more from every listing by dynamically updating your rates with prices from PriceLabs, the best price optimization service for hotels and vacation rentals.
+* [Hotel Booking Notifier](https://motopress.com/products/hotel-booking-notifier/?utm_source=wp-org-hb-lite-page&utm_medium=text-link) addon - create automated event-driven emails before and after arrival/departure.
+* [Hotel Booking Checkout Fields](https://motopress.com/products/hotel-booking-checkout-fields/?utm_source=wp-org-hb-lite-page&utm_medium=text-link) addon - edit the form at the checkout by customizing current fields or adding new ones.
+* [PriceLabs Integration](https://motopress.com/products/hotel-booking-pricelabs/?utm_source=wp-org-hb-lite-page&utm_medium=text-link) addon - earn more from every listing by dynamically updating your rates with prices from PriceLabs, the best price optimization service for hotels and vacation rentals.
+* [Accommodation-Based Payments](https://motopress.com/products/hotel-booking-accommodation-based-payments/?utm_source=wp-org-hb-lite-page&utm_medium=text-link) addon - create a property management platform where each property owner receives booking payments directly into their own account.
 
 ### Pro Features
 
@@ -123,6 +126,8 @@ We provide a free app for both [Android](https://play.google.com/store/apps/deta
 Have a look at all Pro [plugin features](https://motopress.com/motopress-wordpress-hotel-booking-pro-vs-lite/?utm_source=wp-org&utm_medium=pro-features&utm_campaign=hotel-booking-lite&utm_content=here).
 
 ### Sell Appointments & Hourly Bookings
+
+[WordPress booking plugins](https://motopress.com/products/category/wordpress-booking-plugins/) from MotoPress are designed for different businesses.
 
 Offer smooth and quick event and appointment reservations on your rental property site with our [WordPress Appointment plugin](https://motopress.com/products/appointment-booking/?utm_source=wp_org_hb_lite_page&utm_medium=text_link&utm_campaign=appointment_plugin). Create appointments of any duration, add flexible staff schedules, and start accepting online bookings.
 
@@ -164,6 +169,10 @@ Hotel Booking Lite plugin, Copyright (C) 2016, MotoPress https://motopress.com/
 Hotel Booking Lite plugin is distributed under the terms of the GNU GPL.
 
 == Changelog ==
+
+= 5.2.3, May 27 2025 =
+* Fixed an issue with user roles that could affect new plugin installations.
+* Added support for PayPal in the Hotel Booking Accommodation-Based Payments add-on.
 
 = 5.2.2, Apr 29 2025 =
 * Fixed a time zone issue affecting night count in search results.

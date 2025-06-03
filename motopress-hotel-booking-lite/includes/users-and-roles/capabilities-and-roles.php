@@ -31,11 +31,23 @@ class CapabilitiesAndRoles {
 	public $roles;
 
 	public function __construct() {
-		$this->mapCapabilitiesToRoles();
-		$this->mapRolesToCapabilities();
+
+		// we must init translated strings after init hook
+		add_action(
+			'init',
+			function () {
+
+				$this->mapCapabilitiesToRoles();
+				$this->mapRolesToCapabilities();
+
+				$this->setup();
+			},
+			0 // must be bigger then init hook priority in \MPHB\UsersAndRoles\Roles
+		);
 	}
 
-	public static function setup() {
+	private function setup() {
+
 		$wpRoles = wp_roles();
 
 		// create empty roles if they do not exist
@@ -75,7 +87,7 @@ class CapabilitiesAndRoles {
 	/**
 	 * Maps custom capabilities to WP Roles.
 	 */
-	public function mapCapabilitiesToRoles() {
+	private function mapCapabilitiesToRoles() {
 		$this->capabilities[ self::MANAGE_SETTINGS ] = array(
 			'administrator',
 			Roles::MANAGER,
@@ -205,7 +217,7 @@ class CapabilitiesAndRoles {
 	/**
 	 * Maps Wp Roles to capabilities.
 	 */
-	public function mapRolesToCapabilities() {
+	private function mapRolesToCapabilities() {
 		if ( ! empty( $this->capabilities ) ) {
 			foreach ( $this->capabilities as $capability => $roles ) {
 				array_map(
@@ -221,6 +233,64 @@ class CapabilitiesAndRoles {
 				);
 			}
 		}
+	}
+
+
+	public static function removeUserRoles() {
+
+		global $wp_roles;
+
+		if ( ! class_exists( 'WP_Roles' ) ) {
+			return;
+		}
+
+		if ( ! isset( $wp_roles ) ) {
+			$wp_roles = new \WP_Roles();
+		}
+
+		$wp_roles->remove_cap( 'administrator', self::MANAGE_SETTINGS );
+		$wp_roles->remove_cap( 'administrator', self::MANAGE_RULES );
+		$wp_roles->remove_cap( 'administrator', self::MANAGE_TAXES_AND_FEES );
+		$wp_roles->remove_cap( 'administrator', self::VIEW_CALENDAR );
+		$wp_roles->remove_cap( 'administrator', self::VIEW_REPORTS );
+		$wp_roles->remove_cap( 'administrator', self::EXPORT_REPORTS );
+		$wp_roles->remove_cap( 'administrator', self::SYNC_ICAL );
+		$wp_roles->remove_cap( 'administrator', self::IMPORT_ICAL );
+		$wp_roles->remove_cap( 'administrator', self::VIEW_CUSTOMERS );
+		$wp_roles->remove_cap( 'administrator', self::EDIT_CUSTOMER );
+		$wp_roles->remove_cap( 'administrator', self::DELETE_CUSTOMER );
+
+		$customPostTypes = MPHB()->postTypes()->getPostTypes();
+
+		foreach ( $customPostTypes as $customPostType ) {
+
+			list( $singular, $plural ) = $customPostType->getCapabilityType();
+
+			$post_type_capabilities = array(
+				"edit_{$plural}",
+				"edit_private_{$plural}",
+				"edit_others_{$plural}",
+				"edit_published_{$plural}",
+				"delete_{$plural}",
+				"delete_private_{$plural}",
+				"delete_others_{$plural}",
+				"delete_published_{$plural}",
+				"read_{$plural}",
+				"read_private_{$plural}",
+				"publish_{$plural}",
+			);
+
+			foreach ( $post_type_capabilities as $cap_name ) {
+
+				$wp_roles->remove_cap( 'administrator', $cap_name );
+			}
+		}
+
+		remove_role( Roles::MANAGER );
+		remove_role( Roles::WORKER );
+		remove_role( Roles::CUSTOMER );
+
+		\HotelBookingPlugin::setCustomRolesVersion( 0 );
 	}
 
 	/**

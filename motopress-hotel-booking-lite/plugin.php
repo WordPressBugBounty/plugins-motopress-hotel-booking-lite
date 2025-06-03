@@ -380,6 +380,8 @@ private $upgradeToPremiumMenuPage;
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueueAdminScripts' ), 11 );
 		add_action( 'the_post', array( $this, 'setCurrentRoomType' ) );
 
+		add_action( 'wp_head', 'mphb_print_version_comment', 1 );
+
 		/**
 		 * @since 3.9.4
 		 */
@@ -444,7 +446,6 @@ private $upgradeToPremiumMenuPage;
 
 		$this->roles                = new \MPHB\UsersAndRoles\Roles();
 		$this->capabilitiesAndRoles = new \MPHB\UsersAndRoles\CapabilitiesAndRoles();
-		$this->capabilitiesAndRoles::setup();
 
 		$this->account = new \MPHB\UsersAndRoles\User();
 
@@ -824,6 +825,15 @@ private $upgradeToPremiumMenuPage;
 	 */
 	public function getName() {
 		return $this->name;
+	}
+
+	/**
+	 * @return string
+	 *
+	 * @since 5.2.3
+	 */
+	public function getAuthor() {
+		return $this->author;
 	}
 
 	/**
@@ -1407,43 +1417,6 @@ private $upgradeToPremiumMenuPage;
 
 	}
 
-	/**
-	 *
-	 * @since 4.0.0
-	 */
-	public static function removeUserRoles() {
-		global $wp_roles;
-
-		if ( ! class_exists( 'WP_Roles' ) ) {
-			return;
-		}
-
-		if ( ! isset( $wp_roles ) ) {
-			$wp_roles = new WP_Roles();
-		}
-
-		$capabilitiesToRoles = MPHB()->capabilitiesAndRoles()->getRoles();
-
-		if ( ! empty( $capabilitiesToRoles ) ) {
-			foreach ( $capabilitiesToRoles as $role => $capabilities ) {
-				if ( ! empty( $capabilities ) ) {
-					foreach ( $capabilities as $cap ) {
-						$wp_roles->remove_cap( $role, $cap );
-					}
-				}
-			}
-		}
-
-		$roles = MPHB()->roles()->getRoles();
-
-		if ( ! empty( $roles ) ) {
-			foreach ( $roles as $role => $desc ) {
-				remove_role( $role );
-			}
-		}
-
-		self::setCustomRolesVersion( 0 );
-	}
 
 	public static function deactivate() {
 		$mphbActiveCount  = (int) \MPHB\Utils\ThirdPartyPluginsUtils::isActiveMphb();

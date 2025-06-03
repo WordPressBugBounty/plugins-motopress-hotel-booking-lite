@@ -47,7 +47,8 @@ class Roles {
 						'description' => __( 'Hotel Customer', 'motopress-hotel-booking' ),
 					)
 				);
-			}
+			},
+			-1
 		);
 	}
 

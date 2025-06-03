@@ -20,11 +20,6 @@ class PaypalGateway extends Gateway {
 
 	private $supportedCurrencies;
 
-	/**
-	 * @var string
-	 */
-	protected $businessEmail;
-
 	public function __construct() {
 
 		add_filter( 'mphb_gateway_has_instructions', array( $this, 'hideInstructions' ), 10, 2 );
@@ -37,12 +32,14 @@ class PaypalGateway extends Gateway {
 		parent::__construct();
 
 		// init notification listener
-		$ipnListnerArgs    = array(
-			'verificationDisabled' => (bool) $this->getOption( 'disable_ipn_verification' ),
-			'businessEmail'        => $this->businessEmail,
-		);
+		$this->ipnListener = $this->createIpnListener();
+	}
 
-		$this->ipnListener = new Paypal\IpnListener( $this, $ipnListnerArgs );
+	/**
+	 * Is overridden in Accommodation-Based Payments.
+	 */
+	protected function createIpnListener(): IpnListener {
+		return new Paypal\IpnListener( $this );
 	}
 
 	/**
@@ -64,7 +61,6 @@ class PaypalGateway extends Gateway {
 
 		parent::setupProperties();
 		$this->adminTitle    = __( 'PayPal', 'motopress-hotel-booking' );
-		$this->businessEmail = sanitize_email( $this->getOption( 'business_email' ) );
 	}
 
 	protected function initDefaultOptions() {
@@ -147,7 +143,11 @@ class PaypalGateway extends Gateway {
 	 * @return string
 	 */
 	public function getBusinessEmail() {
-		return $this->businessEmail;
+		return sanitize_email( $this->getOption( 'business_email' ) );
+	}
+
+	public function isIpnVerificationDisabled(): bool {
+		return (bool) $this->getOption( 'disable_ipn_verification' );
 	}
 
 	public function isSupportCurrency() {
@@ -159,7 +159,7 @@ class PaypalGateway extends Gateway {
 
 		$paymentParameters = array(
 			'cmd'           => '_xclick',
-			'business'      => $this->businessEmail,
+			'business'      => $this->getBusinessEmail(),
 			'currency_code' => $payment->getCurrency(),
 			'charset'       => 'utf-8',
 			'rm'            => 2, // Return method 1 - GET, 2 - POST

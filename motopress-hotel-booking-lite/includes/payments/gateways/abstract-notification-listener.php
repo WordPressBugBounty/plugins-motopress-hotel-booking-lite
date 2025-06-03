@@ -134,7 +134,7 @@ abstract class AbstractNotificationListener {
 
 	/**
 	 *
-	 * @return \MPHB\Entities\Payment
+	 * @return \MPHB\Entities\Payment|null
 	 */
 	abstract protected function retrievePayment();
 
