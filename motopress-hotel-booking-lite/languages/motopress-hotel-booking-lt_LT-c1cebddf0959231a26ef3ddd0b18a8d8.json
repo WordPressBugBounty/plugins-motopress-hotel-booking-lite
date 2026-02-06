@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "lt_LT",
+                "plural-forms": "nplurals=4; plural=(n%10==1 && (n%100>19 || n%100<11) ? 0 : (n%10>=2 && n%10<=9) && (n%100>19 || n%100<11) ? 1 : n%1!=0 ? 2: 3);"
+            },
+            "Date": [
+                "Data"
+            ],
+            "Adults": [
+                "Suaug\u0119"
+            ],
+            "Children": [
+                "Vaikai"
+            ],
+            "Price": [
+                "Kaina"
+            ],
+            "Accommodation Type": [
+                "Apgyvendinimo tipas"
+            ],
+            "Title": [
+                "Pavadinimas"
+            ],
+            "Booking Confirmation": [
+                "Rezervacijos patvirtinimas"
+            ],
+            "Availability Calendar": [
+                "U\u017eimtumo kalendorius"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Display the currency sign in the availability calendar.": [
+                ""
+            ],
+            "Settings": [
+                "Nustatymai"
+            ],
+            "Availability Search Form": [
+                "U\u017eimtumo paie\u0161kos forma"
+            ],
+            "The number of adults presetted in the search form.": [
+                "Paie\u0161kos formoje i\u0161 anksto nustatytas suaugusi\u0173j\u0173 skai\u010dius."
+            ],
+            "The number of children presetted in the search form.": [
+                "Paie\u0161kos formoje i\u0161 anksto nustatytas vaik\u0173 skai\u010dius."
+            ],
+            "Custom attributes for advanced search.": [
+                "Priskirti i\u0161pl\u0117stin\u0117s paie\u0161kos atributai."
+            ],
+            "Comma-separated slugs of attributes.": [
+                "Kableliais atskirti atributai."
+            ],
+            "How many months to show.": [
+                "Kiek m\u0117nesi\u0173 parodyti."
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                "Nustatykite stulpeli\u0173 skai\u010di\u0173 arba eilu\u010di\u0173 ir stulpeli\u0173, atskirt\u0173 kableliais, skai\u010di\u0173. Pavyzdys: \"3\" arba \"2,3\""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                "Rodyti esamo apgyvendinimo tipo u\u017eimtumo kalendori\u0173 arba pagal ID."
+            ],
+            "Availability Search Results": [
+                "U\u017eimtumo paie\u0161kos rezultatai"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "Rodyti paie\u0161kos kriterijus atitinkan\u010di\u0173 apgyvendinimo tip\u0173 s\u0105ra\u0161\u0105."
+            ],
+            "Whether to display title of the accommodation type.": [
+                "Ar rodyti apgyvendinimo tipo pavadinim\u0105."
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "Ar rodyti apgyvendinimo tipo vaizd\u0105."
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "Ar rodyti apgyvendinimo tipo galerij\u0105."
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "Ar rodyti apgyvendinimo tipo i\u0161trauk\u0105 (trump\u0105 apra\u0161ym\u0105)."
+            ],
+            "Whether to display details of the accommodation type.": [
+                "Ar rodyti informacij\u0105 apie apgyvendinimo tip\u0105."
+            ],
+            "Whether to display price of the accommodation type.": [
+                "Ar rodyti apgyvendinimo tipo kain\u0105."
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "Ar rodyti mygtuk\u0105 \u201ePla\u010diau\u201c su nuoroda \u012f apgyvendinimo tip\u0105."
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                "Pasirinktinis lauko pavadinimas. B\u016btina, jei \u201eorderby\u201c yra vienas i\u0161 \u201emeta_value\u201c, \u201emeta_value_num\u201c arba \u201emeta_value_*\u201c."
+            ],
+            "Whether to display Book button.": [
+                "Ar rodyti mygtuk\u0105 Rezervuoti."
+            ],
+            "Accommodation Types Listing": [
+                "Apgyvendinimo tip\u0173 s\u0105ra\u0161as"
+            ],
+            "Count per page": [
+                "Skai\u010diavimas per puslap\u012f"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "sveikasis skai\u010dius, -1, kad b\u016bt\u0173 rodomas viskas, numatytasis: \"Tinklara\u0161\u010dio puslapiai rodomi daugiausia\""
+            ],
+            "IDs of categories that will be shown.": [
+                "Kategorij\u0173 ID, kurios bus rodomos."
+            ],
+            "Comma-separated IDs.": [
+                "Kableliais atskirti ID."
+            ],
+            "IDs of tags that will be shown.": [
+                "\u017dym\u0173, kurios bus rodomos, ID."
+            ],
+            "IDs of accommodations that will be shown.": [
+                "Apgyvendinimo viet\u0173 ID, kurios bus rodomos."
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                "Loginis ry\u0161ys tarp kiekvienos taksonomijos, kai yra daugiau nei viena."
+            ],
+            "Services Listing": [
+                "Paslaug\u0173 s\u0105ra\u0161as"
+            ],
+            "IDs": [
+                "IDs"
+            ],
+            "IDs of services that will be shown. ": [
+                "Paslaug\u0173, kurios bus rodomos, ID. "
+            ],
+            "Single Accommodation Type": [
+                "Vienas apgyvendinimo tipas"
+            ],
+            "Checkout Form": [
+                "Apmok\u0117jimo forma"
+            ],
+            "Display checkout form.": [
+                "Rodyti apmok\u0117jimo form\u0105."
+            ],
+            "Booking Form": [
+                "Rezervacijos forma"
+            ],
+            "Accommodation Rates List": [
+                "Apgyvendinimo \u012fkaini\u0173 s\u0105ra\u0161as"
+            ],
+            "ID of accommodation type.": [
+                "Apgyvendinimo tipo ID."
+            ],
+            "Display booking and payment details.": [
+                "Rodyti rezervacijos ir mok\u0117jimo informacij\u0105."
+            ],
+            "Check-in Date": [
+                "Atvykimo data"
+            ],
+            "Check-out Date": [
+                "I\u0161vykimo data"
+            ],
+            "Categories": [
+                "Kategorijos"
+            ],
+            "Tags": [
+                "\u017dymos"
+            ],
+            "Details": [
+                "I\u0161samiau"
+            ],
+            "Featured Image": [
+                "Pasirinktinis paveiksliukas"
+            ],
+            "Excerpt (short description)": [
+                "Produkto trumpas apra\u0161ymas"
+            ],
+            "Book Button": [
+                "Rezervacijos mygtukas"
+            ],
+            "Preset date. Formatted as %s": [
+                "I\u0161 anksto nustatyta data. Suformatuota kaip %s"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "Gallery": [
+                "Galerija"
+            ],
+            "View Button": [
+                "Per\u017ei\u016bros mygtukas"
+            ],
+            "Order": [
+                "Rikiavimas"
+            ],
+            "Order By": [
+                "Rikiuoti pagal"
+            ],
+            "No order": [
+                "N\u0117ra rikiavimo"
+            ],
+            "Post ID": [
+                "Prane\u0161imo ID"
+            ],
+            "Post author": [
+                "Prane\u0161imo autorius"
+            ],
+            "Post title": [
+                "\u012era\u0161o pavadinimas"
+            ],
+            "Post name (post slug)": [
+                "\u012era\u0161o pavadinimas (post slug)"
+            ],
+            "Post date": [
+                "\u012era\u0161o data"
+            ],
+            "Last modified date": [
+                "Paskutinio pakeitimo data"
+            ],
+            "Parent ID": [
+                "T\u0117vinio ID"
+            ],
+            "Random order": [
+                "Atsitiktin\u0117 tvarka"
+            ],
+            "Number of comments": [
+                "Komentaru kiekis"
+            ],
+            "Relevance": [
+                "Aktualumas"
+            ],
+            "Page order": [
+                "Puslapio rikiavimas"
+            ],
+            "Meta value": [
+                "Meta reik\u0161m\u0117"
+            ],
+            "Numeric meta value": [
+                "Skaitin\u0117 meta reik\u0161m\u0117"
+            ],
+            "Ascending (1, 2, 3)": [
+                "Did\u0117jan\u010dia tvarka (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "Ma\u017e\u0117janti (3, 2, 1)"
+            ],
+            "Meta Name": [
+                "Meta pavadinimas"
+            ],
+            "Meta Type": [
+                "Meta tipas"
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                "Nurodytas tinkinto lauko tipas. Gali b\u016bti naudojamas kartu su \"orderby\" = \"meta_value\"."
+            ],
+            "Any": [
+                "Bet kas"
+            ],
+            "Numeric": [
+                "Skaitinis"
+            ],
+            "Binary": [
+                "Dvejetainis"
+            ],
+            "String": [
+                "Eilut\u0117"
+            ],
+            "Time": [
+                "Laikas"
+            ],
+            "Date and time": [
+                "Data ir laikas"
+            ],
+            "Decimal number": [
+                "De\u0161imtainis skai\u010dius"
+            ],
+            "Signed number": [
+                "Pasira\u0161ytas numeris"
+            ],
+            "Unsigned number": [
+                "Nepasira\u0161ytas numeris"
+            ],
+            "Query Settings": [
+                "U\u017eklausos (query) nustatymai"
+            ],
+            "Relation": [
+                "Ry\u0161ys"
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "Reik\u0161m\u0117s: sveikasis skai\u010dius, -1, kad b\u016bt\u0173 rodoma viskas, numatytoji: \"Tinklara\u0161\u010dio puslapiai rodomi daugiausia\""
+            ],
+            "Select an accommodation type.": [
+                ""
+            ]
+        }
+    }
+}

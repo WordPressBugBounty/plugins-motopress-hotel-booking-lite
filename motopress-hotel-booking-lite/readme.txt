@@ -1,10 +1,10 @@
-=== Hotel Booking Lite ===
+=== MotoPress Hotel Booking ===
 Contributors: MotoPress
 Donate link: https://motopress.com/
 Requires at least: 5.2
 Tags: hotel booking, reservation, hotel, booking engine, booking, booking calendar, booking system, calendar, online booking, airbnb, booking.com, homeaway, vrbo, tripadvisor, booking form, availability calendar, channel manager, property management system, vacation, travel
-Tested up to: 6.8
-Stable tag: 5.2.3
+Tested up to: 6.9
+Stable tag: 5.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -151,6 +151,12 @@ Installation through the WordPress dashboard:
 
 Alternatively, you can download the MotoPress WordPress Hotel Booking plugin from this [wp.org](https://wordpress.org/) website (click “Download”). After that, go to your WP dashboard > Plugins > Add New > Upload Plugin > Choose file (the .zip file on your computer) > Install now > Activate.
 
+== Frequently Asked Questions ==
+
+= How can I override the MotoPress Hotel Booking plugin's template files in my WordPress theme? =
+
+You can copy template files from /wp-content/motopress-hotel-booking/templates/ folder to /wp-content/your-theme/hotel-booking/ to override them.
+
 == Screenshots ==
 
 1. Booking forms and booking calendar.
@@ -165,10 +171,24 @@ Alternatively, you can download the MotoPress WordPress Hotel Booking plugin fro
 
 == Copyright ==
 
-Hotel Booking Lite plugin, Copyright (C) 2016, MotoPress https://motopress.com/
-Hotel Booking Lite plugin is distributed under the terms of the GNU GPL.
+MotoPress Hotel Booking plugin, Copyright (C) 2016, MotoPress https://motopress.com/
+MotoPress Hotel Booking plugin is distributed under the terms of the GNU GPL.
 
 == Changelog ==
+
+= 5.3.3, Jan 20 2026 =
+* Minor bugfixes and improvements.
+
+= 5.3.0, Jan 14 2026 =
+* New: Multi-Property Availability Calendar for showing availability of multiple chosen properties in one overview on your website.
+* Improvement: Adjusted the property recommendation title for searches with ‘Adults’ and ‘Children’ disabled in plugin settings.
+* Improvement: Optimized plugin translations.
+* Bug fix: Fixed an issue with displaying custom payment gateway labels instead of the default ones.
+* Bug fix: Fixed an issue where availability was not updated correctly in the search form after changing the year in the selector.
+* Bug fix: Fixed an issue where the no-check-in restriction was ignored.
+
+= 5.2.4, Nov 12 2025 =
+* Security: enhanced permission checks when managing auxiliary plugins.
 
 = 5.2.3, May 27 2025 =
 * Fixed an issue with user roles that could affect new plugin installations.

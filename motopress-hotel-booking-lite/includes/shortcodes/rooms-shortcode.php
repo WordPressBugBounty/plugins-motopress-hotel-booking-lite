@@ -118,6 +118,7 @@ class RoomsShortcode extends AbstractShortcode {
 			do_action( 'mphb_sc_rooms_before_loop', $roomTypesQuery );
 
 			while ( $roomTypesQuery->have_posts() ) :
+
 				$roomTypesQuery->the_post();
 
 				do_action( 'mphb_sc_rooms_before_item' );

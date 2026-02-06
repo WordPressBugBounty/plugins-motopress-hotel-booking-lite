@@ -805,6 +805,23 @@ class BookingRulesData {
 
 		$unavailableRoomIds = array();
 
+		// Check check-in and check-out dates
+		$testDates = array(
+			'not_check_in'  => $checkInDateTime,
+			'not_check_out' => $checkOutDateTime,
+		);
+
+		foreach ( $testDates as $checkRule => $date ) {
+			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $date );
+
+			foreach ( $bookingRules['custom_rules_for_room_id'] as $roomId => $roomBlocks ) {
+				if ( $roomBlocks[ $checkRule ] ) {
+					$unavailableRoomIds[] = $roomId;
+				}
+			}
+		}
+
+		// Check stay-in dates
 		$testingDate = clone $checkInDateTime;
 		$checkOutDateString = $checkOutDateTime->format('Ymd');
 

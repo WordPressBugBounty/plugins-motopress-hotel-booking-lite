@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "pl_PL",
+                "plural-forms": "nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);"
+            },
+            "Date": [
+                "Data"
+            ],
+            "Adults": [
+                "Doro\u015bli"
+            ],
+            "Children": [
+                "Dzieci"
+            ],
+            "Price": [
+                "Cena"
+            ],
+            "Accommodation Type": [
+                "Typ pokoju"
+            ],
+            "Title": [
+                "Tytu\u0142"
+            ],
+            "Booking Confirmation": [
+                "Potwierdzenie rejestracji"
+            ],
+            "Availability Calendar": [
+                "Kalendarz dost\u0119pno\u015bci"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Display the currency sign in the availability calendar.": [
+                ""
+            ],
+            "Settings": [
+                "Ustawienia"
+            ],
+            "Availability Search Form": [
+                "Formularz wyszukiwania dost\u0119pnych"
+            ],
+            "The number of adults presetted in the search form.": [
+                "Ilo\u015b\u0107 doros\u0142ych zosta\u0142a zapisana do formularzu wyszukiwania."
+            ],
+            "The number of children presetted in the search form.": [
+                "Ilo\u015b\u0107 dzieci zosta\u0142a zapisana do formularzu wyszukiwania."
+            ],
+            "Custom attributes for advanced search.": [
+                "Niestandardowe atrybuty wyszukiwania zaawansowanego."
+            ],
+            "Comma-separated slugs of attributes.": [
+                "Oddzielone przecinkami fragmenty atrybut\u00f3w."
+            ],
+            "How many months to show.": [
+                "Ile miesi\u0119cy pokaza\u0107."
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                "Ustaw liczb\u0119 kolumn lub liczb\u0119 wierszy i kolumn oddzielonych przecinkami. Przyk\u0142ad: \" 3\" lub \"2,3\""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                "Wy\u015bwietl kalendarz dost\u0119pno\u015bci dla aktualnego typu zakwaterowania lub wed\u0142ug ID."
+            ],
+            "Availability Search Results": [
+                "Dost\u0119pne wyniki wyszukiwania"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "Wy\u015bwietla\u0107 typy pokoj\u00f3w, kt\u00f3re spe\u0142niaj\u0105 kryteria wyszukiwania."
+            ],
+            "Whether to display title of the accommodation type.": [
+                "Wy\u015bwietla\u0107 tytu\u0142 typu pokoju."
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "Wy\u015bwietla\u0107 polecane zdj\u0119cia dla typu pokoju."
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "Wy\u015bwietla\u0107 galeri\u0119 dla typu pokoju."
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "Wy\u015bwietla\u0107 kr\u00f3tki opis typu pokoju."
+            ],
+            "Whether to display details of the accommodation type.": [
+                "Czy wy\u015bwietli\u0107 szczeg\u00f3\u0142y dotycz\u0105ce typu pokoju."
+            ],
+            "Whether to display price of the accommodation type.": [
+                "Czy wy\u015bwietla\u0107 cen\u0119 dla typu pokoju."
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "Wy\u015bwietla\u0107 przycisk \"Wi\u0119cej info\" z linkiem do typu pokoju."
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                "Nazwa pola niestandardowego. Wymagana, je\u015bli \" orderby \\ \"jest jedn\u0105 z warto\u015bci \" meta_value \\ \", \" meta_value_num \\ \"lub \" meta_value _ * \\ \"."
+            ],
+            "Whether to display Book button.": [
+                "Czy wy\u015bwietla\u0107 przycisk Rezerwuj."
+            ],
+            "Accommodation Types Listing": [
+                "Lista typ\u00f3w pokoj\u00f3w"
+            ],
+            "Count per page": [
+                "Ilo\u015b\u0107 na stronie"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "integer, -1 aby wy\u015bwietli\u0107 wszystko, domy\u015blnie: \"Strony blog\u00f3w pokazuj\u0105 co najwy\u017cej\""
+            ],
+            "IDs of categories that will be shown.": [
+                "Identyfikatory kategorii, kt\u00f3re zostan\u0105 wy\u015bwietlone."
+            ],
+            "Comma-separated IDs.": [
+                "Rozdzielone przecinkami numery ID."
+            ],
+            "IDs of tags that will be shown.": [
+                "Identyfikatory tag\u00f3w, kt\u00f3re zostan\u0105 wy\u015bwietlone."
+            ],
+            "IDs of accommodations that will be shown.": [
+                "Identyfikatory kwater, kt\u00f3re zostan\u0105 wy\u015bwietlone."
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                "Logiczna zale\u017cno\u015b\u0107 mi\u0119dzy ka\u017cd\u0105 taksonomi\u0105, gdy jest wi\u0119cej ni\u017c jedna."
+            ],
+            "Services Listing": [
+                "Lista us\u0142ug"
+            ],
+            "IDs": [
+                "Numery ID"
+            ],
+            "IDs of services that will be shown. ": [
+                "ID us\u0142ug, kt\u00f3re zostan\u0105 wy\u015bwietlane. "
+            ],
+            "Single Accommodation Type": [
+                ""
+            ],
+            "Checkout Form": [
+                "Formularz kasy"
+            ],
+            "Display checkout form.": [
+                "Poka\u017c formularz kasy."
+            ],
+            "Booking Form": [
+                "Formularz rezerwacji"
+            ],
+            "Accommodation Rates List": [
+                "Lista ocen obiekt\u00f3w"
+            ],
+            "ID of accommodation type.": [
+                "ID typu pokoju."
+            ],
+            "Display booking and payment details.": [
+                "Wy\u015bwietl szczeg\u00f3\u0142y rezerwacji i p\u0142atno\u015bci."
+            ],
+            "Check-in Date": [
+                "Data zameldowania"
+            ],
+            "Check-out Date": [
+                "Data wymeldowania"
+            ],
+            "Categories": [
+                "Kategorie"
+            ],
+            "Tags": [
+                "Tagi"
+            ],
+            "Details": [
+                "Szczeg\u00f3\u0142y"
+            ],
+            "Featured Image": [
+                "Wyr\u00f3\u017cniony obraz"
+            ],
+            "Excerpt (short description)": [
+                "Poka\u017c Fragment (kr\u00f3tkie opisanie)"
+            ],
+            "Book Button": [
+                "Przycisk ksi\u0105\u017cki"
+            ],
+            "Preset date. Formatted as %s": [
+                "Ustawiona data. Sformatowano jako %s"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "Gallery": [
+                "Galeria"
+            ],
+            "View Button": [
+                "Przycisk Wy\u015bwietl"
+            ],
+            "Order": [
+                "Zam\u00f3wienie"
+            ],
+            "Order By": [
+                "Zam\u00f3w wed\u0142ug"
+            ],
+            "No order": [
+                "Brak zam\u00f3wienia"
+            ],
+            "Post ID": [
+                "ID posta"
+            ],
+            "Post author": [
+                "Autor posta"
+            ],
+            "Post title": [
+                "Tytu\u0142 posta"
+            ],
+            "Post name (post slug)": [
+                "Nazwa posta (post slug)"
+            ],
+            "Post date": [
+                "Data wys\u0142ania"
+            ],
+            "Last modified date": [
+                "Data ostatniej modyfikacji"
+            ],
+            "Parent ID": [
+                ""
+            ],
+            "Random order": [
+                "Losowe zam\u00f3wienie"
+            ],
+            "Number of comments": [
+                "Liczba komentarzy"
+            ],
+            "Relevance": [
+                "Trafno\u015b\u0107"
+            ],
+            "Page order": [
+                "Kolejno\u015b\u0107 stron"
+            ],
+            "Meta value": [
+                "Warto\u015b\u0107 meta"
+            ],
+            "Numeric meta value": [
+                "Numeryczna warto\u015b\u0107 meta"
+            ],
+            "Ascending (1, 2, 3)": [
+                "Rosn\u0105co (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "Malej\u0105co (3, 2, 1)"
+            ],
+            "Meta Name": [
+                ""
+            ],
+            "Meta Type": [
+                ""
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                "Okre\u015blony typ pola niestandardowego. Mo\u017ce by\u0107 u\u017cywane w po\u0142\u0105czeniu z \" orderby \\ \"= \" meta_value \\ \"."
+            ],
+            "Any": [
+                "Ka\u017cdy"
+            ],
+            "Numeric": [
+                "Numeryczny"
+            ],
+            "Binary": [
+                "Binarny"
+            ],
+            "String": [
+                ""
+            ],
+            "Time": [
+                "Czas"
+            ],
+            "Date and time": [
+                "Data i godzina"
+            ],
+            "Decimal number": [
+                "Liczba dziesi\u0119tna"
+            ],
+            "Signed number": [
+                "Podpisany numer"
+            ],
+            "Unsigned number": [
+                "Numer bez znaku"
+            ],
+            "Query Settings": [
+                "Ustawienia zapytania"
+            ],
+            "Relation": [
+                "Relacja"
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "Warto\u015bci: integer, -1 aby wy\u015bwietli\u0107 wszystko, domy\u015blnie: \"Strony blog\u00f3w pokazuj\u0105 co najwy\u017cej\""
+            ],
+            "Select an accommodation type.": [
+                ""
+            ]
+        }
+    }
+}

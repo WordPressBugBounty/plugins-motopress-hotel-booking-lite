@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "ro_RO",
+                "plural-forms": "nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);"
+            },
+            "Date": [
+                "Dat\u0103"
+            ],
+            "Adults": [
+                "Adul\u021bi"
+            ],
+            "Children": [
+                "Copii"
+            ],
+            "Price": [
+                "Pre\u021b"
+            ],
+            "Accommodation Type": [
+                "Tipul de cazare"
+            ],
+            "Title": [
+                "Titlu"
+            ],
+            "Booking Confirmation": [
+                "Confirmarea rezerv\u0103rii"
+            ],
+            "Availability Calendar": [
+                "Calendar disponibilitate"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                "Afi\u0219eaz\u0103 pre\u021burile pe noapte \u00een calendarul de disponibilitate."
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                "Trunchiaz\u0103 pre\u021burile pe noapte \u00een calendarul de disponibilitate."
+            ],
+            "Display the currency sign in the availability calendar.": [
+                "Afi\u0219eaz\u0103 semnul valutei \u00een calendarul disponibilit\u0103\u021bii."
+            ],
+            "Settings": [
+                "Set\u0103ri"
+            ],
+            "Availability Search Form": [
+                "Formular de c\u0103utare disponibilitate"
+            ],
+            "The number of adults presetted in the search form.": [
+                "Num\u0103rul de adul\u021bi preseta\u021bi \u00een formularul de c\u0103utare."
+            ],
+            "The number of children presetted in the search form.": [
+                "Num\u0103rul de copii preseta\u021bi \u00een formularul de c\u0103utare."
+            ],
+            "Custom attributes for advanced search.": [
+                "Atribute personalizate pentru c\u0103utare avansat\u0103."
+            ],
+            "Comma-separated slugs of attributes.": [
+                "Atribute \u201dslug\u201d separate prin virgul\u0103."
+            ],
+            "How many months to show.": [
+                "C\u00e2te luni de ar\u0103tat."
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                "Seta\u0163i num\u0103rul de coloane sau num\u0103rul de r\u00e2nduri \u015fi coloane separate prin virgul\u0103. Exemplu: \"3\" sau \"2,3\""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                "Afi\u0219eaz\u0103 calendarul disponibilit\u0103\u021bii tipului de cazare curent sau prin ID."
+            ],
+            "Availability Search Results": [
+                "Rezultate c\u0103utare disponibilitate"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "Afi\u0219eaz\u0103 lista tipurilor de cazare care \u00eendeplinesc criteriile de c\u0103utare."
+            ],
+            "Whether to display title of the accommodation type.": [
+                "Dac\u0103 se afi\u0219eaz\u0103 titlul tipului de cazare."
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "Dac\u0103 se afi\u0219eaz\u0103 imaginea principal\u0103 a tipului de cazare."
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "Dac\u0103 se afi\u0219eaz\u0103 galeria tipului caz\u0103rii."
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "Dac\u0103 se afi\u0219eaz\u0103 extrasul (scurt\u0103 descriere) a tipului de cazare."
+            ],
+            "Whether to display details of the accommodation type.": [
+                "Dac\u0103 s\u0103 fie afi\u0219ate detaliile tipului de cazare."
+            ],
+            "Whether to display price of the accommodation type.": [
+                "Dac\u0103 se afi\u0219eaz\u0103 pre\u021bul tipului de cazare."
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "Dac\u0103 se afi\u0219eaz\u0103 butonul \"Vizualizare detalii\" cu link-ul c\u0103tre tipul de cazare."
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                "Nume c\u00e2mp personalizat. Necesar dac\u0103 \"orderby\" este unul dintre \"meta_value\", \"meta_value_num\" sau \"meta_value_*\"."
+            ],
+            "Whether to display Book button.": [
+                "Dac\u0103 se afi\u0219eaz\u0103 butonul Rezerv\u0103."
+            ],
+            "Accommodation Types Listing": [
+                "Listarea tipurilor de cazare"
+            ],
+            "Count per page": [
+                "Num\u0103r per pagin\u0103"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "integer, -1 pentru a afi\u015fa toate, implicit: \"Paginile blog arat\u0103 cel mult\""
+            ],
+            "IDs of categories that will be shown.": [
+                "ID-urile categoriilor care vor fi afi\u0219ate."
+            ],
+            "Comma-separated IDs.": [
+                "ID separate prin virgul\u0103."
+            ],
+            "IDs of tags that will be shown.": [
+                "ID-urile tag-urilor care vor fi afi\u0219ate."
+            ],
+            "IDs of accommodations that will be shown.": [
+                "ID-urile de cazare care vor fi afi\u0219ate."
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                "Rela\u021bie logic\u0103 \u00eentre fiecare taxonomie atunci c\u00e2nd exist\u0103 mai mult de una."
+            ],
+            "Services Listing": [
+                "Listare servicii"
+            ],
+            "IDs": [
+                ""
+            ],
+            "IDs of services that will be shown. ": [
+                "ID-urile de servicii care vor fi afi\u0219ate. "
+            ],
+            "Single Accommodation Type": [
+                "Tip cazare single"
+            ],
+            "Checkout Form": [
+                "Formular Checkout"
+            ],
+            "Display checkout form.": [
+                "Afi\u0219eaz\u0103 formularul de checkout."
+            ],
+            "Booking Form": [
+                "Formular de rezervare"
+            ],
+            "Accommodation Rates List": [
+                "List\u0103 tarife de cazare"
+            ],
+            "ID of accommodation type.": [
+                "ID-ul tipului de cazare."
+            ],
+            "Display booking and payment details.": [
+                "Afi\u0219eaz\u0103 detaliile de rezervare \u0219i plat\u0103."
+            ],
+            "Check-in Date": [
+                "Data de check-in"
+            ],
+            "Check-out Date": [
+                "Data Check-out"
+            ],
+            "Categories": [
+                "Categorii"
+            ],
+            "Tags": [
+                "Etichete"
+            ],
+            "Details": [
+                "Detalii"
+            ],
+            "Featured Image": [
+                "Imagine Ar\u0103tat\u0103"
+            ],
+            "Excerpt (short description)": [
+                "Extras (scurt\u0103 descriere)"
+            ],
+            "Book Button": [
+                "Butonul Rezervare"
+            ],
+            "Preset date. Formatted as %s": [
+                "Data preset\u0103rii. Formatat\u0103 ca %s"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                "Selecta\u021bi un tip de cazare. L\u0103sa\u021bi necompletat pentru a utiliza curentul."
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                "ID-ul unui tip de cazare. L\u0103sa\u021bi necompletat pentru a utiliza curent."
+            ],
+            "Gallery": [
+                "Galerie"
+            ],
+            "View Button": [
+                "Butonul de afi\u0219are"
+            ],
+            "Order": [
+                "Ordine"
+            ],
+            "Order By": [
+                "Ordonare dup\u0103"
+            ],
+            "No order": [
+                "Nicio ordine"
+            ],
+            "Post ID": [
+                "ID Postare"
+            ],
+            "Post author": [
+                "Autor postare"
+            ],
+            "Post title": [
+                "Titlul mesajului"
+            ],
+            "Post name (post slug)": [
+                "Nume postare (postare slug)"
+            ],
+            "Post date": [
+                "Data post\u0103rii"
+            ],
+            "Last modified date": [
+                "Data ultimei modific\u0103ri"
+            ],
+            "Parent ID": [
+                "ID p\u0103rinte"
+            ],
+            "Random order": [
+                "Ordine aleatorie"
+            ],
+            "Number of comments": [
+                "Num\u0103rul de comentarii"
+            ],
+            "Relevance": [
+                "Relevan\u021b\u0103"
+            ],
+            "Page order": [
+                "Ordinea paginii"
+            ],
+            "Meta value": [
+                "Valoare Meta"
+            ],
+            "Numeric meta value": [
+                "Valoare meta numeric\u0103"
+            ],
+            "Ascending (1, 2, 3)": [
+                "Cresc\u0103tor (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "Descendent (3, 2, 1)"
+            ],
+            "Meta Name": [
+                "Valoare Meta"
+            ],
+            "Meta Type": [
+                "Meta Tip"
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                "Tipul specificat de c\u00e2mp personalizat. Poate fi folosit \u00eempreun\u0103 cu \"orderby\" = \"meta_value\"."
+            ],
+            "Any": [
+                "Oricare"
+            ],
+            "Numeric": [
+                "Numeric"
+            ],
+            "Binary": [
+                "Binar"
+            ],
+            "String": [
+                "\u015eir"
+            ],
+            "Time": [
+                "Timp"
+            ],
+            "Date and time": [
+                "Data \u0219i ora"
+            ],
+            "Decimal number": [
+                "Num\u0103r zecimal"
+            ],
+            "Signed number": [
+                "Num\u0103r cu semn"
+            ],
+            "Unsigned number": [
+                "Num\u0103r f\u0103r\u0103 semn"
+            ],
+            "Query Settings": [
+                "Set\u0103ri interogare"
+            ],
+            "Relation": [
+                "Rela\u0163ie"
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "Valori: integer, -1 pentru a afi\u015fa toate, implicit: \"Paginile blog arat\u0103 cel mult \""
+            ],
+            "Select an accommodation type.": [
+                "Selecta\u021bi un tip de cazare."
+            ]
+        }
+    }
+}

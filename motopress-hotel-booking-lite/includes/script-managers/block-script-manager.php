@@ -442,6 +442,13 @@ class BlockScriptManager extends ScriptManager {
 				),
 			)
 		);
+
+		register_block_type( MPHB()->getPluginPath( 'assets/js/blocks/group-availability-calendar/' ) );
+		wp_set_script_translations(
+			'motopress-hotel-booking-group-availability-calendar-editor-script',
+			'motopress-hotel-booking',
+			MPHB()->getPluginPath( 'languages/' )
+		);
 	}
 
 	public function enqueue() {}

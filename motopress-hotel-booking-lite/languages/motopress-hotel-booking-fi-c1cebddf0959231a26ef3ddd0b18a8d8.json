@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "fi_FI",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Date": [
+                "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4"
+            ],
+            "Adults": [
+                "Aikuiset"
+            ],
+            "Children": [
+                "Lapset"
+            ],
+            "Price": [
+                "Hinta"
+            ],
+            "Accommodation Type": [
+                "Majoitustyyppi"
+            ],
+            "Title": [
+                "Otsikko"
+            ],
+            "Booking Confirmation": [
+                "Ajavarauksen vahvistus"
+            ],
+            "Availability Calendar": [
+                "Varauskalenteri"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Display the currency sign in the availability calendar.": [
+                ""
+            ],
+            "Settings": [
+                "Asetukset"
+            ],
+            "Availability Search Form": [
+                "Saatavuus Hakulomake"
+            ],
+            "The number of adults presetted in the search form.": [
+                "Hakulomakkeessa esim\u00e4\u00e4ritettyjen aikuisten m\u00e4\u00e4r\u00e4."
+            ],
+            "The number of children presetted in the search form.": [
+                "Hakulomakkeessa esim\u00e4\u00e4ritettyjen lasten m\u00e4\u00e4r\u00e4."
+            ],
+            "Custom attributes for advanced search.": [
+                "Tarkennetun haun mukautetut m\u00e4\u00e4ritteet."
+            ],
+            "Comma-separated slugs of attributes.": [
+                "M\u00e4\u00e4ritteiden pilkuilla erotetut etanat."
+            ],
+            "How many months to show.": [
+                "Kuinka monta kuukautta n\u00e4ytt\u00e4\u00e4."
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                "M\u00e4\u00e4rit\u00e4 pilkulla erotettujen sarakkeiden m\u00e4\u00e4r\u00e4 tai rivien ja sarakkeiden m\u00e4\u00e4r\u00e4. Esimerkki: \"3\" tai \"2,3\""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                "N\u00e4yt\u00e4 nykyisen majoitustyypin tai tunnuksen saatavuuskalenteri."
+            ],
+            "Availability Search Results": [
+                "Saatavuus Hakutulokset"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "N\u00e4yt\u00e4 luettelo hakuehtoja t\u00e4ytt\u00e4vien majoitustyyppien luettelosta."
+            ],
+            "Whether to display title of the accommodation type.": [
+                "N\u00e4ytet\u00e4\u00e4nk\u00f6 majoitustyypin otsikko."
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "N\u00e4ytet\u00e4\u00e4nk\u00f6 majoitustyypin varustellun kuvan."
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "N\u00e4ytet\u00e4\u00e4nk\u00f6 majoitustyypin valikoima."
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "N\u00e4ytet\u00e4\u00e4nk\u00f6 majoitustyypin ote (lyhyt kuvaus)."
+            ],
+            "Whether to display details of the accommodation type.": [
+                "N\u00e4ytet\u00e4\u00e4nk\u00f6 majoitustyypin tiedot."
+            ],
+            "Whether to display price of the accommodation type.": [
+                "N\u00e4ytet\u00e4\u00e4nk\u00f6 majoitustyypin hinta."
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "N\u00e4ytet\u00e4\u00e4nk\u00f6 N\u00e4yt\u00e4 tiedot -painike, jossa on linkki majoitustyyppiin."
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                "Mukautetun kent\u00e4n nimi. Vaaditaan, jos \"orderby\" on jokin \"meta_value\", \"meta_value_num\" tai \"meta_value_*\"."
+            ],
+            "Whether to display Book button.": [
+                "N\u00e4ytet\u00e4\u00e4nk\u00f6 varaus-painike."
+            ],
+            "Accommodation Types Listing": [
+                "Majoitustyypit Listing"
+            ],
+            "Count per page": [
+                "M\u00e4\u00e4r\u00e4 sivua kohden"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "kokonaisluku, -1 n\u00e4ytt\u00e4\u00e4 kaikki, oletus: \"Blogi sivut n\u00e4kyv\u00e4t enint\u00e4\u00e4n\""
+            ],
+            "IDs of categories that will be shown.": [
+                "N\u00e4ytt\u00f6\u00f6n tulee luokkien tunnukset."
+            ],
+            "Comma-separated IDs.": [
+                "Pilkuilla erotetut tunnukset."
+            ],
+            "IDs of tags that will be shown.": [
+                "N\u00e4ytett\u00e4v\u00e4t tunnisteet."
+            ],
+            "IDs of accommodations that will be shown.": [
+                "Tunnukset majoitus, joka n\u00e4ytet\u00e4\u00e4n."
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                "Looginen suhde kunkin taksonomian v\u00e4lill\u00e4, kun niit\u00e4 on enemm\u00e4n kuin yksi."
+            ],
+            "Services Listing": [
+                "Palveluiden luettelo"
+            ],
+            "IDs": [
+                "Tunnukset"
+            ],
+            "IDs of services that will be shown. ": [
+                "N\u00e4ytt\u00f6\u00f6n tulevat palvelut. "
+            ],
+            "Single Accommodation Type": [
+                "Yhden hengen majoitustyyppi"
+            ],
+            "Checkout Form": [
+                "Uloskuittauslomake"
+            ],
+            "Display checkout form.": [
+                "N\u00e4yt\u00e4 uloskuittauslomake."
+            ],
+            "Booking Form": [
+                "Varauslomake"
+            ],
+            "Accommodation Rates List": [
+                "Majoitus Hinnat List"
+            ],
+            "ID of accommodation type.": [
+                "Majoitustyypin tunnus."
+            ],
+            "Display booking and payment details.": [
+                "N\u00e4yt\u00e4 varaus- ja maksutiedot."
+            ],
+            "Check-in Date": [
+                "Saapumisp\u00e4iv\u00e4"
+            ],
+            "Check-out Date": [
+                "L\u00e4ht\u00f6p\u00e4iv\u00e4"
+            ],
+            "Categories": [
+                "Kategoriat"
+            ],
+            "Tags": [
+                "Avainsanat"
+            ],
+            "Details": [
+                "Lis\u00e4tiedot"
+            ],
+            "Featured Image": [
+                "Artikkelikuva"
+            ],
+            "Excerpt (short description)": [
+                "Ote (lyhyt kuvaus)"
+            ],
+            "Book Button": [
+                "Kirja-painike"
+            ],
+            "Preset date. Formatted as %s": [
+                "Esiasetettu p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4. Muotoiltu nimell\u00e4 %s"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "Gallery": [
+                "Galleria"
+            ],
+            "View Button": [
+                "N\u00e4yt\u00e4-painike"
+            ],
+            "Order": [
+                "J\u00e4rjestys"
+            ],
+            "Order By": [
+                "J\u00e4rjest\u00e4"
+            ],
+            "No order": [
+                "Ei lajittelua"
+            ],
+            "Post ID": [
+                "Artikkelin ID"
+            ],
+            "Post author": [
+                "Artikkelin kirjoittaja"
+            ],
+            "Post title": [
+                "Post otsikko"
+            ],
+            "Post name (post slug)": [
+                "Post nimi (post etana)"
+            ],
+            "Post date": [
+                "Julkaisup\u00e4iv\u00e4"
+            ],
+            "Last modified date": [
+                "Viimeksi muokattu p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4"
+            ],
+            "Parent ID": [
+                "Parent tunnus"
+            ],
+            "Random order": [
+                "Satunnainen j\u00e4rjestys"
+            ],
+            "Number of comments": [
+                "Kommenttien m\u00e4\u00e4r\u00e4"
+            ],
+            "Relevance": [
+                "Merkitys"
+            ],
+            "Page order": [
+                "Sivun j\u00e4rjestys"
+            ],
+            "Meta value": [
+                "Meta-arvo"
+            ],
+            "Numeric meta value": [
+                "Numeerinen meta-arvo"
+            ],
+            "Ascending (1, 2, 3)": [
+                "Nouseva (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "Laskeva (3, 2, 1)"
+            ],
+            "Meta Name": [
+                "Meta-nimi"
+            ],
+            "Meta Type": [
+                "Meta-tyyppi"
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                "Mukautetun kent\u00e4n m\u00e4\u00e4ritetty tyyppi. Voidaan k\u00e4ytt\u00e4\u00e4 yhdess\u00e4 \"orderby\" = \"meta_value\"."
+            ],
+            "Any": [
+                "Kaikki"
+            ],
+            "Numeric": [
+                "Numeerinen"
+            ],
+            "Binary": [
+                ""
+            ],
+            "String": [
+                "Merkkijono"
+            ],
+            "Time": [
+                "Aika"
+            ],
+            "Date and time": [
+                "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 ja kellonaika"
+            ],
+            "Decimal number": [
+                "Desimaaliluku"
+            ],
+            "Signed number": [
+                "Allekirjoitettu numero"
+            ],
+            "Unsigned number": [
+                "Allekirjoittamaton numero"
+            ],
+            "Query Settings": [
+                "Kyselyn asetukset"
+            ],
+            "Relation": [
+                "Suhde"
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "Arvot: kokonaisluku, -1 n\u00e4ytt\u00e4\u00e4 kaikki, oletus: \"Blogi sivut n\u00e4kyv\u00e4t enint\u00e4\u00e4n\""
+            ],
+            "Select an accommodation type.": [
+                ""
+            ]
+        }
+    }
+}

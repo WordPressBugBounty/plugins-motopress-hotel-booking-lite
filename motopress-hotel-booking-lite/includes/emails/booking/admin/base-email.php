@@ -78,18 +78,23 @@ abstract class BaseEmail extends \MPHB\Emails\AbstractEmail {
 	}
 
 	/**
-	 * @param bool $isSended
+	 * @param bool|\WP_Error $isSended
 	 */
 	protected function log( $isSended ) {
-
 		$author = $this->getAuthor();
 
 		if ( $isSended ) {
+			if ( ! is_wp_error( $isSended ) ) {
+				// Translators: %s: Email label.
+				$this->booking->addLog( sprintf( __( '"%s" mail was sent to admin.', 'motopress-hotel-booking' ), $this->label ), $author );
 
-			$this->booking->addLog( sprintf( __( '"%s" mail was sent to admin.', 'motopress-hotel-booking' ), $this->label ), $author );
+			} else {
+				// Translators: %1: Email label. %2: The cause of the error.
+				$this->booking->addLog( sprintf( __( '"%1$s" mail sending to admin is failed. %2$s', 'motopress-hotel-booking' ), $this->label, $isSended->get_error_message() ), $author );
+			}
 
 		} else {
-
+			// Translators: %s: Email label.
 			$this->booking->addLog( sprintf( __( '"%s" mail sending to admin is failed.', 'motopress-hotel-booking' ), $this->label ), $author );
 		}
 	}

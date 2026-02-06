@@ -6,7 +6,6 @@ namespace MPHB\Admin\Fields;
  * @since 3.8.1
  */
 class InstallPluginField extends InputField {
-
 	const TYPE = 'install-plugin';
 
 	/**
@@ -50,14 +49,14 @@ class InstallPluginField extends InputField {
 			$redirect = $this->redirect;
 		}
 
-		$output         .= '<p class="button-row">';
-			$output     .= '<button class="' . esc_attr( $this->buttonClasses ) . '" data-plugin-slug="' . esc_attr( $this->pluginSlug ) . '" data-plugin-zip="' . esc_attr( $this->pluginZipLink ) . '" data-redirect="' . esc_attr( $redirect ) . '">';
+		$output .= '<p class="button-row">';
+			$output .= '<button class="' . esc_attr( $this->buttonClasses ) . '" data-plugin-slug="' . esc_attr( $this->pluginSlug ) . '" data-plugin-zip="' . esc_attr( $this->pluginZipLink ) . '" data-redirect="' . esc_attr( $redirect ) . '">';
 				$output .= $this->buttonText;
-			$output     .= '</button>';
+			$output .= '</button>';
 
 			$output .= ' <span class="mphb-preloader mphb-hide"></span>';
 			$output .= ' <span class="status-text mphb-hide"></span>';
-		$output     .= '</p>';
+		$output .= '</p>';
 
 		return $output;
 	}

@@ -55,12 +55,14 @@ class Autoloader {
 		$this->customPathList['Core\\StringEncryptHelper']            = 'includes/core/helpers/string-encrypt-helper.php';
 
 		$this->customPathList['AjaxApi\\AbstractAjaxApiAction']       = 'includes/ajax-api/ajax-actions/abstract-ajax-api-action.php';
-		$this->customPathList['AjaxApi\\GetRoomTypeCalendarData']     = 'includes/ajax-api/ajax-actions/get-room-type-calendar-data.php';
 		$this->customPathList['AjaxApi\\GetRoomTypeAvailabilityData'] = 'includes/ajax-api/ajax-actions/get-room-type-availability-data.php';
 		$this->customPathList['AjaxApi\\GetAdminCalendarBookingInfo'] = 'includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php';
 		$this->customPathList['AjaxApi\\CreateStripePaymentIntent']   = 'includes/ajax-api/ajax-actions/create-stripe-payment-intent.php';
 		$this->customPathList['AjaxApi\\UpdateBookingNotes']          = 'includes/ajax-api/ajax-actions/update-booking-notes.php';
 
+
+		// lib for countries and currencies lists
+		$this->customPathList['Libraries\\Umpirsky\\Umpirsky_Helper'] = 'includes/libraries/umpirsky/umpirsky-helper.php';
 	}
 
 	/**

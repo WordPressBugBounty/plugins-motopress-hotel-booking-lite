@@ -6,6 +6,7 @@ class AdminScriptManager extends ScriptManager {
 
 	private $roomIds = array();
 
+
 	public function __construct() {
 		parent::__construct();
 		add_action( 'admin_enqueue_scripts', array( $this, 'register' ), 9 );
@@ -51,9 +52,12 @@ class AdminScriptManager extends ScriptManager {
 	}
 
 	public function enqueue() {
+
 		if ( ! wp_script_is( 'mphb-admin' ) ) {
+
 			add_action( 'admin_print_footer_scripts', array( $this, 'localize' ), 5 );
 		}
+
 		wp_enqueue_script( 'mphb-admin' );
 
 		wp_enqueue_style( 'mphb-admin-css' );
@@ -66,7 +70,7 @@ class AdminScriptManager extends ScriptManager {
 	}
 
 	public function localize() {
-		wp_localize_script( 'mphb-admin', 'MPHBAdmin', $this->getLocalizeData() );
+		wp_localize_script( 'mphb-global-js', 'MPHBAdmin', $this->getLocalizeData() );
 	}
 
 	/**
@@ -78,17 +82,22 @@ class AdminScriptManager extends ScriptManager {
 	public function getLocalizeData() {
 		$currencySymbol       = MPHB()->settings()->currency()->getCurrencySymbol();
 		$currencyPosition     = MPHB()->settings()->currency()->getCurrencyPosition();
+		/**
+		 * @var \MPHB\Admin\ManageCPTPages\BookingManageCPTPage
+		 */
 		$bookingManageCptPage = MPHB()->postTypes()->booking()->getManagePage();
 		$customNonces         = apply_filters( 'mphb_custom_admin_nonces', array() );
 		$data                 = array(
 			'_data' => array(
-				'isAdmin'      => is_admin(),
-				'version'      => MPHB()->getVersion(),
-				'prefix'       => MPHB()->getPrefix(),
-				'ajaxUrl'      => MPHB()->getAjaxUrl(),
-				'today'        => mphb_current_time( 'Y-m-d' ),
-				'nonces'       => array_merge( $customNonces, MPHB()->getAjax()->getAdminNonces(), \MPHB\AjaxApi\AjaxApiHandler::getAjaxActionWPNonces() ),
-				'translations' => array(
+				'isAdmin'        => is_admin(),
+				'version'        => MPHB()->getVersion(),
+				'prefix'         => MPHB()->getPrefix(),
+				'restApiUrl'     => \MPHB\Advanced\Api\ApiHelper::getRestApiUrl(),
+				'restApiWpNonce' => \MPHB\Advanced\Api\ApiHelper::getRestApiWpNonce(),
+				'ajaxUrl'        => MPHB()->getAjaxUrl(),
+				'today'          => mphb_current_time( 'Y-m-d' ),
+				'nonces'         => array_merge( $customNonces, MPHB()->getAjax()->getAdminNonces(), \MPHB\AjaxApi\AjaxApiHandler::getAjaxActionWPNonces() ),
+				'translations'   => array(
 					'roomTypeGalleryTitle' => __( 'Accommodation Type Gallery', 'motopress-hotel-booking' ),
 					'addGalleryToRoomType' => __( 'Add Gallery To Accommodation Type', 'motopress-hotel-booking' ),
 					'errorHasOccured'      => __( 'An error has occurred', 'motopress-hotel-booking' ),

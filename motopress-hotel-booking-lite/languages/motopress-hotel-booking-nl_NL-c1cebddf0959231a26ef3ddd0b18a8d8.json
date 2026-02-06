@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "nl_NL",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Date": [
+                "Datum"
+            ],
+            "Adults": [
+                "Volwassenen"
+            ],
+            "Children": [
+                "Kinderen"
+            ],
+            "Price": [
+                "Prijs"
+            ],
+            "Accommodation Type": [
+                "Type Kamer"
+            ],
+            "Title": [
+                "Titel"
+            ],
+            "Booking Confirmation": [
+                "Boekingsbevestiging"
+            ],
+            "Availability Calendar": [
+                "Beschikbaarheidskalender"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                "Toon prijzen per nacht in de beschikbaarheidskalender."
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                "Kort de prijzen per nacht af in de beschikbaarheidskalender."
+            ],
+            "Display the currency sign in the availability calendar.": [
+                "Geef het valutateken weer in de beschikbaarheidskalender."
+            ],
+            "Settings": [
+                "Instellingen"
+            ],
+            "Availability Search Form": [
+                "Beschikbaarheid zoekformulier"
+            ],
+            "The number of adults presetted in the search form.": [
+                "Aantal volwassenen vooraf ingesteld in het zoekformulier."
+            ],
+            "The number of children presetted in the search form.": [
+                "Aantal kinderen vooraf ingesteld in het zoekformulier."
+            ],
+            "Custom attributes for advanced search.": [
+                "Aangepaste kenmerken voor geavanceerd zoeken."
+            ],
+            "Comma-separated slugs of attributes.": [
+                "Door komma's gescheiden kenmerken van attributen."
+            ],
+            "How many months to show.": [
+                "Hoeveel maanden tonen."
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                "Stel het aantal kolommen in of het aantal rijen en kolommen gescheiden door komma's. Voorbeeld: \"3\" of \"2,3\""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                "Toon de beschikbaarheidskalender van het huidige type accommodatie of op ID."
+            ],
+            "Availability Search Results": [
+                "Beschikbaarheid zoekresultaten"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "Accommodatie typelijsten tonen die aan zoekcriteria voldoen."
+            ],
+            "Whether to display title of the accommodation type.": [
+                "Moet de titel van het type accommodatie getoond worden."
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "Moet een afbeelding van het type accommodatie getoond worden."
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "Moet een galerij van het type accommodatie getoond worden."
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "Of een uittreksel (korte beschrijving) van het type accommodatie getoond moet worden."
+            ],
+            "Whether to display details of the accommodation type.": [
+                "Of details van het type accommodatie moeten worden weergegeven."
+            ],
+            "Whether to display price of the accommodation type.": [
+                "Moeten prijzen van type accommodatie getoond worden."
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "Moet knop \"Details bekijken\" getoond worden met een link naar type accommodatie."
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                "Aangepaste veldnaam. Vereist als \"orderby\" een van de \"meta_value\", \"meta_value_num\" of \"meta_value_ *\" is."
+            ],
+            "Whether to display Book button.": [
+                "Moet \"Reserveren\" knop getoond worden."
+            ],
+            "Accommodation Types Listing": [
+                "Lijst van kamertypes"
+            ],
+            "Count per page": [
+                "Bereken per pagina"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "geheel getal, -1 om alles weer te geven, standaard: \"Blogpagina's worden maximaal weergegeven\""
+            ],
+            "IDs of categories that will be shown.": [
+                "ID's van categorie\u00ebn die worden getoond."
+            ],
+            "Comma-separated IDs.": [
+                "Komma gescheiden IDs."
+            ],
+            "IDs of tags that will be shown.": [
+                "ID's van labels die worden getoond."
+            ],
+            "IDs of accommodations that will be shown.": [
+                "ID's van accommodaties die worden getoond."
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                "Logische relatie tussen elke taxonomie wanneer er meer dan \u00e9\u00e9n is."
+            ],
+            "Services Listing": [
+                "Lijsten 'Diensten'"
+            ],
+            "IDs": [
+                "ID's"
+            ],
+            "IDs of services that will be shown. ": [
+                "IDs van diensten die getoond worden. "
+            ],
+            "Single Accommodation Type": [
+                "Type enkele accommodatie"
+            ],
+            "Checkout Form": [
+                "Check-out formulier"
+            ],
+            "Display checkout form.": [
+                "Uitcheckformulier tonen."
+            ],
+            "Booking Form": [
+                "Boekingsformulier"
+            ],
+            "Accommodation Rates List": [
+                "Accommodatie prijslijst"
+            ],
+            "ID of accommodation type.": [
+                "ID van type accommodatie."
+            ],
+            "Display booking and payment details.": [
+                "Toon boeking- en betalingdetails."
+            ],
+            "Check-in Date": [
+                "Incheckdatum"
+            ],
+            "Check-out Date": [
+                "Uitcheckdatum"
+            ],
+            "Categories": [
+                "Categorie\u00ebn"
+            ],
+            "Tags": [
+                "Labels"
+            ],
+            "Details": [
+                "Details"
+            ],
+            "Featured Image": [
+                "Uitgelichte afbeelding"
+            ],
+            "Excerpt (short description)": [
+                "Samenvatting tonen (korte omschrijving)"
+            ],
+            "Book Button": [
+                "Boeking knop"
+            ],
+            "Preset date. Formatted as %s": [
+                "Vooraf ingestelde datum. Opgemaakt als %s"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "Gallery": [
+                "Galerij"
+            ],
+            "View Button": [
+                "Toon knop"
+            ],
+            "Order": [
+                "Sorteer"
+            ],
+            "Order By": [
+                "Sorteer volgens"
+            ],
+            "No order": [
+                "Geen sortering"
+            ],
+            "Post ID": [
+                "Publicatie ID"
+            ],
+            "Post author": [
+                "Publicatieschrijver"
+            ],
+            "Post title": [
+                "Publicatietitel"
+            ],
+            "Post name (post slug)": [
+                "Publicatienaam (post slug)"
+            ],
+            "Post date": [
+                "Publicatiedatum"
+            ],
+            "Last modified date": [
+                "Datum laatste wijziging"
+            ],
+            "Parent ID": [
+                "Hoofd ID"
+            ],
+            "Random order": [
+                "Willekeurige volgorde"
+            ],
+            "Number of comments": [
+                "Aantal reacties"
+            ],
+            "Relevance": [
+                "Relevantie"
+            ],
+            "Page order": [
+                "Paginavolgorde"
+            ],
+            "Meta value": [
+                "Meta waarde"
+            ],
+            "Numeric meta value": [
+                "Numerieke meta waarde"
+            ],
+            "Ascending (1, 2, 3)": [
+                "Oplopend (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "Aflopend (3, 2, 1)"
+            ],
+            "Meta Name": [
+                "Meta naam"
+            ],
+            "Meta Type": [
+                "Meta type"
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                "Opgegeven type van het aangepaste veld. Kan worden gebruikt in combinatie met \"orderby\" = \"meta_value\"."
+            ],
+            "Any": [
+                "Elk"
+            ],
+            "Numeric": [
+                "Numeriek"
+            ],
+            "Binary": [
+                "Binair"
+            ],
+            "String": [
+                "Reeks"
+            ],
+            "Time": [
+                "Tijd"
+            ],
+            "Date and time": [
+                "Datum en tijd"
+            ],
+            "Decimal number": [
+                "Decimaal getal"
+            ],
+            "Signed number": [
+                "Ondertekend nummer"
+            ],
+            "Unsigned number": [
+                "Niet-ondertekend nummer"
+            ],
+            "Query Settings": [
+                "Zoekopdrachtinstellingen"
+            ],
+            "Relation": [
+                "Relatie"
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "Waarden: geheel getal, -1 om alles weer te geven, standaard: \"Blogpagina's worden maximaal weergegeven\""
+            ],
+            "Select an accommodation type.": [
+                "Selecteer een accommodatietype."
+            ]
+        }
+    }
+}

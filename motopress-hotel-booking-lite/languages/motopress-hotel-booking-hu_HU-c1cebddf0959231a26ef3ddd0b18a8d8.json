@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "hu_HU",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Date": [
+                "D\u00e1tum"
+            ],
+            "Adults": [
+                "Feln\u0151ttek sz\u00e1ma"
+            ],
+            "Children": [
+                "Gyermekek"
+            ],
+            "Price": [
+                "\u00c1r"
+            ],
+            "Accommodation Type": [
+                "Sz\u00e1ll\u00e1shely t\u00edpus"
+            ],
+            "Title": [
+                "C\u00edm"
+            ],
+            "Booking Confirmation": [
+                "Foglal\u00e1s meger\u0151s\u00edt\u00e9se"
+            ],
+            "Availability Calendar": [
+                "Napt\u00e1r"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Display the currency sign in the availability calendar.": [
+                ""
+            ],
+            "Settings": [
+                "Be\u00e1ll\u00edt\u00e1sok"
+            ],
+            "Availability Search Form": [
+                "El\u00e9rhet\u0151s\u00e9g keres\u00e9si \u0171rlap"
+            ],
+            "The number of adults presetted in the search form.": [
+                "A keres\u00e9si \u0171rlapban tal\u00e1lhat\u00f3 feln\u0151ttek alap\u00e9rtelmezett sz\u00e1ma."
+            ],
+            "The number of children presetted in the search form.": [
+                "A keres\u00e9si \u0171rlapban tal\u00e1lhat\u00f3 gyermekek alap\u00e9rtelmezett sz\u00e1ma."
+            ],
+            "Custom attributes for advanced search.": [
+                ""
+            ],
+            "Comma-separated slugs of attributes.": [
+                ""
+            ],
+            "How many months to show.": [
+                ""
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                ""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                ""
+            ],
+            "Availability Search Results": [
+                "El\u00e9rhet\u0151s\u00e9g keres\u00e9si eredm\u00e9nyei"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "Keres\u00e9si felt\u00e9teleknek megfelel\u0151 sz\u00e1ll\u00e1st\u00edpusok megjelen\u00edt\u00e9se."
+            ],
+            "Whether to display title of the accommodation type.": [
+                "Sz\u00e1ll\u00e1st\u00edpus c\u00edm megjelen\u00edt\u00e9se."
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "Sz\u00e1ll\u00e1st\u00edpust \u00e1br\u00e1zol\u00f3 k\u00e9p megjelen\u00edt\u00e9se."
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "Sz\u00e1ll\u00e1st\u00edpus gal\u00e9ria megjelen\u00edt\u00e9se."
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "Sz\u00e1ll\u00e1st\u00edpus le\u00edr\u00e1s megjelen\u00edt\u00e9se."
+            ],
+            "Whether to display details of the accommodation type.": [
+                "Sz\u00e1ll\u00e1st\u00edpus r\u00e9szletek megjelen\u00edt\u00e9se."
+            ],
+            "Whether to display price of the accommodation type.": [
+                "Sz\u00e1ll\u00e1st\u00edpus \u00e1rak megjelen\u00edt\u00e9se."
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "Sz\u00e1ll\u00e1st\u00edpushoz vezet\u0151 \"B\u0151vebben\" gomb megjelen\u00edt\u00e9se."
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                ""
+            ],
+            "Whether to display Book button.": [
+                "Foglal gomb megjelen\u00edt\u00e9se."
+            ],
+            "Accommodation Types Listing": [
+                "Sz\u00e1ll\u00e1st\u00edpusok felsorol\u00e1sa"
+            ],
+            "Count per page": [
+                "Sz\u00e1ml\u00e1l\u00e1s oldalank\u00e9nt"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "eg\u00e9sz sz\u00e1m, -1 az \u00f6sszes megjelen\u00edt\u00e9s\u00e9hez, alap\u00e9rtelmez\u00e9s: \"legfeljebb a blogoldalak jelennek meg\""
+            ],
+            "IDs of categories that will be shown.": [
+                ""
+            ],
+            "Comma-separated IDs.": [
+                "Vessz\u0151vel elv\u00e1lasztott azonos\u00edt\u00f3k."
+            ],
+            "IDs of tags that will be shown.": [
+                ""
+            ],
+            "IDs of accommodations that will be shown.": [
+                ""
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                "Logikai kapcsolat az egyes taxon\u00f3mi\u00e1k k\u00f6z\u00f6tt, ha egyn\u00e9l t\u00f6bb van."
+            ],
+            "Services Listing": [
+                "Szolg\u00e1ltat\u00e1sok felsorol\u00e1sa"
+            ],
+            "IDs": [
+                "Azonos\u00edt\u00f3k"
+            ],
+            "IDs of services that will be shown. ": [
+                "A szolg\u00e1ltat\u00e1s azonos\u00edt\u00f3 sz\u00e1mok meg lesznek jelen\u00edtve."
+            ],
+            "Single Accommodation Type": [
+                ""
+            ],
+            "Checkout Form": [
+                "Fizet\u00e9si \u0171rlap"
+            ],
+            "Display checkout form.": [
+                "Fizet\u00e9si \u0171rlap megjelen\u00edt\u00e9se."
+            ],
+            "Booking Form": [
+                "Foglal\u00e1si \u0171rlap"
+            ],
+            "Accommodation Rates List": [
+                "Sz\u00e1ll\u00e1si \u00e1rak list\u00e1ja"
+            ],
+            "ID of accommodation type.": [
+                "Sz\u00e1ll\u00e1st\u00edpus azonos\u00edt\u00f3sz\u00e1m."
+            ],
+            "Display booking and payment details.": [
+                ""
+            ],
+            "Check-in Date": [
+                "Bejelentkez\u00e9si d\u00e1tum"
+            ],
+            "Check-out Date": [
+                "Kijelentkez\u00e9si d\u00e1tum"
+            ],
+            "Categories": [
+                "Kateg\u00f3ri\u00e1k"
+            ],
+            "Tags": [
+                "C\u00edmk\u00e9k"
+            ],
+            "Details": [
+                "R\u00e9szletek"
+            ],
+            "Featured Image": [
+                "Kiemelt k\u00e9p"
+            ],
+            "Excerpt (short description)": [
+                "Kivonat megjelen\u00edt\u00e9se (r\u00f6vid le\u00edr\u00e1s)"
+            ],
+            "Book Button": [
+                ""
+            ],
+            "Preset date. Formatted as %s": [
+                "El\u00f5re be\u00e1ll\u00edtott d\u00e1tum. Form\u00e1zott %s"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "Gallery": [
+                "Gal\u00e9ria"
+            ],
+            "View Button": [
+                "Megtekint\u00e9s gomb"
+            ],
+            "Order": [
+                "Sorrend"
+            ],
+            "Order By": [
+                "Rendez\u00e9s a k\u00f6vetkez\u0151 szerint"
+            ],
+            "No order": [
+                "Nincs rendez\u00e9s"
+            ],
+            "Post ID": [
+                "Bejegyz\u00e9sazonos\u00edt\u00f3"
+            ],
+            "Post author": [
+                "Bejegyz\u00e9s Szerz\u0151je"
+            ],
+            "Post title": [
+                "Bejegyz\u00e9s c\u00edme"
+            ],
+            "Post name (post slug)": [
+                ""
+            ],
+            "Post date": [
+                "Bejegyz\u00e9s id\u0151pontja"
+            ],
+            "Last modified date": [
+                "Utols\u00f3 m\u00f3dos\u00edt\u00e1s d\u00e1tuma"
+            ],
+            "Parent ID": [
+                "Sz\u00fcl\u0151 ID"
+            ],
+            "Random order": [
+                "V\u00e9letlen sorrend"
+            ],
+            "Number of comments": [
+                "Kommentek sz\u00e1ma"
+            ],
+            "Relevance": [
+                "Fontoss\u00e1gi"
+            ],
+            "Page order": [
+                "Oldalsorrend"
+            ],
+            "Meta value": [
+                ""
+            ],
+            "Numeric meta value": [
+                ""
+            ],
+            "Ascending (1, 2, 3)": [
+                "N\u00f6vekv\u0151 (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "Cs\u00f6kken\u0151 (1, 2, 3)"
+            ],
+            "Meta Name": [
+                ""
+            ],
+            "Meta Type": [
+                ""
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                "Az egy\u00e9ni mez\u0151 meghat\u00e1rozott t\u00edpusa. Az \"orderby\" = \"meta_value\" param\u00e9terrel egy\u00fctt haszn\u00e1lhat\u00f3."
+            ],
+            "Any": [
+                "B\u00e1rmely"
+            ],
+            "Numeric": [
+                "Sz\u00e1m"
+            ],
+            "Binary": [
+                "Bin\u00e1ris"
+            ],
+            "String": [
+                "Karakterl\u00e1nc"
+            ],
+            "Time": [
+                "Id\u0151"
+            ],
+            "Date and time": [
+                "D\u00e1tum \u00e9s id\u0151"
+            ],
+            "Decimal number": [
+                "Decim\u00e1lis sz\u00e1m"
+            ],
+            "Signed number": [
+                "El\u0151jeles sz\u00e1m"
+            ],
+            "Unsigned number": [
+                "El\u0151jeles sz\u00e1m"
+            ],
+            "Query Settings": [
+                ""
+            ],
+            "Relation": [
+                "Kapcsolat"
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                ""
+            ],
+            "Select an accommodation type.": [
+                "V\u00e1lasszon sz\u00e1ll\u00e1st\u00edpust."
+            ]
+        }
+    }
+}

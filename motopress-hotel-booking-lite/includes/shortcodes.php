@@ -54,6 +54,10 @@ class Shortcodes {
 	 * @var \MPHB\Shortcodes\AvailabilityCalendarShortcode
 	 */
 	private $availabilityCalendar;
+	/**
+	 * @var \MPHB\Shortcodes\GroupAvailabilityCalendarShortcode
+	 */
+	private $groupAvailabilityCalendar;
 
 	/**
 	 *
@@ -70,18 +74,19 @@ class Shortcodes {
 	private $shortcodes = array();
 
 	public function __construct() {
-		$this->search               = new Shortcodes\SearchShortcode();
-		$this->searchResults        = new Shortcodes\SearchResultsShortcode();
-		$this->checkout             = new Shortcodes\CheckoutShortcode();
-		$this->rooms                = new Shortcodes\RoomsShortcode();
-		$this->room                 = new Shortcodes\RoomShortcode();
-		$this->services             = new Shortcodes\ServicesShortcode();
-		$this->bookingForm          = new Shortcodes\BookingFormShortcode();
-		$this->roomRates            = new Shortcodes\RoomRatesShortcode();
-		$this->bookingConfirmation  = new Shortcodes\BookingConfirmationShortcode();
-		$this->availabilityCalendar = new Shortcodes\AvailabilityCalendarShortcode();
-		$this->bookingCancellation  = new Shortcodes\BookingCancellationShortcode();
-		$this->account              = new Shortcodes\AccountShortcode();
+		$this->search                    = new Shortcodes\SearchShortcode();
+		$this->searchResults             = new Shortcodes\SearchResultsShortcode();
+		$this->checkout                  = new Shortcodes\CheckoutShortcode();
+		$this->rooms                     = new Shortcodes\RoomsShortcode();
+		$this->room                      = new Shortcodes\RoomShortcode();
+		$this->services                  = new Shortcodes\ServicesShortcode();
+		$this->bookingForm               = new Shortcodes\BookingFormShortcode();
+		$this->roomRates                 = new Shortcodes\RoomRatesShortcode();
+		$this->bookingConfirmation       = new Shortcodes\BookingConfirmationShortcode();
+		$this->availabilityCalendar      = new Shortcodes\AvailabilityCalendarShortcode();
+		$this->groupAvailabilityCalendar = new Shortcodes\GroupAvailabilityCalendarShortcode();
+		$this->bookingCancellation       = new Shortcodes\BookingCancellationShortcode();
+		$this->account                   = new Shortcodes\AccountShortcode();
 
 		foreach ( $this as $shortcode ) {
 			if ( ! is_a( $shortcode, 'MPHB\Shortcodes\AbstractShortcode' ) ) {
@@ -165,11 +170,17 @@ class Shortcodes {
 	}
 
 	/**
-	 *
 	 * @return \MPHB\Shortcodes\AvailabilityCalendarShortcode
 	 */
 	public function getAvailabilityCalendar() {
 		return $this->availabilityCalendar;
+	}
+
+	/**
+	 * @return \MPHB\Shortcodes\GroupAvailabilityCalendarShortcode
+	 */
+	public function getGroupAvailabilityCalendar() {
+		return $this->groupAvailabilityCalendar;
 	}
 
 	public function getBookingCancellation() {

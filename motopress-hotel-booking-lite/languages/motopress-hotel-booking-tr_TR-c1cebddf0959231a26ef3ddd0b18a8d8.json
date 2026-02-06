@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "tr_TR",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Date": [
+                "Tarih"
+            ],
+            "Adults": [
+                "Yeti\u015fkinler"
+            ],
+            "Children": [
+                "\u00c7ocuklar"
+            ],
+            "Price": [
+                "Fiyat"
+            ],
+            "Accommodation Type": [
+                "Konaklama Tipi"
+            ],
+            "Title": [
+                "Ba\u015fl\u0131k"
+            ],
+            "Booking Confirmation": [
+                "Rezervasyon onay\u0131"
+            ],
+            "Availability Calendar": [
+                "M\u00fcsaitlik Takvimi"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Display the currency sign in the availability calendar.": [
+                ""
+            ],
+            "Settings": [
+                "Ayarlar"
+            ],
+            "Availability Search Form": [
+                "M\u00fcsaitli\u011fi Arama Formu"
+            ],
+            "The number of adults presetted in the search form.": [
+                "Arama formunda \u00f6nceden ayarlanm\u0131\u015f yeti\u015fkinlerin say\u0131s\u0131."
+            ],
+            "The number of children presetted in the search form.": [
+                "Arama formunda \u00f6nceden ayarlanm\u0131\u015f \u00e7ocuklar\u0131n say\u0131s\u0131."
+            ],
+            "Custom attributes for advanced search.": [
+                "\u00d6zellikler i\u00e7in geli\u015fmi\u015f arama."
+            ],
+            "Comma-separated slugs of attributes.": [
+                "Virg\u00fclle ayr\u0131lm\u0131\u015f \u00f6zellikler."
+            ],
+            "How many months to show.": [
+                "Ka\u00e7 ay g\u00f6sterilsin"
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                "S\u00fctun say\u0131s\u0131n\u0131 veya virg\u00fclle ayr\u0131lm\u0131\u015f sat\u0131r ve s\u00fctun say\u0131s\u0131n\u0131 ayarlay\u0131n. \u00d6rnek: \"3\" veya \"2,3\""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                "Mevcut konaklama tipine veya numaraya g\u00f6re uygunluk takvimini g\u00f6r\u00fcnt\u00fcleyin."
+            ],
+            "Availability Search Results": [
+                "Kullan\u0131labilirlik arama sonu\u00e7lar\u0131"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "Arama kriterlerini kar\u015f\u0131layan konaklama t\u00fcrlerini g\u00f6r\u00fcnt\u00fcleyin."
+            ],
+            "Whether to display title of the accommodation type.": [
+                "Konaklama t\u00fcr\u00fcn\u00fcn ba\u015fl\u0131\u011f\u0131n\u0131 g\u00f6r\u00fcnt\u00fclenip g\u00f6r\u00fcnt\u00fclenmemesi."
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "Konaklama t\u00fcr\u00fcn\u00fcn \u00f6ne \u00e7\u0131kan g\u00f6r\u00fcnt\u00fcs\u00fcn\u00fc g\u00f6r\u00fcnt\u00fclenip g\u00f6r\u00fcnt\u00fclenmemesi."
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "Konaklama t\u00fcr\u00fcn\u00fcn galerisini g\u00f6r\u00fcnt\u00fclenip g\u00f6r\u00fcnt\u00fclenmemesi."
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "Konaklama tipinin al\u0131nt\u0131s\u0131n\u0131 (k\u0131sa a\u00e7\u0131klama) g\u00f6sterilip g\u00f6sterilmemesi."
+            ],
+            "Whether to display details of the accommodation type.": [
+                "Konaklama t\u00fcr\u00fcn\u00fcn ayr\u0131nt\u0131lar\u0131n\u0131 g\u00f6r\u00fcnt\u00fcleme veya g\u00f6r\u00fcnt\u00fclememe."
+            ],
+            "Whether to display price of the accommodation type.": [
+                "Konaklama t\u00fcr\u00fcn\u00fcn fiyat\u0131n\u0131n g\u00f6r\u00fcnt\u00fclenip g\u00f6r\u00fcnt\u00fclenmemesi."
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "Konaklama t\u00fcr\u00fcne ba\u011flant\u0131l\u0131 \"Detaylar\u0131 G\u00f6r\u00fcnt\u00fcle\" d\u00fc\u011fmesini g\u00f6r\u00fcnt\u00fcleyip g\u00f6r\u00fcnt\u00fclememek."
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                "\u00f6zel alan ad\u0131. \"orderby\", \"meta_value\", \"meta_value_num\", \"meta_value_*\" dan birisi gereklidir."
+            ],
+            "Whether to display Book button.": [
+                "Rezervasyon d\u00fc\u011fmesini g\u00f6r\u00fcnt\u00fcleyip g\u00f6r\u00fcnt\u00fclememek."
+            ],
+            "Accommodation Types Listing": [
+                "Konaklama T\u00fcrleri Listeleme"
+            ],
+            "Count per page": [
+                "Sayfa ba\u015f\u0131na say"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                ""
+            ],
+            "IDs of categories that will be shown.": [
+                "G\u00f6sterilecek kategorilerin ID'leri."
+            ],
+            "Comma-separated IDs.": [
+                "Virg\u00fclle Ayr\u0131lm\u0131\u015f Kimlikler."
+            ],
+            "IDs of tags that will be shown.": [
+                "G\u00f6sterilecek etiketlerin ID'leri."
+            ],
+            "IDs of accommodations that will be shown.": [
+                "G\u00f6sterilecek konaklama yerlerinin ID'leri."
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                "Birden fazla oldu\u011funda her bir taksonomi aras\u0131ndaki mant\u0131ksal ili\u015fki."
+            ],
+            "Services Listing": [
+                "Hizmetler Listesi"
+            ],
+            "IDs": [
+                "Kimlikler"
+            ],
+            "IDs of services that will be shown. ": [
+                "G\u00f6sterilecek servislerin kimlikleri. "
+            ],
+            "Single Accommodation Type": [
+                "Tek Ki\u015filik Konaklama Tipi"
+            ],
+            "Checkout Form": [
+                "\u00d6deme formu"
+            ],
+            "Display checkout form.": [
+                "\u00d6deme formu g\u00f6r\u00fcnt\u00fcle."
+            ],
+            "Booking Form": [
+                "Rezervasyon Formu"
+            ],
+            "Accommodation Rates List": [
+                "Konaklama Puan Listesi"
+            ],
+            "ID of accommodation type.": [
+                "Konaklama t\u00fcr\u00fc kimli\u011fi."
+            ],
+            "Display booking and payment details.": [
+                "Rezervasyon ve \u00f6deme ayr\u0131nt\u0131lar\u0131n\u0131 g\u00f6r\u00fcnt\u00fcleyin."
+            ],
+            "Check-in Date": [
+                "Giri\u015f Tarihi"
+            ],
+            "Check-out Date": [
+                "\u00c7\u0131k\u0131\u015f Tarihi"
+            ],
+            "Categories": [
+                "Kategoriler"
+            ],
+            "Tags": [
+                "Etiketler"
+            ],
+            "Details": [
+                "Detaylar"
+            ],
+            "Featured Image": [
+                "\u00d6ne \u00c7\u0131kan G\u00f6rsel"
+            ],
+            "Excerpt (short description)": [
+                "Al\u0131nt\u0131y\u0131 G\u00f6ster (k\u0131sa a\u00e7\u0131klama)"
+            ],
+            "Book Button": [
+                "Rezervasyon Butonu"
+            ],
+            "Preset date. Formatted as %s": [
+                "\u00d6n ayar tarihi. %s \u015feklinde"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "Gallery": [
+                "Galeri"
+            ],
+            "View Button": [
+                "\u00d6nizleme Butonu"
+            ],
+            "Order": [
+                "S\u0131ralama"
+            ],
+            "Order By": [
+                "S\u0131ralama T\u00fcr\u00fc"
+            ],
+            "No order": [
+                "S\u0131ralama Yok"
+            ],
+            "Post ID": [
+                "\u0130\u00e7erik ID"
+            ],
+            "Post author": [
+                "\u0130\u00e7erik Yazar\u0131"
+            ],
+            "Post title": [
+                "\u0130\u00e7erik Ba\u015fl\u0131\u011f\u0131"
+            ],
+            "Post name (post slug)": [
+                "\u0130\u00e7erik Ad\u0131 (\u0130\u00e7erik URL)"
+            ],
+            "Post date": [
+                "\u0130\u00e7erik tarihi"
+            ],
+            "Last modified date": [
+                "Son d\u00fczenlenme tarihi"
+            ],
+            "Parent ID": [
+                "Ana ID"
+            ],
+            "Random order": [
+                "Rasgele s\u0131rala"
+            ],
+            "Number of comments": [
+                "Yorum Say\u0131s\u0131"
+            ],
+            "Relevance": [
+                "Uygunluk"
+            ],
+            "Page order": [
+                "Sayfa S\u0131ralamas\u0131"
+            ],
+            "Meta value": [
+                "Meta De\u011feri"
+            ],
+            "Numeric meta value": [
+                "N\u00fcmerik Meta de\u011feri"
+            ],
+            "Ascending (1, 2, 3)": [
+                "Artan (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "Azalan (3, 2, 1)"
+            ],
+            "Meta Name": [
+                "Meta ad\u0131"
+            ],
+            "Meta Type": [
+                "Meta T\u00fcr\u00fc"
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                "\u00d6zel alan\u0131n belirtilen t\u00fcr\u00fc. \"orderby\" = \"meta_value\" ile kullan\u0131labilir."
+            ],
+            "Any": [
+                "Herhangi"
+            ],
+            "Numeric": [
+                "N\u00fcmerik"
+            ],
+            "Binary": [
+                "\u0130kili"
+            ],
+            "String": [
+                ""
+            ],
+            "Time": [
+                "Zaman"
+            ],
+            "Date and time": [
+                "Tarih ve Saat"
+            ],
+            "Decimal number": [
+                "Ondal\u0131k Say\u0131"
+            ],
+            "Signed number": [
+                "Onayl\u0131 Numara"
+            ],
+            "Unsigned number": [
+                "Onays\u0131z Numara"
+            ],
+            "Query Settings": [
+                "Sorgu Ayarlar\u0131"
+            ],
+            "Relation": [
+                "\u0130li\u015fki"
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                ""
+            ],
+            "Select an accommodation type.": [
+                ""
+            ]
+        }
+    }
+}

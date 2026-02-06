@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "hr_HR",
+                "plural-forms": "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
+            },
+            "Date": [
+                "Datum"
+            ],
+            "Adults": [
+                "Odrasli"
+            ],
+            "Children": [
+                "Djeca"
+            ],
+            "Price": [
+                "Cijena"
+            ],
+            "Accommodation Type": [
+                "Vrsta Smje\u0161taja"
+            ],
+            "Title": [
+                "Naslov"
+            ],
+            "Booking Confirmation": [
+                "Potvrda Rezervacije"
+            ],
+            "Availability Calendar": [
+                "Kalendar dostupnosti"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Display the currency sign in the availability calendar.": [
+                ""
+            ],
+            "Settings": [
+                "Postavke"
+            ],
+            "Availability Search Form": [
+                "Obrazac za Pretra\u017eivanje Dostupnosti"
+            ],
+            "The number of adults presetted in the search form.": [
+                "Broj odraslih osoba postavljenih u obrascu za pretra\u017eivanje."
+            ],
+            "The number of children presetted in the search form.": [
+                "Broj djece postavljenih u obrascu za pretra\u017eivanje."
+            ],
+            "Custom attributes for advanced search.": [
+                "Prilago\u0111eni atributi za napredno pretra\u017eivanje."
+            ],
+            "Comma-separated slugs of attributes.": [
+                "Vrijednosti atributa odvojeni zarezima."
+            ],
+            "How many months to show.": [
+                "Koliko mjeseci za prikaz."
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                ""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                ""
+            ],
+            "Availability Search Results": [
+                "Rezultati Pretra\u017eivanja Dostupnosti"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "Prikazati popis vrsta smje\u0161taja koji odgovaraju kriterijima pretra\u017eivanja."
+            ],
+            "Whether to display title of the accommodation type.": [
+                "Ho\u0107e li se prikazivati naziv vrste smje\u0161taja."
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "Ho\u0107e li se prikazivati istaknuta slika vrste smje\u0161taja."
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "Ho\u0107e li se prikazivati galerija vrste smje\u0161taja."
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "Ho\u0107e li se prikazivati excerpt (kratki opis) vrste smje\u0161taja."
+            ],
+            "Whether to display details of the accommodation type.": [
+                "Ho\u0107e li se prikazivati detalji vrste smje\u0161taja."
+            ],
+            "Whether to display price of the accommodation type.": [
+                "Ho\u0107e li se prikazivati cijena vrste smje\u0161taja."
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "Ho\u0107e li se prikazivati \"Prika\u017ei Pojedinosti\" gumb s linkom na vrste smje\u0161taja."
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                ""
+            ],
+            "Whether to display Book button.": [
+                "Ho\u0107e li se prikazati gumb Rezerviraj."
+            ],
+            "Accommodation Types Listing": [
+                "Lista Vrste Smje\u0161taja"
+            ],
+            "Count per page": [
+                "Ukupno po stranici"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                ""
+            ],
+            "IDs of categories that will be shown.": [
+                ""
+            ],
+            "Comma-separated IDs.": [
+                ""
+            ],
+            "IDs of tags that will be shown.": [
+                ""
+            ],
+            "IDs of accommodations that will be shown.": [
+                ""
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                ""
+            ],
+            "Services Listing": [
+                "Popis Usluga"
+            ],
+            "IDs": [
+                "ID-ovi"
+            ],
+            "IDs of services that will be shown. ": [
+                "ID usluga koje \u0107e biti prikazane"
+            ],
+            "Single Accommodation Type": [
+                ""
+            ],
+            "Checkout Form": [
+                "Obrazac za Potvrdu"
+            ],
+            "Display checkout form.": [
+                "Prikaz obrazca za potvrdu."
+            ],
+            "Booking Form": [
+                "Formular za rezervacije"
+            ],
+            "Accommodation Rates List": [
+                "Lista Periodi\u010dnih Cijena Smje\u0161taja"
+            ],
+            "ID of accommodation type.": [
+                "ID vrste smje\u0161taja"
+            ],
+            "Display booking and payment details.": [
+                "Prika\u017eite podatke o rezervaciji i pla\u0107anju."
+            ],
+            "Check-in Date": [
+                "Datum Dolaska"
+            ],
+            "Check-out Date": [
+                "Datum Odlaska"
+            ],
+            "Categories": [
+                "Kategorije"
+            ],
+            "Tags": [
+                "Tagovi"
+            ],
+            "Details": [
+                "Podaci"
+            ],
+            "Featured Image": [
+                "Istaknute slike"
+            ],
+            "Excerpt (short description)": [
+                "Prika\u017ei Excerpt (kratki opis)"
+            ],
+            "Book Button": [
+                "Dugme za rezervaciju"
+            ],
+            "Preset date. Formatted as %s": [
+                "Ponu\u0111eni datum. Oblikovano kao %s"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "Gallery": [
+                "Galerija"
+            ],
+            "View Button": [
+                "Dugme prikaza"
+            ],
+            "Order": [
+                "Poredak"
+            ],
+            "Order By": [
+                "Poredano po"
+            ],
+            "No order": [
+                "Nema narud\u017ebi"
+            ],
+            "Post ID": [
+                ""
+            ],
+            "Post author": [
+                ""
+            ],
+            "Post title": [
+                ""
+            ],
+            "Post name (post slug)": [
+                ""
+            ],
+            "Post date": [
+                "Datum upisa"
+            ],
+            "Last modified date": [
+                "Datum zadnje izmjene"
+            ],
+            "Parent ID": [
+                "Glavni ID"
+            ],
+            "Random order": [
+                "Nasumi\u010dni redoslijed"
+            ],
+            "Number of comments": [
+                "Broj komentara"
+            ],
+            "Relevance": [
+                "Va\u017enost"
+            ],
+            "Page order": [
+                "Poredak stranica"
+            ],
+            "Meta value": [
+                "Vrijednost"
+            ],
+            "Numeric meta value": [
+                "Broj\u010dana vrijednost"
+            ],
+            "Ascending (1, 2, 3)": [
+                "Uzlazno (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "Silazno  (3, 2, 1)"
+            ],
+            "Meta Name": [
+                ""
+            ],
+            "Meta Type": [
+                ""
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                ""
+            ],
+            "Any": [
+                "Bilo koji"
+            ],
+            "Numeric": [
+                "Broj\u010dano"
+            ],
+            "Binary": [
+                "Binarno"
+            ],
+            "String": [
+                "Niz"
+            ],
+            "Time": [
+                "Vrijeme"
+            ],
+            "Date and time": [
+                "Datum i vrijeme"
+            ],
+            "Decimal number": [
+                "Decimalni broj"
+            ],
+            "Signed number": [
+                ""
+            ],
+            "Unsigned number": [
+                ""
+            ],
+            "Query Settings": [
+                ""
+            ],
+            "Relation": [
+                ""
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                ""
+            ],
+            "Select an accommodation type.": [
+                ""
+            ]
+        }
+    }
+}

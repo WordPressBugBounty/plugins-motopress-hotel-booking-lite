@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "zh_CN",
+                "plural-forms": "nplurals=1; plural=0;"
+            },
+            "Date": [
+                "\u65e5\u671f"
+            ],
+            "Adults": [
+                "\u6210\u5e74\u4eba"
+            ],
+            "Children": [
+                "\u672a\u6210\u5e74\u4eba"
+            ],
+            "Price": [
+                "\u4ef7\u683c"
+            ],
+            "Accommodation Type": [
+                "\u623f\u95f4\u7c7b\u578b"
+            ],
+            "Title": [
+                "\u6807\u9898"
+            ],
+            "Booking Confirmation": [
+                "\u9884\u8ba2\u786e\u8ba4\u901a\u77e5"
+            ],
+            "Availability Calendar": [
+                "\u53ef\u7528\u6027\u65e5\u5386"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                "\u5728\u53ef\u7528\u6027\u65e5\u5386\u4e2d\u663e\u793a\u6bcf\u665a\u7684\u4ef7\u683c\u3002"
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                "\u5728\u53ef\u7528\u6027\u65e5\u5386\u4e2d\u622a\u65ad\u6bcf\u665a\u7684\u4ef7\u683c\u3002"
+            ],
+            "Display the currency sign in the availability calendar.": [
+                "\u5728\u53ef\u7528\u6027\u65e5\u5386\u4e2d\u663e\u793a\u8d27\u5e01\u7b26\u53f7\u3002"
+            ],
+            "Settings": [
+                "\u8bbe\u7f6e"
+            ],
+            "Availability Search Form": [
+                "\u53ef\u7528\u6027\u641c\u7d22\u8868\u5355"
+            ],
+            "The number of adults presetted in the search form.": [
+                "\u5728\u641c\u7d22\u8868\u5355\u4e2d\u663e\u793a\u6210\u5e74\u4eba\u6570\u91cf"
+            ],
+            "The number of children presetted in the search form.": [
+                "\u5728\u641c\u7d22\u8868\u5355\u4e2d\u663e\u793a\u672a\u6210\u5e74\u4eba\u6570\u91cf"
+            ],
+            "Custom attributes for advanced search.": [
+                "\u9ad8\u7ea7\u641c\u7d22\u7684\u81ea\u5b9a\u4e49\u5c5e\u6027\u3002"
+            ],
+            "Comma-separated slugs of attributes.": [
+                "\u4ee5\u9017\u53f7\u5206\u9694\u7684\u5c5e\u6027\u7247\u6bb5\u3002"
+            ],
+            "How many months to show.": [
+                "\u663e\u793a\u591a\u5c11\u4e2a\u6708\u3002"
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                "\u8bbe\u7f6e\u5217\u6570\u6216\u884c\u6570\u548c\u5217\u6570 (\u4ee5\u9017\u53f7\u5206\u9694)\u3002\u4f8b\u5982\uff1a\"3\" \u6216 \"2,3\""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                "\u663e\u793a\u5f53\u524d\u623f\u95f4\u7c7b\u578b\u6216\u6309 ID \u663e\u793a\u7684\u53ef\u7528\u6027\u65e5\u5386\u3002"
+            ],
+            "Availability Search Results": [
+                "\u53ef\u7528\u6027\u641c\u7d22\u7ed3\u679c"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "\u663e\u793a\u7b26\u5408\u6761\u4ef6\u7684\u623f\u95f4\u7c7b\u578b\u5217\u8868"
+            ],
+            "Whether to display title of the accommodation type.": [
+                "\u662f\u5426\u663e\u793a\u623f\u95f4\u7c7b\u578b\u7684\u6807\u9898"
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "\u662f\u5426\u663e\u793a\u623f\u95f4\u7c7b\u578b\u7684\u7cbe\u9009\u56fe\u7247"
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "\u662f\u5426\u663e\u793a\u623f\u95f4\u7c7b\u578b\u56fe\u7247\u5e93"
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "\u662f\u5426\u663e\u793a\u623f\u95f4\u7c7b\u578b\u6458\u5f55\uff08\u7b80\u77ed\u63cf\u8ff0\uff09"
+            ],
+            "Whether to display details of the accommodation type.": [
+                "\u662f\u5426\u663e\u793a\u623f\u95f4\u7c7b\u578b\u7684\u8be6\u7ec6\u4fe1\u606f"
+            ],
+            "Whether to display price of the accommodation type.": [
+                "\u662f\u5426\u663e\u793a\u623f\u95f4\u7c7b\u578b\u4ef7\u683c"
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "\u662f\u5426\u663e\u793a\u201c\u67e5\u770b\u8be6\u7ec6\u4fe1\u606f\u201d\u6309\u94ae\uff0c\u5b83\u94fe\u63a5\u4e86\u623f\u95f4\u7c7b\u578b"
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                "\u81ea\u5b9a\u4e49\u5b57\u6bb5\u540d\u79f0\u3002\u5982\u679c \"\u6392\u5e8f\u4f9d\u636e\" \u662f \"meta_value\"\u3001\"meta_value_num\" \u6216 \"meta_value_*\" \u4e4b\u4e00\uff0c\u5219\u5fc5\u586b\u3002"
+            ],
+            "Whether to display Book button.": [
+                "\u662f\u5426\u663e\u793a\u9884\u8ba2\u6309\u94ae"
+            ],
+            "Accommodation Types Listing": [
+                "\u623f\u95f4\u7c7b\u578b\u5217\u8868"
+            ],
+            "Count per page": [
+                "\u6bcf\u9875\u8ba1\u6570"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "\u6574\u6570\uff0c-1 \u8868\u793a\u663e\u793a\u5168\u90e8\uff0c\u9ed8\u8ba4\u503c\uff1a\"\u6700\u591a\u663e\u793a\u535a\u5ba2\u9875\u9762\""
+            ],
+            "IDs of categories that will be shown.": [
+                "\u5c06\u663e\u793a\u7684\u7c7b\u522b\u7684 ID\u3002"
+            ],
+            "Comma-separated IDs.": [
+                "\u4ee5\u9017\u53f7\u9694\u5f00\u7684ID"
+            ],
+            "IDs of tags that will be shown.": [
+                "\u5c06\u663e\u793a\u7684\u6807\u7b7e\u7684 ID\u3002"
+            ],
+            "IDs of accommodations that will be shown.": [
+                "\u5c06\u663e\u793a\u7684\u4f4f\u5bbf ID\u3002"
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                "\u5f53\u6709\u591a\u4e2a\u5206\u7c7b\u6cd5\u65f6\uff0c\u5404\u4e2a\u5206\u7c7b\u6cd5\u4e4b\u95f4\u7684\u903b\u8f91\u5173\u7cfb\u3002"
+            ],
+            "Services Listing": [
+                "\u670d\u52a1\u9879\u76ee\u5217\u8868"
+            ],
+            "IDs": [
+                ""
+            ],
+            "IDs of services that will be shown. ": [
+                "\u670d\u52a1\u9879\u76eeID\u4f1a\u88ab\u663e\u793a\u51fa\u6765"
+            ],
+            "Single Accommodation Type": [
+                "\u5355\u4eba\u5ba2\u623f\u7c7b\u578b"
+            ],
+            "Checkout Form": [
+                "\u7ed3\u8d26\u4fe1\u606f\u5355"
+            ],
+            "Display checkout form.": [
+                "\u663e\u793a\u7ed3\u8d26\u5355"
+            ],
+            "Booking Form": [
+                "\u9884\u8ba2\u8868\u683c"
+            ],
+            "Accommodation Rates List": [
+                "\u623f\u95f4\u4ef7\u683c\u5217\u8868"
+            ],
+            "ID of accommodation type.": [
+                "\u623f\u95f4\u7c7b\u578bID"
+            ],
+            "Display booking and payment details.": [
+                "\u663e\u793a\u9884\u8ba2\u548c\u4ed8\u6b3e\u8be6\u60c5\u3002"
+            ],
+            "Check-in Date": [
+                "\u767b\u8bb0\u5165\u4f4f\u65e5\u671f"
+            ],
+            "Check-out Date": [
+                "\u7ed3\u8d26\u9000\u623f\u65e5\u671f"
+            ],
+            "Categories": [
+                "\u5206\u7c7b"
+            ],
+            "Tags": [
+                "\u6807\u7b7e"
+            ],
+            "Details": [
+                "\u8be6\u7ec6"
+            ],
+            "Featured Image": [
+                "\u7279\u8272\u56fe\u7247"
+            ],
+            "Excerpt (short description)": [
+                "\u663e\u793a\u6458\u8981\uff08\u7b80\u4ecb\uff09"
+            ],
+            "Book Button": [
+                "\u9884\u5b9a\u6309\u94ae"
+            ],
+            "Preset date. Formatted as %s": [
+                "\u9884\u8ba2\u5165\u4f4f\u65e5\u671f\u3002\u683c\u5f0f\u4e3a%s"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                "\u9009\u62e9\u623f\u95f4\u7c7b\u578b\u3002\u7559\u7a7a\u5219\u4f7f\u7528\u5f53\u524d\u7c7b\u578b\u3002"
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                "\u623f\u95f4\u7c7b\u578b\u7684 ID\u3002\u7559\u7a7a\u5219\u4f7f\u7528\u5f53\u524d\u7c7b\u578b\u3002"
+            ],
+            "Gallery": [
+                "\u56fe\u5e93"
+            ],
+            "View Button": [
+                "\u67e5\u770b\u6309\u94ae"
+            ],
+            "Order": [
+                "\u987a\u5e8f"
+            ],
+            "Order By": [
+                "\u6392\u5e8f\u6309"
+            ],
+            "No order": [
+                "\u65e0\u6392\u5e8f"
+            ],
+            "Post ID": [
+                "\u6587\u7ae0 ID"
+            ],
+            "Post author": [
+                "\u6587\u7ae0\u4f5c\u8005"
+            ],
+            "Post title": [
+                "\u6587\u7ae0\u6807\u9898"
+            ],
+            "Post name (post slug)": [
+                "\u6587\u7ae0\u540d\u79f0 (\u6587\u7ae0\u522b\u540d)"
+            ],
+            "Post date": [
+                "\u53d1\u5e03\u65e5\u671f"
+            ],
+            "Last modified date": [
+                "\u4e0a\u6b21\u4fee\u6539\u65e5\u671f"
+            ],
+            "Parent ID": [
+                "\u7236\u7ea7 ID"
+            ],
+            "Random order": [
+                "\u968f\u673a\u987a\u5e8f"
+            ],
+            "Number of comments": [
+                "\u8bc4\u8bba\u6570"
+            ],
+            "Relevance": [
+                "\u5173\u8054"
+            ],
+            "Page order": [
+                "\u9875\u9762\u987a\u5e8f"
+            ],
+            "Meta value": [
+                "\u5143\u503c"
+            ],
+            "Numeric meta value": [
+                "\u6570\u5b57\u5143\u503c"
+            ],
+            "Ascending (1, 2, 3)": [
+                "\u5347\u5e8f (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "\u964d\u5e8f (3, 2, 1)"
+            ],
+            "Meta Name": [
+                "\u5143\u540d\u79f0"
+            ],
+            "Meta Type": [
+                "\u5143\u7c7b\u578b"
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                "\u6307\u5b9a\u81ea\u5b9a\u4e49\u5b57\u6bb5\u7684\u7c7b\u578b\u3002\u53ef\u4e0e \"orderby\" = \"meta_value\" \u7ed3\u5408\u4f7f\u7528\u3002"
+            ],
+            "Any": [
+                "\u4efb\u4f55"
+            ],
+            "Numeric": [
+                "\u6570\u5b57"
+            ],
+            "Binary": [
+                "\u4e8c\u8fdb\u5236"
+            ],
+            "String": [
+                "\u5b57\u7b26\u4e32"
+            ],
+            "Time": [
+                "\u65f6\u95f4"
+            ],
+            "Date and time": [
+                "\u65e5\u671f\u548c\u65f6\u95f4"
+            ],
+            "Decimal number": [
+                "\u5341\u8fdb\u5236\u6570"
+            ],
+            "Signed number": [
+                "\u6709\u7b26\u53f7\u6570"
+            ],
+            "Unsigned number": [
+                "\u65e0\u7b26\u53f7\u6570"
+            ],
+            "Query Settings": [
+                "\u67e5\u8be2\u8bbe\u7f6e"
+            ],
+            "Relation": [
+                "\u5173\u7cfb"
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "\u503c\uff1a\u6574\u6570\uff0c-1 \u8868\u793a\u663e\u793a\u5168\u90e8\uff0c\u9ed8\u8ba4\u503c\uff1a\"\u6700\u591a\u663e\u793a\u535a\u5ba2\u9875\u9762\""
+            ],
+            "Select an accommodation type.": [
+                "\u9009\u62e9\u623f\u95f4\u7c7b\u578b\u3002"
+            ]
+        }
+    }
+}

@@ -9,7 +9,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class AjaxApiHandler {
 
 	const AJAX_ACTION_CLASS_NAMES = array(
-		'\MPHB\AjaxApi\GetRoomTypeCalendarData',
 		'\MPHB\AjaxApi\GetRoomTypeAvailabilityData',
 		'\MPHB\AjaxApi\GetAdminCalendarBookingInfo',
 		'\MPHB\AjaxApi\UpdateBookingNotes',

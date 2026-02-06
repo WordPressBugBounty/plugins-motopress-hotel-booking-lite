@@ -378,7 +378,15 @@ private $upgradeToPremiumMenuPage;
 		// add_action( 'wp_head', array( $this, 'pushRoomTypeMicrodata' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueuePublicScripts' ), 11 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueueAdminScripts' ), 11 );
-		add_action( 'the_post', array( $this, 'setCurrentRoomType' ) );
+
+		// this hook we need to set current room type for templates in shortcodes
+		// and our themes which use our shortcodes templates
+		add_action(
+			'the_post',
+			function ( WP_Post $post ) {
+				$this->setCurrentRoomType( $post );
+			}
+		);
 
 		add_action( 'wp_head', 'mphb_print_version_comment', 1 );
 
@@ -927,9 +935,11 @@ private $upgradeToPremiumMenuPage;
 	 * @param \WP_Post|int $post
 	 */
 	public function setCurrentRoomType( $post ) {
+
 		$this->currentRoomType = null;
 
 		if ( is_int( $post ) ) {
+
 			$post = get_post( $post );
 		}
 

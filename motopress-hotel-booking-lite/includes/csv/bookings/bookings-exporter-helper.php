@@ -488,7 +488,14 @@ final class BookingsExporterHelper {
 			$paidAmount    = static::formatPrice( $payment->getAmount() );
 
 			$paymentGateway      = MPHB()->gatewayManager()->getGateway( $payment->getGatewayId() );
-			$paymentGatewayLabel = ! is_null( $paymentGateway ) ? $paymentGateway->getAdminTitle() : $payment->getGatewayId();
+
+			if ( ! is_null( $paymentGateway ) ) {
+				// trying getTitle first, if it's empty - get getAdminTitle.
+				$title = $paymentGateway->getTitle();
+				$paymentGatewayLabel = $title !== '' ? $title : $paymentGateway->getAdminTitle();
+			} else {
+				$paymentGatewayLabel = $payment->getGatewayId();
+			}
 
 			$paymentStrings[] = "#{$paymentId},{$paymentStatus},{$paidAmount},{$paymentGatewayLabel}";
 		}

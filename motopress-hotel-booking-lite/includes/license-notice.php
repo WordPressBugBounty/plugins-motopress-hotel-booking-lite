@@ -56,12 +56,15 @@ class LicenseNotice {
 	 *
 	 * @access private
 	 *
-	 * @global \WP_Plugins_List_Table $wp_list_table
+	 * @global ?\WP_Plugins_List_Table $wp_list_table Is null when doing search.
 	 */
 	public function showPluginNotice() {
 		global $wp_list_table;
 
-		if ( ! is_main_site() || MPHB()->settings()->license()->needHideNotice() ) {
+		if ( $wp_list_table === null
+			|| ! is_main_site()
+			|| MPHB()->settings()->license()->needHideNotice()
+		) {
 			return;
 		}
 

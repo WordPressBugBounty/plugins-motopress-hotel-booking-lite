@@ -86,32 +86,32 @@ class CronManager {
 
 		$schedules[ self::INTERVAL_QUARTER_AN_HOUR ] = array(
 			'interval' => 15 * MINUTE_IN_SECONDS,
-			'display'  => __( 'Quarter an Hour', 'motopress-hotel-booking' ),
+			'display'  => 'Quarter an Hour',
 		);
 
 		$schedules[ self::INTERVAL_HALF_AN_HOUR ] = array(
 			'interval' => 30 * MINUTE_IN_SECONDS,
-			'display'  => __( 'Half an Hour', 'motopress-hotel-booking' ),
+			'display'  => 'Half an Hour',
 		);
 
 		$schedules[ self::INTERVAL_PENDING_USER_APPROVAL ] = array(
 			'interval' => MPHB()->settings()->main()->getUserApprovalTime() * MINUTE_IN_SECONDS,
-			'display'  => __( 'User Approval Time setted in Hotel Booking Settings', 'motopress-hotel-booking' ),
+			'display'  => 'User Approval Time setted in Hotel Booking Settings',
 		);
 
 		$schedules[ self::INTERVAL_PENDING_PAYMENT ] = array(
 			'interval' => MPHB()->settings()->payment()->getPendingTime() * MINUTE_IN_SECONDS,
-			'display'  => __( 'Pending Payment Time set in Hotel Booking Settings', 'motopress-hotel-booking' ),
+			'display'  => 'Pending Payment Time set in Hotel Booking Settings',
 		);
 
 		$schedules[ self::INTERVAL_AUTODELETE_SYNC_LOGS ] = array(
 			'interval' => 6 * HOUR_IN_SECONDS,
-			'display'  => __( 'Interval for automatic cleaning of synchronization logs.', 'motopress-hotel-booking' ),
+			'display'  => 'Interval for automatic cleaning of synchronization logs.',
 		);
 
 		$schedules[ self::INTERVAL_WEEKLY ] = array(
 			'interval' => WEEK_IN_SECONDS,
-			'display'  => esc_html__( 'Once a week', 'motopress-hotel-booking' ),
+			'display'  => 'Once a week',
 		);
 
 		return $schedules;

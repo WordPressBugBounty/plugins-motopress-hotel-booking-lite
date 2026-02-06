@@ -45,6 +45,8 @@ class ApiAuthentication {
 	 */
 	protected $authMethod = '';
 
+	private bool $is_determine_current_user_hook_on = true;
+
 	/**
 	 * Initialize authentication actions.
 	 */
@@ -62,17 +64,28 @@ class ApiAuthentication {
 	 * @return bool
 	 */
 	protected function isRequestToRestApi() {
+
 		if ( empty( $_SERVER['REQUEST_URI'] ) ) {
 			return false;
 		}
 
-		$restPrefix = trailingslashit( rest_get_url_prefix() );
-		$requestURI = esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+		$isRequestToRestApi = false;
 
-		// Check if the request is to the MPHB endpoints.
-		$isMphb = ( false !== strpos( $requestURI, $restPrefix . 'mphb/' ) );
+		if ( isset( $_GET['rest_route'] ) ) {
 
-		return apply_filters( 'mphb_rest_is_request_to_rest_api', $isMphb );
+			$route              = wp_unslash( $_GET['rest_route'] ); // phpcs:ignore
+			$isRequestToRestApi = is_string( $route ) && preg_match( '#^/mphb(/|$)#', $route );
+
+		} else {
+
+			$restPrefix = trailingslashit( rest_get_url_prefix() );
+			$requestURI = esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+
+			// Check if the request is to the MPHB endpoints.
+			$isRequestToRestApi = ( false !== strpos( $requestURI, $restPrefix . 'mphb/' ) );
+		}
+
+		return apply_filters( 'mphb_rest_is_request_to_rest_api', $isRequestToRestApi );
 	}
 
 	/**
@@ -83,6 +96,11 @@ class ApiAuthentication {
 	 * @return int|false
 	 */
 	public function authenticate( $userId ) {
+
+		if ( ! $this->is_determine_current_user_hook_on ) {
+			return $userId;
+		}
+
 		// Do not authenticate twice and check if is a request to our endpoint in the WP REST API.
 		if ( ! empty( $userId ) || ! $this->isRequestToRestApi() ) {
 			return $userId;
@@ -96,7 +114,13 @@ class ApiAuthentication {
 			return $userId;
 		}
 
-		return $this->performOauthAuthentication();
+		$userId = $this->performOauthAuthentication();
+
+		if ( $userId ) {
+			return $userId;
+		}
+
+		return $this->performWpNonceAuthentication();
 	}
 
 	/**
@@ -163,6 +187,60 @@ class ApiAuthentication {
 	}
 
 	/**
+	 * Authenticate using WP REST nonce (X-WP-Nonce or _wpnonce) with wp_create_nonce( 'wp_rest' )
+ 	 * for cookie based authentication:
+ 	 * https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
+	 *
+	 * @return int|false
+	 */
+	private function performWpNonceAuthentication() {
+
+		$this->authMethod = 'wp_nonce';
+
+		$nonce = null;
+
+		
+		if ( isset( $_SERVER['HTTP_X_WP_NONCE'] ) ) { // from header
+
+			$nonce = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_WP_NONCE'] ) );
+
+		} elseif ( isset( $_REQUEST['_wpnonce'] ) ) { // or from request
+
+			$nonce = sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) );
+		}
+
+		if ( $nonce ) {
+
+			$user_id = wp_validate_auth_cookie( '', 'logged_in' );
+
+			if ( $user_id ) {
+				return (int) $user_id;
+			}
+
+			// turn off recursion for wp_verify_nonce and wp_get_current_user
+			$this->is_determine_current_user_hook_on = false;
+
+			if ( wp_verify_nonce( $nonce, 'wp_rest' ) ) {
+
+				$current_user = wp_get_current_user();
+				
+				if ( $current_user && $current_user->exists() ) {
+
+					return $current_user->ID;
+				}
+
+				// do not add error because nonce is ok but it is not logged-in user
+				return false;
+			}
+
+			$this->is_determine_current_user_hook_on = true;
+		}
+
+		return false;
+	}
+
+
+	/**
 	 * Basic Authentication.
 	 *
 	 * SSL-encrypted requests are not subject to sniffing or man-in-the-middle
@@ -179,14 +257,14 @@ class ApiAuthentication {
 
 		// If the $_GET parameters are present, use those first.
 		if ( ! empty( $_GET['consumer_key'] ) && ! empty( $_GET['consumer_secret'] ) ) { // WPCS: CSRF ok.
-			$consumerKey    = $_GET['consumer_key']; // WPCS: CSRF ok, sanitization ok.
-			$consumerSecret = $_GET['consumer_secret']; // WPCS: CSRF ok, sanitization ok.
+			$consumerKey    = $_GET['consumer_key']; // phpcs:ignore
+			$consumerSecret = $_GET['consumer_secret']; // phpcs:ignore
 		}
 
 		// If the above is not present, we will do full basic auth.
 		if ( ! $consumerKey && ! empty( $_SERVER['PHP_AUTH_USER'] ) && ! empty( $_SERVER['PHP_AUTH_PW'] ) ) {
-			$consumerKey    = $_SERVER['PHP_AUTH_USER']; // WPCS: CSRF ok, sanitization ok.
-			$consumerSecret = $_SERVER['PHP_AUTH_PW']; // WPCS: CSRF ok, sanitization ok.
+			$consumerKey    = $_SERVER['PHP_AUTH_USER']; // phpcs:ignore
+			$consumerSecret = $_SERVER['PHP_AUTH_PW']; // phpcs:ignore
 		}
 
 		// Stop if don't have any key.
@@ -248,7 +326,7 @@ class ApiAuthentication {
 	 */
 	public function getAuthorizationHeader() {
 		if ( ! empty( $_SERVER['HTTP_AUTHORIZATION'] ) ) {
-			return wp_unslash( $_SERVER['HTTP_AUTHORIZATION'] ); // WPCS: sanitization ok.
+			return wp_unslash( $_SERVER['HTTP_AUTHORIZATION'] ); // phpcs:ignore
 		}
 
 		if ( function_exists( 'getallheaders' ) ) {
@@ -385,8 +463,8 @@ class ApiAuthentication {
 	 * @return true|WP_Error
 	 */
 	private function checkOauthSignature( $user, $params ) {
-		$httpMethod  = isset( $_SERVER['REQUEST_METHOD'] ) ? strtoupper( $_SERVER['REQUEST_METHOD'] ) : ''; // WPCS: sanitization ok.
-		$requestPath = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ) : ''; // WPCS: sanitization ok.
+		$httpMethod  = isset( $_SERVER['REQUEST_METHOD'] ) ? strtoupper( $_SERVER['REQUEST_METHOD'] ) : ''; // phpcs:ignore
+		$requestPath = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ) : ''; // phpcs:ignore
 		$wpBase      = get_home_url( null, '/', 'relative' );
 		if ( substr( $requestPath, 0, strlen( $wpBase ) ) === $wpBase ) {
 			$requestPath = substr( $requestPath, strlen( $wpBase ) );
@@ -428,7 +506,7 @@ class ApiAuthentication {
 	 * @param  array  $params       Array of parameters to convert.
 	 * @param  array  $query_params Array to extend.
 	 * @param  string $key          Optional Array key to append.
-	 * @return string               Array of urlencoded strings.
+	 * @return array  Array of urlencoded strings.
 	 */
 	private function joinWithEqualsSign( $params, $query_params = array(), $key = '' ) {
 		foreach ( $params as $param_key => $param_value ) {

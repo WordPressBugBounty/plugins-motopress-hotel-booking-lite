@@ -1,5 +1,3 @@
-# Copyright (C) 2025 MotoPress
-# This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: hotel-booking-plugin\n"
@@ -9,8 +7,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-19T19:58:50+00:00\n"
-"PO-Revision-Date: 2025-02-19 22:38\n"
+"POT-Creation-Date: 2026-01-14T08:43:53+00:00\n"
+"PO-Revision-Date: 2026-01-14 08:48\n"
+"Language: ro_RO\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: motopress-hotel-booking\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
@@ -19,7 +18,6 @@ msgstr ""
 "X-Crowdin-Language: ro\n"
 "X-Crowdin-File: motopress-hotel-booking.pot\n"
 "X-Crowdin-File-ID: 44\n"
-"Language: ro_RO\n"
 
 #. Plugin Name of the plugin
 #. translators: Name of the plugin, do not translate
@@ -71,9 +69,9 @@ msgstr "<a href=\"%s\">Fă upgrade la Premium</a> pentru a activa această carac
 #: includes/admin/sync-logs-list-table.php:91
 #: includes/csv/csv-export-handler.php:33
 #: includes/csv/csv-export-handler.php:51
-#: includes/payments/gateways/stripe-gateway.php:560
-#: includes/payments/gateways/stripe-gateway.php:572
-#: includes/payments/gateways/stripe-gateway.php:631
+#: includes/payments/gateways/stripe-gateway.php:600
+#: includes/payments/gateways/stripe-gateway.php:612
+#: includes/payments/gateways/stripe-gateway.php:671
 msgid "Error"
 msgstr "Eroare"
 
@@ -103,7 +101,7 @@ msgstr "Nume"
 #: includes/bundles/customer-bundle.php:110
 #: includes/csv/bookings/bookings-exporter-helper.php:83
 #: includes/post-types/booking-cpt.php:106
-#: includes/post-types/payment-cpt.php:263
+#: includes/post-types/payment-cpt.php:264
 #: includes/views/shortcodes/checkout-view.php:618
 #: templates/account/account-details.php:34
 msgid "Email"
@@ -199,7 +197,7 @@ msgstr "Editare cazări"
 
 #: includes/admin/edit-cpt-pages/booking-edit-cpt-page.php:125
 #: includes/admin/edit-cpt-pages/payment-edit-cpt-page.php:85
-#: includes/shortcodes/booking-confirmation-shortcode.php:298
+#: includes/shortcodes/booking-confirmation-shortcode.php:306
 msgid "Date:"
 msgstr "Dată:"
 
@@ -272,9 +270,9 @@ msgstr "Copii:"
 #: includes/admin/edit-cpt-pages/rate-edit-cpt-page.php:70
 #: includes/admin/manage-cpt-pages/room-type-manage-cpt-page.php:63
 #: includes/admin/manage-cpt-pages/room-type-manage-cpt-page.php:110
-#: includes/shortcodes/booking-confirmation-shortcode.php:306
-#: includes/shortcodes/search-results-shortcode.php:770
-#: includes/shortcodes/search-results-shortcode.php:921
+#: includes/shortcodes/booking-confirmation-shortcode.php:314
+#: includes/shortcodes/search-results-shortcode.php:775
+#: includes/shortcodes/search-results-shortcode.php:931
 #: templates/shortcodes/booking-details/booking-details.php:33
 msgid "Total:"
 msgstr "Total:"
@@ -425,8 +423,8 @@ msgstr "Mutare la fund"
 
 #: includes/admin/fields/complex-vertical-field.php:17
 #: includes/admin/menu-pages/settings-menu-page.php:580
-#: includes/settings/main-settings.php:25
-#: includes/settings/main-settings.php:43
+#: includes/settings/main-settings.php:32
+#: includes/settings/main-settings.php:51
 msgid "Default"
 msgstr "Implicit"
 
@@ -437,7 +435,7 @@ msgstr "Implicit"
 #: includes/admin/menu-pages/settings-menu-page.php:420
 #: includes/post-types/booking-cpt.php:122
 #: includes/post-types/booking-cpt.php:179
-#: includes/post-types/payment-cpt.php:231
+#: includes/post-types/payment-cpt.php:232
 #: includes/post-types/rate-cpt.php:31
 #: includes/post-types/room-cpt.php:79
 #: includes/views/shortcodes/checkout-view.php:250
@@ -448,7 +446,7 @@ msgstr "Implicit"
 msgid "— Select —"
 msgstr "— Selectează —"
 
-#: includes/admin/fields/install-plugin-field.php:33
+#: includes/admin/fields/install-plugin-field.php:32
 msgid "Install & Activate"
 msgstr "Instalare & Activare"
 
@@ -485,6 +483,7 @@ msgstr "Deselectați tot"
 #: assets/blocks/blocks.js:593
 #: assets/blocks/blocks.js:929
 #: assets/blocks/blocks.js:1113
+#: assets/blocks/blocks.min.js:1
 msgid "Date"
 msgstr "Dată"
 
@@ -496,14 +495,14 @@ msgstr "Autor"
 #: includes/admin/room-list-table.php:154
 #: includes/advanced/admin/tab/subtabs/api-keys/api-keys-table-list.php:115
 #: includes/bookings-calendar.php:613
-#: includes/script-managers/admin-script-manager.php:97
+#: includes/script-managers/admin-script-manager.php:115
 msgid "Edit"
 msgstr "Editează"
 
 #: includes/admin/fields/rules-list-field.php:60
 #: includes/admin/sync-rooms-list-table.php:81
-#: includes/ajax.php:951
-#: includes/script-managers/admin-script-manager.php:98
+#: includes/ajax.php:974
+#: includes/script-managers/admin-script-manager.php:116
 msgid "Done"
 msgstr "Finalizat"
 
@@ -514,7 +513,7 @@ msgstr "Finalizat"
 #: includes/admin/menu-pages/booking-rules-menu-page.php:407
 #: includes/admin/menu-pages/taxes-and-fees-menu-page.php:211
 #: includes/admin/menu-pages/taxes-and-fees-menu-page.php:307
-#: includes/script-managers/admin-script-manager.php:95
+#: includes/script-managers/admin-script-manager.php:113
 msgid "All"
 msgstr "Tot"
 
@@ -523,7 +522,7 @@ msgstr "Tot"
 #: includes/post-types/coupon-cpt.php:81
 #: includes/post-types/coupon-cpt.php:113
 #: includes/post-types/coupon-cpt.php:158
-#: includes/script-managers/admin-script-manager.php:96
+#: includes/script-managers/admin-script-manager.php:114
 msgid "None"
 msgstr "Niciunul"
 
@@ -541,14 +540,14 @@ msgid "Nights"
 msgstr "Nopți"
 
 #: includes/admin/fields/variable-pricing-field.php:97
-#: includes/script-managers/admin-script-manager.php:102
+#: includes/script-managers/admin-script-manager.php:120
 msgid "and more"
 msgstr "şi mai multe"
 
 #: includes/admin/fields/variable-pricing-field.php:98
 #: includes/admin/menu-pages/edit-booking/edit-control.php:95
-#: includes/script-managers/admin-script-manager.php:101
-#: includes/shortcodes/search-results-shortcode.php:1009
+#: includes/script-managers/admin-script-manager.php:119
+#: includes/shortcodes/search-results-shortcode.php:1019
 #: includes/views/booking-view.php:400
 #: templates/edit-booking/edit-reserved-rooms.php:70
 msgid "Remove"
@@ -578,6 +577,7 @@ msgstr "Preț pe noapte"
 #: templates/create-booking/search/search-form.php:94
 #: templates/shortcodes/search/search-form.php:80
 #: assets/blocks/blocks.js:147
+#: assets/blocks/blocks.min.js:1
 msgid "Adults"
 msgstr "Adulți"
 
@@ -589,6 +589,7 @@ msgstr "Adulți"
 #: templates/create-booking/search/search-form.php:109
 #: templates/shortcodes/search/search-form.php:103
 #: assets/blocks/blocks.js:162
+#: assets/blocks/blocks.min.js:1
 msgid "Children"
 msgstr "Copii"
 
@@ -625,7 +626,7 @@ msgstr "Cheie Licență"
 #: includes/admin/manage-cpt-pages/booking-manage-cpt-page.php:62
 #: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:22
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:28
-#: includes/admin/menu-pages/create-booking/checkout-step.php:63
+#: includes/admin/menu-pages/create-booking/checkout-step.php:65
 #: includes/admin/sync-logs-list-table.php:72
 #: includes/admin/sync-rooms-list-table.php:127
 #: includes/csv/bookings/bookings-exporter-helper.php:72
@@ -702,11 +703,11 @@ msgstr "Rezervare nouă"
 
 #: includes/admin/manage-cpt-pages/booking-manage-cpt-page.php:61
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:26
-#: includes/admin/menu-pages/shortcodes-menu-page.php:376
+#: includes/admin/menu-pages/shortcodes-menu-page.php:406
 #: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:64
 #: includes/csv/bookings/bookings-exporter-helper.php:71
 #: includes/post-types/booking-cpt.php:42
-#: includes/post-types/payment-cpt.php:150
+#: includes/post-types/payment-cpt.php:151
 msgid "ID"
 msgstr ""
 
@@ -744,6 +745,7 @@ msgstr "Info Client"
 #: assets/blocks/blocks.js:883
 #: assets/blocks/blocks.js:1067
 #: assets/blocks/blocks.js:1275
+#: assets/blocks/blocks.min.js:1
 msgid "Price"
 msgstr "Preț"
 
@@ -768,12 +770,12 @@ msgid "Expire %s"
 msgstr "Expiră la %s"
 
 #: includes/admin/manage-cpt-pages/booking-manage-cpt-page.php:138
-#: includes/script-managers/admin-script-manager.php:99
+#: includes/script-managers/admin-script-manager.php:117
 msgid "Adults: "
 msgstr "Adulți: "
 
 #: includes/admin/manage-cpt-pages/booking-manage-cpt-page.php:142
-#: includes/script-managers/admin-script-manager.php:100
+#: includes/script-managers/admin-script-manager.php:118
 msgid "Children: "
 msgstr "Copii: "
 
@@ -822,7 +824,7 @@ msgstr "Importat '%s'"
 #: includes/post-types/coupon-cpt.php:93
 #: includes/post-types/coupon-cpt.php:124
 #: includes/post-types/coupon-cpt.php:169
-#: includes/post-types/payment-cpt.php:182
+#: includes/post-types/payment-cpt.php:183
 #: includes/views/booking-view.php:126
 #: includes/views/booking-view.php:172
 #: includes/views/booking-view.php:208
@@ -883,19 +885,19 @@ msgid "Booking"
 msgstr "Rezervare"
 
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:31
-#: includes/post-types/payment-cpt.php:159
+#: includes/post-types/payment-cpt.php:160
 msgid "Gateway"
 msgstr "Gateway"
 
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:32
-#: includes/post-types/payment-cpt.php:223
+#: includes/post-types/payment-cpt.php:224
 msgid "Transaction ID"
 msgstr "ID-ul tranzacţiei"
 
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:105
 #: includes/admin/menu-pages/create-booking/booking-step.php:66
 #: includes/bookings-calendar.php:606
-#: includes/script-managers/admin-script-manager.php:103
+#: includes/script-managers/admin-script-manager.php:121
 msgid "Booking #%s"
 msgstr "Rezervare #%s"
 
@@ -918,6 +920,7 @@ msgstr "Tarifele sunt utilizate pentru a oferi prețuri diferite pentru același
 #: assets/blocks/blocks.js:1202
 #: assets/blocks/blocks.js:1424
 #: assets/blocks/blocks.js:1506
+#: assets/blocks/blocks.min.js:1
 msgid "Accommodation Type"
 msgstr "Tipul de cazare"
 
@@ -1178,17 +1181,17 @@ msgid "Not stay-in with Not check-out rules completely block the selected date, 
 msgstr "Regulile de stat și check-out blochează complet data selectată, adițional arătând data de dinainte ca fiind nevalabilă pentru check-in."
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:444
-#: includes/script-managers/public-script-manager.php:208
+#: includes/script-managers/public-script-manager.php:221
 msgid "Not check-in"
 msgstr "Check-in"
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:445
-#: includes/script-managers/public-script-manager.php:209
+#: includes/script-managers/public-script-manager.php:222
 msgid "Not check-out"
 msgstr "Check-out"
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:446
-#: includes/script-managers/public-script-manager.php:207
+#: includes/script-managers/public-script-manager.php:220
 msgid "Not stay-in"
 msgstr "Stat"
 
@@ -1248,7 +1251,7 @@ msgid "Note: booking rules are disabled in the plugin settings and are not taken
 msgstr "Notă: regulile de rezervare sunt dezactivate în setările plugin-ului și nu sunt luate în considerare."
 
 #: includes/admin/menu-pages/create-booking/booking-step.php:50
-#: includes/shortcodes/checkout-shortcode/step-booking.php:478
+#: includes/shortcodes/checkout-shortcode/step-booking.php:483
 msgid "Unable to create booking. Please try again."
 msgstr "Nu s-a putut crea rezervarea. Vă rugăm să încercaţi din nou."
 
@@ -1257,95 +1260,95 @@ msgstr "Nu s-a putut crea rezervarea. Vă rugăm să încercaţi din nou."
 msgid "Booking is blocked due to maintenance reason. Please try again later."
 msgstr "Rezervarea este blocată din motive de întreţinere. Vă rugăm să încercaţi din nou mai târziu."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:121
-#: includes/admin/menu-pages/create-booking/booking-step.php:275
-#: includes/admin/menu-pages/create-booking/checkout-step.php:130
+#: includes/admin/menu-pages/create-booking/booking-step.php:126
+#: includes/admin/menu-pages/create-booking/booking-step.php:280
+#: includes/admin/menu-pages/create-booking/checkout-step.php:137
 #: includes/admin/menu-pages/edit-booking/booking-control.php:34
 #: includes/admin/menu-pages/edit-booking/checkout-control.php:61
 #: includes/admin/menu-pages/edit-booking/summary-control.php:56
 #: includes/shortcodes/checkout-shortcode/step-booking.php:183
 #: includes/shortcodes/checkout-shortcode/step-booking.php:363
-#: includes/shortcodes/checkout-shortcode/step-checkout.php:170
+#: includes/shortcodes/checkout-shortcode/step-checkout.php:175
 #: includes/utils/parse-utils.php:250
 msgid "There are no accommodations selected for reservation."
 msgstr "Nu există nicio cazare selectată pentru rezervare."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:123
-#: includes/admin/menu-pages/create-booking/booking-step.php:155
-#: includes/admin/menu-pages/create-booking/checkout-step.php:132
-#: includes/admin/menu-pages/create-booking/checkout-step.php:165
-#: includes/admin/menu-pages/create-booking/checkout-step.php:196
+#: includes/admin/menu-pages/create-booking/booking-step.php:128
+#: includes/admin/menu-pages/create-booking/booking-step.php:160
+#: includes/admin/menu-pages/create-booking/checkout-step.php:139
+#: includes/admin/menu-pages/create-booking/checkout-step.php:172
+#: includes/admin/menu-pages/create-booking/checkout-step.php:203
 #: includes/utils/parse-utils.php:210
 #: includes/utils/parse-utils.php:285
 #: includes/utils/parse-utils.php:305
 msgid "Selected accommodations are not valid."
 msgstr "Cazările selectate nu sunt valide."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:150
-#: includes/admin/menu-pages/create-booking/checkout-step.php:160
+#: includes/admin/menu-pages/create-booking/booking-step.php:155
+#: includes/admin/menu-pages/create-booking/checkout-step.php:167
 #: includes/admin/menu-pages/create-booking/step.php:191
-#: includes/ajax.php:612
+#: includes/ajax.php:620
 #: includes/shortcodes/checkout-shortcode/step-booking.php:200
 #: includes/shortcodes/checkout-shortcode/step-booking.php:207
-#: includes/shortcodes/checkout-shortcode/step-checkout.php:187
-#: includes/shortcodes/checkout-shortcode/step-checkout.php:199
+#: includes/shortcodes/checkout-shortcode/step-checkout.php:197
+#: includes/shortcodes/checkout-shortcode/step-checkout.php:209
 #: includes/utils/parse-utils.php:301
 msgid "Accommodation Type is not valid."
 msgstr "Tipul de cazare nu este valid."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:160
-#: includes/admin/menu-pages/create-booking/booking-step.php:184
-#: includes/ajax.php:623
+#: includes/admin/menu-pages/create-booking/booking-step.php:165
+#: includes/admin/menu-pages/create-booking/booking-step.php:189
+#: includes/ajax.php:631
 #: includes/shortcodes/checkout-shortcode/step-booking.php:213
 #: includes/shortcodes/checkout-shortcode/step-booking.php:231
 #: includes/utils/parse-utils.php:322
 msgid "Rate is not valid."
 msgstr "Rata nu este validă."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:189
+#: includes/admin/menu-pages/create-booking/booking-step.php:194
 #: includes/admin/menu-pages/create-booking/step.php:211
 #: includes/admin/menu-pages/create-booking/step.php:215
 #: includes/shortcodes/checkout-shortcode/step-booking.php:237
-#: includes/shortcodes/search-results-shortcode.php:634
+#: includes/shortcodes/search-results-shortcode.php:639
 #: includes/utils/parse-utils.php:163
 #: includes/utils/parse-utils.php:326
 msgid "Adults number is not valid."
 msgstr "Numărul adulţilor nu este valid."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:194
+#: includes/admin/menu-pages/create-booking/booking-step.php:199
 #: includes/admin/menu-pages/create-booking/step.php:235
 #: includes/admin/menu-pages/create-booking/step.php:239
-#: includes/ajax.php:500
+#: includes/ajax.php:508
 #: includes/shortcodes/checkout-shortcode/step-booking.php:243
-#: includes/shortcodes/search-results-shortcode.php:650
+#: includes/shortcodes/search-results-shortcode.php:655
 #: includes/utils/parse-utils.php:187
 #: includes/utils/parse-utils.php:330
 msgid "Children number is not valid."
 msgstr "Numărul de copii nu este valid."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:199
-#: includes/ajax.php:634
+#: includes/admin/menu-pages/create-booking/booking-step.php:204
+#: includes/ajax.php:642
 #: includes/shortcodes/checkout-shortcode/step-booking.php:248
 #: includes/utils/parse-utils.php:334
 msgid "The total number of guests is not valid."
 msgstr "Numărul total de vizitatori nu este valid."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:210
-#: includes/admin/menu-pages/create-booking/checkout-step.php:181
+#: includes/admin/menu-pages/create-booking/booking-step.php:215
+#: includes/admin/menu-pages/create-booking/checkout-step.php:188
 #: includes/shortcodes/checkout-shortcode/step-booking.php:259
-#: includes/shortcodes/checkout-shortcode/step-checkout.php:245
+#: includes/shortcodes/checkout-shortcode/step-checkout.php:255
 #: includes/utils/parse-utils.php:345
 msgid "Selected dates do not meet booking rules for type %s"
 msgstr "Datele selectate nu îndeplinesc regulile de rezervare pentru tipul %s"
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:263
-#: includes/admin/menu-pages/create-booking/checkout-step.php:186
+#: includes/admin/menu-pages/create-booking/booking-step.php:268
+#: includes/admin/menu-pages/create-booking/checkout-step.php:193
 #: includes/utils/parse-utils.php:264
 msgid "Accommodations are not available."
 msgstr "Cazările nu sunt disponibile."
 
-#: includes/admin/menu-pages/create-booking/checkout-step.php:170
-#: includes/shortcodes/checkout-shortcode/step-checkout.php:234
+#: includes/admin/menu-pages/create-booking/checkout-step.php:177
+#: includes/shortcodes/checkout-shortcode/step-checkout.php:244
 msgid "There are no rates for requested dates."
 msgstr "Nu există tarife pentru datele solicitate."
 
@@ -1365,26 +1368,26 @@ msgid "Search parameters are not set."
 msgstr "Parametrii de căutare nu sunt setați."
 
 #: includes/admin/menu-pages/create-booking/step.php:129
-#: includes/ajax.php:438
-#: includes/script-managers/public-script-manager.php:223
+#: includes/ajax.php:446
+#: includes/script-managers/public-script-manager.php:236
 #: includes/shortcodes/checkout-shortcode/step.php:53
-#: includes/shortcodes/search-results-shortcode.php:665
+#: includes/shortcodes/search-results-shortcode.php:670
 #: includes/utils/parse-utils.php:87
 msgid "Check-in date is not valid."
 msgstr "Data de check-in nu este validă."
 
 #: includes/admin/menu-pages/create-booking/step.php:131
 #: includes/shortcodes/checkout-shortcode/step.php:56
-#: includes/shortcodes/search-results-shortcode.php:668
+#: includes/shortcodes/search-results-shortcode.php:673
 #: includes/utils/parse-utils.php:89
 msgid "Check-in date cannot be earlier than today."
 msgstr "Data de check-in nu poate fi mai devreme decât astăzi."
 
 #: includes/admin/menu-pages/create-booking/step.php:157
-#: includes/ajax.php:457
-#: includes/script-managers/public-script-manager.php:224
+#: includes/ajax.php:465
+#: includes/script-managers/public-script-manager.php:237
 #: includes/shortcodes/checkout-shortcode/step.php:90
-#: includes/shortcodes/search-results-shortcode.php:686
+#: includes/shortcodes/search-results-shortcode.php:691
 #: includes/utils/parse-utils.php:120
 msgid "Check-out date is not valid."
 msgstr "Data de check-out nu este validă."
@@ -1393,7 +1396,7 @@ msgstr "Data de check-out nu este validă."
 #: includes/ajax-api/ajax-actions/get-room-type-availability-data.php:106
 #: includes/ajax-api/ajax-actions/get-room-type-availability-data.php:210
 #: includes/shortcodes/checkout-shortcode/step.php:101
-#: includes/shortcodes/search-results-shortcode.php:698
+#: includes/shortcodes/search-results-shortcode.php:703
 #: includes/utils/parse-utils.php:131
 msgid "Nothing found. Please try again with different search parameters."
 msgstr "Nimic găsit. Te rugăm să încerci din nou cu parametri de căutare diferiți."
@@ -1416,7 +1419,7 @@ msgstr "Username"
 #: includes/bundles/customer-bundle.php:92
 #: includes/csv/bookings/bookings-exporter-helper.php:81
 #: includes/post-types/booking-cpt.php:90
-#: includes/post-types/payment-cpt.php:247
+#: includes/post-types/payment-cpt.php:248
 #: includes/views/shortcodes/checkout-view.php:588
 #: templates/account/account-details.php:22
 msgid "First Name"
@@ -1427,7 +1430,7 @@ msgstr "Prenume"
 #: includes/bundles/customer-bundle.php:101
 #: includes/csv/bookings/bookings-exporter-helper.php:82
 #: includes/post-types/booking-cpt.php:98
-#: includes/post-types/payment-cpt.php:255
+#: includes/post-types/payment-cpt.php:256
 #: includes/views/shortcodes/checkout-view.php:603
 #: templates/account/account-details.php:26
 msgid "Last Name"
@@ -1438,7 +1441,7 @@ msgstr "Nume de familie"
 #: includes/bundles/customer-bundle.php:119
 #: includes/csv/bookings/bookings-exporter-helper.php:84
 #: includes/post-types/booking-cpt.php:114
-#: includes/post-types/payment-cpt.php:271
+#: includes/post-types/payment-cpt.php:272
 #: includes/views/shortcodes/checkout-view.php:633
 #: templates/account/account-details.php:38
 msgid "Phone"
@@ -1459,7 +1462,7 @@ msgstr "Adresă"
 #: includes/bundles/customer-bundle.php:155
 #: includes/csv/bookings/bookings-exporter-helper.php:88
 #: includes/post-types/booking-cpt.php:147
-#: includes/post-types/payment-cpt.php:311
+#: includes/post-types/payment-cpt.php:312
 #: includes/views/shortcodes/checkout-view.php:705
 #: templates/account/account-details.php:64
 msgid "State / County"
@@ -1469,7 +1472,7 @@ msgstr "Stat/județ"
 #: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:130
 #: includes/csv/bookings/bookings-exporter-helper.php:85
 #: includes/post-types/booking-cpt.php:123
-#: includes/post-types/payment-cpt.php:279
+#: includes/post-types/payment-cpt.php:280
 #: templates/account/account-details.php:46
 msgid "Country"
 msgstr "Țară"
@@ -1479,7 +1482,7 @@ msgstr "Țară"
 #: includes/bundles/customer-bundle.php:146
 #: includes/csv/bookings/bookings-exporter-helper.php:87
 #: includes/post-types/booking-cpt.php:139
-#: includes/post-types/payment-cpt.php:303
+#: includes/post-types/payment-cpt.php:304
 #: includes/views/shortcodes/checkout-view.php:690
 #: templates/account/account-details.php:68
 msgid "City"
@@ -1560,8 +1563,8 @@ msgid "You cannot edit the imported booking. Please update the source booking an
 msgstr "Nu puteți edita rezervarea importată. Actualizați rezervarea sursă și resincronizați calendarele dvs."
 
 #: includes/admin/menu-pages/edit-booking/booking-control.php:22
-#: includes/ajax-api/ajax-actions/abstract-ajax-api-action.php:142
-#: includes/ajax.php:184
+#: includes/ajax-api/ajax-actions/abstract-ajax-api-action.php:167
+#: includes/ajax.php:183
 msgid "Request does not pass security verification. Please refresh the page and try one more time."
 msgstr "Cererea nu a trecut verificarea de securitate. Vă rugăm să reîmprospătați pagina și să încercați încă o dată."
 
@@ -1588,7 +1591,7 @@ msgid "Booking was edited."
 msgstr "Rezervarea a fost editată."
 
 #: includes/admin/menu-pages/edit-booking/edit-control.php:94
-#: includes/script-managers/public-script-manager.php:203
+#: includes/script-managers/public-script-manager.php:216
 #: templates/edit-booking/edit-reserved-rooms.php:67
 msgid "Available"
 msgstr "Disponibilă"
@@ -1603,8 +1606,8 @@ msgid "— Add new —"
 msgstr "— Adaugă nou —"
 
 #: includes/admin/menu-pages/extensions-menu-page.php:137
-#: includes/admin/menu-pages/extensions-menu-page.php:185
-#: includes/admin/menu-pages/extensions-menu-page.php:190
+#: includes/admin/menu-pages/extensions-menu-page.php:186
+#: includes/admin/menu-pages/extensions-menu-page.php:191
 #: includes/admin/menu-pages/settings-menu-page.php:1192
 msgid "Extensions"
 msgstr "Extensii"
@@ -1613,11 +1616,11 @@ msgstr "Extensii"
 msgid "Extend the functionality of Hotel Booking plugin with the number of helpful addons for your custom purposes."
 msgstr "Extindeți funcționalitatea plugin-ului Hotel Booking cu un număr de suplimente utile pentru scopuri personalizate."
 
-#: includes/admin/menu-pages/extensions-menu-page.php:170
+#: includes/admin/menu-pages/extensions-menu-page.php:171
 msgid "Get this Extension"
 msgstr "Obține această extensie"
 
-#: includes/admin/menu-pages/extensions-menu-page.php:178
+#: includes/admin/menu-pages/extensions-menu-page.php:179
 msgid "No extensions found."
 msgstr "Nici o extensie găsită."
 
@@ -1836,12 +1839,13 @@ msgid "Number of accommodations"
 msgstr "Numărul de cazări"
 
 #: includes/admin/menu-pages/rooms-generator-menu-page.php:57
-#: includes/payments/gateways/gateway.php:494
+#: includes/payments/gateways/gateway.php:458
 #: includes/widgets/rooms-widget.php:185
 #: templates/create-booking/results/reserve-rooms.php:35
 #: assets/blocks/blocks.js:436
 #: assets/blocks/blocks.js:686
 #: assets/blocks/blocks.js:1215
+#: assets/blocks/blocks.min.js:1
 msgid "Title"
 msgstr "Titlu"
 
@@ -1910,7 +1914,7 @@ msgstr "Selectați o pagină pentru a afișa un cont de utilizator. Utilizați s
 
 #: includes/admin/menu-pages/settings-menu-page.php:170
 #: includes/admin/menu-pages/settings-menu-page.php:177
-#: includes/post-types/payment-cpt.php:205
+#: includes/post-types/payment-cpt.php:206
 msgid "Currency"
 msgstr "Monedă"
 
@@ -2022,10 +2026,11 @@ msgid "Text instead of reservation form while booking is disabled"
 msgstr "Text în loc de formularul de rezervare în timp ce rezervarea este dezactivată"
 
 #: includes/admin/menu-pages/settings-menu-page.php:356
-#: includes/admin/menu-pages/shortcodes-menu-page.php:510
+#: includes/admin/menu-pages/shortcodes-menu-page.php:540
 #: includes/wizard.php:115
 #: assets/blocks/blocks.js:1562
 #: assets/blocks/blocks.js:1592
+#: assets/blocks/blocks.min.js:1
 msgid "Booking Confirmation"
 msgstr "Confirmarea rezervării"
 
@@ -2109,7 +2114,7 @@ msgid "Allow customers to log into their existing account during checkout."
 msgstr "Permite clienților să intre în cont în timpul check-out-ului."
 
 #: includes/admin/menu-pages/settings-menu-page.php:472
-#: includes/upgrader.php:751
+#: includes/upgrader.php:754
 #: includes/wizard.php:164
 msgid "Booking Cancellation"
 msgstr "Anulare rezervare"
@@ -2242,24 +2247,28 @@ msgstr "Afișează în caseta de lumină galeria de imagini pentru cazare."
 #: includes/admin/menu-pages/shortcodes-menu-page.php:61
 #: assets/blocks/blocks.js:250
 #: assets/blocks/blocks.js:385
+#: assets/blocks/blocks.min.js:1
 msgid "Availability Calendar"
 msgstr "Calendar disponibilitate"
 
 #: includes/admin/menu-pages/settings-menu-page.php:646
 #: includes/admin/menu-pages/shortcodes-menu-page.php:76
 #: assets/blocks/blocks.js:307
+#: assets/blocks/blocks.min.js:1
 msgid "Display per-night prices in the availability calendar."
 msgstr "Afișează prețurile pe noapte în calendarul de disponibilitate."
 
 #: includes/admin/menu-pages/settings-menu-page.php:654
 #: includes/admin/menu-pages/shortcodes-menu-page.php:82
 #: assets/blocks/blocks.js:318
+#: assets/blocks/blocks.min.js:1
 msgid "Truncate per-night prices in the availability calendar."
 msgstr "Trunchiază prețurile pe noapte în calendarul de disponibilitate."
 
 #: includes/admin/menu-pages/settings-menu-page.php:662
 #: includes/admin/menu-pages/shortcodes-menu-page.php:88
 #: assets/blocks/blocks.js:329
+#: assets/blocks/blocks.min.js:1
 msgid "Display the currency sign in the availability calendar."
 msgstr "Afișează semnul valutei în calendarul disponibilității."
 
@@ -2340,12 +2349,10 @@ msgid "Interval"
 msgstr "Interval"
 
 #: includes/admin/menu-pages/settings-menu-page.php:785
-#: includes/crons/cron-manager.php:102
 msgid "Quarter an Hour"
 msgstr "Sfert de oră"
 
 #: includes/admin/menu-pages/settings-menu-page.php:786
-#: includes/crons/cron-manager.php:107
 msgid "Half an Hour"
 msgstr "Jumătate de oră"
 
@@ -2582,7 +2589,7 @@ msgid "Default Gateway"
 msgstr "Gateway implicit"
 
 #: includes/admin/menu-pages/settings-menu-page.php:1172
-#: includes/payments/gateways/bank-gateway.php:127
+#: includes/payments/gateways/bank-gateway.php:110
 msgid "Pending Payment Time"
 msgstr "Timp de plată în așteptare"
 
@@ -2615,8 +2622,8 @@ msgstr "Setări salvate."
 msgid "<strong>Note:</strong> Payment methods will appear on the checkout page only when Confirmation Upon Payment is enabled in Accommodation > Settings > General > Confirmation Mode."
 msgstr "<strong>Notă:</strong> Metodele de plată vor apărea pe pagina de checkout doar când confirmarea la plată este activată în Accommodation > Settings > General > Confirmation Mode."
 
-#: includes/admin/menu-pages/settings-menu-page.php:1432
-#: includes/admin/menu-pages/settings-menu-page.php:1436
+#: includes/admin/menu-pages/settings-menu-page.php:1418
+#: includes/admin/menu-pages/settings-menu-page.php:1422
 #: assets/blocks/blocks.js:141
 #: assets/blocks/blocks.js:276
 #: assets/blocks/blocks.js:429
@@ -2624,11 +2631,14 @@ msgstr "<strong>Notă:</strong> Metodele de plată vor apărea pe pagina de chec
 #: assets/blocks/blocks.js:1196
 #: assets/blocks/blocks.js:1419
 #: assets/blocks/blocks.js:1501
+#: assets/blocks/blocks.min.js:1
+#: assets/js/blocks/group-availability-calendar/index.js:1
 msgid "Settings"
 msgstr "Setări"
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:21
 #: assets/blocks/blocks.js:117
+#: assets/blocks/blocks.min.js:1
 msgid "Availability Search Form"
 msgstr "Formular de căutare disponibilitate"
 
@@ -2638,11 +2648,13 @@ msgstr "Afișează formularul de căutare."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:25
 #: assets/blocks/blocks.js:148
+#: assets/blocks/blocks.min.js:1
 msgid "The number of adults presetted in the search form."
 msgstr "Numărul de adulți presetați în formularul de căutare."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:30
 #: assets/blocks/blocks.js:163
+#: assets/blocks/blocks.min.js:1
 msgid "The number of children presetted in the search form."
 msgstr "Numărul de copii presetați în formularul de căutare."
 
@@ -2652,6 +2664,7 @@ msgstr "Data de Check-in presetată în formularul de căutare."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:36
 #: includes/admin/menu-pages/shortcodes-menu-page.php:41
+#: includes/admin/menu-pages/shortcodes-menu-page.php:121
 msgid "date in format %s"
 msgstr "dată în format %s"
 
@@ -2661,434 +2674,501 @@ msgstr "Data Check-out presetată în formularul de căutare."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:45
 #: assets/blocks/blocks.js:201
+#: assets/blocks/blocks.min.js:1
 msgid "Custom attributes for advanced search."
 msgstr "Atribute personalizate pentru căutare avansată."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:46
 #: assets/blocks/blocks.js:202
+#: assets/blocks/blocks.min.js:1
 msgid "Comma-separated slugs of attributes."
 msgstr "Atribute ”slug” separate prin virgulă."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:50
 #: includes/admin/menu-pages/shortcodes-menu-page.php:94
-#: includes/admin/menu-pages/shortcodes-menu-page.php:180
-#: includes/admin/menu-pages/shortcodes-menu-page.php:259
-#: includes/admin/menu-pages/shortcodes-menu-page.php:361
-#: includes/admin/menu-pages/shortcodes-menu-page.php:422
-#: includes/admin/menu-pages/shortcodes-menu-page.php:450
-#: includes/admin/menu-pages/shortcodes-menu-page.php:470
-#: includes/admin/menu-pages/shortcodes-menu-page.php:494
-#: includes/admin/menu-pages/shortcodes-menu-page.php:514
-#: includes/admin/menu-pages/shortcodes-menu-page.php:530
-#: includes/admin/menu-pages/shortcodes-menu-page.php:546
+#: includes/admin/menu-pages/shortcodes-menu-page.php:125
+#: includes/admin/menu-pages/shortcodes-menu-page.php:210
+#: includes/admin/menu-pages/shortcodes-menu-page.php:289
+#: includes/admin/menu-pages/shortcodes-menu-page.php:391
+#: includes/admin/menu-pages/shortcodes-menu-page.php:452
+#: includes/admin/menu-pages/shortcodes-menu-page.php:480
+#: includes/admin/menu-pages/shortcodes-menu-page.php:500
+#: includes/admin/menu-pages/shortcodes-menu-page.php:524
+#: includes/admin/menu-pages/shortcodes-menu-page.php:544
+#: includes/admin/menu-pages/shortcodes-menu-page.php:560
+#: includes/admin/menu-pages/shortcodes-menu-page.php:576
 msgid "Custom CSS class for shortcode wrapper"
 msgstr "Clasă personalizată CSS pentru wrapper shortcode"
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:51
 #: includes/admin/menu-pages/shortcodes-menu-page.php:95
-#: includes/admin/menu-pages/shortcodes-menu-page.php:181
-#: includes/admin/menu-pages/shortcodes-menu-page.php:260
-#: includes/admin/menu-pages/shortcodes-menu-page.php:362
-#: includes/admin/menu-pages/shortcodes-menu-page.php:423
-#: includes/admin/menu-pages/shortcodes-menu-page.php:451
-#: includes/admin/menu-pages/shortcodes-menu-page.php:471
-#: includes/admin/menu-pages/shortcodes-menu-page.php:495
-#: includes/admin/menu-pages/shortcodes-menu-page.php:515
-#: includes/admin/menu-pages/shortcodes-menu-page.php:531
-#: includes/admin/menu-pages/shortcodes-menu-page.php:547
+#: includes/admin/menu-pages/shortcodes-menu-page.php:126
+#: includes/admin/menu-pages/shortcodes-menu-page.php:211
+#: includes/admin/menu-pages/shortcodes-menu-page.php:290
+#: includes/admin/menu-pages/shortcodes-menu-page.php:392
+#: includes/admin/menu-pages/shortcodes-menu-page.php:453
+#: includes/admin/menu-pages/shortcodes-menu-page.php:481
+#: includes/admin/menu-pages/shortcodes-menu-page.php:501
+#: includes/admin/menu-pages/shortcodes-menu-page.php:525
+#: includes/admin/menu-pages/shortcodes-menu-page.php:545
+#: includes/admin/menu-pages/shortcodes-menu-page.php:561
+#: includes/admin/menu-pages/shortcodes-menu-page.php:577
 msgid "whitespace separated css classes"
 msgstr "clase CSS separate prin spațiu alb"
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:65
-#: includes/admin/menu-pages/shortcodes-menu-page.php:465
-#: includes/admin/menu-pages/shortcodes-menu-page.php:489
+#: includes/admin/menu-pages/shortcodes-menu-page.php:495
+#: includes/admin/menu-pages/shortcodes-menu-page.php:519
 #: includes/csv/bookings/bookings-exporter-helper.php:76
 #: includes/emails/templaters/reserved-rooms-templater.php:187
 msgid "Accommodation Type ID"
 msgstr "ID tip cazare"
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:66
-#: includes/admin/menu-pages/shortcodes-menu-page.php:466
+#: includes/admin/menu-pages/shortcodes-menu-page.php:496
 msgid "ID of Accommodation Type to check availability."
 msgstr "ID-ul tipului de cazare pentru a verifica disponibilitatea."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:67
-#: includes/admin/menu-pages/shortcodes-menu-page.php:378
-#: includes/admin/menu-pages/shortcodes-menu-page.php:467
-#: includes/admin/menu-pages/shortcodes-menu-page.php:491
+#: includes/admin/menu-pages/shortcodes-menu-page.php:408
+#: includes/admin/menu-pages/shortcodes-menu-page.php:497
+#: includes/admin/menu-pages/shortcodes-menu-page.php:521
 msgid "integer number"
 msgstr "număr întreg"
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:70
 #: assets/blocks/blocks.js:295
+#: assets/blocks/blocks.min.js:1
 msgid "How many months to show."
 msgstr "Câte luni de arătat."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:72
 #: assets/blocks/blocks.js:296
+#: assets/blocks/blocks.min.js:1
 msgid "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\""
 msgstr "Setaţi numărul de coloane sau numărul de rânduri şi coloane separate prin virgulă. Exemplu: \"3\" sau \"2,3\""
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:106
 #: assets/blocks/blocks.js:251
+#: assets/blocks/blocks.min.js:1
 msgid "Display availability calendar of the current accommodation type or by ID."
 msgstr "Afișează calendarul disponibilității tipului de cazare curent sau prin ID."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:111
+#: assets/js/blocks/group-availability-calendar/index.js:1
+msgid "Multi-Property Availability Calendar"
+msgstr ""
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:112
+msgid "Displays a list of accommodation types and their availability by date in one view."
+msgstr ""
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:115
+#: assets/js/blocks/group-availability-calendar/index.js:1
+msgid "Accommodation types to display"
+msgstr ""
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:116
+msgid "Comma-separated list of accommodation type ids or slugs."
+msgstr ""
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:117
+#: includes/admin/menu-pages/shortcodes-menu-page.php:127
+#: includes/admin/menu-pages/shortcodes-menu-page.php:198
+#: includes/admin/menu-pages/shortcodes-menu-page.php:207
+#: includes/admin/menu-pages/shortcodes-menu-page.php:331
+#: includes/admin/menu-pages/shortcodes-menu-page.php:340
+#: includes/admin/menu-pages/shortcodes-menu-page.php:379
+#: includes/admin/menu-pages/shortcodes-menu-page.php:388
+#: includes/admin/menu-pages/shortcodes-menu-page.php:675
+msgid "empty string"
+msgstr "nume gol"
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:120
+#: includes/post-types/season-cpt.php:32
+#: includes/reports/earnings-report.php:332
+#: assets/js/blocks/group-availability-calendar/index.js:1
+msgid "Start date"
+msgstr "Data de început"
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:122
+msgid "Current date"
+msgstr ""
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:141
 #: assets/blocks/blocks.js:397
 #: assets/blocks/blocks.js:630
+#: assets/blocks/blocks.min.js:1
 msgid "Availability Search Results"
 msgstr "Rezultate căutare disponibilitate"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:112
+#: includes/admin/menu-pages/shortcodes-menu-page.php:142
 #: assets/blocks/blocks.js:398
+#: assets/blocks/blocks.min.js:1
 msgid "Display listing of accommodation types that meet the search criteria."
 msgstr "Afișează lista tipurilor de cazare care îndeplinesc criteriile de căutare."
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:115
-#: includes/admin/menu-pages/shortcodes-menu-page.php:212
-#: includes/admin/menu-pages/shortcodes-menu-page.php:381
-#: assets/blocks/blocks.js:437
-#: assets/blocks/blocks.js:687
-#: assets/blocks/blocks.js:1216
-msgid "Whether to display title of the accommodation type."
-msgstr "Dacă se afișează titlul tipului de cazare."
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:120
-#: includes/admin/menu-pages/shortcodes-menu-page.php:217
-#: includes/admin/menu-pages/shortcodes-menu-page.php:386
-#: assets/blocks/blocks.js:449
-#: assets/blocks/blocks.js:699
-#: assets/blocks/blocks.js:1228
-msgid "Whether to display featured image of the accommodation type."
-msgstr "Dacă se afișează imaginea principală a tipului de cazare."
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:125
-#: includes/admin/menu-pages/shortcodes-menu-page.php:222
-#: includes/admin/menu-pages/shortcodes-menu-page.php:391
-#: assets/blocks/blocks.js:461
-#: assets/blocks/blocks.js:711
-#: assets/blocks/blocks.js:1240
-msgid "Whether to display gallery of the accommodation type."
-msgstr "Dacă se afișează galeria tipului cazării."
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:130
-#: includes/admin/menu-pages/shortcodes-menu-page.php:227
-#: includes/admin/menu-pages/shortcodes-menu-page.php:396
-#: assets/blocks/blocks.js:473
-#: assets/blocks/blocks.js:723
-#: assets/blocks/blocks.js:1252
-msgid "Whether to display excerpt (short description) of the accommodation type."
-msgstr "Dacă se afișează extrasul (scurtă descriere) a tipului de cazare."
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:135
-#: includes/admin/menu-pages/shortcodes-menu-page.php:232
-#: includes/admin/menu-pages/shortcodes-menu-page.php:401
-#: assets/blocks/blocks.js:485
-#: assets/blocks/blocks.js:735
-#: assets/blocks/blocks.js:1264
-msgid "Whether to display details of the accommodation type."
-msgstr "Dacă să fie afișate detaliile tipului de cazare."
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:140
-#: includes/admin/menu-pages/shortcodes-menu-page.php:237
-#: includes/admin/menu-pages/shortcodes-menu-page.php:406
-#: includes/admin/menu-pages/shortcodes-menu-page.php:427
-#: assets/blocks/blocks.js:497
-#: assets/blocks/blocks.js:747
-#: assets/blocks/blocks.js:1276
-msgid "Whether to display price of the accommodation type."
-msgstr "Dacă se afișează prețul tipului de cazare."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:145
 #: includes/admin/menu-pages/shortcodes-menu-page.php:242
 #: includes/admin/menu-pages/shortcodes-menu-page.php:411
+#: assets/blocks/blocks.js:437
+#: assets/blocks/blocks.js:687
+#: assets/blocks/blocks.js:1216
+#: assets/blocks/blocks.min.js:1
+msgid "Whether to display title of the accommodation type."
+msgstr "Dacă se afișează titlul tipului de cazare."
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:150
+#: includes/admin/menu-pages/shortcodes-menu-page.php:247
+#: includes/admin/menu-pages/shortcodes-menu-page.php:416
+#: assets/blocks/blocks.js:449
+#: assets/blocks/blocks.js:699
+#: assets/blocks/blocks.js:1228
+#: assets/blocks/blocks.min.js:1
+msgid "Whether to display featured image of the accommodation type."
+msgstr "Dacă se afișează imaginea principală a tipului de cazare."
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:155
+#: includes/admin/menu-pages/shortcodes-menu-page.php:252
+#: includes/admin/menu-pages/shortcodes-menu-page.php:421
+#: assets/blocks/blocks.js:461
+#: assets/blocks/blocks.js:711
+#: assets/blocks/blocks.js:1240
+#: assets/blocks/blocks.min.js:1
+msgid "Whether to display gallery of the accommodation type."
+msgstr "Dacă se afișează galeria tipului cazării."
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:160
+#: includes/admin/menu-pages/shortcodes-menu-page.php:257
+#: includes/admin/menu-pages/shortcodes-menu-page.php:426
+#: assets/blocks/blocks.js:473
+#: assets/blocks/blocks.js:723
+#: assets/blocks/blocks.js:1252
+#: assets/blocks/blocks.min.js:1
+msgid "Whether to display excerpt (short description) of the accommodation type."
+msgstr "Dacă se afișează extrasul (scurtă descriere) a tipului de cazare."
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:165
+#: includes/admin/menu-pages/shortcodes-menu-page.php:262
+#: includes/admin/menu-pages/shortcodes-menu-page.php:431
+#: assets/blocks/blocks.js:485
+#: assets/blocks/blocks.js:735
+#: assets/blocks/blocks.js:1264
+#: assets/blocks/blocks.min.js:1
+msgid "Whether to display details of the accommodation type."
+msgstr "Dacă să fie afișate detaliile tipului de cazare."
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:170
+#: includes/admin/menu-pages/shortcodes-menu-page.php:267
+#: includes/admin/menu-pages/shortcodes-menu-page.php:436
+#: includes/admin/menu-pages/shortcodes-menu-page.php:457
+#: assets/blocks/blocks.js:497
+#: assets/blocks/blocks.js:747
+#: assets/blocks/blocks.js:1276
+#: assets/blocks/blocks.min.js:1
+msgid "Whether to display price of the accommodation type."
+msgstr "Dacă se afișează prețul tipului de cazare."
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:175
+#: includes/admin/menu-pages/shortcodes-menu-page.php:272
+#: includes/admin/menu-pages/shortcodes-menu-page.php:441
 msgid "Show View Details button"
 msgstr "Arată butonul Vizualizare Detalii"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:146
-#: includes/admin/menu-pages/shortcodes-menu-page.php:243
-#: includes/admin/menu-pages/shortcodes-menu-page.php:412
+#: includes/admin/menu-pages/shortcodes-menu-page.php:176
+#: includes/admin/menu-pages/shortcodes-menu-page.php:273
+#: includes/admin/menu-pages/shortcodes-menu-page.php:442
 #: assets/blocks/blocks.js:509
 #: assets/blocks/blocks.js:759
 #: assets/blocks/blocks.js:1288
+#: assets/blocks/blocks.min.js:1
 msgid "Whether to display \"View Details\" button with the link to accommodation type."
 msgstr "Dacă se afișează butonul \"Vizualizare detalii\" cu link-ul către tipul de cazare."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:151
-#: includes/admin/menu-pages/shortcodes-menu-page.php:284
-#: includes/admin/menu-pages/shortcodes-menu-page.php:332
+#: includes/admin/menu-pages/shortcodes-menu-page.php:181
+#: includes/admin/menu-pages/shortcodes-menu-page.php:314
+#: includes/admin/menu-pages/shortcodes-menu-page.php:362
 msgid "Sort by."
 msgstr "Sortați după."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:153
-#: includes/admin/menu-pages/shortcodes-menu-page.php:173
-#: includes/admin/menu-pages/shortcodes-menu-page.php:286
-#: includes/admin/menu-pages/shortcodes-menu-page.php:306
-#: includes/admin/menu-pages/shortcodes-menu-page.php:334
-#: includes/admin/menu-pages/shortcodes-menu-page.php:354
+#: includes/admin/menu-pages/shortcodes-menu-page.php:183
+#: includes/admin/menu-pages/shortcodes-menu-page.php:203
+#: includes/admin/menu-pages/shortcodes-menu-page.php:316
+#: includes/admin/menu-pages/shortcodes-menu-page.php:336
+#: includes/admin/menu-pages/shortcodes-menu-page.php:364
+#: includes/admin/menu-pages/shortcodes-menu-page.php:384
 msgid "%1$s. See the <a href=\"%2$s\" target=\"_blank\">full list</a>."
 msgstr "%1$s. Vezi lista completă <a href=\"%2$s\" target=\"_blank\"></a>."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:160
-#: includes/admin/menu-pages/shortcodes-menu-page.php:293
-#: includes/admin/menu-pages/shortcodes-menu-page.php:341
+#: includes/admin/menu-pages/shortcodes-menu-page.php:190
+#: includes/admin/menu-pages/shortcodes-menu-page.php:323
+#: includes/admin/menu-pages/shortcodes-menu-page.php:371
 msgid "Designates the ascending or descending order of sorting."
 msgstr "Desemnează ordinea ascendentă sau descendentă a sortării."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:162
-#: includes/admin/menu-pages/shortcodes-menu-page.php:295
-#: includes/admin/menu-pages/shortcodes-menu-page.php:343
+#: includes/admin/menu-pages/shortcodes-menu-page.php:192
+#: includes/admin/menu-pages/shortcodes-menu-page.php:325
+#: includes/admin/menu-pages/shortcodes-menu-page.php:373
 msgid "ASC - from lowest to highest values (1, 2, 3). DESC - from highest to lowest values (3, 2, 1)."
 msgstr "ASC - de la cele mai mici la cele mai înalte valori (1, 2, 3). DESC - de la cele mai ridicate la cele mai scăzute valori (3, 2, 1)."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:166
-#: includes/admin/menu-pages/shortcodes-menu-page.php:299
-#: includes/admin/menu-pages/shortcodes-menu-page.php:347
+#: includes/admin/menu-pages/shortcodes-menu-page.php:196
+#: includes/admin/menu-pages/shortcodes-menu-page.php:329
+#: includes/admin/menu-pages/shortcodes-menu-page.php:377
 #: assets/blocks/blocks.js:574
 #: assets/blocks/blocks.js:910
 #: assets/blocks/blocks.js:1094
+#: assets/blocks/blocks.min.js:1
 msgid "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\"."
 msgstr "Nume câmp personalizat. Necesar dacă \"orderby\" este unul dintre \"meta_value\", \"meta_value_num\" sau \"meta_value_*\"."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:167
-#: includes/admin/menu-pages/shortcodes-menu-page.php:300
-#: includes/admin/menu-pages/shortcodes-menu-page.php:348
+#: includes/admin/menu-pages/shortcodes-menu-page.php:197
+#: includes/admin/menu-pages/shortcodes-menu-page.php:330
+#: includes/admin/menu-pages/shortcodes-menu-page.php:378
 msgid "custom field name"
 msgstr "numele câmpului personalizat"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:168
-#: includes/admin/menu-pages/shortcodes-menu-page.php:177
-#: includes/admin/menu-pages/shortcodes-menu-page.php:301
-#: includes/admin/menu-pages/shortcodes-menu-page.php:310
-#: includes/admin/menu-pages/shortcodes-menu-page.php:349
-#: includes/admin/menu-pages/shortcodes-menu-page.php:358
-#: includes/admin/menu-pages/shortcodes-menu-page.php:645
-msgid "empty string"
-msgstr "nume gol"
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:171
-#: includes/admin/menu-pages/shortcodes-menu-page.php:304
-#: includes/admin/menu-pages/shortcodes-menu-page.php:352
+#: includes/admin/menu-pages/shortcodes-menu-page.php:201
+#: includes/admin/menu-pages/shortcodes-menu-page.php:334
+#: includes/admin/menu-pages/shortcodes-menu-page.php:382
 msgid "Specified type of the custom field. Can be used in conjunction with orderby=\"meta_value\"."
 msgstr "Tipul specificat al câmpului personalizat. Poate fi folosit împreună cu orderby=\"meta_value\"."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:185
+#: includes/admin/menu-pages/shortcodes-menu-page.php:215
 msgid "Sort by. Use \"orderby\" insted."
 msgstr "Sortează după. Folosește \"orderby\" mai degrabă."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:191
-#: includes/admin/menu-pages/shortcodes-menu-page.php:248
+#: includes/admin/menu-pages/shortcodes-menu-page.php:221
+#: includes/admin/menu-pages/shortcodes-menu-page.php:278
 msgid "Show Book button"
 msgstr "Arată butonul Rezervă"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:192
-#: includes/admin/menu-pages/shortcodes-menu-page.php:249
-#: includes/admin/menu-pages/shortcodes-menu-page.php:417
+#: includes/admin/menu-pages/shortcodes-menu-page.php:222
+#: includes/admin/menu-pages/shortcodes-menu-page.php:279
+#: includes/admin/menu-pages/shortcodes-menu-page.php:447
 #: assets/blocks/blocks.js:771
 #: assets/blocks/blocks.js:1300
+#: assets/blocks/blocks.min.js:1
 msgid "Whether to display Book button."
 msgstr "Dacă se afișează butonul Rezervă."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:204
-#: includes/admin/menu-pages/shortcodes-menu-page.php:457
+#: includes/admin/menu-pages/shortcodes-menu-page.php:234
+#: includes/admin/menu-pages/shortcodes-menu-page.php:487
 msgid "NOTE:"
 msgstr "NOTĂ:"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:204
+#: includes/admin/menu-pages/shortcodes-menu-page.php:234
 msgid "Use only on page that you set as Search Results Page in <a href=\"%s\">Settings</a>"
 msgstr "Utilizați numai pe pagina pe care ați setat-o ca Pagina cu rezultate căutare în <a href=\"%s\">Setări</a>"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:209
+#: includes/admin/menu-pages/shortcodes-menu-page.php:239
 #: assets/blocks/blocks.js:642
+#: assets/blocks/blocks.min.js:1
 msgid "Accommodation Types Listing"
 msgstr "Listarea tipurilor de cazare"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:254
-#: includes/admin/menu-pages/shortcodes-menu-page.php:327
+#: includes/admin/menu-pages/shortcodes-menu-page.php:284
+#: includes/admin/menu-pages/shortcodes-menu-page.php:357
 #: assets/blocks/blocks.js:804
 #: assets/blocks/blocks.js:1028
+#: assets/blocks/blocks.min.js:1
 msgid "Count per page"
 msgstr "Număr per pagină"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:255
+#: includes/admin/menu-pages/shortcodes-menu-page.php:285
 #: assets/blocks/blocks.js:805
+#: assets/blocks/blocks.min.js:1
 msgid "integer, -1 to display all, default: \"Blog pages show at most\""
 msgstr "integer, -1 pentru a afişa toate, implicit: \"Paginile blog arată cel mult\""
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:264
+#: includes/admin/menu-pages/shortcodes-menu-page.php:294
 #: assets/blocks/blocks.js:817
+#: assets/blocks/blocks.min.js:1
 msgid "IDs of categories that will be shown."
 msgstr "ID-urile categoriilor care vor fi afișate."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:265
-#: includes/admin/menu-pages/shortcodes-menu-page.php:270
-#: includes/admin/menu-pages/shortcodes-menu-page.php:275
-#: includes/admin/menu-pages/shortcodes-menu-page.php:323
+#: includes/admin/menu-pages/shortcodes-menu-page.php:295
+#: includes/admin/menu-pages/shortcodes-menu-page.php:300
+#: includes/admin/menu-pages/shortcodes-menu-page.php:305
+#: includes/admin/menu-pages/shortcodes-menu-page.php:353
 #: assets/blocks/blocks.js:1017
+#: assets/blocks/blocks.min.js:1
 msgid "Comma-separated IDs."
 msgstr "ID separate prin virgulă."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:269
+#: includes/admin/menu-pages/shortcodes-menu-page.php:299
 #: assets/blocks/blocks.js:829
+#: assets/blocks/blocks.min.js:1
 msgid "IDs of tags that will be shown."
 msgstr "ID-urile tag-urilor care vor fi afișate."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:274
+#: includes/admin/menu-pages/shortcodes-menu-page.php:304
 #: assets/blocks/blocks.js:793
+#: assets/blocks/blocks.min.js:1
 msgid "IDs of accommodations that will be shown."
 msgstr "ID-urile de cazare care vor fi afișate."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:279
+#: includes/admin/menu-pages/shortcodes-menu-page.php:309
 #: assets/blocks/blocks.js:841
+#: assets/blocks/blocks.min.js:1
 msgid "Logical relationship between each taxonomy when there is more than one."
 msgstr "Relație logică între fiecare taxonomie atunci când există mai mult de una."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:319
+#: includes/admin/menu-pages/shortcodes-menu-page.php:349
 #: assets/blocks/blocks.js:983
+#: assets/blocks/blocks.min.js:1
 msgid "Services Listing"
 msgstr "Listare servicii"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:322
+#: includes/admin/menu-pages/shortcodes-menu-page.php:352
 #: assets/blocks/blocks.js:792
+#: assets/blocks/blocks.min.js:1
 msgid "IDs"
 msgstr ""
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:324
+#: includes/admin/menu-pages/shortcodes-menu-page.php:354
 #: assets/blocks/blocks.js:1016
+#: assets/blocks/blocks.min.js:1
 msgid "IDs of services that will be shown. "
 msgstr "ID-urile de servicii care vor fi afișate. "
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:368
+#: includes/admin/menu-pages/shortcodes-menu-page.php:398
 msgid "Show All Services"
 msgstr "Arată toate serviciile"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:373
+#: includes/admin/menu-pages/shortcodes-menu-page.php:403
 #: assets/blocks/blocks.js:1167
 #: assets/blocks/blocks.js:1344
+#: assets/blocks/blocks.min.js:1
 msgid "Single Accommodation Type"
 msgstr "Tip cazare single"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:377
+#: includes/admin/menu-pages/shortcodes-menu-page.php:407
 msgid "ID of accommodation type to display."
 msgstr "ID-ul tipului de cazare pentru afișare."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:441
+#: includes/admin/menu-pages/shortcodes-menu-page.php:471
 msgid "Display accommodation type with title and image."
 msgstr "Afișează tipul de cazare cu titlu si imagine."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:446
+#: includes/admin/menu-pages/shortcodes-menu-page.php:476
 #: assets/blocks/blocks.js:1356
 #: assets/blocks/blocks.js:1386
+#: assets/blocks/blocks.min.js:1
 msgid "Checkout Form"
 msgstr "Formular Checkout"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:447
+#: includes/admin/menu-pages/shortcodes-menu-page.php:477
 #: assets/blocks/blocks.js:1357
+#: assets/blocks/blocks.min.js:1
 msgid "Display checkout form."
 msgstr "Afișează formularul de checkout."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:457
+#: includes/admin/menu-pages/shortcodes-menu-page.php:487
 msgid "Use only on page that you set as Checkout Page in <a href=\"%s\">Settings</a>"
 msgstr "Utilizați numai pe pagina pe care ați setat-o ca pagină de Checkout în <a href=\"%s\">Setări</a>"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:462
+#: includes/admin/menu-pages/shortcodes-menu-page.php:492
 #: assets/blocks/blocks.js:1398
 #: assets/blocks/blocks.js:1468
+#: assets/blocks/blocks.min.js:1
 msgid "Booking Form"
 msgstr "Formular de rezervare"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:481
+#: includes/admin/menu-pages/shortcodes-menu-page.php:511
 msgid "Show Booking Form for Accommodation Type with id 777"
 msgstr "Arată formularul de rezervare pentru tipul de cazare cu id 777"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:486
+#: includes/admin/menu-pages/shortcodes-menu-page.php:516
 #: assets/blocks/blocks.js:1480
 #: assets/blocks/blocks.js:1550
+#: assets/blocks/blocks.min.js:1
 msgid "Accommodation Rates List"
 msgstr "Listă tarife de cazare"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:490
+#: includes/admin/menu-pages/shortcodes-menu-page.php:520
 #: assets/blocks/blocks.js:1204
+#: assets/blocks/blocks.min.js:1
 msgid "ID of accommodation type."
 msgstr "ID-ul tipului de cazare."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:505
+#: includes/admin/menu-pages/shortcodes-menu-page.php:535
 msgid "Show Accommodation Rates List for accommodation type with id 777"
 msgstr "Arată lista cu tarife de cazare pentru tipul de cazare cu Id 777"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:511
+#: includes/admin/menu-pages/shortcodes-menu-page.php:541
 #: assets/blocks/blocks.js:1563
+#: assets/blocks/blocks.min.js:1
 msgid "Display booking and payment details."
 msgstr "Afișează detaliile de rezervare și plată."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:521
+#: includes/admin/menu-pages/shortcodes-menu-page.php:551
 msgid "Use this shortcode on Booking Confirmed and Reservation Received pages"
 msgstr "Utilizați această comandă rapidă pentru paginile ”Rezervare confirmată” și ”Rezervare primită”"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:526
+#: includes/admin/menu-pages/shortcodes-menu-page.php:556
 msgid "Booking Cancelation"
 msgstr "Anulare rezervare"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:527
+#: includes/admin/menu-pages/shortcodes-menu-page.php:557
 msgid "Display booking cancelation details."
 msgstr "Afișează detaliile de anulare a rezervării."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:537
+#: includes/admin/menu-pages/shortcodes-menu-page.php:567
 msgid "Use this shortcode on the Booking Cancelation page"
 msgstr "Utilizați acest cod scurt pe pagina de anulare a rezervării"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:542
+#: includes/admin/menu-pages/shortcodes-menu-page.php:572
 msgid "Customer Account"
 msgstr "Cont client"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:543
+#: includes/admin/menu-pages/shortcodes-menu-page.php:573
 msgid "Display log in form or customer account area."
 msgstr "Afișează formularul de autentificare sau zona contului de client."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:553
+#: includes/admin/menu-pages/shortcodes-menu-page.php:583
 msgid "Use this shortcode to create the My Account page."
 msgstr "Folosește acest cod rapid pentru a crea pagina contului meu."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:565
-#: includes/admin/menu-pages/shortcodes-menu-page.php:699
-#: includes/admin/menu-pages/shortcodes-menu-page.php:703
+#: includes/admin/menu-pages/shortcodes-menu-page.php:595
+#: includes/admin/menu-pages/shortcodes-menu-page.php:729
+#: includes/admin/menu-pages/shortcodes-menu-page.php:733
 msgid "Shortcodes"
 msgstr "Coduri"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:569
+#: includes/admin/menu-pages/shortcodes-menu-page.php:599
 msgid "Shortcode"
 msgstr "Cod scurt"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:570
+#: includes/admin/menu-pages/shortcodes-menu-page.php:600
 #: includes/post-types/attributes-cpt.php:307
 msgid "Parameters"
 msgstr "Parametri"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:571
+#: includes/admin/menu-pages/shortcodes-menu-page.php:601
 msgid "Example"
 msgstr "Exemplu"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:603
-#: includes/admin/menu-pages/shortcodes-menu-page.php:625
+#: includes/admin/menu-pages/shortcodes-menu-page.php:633
+#: includes/admin/menu-pages/shortcodes-menu-page.php:655
 msgid "Deprecated since %s"
 msgstr "Dezaprobată de la %s"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:635
+#: includes/admin/menu-pages/shortcodes-menu-page.php:665
 msgid "Values:"
 msgstr "Valori:"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:640
+#: includes/admin/menu-pages/shortcodes-menu-page.php:670
 msgid "Default:"
 msgstr "Implicit:"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:687
+#: includes/admin/menu-pages/shortcodes-menu-page.php:717
 msgid "Optional."
 msgstr "Opţional."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:695
+#: includes/admin/menu-pages/shortcodes-menu-page.php:725
 #: includes/advanced/admin/tab/subtabs/api-keys/html-keys-edit.php:30
-#: includes/payments/gateways/gateway.php:365
+#: includes/payments/gateways/gateway.php:341
 #: includes/views/shortcodes/checkout-view.php:247
 #: includes/views/shortcodes/checkout-view.php:270
 #: includes/views/shortcodes/checkout-view.php:538
@@ -3256,12 +3336,12 @@ msgid "d/m/Y - H:i:s"
 msgstr ""
 
 #: includes/admin/sync-rooms-list-table.php:75
-#: includes/ajax.php:945
+#: includes/ajax.php:968
 msgid "Waiting"
 msgstr "Aşteptare"
 
 #: includes/admin/sync-rooms-list-table.php:78
-#: includes/ajax.php:948
+#: includes/ajax.php:971
 msgid "Processing"
 msgstr "Prelucrare"
 
@@ -3327,7 +3407,7 @@ msgstr "Nici o cheie găsită."
 #: includes/advanced/admin/tab/subtabs/api-keys/api-keys-table-list.php:57
 #: includes/advanced/admin/tab/subtabs/api-keys/html-keys-edit.php:22
 #: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:95
-#: includes/payments/gateways/gateway.php:504
+#: includes/payments/gateways/gateway.php:465
 #: includes/post-types/coupon-cpt.php:37
 #: includes/post-types/rate-cpt.php:81
 msgid "Description"
@@ -3456,15 +3536,15 @@ msgstr "Secretul consumatorului"
 msgid "QR Code"
 msgstr "Cod QR"
 
-#: includes/ajax-api/ajax-actions/create-stripe-payment-intent.php:33
+#: includes/ajax-api/ajax-actions/create-stripe-payment-intent.php:34
 #: includes/ajax-api/ajax-actions/update-booking-notes.php:52
-#: includes/ajax.php:344
-#: includes/ajax.php:388
+#: includes/ajax.php:347
+#: includes/ajax.php:391
 #: includes/csv/bookings/bookings-query.php:85
 msgid "Please complete all required fields and try again."
 msgstr "Vă rugăm să completați toate câmpurile obligatorii și să încercați din nou."
 
-#: includes/ajax-api/ajax-actions/create-stripe-payment-intent.php:55
+#: includes/ajax-api/ajax-actions/create-stripe-payment-intent.php:57
 msgid "Sorry, the minimum allowed payment amount is %s to use this payment method."
 msgstr "Ne pare rău, suma minimă permisă de plată este %s pentru a utiliza această metodă de plată."
 
@@ -3483,6 +3563,7 @@ msgstr "Informații rezervare"
 #: templates/shortcodes/search/search-form.php:43
 #: templates/widgets/search-availability/search-form.php:43
 #: assets/blocks/blocks.js:177
+#: assets/blocks/blocks.min.js:1
 msgid "Check-in Date"
 msgstr "Data de check-in"
 
@@ -3496,6 +3577,7 @@ msgstr "Data de check-in"
 #: templates/shortcodes/search/search-form.php:63
 #: templates/widgets/search-availability/search-form.php:62
 #: assets/blocks/blocks.js:189
+#: assets/blocks/blocks.min.js:1
 msgid "Check-out Date"
 msgstr "Data Check-out"
 
@@ -3557,57 +3639,58 @@ msgstr "%1$s pe %2$s"
 msgid "Based on your search parameters"
 msgstr "Bazat pe parametrii de căutare"
 
-#: includes/ajax.php:245
+#: includes/ajax.php:244
 msgid "No bookings found for your request."
 msgstr "Nu s-a găsit nicio rezervare pentru cererea dvs."
 
-#: includes/ajax.php:252
+#: includes/ajax.php:251
 msgid "Uploads directory is not writable."
 msgstr "Directorul de încărcări nu permite scrierea."
 
-#: includes/ajax.php:314
+#: includes/ajax.php:311
+#: includes/ajax.php:1069
+msgid "You do not have permission to do this action."
+msgstr "Nu aveţi permisiunea de a face această acţiune."
+
+#: includes/ajax.php:317
 msgid "No enough data"
 msgstr "Nu există suficiente date"
 
-#: includes/ajax.php:332
-#: includes/script-managers/admin-script-manager.php:94
+#: includes/ajax.php:335
+#: includes/script-managers/admin-script-manager.php:112
 msgid "An error has occurred"
 msgstr "A apărut o eroare"
 
-#: includes/ajax.php:372
-#: includes/script-managers/public-script-manager.php:199
+#: includes/ajax.php:375
+#: includes/script-managers/public-script-manager.php:212
 msgid "An error has occurred, please try again later."
 msgstr "A apărut o eroare, vă rugăm să încercaţi din nou mai târziu."
 
-#: includes/ajax.php:473
+#: includes/ajax.php:481
 msgid "The number of adults is not valid."
 msgstr "Numărul de adulţi nu este valid."
 
-#: includes/ajax.php:477
+#: includes/ajax.php:485
 msgid "The number of guests is not valid."
 msgstr "Numărul de vizitatori nu este valid."
 
-#: includes/ajax.php:519
-#: includes/ajax.php:593
+#: includes/ajax.php:527
+#: includes/ajax.php:601
 msgid "An error has occurred. Please try again later."
 msgstr "A apărut o eroare. Te rugăm să încerci din nou mai târziu."
 
-#: includes/ajax.php:750
+#: includes/ajax.php:770
 msgid "Chosen payment method is not available. Please refresh the page and try one more time."
 msgstr "Metoda de plată aleasă nu este disponibilă. Vă rugăm să reîmprospătați pagina și să încercați încă o dată."
 
-#: includes/ajax.php:832
+#: includes/ajax.php:855
 msgid "Coupon applied successfully."
 msgstr "Cupon aplicat cu succes."
 
-#: includes/ajax.php:838
+#: includes/ajax.php:861
 #: includes/entities/coupon.php:366
 msgid "Coupon is not valid."
 msgstr "Cuponul nu este valid."
-
-#: includes/ajax.php:1046
-msgid "You do not have permission to do this action."
-msgstr "Nu aveţi permisiunea de a face această acţiune."
 
 #: includes/attribute-functions.php:164
 #: includes/post-types/attributes-cpt.php:137
@@ -3650,14 +3733,14 @@ msgstr "Caută"
 #: includes/bookings-calendar.php:652
 #: includes/bookings-calendar.php:654
 #: includes/bookings-calendar.php:697
-#: includes/script-managers/public-script-manager.php:200
+#: includes/script-managers/public-script-manager.php:213
 msgid "Booked"
 msgstr "Rezervat"
 
 #: includes/bookings-calendar.php:657
 #: includes/bookings-calendar.php:659
 #: includes/bookings-calendar.php:698
-#: includes/script-managers/public-script-manager.php:202
+#: includes/script-managers/public-script-manager.php:215
 msgid "Pending"
 msgstr "În așteptare"
 
@@ -3719,7 +3802,7 @@ msgstr "Rezervare #%d"
 
 #: includes/bookings-calendar.php:1136
 #: includes/bookings-calendar.php:1140
-#: includes/script-managers/public-script-manager.php:201
+#: includes/script-managers/public-script-manager.php:214
 msgid "Buffer time."
 msgstr "Timp tampon."
 
@@ -3754,1668 +3837,19 @@ msgstr "Descriere: %s."
 msgid "Source: %s."
 msgstr "Sursa: %s."
 
-#: includes/bundles/countries-bundle.php:16
-msgid "Afghanistan"
-msgstr "Afganistan"
-
-#: includes/bundles/countries-bundle.php:17
-msgid "&#197;land Islands"
-msgstr "Insulele &#197;Tărâme"
-
-#: includes/bundles/countries-bundle.php:18
-msgid "Albania"
-msgstr "Albania"
-
-#: includes/bundles/countries-bundle.php:19
-msgid "Algeria"
-msgstr "Algeria"
-
-#: includes/bundles/countries-bundle.php:20
-msgid "American Samoa"
-msgstr "Samoa Americană"
-
-#: includes/bundles/countries-bundle.php:21
-msgid "Andorra"
-msgstr "Andorra"
-
-#: includes/bundles/countries-bundle.php:22
-msgid "Angola"
-msgstr "Angola"
-
-#: includes/bundles/countries-bundle.php:23
-msgid "Anguilla"
-msgstr "Anguilla"
-
-#: includes/bundles/countries-bundle.php:24
-msgid "Antarctica"
-msgstr "Antarctica"
-
-#: includes/bundles/countries-bundle.php:25
-msgid "Antigua and Barbuda"
-msgstr "Antigua și Barbuda"
-
-#: includes/bundles/countries-bundle.php:26
-msgid "Argentina"
-msgstr "Argentina"
-
-#: includes/bundles/countries-bundle.php:27
-msgid "Armenia"
-msgstr "Armenia"
-
-#: includes/bundles/countries-bundle.php:28
-msgid "Aruba"
-msgstr "Aruba"
-
-#: includes/bundles/countries-bundle.php:29
-msgid "Australia"
-msgstr "Australia"
-
-#: includes/bundles/countries-bundle.php:30
-msgid "Austria"
-msgstr "Austria"
-
-#: includes/bundles/countries-bundle.php:31
-msgid "Azerbaijan"
-msgstr "Azerbaidjan"
-
-#: includes/bundles/countries-bundle.php:32
-msgid "Bahamas"
-msgstr "Bahamas"
-
-#: includes/bundles/countries-bundle.php:33
-msgid "Bahrain"
-msgstr "Bahrain"
-
-#: includes/bundles/countries-bundle.php:34
-msgid "Bangladesh"
-msgstr "Bangladeş"
-
-#: includes/bundles/countries-bundle.php:35
-msgid "Barbados"
-msgstr "Barbados"
-
-#: includes/bundles/countries-bundle.php:36
-msgid "Belarus"
-msgstr "Belarus"
-
-#: includes/bundles/countries-bundle.php:37
-msgid "Belgium"
-msgstr "Belgia"
-
-#: includes/bundles/countries-bundle.php:38
-msgid "Belau"
-msgstr "Belau"
-
-#: includes/bundles/countries-bundle.php:39
-msgid "Belize"
-msgstr "Belize"
-
-#: includes/bundles/countries-bundle.php:40
-msgid "Benin"
-msgstr "Benin"
-
-#: includes/bundles/countries-bundle.php:41
-msgid "Bermuda"
-msgstr "Bermuda"
-
-#: includes/bundles/countries-bundle.php:42
-msgid "Bhutan"
-msgstr "Bhutan"
-
-#: includes/bundles/countries-bundle.php:43
-msgid "Bolivia"
-msgstr "Bolivia"
-
-#: includes/bundles/countries-bundle.php:44
-msgid "Bonaire, Saint Eustatius and Saba"
-msgstr "Bonaire, Saint Eustatius și Saba"
-
-#: includes/bundles/countries-bundle.php:45
-msgid "Bosnia and Herzegovina"
-msgstr "Bosnia și Herțegovina"
-
-#: includes/bundles/countries-bundle.php:46
-msgid "Botswana"
-msgstr "Botswana"
-
-#: includes/bundles/countries-bundle.php:47
-msgid "Bouvet Island"
-msgstr "Insula Bouvet"
-
-#: includes/bundles/countries-bundle.php:48
-msgid "Brazil"
-msgstr "Brazilia"
-
-#: includes/bundles/countries-bundle.php:49
-msgid "British Indian Ocean Territory"
-msgstr "Teritoriul Britanic din Oceanul Indian"
-
-#: includes/bundles/countries-bundle.php:50
-msgid "British Virgin Islands"
-msgstr "Insulele Virgine Britanice"
-
-#: includes/bundles/countries-bundle.php:51
-msgid "Brunei"
-msgstr "Brunei"
-
-#: includes/bundles/countries-bundle.php:52
-msgid "Bulgaria"
-msgstr "Bulgaria"
-
-#: includes/bundles/countries-bundle.php:53
-msgid "Burkina Faso"
-msgstr "Burkina Faso"
-
-#: includes/bundles/countries-bundle.php:54
-msgid "Burundi"
-msgstr "Burundi"
-
-#: includes/bundles/countries-bundle.php:55
-msgid "Cambodia"
-msgstr "Cambodgia"
-
-#: includes/bundles/countries-bundle.php:56
-msgid "Cameroon"
-msgstr "Camerun"
-
-#: includes/bundles/countries-bundle.php:57
-msgid "Canada"
-msgstr "Canada"
-
-#: includes/bundles/countries-bundle.php:58
-msgid "Cape Verde"
-msgstr "Capul Verde"
-
-#: includes/bundles/countries-bundle.php:59
-msgid "Cayman Islands"
-msgstr "Insulele Cayman"
-
-#: includes/bundles/countries-bundle.php:60
-msgid "Central African Republic"
-msgstr "Republica Centrafricană"
-
-#: includes/bundles/countries-bundle.php:61
-msgid "Chad"
-msgstr "Ciad"
-
-#: includes/bundles/countries-bundle.php:62
-msgid "Chile"
-msgstr "Chile"
-
-#: includes/bundles/countries-bundle.php:63
-msgid "China"
-msgstr "China"
-
-#: includes/bundles/countries-bundle.php:64
-msgid "Christmas Island"
-msgstr "Insula Crăciunului"
-
-#: includes/bundles/countries-bundle.php:65
-msgid "Cocos (Keeling) Islands"
-msgstr "Insulele Cocos (Keeling)"
-
-#: includes/bundles/countries-bundle.php:66
-msgid "Colombia"
-msgstr "Columbia"
-
-#: includes/bundles/countries-bundle.php:67
-msgid "Comoros"
-msgstr "Comore"
-
-#: includes/bundles/countries-bundle.php:68
-msgid "Congo (Brazzaville)"
-msgstr "Congo (Brazzaville)"
-
-#: includes/bundles/countries-bundle.php:69
-msgid "Congo (Kinshasa)"
-msgstr "Congo (Kinshasa)"
-
-#: includes/bundles/countries-bundle.php:70
-msgid "Cook Islands"
-msgstr "Insulele Cook"
-
-#: includes/bundles/countries-bundle.php:71
-msgid "Costa Rica"
-msgstr "Costa Rica"
-
-#: includes/bundles/countries-bundle.php:72
-msgid "Croatia"
-msgstr "Croaţia"
-
-#: includes/bundles/countries-bundle.php:73
-msgid "Cuba"
-msgstr "Cuba"
-
-#: includes/bundles/countries-bundle.php:74
-msgid "Cura&ccedil;ao"
-msgstr "Cura&ccedil;ao"
-
-#: includes/bundles/countries-bundle.php:75
-msgid "Cyprus"
-msgstr "Cipru"
-
-#: includes/bundles/countries-bundle.php:76
-msgid "Czech Republic"
-msgstr "Republica Cehă"
-
-#: includes/bundles/countries-bundle.php:77
-msgid "Denmark"
-msgstr "Danemarca"
-
-#: includes/bundles/countries-bundle.php:78
-msgid "Djibouti"
-msgstr "Djibouti"
-
-#: includes/bundles/countries-bundle.php:79
-msgid "Dominica"
-msgstr "Dominica"
-
-#: includes/bundles/countries-bundle.php:80
-msgid "Dominican Republic"
-msgstr "Republica Dominicană"
-
-#: includes/bundles/countries-bundle.php:81
-msgid "Ecuador"
-msgstr "Ecuador"
-
-#: includes/bundles/countries-bundle.php:82
-msgid "Egypt"
-msgstr "Egipt"
-
-#: includes/bundles/countries-bundle.php:83
-msgid "El Salvador"
-msgstr "El Salvador"
-
-#: includes/bundles/countries-bundle.php:84
-msgid "Equatorial Guinea"
-msgstr "Guineea Ecuatorială"
-
-#: includes/bundles/countries-bundle.php:85
-msgid "Eritrea"
-msgstr "Eritreea"
-
-#: includes/bundles/countries-bundle.php:86
-msgid "Estonia"
-msgstr "Estonia"
-
-#: includes/bundles/countries-bundle.php:87
-msgid "Ethiopia"
-msgstr "Ethiopia"
-
-#: includes/bundles/countries-bundle.php:88
-msgid "Falkland Islands"
-msgstr "Insulele Falkland"
-
-#: includes/bundles/countries-bundle.php:89
-msgid "Faroe Islands"
-msgstr "Insulele Feroe"
-
-#: includes/bundles/countries-bundle.php:90
-msgid "Fiji"
-msgstr "Fiji"
-
-#: includes/bundles/countries-bundle.php:91
-msgid "Finland"
-msgstr "Finlanda"
-
-#: includes/bundles/countries-bundle.php:92
-msgid "France"
-msgstr "Franţa"
-
-#: includes/bundles/countries-bundle.php:93
-msgid "French Guiana"
-msgstr "Guiana Franceză"
-
-#: includes/bundles/countries-bundle.php:94
-msgid "French Polynesia"
-msgstr "Polinezia Franceză"
-
-#: includes/bundles/countries-bundle.php:95
-msgid "French Southern Territories"
-msgstr "Teritoriile Franceze de Sud"
-
-#: includes/bundles/countries-bundle.php:96
-msgid "Gabon"
-msgstr "Gabon"
-
-#: includes/bundles/countries-bundle.php:97
-msgid "Gambia"
-msgstr "Gambia"
-
-#: includes/bundles/countries-bundle.php:98
-msgid "Georgia"
-msgstr "Georgia"
-
-#: includes/bundles/countries-bundle.php:99
-msgid "Germany"
-msgstr "Germania"
-
-#: includes/bundles/countries-bundle.php:100
-msgid "Ghana"
-msgstr "Ghana"
-
-#: includes/bundles/countries-bundle.php:101
-msgid "Gibraltar"
-msgstr "Gibraltar"
-
-#: includes/bundles/countries-bundle.php:102
-msgid "Greece"
-msgstr "Grecia"
-
-#: includes/bundles/countries-bundle.php:103
-msgid "Greenland"
-msgstr "Groenlanda"
-
-#: includes/bundles/countries-bundle.php:104
-msgid "Grenada"
-msgstr "Grenada"
-
-#: includes/bundles/countries-bundle.php:105
-msgid "Guadeloupe"
-msgstr "Guadeloupe"
-
-#: includes/bundles/countries-bundle.php:106
-msgid "Guam"
-msgstr "Guam"
-
-#: includes/bundles/countries-bundle.php:107
-msgid "Guatemala"
-msgstr "Guatemala"
-
-#: includes/bundles/countries-bundle.php:108
-msgid "Guernsey"
-msgstr "Guernsey"
-
-#: includes/bundles/countries-bundle.php:109
-msgid "Guinea"
-msgstr "Guinea"
-
-#: includes/bundles/countries-bundle.php:110
-msgid "Guinea-Bissau"
-msgstr "Guinea-Bissau"
-
-#: includes/bundles/countries-bundle.php:111
-msgid "Guyana"
-msgstr "Guyana"
-
-#: includes/bundles/countries-bundle.php:112
-msgid "Haiti"
-msgstr "Haiti"
-
-#: includes/bundles/countries-bundle.php:113
-msgid "Heard Island and McDonald Islands"
-msgstr "Insula Heard și Insulele McDonald"
-
-#: includes/bundles/countries-bundle.php:114
-msgid "Honduras"
-msgstr "Honduras"
-
-#: includes/bundles/countries-bundle.php:115
-msgid "Hong Kong"
-msgstr "Hong Kong"
-
-#: includes/bundles/countries-bundle.php:116
-msgid "Hungary"
-msgstr "Ungaria"
-
-#: includes/bundles/countries-bundle.php:117
-msgid "Iceland"
-msgstr "Islanda"
-
-#: includes/bundles/countries-bundle.php:118
-msgid "India"
-msgstr "India"
-
-#: includes/bundles/countries-bundle.php:119
-msgid "Indonesia"
-msgstr "Indonezia"
-
-#: includes/bundles/countries-bundle.php:120
-msgid "Iran"
-msgstr "Iran"
-
-#: includes/bundles/countries-bundle.php:121
-msgid "Iraq"
-msgstr "Irak"
-
-#: includes/bundles/countries-bundle.php:122
-msgid "Ireland"
-msgstr "Irlanda"
-
-#: includes/bundles/countries-bundle.php:123
-msgid "Isle of Man"
-msgstr "Insula Man"
-
-#: includes/bundles/countries-bundle.php:124
-msgid "Israel"
-msgstr "Israel"
-
-#: includes/bundles/countries-bundle.php:125
-msgid "Italy"
-msgstr "Italia"
-
-#: includes/bundles/countries-bundle.php:126
-msgid "Ivory Coast"
-msgstr "Coasta de Fildeș"
-
-#: includes/bundles/countries-bundle.php:127
-msgid "Jamaica"
-msgstr "Jamaica"
-
-#: includes/bundles/countries-bundle.php:128
-msgid "Japan"
-msgstr "Japonia"
-
-#: includes/bundles/countries-bundle.php:129
-msgid "Jersey"
-msgstr "Jersey"
-
-#: includes/bundles/countries-bundle.php:130
-msgid "Jordan"
-msgstr "Iordania"
-
-#: includes/bundles/countries-bundle.php:131
-msgid "Kazakhstan"
-msgstr "Kazahstan"
-
-#: includes/bundles/countries-bundle.php:132
-msgid "Kenya"
-msgstr "Kenya"
-
-#: includes/bundles/countries-bundle.php:133
-msgid "Kiribati"
-msgstr "Kiribati"
-
-#: includes/bundles/countries-bundle.php:134
-msgid "Kuwait"
-msgstr "Kuwait"
-
-#: includes/bundles/countries-bundle.php:135
-msgid "Kyrgyzstan"
-msgstr "Kyrgyzstan"
-
-#: includes/bundles/countries-bundle.php:136
-msgid "Laos"
-msgstr "Laos"
-
-#: includes/bundles/countries-bundle.php:137
-msgid "Latvia"
-msgstr "Letonia"
-
-#: includes/bundles/countries-bundle.php:138
-msgid "Lebanon"
-msgstr "Lebanon"
-
-#: includes/bundles/countries-bundle.php:139
-msgid "Lesotho"
-msgstr "Lesotho"
-
-#: includes/bundles/countries-bundle.php:140
-msgid "Liberia"
-msgstr "Liberia"
-
-#: includes/bundles/countries-bundle.php:141
-msgid "Libya"
-msgstr "Libia"
-
-#: includes/bundles/countries-bundle.php:142
-msgid "Liechtenstein"
-msgstr "Liechtenstein"
-
-#: includes/bundles/countries-bundle.php:143
-msgid "Lithuania"
-msgstr "Lituania"
-
-#: includes/bundles/countries-bundle.php:144
-msgid "Luxembourg"
-msgstr "Luxembourg"
-
-#: includes/bundles/countries-bundle.php:145
-msgid "Macao S.A.R., China"
-msgstr "Macao S.A.R., China"
-
-#: includes/bundles/countries-bundle.php:146
-msgid "Macedonia"
-msgstr "Macedonia"
-
-#: includes/bundles/countries-bundle.php:147
-msgid "Madagascar"
-msgstr "Madagascar"
-
-#: includes/bundles/countries-bundle.php:148
-msgid "Malawi"
-msgstr "Malawi"
-
-#: includes/bundles/countries-bundle.php:149
-msgid "Malaysia"
-msgstr "Malaezia"
-
-#: includes/bundles/countries-bundle.php:150
-msgid "Maldives"
-msgstr "Maldive"
-
-#: includes/bundles/countries-bundle.php:151
-msgid "Mali"
-msgstr "Mali"
-
-#: includes/bundles/countries-bundle.php:152
-msgid "Malta"
-msgstr "Malta"
-
-#: includes/bundles/countries-bundle.php:153
-msgid "Marshall Islands"
-msgstr "Insulele Marshall"
-
-#: includes/bundles/countries-bundle.php:154
-msgid "Martinique"
-msgstr "Martinica"
-
-#: includes/bundles/countries-bundle.php:155
-msgid "Mauritania"
-msgstr "Mauritania"
-
-#: includes/bundles/countries-bundle.php:156
-msgid "Mauritius"
-msgstr "Mauritius"
-
-#: includes/bundles/countries-bundle.php:157
-msgid "Mayotte"
-msgstr "Mayotte"
-
-#: includes/bundles/countries-bundle.php:158
-msgid "Mexico"
-msgstr "Mexic"
-
-#: includes/bundles/countries-bundle.php:159
-msgid "Micronesia"
-msgstr "Micronesia"
-
-#: includes/bundles/countries-bundle.php:160
-msgid "Moldova"
-msgstr "Moldova"
-
-#: includes/bundles/countries-bundle.php:161
-msgid "Monaco"
-msgstr "Monaco"
-
-#: includes/bundles/countries-bundle.php:162
-msgid "Mongolia"
-msgstr "Mongolia"
-
-#: includes/bundles/countries-bundle.php:163
-msgid "Montenegro"
-msgstr "Muntenegru"
-
-#: includes/bundles/countries-bundle.php:164
-msgid "Montserrat"
-msgstr "Montserrat"
-
-#: includes/bundles/countries-bundle.php:165
-msgid "Morocco"
-msgstr "Maroc"
-
-#: includes/bundles/countries-bundle.php:166
-msgid "Mozambique"
-msgstr "Mozambic"
-
-#: includes/bundles/countries-bundle.php:167
-msgid "Myanmar"
-msgstr "Myanmar"
-
-#: includes/bundles/countries-bundle.php:168
-msgid "Namibia"
-msgstr "Namibia"
-
-#: includes/bundles/countries-bundle.php:169
-msgid "Nauru"
-msgstr "Nauru"
-
-#: includes/bundles/countries-bundle.php:170
-msgid "Nepal"
-msgstr "Nepal"
-
-#: includes/bundles/countries-bundle.php:171
-msgid "Netherlands"
-msgstr "Olanda"
-
-#: includes/bundles/countries-bundle.php:172
-msgid "New Caledonia"
-msgstr "Noua Caledonie"
-
-#: includes/bundles/countries-bundle.php:173
-msgid "New Zealand"
-msgstr "Noua Zeelandă"
-
-#: includes/bundles/countries-bundle.php:174
-msgid "Nicaragua"
-msgstr "Nicaragua"
-
-#: includes/bundles/countries-bundle.php:175
-msgid "Niger"
-msgstr "Niger"
-
-#: includes/bundles/countries-bundle.php:176
-msgid "Nigeria"
-msgstr "Nigeria"
-
-#: includes/bundles/countries-bundle.php:177
-msgid "Niue"
-msgstr "Niue"
-
-#: includes/bundles/countries-bundle.php:178
-msgid "Norfolk Island"
-msgstr "Insula Norfolk"
-
-#: includes/bundles/countries-bundle.php:179
-msgid "Northern Mariana Islands"
-msgstr "Insulele Mariane de Nord"
-
-#: includes/bundles/countries-bundle.php:180
-msgid "North Korea"
-msgstr "Coreea de Nord"
-
-#: includes/bundles/countries-bundle.php:181
-msgid "Norway"
-msgstr "Norvegia"
-
-#: includes/bundles/countries-bundle.php:182
-msgid "Oman"
-msgstr "Oman"
-
-#: includes/bundles/countries-bundle.php:183
-msgid "Pakistan"
-msgstr "Pakistan"
-
-#: includes/bundles/countries-bundle.php:184
-msgid "Palestinian Territory"
-msgstr "Palestinian Territory"
-
-#: includes/bundles/countries-bundle.php:185
-msgid "Panama"
-msgstr "Panama"
-
-#: includes/bundles/countries-bundle.php:186
-msgid "Papua New Guinea"
-msgstr "Papua New Guinea"
-
-#: includes/bundles/countries-bundle.php:187
-msgid "Paraguay"
-msgstr "Paraguay"
-
-#: includes/bundles/countries-bundle.php:188
-#: includes/settings/main-settings.php:37
-msgid "Peru"
-msgstr "Peru"
-
-#: includes/bundles/countries-bundle.php:189
-msgid "Philippines"
-msgstr "Filipine"
-
-#: includes/bundles/countries-bundle.php:190
-msgid "Pitcairn"
-msgstr "Pitcairn"
-
-#: includes/bundles/countries-bundle.php:191
-msgid "Poland"
-msgstr "Polonia"
-
-#: includes/bundles/countries-bundle.php:192
-msgid "Portugal"
-msgstr "Portugalia"
-
-#: includes/bundles/countries-bundle.php:193
-msgid "Puerto Rico"
-msgstr "Puerto Rico"
-
-#: includes/bundles/countries-bundle.php:194
-msgid "Qatar"
-msgstr "Qatar"
-
-#: includes/bundles/countries-bundle.php:195
-msgid "Reunion"
-msgstr "Réunion"
-
-#: includes/bundles/countries-bundle.php:196
-msgid "Romania"
-msgstr "România"
-
-#: includes/bundles/countries-bundle.php:197
-msgid "Russia"
-msgstr "Rusia"
-
-#: includes/bundles/countries-bundle.php:198
-msgid "Rwanda"
-msgstr "Rwanda"
-
-#: includes/bundles/countries-bundle.php:199
-msgid "Saint Barth&eacute;lemy"
-msgstr "Pământ Sfântul&eacute;lemy"
-
-#: includes/bundles/countries-bundle.php:200
-msgid "Saint Helena"
-msgstr "Sfânta Elena"
-
-#: includes/bundles/countries-bundle.php:201
-msgid "Saint Kitts and Nevis"
-msgstr "Saint Kitts și Nevis"
-
-#: includes/bundles/countries-bundle.php:202
-msgid "Saint Lucia"
-msgstr "Sfântul Lucia"
-
-#: includes/bundles/countries-bundle.php:203
-msgid "Saint Martin (French part)"
-msgstr "Sfântul Martin (partea franceză)"
-
-#: includes/bundles/countries-bundle.php:204
-msgid "Saint Martin (Dutch part)"
-msgstr "Sfântul Maarten (partea Olandeză)"
-
-#: includes/bundles/countries-bundle.php:205
-msgid "Saint Pierre and Miquelon"
-msgstr "Saint Pierre și Miquelon"
-
-#: includes/bundles/countries-bundle.php:206
-msgid "Saint Vincent and the Grenadines"
-msgstr "Sfântul Vincent și Grenadine"
-
-#: includes/bundles/countries-bundle.php:207
-msgid "San Marino"
-msgstr "San Marino"
-
-#: includes/bundles/countries-bundle.php:208
-msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe"
-msgstr "S&atilde;o Tom&eacute; și Pr&iacute;ncipe"
-
-#: includes/bundles/countries-bundle.php:209
-msgid "Saudi Arabia"
-msgstr "Arabia Saudită"
-
-#: includes/bundles/countries-bundle.php:210
-msgid "Senegal"
-msgstr "Senegal"
-
-#: includes/bundles/countries-bundle.php:211
-msgid "Serbia"
-msgstr "Serbia"
-
-#: includes/bundles/countries-bundle.php:212
-msgid "Seychelles"
-msgstr "Seychelles"
-
-#: includes/bundles/countries-bundle.php:213
-msgid "Sierra Leone"
-msgstr "Sierra Leone"
-
-#: includes/bundles/countries-bundle.php:214
-msgid "Singapore"
-msgstr "Singapore"
-
-#: includes/bundles/countries-bundle.php:215
-msgid "Slovakia"
-msgstr "Slovacia"
-
-#: includes/bundles/countries-bundle.php:216
-msgid "Slovenia"
-msgstr "Slovenia"
-
-#: includes/bundles/countries-bundle.php:217
-msgid "Solomon Islands"
-msgstr "Insulele Solomon"
-
-#: includes/bundles/countries-bundle.php:218
-msgid "Somalia"
-msgstr "Somalia"
-
-#: includes/bundles/countries-bundle.php:219
-msgid "South Africa"
-msgstr "Africa de Sud"
-
-#: includes/bundles/countries-bundle.php:220
-msgid "South Georgia/Sandwich Islands"
-msgstr "Georgia de Sud/Insulele Sandwich"
-
-#: includes/bundles/countries-bundle.php:221
-msgid "South Korea"
-msgstr "Coreea de Sud"
-
-#: includes/bundles/countries-bundle.php:222
-msgid "South Sudan"
-msgstr "Sudanul de Sud"
-
-#: includes/bundles/countries-bundle.php:223
-msgid "Spain"
-msgstr "Spania"
-
-#: includes/bundles/countries-bundle.php:224
-msgid "Sri Lanka"
-msgstr "Sri Lanka"
-
-#: includes/bundles/countries-bundle.php:225
-msgid "Sudan"
-msgstr "Sudan"
-
-#: includes/bundles/countries-bundle.php:226
-msgid "Suriname"
-msgstr "Suriname"
-
-#: includes/bundles/countries-bundle.php:227
-msgid "Svalbard and Jan Mayen"
-msgstr "Svalbard și Jan Mayen"
-
-#: includes/bundles/countries-bundle.php:228
-msgid "Swaziland"
-msgstr "Swaziland"
-
-#: includes/bundles/countries-bundle.php:229
-msgid "Sweden"
-msgstr "Suedia"
-
-#: includes/bundles/countries-bundle.php:230
-msgid "Switzerland"
-msgstr "Elveția"
-
-#: includes/bundles/countries-bundle.php:231
-msgid "Syria"
-msgstr "Siria"
-
-#: includes/bundles/countries-bundle.php:232
-msgid "Taiwan"
-msgstr "Taiwan"
-
-#: includes/bundles/countries-bundle.php:233
-msgid "Tajikistan"
-msgstr "Tajikistan"
-
-#: includes/bundles/countries-bundle.php:234
-msgid "Tanzania"
-msgstr "Tanzania"
-
-#: includes/bundles/countries-bundle.php:235
-msgid "Thailand"
-msgstr "Thailanda"
-
-#: includes/bundles/countries-bundle.php:236
-msgid "Timor-Leste"
-msgstr "Timorul De Est"
-
-#: includes/bundles/countries-bundle.php:237
-msgid "Togo"
-msgstr "Togo"
-
-#: includes/bundles/countries-bundle.php:238
-msgid "Tokelau"
-msgstr "Tokelau"
-
-#: includes/bundles/countries-bundle.php:239
-msgid "Tonga"
-msgstr "Tonga"
-
-#: includes/bundles/countries-bundle.php:240
-msgid "Trinidad and Tobago"
-msgstr "Trinidad și Tobago"
-
-#: includes/bundles/countries-bundle.php:241
-msgid "Tunisia"
-msgstr "Tunisia"
-
-#: includes/bundles/countries-bundle.php:242
-msgid "Turkey"
-msgstr "Turcia"
-
-#: includes/bundles/countries-bundle.php:243
-msgid "Turkmenistan"
-msgstr "Turkmenistan"
-
-#: includes/bundles/countries-bundle.php:244
-msgid "Turks and Caicos Islands"
-msgstr "Turks și Caicos, Insulele"
-
-#: includes/bundles/countries-bundle.php:245
-msgid "Tuvalu"
-msgstr "Tuvalu"
-
-#: includes/bundles/countries-bundle.php:246
-msgid "Uganda"
-msgstr "Uganda"
-
-#: includes/bundles/countries-bundle.php:247
-msgid "Ukraine"
-msgstr "Ucraina"
-
-#: includes/bundles/countries-bundle.php:248
-msgid "United Arab Emirates"
-msgstr "Emiratele Arabe Unite"
-
-#: includes/bundles/countries-bundle.php:249
-msgid "United Kingdom (UK)"
-msgstr "Marea Britanie (UK)"
-
-#: includes/bundles/countries-bundle.php:250
-msgid "United States (US)"
-msgstr "Statele Unite (SUA)"
-
-#: includes/bundles/countries-bundle.php:251
-msgid "United States (US) Minor Outlying Islands"
-msgstr "Insulele Minore Îndepărtate ale Statelor Unite (SUA)"
-
-#: includes/bundles/countries-bundle.php:252
-msgid "United States (US) Virgin Islands"
-msgstr "Insulele Virgine Americane"
-
-#: includes/bundles/countries-bundle.php:253
-msgid "Uruguay"
-msgstr "Uruguay"
-
-#: includes/bundles/countries-bundle.php:254
-msgid "Uzbekistan"
-msgstr "Uzbekistan"
-
-#: includes/bundles/countries-bundle.php:255
-msgid "Vanuatu"
-msgstr "Vanuatu"
-
-#: includes/bundles/countries-bundle.php:256
-msgid "Vatican"
-msgstr "Vatican"
-
-#: includes/bundles/countries-bundle.php:257
-msgid "Venezuela"
-msgstr "Venezuela"
-
-#: includes/bundles/countries-bundle.php:258
-msgid "Vietnam"
-msgstr "Vietnam"
-
-#: includes/bundles/countries-bundle.php:259
-msgid "Wallis and Futuna"
-msgstr "Wallis și Futuna"
-
-#: includes/bundles/countries-bundle.php:260
-msgid "Western Sahara"
-msgstr "Sahara Occidentală"
-
-#: includes/bundles/countries-bundle.php:261
-msgid "Samoa"
-msgstr "Samoa"
-
-#: includes/bundles/countries-bundle.php:262
-msgid "Yemen"
-msgstr "Yemen"
-
-#: includes/bundles/countries-bundle.php:263
-msgid "Zambia"
-msgstr "Zambia"
-
-#: includes/bundles/countries-bundle.php:264
-msgid "Zimbabwe"
-msgstr "Zimbabwe"
-
-#: includes/bundles/currency-bundle.php:17
-msgid "Euro"
-msgstr "Euro"
-
-#: includes/bundles/currency-bundle.php:18
-msgid "United States (US) dollar"
-msgstr "Dolar american"
-
-#: includes/bundles/currency-bundle.php:19
-msgid "Pound sterling"
-msgstr "Liră sterlină"
-
-#: includes/bundles/currency-bundle.php:20
-msgid "United Arab Emirates dirham"
-msgstr "Dirham Emiratele Arabe Unite"
-
-#: includes/bundles/currency-bundle.php:21
-msgid "Afghan afghani"
-msgstr "Afganul afgan"
-
-#: includes/bundles/currency-bundle.php:22
-msgid "Albanian lek"
-msgstr "Leva albaneză"
-
-#: includes/bundles/currency-bundle.php:23
-msgid "Armenian dram"
-msgstr "Dexul armenesc"
-
-#: includes/bundles/currency-bundle.php:24
-msgid "Netherlands Antillean guilder"
-msgstr "Gulder din Antilele Olandeze"
-
-#: includes/bundles/currency-bundle.php:25
-msgid "Angolan kwanza"
-msgstr "Angolan kwanza"
-
-#: includes/bundles/currency-bundle.php:26
-msgid "Argentine peso"
-msgstr "Argentine peso"
-
-#: includes/bundles/currency-bundle.php:27
-msgid "Australian dollar"
-msgstr "Dolar australian"
-
-#: includes/bundles/currency-bundle.php:28
-msgid "Aruban florin"
-msgstr "Aruban florin"
-
-#: includes/bundles/currency-bundle.php:29
-msgid "Azerbaijani manat"
-msgstr "Manat azer"
-
-#: includes/bundles/currency-bundle.php:30
-msgid "Bosnia and Herzegovina convertible mark"
-msgstr "Marcă convertibilă Bosnia și Herțegovina"
-
-#: includes/bundles/currency-bundle.php:31
-msgid "Barbadian dollar"
-msgstr "Dolar din Barbados"
-
-#: includes/bundles/currency-bundle.php:32
-msgid "Bangladeshi taka"
-msgstr "Taka Bangladesh"
-
-#: includes/bundles/currency-bundle.php:33
-msgid "Bulgarian lev"
-msgstr "Leva bulgară"
-
-#: includes/bundles/currency-bundle.php:34
-msgid "Bahraini dinar"
-msgstr "Dinar bahranian"
-
-#: includes/bundles/currency-bundle.php:35
-msgid "Burundian franc"
-msgstr "Franc Burundez"
-
 #: includes/bundles/currency-bundle.php:36
-msgid "Bermudian dollar"
-msgstr "Dolar din Bermude"
-
-#: includes/bundles/currency-bundle.php:37
-msgid "Brunei dollar"
-msgstr "Dolar Brunei"
-
-#: includes/bundles/currency-bundle.php:38
-msgid "Bolivian boliviano"
-msgstr "Bolivian boliviano"
-
-#: includes/bundles/currency-bundle.php:39
-msgid "Brazilian real"
-msgstr "Real brazilian"
-
-#: includes/bundles/currency-bundle.php:40
-msgid "Bahamian dollar"
-msgstr "Dolar din Bahamas"
-
-#: includes/bundles/currency-bundle.php:41
-msgid "Bitcoin"
-msgstr "Bitcoin"
-
-#: includes/bundles/currency-bundle.php:42
-msgid "Bhutanese ngultrum"
-msgstr "Ngultrum bhutanez"
-
-#: includes/bundles/currency-bundle.php:43
-msgid "Botswana pula"
-msgstr "Pula botswaniană"
-
-#: includes/bundles/currency-bundle.php:44
-msgid "Belarusian ruble (old)"
-msgstr "Rublă belarusă (vechi)"
-
-#: includes/bundles/currency-bundle.php:45
-msgid "Belarusian ruble"
-msgstr "Rublă belarusă"
-
-#: includes/bundles/currency-bundle.php:46
-msgid "Belize dollar"
-msgstr "Dolar din Belize"
-
-#: includes/bundles/currency-bundle.php:47
-msgid "Canadian dollar"
-msgstr "Dolar canadian"
-
-#: includes/bundles/currency-bundle.php:48
-msgid "Congolese franc"
-msgstr "Franc congolez"
-
-#: includes/bundles/currency-bundle.php:49
-msgid "Swiss franc"
-msgstr "Francul elvețian"
-
-#: includes/bundles/currency-bundle.php:50
-msgid "Chilean peso"
-msgstr "Peso chilian"
-
-#: includes/bundles/currency-bundle.php:51
-msgid "Chinese yuan"
-msgstr "Yuan chinezesc"
-
-#: includes/bundles/currency-bundle.php:52
-msgid "Colombian peso"
-msgstr "Peso columbian"
-
-#: includes/bundles/currency-bundle.php:53
-msgid "Costa Rican col&oacute;n"
-msgstr "Coloană Costa Rican&oacute;n"
-
-#: includes/bundles/currency-bundle.php:54
-msgid "Cuban convertible peso"
-msgstr "Peso convertibil cubanez"
-
-#: includes/bundles/currency-bundle.php:55
-msgid "Cuban peso"
-msgstr "Peso cubanez"
-
-#: includes/bundles/currency-bundle.php:56
-msgid "Cape Verdean escudo"
-msgstr "Escudo al Capului Verde"
-
-#: includes/bundles/currency-bundle.php:57
-msgid "Czech koruna"
-msgstr "Coroana cehă"
-
-#: includes/bundles/currency-bundle.php:58
-msgid "Djiboutian franc"
-msgstr "Franc djiboutian"
-
-#: includes/bundles/currency-bundle.php:59
-msgid "Danish krone"
-msgstr "Coroană daneză"
-
-#: includes/bundles/currency-bundle.php:60
-msgid "Dominican peso"
-msgstr "Peso Dominican"
-
-#: includes/bundles/currency-bundle.php:61
-msgid "Algerian dinar"
-msgstr "Dinar algerian"
-
-#: includes/bundles/currency-bundle.php:62
-msgid "Egyptian pound"
-msgstr "Liră egipteană"
-
-#: includes/bundles/currency-bundle.php:63
-msgid "Eritrean nakfa"
-msgstr "Nakfa eritrean"
-
-#: includes/bundles/currency-bundle.php:64
-msgid "Ethiopian birr"
-msgstr "Birr Etiopian"
-
-#: includes/bundles/currency-bundle.php:65
-msgid "Fijian dollar"
-msgstr "Dolar fijian"
-
-#: includes/bundles/currency-bundle.php:66
-msgid "Falkland Islands pound"
-msgstr "Liră Insulele Falkland"
-
-#: includes/bundles/currency-bundle.php:67
-msgid "Georgian lari"
-msgstr "Lari Georgian"
-
-#: includes/bundles/currency-bundle.php:68
-msgid "Guernsey pound"
-msgstr "Liră din Guernsey"
-
-#: includes/bundles/currency-bundle.php:69
-msgid "Ghana cedi"
-msgstr "Ghana cedi"
-
-#: includes/bundles/currency-bundle.php:70
-msgid "Gibraltar pound"
-msgstr "Liră din Gibraltar"
-
-#: includes/bundles/currency-bundle.php:71
-msgid "Gambian dalasi"
-msgstr "Dalasi gambian"
-
-#: includes/bundles/currency-bundle.php:72
-msgid "Guinean franc"
-msgstr "Francul guineean"
-
-#: includes/bundles/currency-bundle.php:73
-msgid "Guatemalan quetzal"
-msgstr "Quetzal guatemalez"
-
-#: includes/bundles/currency-bundle.php:74
-msgid "Guyanese dollar"
-msgstr "Dolar guyanez"
-
-#: includes/bundles/currency-bundle.php:75
-msgid "Hong Kong dollar"
-msgstr "Dolar Hong Kong"
-
-#: includes/bundles/currency-bundle.php:76
-msgid "Honduran lempira"
-msgstr "Lempira din Honduras"
-
-#: includes/bundles/currency-bundle.php:77
-msgid "Croatian kuna"
-msgstr "Kuna croată"
-
-#: includes/bundles/currency-bundle.php:78
-msgid "Haitian gourde"
-msgstr "Gourde haitian"
-
-#: includes/bundles/currency-bundle.php:79
-msgid "Hungarian forint"
-msgstr "Forint maghiar"
-
-#: includes/bundles/currency-bundle.php:80
-msgid "Indonesian rupiah"
-msgstr "Rupia indoneziană"
-
-#: includes/bundles/currency-bundle.php:81
-msgid "Israeli new shekel"
-msgstr "Shekel israelian"
-
-#: includes/bundles/currency-bundle.php:82
-msgid "Manx pound"
-msgstr "Lira Manx"
-
-#: includes/bundles/currency-bundle.php:83
-msgid "Indian rupee"
-msgstr "Rupie indiană"
-
-#: includes/bundles/currency-bundle.php:84
-msgid "Iraqi dinar"
-msgstr "Dinar irakian"
-
-#: includes/bundles/currency-bundle.php:85
-msgid "Iranian rial"
-msgstr "Rial Iranian"
-
-#: includes/bundles/currency-bundle.php:86
-msgid "Iranian toman"
-msgstr "Toman iranian"
-
-#: includes/bundles/currency-bundle.php:87
-msgid "Icelandic kr&oacute;na"
-msgstr "Kr&oacute;na islandeză"
-
-#: includes/bundles/currency-bundle.php:88
-msgid "Jersey pound"
-msgstr "Liră Jersey"
-
-#: includes/bundles/currency-bundle.php:89
-msgid "Jamaican dollar"
-msgstr "Dolar jamaican"
-
-#: includes/bundles/currency-bundle.php:90
-msgid "Jordanian dinar"
-msgstr "Dinar Iordanian"
-
-#: includes/bundles/currency-bundle.php:91
-msgid "Japanese yen"
-msgstr "Yen japonez"
-
-#: includes/bundles/currency-bundle.php:92
-msgid "Kenyan shilling"
-msgstr "Șiling kenyan"
-
-#: includes/bundles/currency-bundle.php:93
-msgid "Kyrgyzstani som"
-msgstr "Som Kârgâz"
-
-#: includes/bundles/currency-bundle.php:94
-msgid "Cambodian riel"
-msgstr "Riel Cambodgian"
-
-#: includes/bundles/currency-bundle.php:95
-msgid "Comorian franc"
-msgstr "Franc comorian"
-
-#: includes/bundles/currency-bundle.php:96
-msgid "North Korean won"
-msgstr "Wonul nord-coreean"
-
-#: includes/bundles/currency-bundle.php:97
-msgid "South Korean won"
-msgstr "Won sud-coreean"
-
-#: includes/bundles/currency-bundle.php:98
-msgid "Kuwaiti dinar"
-msgstr "Dinar kuweitian"
-
-#: includes/bundles/currency-bundle.php:99
-msgid "Cayman Islands dollar"
-msgstr "Dolar din Cayman"
-
-#: includes/bundles/currency-bundle.php:100
-msgid "Kazakhstani tenge"
-msgstr "Tenge kazakhstan"
-
-#: includes/bundles/currency-bundle.php:101
-msgid "Lao kip"
-msgstr "Lao kip"
-
-#: includes/bundles/currency-bundle.php:102
-msgid "Lebanese pound"
-msgstr "Lira libaneză"
-
-#: includes/bundles/currency-bundle.php:103
-msgid "Sri Lankan rupee"
-msgstr "Rupie Sri Lanka"
-
-#: includes/bundles/currency-bundle.php:104
-msgid "Liberian dollar"
-msgstr "Dolar liberian"
-
-#: includes/bundles/currency-bundle.php:105
-msgid "Lesotho loti"
-msgstr "Lesotho loti"
-
-#: includes/bundles/currency-bundle.php:106
-msgid "Libyan dinar"
-msgstr "Dinar libian"
-
-#: includes/bundles/currency-bundle.php:107
-msgid "Moroccan dirham"
-msgstr "Dirham Marocan"
-
-#: includes/bundles/currency-bundle.php:108
-msgid "Moldovan leu"
-msgstr "Leu moldovenesc"
-
-#: includes/bundles/currency-bundle.php:109
-msgid "Malagasy ariary"
-msgstr "Malaria ariara"
-
-#: includes/bundles/currency-bundle.php:110
-msgid "Macedonian denar"
-msgstr "Denar macedonean"
-
-#: includes/bundles/currency-bundle.php:111
-msgid "Burmese kyat"
-msgstr "Kyat birmanez"
-
-#: includes/bundles/currency-bundle.php:112
-msgid "Mongolian t&ouml;gr&ouml;g"
-msgstr "Mongolian t&ouml;gr&ouml;g"
-
-#: includes/bundles/currency-bundle.php:113
-msgid "Macanese pataca"
-msgstr "Pataca Macao"
-
-#: includes/bundles/currency-bundle.php:114
-msgid "Mauritanian ouguiya"
-msgstr "Ouguiya mauritanian"
-
-#: includes/bundles/currency-bundle.php:115
-msgid "Mauritian rupee"
-msgstr "Rupie mauritiană"
-
-#: includes/bundles/currency-bundle.php:116
-msgid "Maldivian rufiyaa"
-msgstr "Rupie maldiviană"
-
-#: includes/bundles/currency-bundle.php:117
-msgid "Malawian kwacha"
-msgstr "Kwacha malawian"
-
-#: includes/bundles/currency-bundle.php:118
-msgid "Mexican peso"
-msgstr "Peso mexican"
-
-#: includes/bundles/currency-bundle.php:119
-msgid "Malaysian ringgit"
-msgstr "Ringgit Malaezian"
-
-#: includes/bundles/currency-bundle.php:120
-msgid "Mozambican metical"
-msgstr "Metical mozambican"
-
-#: includes/bundles/currency-bundle.php:121
-msgid "Namibian dollar"
-msgstr "Dolar namibian"
-
-#: includes/bundles/currency-bundle.php:122
-msgid "Nigerian naira"
-msgstr "Naira nigerian"
-
-#: includes/bundles/currency-bundle.php:123
-msgid "Nicaraguan c&oacute;rdoba"
-msgstr "Nicaraguan c&oacute;rdoba"
-
-#: includes/bundles/currency-bundle.php:124
-msgid "Norwegian krone"
-msgstr "Coroană Norvegiană"
-
-#: includes/bundles/currency-bundle.php:125
-msgid "Nepalese rupee"
-msgstr "Rupia nepaleză"
-
-#: includes/bundles/currency-bundle.php:126
-msgid "New Zealand dollar"
-msgstr "Dolar neozeelandez"
-
-#: includes/bundles/currency-bundle.php:127
-msgid "Omani rial"
-msgstr "Omani rial"
-
-#: includes/bundles/currency-bundle.php:128
-msgid "Panamanian balboa"
-msgstr "Balboa panamaneză"
-
-#: includes/bundles/currency-bundle.php:129
-msgid "Sol"
-msgstr "Sol"
-
-#: includes/bundles/currency-bundle.php:130
-msgid "Papua New Guinean kina"
-msgstr "Papua New Guinean kina"
-
-#: includes/bundles/currency-bundle.php:131
-msgid "Philippine peso"
-msgstr "Philippine peso"
-
-#: includes/bundles/currency-bundle.php:132
-msgid "Pakistani rupee"
-msgstr "Pakistani rupee"
-
-#: includes/bundles/currency-bundle.php:133
-msgid "Polish z&#x142;oty"
-msgstr "Poloneză z&#x142;oty"
-
-#: includes/bundles/currency-bundle.php:134
-msgid "Transnistrian ruble"
-msgstr "Rupă transnistreană"
-
-#: includes/bundles/currency-bundle.php:135
-msgid "Paraguayan guaran&iacute;"
-msgstr "Paraguayan guaran&iacute;"
-
-#: includes/bundles/currency-bundle.php:136
-msgid "Qatari riyal"
-msgstr "Qatari riyal"
-
-#: includes/bundles/currency-bundle.php:137
-msgid "Romanian leu"
-msgstr "Leu românesc"
-
-#: includes/bundles/currency-bundle.php:138
-msgid "Serbian dinar"
-msgstr "Dinarul sârbesc"
-
-#: includes/bundles/currency-bundle.php:139
-msgid "Russian ruble"
-msgstr "Rublă rusească"
-
-#: includes/bundles/currency-bundle.php:140
-msgid "Rwandan franc"
-msgstr "Franc Ruandez"
-
-#: includes/bundles/currency-bundle.php:141
-msgid "Saudi riyal"
-msgstr "Rial saudit"
-
-#: includes/bundles/currency-bundle.php:142
-msgid "Solomon Islands dollar"
-msgstr "Dolar Insulele Solomon"
-
-#: includes/bundles/currency-bundle.php:143
-msgid "Seychellois rupee"
-msgstr "Rupie seychelleză"
-
-#: includes/bundles/currency-bundle.php:144
-msgid "Sudanese pound"
-msgstr "Lira sudaneză"
-
-#: includes/bundles/currency-bundle.php:145
-msgid "Swedish krona"
-msgstr "Coroana suedeză"
-
-#: includes/bundles/currency-bundle.php:146
-msgid "Singapore dollar"
-msgstr "Dolar Singapore"
-
-#: includes/bundles/currency-bundle.php:147
-msgid "Saint Helena pound"
-msgstr "Liră din Sfânta Elena"
-
-#: includes/bundles/currency-bundle.php:148
-msgid "Sierra Leonean leone"
-msgstr "Leone Sierra Leonean"
-
-#: includes/bundles/currency-bundle.php:149
-msgid "Somali shilling"
-msgstr "Șiling somalez"
-
-#: includes/bundles/currency-bundle.php:150
-msgid "Surinamese dollar"
-msgstr "Dolar sărinamez"
-
-#: includes/bundles/currency-bundle.php:151
-msgid "South Sudanese pound"
-msgstr "Liră din Sudanul de Sud"
-
-#: includes/bundles/currency-bundle.php:152
-msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe dobra"
-msgstr "S&atilde;o Tom&eacute; și Pr&iacute;ncipe dobra"
-
-#: includes/bundles/currency-bundle.php:153
-msgid "Syrian pound"
-msgstr "Liră siriană"
-
-#: includes/bundles/currency-bundle.php:154
-msgid "Swazi lilangeni"
-msgstr "Swazi lilangeni"
-
-#: includes/bundles/currency-bundle.php:155
-msgid "Thai baht"
-msgstr "Baht tailandez"
-
-#: includes/bundles/currency-bundle.php:156
-msgid "Tajikistani somoni"
-msgstr "Tajikistani somoni"
-
-#: includes/bundles/currency-bundle.php:157
-msgid "Turkmenistan manat"
-msgstr "Turkmenistan manat"
-
-#: includes/bundles/currency-bundle.php:158
-msgid "Tunisian dinar"
-msgstr "Tunisian dinar"
-
-#: includes/bundles/currency-bundle.php:159
-msgid "Tongan pa&#x2bb;anga"
-msgstr "Tongan pa&#x2bb;anga"
-
-#: includes/bundles/currency-bundle.php:160
-msgid "Turkish lira"
-msgstr "Liră turcească"
-
-#: includes/bundles/currency-bundle.php:161
-msgid "Trinidad and Tobago dollar"
-msgstr "Dolar Trinidad și Tobago"
-
-#: includes/bundles/currency-bundle.php:162
-msgid "New Taiwan dollar"
-msgstr "Dolar nou din Taiwan"
-
-#: includes/bundles/currency-bundle.php:163
-msgid "Tanzanian shilling"
-msgstr "Șiling tanzanian"
-
-#: includes/bundles/currency-bundle.php:164
-msgid "Ukrainian hryvnia"
-msgstr "Grivnă ucraineană"
-
-#: includes/bundles/currency-bundle.php:165
-msgid "Ugandan shilling"
-msgstr "Șiling ugandez"
-
-#: includes/bundles/currency-bundle.php:166
-msgid "Uruguayan peso"
-msgstr "Uruguayan peso"
-
-#: includes/bundles/currency-bundle.php:167
-msgid "Uzbekistani som"
-msgstr "Uzbekistani som"
-
-#: includes/bundles/currency-bundle.php:168
-msgid "Venezuelan bol&iacute;var"
-msgstr "Venezuelan bol&iacute;var"
-
-#: includes/bundles/currency-bundle.php:169
-msgid "Bol&iacute;var soberano"
-msgstr "Bol&iacute;var soberano"
-
-#: includes/bundles/currency-bundle.php:170
-msgid "Vietnamese &#x111;&#x1ed3;ng"
-msgstr "Vietnamese &#x111;&#x1ed3;ng"
-
-#: includes/bundles/currency-bundle.php:171
-msgid "Vanuatu vatu"
-msgstr "Vanuatu vatu"
-
-#: includes/bundles/currency-bundle.php:172
-msgid "Samoan t&#x101;l&#x101;"
-msgstr "Samoan t&#x101;l&#x101;"
-
-#: includes/bundles/currency-bundle.php:173
-msgid "Central African CFA franc"
-msgstr "Franc CFA central african"
-
-#: includes/bundles/currency-bundle.php:174
-msgid "East Caribbean dollar"
-msgstr "Dolar est-Caraibe"
-
-#: includes/bundles/currency-bundle.php:175
-msgid "West African CFA franc"
-msgstr "Franc CFA vest-african"
-
-#: includes/bundles/currency-bundle.php:176
-msgid "CFP franc"
-msgstr "Franc PCP"
-
-#: includes/bundles/currency-bundle.php:177
-msgid "Yemeni rial"
-msgstr "Rial yemenit"
-
-#: includes/bundles/currency-bundle.php:178
-msgid "South African rand"
-msgstr "Rand sud-african"
-
-#: includes/bundles/currency-bundle.php:179
-msgid "Zambian kwacha"
-msgstr "Zambian kwacha"
-
-#: includes/bundles/currency-bundle.php:358
 msgid "Before"
 msgstr "Înainte"
 
-#: includes/bundles/currency-bundle.php:359
+#: includes/bundles/currency-bundle.php:37
 msgid "After"
 msgstr "După"
 
-#: includes/bundles/currency-bundle.php:360
+#: includes/bundles/currency-bundle.php:38
 msgid "Before with space"
 msgstr "Înainte cu spațiu"
 
-#: includes/bundles/currency-bundle.php:361
+#: includes/bundles/currency-bundle.php:39
 msgid "After with space"
 msgstr "După cu spațiu"
 
@@ -5507,22 +3941,6 @@ msgid_plural "for %d nights"
 msgstr[0] "pentru %d noapte"
 msgstr[1] "pentru %d nopți"
 msgstr[2] "pentru %d nopți"
-
-#: includes/crons/cron-manager.php:112
-msgid "User Approval Time setted in Hotel Booking Settings"
-msgstr "Timpul pentru aprobarea utilizatorului setat în setările de rezervare Hotel"
-
-#: includes/crons/cron-manager.php:117
-msgid "Pending Payment Time set in Hotel Booking Settings"
-msgstr "Timpul de plată este setat în setările de rezervare Hotel"
-
-#: includes/crons/cron-manager.php:122
-msgid "Interval for automatic cleaning of synchronization logs."
-msgstr "Interval pentru curățarea automată a jurnalelor de sincronizare."
-
-#: includes/crons/cron-manager.php:127
-msgid "Once a week"
-msgstr "O dată pe săptămână"
 
 #: includes/csv/bookings/bookings-exporter-helper.php:73
 #: templates/account/bookings.php:19
@@ -5646,7 +4064,7 @@ msgid "Please select columns to export."
 msgstr "Vă rugăm să selectați coloanele pentru export."
 
 #: includes/csv/csv-export-handler.php:32
-#: includes/payments/gateways/stripe-gateway.php:559
+#: includes/payments/gateways/stripe-gateway.php:599
 msgid "Nonce verification failed."
 msgstr "Verificarea a eșuat."
 
@@ -5654,35 +4072,35 @@ msgstr "Verificarea a eșuat."
 msgid "The file does not exist."
 msgstr "Fila nu există."
 
-#: includes/emails/abstract-email.php:441
+#: includes/emails/abstract-email.php:450
 msgid "Disable this email notification"
 msgstr "Dezactivează această notificare prin e-mail"
 
-#: includes/emails/abstract-email.php:449
+#: includes/emails/abstract-email.php:458
 msgid "Subject"
 msgstr "Subiect"
 
-#: includes/emails/abstract-email.php:461
+#: includes/emails/abstract-email.php:470
 msgid "Header"
 msgstr "Antet"
 
-#: includes/emails/abstract-email.php:473
+#: includes/emails/abstract-email.php:482
 msgid "Email Template"
 msgstr "Şablon e-mail"
 
-#: includes/emails/abstract-email.php:570
+#: includes/emails/abstract-email.php:579
 msgid "\"%s\" email will not be sent: there is no customer email in the booking."
 msgstr "\"%s\" e-mail nu va fi trimis: nu există niciun client de e-mail în rezervare."
 
-#: includes/emails/abstract-email.php:594
+#: includes/emails/abstract-email.php:603
 msgid "Deprecated tags in header of %s"
 msgstr "Tag-uri învechite în antetul %s"
 
-#: includes/emails/abstract-email.php:597
+#: includes/emails/abstract-email.php:606
 msgid "Deprecated tags in subject of %s"
 msgstr "Tag-uri învechite în subiectul %s"
 
-#: includes/emails/abstract-email.php:600
+#: includes/emails/abstract-email.php:609
 msgid "Deprecated tags in template of %s"
 msgstr "Tag-uri învechite în șablonul %s"
 
@@ -5694,11 +4112,18 @@ msgstr "Destinatari"
 msgid "You can use multiple comma-separated emails"
 msgstr "Puteți utiliza mai multe e-mailuri separate prin virgulă"
 
+#. Translators: %s: Email label.
 #: includes/emails/booking/admin/base-email.php:89
 msgid "\"%s\" mail was sent to admin."
 msgstr "\"%s\" mail a fost trimis administratorului."
 
+#. Translators: %1: Email label. %2: The cause of the error.
 #: includes/emails/booking/admin/base-email.php:93
+msgid "\"%1$s\" mail sending to admin is failed. %2$s"
+msgstr ""
+
+#. Translators: %s: Email label.
+#: includes/emails/booking/admin/base-email.php:98
 msgid "\"%s\" mail sending to admin is failed."
 msgstr "\"%s\" trimiterea de e-mail către administrator nu a reușit."
 
@@ -5775,11 +4200,18 @@ msgstr "%site_title% - Rezervare #%booking_id% Confirmată"
 msgid "Email that will be sent to customer when booking is approved."
 msgstr "E-mailul care va fi trimis clientului atunci când rezervarea este aprobată."
 
+#. Translators: %s: Email label.
 #: includes/emails/booking/customer/base-email.php:55
 msgid "\"%s\" mail was sent to customer."
 msgstr "\"%s\" mail a fost trimis către client."
 
+#. Translators: %1: Email label. %2: The cause of the error.
 #: includes/emails/booking/customer/base-email.php:59
+msgid "\"%1$s\" mail sending is failed. %2$s"
+msgstr ""
+
+#. Translators: %s: Email label.
+#: includes/emails/booking/customer/base-email.php:64
 msgid "\"%s\" mail sending is failed."
 msgstr "\"%s\" trimiterea de e-mail nu a reușit."
 
@@ -5883,7 +4315,7 @@ msgid "Site title (set in Settings > General)"
 msgstr "Titlul site-ului (setat în Setări > General)"
 
 #: includes/emails/templaters/email-templater.php:124
-#: includes/post-types/payment-cpt.php:232
+#: includes/post-types/payment-cpt.php:233
 msgid "Booking ID"
 msgstr "ID rezervare"
 
@@ -5992,7 +4424,7 @@ msgid "Link to My Account page"
 msgstr "Link la pagina contului meu"
 
 #: includes/emails/templaters/email-templater.php:562
-#: includes/upgrader.php:868
+#: includes/upgrader.php:871
 #: includes/wizard.php:213
 msgid "My Account"
 msgstr "Contul Meu"
@@ -6049,7 +4481,7 @@ msgstr[1] " &#215; %d nopți"
 msgstr[2] " &#215; %d nopți"
 
 #: includes/entities/reserved-service.php:103
-#: includes/shortcodes/search-results-shortcode.php:904
+#: includes/shortcodes/search-results-shortcode.php:914
 msgid "%d adult"
 msgid_plural "%d adults"
 msgstr[0] "%d adult"
@@ -6057,8 +4489,8 @@ msgstr[1] "%d adulți"
 msgstr[2] "%d adulți"
 
 #: includes/entities/reserved-service.php:105
-#: includes/shortcodes/search-results-shortcode.php:896
-#: includes/shortcodes/search-results-shortcode.php:900
+#: includes/shortcodes/search-results-shortcode.php:906
+#: includes/shortcodes/search-results-shortcode.php:910
 msgid "%d guest"
 msgid_plural "%d guests"
 msgstr[0] "%d oaspete"
@@ -6076,18 +4508,18 @@ msgstr[2] " &#215; %d ori"
 msgid "Per Instance"
 msgstr "Per instanță"
 
-#: includes/i-cal/background-processes/background-synchronizer.php:34
+#: includes/i-cal/background-processes/background-synchronizer.php:38
 msgid "Maximum execution time is set to %d seconds."
 msgstr "Timpul maxim de execuție este setat la %d secunde."
 
-#: includes/i-cal/background-processes/background-synchronizer.php:80
+#: includes/i-cal/background-processes/background-synchronizer.php:85
 msgid "%d URL pulled for parsing."
 msgid_plural "%d URLs pulled for parsing."
 msgstr[0] "%d URL tras pentru analizare."
 msgstr[1] "%d URL tras pentru analizare."
 msgstr[2] "%d URL-uri trase pentru analizare."
 
-#: includes/i-cal/background-processes/background-synchronizer.php:82
+#: includes/i-cal/background-processes/background-synchronizer.php:87
 msgid "Skipped. No URLs found for parsing."
 msgstr "Omis. Nu s-au găsit adrese URL pentru analizare."
 
@@ -6225,16 +4657,16 @@ msgstr[0] " A fost un eșec %2$d."
 msgstr[1] " Au fost câteva eșecuri %2$d."
 msgstr[2] " Au existat erori %2$d."
 
-#: includes/license-notice.php:87
-#: includes/license-notice.php:160
+#: includes/license-notice.php:90
+#: includes/license-notice.php:163
 msgid "Your License Key is not active. Please, <a href=\"%s\">activate your License Key</a> to get plugin updates."
 msgstr "Cheia dvs. de licență nu e activă. Vă rugăm, <a href=\"%s\">activați licența</a> pentru a primi îmbunătățiri la modul."
 
-#: includes/license-notice.php:152
+#: includes/license-notice.php:155
 msgid "Dismiss "
 msgstr "Renunţaţi "
 
-#: includes/linked-rooms.php:31
+#: includes/linked-rooms.php:37
 msgid "Blocked because the linked accommodation is booked"
 msgstr "Blocat deoarece cazarea asociată este rezervată"
 
@@ -6265,139 +4697,139 @@ msgstr "Actualizează Pagini"
 msgid "Skip"
 msgstr "Omitere"
 
-#: includes/payments/gateways/bank-gateway.php:82
-#: includes/payments/gateways/bank-gateway.php:91
+#: includes/payments/gateways/bank-gateway.php:80
+#: includes/payments/gateways/bank-gateway.php:89
 msgid "Direct Bank Transfer"
 msgstr "Transfer bancar direct"
 
-#: includes/payments/gateways/bank-gateway.php:92
+#: includes/payments/gateways/bank-gateway.php:90
 msgid "Make your payment directly into our bank account. Please use your Booking ID as the payment reference."
 msgstr "Efectuați plata direct în contul nostru bancar. Vă rugăm să folosiți numărul dvs. de rezervare ca referință de plată."
 
-#: includes/payments/gateways/bank-gateway.php:118
+#: includes/payments/gateways/bank-gateway.php:104
 msgid "Enable Auto-Abandonment"
 msgstr "Activează Auto-Abandonarea"
 
-#: includes/payments/gateways/bank-gateway.php:119
+#: includes/payments/gateways/bank-gateway.php:105
 msgid "Automatically abandon bookings and release reserved slots if payment is not received within a specified time period. You need to manually set the status of paid payments to Completed to avoid automatic abandonment."
 msgstr "Renunță automat la rezervări și eliberează sloturile rezervate în cazul în care plata nu este primită într-un anumit termen. Trebuie să setați manual starea plăților plătite în Finalizare pentru a evita abandonarea automată."
 
-#: includes/payments/gateways/bank-gateway.php:128
+#: includes/payments/gateways/bank-gateway.php:111
 msgid "Period of time in hours a user has to pay for a booking. Unpaid bookings become abandoned, and accommodations become available for others."
 msgstr "Perioada de timp în ore în care un utilizator trebuie să plătească pentru o rezervare. Rezervările neplătite devin abandonate, iar cazarea devine disponibilă pentru alții."
 
-#: includes/payments/gateways/beanstream-gateway.php:54
+#: includes/payments/gateways/beanstream-gateway.php:51
 msgid "Beanstream/Bambora"
 msgstr "Beanstream/Bambora"
 
-#: includes/payments/gateways/beanstream-gateway.php:59
-#: includes/payments/gateways/braintree-gateway.php:149
-#: includes/payments/gateways/paypal-gateway.php:72
-#: includes/payments/gateways/two-checkout-gateway.php:70
-msgid "Use the card number %1$s with CVC %2$s and a valid expiration date to test a payment."
-msgstr "Folosiți numărul cardului %1$s cu CVC %2$s și o dată de expirare validă pentru a testa o plată."
-
-#: includes/payments/gateways/beanstream-gateway.php:66
+#: includes/payments/gateways/beanstream-gateway.php:60
 msgid "Pay by Card (Beanstream)"
 msgstr "Plătește cu cardul (Beanstream)"
 
-#: includes/payments/gateways/beanstream-gateway.php:67
+#: includes/payments/gateways/beanstream-gateway.php:61
 msgid "Pay with your credit card via Beanstream."
 msgstr "Plătește cu cardul tău de credit prin Beanstream."
 
-#: includes/payments/gateways/beanstream-gateway.php:85
-#: includes/payments/gateways/braintree-gateway.php:194
-#: includes/payments/gateways/stripe-gateway.php:226
-msgid "%1$s is enabled, but the <a href=\"%2$s\">Force Secure Checkout</a> option is disabled. Please enable SSL and ensure your server has a valid SSL certificate. Otherwise, %1$s will only work in Test Mode."
-msgstr "%1$s este activat, dar opțiunea <a href=\"%2$s\">Forțare Comandă Securizată la Checkout</a> este dezactivată. Vă rugăm să activați SSL și să vă asigurați că serverul dvs. are un certificat SSL valabil. În caz contrar, %1$s va funcționa numai în Modul de testare."
-
-#: includes/payments/gateways/beanstream-gateway.php:87
-#: includes/payments/gateways/braintree-gateway.php:196
-#: includes/payments/gateways/stripe-gateway.php:228
-msgid "The <a href=\"%2$s\">Force Secure Checkout</a> option is disabled. Please enable SSL and ensure your server has a valid SSL certificate. Otherwise, %1$s will only work in Test Mode."
-msgstr "Opțiunea <a href=\"%2$s\">Forțează Verificarea securizată la Checkout</a> este dezactivată. Vă rugăm să activați SSL și să vă asigurați că serverul dvs. are un certificat SSL valabil. În caz contrar, %1$s va funcționa numai în Modul de testare."
+#: includes/payments/gateways/beanstream-gateway.php:77
+#: includes/payments/gateways/braintree-gateway.php:185
+#: includes/payments/gateways/paypal-gateway.php:94
+#: includes/payments/gateways/two-checkout-gateway.php:112
+msgid "Use the card number %1$s with CVC %2$s and a valid expiration date to test a payment."
+msgstr "Folosiți numărul cardului %1$s cu CVC %2$s și o dată de expirare validă pentru a testa o plată."
 
 #: includes/payments/gateways/beanstream-gateway.php:90
-msgid "Beanstream"
-msgstr "Beanstream"
-
-#: includes/payments/gateways/beanstream-gateway.php:103
 #: includes/payments/gateways/braintree-gateway.php:212
 msgid "Merchant ID"
 msgstr "ID comerciant"
 
-#: includes/payments/gateways/beanstream-gateway.php:105
+#: includes/payments/gateways/beanstream-gateway.php:91
 msgid "Your Merchant ID can be found in the top-right corner of the screen after logging in to the Beanstream Back Office"
 msgstr "ID-ul tău de comerciant poate fi găsit în colțul din dreapta sus al ecranului după ce te conectezi la Beanstream Back Office"
 
-#: includes/payments/gateways/beanstream-gateway.php:112
+#: includes/payments/gateways/beanstream-gateway.php:96
 msgid "Payments Passcode"
 msgstr "Cod de plăți"
 
-#: includes/payments/gateways/beanstream-gateway.php:114
+#: includes/payments/gateways/beanstream-gateway.php:97
 msgid "To generate the passcode, navigate to Administration > Account Settings > Order Settings in the sidebar, then scroll to Payment Gateway > Security/Authentication"
 msgstr "Pentru a genera codul de acces, navigați la Administrare > Setări cont > Setări de comandă în bara laterală, apoi derulați la Gateway plată > Securitate/Autentificare"
 
-#: includes/payments/gateways/beanstream-gateway.php:163
+#: includes/payments/gateways/beanstream-gateway.php:115
+#: includes/payments/gateways/braintree-gateway.php:253
+#: includes/payments/gateways/stripe-gateway.php:287
+msgid "%1$s is enabled, but the <a href=\"%2$s\">Force Secure Checkout</a> option is disabled. Please enable SSL and ensure your server has a valid SSL certificate. Otherwise, %1$s will only work in Test Mode."
+msgstr "%1$s este activat, dar opțiunea <a href=\"%2$s\">Forțare Comandă Securizată la Checkout</a> este dezactivată. Vă rugăm să activați SSL și să vă asigurați că serverul dvs. are un certificat SSL valabil. În caz contrar, %1$s va funcționa numai în Modul de testare."
+
+#: includes/payments/gateways/beanstream-gateway.php:117
+#: includes/payments/gateways/braintree-gateway.php:255
+#: includes/payments/gateways/stripe-gateway.php:289
+msgid "The <a href=\"%2$s\">Force Secure Checkout</a> option is disabled. Please enable SSL and ensure your server has a valid SSL certificate. Otherwise, %1$s will only work in Test Mode."
+msgstr "Opțiunea <a href=\"%2$s\">Forțează Verificarea securizată la Checkout</a> este dezactivată. Vă rugăm să activați SSL și să vă asigurați că serverul dvs. are un certificat SSL valabil. În caz contrar, %1$s va funcționa numai în Modul de testare."
+
+#: includes/payments/gateways/beanstream-gateway.php:120
+msgid "Beanstream"
+msgstr "Beanstream"
+
+#: includes/payments/gateways/beanstream-gateway.php:179
 msgid "Beanstream Payment Error: %s"
 msgstr "Eroare de plată Beanstream: %s"
 
-#: includes/payments/gateways/beanstream-gateway.php:201
+#: includes/payments/gateways/beanstream-gateway.php:217
 msgid "Payment single use token is required."
 msgstr "Este necesară plata unui singur token de utilizare."
 
-#: includes/payments/gateways/braintree-gateway.php:142
-#: includes/payments/gateways/braintree-gateway.php:199
+#: includes/payments/gateways/braintree-gateway.php:136
+#: includes/payments/gateways/braintree-gateway.php:258
 msgid "Braintree"
 msgstr "Braintree"
 
 #: includes/payments/gateways/braintree-gateway.php:155
-#: includes/payments/gateways/stripe-gateway.php:86
-msgid "Webhooks Destination URL: %s"
-msgstr "Webhooks Destinația URL: %s"
-
-#: includes/payments/gateways/braintree-gateway.php:168
 msgid "Pay by Card (Braintree)"
 msgstr "Plătește cu cardul (Braintree)"
 
-#: includes/payments/gateways/braintree-gateway.php:169
+#: includes/payments/gateways/braintree-gateway.php:156
 msgid "Pay with your credit card via Braintree."
 msgstr "Plătește cu cardul tău de credit prin Braintree."
 
-#: includes/payments/gateways/braintree-gateway.php:189
-msgid "Braintree gateway cannot be enabled due to some problems: %s"
-msgstr "Gateway-ul Braintree nu poate fi activat din cauza unor probleme: %s"
+#: includes/payments/gateways/braintree-gateway.php:199
+#: includes/payments/gateways/stripe-gateway.php:130
+msgid "Webhooks Destination URL: %s"
+msgstr "Webhooks Destinația URL: %s"
 
-#: includes/payments/gateways/braintree-gateway.php:214
+#: includes/payments/gateways/braintree-gateway.php:213
 msgid "In your Braintree account select Account > My User > View Authorizations."
 msgstr "În contul tău Braintree selectați Contul > Utilizatorul meu > Vezi autorizațiile."
 
-#: includes/payments/gateways/braintree-gateway.php:221
-#: includes/payments/gateways/stripe-gateway.php:284
+#: includes/payments/gateways/braintree-gateway.php:218
+#: includes/payments/gateways/stripe-gateway.php:238
 msgid "Public Key"
 msgstr "Cheie publică"
 
-#: includes/payments/gateways/braintree-gateway.php:229
+#: includes/payments/gateways/braintree-gateway.php:224
 msgid "Private Key"
 msgstr "Cheie privată"
 
-#: includes/payments/gateways/braintree-gateway.php:237
+#: includes/payments/gateways/braintree-gateway.php:230
 msgid "Merchant Account ID"
 msgstr "ID Cont Comerciant"
 
-#: includes/payments/gateways/braintree-gateway.php:238
+#: includes/payments/gateways/braintree-gateway.php:231
 msgid "In case the site currency differs from default currency in your Braintree account, you can set specific merchant account to avoid <a href=\"%s\">complications with currencty conversions</a>. Otherwise leave the field empty."
 msgstr "În cazul în care moneda site-ului diferă de moneda implicită în contul Braintree, puteți seta un cont specific de comerciant pentru a evita <a href=\"%s\">complicații cu conversii valutare</a>. Altfel lăsaţi câmpul gol."
 
-#: includes/payments/gateways/braintree-gateway.php:293
+#: includes/payments/gateways/braintree-gateway.php:248
+msgid "Braintree gateway cannot be enabled due to some problems: %s"
+msgstr "Gateway-ul Braintree nu poate fi activat din cauza unor probleme: %s"
+
+#: includes/payments/gateways/braintree-gateway.php:324
 msgid "Braintree submitted for settlement (Transaction ID: %s)"
 msgstr "Braintree trimis pentru decontare (ID-ul tranzacției: %s)"
 
-#: includes/payments/gateways/braintree-gateway.php:303
+#: includes/payments/gateways/braintree-gateway.php:334
 msgid "Braintree Payment Error: %s"
 msgstr "Eroare de plată Braintree: %s"
 
-#: includes/payments/gateways/braintree-gateway.php:330
+#: includes/payments/gateways/braintree-gateway.php:361
 msgid "Payment method nonce is required."
 msgstr "Metoda de plată are nevoie de ”nonce”."
 
@@ -6421,384 +4853,320 @@ msgstr "Plată rambursată în Braintree"
 msgid "Braintree transaction voided"
 msgstr "Tranzacție Braintree anulată"
 
-#: includes/payments/gateways/cash-gateway.php:45
-#: includes/payments/gateways/cash-gateway.php:53
+#: includes/payments/gateways/cash-gateway.php:42
+#: includes/payments/gateways/cash-gateway.php:50
 msgid "Pay on Arrival"
 msgstr "Plătește pe sosire"
 
-#: includes/payments/gateways/cash-gateway.php:54
+#: includes/payments/gateways/cash-gateway.php:51
 msgid "Pay with cash on arrival."
 msgstr "Plătește cu numerar la sosire."
 
-#: includes/payments/gateways/gateway.php:301
+#: includes/payments/gateways/gateway.php:277
 msgid "%s is a required field."
 msgstr "%s este un câmp obligatoriu."
 
-#: includes/payments/gateways/gateway.php:314
+#: includes/payments/gateways/gateway.php:290
 msgid "%s is not a valid email address."
 msgstr "%s nu este un e-mail valid."
 
 #. translators: %s is the payment gateway title.
-#: includes/payments/gateways/gateway.php:472
+#: includes/payments/gateways/gateway.php:446
 msgid "Enable \"%s\""
 msgstr "Activează \"%s\""
 
-#: includes/payments/gateways/gateway.php:482
+#: includes/payments/gateways/gateway.php:451
 msgid "Test Mode"
 msgstr "Mod de test"
 
-#: includes/payments/gateways/gateway.php:483
+#: includes/payments/gateways/gateway.php:452
 msgid "Enable Sandbox Mode"
 msgstr "Activează Modul Sandbox"
 
-#: includes/payments/gateways/gateway.php:485
+#: includes/payments/gateways/gateway.php:453
 msgid "Sandbox can be used to test payments."
 msgstr "Sandbox poate fi folosit pentru a testa plățile."
 
-#: includes/payments/gateways/gateway.php:496
+#: includes/payments/gateways/gateway.php:459
 msgid "Payment method title that the customer will see on your website."
 msgstr "Titlul metodei de plată pe care clientul o va vedea pe site-ul dvs."
 
-#: includes/payments/gateways/gateway.php:506
+#: includes/payments/gateways/gateway.php:466
 msgid "Payment method description that the customer will see on your website."
 msgstr "Descrierea metodei de plată pe care clientul o va vedea pe site-ul dvs."
 
-#: includes/payments/gateways/gateway.php:516
+#: includes/payments/gateways/gateway.php:472
 msgid "Instructions"
 msgstr "Instrucțiuni"
 
-#: includes/payments/gateways/gateway.php:518
+#: includes/payments/gateways/gateway.php:473
 msgid "Instructions for a customer on how to complete the payment."
 msgstr "Instrucțiuni pentru un client privind modul de finalizare a plății."
 
-#: includes/payments/gateways/gateway.php:543
+#: includes/payments/gateways/gateway.php:524
 msgid "Reservation #%d"
 msgstr "Rezervare #%d"
 
-#: includes/payments/gateways/gateway.php:545
+#: includes/payments/gateways/gateway.php:526
 msgid "Accommodation(s) reservation"
 msgstr "Rezervare cazare"
 
-#: includes/payments/gateways/manual-gateway.php:14
-#: includes/payments/gateways/manual-gateway.php:19
+#: includes/payments/gateways/manual-gateway.php:15
+#: includes/payments/gateways/manual-gateway.php:20
 msgid "Manual Payment"
 msgstr "Plată manuală"
 
-#: includes/payments/gateways/paypal-gateway.php:67
-#: includes/payments/gateways/paypal-gateway.php:80
+#: includes/payments/gateways/paypal-gateway.php:63
+#: includes/payments/gateways/paypal-gateway.php:69
 msgid "PayPal"
 msgstr ""
 
-#: includes/payments/gateways/paypal-gateway.php:81
+#: includes/payments/gateways/paypal-gateway.php:70
 msgid "Pay via PayPal"
 msgstr "Plătiți prin PayPal"
 
-#: includes/payments/gateways/paypal-gateway.php:117
+#: includes/payments/gateways/paypal-gateway.php:107
 msgid "Paypal Business Email"
 msgstr "E-mail Paypal Business"
 
-#: includes/payments/gateways/paypal-gateway.php:125
+#: includes/payments/gateways/paypal-gateway.php:112
 msgid "Disable IPN Verification"
 msgstr "Dezactivează verificarea IPN"
 
-#: includes/payments/gateways/paypal-gateway.php:127
+#: includes/payments/gateways/paypal-gateway.php:113
 msgid "Specify an IPN listener for a specific payment instead of the listeners specified in your PayPal Profile."
 msgstr "Specificați un ascultător IPN pentru o anumită plată în loc de ascultătorii specificați în profilul dvs. PayPal."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:164
+#: includes/payments/gateways/paypal/ipn-listener.php:150
 msgid "Payment %s via IPN."
 msgstr "Plata %s prin IPN."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:183
+#: includes/payments/gateways/paypal/ipn-listener.php:169
 msgid "Payment failed due to invalid PayPal business email."
 msgstr "Plata a eșuat din cauza e-mailului comercial invalid PayPal."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:200
+#: includes/payments/gateways/paypal/ipn-listener.php:186
 msgid "Payment failed due to invalid currency in PayPal IPN."
 msgstr "Plata a eșuat din cauza monedei nevalide în PayPal IPN."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:215
+#: includes/payments/gateways/paypal/ipn-listener.php:201
 msgid "Payment failed due to invalid amount in PayPal IPN."
 msgstr "Plata a eșuat din cauza sumei incorecte în PayPal IPN."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:230
+#: includes/payments/gateways/paypal/ipn-listener.php:216
 msgid "Payment failed due to invalid purchase key in PayPal IPN."
 msgstr "Plata a eșuat din cauza cheii de cumpărare nevalidă în PayPal IPN."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:302
+#: includes/payments/gateways/paypal/ipn-listener.php:288
 msgid "Payment made via eCheck and will clear automatically in 5-8 days."
 msgstr "Plata prin eCheck și se va curăța automat în 5-8 zile."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:307
+#: includes/payments/gateways/paypal/ipn-listener.php:293
 msgid "Payment requires a confirmed customer address and must be accepted manually through PayPal."
 msgstr "Plata necesită o adresă de client confirmată și trebuie să fie acceptată manual prin PayPal."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:312
+#: includes/payments/gateways/paypal/ipn-listener.php:298
 msgid "Payment must be accepted manually through PayPal due to international account regulations."
 msgstr "Plata trebuie acceptată manual prin PayPal, datorită reglementărilor privind contul internaţional."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:317
+#: includes/payments/gateways/paypal/ipn-listener.php:303
 msgid "Payment received in non-shop currency and must be accepted manually through PayPal."
 msgstr "Plata primită în valuta non-magazin şi trebuie acceptată manual prin PayPal."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:323
+#: includes/payments/gateways/paypal/ipn-listener.php:309
 msgid "Payment is being reviewed by PayPal staff as high-risk or in possible violation of government regulations."
 msgstr "Personalul PayPal consideră că plata prezintă un risc ridicat sau o posibilă încălcare a reglementărilor guvernamentale."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:328
+#: includes/payments/gateways/paypal/ipn-listener.php:314
 msgid "Payment was sent to unconfirmed or non-registered email address."
 msgstr "Plata a fost trimisă la adresa de e-mail neconfirmată sau neînregistrată."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:333
+#: includes/payments/gateways/paypal/ipn-listener.php:319
 msgid "PayPal account must be upgraded before this payment can be accepted."
 msgstr "Contul PayPal trebuie actualizat înainte ca această plată să poată fi acceptată."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:338
+#: includes/payments/gateways/paypal/ipn-listener.php:324
 msgid "PayPal account is not verified. Verify account in order to accept this payment."
 msgstr "Contul PayPal nu este verificat. Verifică contul pentru a putea accepta această plată."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:343
+#: includes/payments/gateways/paypal/ipn-listener.php:329
 msgid "Payment is pending for unknown reasons. Contact PayPal support for assistance."
 msgstr "Plata este în așteptare din motive necunoscute. Contactați asistența pentru PayPal."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:363
+#: includes/payments/gateways/paypal/ipn-listener.php:349
 msgid "Partial PayPal refund processed: %s"
 msgstr "Rambursare Parțială PayPal procesată: %s"
 
-#: includes/payments/gateways/paypal/ipn-listener.php:370
+#: includes/payments/gateways/paypal/ipn-listener.php:356
 msgid "PayPal Payment #%s Refunded for reason: %s"
 msgstr "Plata PayPal #%s rambursată din motivul: %s"
 
-#: includes/payments/gateways/paypal/ipn-listener.php:374
+#: includes/payments/gateways/paypal/ipn-listener.php:360
 msgid "PayPal Refund Transaction ID: %s"
 msgstr "PayPal Rund Tranzaction ID: %s"
 
-#: includes/payments/gateways/stripe-gateway.php:149
-#: includes/payments/gateways/stripe-gateway.php:231
-msgid "Stripe"
-msgstr ""
-
-#: includes/payments/gateways/stripe-gateway.php:186
+#: includes/payments/gateways/stripe-gateway.php:116
 msgid "Use the card number %1$s with CVC %2$s, a valid expiration date and random 5-digit ZIP-code to test a payment."
 msgstr "Folosiți numărul cardului %1$s cu CVC %2$s, o dată de expirare validă și un cod ZIP aleatoriu de 5 cifre pentru a testa o plată."
 
-#: includes/payments/gateways/stripe-gateway.php:202
+#: includes/payments/gateways/stripe-gateway.php:164
+#: includes/payments/gateways/stripe-gateway.php:292
+msgid "Stripe"
+msgstr ""
+
+#: includes/payments/gateways/stripe-gateway.php:179
 msgid "Pay by Card (Stripe)"
 msgstr "Plătește cu cardul (Stripe)"
 
-#: includes/payments/gateways/stripe-gateway.php:203
+#: includes/payments/gateways/stripe-gateway.php:180
 msgid "Pay with your credit card via Stripe."
 msgstr "Plătește cu cardul tău de credit prin Stripe."
 
 #. translators: %1$s - names of payment methods, %2$s - currency codes
-#: includes/payments/gateways/stripe-gateway.php:240
-#: includes/payments/gateways/stripe-gateway.php:259
-#: includes/payments/gateways/stripe-gateway.php:688
+#: includes/payments/gateways/stripe-gateway.php:195
+#: includes/payments/gateways/stripe-gateway.php:215
+#: includes/payments/gateways/stripe-gateway.php:728
 msgid "Bancontact"
 msgstr ""
 
-#: includes/payments/gateways/stripe-gateway.php:241
-#: includes/payments/gateways/stripe-gateway.php:260
-#: includes/payments/gateways/stripe-gateway.php:689
+#: includes/payments/gateways/stripe-gateway.php:196
+#: includes/payments/gateways/stripe-gateway.php:216
+#: includes/payments/gateways/stripe-gateway.php:729
 msgid "iDEAL"
 msgstr ""
 
-#: includes/payments/gateways/stripe-gateway.php:242
-#: includes/payments/gateways/stripe-gateway.php:261
-#: includes/payments/gateways/stripe-gateway.php:690
+#: includes/payments/gateways/stripe-gateway.php:197
+#: includes/payments/gateways/stripe-gateway.php:217
+#: includes/payments/gateways/stripe-gateway.php:730
 msgid "Giropay"
 msgstr ""
 
-#: includes/payments/gateways/stripe-gateway.php:243
-#: includes/payments/gateways/stripe-gateway.php:262
-#: includes/payments/gateways/stripe-gateway.php:691
+#: includes/payments/gateways/stripe-gateway.php:198
+#: includes/payments/gateways/stripe-gateway.php:218
+#: includes/payments/gateways/stripe-gateway.php:731
 msgid "SEPA Direct Debit"
 msgstr ""
 
 #. translators: %1$s - name of payment method, %2$s - currency codes
 #. translators: %s - payment method name
-#: includes/payments/gateways/stripe-gateway.php:244
-#: includes/payments/gateways/stripe-gateway.php:269
-#: includes/payments/gateways/stripe-gateway.php:276
-#: includes/payments/gateways/stripe-gateway.php:692
+#: includes/payments/gateways/stripe-gateway.php:199
+#: includes/payments/gateways/stripe-gateway.php:224
+#: includes/payments/gateways/stripe-gateway.php:231
+#: includes/payments/gateways/stripe-gateway.php:732
 msgid "Klarna"
 msgstr "Klarna"
 
 #. translators: %s - currency codes
-#: includes/payments/gateways/stripe-gateway.php:252
+#: includes/payments/gateways/stripe-gateway.php:208
 msgid "The %s currency is selected in the main settings."
 msgstr "Moneda %s este selectată în setările principale."
 
 #. translators: %1$s - names of payment methods, %2$s - currency codes
-#: includes/payments/gateways/stripe-gateway.php:258
+#: includes/payments/gateways/stripe-gateway.php:214
 msgid "%1$s support the following currencies: %2$s."
 msgstr "%1$s acceptă următoarele valute: %2$s."
 
 #. translators: %1$s - name of payment method, %2$s - currency codes
-#: includes/payments/gateways/stripe-gateway.php:268
+#: includes/payments/gateways/stripe-gateway.php:223
 msgid "%1$s supports: %2$s."
 msgstr "%1$s acceptă: %2$s."
 
 #. translators: %s - payment method name
-#: includes/payments/gateways/stripe-gateway.php:275
+#: includes/payments/gateways/stripe-gateway.php:230
 msgid "%s special restrictions."
 msgstr "%s restricții speciale."
 
-#: includes/payments/gateways/stripe-gateway.php:293
+#: includes/payments/gateways/stripe-gateway.php:245
 msgid "Secret Key"
 msgstr "Cheie Secretă"
 
-#: includes/payments/gateways/stripe-gateway.php:301
+#: includes/payments/gateways/stripe-gateway.php:251
 msgid "Webhook Secret"
 msgstr "Secret Webhook"
 
-#: includes/payments/gateways/stripe-gateway.php:310
+#: includes/payments/gateways/stripe-gateway.php:258
 msgid "Payment Methods"
 msgstr "Metode de plată"
 
-#: includes/payments/gateways/stripe-gateway.php:311
+#: includes/payments/gateways/stripe-gateway.php:261
 msgid "Card Payments"
 msgstr "Plăți cu cardul"
 
-#: includes/payments/gateways/stripe-gateway.php:322
+#: includes/payments/gateways/stripe-gateway.php:267
 msgid "Checkout Locale"
 msgstr "Localizare Checkout"
 
-#: includes/payments/gateways/stripe-gateway.php:325
+#: includes/payments/gateways/stripe-gateway.php:268
 msgid "Display Checkout in the user's preferred language, if available."
 msgstr "Afișează Checkout în limba preferată a utilizatorului, dacă este disponibil."
 
-#: includes/payments/gateways/stripe-gateway.php:395
+#: includes/payments/gateways/stripe-gateway.php:387
 msgid "The payment method is not selected."
 msgstr "Metoda de plată nu este selectată."
 
-#: includes/payments/gateways/stripe-gateway.php:401
+#: includes/payments/gateways/stripe-gateway.php:393
 msgid "PaymentIntent ID is not set."
 msgstr "ID-ul plății nu este setat."
 
 #. translators: %s - Stripe PaymentIntent ID
-#: includes/payments/gateways/stripe-gateway.php:430
+#: includes/payments/gateways/stripe-gateway.php:422
 msgid "Payment for PaymentIntent %s succeeded."
 msgstr "Plata pentru Plată Intent %s a reușit."
 
 #. translators: %s - Stripe PaymentIntent ID
-#: includes/payments/gateways/stripe-gateway.php:436
+#: includes/payments/gateways/stripe-gateway.php:428
 msgid "Payment for PaymentIntent %s is processing."
 msgstr "Plata pentru Plată %s este în procesare."
 
 #. translators: %1$s - Stripe PaymentIntent ID, %2$s - Stripe error message text
-#: includes/payments/gateways/stripe-gateway.php:457
+#: includes/payments/gateways/stripe-gateway.php:449
 msgid "Failed to process PaymentIntent %1$s. %2$s"
 msgstr "Procesarea plății %1$snu a reușit. %2$s"
 
-#: includes/payments/gateways/stripe-gateway.php:474
+#: includes/payments/gateways/stripe-gateway.php:466
 msgid "Can't charge the payment again: payment's flow already completed."
 msgstr "Nu se poate percepe plata din nou: fluxul plății este deja finalizat."
 
 #. translators: %s - Stripe Charge ID
-#: includes/payments/gateways/stripe-gateway.php:496
+#: includes/payments/gateways/stripe-gateway.php:488
 msgid "Charge %s succeeded."
 msgstr "Taxa %s a reușit."
 
 #. translators: %1$s - Stripe Charge ID; %2$s - payment price
-#: includes/payments/gateways/stripe-gateway.php:503
+#: includes/payments/gateways/stripe-gateway.php:495
 msgid "Charge %1$s for %2$s created."
 msgstr "Încărcare %1$s pentru %2$s creată."
 
 #. translators: %s - Stripe Charge ID
-#: includes/payments/gateways/stripe-gateway.php:508
+#: includes/payments/gateways/stripe-gateway.php:500
 msgid "Charge %s failed."
 msgstr "Taxa %s a eșuat."
 
-#: includes/payments/gateways/stripe-gateway.php:515
+#: includes/payments/gateways/stripe-gateway.php:507
 msgid "Charge error. %s"
 msgstr "Eroare taxă. %s"
 
-#: includes/payments/gateways/stripe-gateway.php:529
-msgid "Argentinean"
-msgstr "Argentinean"
-
-#: includes/payments/gateways/stripe-gateway.php:530
-msgid "Simplified Chinese"
-msgstr "Chineză simplificată"
-
-#: includes/payments/gateways/stripe-gateway.php:531
-msgid "Danish"
-msgstr "Daneză"
-
-#: includes/payments/gateways/stripe-gateway.php:532
-msgid "Dutch"
-msgstr "Olandeză"
-
-#: includes/payments/gateways/stripe-gateway.php:533
-msgid "English"
-msgstr "Română"
-
-#: includes/payments/gateways/stripe-gateway.php:534
-msgid "Finnish"
-msgstr "Finlandeză"
-
-#: includes/payments/gateways/stripe-gateway.php:535
-msgid "French"
-msgstr "Franceză"
-
-#: includes/payments/gateways/stripe-gateway.php:536
-msgid "German"
-msgstr "Germană"
-
-#: includes/payments/gateways/stripe-gateway.php:537
-msgid "Italian"
-msgstr "Italiană"
-
-#: includes/payments/gateways/stripe-gateway.php:538
-msgid "Japanese"
-msgstr "Japoneză"
-
-#: includes/payments/gateways/stripe-gateway.php:539
-msgid "Norwegian"
-msgstr "Norvegiană"
-
-#: includes/payments/gateways/stripe-gateway.php:540
-msgid "Polish"
-msgstr "Poloneză"
-
-#: includes/payments/gateways/stripe-gateway.php:541
-msgid "Russian"
-msgstr "Rusă"
-
-#: includes/payments/gateways/stripe-gateway.php:542
-msgid "Spanish"
-msgstr "Spaniolă"
-
-#: includes/payments/gateways/stripe-gateway.php:543
-msgid "Swedish"
-msgstr "Suedeză"
-
-#: includes/payments/gateways/stripe-gateway.php:571
+#: includes/payments/gateways/stripe-gateway.php:611
 msgid "PaymentIntent ID is missing."
 msgstr "ID plată lipsește."
 
-#: includes/payments/gateways/stripe-gateway.php:687
+#: includes/payments/gateways/stripe-gateway.php:727
 msgid "Card"
 msgstr "Card"
 
-#: includes/payments/gateways/stripe-gateway.php:694
+#: includes/payments/gateways/stripe-gateway.php:734
 msgid "Credit or debit card"
 msgstr "Card de credit sau debit"
 
-#: includes/payments/gateways/stripe-gateway.php:695
+#: includes/payments/gateways/stripe-gateway.php:735
 msgid "IBAN"
 msgstr ""
 
-#: includes/payments/gateways/stripe-gateway.php:696
-msgid "Select iDEAL Bank"
-msgstr "Selectați Banca iDEAL"
-
-#: includes/payments/gateways/stripe-gateway.php:698
+#: includes/payments/gateways/stripe-gateway.php:737
 msgid "You will be redirected to a secure page to complete the payment."
 msgstr "Veți fi redirecționat către o pagină securizată pentru a finaliza plata."
 
-#: includes/payments/gateways/stripe-gateway.php:699
+#: includes/payments/gateways/stripe-gateway.php:738
 msgid "By providing your IBAN and confirming this payment, you are authorizing this merchant and Stripe, our payment service provider, to send instructions to your bank to debit your account and your bank to debit your account in accordance with those instructions. You are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited."
 msgstr "Furnizând codul tău IBAN și confirmând această plată, autorizezi acest comerciant și Stripe, prestatorul nostru de servicii de plată, pentru a trimite instrucțiuni băncii tale pentru a debita contul tău și banca ta pentru a debita contul tău în conformitate cu aceste instrucțiuni. Ai dreptul la o rambursare de la banca ta în termenii și condițiile acordului tău cu banca ta. Rambursarea trebuie solicitată în termen de 8 săptămâni de la data la care contul dvs. a fost debitat."
 
@@ -6808,100 +5176,100 @@ msgid "Could not create PaymentIntent for a not allowed payment type: %s"
 msgstr "Nu s-a putut crea Plată Intenționată pentru un tip de plată nepermis: %s"
 
 #. translators: %s - Stripe event object ID
-#: includes/payments/gateways/stripe/webhook-listener.php:163
+#: includes/payments/gateways/stripe/webhook-listener.php:152
 msgid "Webhook received. Payment %s was cancelled by the customer."
 msgstr "Webhook primit. Plata %s a fost anulată de client."
 
 #. translators: %s - Stripe event object ID
-#: includes/payments/gateways/stripe/webhook-listener.php:174
+#: includes/payments/gateways/stripe/webhook-listener.php:163
 msgid "Webhook received. Payment %s failed and couldn't be processed."
 msgstr "Webhook primit. Plata %s a eșuat și nu a putut fi procesată."
 
 #. translators: %s - Stripe event object ID
-#: includes/payments/gateways/stripe/webhook-listener.php:200
+#: includes/payments/gateways/stripe/webhook-listener.php:189
 msgid "Webhook received. Payment %s was successfully processed."
 msgstr "Webhook primit. Plata %s a fost procesată cu succes."
 
 #. translators: %s - Stripe Charge ID
-#: includes/payments/gateways/stripe/webhook-listener.php:215
+#: includes/payments/gateways/stripe/webhook-listener.php:204
 msgid "Webhook received. Charge %s succeeded."
 msgstr "Webhook primit. Încărcarea %s a reușit."
 
 #. translators: %s - Stripe Charge ID
-#: includes/payments/gateways/stripe/webhook-listener.php:227
+#: includes/payments/gateways/stripe/webhook-listener.php:216
 msgid "Webhook received. Charge %s failed."
 msgstr "Webhook primit. Încărcarea %s a eșuat."
 
 #. translators: %s - Stripe Source ID
-#: includes/payments/gateways/stripe/webhook-listener.php:238
+#: includes/payments/gateways/stripe/webhook-listener.php:227
 msgid "Webhook received. The source %s is chargeable."
 msgstr "Webhook a fost primit. Sursa %s este taxabilă."
 
 #. translators: %s - Stripe Source ID
-#: includes/payments/gateways/stripe/webhook-listener.php:252
+#: includes/payments/gateways/stripe/webhook-listener.php:241
 msgid "Webhook received. Payment source %s was cancelled by customer."
 msgstr "Webhook primit. Sursa de plată %s a fost anulată de client."
 
 #. translators: %s - Stripe Source ID
-#: includes/payments/gateways/stripe/webhook-listener.php:263
+#: includes/payments/gateways/stripe/webhook-listener.php:252
 msgid "Webhook received. Payment source %s failed and couldn't be processed."
 msgstr "Webhook primit. Sursa de plată %s a eșuat și nu a putut fi procesată."
 
-#: includes/payments/gateways/test-gateway.php:46
-#: includes/payments/gateways/test-gateway.php:52
+#: includes/payments/gateways/test-gateway.php:43
+#: includes/payments/gateways/test-gateway.php:49
 msgid "Test Payment"
 msgstr "Testează plata"
 
-#: includes/payments/gateways/two-checkout-gateway.php:65
-#: includes/payments/gateways/two-checkout-gateway.php:101
+#: includes/payments/gateways/two-checkout-gateway.php:67
+#: includes/payments/gateways/two-checkout-gateway.php:96
 msgid "2Checkout"
 msgstr ""
 
-#: includes/payments/gateways/two-checkout-gateway.php:88
+#: includes/payments/gateways/two-checkout-gateway.php:83
 msgid "To setup the callback process for 2Checkout to automatically mark payments completed, you will need to"
 msgstr "Pentru a configura procesul de retroapelare pentru 2Checkout în vederea marcării automate a plăților finalizate, va trebui să"
 
-#: includes/payments/gateways/two-checkout-gateway.php:90
+#: includes/payments/gateways/two-checkout-gateway.php:85
 msgid "Login to your 2Checkout account and click the Notifications tab"
 msgstr "Loghează-te la contul tău 2Checkout și dă click pe fila Notificări"
 
-#: includes/payments/gateways/two-checkout-gateway.php:91
+#: includes/payments/gateways/two-checkout-gateway.php:86
 msgid "Click Enable All Notifications"
 msgstr "Faceți clic pe Activați Toate Notificările"
 
-#: includes/payments/gateways/two-checkout-gateway.php:92
+#: includes/payments/gateways/two-checkout-gateway.php:87
 msgid "In the Global URL field, enter the url %s"
 msgstr "În câmpul URL-ul global, introduceți URL-ul %s"
 
-#: includes/payments/gateways/two-checkout-gateway.php:93
+#: includes/payments/gateways/two-checkout-gateway.php:88
 msgid "Click Apply"
 msgstr "Clic Aplică"
 
-#: includes/payments/gateways/two-checkout-gateway.php:189
+#: includes/payments/gateways/two-checkout-gateway.php:201
 msgid "Account Number"
 msgstr "Număr cont"
 
-#: includes/payments/gateways/two-checkout-gateway.php:197
+#: includes/payments/gateways/two-checkout-gateway.php:206
 msgid "Secret Word"
 msgstr "Cuvânt Secret"
 
-#: includes/payments/gateways/two-checkout/ins-listener.php:68
+#: includes/payments/gateways/two-checkout/ins-listener.php:72
 msgid "2Checkout \"Order Created\" notification received."
 msgstr "2Checkout notificarea \"Comandă creată\" primită."
 
-#: includes/payments/gateways/two-checkout/ins-listener.php:73
+#: includes/payments/gateways/two-checkout/ins-listener.php:77
 msgid "Payment refunded in 2Checkout"
 msgstr "Plată rambursată în 2Checkout"
 
-#: includes/payments/gateways/two-checkout/ins-listener.php:80
+#: includes/payments/gateways/two-checkout/ins-listener.php:84
 msgid "2Checkout fraud review passed"
 msgstr "A fost aprobată revizuirea fraudei"
 
-#: includes/payments/gateways/two-checkout/ins-listener.php:83
+#: includes/payments/gateways/two-checkout/ins-listener.php:87
 msgid "2Checkout fraud review failed"
 msgstr "Evaluarea fraudei 2Checkout a eșuat"
 
-#: includes/payments/gateways/two-checkout/ins-listener.php:86
+#: includes/payments/gateways/two-checkout/ins-listener.php:90
 msgid "2Checkout fraud review in progress"
 msgstr "Evaluarea fraudei în curs de desfășurare"
 
@@ -7321,39 +5689,39 @@ msgstr "Încărcat în această plată"
 msgid "Payments."
 msgstr "Plăți."
 
-#: includes/post-types/payment-cpt.php:169
+#: includes/post-types/payment-cpt.php:170
 msgid "Gateway Mode"
 msgstr "Modul Gateway"
 
-#: includes/post-types/payment-cpt.php:171
+#: includes/post-types/payment-cpt.php:172
 msgid "Sandbox"
 msgstr "Sandbox"
 
-#: includes/post-types/payment-cpt.php:172
+#: includes/post-types/payment-cpt.php:173
 msgid "Live"
 msgstr "Live"
 
-#: includes/post-types/payment-cpt.php:194
+#: includes/post-types/payment-cpt.php:195
 msgid "Fee"
 msgstr "Comision"
 
-#: includes/post-types/payment-cpt.php:215
+#: includes/post-types/payment-cpt.php:216
 msgid "Payment Type"
 msgstr "Tip de plată"
 
-#: includes/post-types/payment-cpt.php:240
+#: includes/post-types/payment-cpt.php:241
 msgid "Billing Info"
 msgstr "Informații de facturare"
 
-#: includes/post-types/payment-cpt.php:287
+#: includes/post-types/payment-cpt.php:288
 msgid "Address 1"
 msgstr "Adresa 1"
 
-#: includes/post-types/payment-cpt.php:295
+#: includes/post-types/payment-cpt.php:296
 msgid "Address 2"
 msgstr "Adresa 2"
 
-#: includes/post-types/payment-cpt.php:319
+#: includes/post-types/payment-cpt.php:320
 msgid "Postal Code (ZIP)"
 msgstr "Cod poștal (ZIP)"
 
@@ -7663,6 +6031,7 @@ msgstr "Nicio categorie găsită."
 
 #: includes/post-types/room-type-cpt.php:123
 #: assets/blocks/blocks.js:816
+#: assets/blocks/blocks.min.js:1
 msgid "Categories"
 msgstr "Categorii"
 
@@ -7734,6 +6103,7 @@ msgstr "Nici o etichetă găsită."
 
 #: includes/post-types/room-type-cpt.php:178
 #: assets/blocks/blocks.js:828
+#: assets/blocks/blocks.min.js:1
 msgid "Tags"
 msgstr "Etichete"
 
@@ -7867,11 +6237,6 @@ msgstr "Servicii disponibile"
 #: includes/post-types/season-cpt.php:25
 msgid "Season Info"
 msgstr "Informații despre sezon"
-
-#: includes/post-types/season-cpt.php:32
-#: includes/reports/earnings-report.php:332
-msgid "Start date"
-msgstr "Data de început"
 
 #: includes/post-types/season-cpt.php:45
 #: includes/reports/earnings-report.php:344
@@ -8056,6 +6421,7 @@ msgid "From %s to %s"
 msgstr "De la %s la %s"
 
 #: includes/reports/report-filters.php:61
+#: assets/js/shortcodes/group-availability-calendar/index.js:1
 msgid "Today"
 msgstr "Astăzi"
 
@@ -8104,147 +6470,151 @@ msgstr "Ultimul an"
 msgid "%s - copy"
 msgstr "%s - copie"
 
-#: includes/script-managers/admin-script-manager.php:92
+#: includes/script-managers/admin-script-manager.php:110
 msgid "Accommodation Type Gallery"
 msgstr "Galerie tip cazare"
 
-#: includes/script-managers/admin-script-manager.php:93
+#: includes/script-managers/admin-script-manager.php:111
 msgid "Add Gallery To Accommodation Type"
 msgstr "Adaugă Galerie la tipul de cazare"
 
-#: includes/script-managers/admin-script-manager.php:105
+#: includes/script-managers/admin-script-manager.php:123
 msgid "Display imported bookings."
 msgstr "Afișează rezervările importate."
 
-#: includes/script-managers/admin-script-manager.php:106
+#: includes/script-managers/admin-script-manager.php:124
 msgid "Processing..."
 msgstr "Procesare..."
 
-#: includes/script-managers/admin-script-manager.php:107
+#: includes/script-managers/admin-script-manager.php:125
 msgid "Cancelling..."
 msgstr "Anulare..."
 
-#: includes/script-managers/admin-script-manager.php:108
+#: includes/script-managers/admin-script-manager.php:126
 msgid "Want to delete?"
 msgstr "Doriți să ștergeți?"
 
-#: includes/script-managers/public-script-manager.php:204
+#: includes/script-managers/public-script-manager.php:217
 msgid "Not available"
 msgstr "Nu este disponibil"
 
-#: includes/script-managers/public-script-manager.php:205
+#: includes/script-managers/public-script-manager.php:218
 msgid "This is earlier than allowed by our advance reservation rules."
 msgstr "Acest lucru este mai devreme decât este permis de regulile noastre de rezervare în avans."
 
-#: includes/script-managers/public-script-manager.php:206
+#: includes/script-managers/public-script-manager.php:219
 msgid "This is later than allowed by our advance reservation rules."
 msgstr "Acest lucru este mai târziu decât este permis de regulile noastre de rezervare în avans."
 
-#: includes/script-managers/public-script-manager.php:210
+#: includes/script-managers/public-script-manager.php:223
 msgid "Day in the past"
 msgstr "Zi în trecut"
 
-#: includes/script-managers/public-script-manager.php:211
+#: includes/script-managers/public-script-manager.php:224
 msgid "Check-in date"
 msgstr "Data de check-in"
 
-#: includes/script-managers/public-script-manager.php:212
+#: includes/script-managers/public-script-manager.php:225
 msgid "Less than min days stay"
 msgstr "Mai puțin de minim zile de ședere"
 
-#: includes/script-managers/public-script-manager.php:213
+#: includes/script-managers/public-script-manager.php:226
 msgid "More than max days stay"
 msgstr "Mai mult de max zile de ședere"
 
-#: includes/script-managers/public-script-manager.php:215
+#: includes/script-managers/public-script-manager.php:228
 msgid "Later than max date for current check-in date"
 msgstr "Mai târziu decât data maximă pentru data curentă de check-in"
 
-#: includes/script-managers/public-script-manager.php:216
+#: includes/script-managers/public-script-manager.php:229
 msgid "Rules:"
 msgstr "Reguli:"
 
-#: includes/script-managers/public-script-manager.php:217
+#: includes/script-managers/public-script-manager.php:230
 msgid "Tokenisation failed: %s"
 msgstr "Tokenizare eșuată: %s"
 
-#: includes/script-managers/public-script-manager.php:218
-#: includes/script-managers/public-script-manager.php:219
+#: includes/script-managers/public-script-manager.php:231
+#: includes/script-managers/public-script-manager.php:232
 msgid "%1$d &times; &ldquo;%2$s&rdquo; has been added to your reservation."
 msgid_plural "%1$d &times; &ldquo;%2$s&rdquo; have been added to your reservation."
 msgstr[0] "%1$d &times; &ldquo;%2$s&rdquo; a fost adăugat la rezervare."
 msgstr[1] "%1$d &times; &ldquo;%2$s&rdquo; au fost adăugate la rezervare."
 msgstr[2] "%1$d &times; &ldquo;%2$s&rdquo; au fost adăugați la rezervarea dvs."
 
-#: includes/script-managers/public-script-manager.php:220
-#: includes/script-managers/public-script-manager.php:221
+#: includes/script-managers/public-script-manager.php:233
+#: includes/script-managers/public-script-manager.php:234
 msgid "%s accommodation selected."
 msgid_plural "%s accommodations selected."
 msgstr[0] "%s cazare selectată."
 msgstr[1] "%s cazări selectate."
 msgstr[2] "%s cazări selectate."
 
-#: includes/script-managers/public-script-manager.php:222
+#: includes/script-managers/public-script-manager.php:235
 msgid "Coupon code is empty."
 msgstr "Codul cuponului este gol."
 
-#: includes/script-managers/public-script-manager.php:225
+#: includes/script-managers/public-script-manager.php:238
 msgid "Select dates"
 msgstr "Selectare date"
 
-#: includes/settings/main-settings.php:26
+#: includes/settings/main-settings.php:33
 msgid "Dark Blue"
 msgstr "Albastru închis"
 
-#: includes/settings/main-settings.php:27
+#: includes/settings/main-settings.php:34
 msgid "Dark Green"
 msgstr "Verde închis"
 
-#: includes/settings/main-settings.php:28
+#: includes/settings/main-settings.php:35
 msgid "Dark Red"
 msgstr "Roșu închis"
 
-#: includes/settings/main-settings.php:29
+#: includes/settings/main-settings.php:36
 msgid "Grayscale"
 msgstr "În tonuri de gri"
 
-#: includes/settings/main-settings.php:30
+#: includes/settings/main-settings.php:37
 msgid "Light Blue"
 msgstr "Albastru deschis"
 
-#: includes/settings/main-settings.php:31
+#: includes/settings/main-settings.php:38
 msgid "Light Coral"
 msgstr "lumina Coral"
 
-#: includes/settings/main-settings.php:32
+#: includes/settings/main-settings.php:39
 msgid "Light Green"
 msgstr "Verde deschis"
 
-#: includes/settings/main-settings.php:33
+#: includes/settings/main-settings.php:40
 msgid "Light Yellow"
 msgstr "Galben deschis"
 
-#: includes/settings/main-settings.php:34
+#: includes/settings/main-settings.php:41
 msgid "Minimal Blue"
 msgstr "Albastru minim"
 
-#: includes/settings/main-settings.php:35
+#: includes/settings/main-settings.php:42
 msgid "Minimal Orange"
 msgstr "Portocaliu minimal"
 
-#: includes/settings/main-settings.php:36
+#: includes/settings/main-settings.php:43
 msgid "Minimal"
 msgstr "Minimal"
 
-#: includes/settings/main-settings.php:38
+#: includes/settings/main-settings.php:44
+msgid "Peru"
+msgstr "Peru"
+
+#: includes/settings/main-settings.php:45
 msgid "Sky Blue"
 msgstr "Albastrul cerului"
 
-#: includes/settings/main-settings.php:39
+#: includes/settings/main-settings.php:46
 msgid "Slate Blue"
 msgstr "Albastru strălucitor"
 
-#: includes/settings/main-settings.php:40
+#: includes/settings/main-settings.php:47
 msgid "Turquoise"
 msgstr "Turcoaz"
 
@@ -8286,15 +6656,15 @@ msgstr "Vă rugăm, introduceţi o parolă curentă validă."
 msgid "Lost your password?"
 msgstr "Ți-ai pierdut parola?"
 
-#: includes/shortcodes/booking-confirmation-shortcode.php:294
+#: includes/shortcodes/booking-confirmation-shortcode.php:302
 msgid "Payment:"
 msgstr "Plată:"
 
-#: includes/shortcodes/booking-confirmation-shortcode.php:302
+#: includes/shortcodes/booking-confirmation-shortcode.php:310
 msgid "Payment Method:"
 msgstr "Metodă de plată:"
 
-#: includes/shortcodes/booking-confirmation-shortcode.php:315
+#: includes/shortcodes/booking-confirmation-shortcode.php:323
 #: templates/shortcodes/booking-details/booking-details.php:42
 msgid "Status:"
 msgstr "Stare:"
@@ -8307,11 +6677,11 @@ msgstr "Rezervările sunt dezactivate în setări."
 msgid "Checkout data is not valid."
 msgstr "Datele de checkout nu sunt valide."
 
-#: includes/shortcodes/checkout-shortcode/step-booking.php:449
+#: includes/shortcodes/checkout-shortcode/step-booking.php:454
 msgid "Payment method is not valid."
 msgstr "Metoda de plată nu este validă."
 
-#: includes/shortcodes/checkout-shortcode/step-checkout.php:193
+#: includes/shortcodes/checkout-shortcode/step-checkout.php:203
 msgid "Accommodation count is not valid."
 msgstr "Contul de cazare nu este valid."
 
@@ -8339,54 +6709,58 @@ msgstr "Am primit solicitarea dvs. de rezervare. După ce va fi confirmată, vă
 msgid "Choose dates to see relevant prices"
 msgstr "Alege datele pentru a vedea prețurile relevante"
 
-#: includes/shortcodes/search-results-shortcode.php:766
+#: includes/shortcodes/search-results-shortcode.php:771
 msgid "Select from available accommodations."
 msgstr "Selectați din cazarea disponibilă."
 
-#: includes/shortcodes/search-results-shortcode.php:775
-#: includes/shortcodes/search-results-shortcode.php:1013
+#: includes/shortcodes/search-results-shortcode.php:780
+#: includes/shortcodes/search-results-shortcode.php:1023
 #: template-functions.php:843
 msgid "Confirm Reservation"
 msgstr "Rezervă acum"
 
-#: includes/shortcodes/search-results-shortcode.php:804
+#: includes/shortcodes/search-results-shortcode.php:810
 msgid "Recommended for %d adult"
 msgid_plural "Recommended for %d adults"
 msgstr[0] "Recomandat pentru adult %d"
 msgstr[1] "Recomandat pentru adulți %d"
 msgstr[2] "Recomandat pentru adulţi %d"
 
-#: includes/shortcodes/search-results-shortcode.php:806
+#: includes/shortcodes/search-results-shortcode.php:812
 msgid " and %d child"
 msgid_plural " and %d children"
 msgstr[0] " și copilul %d"
 msgstr[1] " și copii %d"
 msgstr[2] " și copii %d"
 
-#: includes/shortcodes/search-results-shortcode.php:809
+#: includes/shortcodes/search-results-shortcode.php:816
+msgid "Recommended for your search"
+msgstr ""
+
+#: includes/shortcodes/search-results-shortcode.php:818
 msgid "Recommended for %d guest"
 msgid_plural "Recommended for %d guests"
 msgstr[0] "Recomandat pentru oaspetele %d"
 msgstr[1] "Recomandat pentru oaspeții %d"
 msgstr[2] "Recomandat pentru oaspeţii %d"
 
-#: includes/shortcodes/search-results-shortcode.php:891
+#: includes/shortcodes/search-results-shortcode.php:901
 msgid "Max occupancy:"
 msgstr "Ocuparea maximă:"
 
-#: includes/shortcodes/search-results-shortcode.php:910
+#: includes/shortcodes/search-results-shortcode.php:920
 msgid "%d child"
 msgid_plural "%d children"
 msgstr[0] "%d copil"
 msgstr[1] "%d copii"
 msgstr[2] "%d copii"
 
-#: includes/shortcodes/search-results-shortcode.php:945
+#: includes/shortcodes/search-results-shortcode.php:955
 #: templates/create-booking/results/reserve-rooms.php:76
 msgid "Reserve"
 msgstr "Rezervă"
 
-#: includes/shortcodes/search-results-shortcode.php:1002
+#: includes/shortcodes/search-results-shortcode.php:1012
 msgid "of %d accommodation available."
 msgid_plural "of %d accommodations available."
 msgstr[0] "din %d cazare disponibilă."
@@ -8394,7 +6768,7 @@ msgstr[1] "%d din cazările disponibile."
 msgstr[2] "%d din cazările disponibile."
 
 #. translators: Verb. To book an accommodation.
-#: includes/shortcodes/search-results-shortcode.php:1012
+#: includes/shortcodes/search-results-shortcode.php:1022
 #: template-functions.php:531
 #: template-functions.php:544
 msgid "Book"
@@ -8431,15 +6805,15 @@ msgstr "Niciun client nu a fost șters."
 msgid "An account with this email already exists. Please, log in."
 msgstr "Există deja un cont cu acest e-mail. Vă rugăm să vă autentificați."
 
-#: includes/users-and-roles/roles.php:34
+#: includes/users-and-roles/roles.php:35
 msgid "Hotel Manager"
 msgstr "Manager hotel"
 
-#: includes/users-and-roles/roles.php:41
+#: includes/users-and-roles/roles.php:42
 msgid "Hotel Worker"
 msgstr "Lucrător hotel"
 
-#: includes/users-and-roles/roles.php:48
+#: includes/users-and-roles/roles.php:49
 msgid "Hotel Customer"
 msgstr "Client hotel"
 
@@ -8540,6 +6914,7 @@ msgstr "Date"
 #: assets/blocks/blocks.js:484
 #: assets/blocks/blocks.js:734
 #: assets/blocks/blocks.js:1263
+#: assets/blocks/blocks.min.js:1
 msgid "Details"
 msgstr "Detalii"
 
@@ -8796,6 +7171,7 @@ msgstr "Titlu:"
 #: assets/blocks/blocks.js:448
 #: assets/blocks/blocks.js:698
 #: assets/blocks/blocks.js:1227
+#: assets/blocks/blocks.min.js:1
 msgid "Featured Image"
 msgstr "Imagine Arătată"
 
@@ -8803,12 +7179,14 @@ msgstr "Imagine Arătată"
 #: assets/blocks/blocks.js:472
 #: assets/blocks/blocks.js:722
 #: assets/blocks/blocks.js:1251
+#: assets/blocks/blocks.min.js:1
 msgid "Excerpt (short description)"
 msgstr "Extras (scurtă descriere)"
 
 #: includes/widgets/rooms-widget.php:205
 #: assets/blocks/blocks.js:770
 #: assets/blocks/blocks.js:1299
+#: assets/blocks/blocks.min.js:1
 msgid "Book Button"
 msgstr "Butonul Rezervare"
 
@@ -8875,7 +7253,7 @@ msgstr "Tranzacție eșuată"
 msgid "Unfortunately, your transaction cannot be completed at this time. Please try again or contact us."
 msgstr "Din păcate, tranzacția dvs. nu poate fi finalizată în acest moment. Vă rugăm să încercați din nou sau să ne contactați."
 
-#: plugin.php:1100
+#: plugin.php:1125
 msgid "Prices start at: %s"
 msgstr "Prețurile încep de la: %s"
 
@@ -9334,233 +7712,3 @@ msgstr "Nimic găsit."
 #: templates/widgets/search-availability/search-form.php:105
 msgid "Children %s:"
 msgstr "Copii %s:"
-
-#: assets/blocks/blocks.js:178
-#: assets/blocks/blocks.js:190
-msgid "Preset date. Formatted as %s"
-msgstr "Data presetării. Formatată ca %s"
-
-#: assets/blocks/blocks.js:283
-#: assets/blocks/blocks.js:1425
-#: assets/blocks/blocks.js:1507
-msgid "Select an accommodation type. Leave blank to use current."
-msgstr "Selectați un tip de cazare. Lăsați necompletat pentru a utiliza curentul."
-
-#: assets/blocks/blocks.js:284
-#: assets/blocks/blocks.js:1426
-#: assets/blocks/blocks.js:1508
-msgid "ID of an accommodation type. Leave blank to use current."
-msgstr "ID-ul unui tip de cazare. Lăsați necompletat pentru a utiliza curent."
-
-#: assets/blocks/blocks.js:460
-#: assets/blocks/blocks.js:710
-#: assets/blocks/blocks.js:1239
-msgid "Gallery"
-msgstr "Galerie"
-
-#: assets/blocks/blocks.js:508
-#: assets/blocks/blocks.js:758
-#: assets/blocks/blocks.js:1287
-msgid "View Button"
-msgstr "Butonul de afișare"
-
-#: assets/blocks/blocks.js:522
-#: assets/blocks/blocks.js:558
-#: assets/blocks/blocks.js:858
-#: assets/blocks/blocks.js:894
-#: assets/blocks/blocks.js:1042
-#: assets/blocks/blocks.js:1078
-msgid "Order"
-msgstr "Ordine"
-
-#: assets/blocks/blocks.js:530
-#: assets/blocks/blocks.js:866
-#: assets/blocks/blocks.js:1050
-msgid "Order By"
-msgstr "Ordonare după"
-
-#: assets/blocks/blocks.js:533
-#: assets/blocks/blocks.js:869
-#: assets/blocks/blocks.js:1053
-msgid "No order"
-msgstr "Nicio ordine"
-
-#: assets/blocks/blocks.js:534
-#: assets/blocks/blocks.js:870
-#: assets/blocks/blocks.js:1054
-msgid "Post ID"
-msgstr "ID Postare"
-
-#: assets/blocks/blocks.js:535
-#: assets/blocks/blocks.js:871
-#: assets/blocks/blocks.js:1055
-msgid "Post author"
-msgstr "Autor postare"
-
-#: assets/blocks/blocks.js:536
-#: assets/blocks/blocks.js:872
-#: assets/blocks/blocks.js:1056
-msgid "Post title"
-msgstr "Titlul mesajului"
-
-#: assets/blocks/blocks.js:537
-#: assets/blocks/blocks.js:873
-#: assets/blocks/blocks.js:1057
-msgid "Post name (post slug)"
-msgstr "Nume postare (postare slug)"
-
-#: assets/blocks/blocks.js:538
-#: assets/blocks/blocks.js:874
-#: assets/blocks/blocks.js:1058
-msgid "Post date"
-msgstr "Data postării"
-
-#: assets/blocks/blocks.js:539
-#: assets/blocks/blocks.js:875
-#: assets/blocks/blocks.js:1059
-msgid "Last modified date"
-msgstr "Data ultimei modificări"
-
-#: assets/blocks/blocks.js:540
-#: assets/blocks/blocks.js:876
-#: assets/blocks/blocks.js:1060
-msgid "Parent ID"
-msgstr "ID părinte"
-
-#: assets/blocks/blocks.js:541
-#: assets/blocks/blocks.js:877
-#: assets/blocks/blocks.js:1061
-msgid "Random order"
-msgstr "Ordine aleatorie"
-
-#: assets/blocks/blocks.js:542
-#: assets/blocks/blocks.js:878
-#: assets/blocks/blocks.js:1062
-msgid "Number of comments"
-msgstr "Numărul de comentarii"
-
-#: assets/blocks/blocks.js:543
-#: assets/blocks/blocks.js:879
-#: assets/blocks/blocks.js:1063
-msgid "Relevance"
-msgstr "Relevanță"
-
-#: assets/blocks/blocks.js:544
-#: assets/blocks/blocks.js:880
-#: assets/blocks/blocks.js:1064
-msgid "Page order"
-msgstr "Ordinea paginii"
-
-#: assets/blocks/blocks.js:545
-#: assets/blocks/blocks.js:881
-#: assets/blocks/blocks.js:1065
-msgid "Meta value"
-msgstr "Valoare Meta"
-
-#: assets/blocks/blocks.js:546
-#: assets/blocks/blocks.js:882
-#: assets/blocks/blocks.js:1066
-msgid "Numeric meta value"
-msgstr "Valoare meta numerică"
-
-#: assets/blocks/blocks.js:561
-#: assets/blocks/blocks.js:897
-#: assets/blocks/blocks.js:1081
-msgid "Ascending (1, 2, 3)"
-msgstr "Crescător (1, 2, 3)"
-
-#: assets/blocks/blocks.js:562
-#: assets/blocks/blocks.js:898
-#: assets/blocks/blocks.js:1082
-msgid "Descending (3, 2, 1)"
-msgstr "Descendent (3, 2, 1)"
-
-#: assets/blocks/blocks.js:573
-#: assets/blocks/blocks.js:909
-#: assets/blocks/blocks.js:1093
-msgid "Meta Name"
-msgstr "Valoare Meta"
-
-#: assets/blocks/blocks.js:585
-#: assets/blocks/blocks.js:921
-#: assets/blocks/blocks.js:1105
-msgid "Meta Type"
-msgstr "Meta Tip"
-
-#: assets/blocks/blocks.js:586
-#: assets/blocks/blocks.js:922
-#: assets/blocks/blocks.js:1106
-msgid "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\"."
-msgstr "Tipul specificat de câmp personalizat. Poate fi folosit împreună cu \"orderby\" = \"meta_value\"."
-
-#: assets/blocks/blocks.js:589
-#: assets/blocks/blocks.js:925
-#: assets/blocks/blocks.js:1109
-msgid "Any"
-msgstr "Oricare"
-
-#: assets/blocks/blocks.js:590
-#: assets/blocks/blocks.js:926
-#: assets/blocks/blocks.js:1110
-msgid "Numeric"
-msgstr "Numeric"
-
-#: assets/blocks/blocks.js:591
-#: assets/blocks/blocks.js:927
-#: assets/blocks/blocks.js:1111
-msgid "Binary"
-msgstr "Binar"
-
-#: assets/blocks/blocks.js:592
-#: assets/blocks/blocks.js:928
-#: assets/blocks/blocks.js:1112
-msgid "String"
-msgstr "Şir"
-
-#: assets/blocks/blocks.js:594
-#: assets/blocks/blocks.js:930
-#: assets/blocks/blocks.js:1114
-msgid "Time"
-msgstr "Timp"
-
-#: assets/blocks/blocks.js:595
-#: assets/blocks/blocks.js:931
-#: assets/blocks/blocks.js:1115
-msgid "Date and time"
-msgstr "Data și ora"
-
-#: assets/blocks/blocks.js:596
-#: assets/blocks/blocks.js:932
-#: assets/blocks/blocks.js:1116
-msgid "Decimal number"
-msgstr "Număr zecimal"
-
-#: assets/blocks/blocks.js:597
-#: assets/blocks/blocks.js:933
-#: assets/blocks/blocks.js:1117
-msgid "Signed number"
-msgstr "Număr cu semn"
-
-#: assets/blocks/blocks.js:598
-#: assets/blocks/blocks.js:934
-#: assets/blocks/blocks.js:1118
-msgid "Unsigned number"
-msgstr "Număr fără semn"
-
-#: assets/blocks/blocks.js:784
-#: assets/blocks/blocks.js:1009
-msgid "Query Settings"
-msgstr "Setări interogare"
-
-#: assets/blocks/blocks.js:840
-msgid "Relation"
-msgstr "Relaţie"
-
-#: assets/blocks/blocks.js:1029
-msgid "Values: integer, -1 to display all, default: \"Blog pages show at most\""
-msgstr "Valori: integer, -1 pentru a afişa toate, implicit: \"Paginile blog arată cel mult \""
-
-#: assets/blocks/blocks.js:1203
-msgid "Select an accommodation type."
-msgstr "Selectați un tip de cazare."
-

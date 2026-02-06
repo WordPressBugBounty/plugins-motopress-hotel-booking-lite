@@ -236,6 +236,7 @@ class SearchResultsShortcode extends AbstractShortcode {
 			do_action( 'mphb_sc_search_results_before_loop', $roomTypesQuery );
 
 			while ( $roomTypesQuery->have_posts() ) :
+
 				$roomTypesQuery->the_post();
 
 				do_action( 'mphb_sc_search_results_before_room' );
@@ -797,16 +798,21 @@ class SearchResultsShortcode extends AbstractShortcode {
 
 		do_action( 'mphb_sc_search_results_recommendation_before' );
 
-		$childrenAllowed = MPHB()->settings()->main()->isChildrenAllowed();
-		$guestsAllowed   = MPHB()->settings()->main()->isGuestsAllowed();
+		$childrenAllowed       = MPHB()->settings()->main()->isChildrenAllowed();
+		$guestsAllowed         = MPHB()->settings()->main()->isGuestsAllowed();
+		$igGuestHiddenInSearch = MPHB()->settings()->main()->isGuestsHiddenInSearch();
 
-		if ( $childrenAllowed ) {
+		if ( $childrenAllowed && ! $igGuestHiddenInSearch ) {
 			$title = sprintf( _n( 'Recommended for %d adult', 'Recommended for %d adults', $this->adults, 'motopress-hotel-booking' ), $this->adults );
 			if ( ! empty( $this->children ) ) {
 				$title .= sprintf( _n( ' and %d child', ' and %d children', $this->children, 'motopress-hotel-booking' ), $this->children );
 			}
 		} else {
-			$title = sprintf( _n( 'Recommended for %d guest', 'Recommended for %d guests', $this->adults, 'motopress-hotel-booking' ), $this->adults );
+			if ( $igGuestHiddenInSearch || ! $guestsAllowed ) {
+				$title = esc_html__( 'Recommended for your search', 'motopress-hotel-booking' );
+			} else {
+				$title = sprintf( _n( 'Recommended for %d guest', 'Recommended for %d guests', $this->adults, 'motopress-hotel-booking' ), $this->adults );
+			}
 		}
 
 		$title = apply_filters( 'mphb_sc_search_results_recommendation_title', $title );

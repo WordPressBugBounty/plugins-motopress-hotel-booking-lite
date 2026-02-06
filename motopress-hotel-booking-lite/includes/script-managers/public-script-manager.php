@@ -11,12 +11,13 @@ class PublicScriptManager extends ScriptManager {
 	private $gatewaysData = array();
 	private $checkoutData;
 
+
 	public function __construct() {
 
 		parent::__construct();
 
 		add_action( 'init', array( $this, 'register' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ), 10 );
 
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueueBlockEditor' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'localize' ) );
@@ -105,7 +106,7 @@ class PublicScriptManager extends ScriptManager {
 			// NextGEN Gallery buffers output and prints scripts with priority 1:
 			// add_action('wp_print_footer_scripts', ..., 1);
 			// We need to add localization earlier. Otherwise we'll add localization
-			// for handle "mphb" when it will be marked as "done" and all scripts will
+			// for handle "mphb-global-js" when it will be marked as "done" and all scripts will
 			// be printed
 			add_action( 'wp_print_footer_scripts', array( $this, 'localize' ), 0 );
 		}
@@ -148,7 +149,7 @@ class PublicScriptManager extends ScriptManager {
 	}
 
 	public function localize() {
-		wp_localize_script( 'mphb', 'MPHB', $this->getLocalizeData() );
+		wp_localize_script( 'mphb-global-js', 'MPHB', $this->getLocalizeData() );
 	}
 
 	/**
@@ -193,6 +194,8 @@ class PublicScriptManager extends ScriptManager {
 				),
 				'isAdmin'        => is_admin(),
 				'today'          => mphb_current_time( $jsDateFormat ),
+				'restApiUrl'     => \MPHB\Advanced\Api\ApiHelper::getRestApiUrl(),
+				'restApiWpNonce' => \MPHB\Advanced\Api\ApiHelper::getRestApiWpNonce(),
 				'ajaxUrl'        => MPHB()->getAjaxUrl(),
 				'nonces'         => array_merge( $customNonces, MPHB()->getAjax()->getFrontNonces(), \MPHB\AjaxApi\AjaxApiHandler::getAjaxActionWPNonces() ),
 				'translations'   => array(

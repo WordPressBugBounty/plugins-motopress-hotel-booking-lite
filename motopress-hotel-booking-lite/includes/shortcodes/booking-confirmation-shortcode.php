@@ -286,7 +286,15 @@ class BookingConfirmationShortcode extends AbstractShortcode {
 			<?php
 			foreach ( $this->payments as $payment ) {
 				$gateway      = MPHB()->gatewayManager()->getGateway( $payment->getGatewayId() );
-				$gatewayTitle = ! is_null( $gateway ) ? $gateway->getAdminTitle() : self::NO_VALUE_PLACEHOLDER;
+
+				if ( ! is_null( $gateway ) ) {
+					// trying getTitle first, if it's empty - get getAdminTitle.
+					$title = $gateway->getTitle();
+					$gatewayTitle = $title !== '' ? $title : $gateway->getAdminTitle();
+				} else {
+					$gatewayTitle = self::NO_VALUE_PLACEHOLDER;
+				}
+
 				?>
 
 				<ul class="mphb-booking-details">

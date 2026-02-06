@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "cs_CZ",
+                "plural-forms": "nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;"
+            },
+            "Date": [
+                "Datum"
+            ],
+            "Adults": [
+                "Dosp\u011bl\u00ed"
+            ],
+            "Children": [
+                "D\u011bti"
+            ],
+            "Price": [
+                "Cena"
+            ],
+            "Accommodation Type": [
+                "Typ ubytov\u00e1n\u00ed"
+            ],
+            "Title": [
+                "N\u00e1zev"
+            ],
+            "Booking Confirmation": [
+                "Potvrzen\u00ed rezervace"
+            ],
+            "Availability Calendar": [
+                "Dostupnost kalend\u00e1\u0159e"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Display the currency sign in the availability calendar.": [
+                ""
+            ],
+            "Settings": [
+                "Nastaven\u00ed"
+            ],
+            "Availability Search Form": [
+                "Vyhled\u00e1vac\u00ed formul\u00e1\u0159 Dostupnost"
+            ],
+            "The number of adults presetted in the search form.": [
+                "Po\u010det dosp\u011bl\u00fdch, kter\u00fd je nastaven\u00fd ve vyhled\u00e1vac\u00edm poli."
+            ],
+            "The number of children presetted in the search form.": [
+                "Po\u010det d\u011bt\u00ed, kter\u00fd je nastaven\u00fd ve vyhled\u00e1vac\u00edm poli."
+            ],
+            "Custom attributes for advanced search.": [
+                "Vlastn\u00ed atributy pro pokro\u010dil\u00e9 vyhled\u00e1v\u00e1n\u00ed."
+            ],
+            "Comma-separated slugs of attributes.": [
+                "\u010c\u00e1rkami odd\u011blen\u00e9 atributy atribut\u016f."
+            ],
+            "How many months to show.": [
+                "Kolik m\u011bs\u00edc\u016f zobrazit."
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                "Nastavte po\u010det sloupc\u016f nebo po\u010det \u0159\u00e1dk\u016f a sloupc\u016f odd\u011blen\u00fdch \u010d\u00e1rkou. P\u0159\u00edklad: \u201e3\u201c nebo \u201e2,3\u201c"
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                "Zobrazit kalend\u00e1\u0159 dostupnosti aktu\u00e1ln\u00edho typu ubytov\u00e1n\u00ed nebo podle ID."
+            ],
+            "Availability Search Results": [
+                "Dostupnost V\u00fdsledky vyhled\u00e1v\u00e1n\u00ed"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "Zobrazit seznam typu ubytov\u00e1n\u00ed, kter\u00e1 spl\u0148uj\u00ed po\u017eadovan\u00e1 krit\u00e9ria."
+            ],
+            "Whether to display title of the accommodation type.": [
+                "Zda se m\u00e1 zobrazit n\u00e1zev typu ubytov\u00e1n\u00ed."
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "Zda se m\u00e1 zobrazit doporu\u010den\u00fd obr\u00e1zek typu ubytov\u00e1n\u00ed."
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "Zda se m\u00e1 zobrazit galerie pro typ ubytov\u00e1n\u00ed."
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "Zda se m\u00e1 zobrazit v\u00fd\u0148atek (stru\u010dn\u00fd popis) typu ubytov\u00e1n\u00ed. "
+            ],
+            "Whether to display details of the accommodation type.": [
+                "Zda se maj\u00ed zobrazit podrobnosti o typu ubytov\u00e1n\u00ed."
+            ],
+            "Whether to display price of the accommodation type.": [
+                "Zda zobrazovat cenu za typ ubytov\u00e1n\u00ed."
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "Zda zobrazovat tla\u010d\u00edtko \u201cV\u00edce informac\u00ed\u201d s odkazem na typ ubytov\u00e1n\u00ed."
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                "N\u00e1zev u\u017eivatelsk\u00e9ho pole. Vy\u017eadov\u00e1no, pokud je \"orderby\" jednou z \"meta_value\", \"meta_value_num\" nebo \"meta_value_ *\"."
+            ],
+            "Whether to display Book button.": [
+                "Zda zobrazovat tla\u010d\u00edtko \u201czarezervovat\u201d."
+            ],
+            "Accommodation Types Listing": [
+                "V\u00fdpis typ\u016f ubytov\u00e1n\u00ed"
+            ],
+            "Count per page": [
+                "Po\u010det na str\u00e1nku"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "cel\u00e9 \u010d\u00edslo, -1 pro zobrazen\u00ed v\u0161ech, v\u00fdchoz\u00ed: \"Blogov\u00e9 str\u00e1nky se zobrazuj\u00ed nejv\u00fd\u0161\""
+            ],
+            "IDs of categories that will be shown.": [
+                "ID kategori\u00ed, kter\u00e9 budou zobrazeny."
+            ],
+            "Comma-separated IDs.": [
+                "ID Odd\u011blen\u00e9 \u010c\u00e1rkami."
+            ],
+            "IDs of tags that will be shown.": [
+                "ID \u0161t\u00edtk\u016f, kter\u00e9 se zobraz\u00ed."
+            ],
+            "IDs of accommodations that will be shown.": [
+                "ID ubytov\u00e1n\u00ed, kter\u00e9 budou zobrazeny."
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                "Logick\u00fd vztah mezi ka\u017edou taxonomi\u00ed, pokud existuje v\u00edce ne\u017e jeden."
+            ],
+            "Services Listing": [
+                "V\u00fdpis slu\u017eeb"
+            ],
+            "IDs": [
+                "Druhy ID"
+            ],
+            "IDs of services that will be shown. ": [
+                "ID slu\u017eeb, kter\u00e9 budou zobrazeny."
+            ],
+            "Single Accommodation Type": [
+                "Jednotn\u00fd typ ubytov\u00e1n\u00ed"
+            ],
+            "Checkout Form": [
+                " Formul\u00e1\u0159 pro objedn\u00e1vku"
+            ],
+            "Display checkout form.": [
+                "Zobrazit  formul\u00e1\u0159 pro objedn\u00e1vku."
+            ],
+            "Booking Form": [
+                "Rezerva\u010dn\u00ed formul\u00e1\u0159"
+            ],
+            "Accommodation Rates List": [
+                "Seznam cen za ubytov\u00e1n\u00ed"
+            ],
+            "ID of accommodation type.": [
+                "ID typu ubytov\u00e1n\u00ed"
+            ],
+            "Display booking and payment details.": [
+                "Zobrazit detaily rezervace a platby."
+            ],
+            "Check-in Date": [
+                "Datum p\u0159\u00edjezdu"
+            ],
+            "Check-out Date": [
+                "Datum odjezdu"
+            ],
+            "Categories": [
+                "Kategorie"
+            ],
+            "Tags": [
+                "\u0160t\u00edtky"
+            ],
+            "Details": [
+                "Podrobnosti"
+            ],
+            "Featured Image": [
+                "Hlavn\u00ed obr\u00e1zek"
+            ],
+            "Excerpt (short description)": [
+                "V\u00fd\u0148atek (stru\u010dn\u00fd popis) "
+            ],
+            "Book Button": [
+                "Tla\u010d\u00edtko rezervace"
+            ],
+            "Preset date. Formatted as %s": [
+                "P\u0159ednastaven\u00e9 datum. Form\u00e1tov\u00e1no jako %s"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "Gallery": [
+                "Galerie"
+            ],
+            "View Button": [
+                "Zobrazit tla\u010d\u00edtko"
+            ],
+            "Order": [
+                "Po\u0159ad\u00ed"
+            ],
+            "Order By": [
+                "Se\u0159adit podle"
+            ],
+            "No order": [
+                "Bez po\u0159ad\u00ed"
+            ],
+            "Post ID": [
+                "ID p\u0159\u00edsp\u011bvku"
+            ],
+            "Post author": [
+                "Autor p\u0159\u00edsp\u011bvku"
+            ],
+            "Post title": [
+                "N\u00e1zev p\u0159\u00edsp\u011bvku"
+            ],
+            "Post name (post slug)": [
+                "Jm\u00e9no p\u0159\u00edsp\u011bvku (post slug)"
+            ],
+            "Post date": [
+                "Datum p\u0159\u00edsp\u011bvku"
+            ],
+            "Last modified date": [
+                "Datum posledn\u00ed \u00fapravy"
+            ],
+            "Parent ID": [
+                "Mate\u0159sk\u00e9 ID"
+            ],
+            "Random order": [
+                "N\u00e1hodn\u00e9 po\u0159ad\u00ed"
+            ],
+            "Number of comments": [
+                "Po\u010det koment\u00e1\u0159\u016f"
+            ],
+            "Relevance": [
+                "Relevance"
+            ],
+            "Page order": [
+                "Po\u0159ad\u00ed str\u00e1nky"
+            ],
+            "Meta value": [
+                "Meta hodnota"
+            ],
+            "Numeric meta value": [
+                "\u010c\u00edseln\u00e1 met hodnota"
+            ],
+            "Ascending (1, 2, 3)": [
+                "Vzestupn\u011b (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "Sestupn\u011b (3, 2, 1)"
+            ],
+            "Meta Name": [
+                "Meta jm\u00e9no"
+            ],
+            "Meta Type": [
+                "Meta typ"
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                "Specifikovan\u00fd typ vlastn\u00edho pole. Lze pou\u017e\u00edt ve spojen\u00ed s \"orderby\" = \"meta_value\"."
+            ],
+            "Any": [
+                "Jak\u00fdkoliv"
+            ],
+            "Numeric": [
+                "Numerick\u00fd"
+            ],
+            "Binary": [
+                "Bin\u00e1rn\u00ed"
+            ],
+            "String": [
+                "V\u00fdraz"
+            ],
+            "Time": [
+                "\u010cas"
+            ],
+            "Date and time": [
+                "Datum a \u010das"
+            ],
+            "Decimal number": [
+                "Desetinn\u00e9 \u010d\u00edslo"
+            ],
+            "Signed number": [
+                "P\u0159i\u0159azen\u00e9 \u010d\u00edslo"
+            ],
+            "Unsigned number": [
+                "Nep\u0159i\u0159azen\u00e9 \u010d\u00edslo"
+            ],
+            "Query Settings": [
+                "Nastaven\u00ed dotazu"
+            ],
+            "Relation": [
+                "Vztah"
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "Hodnoty: cel\u00e9 \u010d\u00edslo, -1 pro zobrazen\u00ed v\u0161ech, v\u00fdchoz\u00ed: \u201eBlogov\u00e9 str\u00e1nky se zobrazuj\u00ed nejv\u00fd\u0161\u201c"
+            ],
+            "Select an accommodation type.": [
+                ""
+            ]
+        }
+    }
+}

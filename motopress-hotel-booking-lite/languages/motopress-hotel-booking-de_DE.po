@@ -1,5 +1,3 @@
-# Copyright (C) 2025 MotoPress
-# This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: hotel-booking-plugin\n"
@@ -9,8 +7,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-19T19:58:50+00:00\n"
-"PO-Revision-Date: 2025-03-05 20:50\n"
+"POT-Creation-Date: 2026-01-14T08:43:53+00:00\n"
+"PO-Revision-Date: 2026-01-14 08:48\n"
+"Language: de_DE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: motopress-hotel-booking\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -19,7 +18,6 @@ msgstr ""
 "X-Crowdin-Language: de\n"
 "X-Crowdin-File: motopress-hotel-booking.pot\n"
 "X-Crowdin-File-ID: 44\n"
-"Language: de_DE\n"
 
 #. Plugin Name of the plugin
 #. translators: Name of the plugin, do not translate
@@ -71,9 +69,9 @@ msgstr "<a href=\"%s\">Upgrade auf Premium</a> um diese Funktion zu aktivieren."
 #: includes/admin/sync-logs-list-table.php:91
 #: includes/csv/csv-export-handler.php:33
 #: includes/csv/csv-export-handler.php:51
-#: includes/payments/gateways/stripe-gateway.php:560
-#: includes/payments/gateways/stripe-gateway.php:572
-#: includes/payments/gateways/stripe-gateway.php:631
+#: includes/payments/gateways/stripe-gateway.php:600
+#: includes/payments/gateways/stripe-gateway.php:612
+#: includes/payments/gateways/stripe-gateway.php:671
 msgid "Error"
 msgstr "Fehler"
 
@@ -103,7 +101,7 @@ msgstr "Name"
 #: includes/bundles/customer-bundle.php:110
 #: includes/csv/bookings/bookings-exporter-helper.php:83
 #: includes/post-types/booking-cpt.php:106
-#: includes/post-types/payment-cpt.php:263
+#: includes/post-types/payment-cpt.php:264
 #: includes/views/shortcodes/checkout-view.php:618
 #: templates/account/account-details.php:34
 msgid "Email"
@@ -199,7 +197,7 @@ msgstr "Unterkünfte bearbeiten"
 
 #: includes/admin/edit-cpt-pages/booking-edit-cpt-page.php:125
 #: includes/admin/edit-cpt-pages/payment-edit-cpt-page.php:85
-#: includes/shortcodes/booking-confirmation-shortcode.php:298
+#: includes/shortcodes/booking-confirmation-shortcode.php:306
 msgid "Date:"
 msgstr "Datum:"
 
@@ -272,9 +270,9 @@ msgstr "Kinder:"
 #: includes/admin/edit-cpt-pages/rate-edit-cpt-page.php:70
 #: includes/admin/manage-cpt-pages/room-type-manage-cpt-page.php:63
 #: includes/admin/manage-cpt-pages/room-type-manage-cpt-page.php:110
-#: includes/shortcodes/booking-confirmation-shortcode.php:306
-#: includes/shortcodes/search-results-shortcode.php:770
-#: includes/shortcodes/search-results-shortcode.php:921
+#: includes/shortcodes/booking-confirmation-shortcode.php:314
+#: includes/shortcodes/search-results-shortcode.php:775
+#: includes/shortcodes/search-results-shortcode.php:931
 #: templates/shortcodes/booking-details/booking-details.php:33
 msgid "Total:"
 msgstr "Gesamt:"
@@ -425,8 +423,8 @@ msgstr "Nach unten verschieben"
 
 #: includes/admin/fields/complex-vertical-field.php:17
 #: includes/admin/menu-pages/settings-menu-page.php:580
-#: includes/settings/main-settings.php:25
-#: includes/settings/main-settings.php:43
+#: includes/settings/main-settings.php:32
+#: includes/settings/main-settings.php:51
 msgid "Default"
 msgstr "Standard"
 
@@ -437,7 +435,7 @@ msgstr "Standard"
 #: includes/admin/menu-pages/settings-menu-page.php:420
 #: includes/post-types/booking-cpt.php:122
 #: includes/post-types/booking-cpt.php:179
-#: includes/post-types/payment-cpt.php:231
+#: includes/post-types/payment-cpt.php:232
 #: includes/post-types/rate-cpt.php:31
 #: includes/post-types/room-cpt.php:79
 #: includes/views/shortcodes/checkout-view.php:250
@@ -448,7 +446,7 @@ msgstr "Standard"
 msgid "— Select —"
 msgstr "— Wählen —"
 
-#: includes/admin/fields/install-plugin-field.php:33
+#: includes/admin/fields/install-plugin-field.php:32
 msgid "Install & Activate"
 msgstr "Installieren und aktivieren"
 
@@ -485,6 +483,7 @@ msgstr "Alles wiederufen"
 #: assets/blocks/blocks.js:593
 #: assets/blocks/blocks.js:929
 #: assets/blocks/blocks.js:1113
+#: assets/blocks/blocks.min.js:1
 msgid "Date"
 msgstr "Datum"
 
@@ -496,14 +495,14 @@ msgstr "Autor"
 #: includes/admin/room-list-table.php:154
 #: includes/advanced/admin/tab/subtabs/api-keys/api-keys-table-list.php:115
 #: includes/bookings-calendar.php:613
-#: includes/script-managers/admin-script-manager.php:97
+#: includes/script-managers/admin-script-manager.php:115
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #: includes/admin/fields/rules-list-field.php:60
 #: includes/admin/sync-rooms-list-table.php:81
-#: includes/ajax.php:951
-#: includes/script-managers/admin-script-manager.php:98
+#: includes/ajax.php:974
+#: includes/script-managers/admin-script-manager.php:116
 msgid "Done"
 msgstr "Fertig"
 
@@ -514,7 +513,7 @@ msgstr "Fertig"
 #: includes/admin/menu-pages/booking-rules-menu-page.php:407
 #: includes/admin/menu-pages/taxes-and-fees-menu-page.php:211
 #: includes/admin/menu-pages/taxes-and-fees-menu-page.php:307
-#: includes/script-managers/admin-script-manager.php:95
+#: includes/script-managers/admin-script-manager.php:113
 msgid "All"
 msgstr "Alle"
 
@@ -523,7 +522,7 @@ msgstr "Alle"
 #: includes/post-types/coupon-cpt.php:81
 #: includes/post-types/coupon-cpt.php:113
 #: includes/post-types/coupon-cpt.php:158
-#: includes/script-managers/admin-script-manager.php:96
+#: includes/script-managers/admin-script-manager.php:114
 msgid "None"
 msgstr "Kein"
 
@@ -541,14 +540,14 @@ msgid "Nights"
 msgstr "Nächte"
 
 #: includes/admin/fields/variable-pricing-field.php:97
-#: includes/script-managers/admin-script-manager.php:102
+#: includes/script-managers/admin-script-manager.php:120
 msgid "and more"
 msgstr "und mehr"
 
 #: includes/admin/fields/variable-pricing-field.php:98
 #: includes/admin/menu-pages/edit-booking/edit-control.php:95
-#: includes/script-managers/admin-script-manager.php:101
-#: includes/shortcodes/search-results-shortcode.php:1009
+#: includes/script-managers/admin-script-manager.php:119
+#: includes/shortcodes/search-results-shortcode.php:1019
 #: includes/views/booking-view.php:400
 #: templates/edit-booking/edit-reserved-rooms.php:70
 msgid "Remove"
@@ -578,6 +577,7 @@ msgstr "Preis pro Nacht"
 #: templates/create-booking/search/search-form.php:94
 #: templates/shortcodes/search/search-form.php:80
 #: assets/blocks/blocks.js:147
+#: assets/blocks/blocks.min.js:1
 msgid "Adults"
 msgstr "Erwachsene"
 
@@ -589,6 +589,7 @@ msgstr "Erwachsene"
 #: templates/create-booking/search/search-form.php:109
 #: templates/shortcodes/search/search-form.php:103
 #: assets/blocks/blocks.js:162
+#: assets/blocks/blocks.min.js:1
 msgid "Children"
 msgstr "Kinder"
 
@@ -625,7 +626,7 @@ msgstr "Lizenzschlüssel"
 #: includes/admin/manage-cpt-pages/booking-manage-cpt-page.php:62
 #: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:22
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:28
-#: includes/admin/menu-pages/create-booking/checkout-step.php:63
+#: includes/admin/menu-pages/create-booking/checkout-step.php:65
 #: includes/admin/sync-logs-list-table.php:72
 #: includes/admin/sync-rooms-list-table.php:127
 #: includes/csv/bookings/bookings-exporter-helper.php:72
@@ -702,11 +703,11 @@ msgstr "Neue Buchung"
 
 #: includes/admin/manage-cpt-pages/booking-manage-cpt-page.php:61
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:26
-#: includes/admin/menu-pages/shortcodes-menu-page.php:376
+#: includes/admin/menu-pages/shortcodes-menu-page.php:406
 #: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:64
 #: includes/csv/bookings/bookings-exporter-helper.php:71
 #: includes/post-types/booking-cpt.php:42
-#: includes/post-types/payment-cpt.php:150
+#: includes/post-types/payment-cpt.php:151
 msgid "ID"
 msgstr "ID"
 
@@ -744,6 +745,7 @@ msgstr "Kundeninformationen"
 #: assets/blocks/blocks.js:883
 #: assets/blocks/blocks.js:1067
 #: assets/blocks/blocks.js:1275
+#: assets/blocks/blocks.min.js:1
 msgid "Price"
 msgstr "Preis"
 
@@ -768,12 +770,12 @@ msgid "Expire %s"
 msgstr "Endet %s"
 
 #: includes/admin/manage-cpt-pages/booking-manage-cpt-page.php:138
-#: includes/script-managers/admin-script-manager.php:99
+#: includes/script-managers/admin-script-manager.php:117
 msgid "Adults: "
 msgstr "Erwachsene: "
 
 #: includes/admin/manage-cpt-pages/booking-manage-cpt-page.php:142
-#: includes/script-managers/admin-script-manager.php:100
+#: includes/script-managers/admin-script-manager.php:118
 msgid "Children: "
 msgstr "Kinder: "
 
@@ -820,7 +822,7 @@ msgstr "Importierte %s"
 #: includes/post-types/coupon-cpt.php:93
 #: includes/post-types/coupon-cpt.php:124
 #: includes/post-types/coupon-cpt.php:169
-#: includes/post-types/payment-cpt.php:182
+#: includes/post-types/payment-cpt.php:183
 #: includes/views/booking-view.php:126
 #: includes/views/booking-view.php:172
 #: includes/views/booking-view.php:208
@@ -881,19 +883,19 @@ msgid "Booking"
 msgstr "Buchung"
 
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:31
-#: includes/post-types/payment-cpt.php:159
+#: includes/post-types/payment-cpt.php:160
 msgid "Gateway"
 msgstr "Gateway"
 
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:32
-#: includes/post-types/payment-cpt.php:223
+#: includes/post-types/payment-cpt.php:224
 msgid "Transaction ID"
 msgstr "Transaktions-ID"
 
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:105
 #: includes/admin/menu-pages/create-booking/booking-step.php:66
 #: includes/bookings-calendar.php:606
-#: includes/script-managers/admin-script-manager.php:103
+#: includes/script-managers/admin-script-manager.php:121
 msgid "Booking #%s"
 msgstr "Buchung #%s"
 
@@ -916,6 +918,7 @@ msgstr "Die Preise werden verwendet, um verschiedene Preise der gleichen Unterku
 #: assets/blocks/blocks.js:1202
 #: assets/blocks/blocks.js:1424
 #: assets/blocks/blocks.js:1506
+#: assets/blocks/blocks.min.js:1
 msgid "Accommodation Type"
 msgstr "Unterkunftsart"
 
@@ -1176,17 +1179,17 @@ msgid "Not stay-in with Not check-out rules completely block the selected date, 
 msgstr "Nicht übernachten mit Nicht Checkout-Regeln blockieren das gewählte Datum, zusätzlich wird das vorherige Datum als nicht verfügbar angezeigt."
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:444
-#: includes/script-managers/public-script-manager.php:208
+#: includes/script-managers/public-script-manager.php:221
 msgid "Not check-in"
 msgstr "Nicht einreisen"
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:445
-#: includes/script-managers/public-script-manager.php:209
+#: includes/script-managers/public-script-manager.php:222
 msgid "Not check-out"
 msgstr "Nicht auschecken"
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:446
-#: includes/script-managers/public-script-manager.php:207
+#: includes/script-managers/public-script-manager.php:220
 msgid "Not stay-in"
 msgstr "Nicht bleiben"
 
@@ -1246,7 +1249,7 @@ msgid "Note: booking rules are disabled in the plugin settings and are not taken
 msgstr "Hinweis: Die Buchungsregeln sind in den Buchungseinstellungen deaktiviert und werden nicht berücksichtigt."
 
 #: includes/admin/menu-pages/create-booking/booking-step.php:50
-#: includes/shortcodes/checkout-shortcode/step-booking.php:478
+#: includes/shortcodes/checkout-shortcode/step-booking.php:483
 msgid "Unable to create booking. Please try again."
 msgstr "Die Buchung kann nicht erstellt werden. Bitte versuchen Sie es erneut."
 
@@ -1255,95 +1258,95 @@ msgstr "Die Buchung kann nicht erstellt werden. Bitte versuchen Sie es erneut."
 msgid "Booking is blocked due to maintenance reason. Please try again later."
 msgstr "Die Buchung ist aus Wartungsgründen gesperrt. Bitte versuchen Sie es später noch einmal."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:121
-#: includes/admin/menu-pages/create-booking/booking-step.php:275
-#: includes/admin/menu-pages/create-booking/checkout-step.php:130
+#: includes/admin/menu-pages/create-booking/booking-step.php:126
+#: includes/admin/menu-pages/create-booking/booking-step.php:280
+#: includes/admin/menu-pages/create-booking/checkout-step.php:137
 #: includes/admin/menu-pages/edit-booking/booking-control.php:34
 #: includes/admin/menu-pages/edit-booking/checkout-control.php:61
 #: includes/admin/menu-pages/edit-booking/summary-control.php:56
 #: includes/shortcodes/checkout-shortcode/step-booking.php:183
 #: includes/shortcodes/checkout-shortcode/step-booking.php:363
-#: includes/shortcodes/checkout-shortcode/step-checkout.php:170
+#: includes/shortcodes/checkout-shortcode/step-checkout.php:175
 #: includes/utils/parse-utils.php:250
 msgid "There are no accommodations selected for reservation."
 msgstr "Es sind keine Unterkünfte für die Reservierung ausgewählt."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:123
-#: includes/admin/menu-pages/create-booking/booking-step.php:155
-#: includes/admin/menu-pages/create-booking/checkout-step.php:132
-#: includes/admin/menu-pages/create-booking/checkout-step.php:165
-#: includes/admin/menu-pages/create-booking/checkout-step.php:196
+#: includes/admin/menu-pages/create-booking/booking-step.php:128
+#: includes/admin/menu-pages/create-booking/booking-step.php:160
+#: includes/admin/menu-pages/create-booking/checkout-step.php:139
+#: includes/admin/menu-pages/create-booking/checkout-step.php:172
+#: includes/admin/menu-pages/create-booking/checkout-step.php:203
 #: includes/utils/parse-utils.php:210
 #: includes/utils/parse-utils.php:285
 #: includes/utils/parse-utils.php:305
 msgid "Selected accommodations are not valid."
 msgstr "Ausgewählte Unterkünfte sind nicht gültig."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:150
-#: includes/admin/menu-pages/create-booking/checkout-step.php:160
+#: includes/admin/menu-pages/create-booking/booking-step.php:155
+#: includes/admin/menu-pages/create-booking/checkout-step.php:167
 #: includes/admin/menu-pages/create-booking/step.php:191
-#: includes/ajax.php:612
+#: includes/ajax.php:620
 #: includes/shortcodes/checkout-shortcode/step-booking.php:200
 #: includes/shortcodes/checkout-shortcode/step-booking.php:207
-#: includes/shortcodes/checkout-shortcode/step-checkout.php:187
-#: includes/shortcodes/checkout-shortcode/step-checkout.php:199
+#: includes/shortcodes/checkout-shortcode/step-checkout.php:197
+#: includes/shortcodes/checkout-shortcode/step-checkout.php:209
 #: includes/utils/parse-utils.php:301
 msgid "Accommodation Type is not valid."
 msgstr "Unterkunftsart ist nicht gültig."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:160
-#: includes/admin/menu-pages/create-booking/booking-step.php:184
-#: includes/ajax.php:623
+#: includes/admin/menu-pages/create-booking/booking-step.php:165
+#: includes/admin/menu-pages/create-booking/booking-step.php:189
+#: includes/ajax.php:631
 #: includes/shortcodes/checkout-shortcode/step-booking.php:213
 #: includes/shortcodes/checkout-shortcode/step-booking.php:231
 #: includes/utils/parse-utils.php:322
 msgid "Rate is not valid."
 msgstr "Die Rate ist nicht gültig."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:189
+#: includes/admin/menu-pages/create-booking/booking-step.php:194
 #: includes/admin/menu-pages/create-booking/step.php:211
 #: includes/admin/menu-pages/create-booking/step.php:215
 #: includes/shortcodes/checkout-shortcode/step-booking.php:237
-#: includes/shortcodes/search-results-shortcode.php:634
+#: includes/shortcodes/search-results-shortcode.php:639
 #: includes/utils/parse-utils.php:163
 #: includes/utils/parse-utils.php:326
 msgid "Adults number is not valid."
 msgstr "Anzahl der Erwachsenen ist nicht gültig."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:194
+#: includes/admin/menu-pages/create-booking/booking-step.php:199
 #: includes/admin/menu-pages/create-booking/step.php:235
 #: includes/admin/menu-pages/create-booking/step.php:239
-#: includes/ajax.php:500
+#: includes/ajax.php:508
 #: includes/shortcodes/checkout-shortcode/step-booking.php:243
-#: includes/shortcodes/search-results-shortcode.php:650
+#: includes/shortcodes/search-results-shortcode.php:655
 #: includes/utils/parse-utils.php:187
 #: includes/utils/parse-utils.php:330
 msgid "Children number is not valid."
 msgstr "Kinderzahl ist nicht gültig."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:199
-#: includes/ajax.php:634
+#: includes/admin/menu-pages/create-booking/booking-step.php:204
+#: includes/ajax.php:642
 #: includes/shortcodes/checkout-shortcode/step-booking.php:248
 #: includes/utils/parse-utils.php:334
 msgid "The total number of guests is not valid."
 msgstr "Die Gesamtanzahl an Gästen ist ungültig."
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:210
-#: includes/admin/menu-pages/create-booking/checkout-step.php:181
+#: includes/admin/menu-pages/create-booking/booking-step.php:215
+#: includes/admin/menu-pages/create-booking/checkout-step.php:188
 #: includes/shortcodes/checkout-shortcode/step-booking.php:259
-#: includes/shortcodes/checkout-shortcode/step-checkout.php:245
+#: includes/shortcodes/checkout-shortcode/step-checkout.php:255
 #: includes/utils/parse-utils.php:345
 msgid "Selected dates do not meet booking rules for type %s"
 msgstr "Die ausgewählten Daten entsprechen nicht den Buchungsregeln für den Typ%s"
 
-#: includes/admin/menu-pages/create-booking/booking-step.php:263
-#: includes/admin/menu-pages/create-booking/checkout-step.php:186
+#: includes/admin/menu-pages/create-booking/booking-step.php:268
+#: includes/admin/menu-pages/create-booking/checkout-step.php:193
 #: includes/utils/parse-utils.php:264
 msgid "Accommodations are not available."
 msgstr "Unterkünfte sind nicht verfügbar."
 
-#: includes/admin/menu-pages/create-booking/checkout-step.php:170
-#: includes/shortcodes/checkout-shortcode/step-checkout.php:234
+#: includes/admin/menu-pages/create-booking/checkout-step.php:177
+#: includes/shortcodes/checkout-shortcode/step-checkout.php:244
 msgid "There are no rates for requested dates."
 msgstr "Es gibt keine Angebote für die angeforderten Daten."
 
@@ -1363,26 +1366,26 @@ msgid "Search parameters are not set."
 msgstr "Suchparameter sind nicht festgelegt."
 
 #: includes/admin/menu-pages/create-booking/step.php:129
-#: includes/ajax.php:438
-#: includes/script-managers/public-script-manager.php:223
+#: includes/ajax.php:446
+#: includes/script-managers/public-script-manager.php:236
 #: includes/shortcodes/checkout-shortcode/step.php:53
-#: includes/shortcodes/search-results-shortcode.php:665
+#: includes/shortcodes/search-results-shortcode.php:670
 #: includes/utils/parse-utils.php:87
 msgid "Check-in date is not valid."
 msgstr "Anreisedatum ist falsch."
 
 #: includes/admin/menu-pages/create-booking/step.php:131
 #: includes/shortcodes/checkout-shortcode/step.php:56
-#: includes/shortcodes/search-results-shortcode.php:668
+#: includes/shortcodes/search-results-shortcode.php:673
 #: includes/utils/parse-utils.php:89
 msgid "Check-in date cannot be earlier than today."
 msgstr "Anreisedatum kann nicht früher als heute sein."
 
 #: includes/admin/menu-pages/create-booking/step.php:157
-#: includes/ajax.php:457
-#: includes/script-managers/public-script-manager.php:224
+#: includes/ajax.php:465
+#: includes/script-managers/public-script-manager.php:237
 #: includes/shortcodes/checkout-shortcode/step.php:90
-#: includes/shortcodes/search-results-shortcode.php:686
+#: includes/shortcodes/search-results-shortcode.php:691
 #: includes/utils/parse-utils.php:120
 msgid "Check-out date is not valid."
 msgstr "Abreisedatum ist falsch."
@@ -1391,7 +1394,7 @@ msgstr "Abreisedatum ist falsch."
 #: includes/ajax-api/ajax-actions/get-room-type-availability-data.php:106
 #: includes/ajax-api/ajax-actions/get-room-type-availability-data.php:210
 #: includes/shortcodes/checkout-shortcode/step.php:101
-#: includes/shortcodes/search-results-shortcode.php:698
+#: includes/shortcodes/search-results-shortcode.php:703
 #: includes/utils/parse-utils.php:131
 msgid "Nothing found. Please try again with different search parameters."
 msgstr "Nichts gefunden. Bitte versuchen Sie es erneut mit anderen Suchparametern."
@@ -1414,7 +1417,7 @@ msgstr "Benutzername"
 #: includes/bundles/customer-bundle.php:92
 #: includes/csv/bookings/bookings-exporter-helper.php:81
 #: includes/post-types/booking-cpt.php:90
-#: includes/post-types/payment-cpt.php:247
+#: includes/post-types/payment-cpt.php:248
 #: includes/views/shortcodes/checkout-view.php:588
 #: templates/account/account-details.php:22
 msgid "First Name"
@@ -1425,7 +1428,7 @@ msgstr "Vorname"
 #: includes/bundles/customer-bundle.php:101
 #: includes/csv/bookings/bookings-exporter-helper.php:82
 #: includes/post-types/booking-cpt.php:98
-#: includes/post-types/payment-cpt.php:255
+#: includes/post-types/payment-cpt.php:256
 #: includes/views/shortcodes/checkout-view.php:603
 #: templates/account/account-details.php:26
 msgid "Last Name"
@@ -1436,7 +1439,7 @@ msgstr "Nachname"
 #: includes/bundles/customer-bundle.php:119
 #: includes/csv/bookings/bookings-exporter-helper.php:84
 #: includes/post-types/booking-cpt.php:114
-#: includes/post-types/payment-cpt.php:271
+#: includes/post-types/payment-cpt.php:272
 #: includes/views/shortcodes/checkout-view.php:633
 #: templates/account/account-details.php:38
 msgid "Phone"
@@ -1457,7 +1460,7 @@ msgstr "Adresse"
 #: includes/bundles/customer-bundle.php:155
 #: includes/csv/bookings/bookings-exporter-helper.php:88
 #: includes/post-types/booking-cpt.php:147
-#: includes/post-types/payment-cpt.php:311
+#: includes/post-types/payment-cpt.php:312
 #: includes/views/shortcodes/checkout-view.php:705
 #: templates/account/account-details.php:64
 msgid "State / County"
@@ -1467,7 +1470,7 @@ msgstr "Bundesland"
 #: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:130
 #: includes/csv/bookings/bookings-exporter-helper.php:85
 #: includes/post-types/booking-cpt.php:123
-#: includes/post-types/payment-cpt.php:279
+#: includes/post-types/payment-cpt.php:280
 #: templates/account/account-details.php:46
 msgid "Country"
 msgstr "Land"
@@ -1477,7 +1480,7 @@ msgstr "Land"
 #: includes/bundles/customer-bundle.php:146
 #: includes/csv/bookings/bookings-exporter-helper.php:87
 #: includes/post-types/booking-cpt.php:139
-#: includes/post-types/payment-cpt.php:303
+#: includes/post-types/payment-cpt.php:304
 #: includes/views/shortcodes/checkout-view.php:690
 #: templates/account/account-details.php:68
 msgid "City"
@@ -1558,8 +1561,8 @@ msgid "You cannot edit the imported booking. Please update the source booking an
 msgstr "Sie können die importierte Buchung nicht bearbeiten. Bitte aktualisieren Sie die Quellbuchung und synchronisieren Sie Ihre Kalender neu."
 
 #: includes/admin/menu-pages/edit-booking/booking-control.php:22
-#: includes/ajax-api/ajax-actions/abstract-ajax-api-action.php:142
-#: includes/ajax.php:184
+#: includes/ajax-api/ajax-actions/abstract-ajax-api-action.php:167
+#: includes/ajax.php:183
 msgid "Request does not pass security verification. Please refresh the page and try one more time."
 msgstr "Die Anforderung hat die Sicherheitsüberprüfung nicht bestanden. Bitte aktualisieren Sie die Seite und versuchen Sie es noch einmal."
 
@@ -1586,7 +1589,7 @@ msgid "Booking was edited."
 msgstr "Die Buchung wurde bearbeitet."
 
 #: includes/admin/menu-pages/edit-booking/edit-control.php:94
-#: includes/script-managers/public-script-manager.php:203
+#: includes/script-managers/public-script-manager.php:216
 #: templates/edit-booking/edit-reserved-rooms.php:67
 msgid "Available"
 msgstr "Verfügbar"
@@ -1601,8 +1604,8 @@ msgid "— Add new —"
 msgstr "— Neu hinzufügen —"
 
 #: includes/admin/menu-pages/extensions-menu-page.php:137
-#: includes/admin/menu-pages/extensions-menu-page.php:185
-#: includes/admin/menu-pages/extensions-menu-page.php:190
+#: includes/admin/menu-pages/extensions-menu-page.php:186
+#: includes/admin/menu-pages/extensions-menu-page.php:191
 #: includes/admin/menu-pages/settings-menu-page.php:1192
 msgid "Extensions"
 msgstr "Erweiterungen"
@@ -1611,11 +1614,11 @@ msgstr "Erweiterungen"
 msgid "Extend the functionality of Hotel Booking plugin with the number of helpful addons for your custom purposes."
 msgstr "Erweitern Sie die Funktionalität des Hotel Booking Plugins mit der Anzahl der hilfreichen Addons für Ihre individuellen Zwecke."
 
-#: includes/admin/menu-pages/extensions-menu-page.php:170
+#: includes/admin/menu-pages/extensions-menu-page.php:171
 msgid "Get this Extension"
 msgstr "Erhalten Sie diese Erweiterung"
 
-#: includes/admin/menu-pages/extensions-menu-page.php:178
+#: includes/admin/menu-pages/extensions-menu-page.php:179
 msgid "No extensions found."
 msgstr "Es wurde keine Erweiterungen gefunden."
 
@@ -1834,12 +1837,13 @@ msgid "Number of accommodations"
 msgstr "Anzahl der Unterkünfte"
 
 #: includes/admin/menu-pages/rooms-generator-menu-page.php:57
-#: includes/payments/gateways/gateway.php:494
+#: includes/payments/gateways/gateway.php:458
 #: includes/widgets/rooms-widget.php:185
 #: templates/create-booking/results/reserve-rooms.php:35
 #: assets/blocks/blocks.js:436
 #: assets/blocks/blocks.js:686
 #: assets/blocks/blocks.js:1215
+#: assets/blocks/blocks.min.js:1
 msgid "Title"
 msgstr "Titel"
 
@@ -1907,7 +1911,7 @@ msgstr "Wählen Sie eine Seite aus, die im Benutzerkonto angezeigt werden soll. 
 
 #: includes/admin/menu-pages/settings-menu-page.php:170
 #: includes/admin/menu-pages/settings-menu-page.php:177
-#: includes/post-types/payment-cpt.php:205
+#: includes/post-types/payment-cpt.php:206
 msgid "Currency"
 msgstr "Währung"
 
@@ -2019,10 +2023,11 @@ msgid "Text instead of reservation form while booking is disabled"
 msgstr "Text anstelle von Reservierungsformular bei Buchung ist deaktiviert"
 
 #: includes/admin/menu-pages/settings-menu-page.php:356
-#: includes/admin/menu-pages/shortcodes-menu-page.php:510
+#: includes/admin/menu-pages/shortcodes-menu-page.php:540
 #: includes/wizard.php:115
 #: assets/blocks/blocks.js:1562
 #: assets/blocks/blocks.js:1592
+#: assets/blocks/blocks.min.js:1
 msgid "Booking Confirmation"
 msgstr "Buchungsbestätigung"
 
@@ -2106,7 +2111,7 @@ msgid "Allow customers to log into their existing account during checkout."
 msgstr "Kunden erlauben, sich während des Check-outs bei ihrem vorhandenen Konto anzumelden."
 
 #: includes/admin/menu-pages/settings-menu-page.php:472
-#: includes/upgrader.php:751
+#: includes/upgrader.php:754
 #: includes/wizard.php:164
 msgid "Booking Cancellation"
 msgstr "Stornierung der Buchung"
@@ -2239,24 +2244,28 @@ msgstr "Bildergalerie der Unterkunftsseite im Leuchtkasten anzeigen."
 #: includes/admin/menu-pages/shortcodes-menu-page.php:61
 #: assets/blocks/blocks.js:250
 #: assets/blocks/blocks.js:385
+#: assets/blocks/blocks.min.js:1
 msgid "Availability Calendar"
 msgstr "Verfügbarkeitskalender"
 
 #: includes/admin/menu-pages/settings-menu-page.php:646
 #: includes/admin/menu-pages/shortcodes-menu-page.php:76
 #: assets/blocks/blocks.js:307
+#: assets/blocks/blocks.min.js:1
 msgid "Display per-night prices in the availability calendar."
 msgstr "Preise pro Nacht im Kalender der Verfügbarkeit anzeigen."
 
 #: includes/admin/menu-pages/settings-menu-page.php:654
 #: includes/admin/menu-pages/shortcodes-menu-page.php:82
 #: assets/blocks/blocks.js:318
+#: assets/blocks/blocks.min.js:1
 msgid "Truncate per-night prices in the availability calendar."
 msgstr "Preise pro Nacht im Verfügbarkeitskalender abschneiden."
 
 #: includes/admin/menu-pages/settings-menu-page.php:662
 #: includes/admin/menu-pages/shortcodes-menu-page.php:88
 #: assets/blocks/blocks.js:329
+#: assets/blocks/blocks.min.js:1
 msgid "Display the currency sign in the availability calendar."
 msgstr "Zeigt das Währungszeichen im Verfügbarkeitskalender an."
 
@@ -2337,12 +2346,10 @@ msgid "Interval"
 msgstr "Intervall"
 
 #: includes/admin/menu-pages/settings-menu-page.php:785
-#: includes/crons/cron-manager.php:102
 msgid "Quarter an Hour"
 msgstr "Viertelstunde"
 
 #: includes/admin/menu-pages/settings-menu-page.php:786
-#: includes/crons/cron-manager.php:107
 msgid "Half an Hour"
 msgstr "Halbe Stunde"
 
@@ -2579,7 +2586,7 @@ msgid "Default Gateway"
 msgstr "Standard-Gateway"
 
 #: includes/admin/menu-pages/settings-menu-page.php:1172
-#: includes/payments/gateways/bank-gateway.php:127
+#: includes/payments/gateways/bank-gateway.php:110
 msgid "Pending Payment Time"
 msgstr "Ausstehende Zahlungszeit"
 
@@ -2612,8 +2619,8 @@ msgstr "Einstellungen gespeichert."
 msgid "<strong>Note:</strong> Payment methods will appear on the checkout page only when Confirmation Upon Payment is enabled in Accommodation > Settings > General > Confirmation Mode."
 msgstr "<strong>Hinweis:</strong> Zahlungsmethoden werden auf der Checkout-Seite nur dann angezeigt, wenn Bestätigung bei Zahlung  in Unterkunft > Einstellungen > Allgemein > Bestätigungsmodus aktiviert ist."
 
-#: includes/admin/menu-pages/settings-menu-page.php:1432
-#: includes/admin/menu-pages/settings-menu-page.php:1436
+#: includes/admin/menu-pages/settings-menu-page.php:1418
+#: includes/admin/menu-pages/settings-menu-page.php:1422
 #: assets/blocks/blocks.js:141
 #: assets/blocks/blocks.js:276
 #: assets/blocks/blocks.js:429
@@ -2621,11 +2628,14 @@ msgstr "<strong>Hinweis:</strong> Zahlungsmethoden werden auf der Checkout-Seite
 #: assets/blocks/blocks.js:1196
 #: assets/blocks/blocks.js:1419
 #: assets/blocks/blocks.js:1501
+#: assets/blocks/blocks.min.js:1
+#: assets/js/blocks/group-availability-calendar/index.js:1
 msgid "Settings"
 msgstr "Einstellungen"
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:21
 #: assets/blocks/blocks.js:117
+#: assets/blocks/blocks.min.js:1
 msgid "Availability Search Form"
 msgstr "Verfügbarkeitsformularsuche"
 
@@ -2635,11 +2645,13 @@ msgstr "Suchformular anzeigen."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:25
 #: assets/blocks/blocks.js:148
+#: assets/blocks/blocks.min.js:1
 msgid "The number of adults presetted in the search form."
 msgstr "Die Anzahl der Erwachsenen, die im Suchformular vorgegeben sind."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:30
 #: assets/blocks/blocks.js:163
+#: assets/blocks/blocks.min.js:1
 msgid "The number of children presetted in the search form."
 msgstr "Die Anzahl der Kinder, die im Suchformular vorgegeben sind."
 
@@ -2649,6 +2661,7 @@ msgstr "Vorgegebenes Eincheckdatum im Suchformular."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:36
 #: includes/admin/menu-pages/shortcodes-menu-page.php:41
+#: includes/admin/menu-pages/shortcodes-menu-page.php:121
 msgid "date in format %s"
 msgstr "Datum im Format %s"
 
@@ -2658,434 +2671,501 @@ msgstr "Vorgegebenes Auscheckdatum im Suchformular."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:45
 #: assets/blocks/blocks.js:201
+#: assets/blocks/blocks.min.js:1
 msgid "Custom attributes for advanced search."
 msgstr "Benutzerdefinierte Attribute für die erweiterte Suche."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:46
 #: assets/blocks/blocks.js:202
+#: assets/blocks/blocks.min.js:1
 msgid "Comma-separated slugs of attributes."
 msgstr "Durch Komma getrennte Slugs von Attributen."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:50
 #: includes/admin/menu-pages/shortcodes-menu-page.php:94
-#: includes/admin/menu-pages/shortcodes-menu-page.php:180
-#: includes/admin/menu-pages/shortcodes-menu-page.php:259
-#: includes/admin/menu-pages/shortcodes-menu-page.php:361
-#: includes/admin/menu-pages/shortcodes-menu-page.php:422
-#: includes/admin/menu-pages/shortcodes-menu-page.php:450
-#: includes/admin/menu-pages/shortcodes-menu-page.php:470
-#: includes/admin/menu-pages/shortcodes-menu-page.php:494
-#: includes/admin/menu-pages/shortcodes-menu-page.php:514
-#: includes/admin/menu-pages/shortcodes-menu-page.php:530
-#: includes/admin/menu-pages/shortcodes-menu-page.php:546
+#: includes/admin/menu-pages/shortcodes-menu-page.php:125
+#: includes/admin/menu-pages/shortcodes-menu-page.php:210
+#: includes/admin/menu-pages/shortcodes-menu-page.php:289
+#: includes/admin/menu-pages/shortcodes-menu-page.php:391
+#: includes/admin/menu-pages/shortcodes-menu-page.php:452
+#: includes/admin/menu-pages/shortcodes-menu-page.php:480
+#: includes/admin/menu-pages/shortcodes-menu-page.php:500
+#: includes/admin/menu-pages/shortcodes-menu-page.php:524
+#: includes/admin/menu-pages/shortcodes-menu-page.php:544
+#: includes/admin/menu-pages/shortcodes-menu-page.php:560
+#: includes/admin/menu-pages/shortcodes-menu-page.php:576
 msgid "Custom CSS class for shortcode wrapper"
 msgstr "Benutzerdefinierte CSS-Klasse für Shortcode-Wrapper"
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:51
 #: includes/admin/menu-pages/shortcodes-menu-page.php:95
-#: includes/admin/menu-pages/shortcodes-menu-page.php:181
-#: includes/admin/menu-pages/shortcodes-menu-page.php:260
-#: includes/admin/menu-pages/shortcodes-menu-page.php:362
-#: includes/admin/menu-pages/shortcodes-menu-page.php:423
-#: includes/admin/menu-pages/shortcodes-menu-page.php:451
-#: includes/admin/menu-pages/shortcodes-menu-page.php:471
-#: includes/admin/menu-pages/shortcodes-menu-page.php:495
-#: includes/admin/menu-pages/shortcodes-menu-page.php:515
-#: includes/admin/menu-pages/shortcodes-menu-page.php:531
-#: includes/admin/menu-pages/shortcodes-menu-page.php:547
+#: includes/admin/menu-pages/shortcodes-menu-page.php:126
+#: includes/admin/menu-pages/shortcodes-menu-page.php:211
+#: includes/admin/menu-pages/shortcodes-menu-page.php:290
+#: includes/admin/menu-pages/shortcodes-menu-page.php:392
+#: includes/admin/menu-pages/shortcodes-menu-page.php:453
+#: includes/admin/menu-pages/shortcodes-menu-page.php:481
+#: includes/admin/menu-pages/shortcodes-menu-page.php:501
+#: includes/admin/menu-pages/shortcodes-menu-page.php:525
+#: includes/admin/menu-pages/shortcodes-menu-page.php:545
+#: includes/admin/menu-pages/shortcodes-menu-page.php:561
+#: includes/admin/menu-pages/shortcodes-menu-page.php:577
 msgid "whitespace separated css classes"
 msgstr "Mit Leerzeichen getrennte CSS-Klassen"
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:65
-#: includes/admin/menu-pages/shortcodes-menu-page.php:465
-#: includes/admin/menu-pages/shortcodes-menu-page.php:489
+#: includes/admin/menu-pages/shortcodes-menu-page.php:495
+#: includes/admin/menu-pages/shortcodes-menu-page.php:519
 #: includes/csv/bookings/bookings-exporter-helper.php:76
 #: includes/emails/templaters/reserved-rooms-templater.php:187
 msgid "Accommodation Type ID"
 msgstr "Unterkunftsart ID"
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:66
-#: includes/admin/menu-pages/shortcodes-menu-page.php:466
+#: includes/admin/menu-pages/shortcodes-menu-page.php:496
 msgid "ID of Accommodation Type to check availability."
 msgstr "Geben Sie ID der Unterkunftsart, um die Verfügbarkeit zu überprüfen."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:67
-#: includes/admin/menu-pages/shortcodes-menu-page.php:378
-#: includes/admin/menu-pages/shortcodes-menu-page.php:467
-#: includes/admin/menu-pages/shortcodes-menu-page.php:491
+#: includes/admin/menu-pages/shortcodes-menu-page.php:408
+#: includes/admin/menu-pages/shortcodes-menu-page.php:497
+#: includes/admin/menu-pages/shortcodes-menu-page.php:521
 msgid "integer number"
 msgstr "Integer-Nummer"
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:70
 #: assets/blocks/blocks.js:295
+#: assets/blocks/blocks.min.js:1
 msgid "How many months to show."
 msgstr "Wie viel Monate angezeigt werden sollen."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:72
 #: assets/blocks/blocks.js:296
+#: assets/blocks/blocks.min.js:1
 msgid "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\""
 msgstr "Stellen Sie die Spaltenanzahl oder die Komma-getrennte Spalten- und Zielenanzahl ein. Zum Beispiel „3“ oder „2,3“"
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:106
 #: assets/blocks/blocks.js:251
+#: assets/blocks/blocks.min.js:1
 msgid "Display availability calendar of the current accommodation type or by ID."
 msgstr "Den Verfügbarkeitskalender der aktuellen Unterkunftsart oder nach ID anzeigen."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:111
+#: assets/js/blocks/group-availability-calendar/index.js:1
+msgid "Multi-Property Availability Calendar"
+msgstr ""
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:112
+msgid "Displays a list of accommodation types and their availability by date in one view."
+msgstr ""
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:115
+#: assets/js/blocks/group-availability-calendar/index.js:1
+msgid "Accommodation types to display"
+msgstr ""
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:116
+msgid "Comma-separated list of accommodation type ids or slugs."
+msgstr ""
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:117
+#: includes/admin/menu-pages/shortcodes-menu-page.php:127
+#: includes/admin/menu-pages/shortcodes-menu-page.php:198
+#: includes/admin/menu-pages/shortcodes-menu-page.php:207
+#: includes/admin/menu-pages/shortcodes-menu-page.php:331
+#: includes/admin/menu-pages/shortcodes-menu-page.php:340
+#: includes/admin/menu-pages/shortcodes-menu-page.php:379
+#: includes/admin/menu-pages/shortcodes-menu-page.php:388
+#: includes/admin/menu-pages/shortcodes-menu-page.php:675
+msgid "empty string"
+msgstr "Leere Reihe"
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:120
+#: includes/post-types/season-cpt.php:32
+#: includes/reports/earnings-report.php:332
+#: assets/js/blocks/group-availability-calendar/index.js:1
+msgid "Start date"
+msgstr "Anfangsdatum"
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:122
+msgid "Current date"
+msgstr ""
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:141
 #: assets/blocks/blocks.js:397
 #: assets/blocks/blocks.js:630
+#: assets/blocks/blocks.min.js:1
 msgid "Availability Search Results"
 msgstr "Verfügbarkeit Suchergebnisse"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:112
+#: includes/admin/menu-pages/shortcodes-menu-page.php:142
 #: assets/blocks/blocks.js:398
+#: assets/blocks/blocks.min.js:1
 msgid "Display listing of accommodation types that meet the search criteria."
 msgstr "Liste der Unterkunftsarten anzeigen, die den Suchkriterien entsprechen."
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:115
-#: includes/admin/menu-pages/shortcodes-menu-page.php:212
-#: includes/admin/menu-pages/shortcodes-menu-page.php:381
-#: assets/blocks/blocks.js:437
-#: assets/blocks/blocks.js:687
-#: assets/blocks/blocks.js:1216
-msgid "Whether to display title of the accommodation type."
-msgstr "Ob der Titel der Unterkunftsart angezeigt werden soll."
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:120
-#: includes/admin/menu-pages/shortcodes-menu-page.php:217
-#: includes/admin/menu-pages/shortcodes-menu-page.php:386
-#: assets/blocks/blocks.js:449
-#: assets/blocks/blocks.js:699
-#: assets/blocks/blocks.js:1228
-msgid "Whether to display featured image of the accommodation type."
-msgstr "Ob das Vorschaubild der Unterkunftsart angezeigt werden soll."
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:125
-#: includes/admin/menu-pages/shortcodes-menu-page.php:222
-#: includes/admin/menu-pages/shortcodes-menu-page.php:391
-#: assets/blocks/blocks.js:461
-#: assets/blocks/blocks.js:711
-#: assets/blocks/blocks.js:1240
-msgid "Whether to display gallery of the accommodation type."
-msgstr "Ob Galerie der Unterkunftsart angezeigt werden soll."
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:130
-#: includes/admin/menu-pages/shortcodes-menu-page.php:227
-#: includes/admin/menu-pages/shortcodes-menu-page.php:396
-#: assets/blocks/blocks.js:473
-#: assets/blocks/blocks.js:723
-#: assets/blocks/blocks.js:1252
-msgid "Whether to display excerpt (short description) of the accommodation type."
-msgstr "Ob Auszug (Kurzbeschreibung) der Unterkunftsart angezeigt werden soll."
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:135
-#: includes/admin/menu-pages/shortcodes-menu-page.php:232
-#: includes/admin/menu-pages/shortcodes-menu-page.php:401
-#: assets/blocks/blocks.js:485
-#: assets/blocks/blocks.js:735
-#: assets/blocks/blocks.js:1264
-msgid "Whether to display details of the accommodation type."
-msgstr "Ob Einzelheiten der Unterkunftsart angezeigt werden sollen."
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:140
-#: includes/admin/menu-pages/shortcodes-menu-page.php:237
-#: includes/admin/menu-pages/shortcodes-menu-page.php:406
-#: includes/admin/menu-pages/shortcodes-menu-page.php:427
-#: assets/blocks/blocks.js:497
-#: assets/blocks/blocks.js:747
-#: assets/blocks/blocks.js:1276
-msgid "Whether to display price of the accommodation type."
-msgstr "Ob der Preis der Unterkunftsart angezeigt werden soll."
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:145
 #: includes/admin/menu-pages/shortcodes-menu-page.php:242
 #: includes/admin/menu-pages/shortcodes-menu-page.php:411
+#: assets/blocks/blocks.js:437
+#: assets/blocks/blocks.js:687
+#: assets/blocks/blocks.js:1216
+#: assets/blocks/blocks.min.js:1
+msgid "Whether to display title of the accommodation type."
+msgstr "Ob der Titel der Unterkunftsart angezeigt werden soll."
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:150
+#: includes/admin/menu-pages/shortcodes-menu-page.php:247
+#: includes/admin/menu-pages/shortcodes-menu-page.php:416
+#: assets/blocks/blocks.js:449
+#: assets/blocks/blocks.js:699
+#: assets/blocks/blocks.js:1228
+#: assets/blocks/blocks.min.js:1
+msgid "Whether to display featured image of the accommodation type."
+msgstr "Ob das Vorschaubild der Unterkunftsart angezeigt werden soll."
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:155
+#: includes/admin/menu-pages/shortcodes-menu-page.php:252
+#: includes/admin/menu-pages/shortcodes-menu-page.php:421
+#: assets/blocks/blocks.js:461
+#: assets/blocks/blocks.js:711
+#: assets/blocks/blocks.js:1240
+#: assets/blocks/blocks.min.js:1
+msgid "Whether to display gallery of the accommodation type."
+msgstr "Ob Galerie der Unterkunftsart angezeigt werden soll."
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:160
+#: includes/admin/menu-pages/shortcodes-menu-page.php:257
+#: includes/admin/menu-pages/shortcodes-menu-page.php:426
+#: assets/blocks/blocks.js:473
+#: assets/blocks/blocks.js:723
+#: assets/blocks/blocks.js:1252
+#: assets/blocks/blocks.min.js:1
+msgid "Whether to display excerpt (short description) of the accommodation type."
+msgstr "Ob Auszug (Kurzbeschreibung) der Unterkunftsart angezeigt werden soll."
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:165
+#: includes/admin/menu-pages/shortcodes-menu-page.php:262
+#: includes/admin/menu-pages/shortcodes-menu-page.php:431
+#: assets/blocks/blocks.js:485
+#: assets/blocks/blocks.js:735
+#: assets/blocks/blocks.js:1264
+#: assets/blocks/blocks.min.js:1
+msgid "Whether to display details of the accommodation type."
+msgstr "Ob Einzelheiten der Unterkunftsart angezeigt werden sollen."
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:170
+#: includes/admin/menu-pages/shortcodes-menu-page.php:267
+#: includes/admin/menu-pages/shortcodes-menu-page.php:436
+#: includes/admin/menu-pages/shortcodes-menu-page.php:457
+#: assets/blocks/blocks.js:497
+#: assets/blocks/blocks.js:747
+#: assets/blocks/blocks.js:1276
+#: assets/blocks/blocks.min.js:1
+msgid "Whether to display price of the accommodation type."
+msgstr "Ob der Preis der Unterkunftsart angezeigt werden soll."
+
+#: includes/admin/menu-pages/shortcodes-menu-page.php:175
+#: includes/admin/menu-pages/shortcodes-menu-page.php:272
+#: includes/admin/menu-pages/shortcodes-menu-page.php:441
 msgid "Show View Details button"
 msgstr "\"Details ansehen\"-Button zeigen"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:146
-#: includes/admin/menu-pages/shortcodes-menu-page.php:243
-#: includes/admin/menu-pages/shortcodes-menu-page.php:412
+#: includes/admin/menu-pages/shortcodes-menu-page.php:176
+#: includes/admin/menu-pages/shortcodes-menu-page.php:273
+#: includes/admin/menu-pages/shortcodes-menu-page.php:442
 #: assets/blocks/blocks.js:509
 #: assets/blocks/blocks.js:759
 #: assets/blocks/blocks.js:1288
+#: assets/blocks/blocks.min.js:1
 msgid "Whether to display \"View Details\" button with the link to accommodation type."
 msgstr "Ob \"Details ansehen\" -Taste mit dem Link zur Unterkunftsart angezeigt werden soll."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:151
-#: includes/admin/menu-pages/shortcodes-menu-page.php:284
-#: includes/admin/menu-pages/shortcodes-menu-page.php:332
+#: includes/admin/menu-pages/shortcodes-menu-page.php:181
+#: includes/admin/menu-pages/shortcodes-menu-page.php:314
+#: includes/admin/menu-pages/shortcodes-menu-page.php:362
 msgid "Sort by."
 msgstr "Sortieren nach."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:153
-#: includes/admin/menu-pages/shortcodes-menu-page.php:173
-#: includes/admin/menu-pages/shortcodes-menu-page.php:286
-#: includes/admin/menu-pages/shortcodes-menu-page.php:306
-#: includes/admin/menu-pages/shortcodes-menu-page.php:334
-#: includes/admin/menu-pages/shortcodes-menu-page.php:354
+#: includes/admin/menu-pages/shortcodes-menu-page.php:183
+#: includes/admin/menu-pages/shortcodes-menu-page.php:203
+#: includes/admin/menu-pages/shortcodes-menu-page.php:316
+#: includes/admin/menu-pages/shortcodes-menu-page.php:336
+#: includes/admin/menu-pages/shortcodes-menu-page.php:364
+#: includes/admin/menu-pages/shortcodes-menu-page.php:384
 msgid "%1$s. See the <a href=\"%2$s\" target=\"_blank\">full list</a>."
 msgstr "%1$s. Sehen Sie <a href=\"%2$s\" target=\"_blank\">die vollständige Liste</a>."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:160
-#: includes/admin/menu-pages/shortcodes-menu-page.php:293
-#: includes/admin/menu-pages/shortcodes-menu-page.php:341
+#: includes/admin/menu-pages/shortcodes-menu-page.php:190
+#: includes/admin/menu-pages/shortcodes-menu-page.php:323
+#: includes/admin/menu-pages/shortcodes-menu-page.php:371
 msgid "Designates the ascending or descending order of sorting."
 msgstr "Bezeichnet die aufsteigende oder absteigende Sortierreihenfolge."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:162
-#: includes/admin/menu-pages/shortcodes-menu-page.php:295
-#: includes/admin/menu-pages/shortcodes-menu-page.php:343
+#: includes/admin/menu-pages/shortcodes-menu-page.php:192
+#: includes/admin/menu-pages/shortcodes-menu-page.php:325
+#: includes/admin/menu-pages/shortcodes-menu-page.php:373
 msgid "ASC - from lowest to highest values (1, 2, 3). DESC - from highest to lowest values (3, 2, 1)."
 msgstr "ASC - vom niedrigsten zum höchsten Wert (1, 2, 3). DESC -  vom höchsten zum niedrigsten Wert (3, 2, 1)."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:166
-#: includes/admin/menu-pages/shortcodes-menu-page.php:299
-#: includes/admin/menu-pages/shortcodes-menu-page.php:347
+#: includes/admin/menu-pages/shortcodes-menu-page.php:196
+#: includes/admin/menu-pages/shortcodes-menu-page.php:329
+#: includes/admin/menu-pages/shortcodes-menu-page.php:377
 #: assets/blocks/blocks.js:574
 #: assets/blocks/blocks.js:910
 #: assets/blocks/blocks.js:1094
+#: assets/blocks/blocks.min.js:1
 msgid "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\"."
 msgstr "Benutzerdefinierter Feldname. Erforderlich, wenn \"orderby\" ist einer der \"meta_value\", \"meta_value_num\" oder \"meta_value_*\"."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:167
-#: includes/admin/menu-pages/shortcodes-menu-page.php:300
-#: includes/admin/menu-pages/shortcodes-menu-page.php:348
+#: includes/admin/menu-pages/shortcodes-menu-page.php:197
+#: includes/admin/menu-pages/shortcodes-menu-page.php:330
+#: includes/admin/menu-pages/shortcodes-menu-page.php:378
 msgid "custom field name"
 msgstr "benutzerdefinierter Feldname"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:168
-#: includes/admin/menu-pages/shortcodes-menu-page.php:177
-#: includes/admin/menu-pages/shortcodes-menu-page.php:301
-#: includes/admin/menu-pages/shortcodes-menu-page.php:310
-#: includes/admin/menu-pages/shortcodes-menu-page.php:349
-#: includes/admin/menu-pages/shortcodes-menu-page.php:358
-#: includes/admin/menu-pages/shortcodes-menu-page.php:645
-msgid "empty string"
-msgstr "Leere Reihe"
-
-#: includes/admin/menu-pages/shortcodes-menu-page.php:171
-#: includes/admin/menu-pages/shortcodes-menu-page.php:304
-#: includes/admin/menu-pages/shortcodes-menu-page.php:352
+#: includes/admin/menu-pages/shortcodes-menu-page.php:201
+#: includes/admin/menu-pages/shortcodes-menu-page.php:334
+#: includes/admin/menu-pages/shortcodes-menu-page.php:382
 msgid "Specified type of the custom field. Can be used in conjunction with orderby=\"meta_value\"."
 msgstr "Angegebener Typ des benutzerdefinierten Felds. Kann in Verbindung mit orderby=\"meta_value\" verwendet werden."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:185
+#: includes/admin/menu-pages/shortcodes-menu-page.php:215
 msgid "Sort by. Use \"orderby\" insted."
 msgstr "Sortieren nach. Verwenden Sie \"orderby\" stattdessen."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:191
-#: includes/admin/menu-pages/shortcodes-menu-page.php:248
+#: includes/admin/menu-pages/shortcodes-menu-page.php:221
+#: includes/admin/menu-pages/shortcodes-menu-page.php:278
 msgid "Show Book button"
 msgstr "Buchungsbutton anzeigen"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:192
-#: includes/admin/menu-pages/shortcodes-menu-page.php:249
-#: includes/admin/menu-pages/shortcodes-menu-page.php:417
+#: includes/admin/menu-pages/shortcodes-menu-page.php:222
+#: includes/admin/menu-pages/shortcodes-menu-page.php:279
+#: includes/admin/menu-pages/shortcodes-menu-page.php:447
 #: assets/blocks/blocks.js:771
 #: assets/blocks/blocks.js:1300
+#: assets/blocks/blocks.min.js:1
 msgid "Whether to display Book button."
 msgstr "Ob die Buchungsbutton angezeigt werden soll."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:204
-#: includes/admin/menu-pages/shortcodes-menu-page.php:457
+#: includes/admin/menu-pages/shortcodes-menu-page.php:234
+#: includes/admin/menu-pages/shortcodes-menu-page.php:487
 msgid "NOTE:"
 msgstr "HINWEIS:"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:204
+#: includes/admin/menu-pages/shortcodes-menu-page.php:234
 msgid "Use only on page that you set as Search Results Page in <a href=\"%s\">Settings</a>"
 msgstr "Nur auf der Seite verwenden, die Sie als Suchergebnisse-Seite in <a href=\"%s\"> Einstellungen </a> festgelegt haben"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:209
+#: includes/admin/menu-pages/shortcodes-menu-page.php:239
 #: assets/blocks/blocks.js:642
+#: assets/blocks/blocks.min.js:1
 msgid "Accommodation Types Listing"
 msgstr "Unterkunftsarten-Liste"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:254
-#: includes/admin/menu-pages/shortcodes-menu-page.php:327
+#: includes/admin/menu-pages/shortcodes-menu-page.php:284
+#: includes/admin/menu-pages/shortcodes-menu-page.php:357
 #: assets/blocks/blocks.js:804
 #: assets/blocks/blocks.js:1028
+#: assets/blocks/blocks.min.js:1
 msgid "Count per page"
 msgstr "Anzahl pro Seite"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:255
+#: includes/admin/menu-pages/shortcodes-menu-page.php:285
 #: assets/blocks/blocks.js:805
+#: assets/blocks/blocks.min.js:1
 msgid "integer, -1 to display all, default: \"Blog pages show at most\""
 msgstr "Ganzzahl; -1 um alle anzuzeigen; Standard: 'Blogseiten zeigen maximal' (Einstellungen\\Lesen)"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:264
+#: includes/admin/menu-pages/shortcodes-menu-page.php:294
 #: assets/blocks/blocks.js:817
+#: assets/blocks/blocks.min.js:1
 msgid "IDs of categories that will be shown."
 msgstr "IDs von Kategorien, die angezeigt werden."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:265
-#: includes/admin/menu-pages/shortcodes-menu-page.php:270
-#: includes/admin/menu-pages/shortcodes-menu-page.php:275
-#: includes/admin/menu-pages/shortcodes-menu-page.php:323
+#: includes/admin/menu-pages/shortcodes-menu-page.php:295
+#: includes/admin/menu-pages/shortcodes-menu-page.php:300
+#: includes/admin/menu-pages/shortcodes-menu-page.php:305
+#: includes/admin/menu-pages/shortcodes-menu-page.php:353
 #: assets/blocks/blocks.js:1017
+#: assets/blocks/blocks.min.js:1
 msgid "Comma-separated IDs."
 msgstr "Mit Komma getrennte IDs."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:269
+#: includes/admin/menu-pages/shortcodes-menu-page.php:299
 #: assets/blocks/blocks.js:829
+#: assets/blocks/blocks.min.js:1
 msgid "IDs of tags that will be shown."
 msgstr "IDs von Tags, die angezeigt werden."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:274
+#: includes/admin/menu-pages/shortcodes-menu-page.php:304
 #: assets/blocks/blocks.js:793
+#: assets/blocks/blocks.min.js:1
 msgid "IDs of accommodations that will be shown."
 msgstr "IDs von Unterkünften, die angezeigt werden."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:279
+#: includes/admin/menu-pages/shortcodes-menu-page.php:309
 #: assets/blocks/blocks.js:841
+#: assets/blocks/blocks.min.js:1
 msgid "Logical relationship between each taxonomy when there is more than one."
 msgstr "Logischer Zusammenhang zwischen jeder Taxonomie, wenn es mehrere Taxonomien gibt."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:319
+#: includes/admin/menu-pages/shortcodes-menu-page.php:349
 #: assets/blocks/blocks.js:983
+#: assets/blocks/blocks.min.js:1
 msgid "Services Listing"
 msgstr "Auflistung der Dienstleistungen"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:322
+#: includes/admin/menu-pages/shortcodes-menu-page.php:352
 #: assets/blocks/blocks.js:792
+#: assets/blocks/blocks.min.js:1
 msgid "IDs"
 msgstr "ID´s"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:324
+#: includes/admin/menu-pages/shortcodes-menu-page.php:354
 #: assets/blocks/blocks.js:1016
+#: assets/blocks/blocks.min.js:1
 msgid "IDs of services that will be shown. "
 msgstr "IDs von Dienstleistungen, die angezeigt werden. "
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:368
+#: includes/admin/menu-pages/shortcodes-menu-page.php:398
 msgid "Show All Services"
 msgstr "Alle Dienstleistungen anzeigen"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:373
+#: includes/admin/menu-pages/shortcodes-menu-page.php:403
 #: assets/blocks/blocks.js:1167
 #: assets/blocks/blocks.js:1344
+#: assets/blocks/blocks.min.js:1
 msgid "Single Accommodation Type"
 msgstr "Eine Unterkunftsart"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:377
+#: includes/admin/menu-pages/shortcodes-menu-page.php:407
 msgid "ID of accommodation type to display."
 msgstr "ID der Unterkunftsart anzuzeigen."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:441
+#: includes/admin/menu-pages/shortcodes-menu-page.php:471
 msgid "Display accommodation type with title and image."
 msgstr "Unterkunftsart mit Titel und Bild anzeigen."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:446
+#: includes/admin/menu-pages/shortcodes-menu-page.php:476
 #: assets/blocks/blocks.js:1356
 #: assets/blocks/blocks.js:1386
+#: assets/blocks/blocks.min.js:1
 msgid "Checkout Form"
 msgstr "Checkout-Formular"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:447
+#: includes/admin/menu-pages/shortcodes-menu-page.php:477
 #: assets/blocks/blocks.js:1357
+#: assets/blocks/blocks.min.js:1
 msgid "Display checkout form."
 msgstr "Checkout-Formular anzeigen."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:457
+#: includes/admin/menu-pages/shortcodes-menu-page.php:487
 msgid "Use only on page that you set as Checkout Page in <a href=\"%s\">Settings</a>"
 msgstr "Nur auf der Seite verwenden, die Sie als Checkout-Seite in <a href=\"%s\"> Einstellungen </a> festgelegt haben"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:462
+#: includes/admin/menu-pages/shortcodes-menu-page.php:492
 #: assets/blocks/blocks.js:1398
 #: assets/blocks/blocks.js:1468
+#: assets/blocks/blocks.min.js:1
 msgid "Booking Form"
 msgstr "Buchungsformular"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:481
+#: includes/admin/menu-pages/shortcodes-menu-page.php:511
 msgid "Show Booking Form for Accommodation Type with id 777"
 msgstr "Buchungsformular für Unterkunftsart mit der ID 777 anzeigen"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:486
+#: includes/admin/menu-pages/shortcodes-menu-page.php:516
 #: assets/blocks/blocks.js:1480
 #: assets/blocks/blocks.js:1550
+#: assets/blocks/blocks.min.js:1
 msgid "Accommodation Rates List"
 msgstr "Unterkunft-Ratenliste"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:490
+#: includes/admin/menu-pages/shortcodes-menu-page.php:520
 #: assets/blocks/blocks.js:1204
+#: assets/blocks/blocks.min.js:1
 msgid "ID of accommodation type."
 msgstr "ID der Unterkunftsart."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:505
+#: includes/admin/menu-pages/shortcodes-menu-page.php:535
 msgid "Show Accommodation Rates List for accommodation type with id 777"
 msgstr "Unterkunft-Ratenliste für Unterkunftsart mit der ID 777 anzeigen"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:511
+#: includes/admin/menu-pages/shortcodes-menu-page.php:541
 #: assets/blocks/blocks.js:1563
+#: assets/blocks/blocks.min.js:1
 msgid "Display booking and payment details."
 msgstr "Buchungs- und Zahlungsdetails anzeigen."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:521
+#: includes/admin/menu-pages/shortcodes-menu-page.php:551
 msgid "Use this shortcode on Booking Confirmed and Reservation Received pages"
 msgstr "Nutzten Sie diesen Shortcode auf der \"Buchung bestätigt\"- oder \"Reservierung erhalten\"-Seiten"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:526
+#: includes/admin/menu-pages/shortcodes-menu-page.php:556
 msgid "Booking Cancelation"
 msgstr "Stornierung der Buchung"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:527
+#: includes/admin/menu-pages/shortcodes-menu-page.php:557
 msgid "Display booking cancelation details."
 msgstr "Detail der Stornierung der Buchung anzeigen."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:537
+#: includes/admin/menu-pages/shortcodes-menu-page.php:567
 msgid "Use this shortcode on the Booking Cancelation page"
 msgstr "Diesen Kurzcode auf der Seite der Stornierung der Bestellung verwenden"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:542
+#: includes/admin/menu-pages/shortcodes-menu-page.php:572
 msgid "Customer Account"
 msgstr "Kundenkonto"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:543
+#: includes/admin/menu-pages/shortcodes-menu-page.php:573
 msgid "Display log in form or customer account area."
 msgstr "Anmeldeformular oder Kundenkontobereich anzeigen."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:553
+#: includes/admin/menu-pages/shortcodes-menu-page.php:583
 msgid "Use this shortcode to create the My Account page."
 msgstr "Verwenden Sie diesen Kurzcode, um die Seite Mein Konto zu erstellen."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:565
-#: includes/admin/menu-pages/shortcodes-menu-page.php:699
-#: includes/admin/menu-pages/shortcodes-menu-page.php:703
+#: includes/admin/menu-pages/shortcodes-menu-page.php:595
+#: includes/admin/menu-pages/shortcodes-menu-page.php:729
+#: includes/admin/menu-pages/shortcodes-menu-page.php:733
 msgid "Shortcodes"
 msgstr "Kurzcodes"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:569
+#: includes/admin/menu-pages/shortcodes-menu-page.php:599
 msgid "Shortcode"
 msgstr "Tastenkombination"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:570
+#: includes/admin/menu-pages/shortcodes-menu-page.php:600
 #: includes/post-types/attributes-cpt.php:307
 msgid "Parameters"
 msgstr "Parameter"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:571
+#: includes/admin/menu-pages/shortcodes-menu-page.php:601
 msgid "Example"
 msgstr "Beispiel"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:603
-#: includes/admin/menu-pages/shortcodes-menu-page.php:625
+#: includes/admin/menu-pages/shortcodes-menu-page.php:633
+#: includes/admin/menu-pages/shortcodes-menu-page.php:655
 msgid "Deprecated since %s"
 msgstr "Veraltet seit %s"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:635
+#: includes/admin/menu-pages/shortcodes-menu-page.php:665
 msgid "Values:"
 msgstr "Werte:"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:640
+#: includes/admin/menu-pages/shortcodes-menu-page.php:670
 msgid "Default:"
 msgstr "Standard:"
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:687
+#: includes/admin/menu-pages/shortcodes-menu-page.php:717
 msgid "Optional."
 msgstr "Optional."
 
-#: includes/admin/menu-pages/shortcodes-menu-page.php:695
+#: includes/admin/menu-pages/shortcodes-menu-page.php:725
 #: includes/advanced/admin/tab/subtabs/api-keys/html-keys-edit.php:30
-#: includes/payments/gateways/gateway.php:365
+#: includes/payments/gateways/gateway.php:341
 #: includes/views/shortcodes/checkout-view.php:247
 #: includes/views/shortcodes/checkout-view.php:270
 #: includes/views/shortcodes/checkout-view.php:538
@@ -3253,12 +3333,12 @@ msgid "d/m/Y - H:i:s"
 msgstr "d/m/Y - H:i:s"
 
 #: includes/admin/sync-rooms-list-table.php:75
-#: includes/ajax.php:945
+#: includes/ajax.php:968
 msgid "Waiting"
 msgstr "Warten"
 
 #: includes/admin/sync-rooms-list-table.php:78
-#: includes/ajax.php:948
+#: includes/ajax.php:971
 msgid "Processing"
 msgstr "In Bearbeitung"
 
@@ -3324,7 +3404,7 @@ msgstr "Keine Schlüssel gefunden."
 #: includes/advanced/admin/tab/subtabs/api-keys/api-keys-table-list.php:57
 #: includes/advanced/admin/tab/subtabs/api-keys/html-keys-edit.php:22
 #: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:95
-#: includes/payments/gateways/gateway.php:504
+#: includes/payments/gateways/gateway.php:465
 #: includes/post-types/coupon-cpt.php:37
 #: includes/post-types/rate-cpt.php:81
 msgid "Description"
@@ -3453,15 +3533,15 @@ msgstr "Verbrauchergeheimnis"
 msgid "QR Code"
 msgstr "QR-Code"
 
-#: includes/ajax-api/ajax-actions/create-stripe-payment-intent.php:33
+#: includes/ajax-api/ajax-actions/create-stripe-payment-intent.php:34
 #: includes/ajax-api/ajax-actions/update-booking-notes.php:52
-#: includes/ajax.php:344
-#: includes/ajax.php:388
+#: includes/ajax.php:347
+#: includes/ajax.php:391
 #: includes/csv/bookings/bookings-query.php:85
 msgid "Please complete all required fields and try again."
 msgstr "Bitte füllen Sie alle Pflichtfelder aus und versuchen Sie es erneut."
 
-#: includes/ajax-api/ajax-actions/create-stripe-payment-intent.php:55
+#: includes/ajax-api/ajax-actions/create-stripe-payment-intent.php:57
 msgid "Sorry, the minimum allowed payment amount is %s to use this payment method."
 msgstr "Entschuldigung, der minimal zulässige Zahlungsbetrag ist %s, um diese Zahlungsmethode zu verwenden."
 
@@ -3480,6 +3560,7 @@ msgstr "Buchungsinformationen"
 #: templates/shortcodes/search/search-form.php:43
 #: templates/widgets/search-availability/search-form.php:43
 #: assets/blocks/blocks.js:177
+#: assets/blocks/blocks.min.js:1
 msgid "Check-in Date"
 msgstr "Anreisedatum"
 
@@ -3493,6 +3574,7 @@ msgstr "Anreisedatum"
 #: templates/shortcodes/search/search-form.php:63
 #: templates/widgets/search-availability/search-form.php:62
 #: assets/blocks/blocks.js:189
+#: assets/blocks/blocks.min.js:1
 msgid "Check-out Date"
 msgstr "Abreisedatum"
 
@@ -3554,57 +3636,58 @@ msgstr "%1$s am %2$s"
 msgid "Based on your search parameters"
 msgstr "Basierend auf Ihren Suchparametern"
 
-#: includes/ajax.php:245
+#: includes/ajax.php:244
 msgid "No bookings found for your request."
 msgstr "Keine Buchungen wurden für Ihre Anfrage gefunden."
 
-#: includes/ajax.php:252
+#: includes/ajax.php:251
 msgid "Uploads directory is not writable."
 msgstr "Das Upload-Verzeichnis ist nicht beschreibbar."
 
-#: includes/ajax.php:314
+#: includes/ajax.php:311
+#: includes/ajax.php:1069
+msgid "You do not have permission to do this action."
+msgstr "Sie sind nicht berechtigt, diese Aktion auszuführen."
+
+#: includes/ajax.php:317
 msgid "No enough data"
 msgstr "Zu wenig Daten"
 
-#: includes/ajax.php:332
-#: includes/script-managers/admin-script-manager.php:94
+#: includes/ajax.php:335
+#: includes/script-managers/admin-script-manager.php:112
 msgid "An error has occurred"
 msgstr "Ein Fehler ist aufgetreten"
 
-#: includes/ajax.php:372
-#: includes/script-managers/public-script-manager.php:199
+#: includes/ajax.php:375
+#: includes/script-managers/public-script-manager.php:212
 msgid "An error has occurred, please try again later."
 msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
 
-#: includes/ajax.php:473
+#: includes/ajax.php:481
 msgid "The number of adults is not valid."
 msgstr "Die Anzahl der Erwachsenen ist nicht gültig."
 
-#: includes/ajax.php:477
+#: includes/ajax.php:485
 msgid "The number of guests is not valid."
 msgstr "Die Anzahl der Gäste ist nicht gültig."
 
-#: includes/ajax.php:519
-#: includes/ajax.php:593
+#: includes/ajax.php:527
+#: includes/ajax.php:601
 msgid "An error has occurred. Please try again later."
 msgstr "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal."
 
-#: includes/ajax.php:750
+#: includes/ajax.php:770
 msgid "Chosen payment method is not available. Please refresh the page and try one more time."
 msgstr "Ausgewählte Zahlungsmethode ist nicht verfügbar. Bitte aktualisieren Sie die Seite und versuchen Sie es noch einmal."
 
-#: includes/ajax.php:832
+#: includes/ajax.php:855
 msgid "Coupon applied successfully."
 msgstr "Der Gutschein wurde erfolgreich angewendet."
 
-#: includes/ajax.php:838
+#: includes/ajax.php:861
 #: includes/entities/coupon.php:366
 msgid "Coupon is not valid."
 msgstr "Der Gutschein ist nicht gültig."
-
-#: includes/ajax.php:1046
-msgid "You do not have permission to do this action."
-msgstr "Sie sind nicht berechtigt, diese Aktion auszuführen."
 
 #: includes/attribute-functions.php:164
 #: includes/post-types/attributes-cpt.php:137
@@ -3647,14 +3730,14 @@ msgstr "Suche"
 #: includes/bookings-calendar.php:652
 #: includes/bookings-calendar.php:654
 #: includes/bookings-calendar.php:697
-#: includes/script-managers/public-script-manager.php:200
+#: includes/script-managers/public-script-manager.php:213
 msgid "Booked"
 msgstr "Gebucht"
 
 #: includes/bookings-calendar.php:657
 #: includes/bookings-calendar.php:659
 #: includes/bookings-calendar.php:698
-#: includes/script-managers/public-script-manager.php:202
+#: includes/script-managers/public-script-manager.php:215
 msgid "Pending"
 msgstr "Ausstehend"
 
@@ -3716,7 +3799,7 @@ msgstr "Buchung #%d"
 
 #: includes/bookings-calendar.php:1136
 #: includes/bookings-calendar.php:1140
-#: includes/script-managers/public-script-manager.php:201
+#: includes/script-managers/public-script-manager.php:214
 msgid "Buffer time."
 msgstr "Pufferzeit."
 
@@ -3751,1668 +3834,19 @@ msgstr "Beschreibung: %s."
 msgid "Source: %s."
 msgstr "Quelle: %s."
 
-#: includes/bundles/countries-bundle.php:16
-msgid "Afghanistan"
-msgstr "Afghanistan"
-
-#: includes/bundles/countries-bundle.php:17
-msgid "&#197;land Islands"
-msgstr "Åland"
-
-#: includes/bundles/countries-bundle.php:18
-msgid "Albania"
-msgstr "Albanien"
-
-#: includes/bundles/countries-bundle.php:19
-msgid "Algeria"
-msgstr "Algerien"
-
-#: includes/bundles/countries-bundle.php:20
-msgid "American Samoa"
-msgstr "Amerikanisch-Samoa"
-
-#: includes/bundles/countries-bundle.php:21
-msgid "Andorra"
-msgstr "Andorra"
-
-#: includes/bundles/countries-bundle.php:22
-msgid "Angola"
-msgstr "Angola"
-
-#: includes/bundles/countries-bundle.php:23
-msgid "Anguilla"
-msgstr "Anguilla"
-
-#: includes/bundles/countries-bundle.php:24
-msgid "Antarctica"
-msgstr "Antarktika"
-
-#: includes/bundles/countries-bundle.php:25
-msgid "Antigua and Barbuda"
-msgstr "Antigua und Barbuda"
-
-#: includes/bundles/countries-bundle.php:26
-msgid "Argentina"
-msgstr "Argentinien"
-
-#: includes/bundles/countries-bundle.php:27
-msgid "Armenia"
-msgstr "Armenien"
-
-#: includes/bundles/countries-bundle.php:28
-msgid "Aruba"
-msgstr "Aruba"
-
-#: includes/bundles/countries-bundle.php:29
-msgid "Australia"
-msgstr "Australien"
-
-#: includes/bundles/countries-bundle.php:30
-msgid "Austria"
-msgstr "Österreich"
-
-#: includes/bundles/countries-bundle.php:31
-msgid "Azerbaijan"
-msgstr "Aserbaidschan"
-
-#: includes/bundles/countries-bundle.php:32
-msgid "Bahamas"
-msgstr "Bahamas"
-
-#: includes/bundles/countries-bundle.php:33
-msgid "Bahrain"
-msgstr "Bahrain"
-
-#: includes/bundles/countries-bundle.php:34
-msgid "Bangladesh"
-msgstr "Bangladesch"
-
-#: includes/bundles/countries-bundle.php:35
-msgid "Barbados"
-msgstr "Barbados"
-
-#: includes/bundles/countries-bundle.php:36
-msgid "Belarus"
-msgstr "Weißrussland"
-
-#: includes/bundles/countries-bundle.php:37
-msgid "Belgium"
-msgstr "Belgien"
-
-#: includes/bundles/countries-bundle.php:38
-msgid "Belau"
-msgstr "Belau"
-
-#: includes/bundles/countries-bundle.php:39
-msgid "Belize"
-msgstr "Belize"
-
-#: includes/bundles/countries-bundle.php:40
-msgid "Benin"
-msgstr "Benin"
-
-#: includes/bundles/countries-bundle.php:41
-msgid "Bermuda"
-msgstr "Bermuda"
-
-#: includes/bundles/countries-bundle.php:42
-msgid "Bhutan"
-msgstr "Bhutan"
-
-#: includes/bundles/countries-bundle.php:43
-msgid "Bolivia"
-msgstr "Bolivien"
-
-#: includes/bundles/countries-bundle.php:44
-msgid "Bonaire, Saint Eustatius and Saba"
-msgstr "Karibische Niederlande"
-
-#: includes/bundles/countries-bundle.php:45
-msgid "Bosnia and Herzegovina"
-msgstr "Bosnien-Herzegowina"
-
-#: includes/bundles/countries-bundle.php:46
-msgid "Botswana"
-msgstr "Botswana"
-
-#: includes/bundles/countries-bundle.php:47
-msgid "Bouvet Island"
-msgstr "Bouvetinsel"
-
-#: includes/bundles/countries-bundle.php:48
-msgid "Brazil"
-msgstr "Brasilien"
-
-#: includes/bundles/countries-bundle.php:49
-msgid "British Indian Ocean Territory"
-msgstr "Britisches Territorium im Indischen Ozean"
-
-#: includes/bundles/countries-bundle.php:50
-msgid "British Virgin Islands"
-msgstr "Britische Jungferninseln"
-
-#: includes/bundles/countries-bundle.php:51
-msgid "Brunei"
-msgstr "Brunei"
-
-#: includes/bundles/countries-bundle.php:52
-msgid "Bulgaria"
-msgstr "Bulgarien"
-
-#: includes/bundles/countries-bundle.php:53
-msgid "Burkina Faso"
-msgstr "Burkina Faso"
-
-#: includes/bundles/countries-bundle.php:54
-msgid "Burundi"
-msgstr "Burundi"
-
-#: includes/bundles/countries-bundle.php:55
-msgid "Cambodia"
-msgstr "Kambodscha"
-
-#: includes/bundles/countries-bundle.php:56
-msgid "Cameroon"
-msgstr "Kamerun"
-
-#: includes/bundles/countries-bundle.php:57
-msgid "Canada"
-msgstr "Kanada"
-
-#: includes/bundles/countries-bundle.php:58
-msgid "Cape Verde"
-msgstr "Kap Verde"
-
-#: includes/bundles/countries-bundle.php:59
-msgid "Cayman Islands"
-msgstr "Kaimaninseln"
-
-#: includes/bundles/countries-bundle.php:60
-msgid "Central African Republic"
-msgstr "Zentralafrikanische Republik"
-
-#: includes/bundles/countries-bundle.php:61
-msgid "Chad"
-msgstr "Tschad"
-
-#: includes/bundles/countries-bundle.php:62
-msgid "Chile"
-msgstr "Chile"
-
-#: includes/bundles/countries-bundle.php:63
-msgid "China"
-msgstr "China"
-
-#: includes/bundles/countries-bundle.php:64
-msgid "Christmas Island"
-msgstr "Weihnachtsinsel"
-
-#: includes/bundles/countries-bundle.php:65
-msgid "Cocos (Keeling) Islands"
-msgstr "Kokosinseln (Keelinginseln)"
-
-#: includes/bundles/countries-bundle.php:66
-msgid "Colombia"
-msgstr "Kolumbien"
-
-#: includes/bundles/countries-bundle.php:67
-msgid "Comoros"
-msgstr "Komoren"
-
-#: includes/bundles/countries-bundle.php:68
-msgid "Congo (Brazzaville)"
-msgstr "Kongo - Brazzaville"
-
-#: includes/bundles/countries-bundle.php:69
-msgid "Congo (Kinshasa)"
-msgstr "Kongo - Kinshasa"
-
-#: includes/bundles/countries-bundle.php:70
-msgid "Cook Islands"
-msgstr "Cookinseln"
-
-#: includes/bundles/countries-bundle.php:71
-msgid "Costa Rica"
-msgstr "Costa Rica"
-
-#: includes/bundles/countries-bundle.php:72
-msgid "Croatia"
-msgstr "Kroatien"
-
-#: includes/bundles/countries-bundle.php:73
-msgid "Cuba"
-msgstr "Kuba"
-
-#: includes/bundles/countries-bundle.php:74
-msgid "Cura&ccedil;ao"
-msgstr "Curaçao"
-
-#: includes/bundles/countries-bundle.php:75
-msgid "Cyprus"
-msgstr "Zypern"
-
-#: includes/bundles/countries-bundle.php:76
-msgid "Czech Republic"
-msgstr "Tschechien"
-
-#: includes/bundles/countries-bundle.php:77
-msgid "Denmark"
-msgstr "Dänemark"
-
-#: includes/bundles/countries-bundle.php:78
-msgid "Djibouti"
-msgstr "Dschibuti"
-
-#: includes/bundles/countries-bundle.php:79
-msgid "Dominica"
-msgstr "Dominikanische Republik"
-
-#: includes/bundles/countries-bundle.php:80
-msgid "Dominican Republic"
-msgstr "Dominikanische Republik"
-
-#: includes/bundles/countries-bundle.php:81
-msgid "Ecuador"
-msgstr "Ecuador"
-
-#: includes/bundles/countries-bundle.php:82
-msgid "Egypt"
-msgstr "Ägypten"
-
-#: includes/bundles/countries-bundle.php:83
-msgid "El Salvador"
-msgstr "El Salvador"
-
-#: includes/bundles/countries-bundle.php:84
-msgid "Equatorial Guinea"
-msgstr "Äquatorialguinea"
-
-#: includes/bundles/countries-bundle.php:85
-msgid "Eritrea"
-msgstr "Eritrea"
-
-#: includes/bundles/countries-bundle.php:86
-msgid "Estonia"
-msgstr "Estonien"
-
-#: includes/bundles/countries-bundle.php:87
-msgid "Ethiopia"
-msgstr "Äthiopien"
-
-#: includes/bundles/countries-bundle.php:88
-msgid "Falkland Islands"
-msgstr "Falkland-Inseln"
-
-#: includes/bundles/countries-bundle.php:89
-msgid "Faroe Islands"
-msgstr "Faroer-Inseln"
-
-#: includes/bundles/countries-bundle.php:90
-msgid "Fiji"
-msgstr "Fidschi"
-
-#: includes/bundles/countries-bundle.php:91
-msgid "Finland"
-msgstr "Finnland"
-
-#: includes/bundles/countries-bundle.php:92
-msgid "France"
-msgstr "Frankreich"
-
-#: includes/bundles/countries-bundle.php:93
-msgid "French Guiana"
-msgstr "Französisch-Guayana"
-
-#: includes/bundles/countries-bundle.php:94
-msgid "French Polynesia"
-msgstr "Französisch-Polynesien"
-
-#: includes/bundles/countries-bundle.php:95
-msgid "French Southern Territories"
-msgstr "Französische Südgebiete"
-
-#: includes/bundles/countries-bundle.php:96
-msgid "Gabon"
-msgstr "Gabun"
-
-#: includes/bundles/countries-bundle.php:97
-msgid "Gambia"
-msgstr "Gambien"
-
-#: includes/bundles/countries-bundle.php:98
-msgid "Georgia"
-msgstr "Georgien"
-
-#: includes/bundles/countries-bundle.php:99
-msgid "Germany"
-msgstr "Deutschland"
-
-#: includes/bundles/countries-bundle.php:100
-msgid "Ghana"
-msgstr "Ghana"
-
-#: includes/bundles/countries-bundle.php:101
-msgid "Gibraltar"
-msgstr "Gibraltar"
-
-#: includes/bundles/countries-bundle.php:102
-msgid "Greece"
-msgstr "Griechenland"
-
-#: includes/bundles/countries-bundle.php:103
-msgid "Greenland"
-msgstr "Grönland"
-
-#: includes/bundles/countries-bundle.php:104
-msgid "Grenada"
-msgstr "Grenada"
-
-#: includes/bundles/countries-bundle.php:105
-msgid "Guadeloupe"
-msgstr "Guadeloupe"
-
-#: includes/bundles/countries-bundle.php:106
-msgid "Guam"
-msgstr "Guam"
-
-#: includes/bundles/countries-bundle.php:107
-msgid "Guatemala"
-msgstr "Guatemala"
-
-#: includes/bundles/countries-bundle.php:108
-msgid "Guernsey"
-msgstr "Guernsey"
-
-#: includes/bundles/countries-bundle.php:109
-msgid "Guinea"
-msgstr "Guinea"
-
-#: includes/bundles/countries-bundle.php:110
-msgid "Guinea-Bissau"
-msgstr "Guinea-Bissau"
-
-#: includes/bundles/countries-bundle.php:111
-msgid "Guyana"
-msgstr "Guyana"
-
-#: includes/bundles/countries-bundle.php:112
-msgid "Haiti"
-msgstr "Haiti"
-
-#: includes/bundles/countries-bundle.php:113
-msgid "Heard Island and McDonald Islands"
-msgstr "Heard und McDonaldinseln"
-
-#: includes/bundles/countries-bundle.php:114
-msgid "Honduras"
-msgstr "Honduras"
-
-#: includes/bundles/countries-bundle.php:115
-msgid "Hong Kong"
-msgstr "Hong Kong"
-
-#: includes/bundles/countries-bundle.php:116
-msgid "Hungary"
-msgstr "Ungarn"
-
-#: includes/bundles/countries-bundle.php:117
-msgid "Iceland"
-msgstr "Island"
-
-#: includes/bundles/countries-bundle.php:118
-msgid "India"
-msgstr "Indien"
-
-#: includes/bundles/countries-bundle.php:119
-msgid "Indonesia"
-msgstr "Indonesien"
-
-#: includes/bundles/countries-bundle.php:120
-msgid "Iran"
-msgstr "Iran"
-
-#: includes/bundles/countries-bundle.php:121
-msgid "Iraq"
-msgstr "Irak"
-
-#: includes/bundles/countries-bundle.php:122
-msgid "Ireland"
-msgstr "Irland"
-
-#: includes/bundles/countries-bundle.php:123
-msgid "Isle of Man"
-msgstr "Isle of Man"
-
-#: includes/bundles/countries-bundle.php:124
-msgid "Israel"
-msgstr "Israel"
-
-#: includes/bundles/countries-bundle.php:125
-msgid "Italy"
-msgstr "Italien"
-
-#: includes/bundles/countries-bundle.php:126
-msgid "Ivory Coast"
-msgstr "Elfenbeinküste"
-
-#: includes/bundles/countries-bundle.php:127
-msgid "Jamaica"
-msgstr "Jamaika"
-
-#: includes/bundles/countries-bundle.php:128
-msgid "Japan"
-msgstr "Japan"
-
-#: includes/bundles/countries-bundle.php:129
-msgid "Jersey"
-msgstr "Jersey"
-
-#: includes/bundles/countries-bundle.php:130
-msgid "Jordan"
-msgstr "Jordanien"
-
-#: includes/bundles/countries-bundle.php:131
-msgid "Kazakhstan"
-msgstr "Kasachstan"
-
-#: includes/bundles/countries-bundle.php:132
-msgid "Kenya"
-msgstr "Kenia"
-
-#: includes/bundles/countries-bundle.php:133
-msgid "Kiribati"
-msgstr "Kiribati"
-
-#: includes/bundles/countries-bundle.php:134
-msgid "Kuwait"
-msgstr "Kuwait"
-
-#: includes/bundles/countries-bundle.php:135
-msgid "Kyrgyzstan"
-msgstr "Kirgisistan"
-
-#: includes/bundles/countries-bundle.php:136
-msgid "Laos"
-msgstr "Laos"
-
-#: includes/bundles/countries-bundle.php:137
-msgid "Latvia"
-msgstr "Lettland"
-
-#: includes/bundles/countries-bundle.php:138
-msgid "Lebanon"
-msgstr "Libanon"
-
-#: includes/bundles/countries-bundle.php:139
-msgid "Lesotho"
-msgstr "Lesotho"
-
-#: includes/bundles/countries-bundle.php:140
-msgid "Liberia"
-msgstr "Liberia"
-
-#: includes/bundles/countries-bundle.php:141
-msgid "Libya"
-msgstr "Libyen"
-
-#: includes/bundles/countries-bundle.php:142
-msgid "Liechtenstein"
-msgstr "Liechtenstein"
-
-#: includes/bundles/countries-bundle.php:143
-msgid "Lithuania"
-msgstr "Litauen"
-
-#: includes/bundles/countries-bundle.php:144
-msgid "Luxembourg"
-msgstr "Luxemburg"
-
-#: includes/bundles/countries-bundle.php:145
-msgid "Macao S.A.R., China"
-msgstr "Macau"
-
-#: includes/bundles/countries-bundle.php:146
-msgid "Macedonia"
-msgstr "Mazedonien"
-
-#: includes/bundles/countries-bundle.php:147
-msgid "Madagascar"
-msgstr "Madagaskar"
-
-#: includes/bundles/countries-bundle.php:148
-msgid "Malawi"
-msgstr "Malawi"
-
-#: includes/bundles/countries-bundle.php:149
-msgid "Malaysia"
-msgstr "Malaysien"
-
-#: includes/bundles/countries-bundle.php:150
-msgid "Maldives"
-msgstr "Malediven"
-
-#: includes/bundles/countries-bundle.php:151
-msgid "Mali"
-msgstr "Mali"
-
-#: includes/bundles/countries-bundle.php:152
-msgid "Malta"
-msgstr "Malta"
-
-#: includes/bundles/countries-bundle.php:153
-msgid "Marshall Islands"
-msgstr "Marshallinseln"
-
-#: includes/bundles/countries-bundle.php:154
-msgid "Martinique"
-msgstr "Martinique"
-
-#: includes/bundles/countries-bundle.php:155
-msgid "Mauritania"
-msgstr "Mauretanien"
-
-#: includes/bundles/countries-bundle.php:156
-msgid "Mauritius"
-msgstr "Mauritius"
-
-#: includes/bundles/countries-bundle.php:157
-msgid "Mayotte"
-msgstr "Mayotte"
-
-#: includes/bundles/countries-bundle.php:158
-msgid "Mexico"
-msgstr "Mexiko"
-
-#: includes/bundles/countries-bundle.php:159
-msgid "Micronesia"
-msgstr "Mikronesien"
-
-#: includes/bundles/countries-bundle.php:160
-msgid "Moldova"
-msgstr "Moldawien"
-
-#: includes/bundles/countries-bundle.php:161
-msgid "Monaco"
-msgstr "Monaco"
-
-#: includes/bundles/countries-bundle.php:162
-msgid "Mongolia"
-msgstr "Mongolei"
-
-#: includes/bundles/countries-bundle.php:163
-msgid "Montenegro"
-msgstr "Montenegro"
-
-#: includes/bundles/countries-bundle.php:164
-msgid "Montserrat"
-msgstr "Montserrat"
-
-#: includes/bundles/countries-bundle.php:165
-msgid "Morocco"
-msgstr "Marokko"
-
-#: includes/bundles/countries-bundle.php:166
-msgid "Mozambique"
-msgstr "Mosambik"
-
-#: includes/bundles/countries-bundle.php:167
-msgid "Myanmar"
-msgstr "Myanmar"
-
-#: includes/bundles/countries-bundle.php:168
-msgid "Namibia"
-msgstr "Namibia"
-
-#: includes/bundles/countries-bundle.php:169
-msgid "Nauru"
-msgstr "Nauru"
-
-#: includes/bundles/countries-bundle.php:170
-msgid "Nepal"
-msgstr "Nepal"
-
-#: includes/bundles/countries-bundle.php:171
-msgid "Netherlands"
-msgstr "Niederlande"
-
-#: includes/bundles/countries-bundle.php:172
-msgid "New Caledonia"
-msgstr "Neukaledonien"
-
-#: includes/bundles/countries-bundle.php:173
-msgid "New Zealand"
-msgstr "Neuseeland"
-
-#: includes/bundles/countries-bundle.php:174
-msgid "Nicaragua"
-msgstr "Nicaragua"
-
-#: includes/bundles/countries-bundle.php:175
-msgid "Niger"
-msgstr "Niger"
-
-#: includes/bundles/countries-bundle.php:176
-msgid "Nigeria"
-msgstr "Nigeria"
-
-#: includes/bundles/countries-bundle.php:177
-msgid "Niue"
-msgstr "Niue"
-
-#: includes/bundles/countries-bundle.php:178
-msgid "Norfolk Island"
-msgstr "Norfolkinsel"
-
-#: includes/bundles/countries-bundle.php:179
-msgid "Northern Mariana Islands"
-msgstr "Nördliche Marianen"
-
-#: includes/bundles/countries-bundle.php:180
-msgid "North Korea"
-msgstr "Nordkorea"
-
-#: includes/bundles/countries-bundle.php:181
-msgid "Norway"
-msgstr "Norwegen"
-
-#: includes/bundles/countries-bundle.php:182
-msgid "Oman"
-msgstr "Oman"
-
-#: includes/bundles/countries-bundle.php:183
-msgid "Pakistan"
-msgstr "Pakistan"
-
-#: includes/bundles/countries-bundle.php:184
-msgid "Palestinian Territory"
-msgstr "Palästinensische Autonomiegebiete"
-
-#: includes/bundles/countries-bundle.php:185
-msgid "Panama"
-msgstr "Panama"
-
-#: includes/bundles/countries-bundle.php:186
-msgid "Papua New Guinea"
-msgstr "Papua-Neuguinea"
-
-#: includes/bundles/countries-bundle.php:187
-msgid "Paraguay"
-msgstr "Paraguay"
-
-#: includes/bundles/countries-bundle.php:188
-#: includes/settings/main-settings.php:37
-msgid "Peru"
-msgstr "Peru"
-
-#: includes/bundles/countries-bundle.php:189
-msgid "Philippines"
-msgstr "Philippinen"
-
-#: includes/bundles/countries-bundle.php:190
-msgid "Pitcairn"
-msgstr "Pitcairninseln"
-
-#: includes/bundles/countries-bundle.php:191
-msgid "Poland"
-msgstr "Polen"
-
-#: includes/bundles/countries-bundle.php:192
-msgid "Portugal"
-msgstr "Portugal"
-
-#: includes/bundles/countries-bundle.php:193
-msgid "Puerto Rico"
-msgstr "Puerto Rico"
-
-#: includes/bundles/countries-bundle.php:194
-msgid "Qatar"
-msgstr "Katar"
-
-#: includes/bundles/countries-bundle.php:195
-msgid "Reunion"
-msgstr "Réunion"
-
-#: includes/bundles/countries-bundle.php:196
-msgid "Romania"
-msgstr "Rumänien"
-
-#: includes/bundles/countries-bundle.php:197
-msgid "Russia"
-msgstr "Russland"
-
-#: includes/bundles/countries-bundle.php:198
-msgid "Rwanda"
-msgstr "Ruanda"
-
-#: includes/bundles/countries-bundle.php:199
-msgid "Saint Barth&eacute;lemy"
-msgstr "Saint-Barthélemy"
-
-#: includes/bundles/countries-bundle.php:200
-msgid "Saint Helena"
-msgstr "St. Helena"
-
-#: includes/bundles/countries-bundle.php:201
-msgid "Saint Kitts and Nevis"
-msgstr "St. Kitts und Nevis"
-
-#: includes/bundles/countries-bundle.php:202
-msgid "Saint Lucia"
-msgstr "St. Lucia"
-
-#: includes/bundles/countries-bundle.php:203
-msgid "Saint Martin (French part)"
-msgstr "St. Martin (französischer Teil)"
-
-#: includes/bundles/countries-bundle.php:204
-msgid "Saint Martin (Dutch part)"
-msgstr "St. Martin (niederländischer Inselteil)"
-
-#: includes/bundles/countries-bundle.php:205
-msgid "Saint Pierre and Miquelon"
-msgstr "Saint-Pierre und Miquelon"
-
-#: includes/bundles/countries-bundle.php:206
-msgid "Saint Vincent and the Grenadines"
-msgstr "St. Vincent und die Grenadinen"
-
-#: includes/bundles/countries-bundle.php:207
-msgid "San Marino"
-msgstr "San Marino"
-
-#: includes/bundles/countries-bundle.php:208
-msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe"
-msgstr "São Tomé und Príncipe"
-
-#: includes/bundles/countries-bundle.php:209
-msgid "Saudi Arabia"
-msgstr "Saudi-Arabien"
-
-#: includes/bundles/countries-bundle.php:210
-msgid "Senegal"
-msgstr "Senegal"
-
-#: includes/bundles/countries-bundle.php:211
-msgid "Serbia"
-msgstr "Serbien"
-
-#: includes/bundles/countries-bundle.php:212
-msgid "Seychelles"
-msgstr "Seychellen"
-
-#: includes/bundles/countries-bundle.php:213
-msgid "Sierra Leone"
-msgstr "Sierra Leone"
-
-#: includes/bundles/countries-bundle.php:214
-msgid "Singapore"
-msgstr "Singapur"
-
-#: includes/bundles/countries-bundle.php:215
-msgid "Slovakia"
-msgstr "Slowakei"
-
-#: includes/bundles/countries-bundle.php:216
-msgid "Slovenia"
-msgstr "Slowenien"
-
-#: includes/bundles/countries-bundle.php:217
-msgid "Solomon Islands"
-msgstr "Salomon-Inseln"
-
-#: includes/bundles/countries-bundle.php:218
-msgid "Somalia"
-msgstr "Somalia"
-
-#: includes/bundles/countries-bundle.php:219
-msgid "South Africa"
-msgstr "Südafrika"
-
-#: includes/bundles/countries-bundle.php:220
-msgid "South Georgia/Sandwich Islands"
-msgstr "Südgeorgien und die Südlichen Sandwichinseln"
-
-#: includes/bundles/countries-bundle.php:221
-msgid "South Korea"
-msgstr "Südkorea"
-
-#: includes/bundles/countries-bundle.php:222
-msgid "South Sudan"
-msgstr "Südsudan"
-
-#: includes/bundles/countries-bundle.php:223
-msgid "Spain"
-msgstr "Spanien"
-
-#: includes/bundles/countries-bundle.php:224
-msgid "Sri Lanka"
-msgstr "Sri Lanka"
-
-#: includes/bundles/countries-bundle.php:225
-msgid "Sudan"
-msgstr "Sudan"
-
-#: includes/bundles/countries-bundle.php:226
-msgid "Suriname"
-msgstr "Surinam"
-
-#: includes/bundles/countries-bundle.php:227
-msgid "Svalbard and Jan Mayen"
-msgstr "Svalbard und Jan Mayen"
-
-#: includes/bundles/countries-bundle.php:228
-msgid "Swaziland"
-msgstr "Swasiland"
-
-#: includes/bundles/countries-bundle.php:229
-msgid "Sweden"
-msgstr "Schweden"
-
-#: includes/bundles/countries-bundle.php:230
-msgid "Switzerland"
-msgstr "Schweiz"
-
-#: includes/bundles/countries-bundle.php:231
-msgid "Syria"
-msgstr "Syrien"
-
-#: includes/bundles/countries-bundle.php:232
-msgid "Taiwan"
-msgstr "Taiwan"
-
-#: includes/bundles/countries-bundle.php:233
-msgid "Tajikistan"
-msgstr "Tadschikistan"
-
-#: includes/bundles/countries-bundle.php:234
-msgid "Tanzania"
-msgstr "Tansania"
-
-#: includes/bundles/countries-bundle.php:235
-msgid "Thailand"
-msgstr "Thailand"
-
-#: includes/bundles/countries-bundle.php:236
-msgid "Timor-Leste"
-msgstr "Osttimor"
-
-#: includes/bundles/countries-bundle.php:237
-msgid "Togo"
-msgstr "Togo"
-
-#: includes/bundles/countries-bundle.php:238
-msgid "Tokelau"
-msgstr "Tokelau"
-
-#: includes/bundles/countries-bundle.php:239
-msgid "Tonga"
-msgstr "Tonga"
-
-#: includes/bundles/countries-bundle.php:240
-msgid "Trinidad and Tobago"
-msgstr "Trinidad und Tobago"
-
-#: includes/bundles/countries-bundle.php:241
-msgid "Tunisia"
-msgstr "Tunesien"
-
-#: includes/bundles/countries-bundle.php:242
-msgid "Turkey"
-msgstr "Türkei"
-
-#: includes/bundles/countries-bundle.php:243
-msgid "Turkmenistan"
-msgstr "Turkmenistan"
-
-#: includes/bundles/countries-bundle.php:244
-msgid "Turks and Caicos Islands"
-msgstr "Turks- und Caicosinseln"
-
-#: includes/bundles/countries-bundle.php:245
-msgid "Tuvalu"
-msgstr "Tuvalu"
-
-#: includes/bundles/countries-bundle.php:246
-msgid "Uganda"
-msgstr "Uganda"
-
-#: includes/bundles/countries-bundle.php:247
-msgid "Ukraine"
-msgstr "Ukraine"
-
-#: includes/bundles/countries-bundle.php:248
-msgid "United Arab Emirates"
-msgstr "Vereinigte Arabische Emirate"
-
-#: includes/bundles/countries-bundle.php:249
-msgid "United Kingdom (UK)"
-msgstr "Vereinigtes Königreich (UK)"
-
-#: includes/bundles/countries-bundle.php:250
-msgid "United States (US)"
-msgstr "Vereinigte Staaten (USA)"
-
-#: includes/bundles/countries-bundle.php:251
-msgid "United States (US) Minor Outlying Islands"
-msgstr "United States Minor Outlying Islands"
-
-#: includes/bundles/countries-bundle.php:252
-msgid "United States (US) Virgin Islands"
-msgstr "Amerikanische Jungferninseln"
-
-#: includes/bundles/countries-bundle.php:253
-msgid "Uruguay"
-msgstr "Uruguay"
-
-#: includes/bundles/countries-bundle.php:254
-msgid "Uzbekistan"
-msgstr "Usbekistan"
-
-#: includes/bundles/countries-bundle.php:255
-msgid "Vanuatu"
-msgstr "Vanuatu"
-
-#: includes/bundles/countries-bundle.php:256
-msgid "Vatican"
-msgstr "Vatikan"
-
-#: includes/bundles/countries-bundle.php:257
-msgid "Venezuela"
-msgstr "Venezuela"
-
-#: includes/bundles/countries-bundle.php:258
-msgid "Vietnam"
-msgstr "Vietnam"
-
-#: includes/bundles/countries-bundle.php:259
-msgid "Wallis and Futuna"
-msgstr "Wallis und Futuna"
-
-#: includes/bundles/countries-bundle.php:260
-msgid "Western Sahara"
-msgstr "Westsahara"
-
-#: includes/bundles/countries-bundle.php:261
-msgid "Samoa"
-msgstr "Samoa"
-
-#: includes/bundles/countries-bundle.php:262
-msgid "Yemen"
-msgstr "Jemen"
-
-#: includes/bundles/countries-bundle.php:263
-msgid "Zambia"
-msgstr "Sambia"
-
-#: includes/bundles/countries-bundle.php:264
-msgid "Zimbabwe"
-msgstr "Simbabwe"
-
-#: includes/bundles/currency-bundle.php:17
-msgid "Euro"
-msgstr "Euro"
-
-#: includes/bundles/currency-bundle.php:18
-msgid "United States (US) dollar"
-msgstr "US-Dollar"
-
-#: includes/bundles/currency-bundle.php:19
-msgid "Pound sterling"
-msgstr "Pfund Sterling"
-
-#: includes/bundles/currency-bundle.php:20
-msgid "United Arab Emirates dirham"
-msgstr "Dirham der Vereinigten Arabischen Emirate"
-
-#: includes/bundles/currency-bundle.php:21
-msgid "Afghan afghani"
-msgstr "Afghanischer Afghani"
-
-#: includes/bundles/currency-bundle.php:22
-msgid "Albanian lek"
-msgstr "Albanischer Lek"
-
-#: includes/bundles/currency-bundle.php:23
-msgid "Armenian dram"
-msgstr "Armenischer Dram"
-
-#: includes/bundles/currency-bundle.php:24
-msgid "Netherlands Antillean guilder"
-msgstr "Niederländischer Antillen-Gulden"
-
-#: includes/bundles/currency-bundle.php:25
-msgid "Angolan kwanza"
-msgstr "Angolischer Kwanza"
-
-#: includes/bundles/currency-bundle.php:26
-msgid "Argentine peso"
-msgstr "Argentinischer Peso"
-
-#: includes/bundles/currency-bundle.php:27
-msgid "Australian dollar"
-msgstr "Australischer Dollar"
-
-#: includes/bundles/currency-bundle.php:28
-msgid "Aruban florin"
-msgstr "Aruba-Florin"
-
-#: includes/bundles/currency-bundle.php:29
-msgid "Azerbaijani manat"
-msgstr "Aserbaidschan-Manat"
-
-#: includes/bundles/currency-bundle.php:30
-msgid "Bosnia and Herzegovina convertible mark"
-msgstr "Konvertible Mark (BAM)"
-
-#: includes/bundles/currency-bundle.php:31
-msgid "Barbadian dollar"
-msgstr "Barbados-Dollar"
-
-#: includes/bundles/currency-bundle.php:32
-msgid "Bangladeshi taka"
-msgstr "Bangladeschischer Taka"
-
-#: includes/bundles/currency-bundle.php:33
-msgid "Bulgarian lev"
-msgstr "Bulgarischer Lew"
-
-#: includes/bundles/currency-bundle.php:34
-msgid "Bahraini dinar"
-msgstr "Bahrain-Dinar"
-
-#: includes/bundles/currency-bundle.php:35
-msgid "Burundian franc"
-msgstr "Burundi-Franc"
-
 #: includes/bundles/currency-bundle.php:36
-msgid "Bermudian dollar"
-msgstr "Bermuda-Dollar"
-
-#: includes/bundles/currency-bundle.php:37
-msgid "Brunei dollar"
-msgstr "Brunei-Dollar"
-
-#: includes/bundles/currency-bundle.php:38
-msgid "Bolivian boliviano"
-msgstr "Bolivianischer Boliviano"
-
-#: includes/bundles/currency-bundle.php:39
-msgid "Brazilian real"
-msgstr "Brasilianischer Real"
-
-#: includes/bundles/currency-bundle.php:40
-msgid "Bahamian dollar"
-msgstr "Bahama-Dollar"
-
-#: includes/bundles/currency-bundle.php:41
-msgid "Bitcoin"
-msgstr "Bitcoin"
-
-#: includes/bundles/currency-bundle.php:42
-msgid "Bhutanese ngultrum"
-msgstr "Bhutanischer Ngultrum"
-
-#: includes/bundles/currency-bundle.php:43
-msgid "Botswana pula"
-msgstr "Botswanischer Pula"
-
-#: includes/bundles/currency-bundle.php:44
-msgid "Belarusian ruble (old)"
-msgstr "Alter Weißrussischer Rubel"
-
-#: includes/bundles/currency-bundle.php:45
-msgid "Belarusian ruble"
-msgstr "Weißrussischer Rubel"
-
-#: includes/bundles/currency-bundle.php:46
-msgid "Belize dollar"
-msgstr "Belize-Dollar"
-
-#: includes/bundles/currency-bundle.php:47
-msgid "Canadian dollar"
-msgstr "Kanadischer Dollar"
-
-#: includes/bundles/currency-bundle.php:48
-msgid "Congolese franc"
-msgstr "Kongo-Franc"
-
-#: includes/bundles/currency-bundle.php:49
-msgid "Swiss franc"
-msgstr "Schweizer Franken"
-
-#: includes/bundles/currency-bundle.php:50
-msgid "Chilean peso"
-msgstr "Chilenischer Peso"
-
-#: includes/bundles/currency-bundle.php:51
-msgid "Chinese yuan"
-msgstr "Chinesischer Yuan"
-
-#: includes/bundles/currency-bundle.php:52
-msgid "Colombian peso"
-msgstr "Kolumbianischer Peso"
-
-#: includes/bundles/currency-bundle.php:53
-msgid "Costa Rican col&oacute;n"
-msgstr "Costa-Rica-Colon"
-
-#: includes/bundles/currency-bundle.php:54
-msgid "Cuban convertible peso"
-msgstr "Peso Convertible"
-
-#: includes/bundles/currency-bundle.php:55
-msgid "Cuban peso"
-msgstr "Kubanischer Peso"
-
-#: includes/bundles/currency-bundle.php:56
-msgid "Cape Verdean escudo"
-msgstr "Kap-Verde-Escudo"
-
-#: includes/bundles/currency-bundle.php:57
-msgid "Czech koruna"
-msgstr "Tschechische Krone"
-
-#: includes/bundles/currency-bundle.php:58
-msgid "Djiboutian franc"
-msgstr "Dschibuti-Franc"
-
-#: includes/bundles/currency-bundle.php:59
-msgid "Danish krone"
-msgstr "Dänische Krone"
-
-#: includes/bundles/currency-bundle.php:60
-msgid "Dominican peso"
-msgstr "Dominikanischer Peso"
-
-#: includes/bundles/currency-bundle.php:61
-msgid "Algerian dinar"
-msgstr "Algerischer Dinar"
-
-#: includes/bundles/currency-bundle.php:62
-msgid "Egyptian pound"
-msgstr "Ägyptisches Pfund"
-
-#: includes/bundles/currency-bundle.php:63
-msgid "Eritrean nakfa"
-msgstr "Eritreischer Nakfa"
-
-#: includes/bundles/currency-bundle.php:64
-msgid "Ethiopian birr"
-msgstr "Äthiopischer Birr"
-
-#: includes/bundles/currency-bundle.php:65
-msgid "Fijian dollar"
-msgstr "Fidschi-Dollar"
-
-#: includes/bundles/currency-bundle.php:66
-msgid "Falkland Islands pound"
-msgstr "Falkland-Pfund"
-
-#: includes/bundles/currency-bundle.php:67
-msgid "Georgian lari"
-msgstr "Georgischer Lari"
-
-#: includes/bundles/currency-bundle.php:68
-msgid "Guernsey pound"
-msgstr "Guernsey-Pfund"
-
-#: includes/bundles/currency-bundle.php:69
-msgid "Ghana cedi"
-msgstr "Ghanaischer Cedi"
-
-#: includes/bundles/currency-bundle.php:70
-msgid "Gibraltar pound"
-msgstr "Gibraltar-Pfund"
-
-#: includes/bundles/currency-bundle.php:71
-msgid "Gambian dalasi"
-msgstr "Gambischer Dalasi"
-
-#: includes/bundles/currency-bundle.php:72
-msgid "Guinean franc"
-msgstr "Guinea-Franc"
-
-#: includes/bundles/currency-bundle.php:73
-msgid "Guatemalan quetzal"
-msgstr "Guatemaltekischer Quetzal"
-
-#: includes/bundles/currency-bundle.php:74
-msgid "Guyanese dollar"
-msgstr "Guyana-Dollar"
-
-#: includes/bundles/currency-bundle.php:75
-msgid "Hong Kong dollar"
-msgstr "Hongkong-Dollar"
-
-#: includes/bundles/currency-bundle.php:76
-msgid "Honduran lempira"
-msgstr "Honduras-Lempira"
-
-#: includes/bundles/currency-bundle.php:77
-msgid "Croatian kuna"
-msgstr "Kroatische Kuna"
-
-#: includes/bundles/currency-bundle.php:78
-msgid "Haitian gourde"
-msgstr "Haitianische Gourde"
-
-#: includes/bundles/currency-bundle.php:79
-msgid "Hungarian forint"
-msgstr "Ungarischer Forint"
-
-#: includes/bundles/currency-bundle.php:80
-msgid "Indonesian rupiah"
-msgstr "Indonesische Rupiah"
-
-#: includes/bundles/currency-bundle.php:81
-msgid "Israeli new shekel"
-msgstr "Israelischer Neuer Schekel"
-
-#: includes/bundles/currency-bundle.php:82
-msgid "Manx pound"
-msgstr "Manx-Pfund"
-
-#: includes/bundles/currency-bundle.php:83
-msgid "Indian rupee"
-msgstr "Indische Rupie"
-
-#: includes/bundles/currency-bundle.php:84
-msgid "Iraqi dinar"
-msgstr "Irakischer Dinar"
-
-#: includes/bundles/currency-bundle.php:85
-msgid "Iranian rial"
-msgstr "Iranischer Rial"
-
-#: includes/bundles/currency-bundle.php:86
-msgid "Iranian toman"
-msgstr "Iranischer Toman"
-
-#: includes/bundles/currency-bundle.php:87
-msgid "Icelandic kr&oacute;na"
-msgstr "Isländische Krone"
-
-#: includes/bundles/currency-bundle.php:88
-msgid "Jersey pound"
-msgstr "Jersey-Pfund"
-
-#: includes/bundles/currency-bundle.php:89
-msgid "Jamaican dollar"
-msgstr "Jamaika-Dollar"
-
-#: includes/bundles/currency-bundle.php:90
-msgid "Jordanian dinar"
-msgstr "Jordanischer Dinar"
-
-#: includes/bundles/currency-bundle.php:91
-msgid "Japanese yen"
-msgstr "Japanischer Yen"
-
-#: includes/bundles/currency-bundle.php:92
-msgid "Kenyan shilling"
-msgstr "Kenianischer Shilling"
-
-#: includes/bundles/currency-bundle.php:93
-msgid "Kyrgyzstani som"
-msgstr "Kirgisischer Som"
-
-#: includes/bundles/currency-bundle.php:94
-msgid "Cambodian riel"
-msgstr "Kambodschanischer Riel"
-
-#: includes/bundles/currency-bundle.php:95
-msgid "Comorian franc"
-msgstr "Komoren-Franc"
-
-#: includes/bundles/currency-bundle.php:96
-msgid "North Korean won"
-msgstr "Nordkoreanischer Won"
-
-#: includes/bundles/currency-bundle.php:97
-msgid "South Korean won"
-msgstr "Südkoreanischer Won"
-
-#: includes/bundles/currency-bundle.php:98
-msgid "Kuwaiti dinar"
-msgstr "Kuwait-Dinar"
-
-#: includes/bundles/currency-bundle.php:99
-msgid "Cayman Islands dollar"
-msgstr "Kaiman-Dollar"
-
-#: includes/bundles/currency-bundle.php:100
-msgid "Kazakhstani tenge"
-msgstr "Kasachischer Tenge"
-
-#: includes/bundles/currency-bundle.php:101
-msgid "Lao kip"
-msgstr "Laotischer Kip"
-
-#: includes/bundles/currency-bundle.php:102
-msgid "Lebanese pound"
-msgstr "Libanesisches Pfund"
-
-#: includes/bundles/currency-bundle.php:103
-msgid "Sri Lankan rupee"
-msgstr "Sri-Lanka-Rupie"
-
-#: includes/bundles/currency-bundle.php:104
-msgid "Liberian dollar"
-msgstr "Liberianischer Dollar"
-
-#: includes/bundles/currency-bundle.php:105
-msgid "Lesotho loti"
-msgstr "Lesothischer Loti"
-
-#: includes/bundles/currency-bundle.php:106
-msgid "Libyan dinar"
-msgstr "Libyscher Dinar"
-
-#: includes/bundles/currency-bundle.php:107
-msgid "Moroccan dirham"
-msgstr "Marokkanischer Dirham"
-
-#: includes/bundles/currency-bundle.php:108
-msgid "Moldovan leu"
-msgstr "Moldauischer Leu"
-
-#: includes/bundles/currency-bundle.php:109
-msgid "Malagasy ariary"
-msgstr "Madagascar-Ariary"
-
-#: includes/bundles/currency-bundle.php:110
-msgid "Macedonian denar"
-msgstr "Mazedonischer Denar"
-
-#: includes/bundles/currency-bundle.php:111
-msgid "Burmese kyat"
-msgstr "Myanmar-Kyat"
-
-#: includes/bundles/currency-bundle.php:112
-msgid "Mongolian t&ouml;gr&ouml;g"
-msgstr "Mongolischer Tugrik"
-
-#: includes/bundles/currency-bundle.php:113
-msgid "Macanese pataca"
-msgstr "Macau-Pataca"
-
-#: includes/bundles/currency-bundle.php:114
-msgid "Mauritanian ouguiya"
-msgstr "Mauretanien Ouguiya"
-
-#: includes/bundles/currency-bundle.php:115
-msgid "Mauritian rupee"
-msgstr "Mauritius-Rupie"
-
-#: includes/bundles/currency-bundle.php:116
-msgid "Maldivian rufiyaa"
-msgstr "Malediven-Rupie"
-
-#: includes/bundles/currency-bundle.php:117
-msgid "Malawian kwacha"
-msgstr "Malawi-Kwacha"
-
-#: includes/bundles/currency-bundle.php:118
-msgid "Mexican peso"
-msgstr "Mexikanischer Peso"
-
-#: includes/bundles/currency-bundle.php:119
-msgid "Malaysian ringgit"
-msgstr "Malaysischer Ringgit"
-
-#: includes/bundles/currency-bundle.php:120
-msgid "Mozambican metical"
-msgstr "Mosambikanischer Metical"
-
-#: includes/bundles/currency-bundle.php:121
-msgid "Namibian dollar"
-msgstr "Namibia-Dollar"
-
-#: includes/bundles/currency-bundle.php:122
-msgid "Nigerian naira"
-msgstr "Nigerianischer Naira"
-
-#: includes/bundles/currency-bundle.php:123
-msgid "Nicaraguan c&oacute;rdoba"
-msgstr "Nicaraguanischer Cordoba"
-
-#: includes/bundles/currency-bundle.php:124
-msgid "Norwegian krone"
-msgstr "Norwegische Krone"
-
-#: includes/bundles/currency-bundle.php:125
-msgid "Nepalese rupee"
-msgstr "Nepalesische Rupie"
-
-#: includes/bundles/currency-bundle.php:126
-msgid "New Zealand dollar"
-msgstr "Neuseeland-Dollar"
-
-#: includes/bundles/currency-bundle.php:127
-msgid "Omani rial"
-msgstr "Omanischer Rial"
-
-#: includes/bundles/currency-bundle.php:128
-msgid "Panamanian balboa"
-msgstr "Panamaischer Balboa"
-
-#: includes/bundles/currency-bundle.php:129
-msgid "Sol"
-msgstr "Sol"
-
-#: includes/bundles/currency-bundle.php:130
-msgid "Papua New Guinean kina"
-msgstr "Papua Neuguinea-Kina"
-
-#: includes/bundles/currency-bundle.php:131
-msgid "Philippine peso"
-msgstr "Philippinischer Peso"
-
-#: includes/bundles/currency-bundle.php:132
-msgid "Pakistani rupee"
-msgstr "Pakistanische Rupie"
-
-#: includes/bundles/currency-bundle.php:133
-msgid "Polish z&#x142;oty"
-msgstr "Polnischer Zloty"
-
-#: includes/bundles/currency-bundle.php:134
-msgid "Transnistrian ruble"
-msgstr "Transnistrischer Rubel"
-
-#: includes/bundles/currency-bundle.php:135
-msgid "Paraguayan guaran&iacute;"
-msgstr "Paraguayischer Guaraní"
-
-#: includes/bundles/currency-bundle.php:136
-msgid "Qatari riyal"
-msgstr "Katar-Riyal"
-
-#: includes/bundles/currency-bundle.php:137
-msgid "Romanian leu"
-msgstr "Rumänischer Leu"
-
-#: includes/bundles/currency-bundle.php:138
-msgid "Serbian dinar"
-msgstr "Serbischer Dinar"
-
-#: includes/bundles/currency-bundle.php:139
-msgid "Russian ruble"
-msgstr "Russischer Rubel"
-
-#: includes/bundles/currency-bundle.php:140
-msgid "Rwandan franc"
-msgstr "Ruanda-Franc"
-
-#: includes/bundles/currency-bundle.php:141
-msgid "Saudi riyal"
-msgstr "Saudi-Riyal"
-
-#: includes/bundles/currency-bundle.php:142
-msgid "Solomon Islands dollar"
-msgstr "Salomonen-Dollar"
-
-#: includes/bundles/currency-bundle.php:143
-msgid "Seychellois rupee"
-msgstr "Seychellen-Rupie"
-
-#: includes/bundles/currency-bundle.php:144
-msgid "Sudanese pound"
-msgstr "Sudanesisches Pfund"
-
-#: includes/bundles/currency-bundle.php:145
-msgid "Swedish krona"
-msgstr "Schwedische Krone"
-
-#: includes/bundles/currency-bundle.php:146
-msgid "Singapore dollar"
-msgstr "Singapur-Dollar"
-
-#: includes/bundles/currency-bundle.php:147
-msgid "Saint Helena pound"
-msgstr "St.-Helena-Pfund"
-
-#: includes/bundles/currency-bundle.php:148
-msgid "Sierra Leonean leone"
-msgstr "Sierra-leonischer Leone"
-
-#: includes/bundles/currency-bundle.php:149
-msgid "Somali shilling"
-msgstr "Somalia-Schilling"
-
-#: includes/bundles/currency-bundle.php:150
-msgid "Surinamese dollar"
-msgstr "Suriname-Dollar"
-
-#: includes/bundles/currency-bundle.php:151
-msgid "South Sudanese pound"
-msgstr "Südsudanesisches Pfund"
-
-#: includes/bundles/currency-bundle.php:152
-msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe dobra"
-msgstr "Sao Tomeischer Dobra"
-
-#: includes/bundles/currency-bundle.php:153
-msgid "Syrian pound"
-msgstr "Syrisches Pfund"
-
-#: includes/bundles/currency-bundle.php:154
-msgid "Swazi lilangeni"
-msgstr "Swasiländischer Lilangeni"
-
-#: includes/bundles/currency-bundle.php:155
-msgid "Thai baht"
-msgstr "Thailändischer Baht"
-
-#: includes/bundles/currency-bundle.php:156
-msgid "Tajikistani somoni"
-msgstr "Tajikistan Somoni"
-
-#: includes/bundles/currency-bundle.php:157
-msgid "Turkmenistan manat"
-msgstr "Turkmenistan-Manat"
-
-#: includes/bundles/currency-bundle.php:158
-msgid "Tunisian dinar"
-msgstr "Tunesischer Dinar"
-
-#: includes/bundles/currency-bundle.php:159
-msgid "Tongan pa&#x2bb;anga"
-msgstr "Tongaische Pa’anga"
-
-#: includes/bundles/currency-bundle.php:160
-msgid "Turkish lira"
-msgstr "Türkische Lira"
-
-#: includes/bundles/currency-bundle.php:161
-msgid "Trinidad and Tobago dollar"
-msgstr "Trinidad-und-Tobago-Dollar"
-
-#: includes/bundles/currency-bundle.php:162
-msgid "New Taiwan dollar"
-msgstr "Neuer Taiwan-Dollar"
-
-#: includes/bundles/currency-bundle.php:163
-msgid "Tanzanian shilling"
-msgstr "Tansania-Schilling"
-
-#: includes/bundles/currency-bundle.php:164
-msgid "Ukrainian hryvnia"
-msgstr "Ukrainische Hrywnja"
-
-#: includes/bundles/currency-bundle.php:165
-msgid "Ugandan shilling"
-msgstr "Uganda-Schilling"
-
-#: includes/bundles/currency-bundle.php:166
-msgid "Uruguayan peso"
-msgstr "Uruguayischer Peso"
-
-#: includes/bundles/currency-bundle.php:167
-msgid "Uzbekistani som"
-msgstr "Usbekische Som"
-
-#: includes/bundles/currency-bundle.php:168
-msgid "Venezuelan bol&iacute;var"
-msgstr "Venezolanischer Bolívar"
-
-#: includes/bundles/currency-bundle.php:169
-msgid "Bol&iacute;var soberano"
-msgstr "Bolívar soberano"
-
-#: includes/bundles/currency-bundle.php:170
-msgid "Vietnamese &#x111;&#x1ed3;ng"
-msgstr "Vietnamesischer Dong"
-
-#: includes/bundles/currency-bundle.php:171
-msgid "Vanuatu vatu"
-msgstr "Vanuatischer Vatu"
-
-#: includes/bundles/currency-bundle.php:172
-msgid "Samoan t&#x101;l&#x101;"
-msgstr "Samoanischer Tala"
-
-#: includes/bundles/currency-bundle.php:173
-msgid "Central African CFA franc"
-msgstr "Zentralafrikanischer CFA-Franc"
-
-#: includes/bundles/currency-bundle.php:174
-msgid "East Caribbean dollar"
-msgstr "Ostkaribischer Dollar"
-
-#: includes/bundles/currency-bundle.php:175
-msgid "West African CFA franc"
-msgstr "Westafrikanischer CFA-Franc"
-
-#: includes/bundles/currency-bundle.php:176
-msgid "CFP franc"
-msgstr "CFP-Franc"
-
-#: includes/bundles/currency-bundle.php:177
-msgid "Yemeni rial"
-msgstr "Jemen-Rial"
-
-#: includes/bundles/currency-bundle.php:178
-msgid "South African rand"
-msgstr "Südafrikanischer Rand"
-
-#: includes/bundles/currency-bundle.php:179
-msgid "Zambian kwacha"
-msgstr "Sambischer Kwacha"
-
-#: includes/bundles/currency-bundle.php:358
 msgid "Before"
 msgstr "Davor"
 
-#: includes/bundles/currency-bundle.php:359
+#: includes/bundles/currency-bundle.php:37
 msgid "After"
 msgstr "Danach"
 
-#: includes/bundles/currency-bundle.php:360
+#: includes/bundles/currency-bundle.php:38
 msgid "Before with space"
 msgstr "Davor mit Leerzeichen"
 
-#: includes/bundles/currency-bundle.php:361
+#: includes/bundles/currency-bundle.php:39
 msgid "After with space"
 msgstr "Danach mit Leerzeichen"
 
@@ -5503,22 +3937,6 @@ msgid "for %d nights"
 msgid_plural "for %d nights"
 msgstr[0] "pro Nacht"
 msgstr[1] "für %d Nächte"
-
-#: includes/crons/cron-manager.php:112
-msgid "User Approval Time setted in Hotel Booking Settings"
-msgstr "Benutzer-Genehmigungszeit in Hotelbuchungseinstellungen festgelegt"
-
-#: includes/crons/cron-manager.php:117
-msgid "Pending Payment Time set in Hotel Booking Settings"
-msgstr "Ausstehende Zahlungszeit in Hotelbuchungseinstellungen festlegen"
-
-#: includes/crons/cron-manager.php:122
-msgid "Interval for automatic cleaning of synchronization logs."
-msgstr "Intervall für automatische Bereinigung der Synchronisationsprotokolle."
-
-#: includes/crons/cron-manager.php:127
-msgid "Once a week"
-msgstr "Einmal pro Woche"
 
 #: includes/csv/bookings/bookings-exporter-helper.php:73
 #: templates/account/bookings.php:19
@@ -5642,7 +4060,7 @@ msgid "Please select columns to export."
 msgstr "Wählen Sie bitte Spateln zu exportieren aus."
 
 #: includes/csv/csv-export-handler.php:32
-#: includes/payments/gateways/stripe-gateway.php:559
+#: includes/payments/gateways/stripe-gateway.php:599
 msgid "Nonce verification failed."
 msgstr "Die Nonce-Verifizierung ist fehlgeschlagen."
 
@@ -5650,35 +4068,35 @@ msgstr "Die Nonce-Verifizierung ist fehlgeschlagen."
 msgid "The file does not exist."
 msgstr "Die Datei existiert nicht."
 
-#: includes/emails/abstract-email.php:441
+#: includes/emails/abstract-email.php:450
 msgid "Disable this email notification"
 msgstr "Diese E-Mail-Benachrichtigung deaktivieren"
 
-#: includes/emails/abstract-email.php:449
+#: includes/emails/abstract-email.php:458
 msgid "Subject"
 msgstr "Betreff"
 
-#: includes/emails/abstract-email.php:461
+#: includes/emails/abstract-email.php:470
 msgid "Header"
 msgstr "Kopfzeile"
 
-#: includes/emails/abstract-email.php:473
+#: includes/emails/abstract-email.php:482
 msgid "Email Template"
 msgstr "E-Mail Template"
 
-#: includes/emails/abstract-email.php:570
+#: includes/emails/abstract-email.php:579
 msgid "\"%s\" email will not be sent: there is no customer email in the booking."
 msgstr "Die E-Mail \"%s\" kann nicht gesendet werden: In der Buchung ist keine Kunden-E-Mail enthalten."
 
-#: includes/emails/abstract-email.php:594
+#: includes/emails/abstract-email.php:603
 msgid "Deprecated tags in header of %s"
 msgstr "Veraltete Tags in Header von %s"
 
-#: includes/emails/abstract-email.php:597
+#: includes/emails/abstract-email.php:606
 msgid "Deprecated tags in subject of %s"
 msgstr "Veraltete Tags in Thema von %s"
 
-#: includes/emails/abstract-email.php:600
+#: includes/emails/abstract-email.php:609
 msgid "Deprecated tags in template of %s"
 msgstr "Veraltete Tags in Template von %s"
 
@@ -5690,11 +4108,18 @@ msgstr "Empfänger"
 msgid "You can use multiple comma-separated emails"
 msgstr "Sie können mehrere Komma-getrennte E-Mails eingeben"
 
+#. Translators: %s: Email label.
 #: includes/emails/booking/admin/base-email.php:89
 msgid "\"%s\" mail was sent to admin."
 msgstr "\"%s\" Mail wurde dem Administrator gesendet."
 
+#. Translators: %1: Email label. %2: The cause of the error.
 #: includes/emails/booking/admin/base-email.php:93
+msgid "\"%1$s\" mail sending to admin is failed. %2$s"
+msgstr ""
+
+#. Translators: %s: Email label.
+#: includes/emails/booking/admin/base-email.php:98
 msgid "\"%s\" mail sending to admin is failed."
 msgstr "\"%s\" Mail-Sendung dem Administrator ist fehlgeschlagen."
 
@@ -5771,11 +4196,18 @@ msgstr "%site_title% - Ihre Buchung #%booking_id% ist akzeptiert"
 msgid "Email that will be sent to customer when booking is approved."
 msgstr "E-Mail, die bei der Buchung an den Kunden geschickt wird."
 
+#. Translators: %s: Email label.
 #: includes/emails/booking/customer/base-email.php:55
 msgid "\"%s\" mail was sent to customer."
 msgstr "\"%s\" Mail wurde an den Kunden geschickt."
 
+#. Translators: %1: Email label. %2: The cause of the error.
 #: includes/emails/booking/customer/base-email.php:59
+msgid "\"%1$s\" mail sending is failed. %2$s"
+msgstr ""
+
+#. Translators: %s: Email label.
+#: includes/emails/booking/customer/base-email.php:64
 msgid "\"%s\" mail sending is failed."
 msgstr "\"%s\" Mail-Sendung ist fehlgeschlagen."
 
@@ -5879,7 +4311,7 @@ msgid "Site title (set in Settings > General)"
 msgstr "Site-Titel (in Einstellungen> Allgemein)"
 
 #: includes/emails/templaters/email-templater.php:124
-#: includes/post-types/payment-cpt.php:232
+#: includes/post-types/payment-cpt.php:233
 msgid "Booking ID"
 msgstr "Buchung-ID"
 
@@ -5988,7 +4420,7 @@ msgid "Link to My Account page"
 msgstr "Link zur Seite Mein Konto"
 
 #: includes/emails/templaters/email-templater.php:562
-#: includes/upgrader.php:868
+#: includes/upgrader.php:871
 #: includes/wizard.php:213
 msgid "My Account"
 msgstr "Mein Konto"
@@ -6044,15 +4476,15 @@ msgstr[0] " &#215; %d Nacht"
 msgstr[1] " &#215; %d Nächte"
 
 #: includes/entities/reserved-service.php:103
-#: includes/shortcodes/search-results-shortcode.php:904
+#: includes/shortcodes/search-results-shortcode.php:914
 msgid "%d adult"
 msgid_plural "%d adults"
 msgstr[0] "%d Erwachsener"
 msgstr[1] "%d Erwachsene"
 
 #: includes/entities/reserved-service.php:105
-#: includes/shortcodes/search-results-shortcode.php:896
-#: includes/shortcodes/search-results-shortcode.php:900
+#: includes/shortcodes/search-results-shortcode.php:906
+#: includes/shortcodes/search-results-shortcode.php:910
 msgid "%d guest"
 msgid_plural "%d guests"
 msgstr[0] "%d Gast"
@@ -6068,17 +4500,17 @@ msgstr[1] " &#215; %d Mal"
 msgid "Per Instance"
 msgstr "Pro Instanz"
 
-#: includes/i-cal/background-processes/background-synchronizer.php:34
+#: includes/i-cal/background-processes/background-synchronizer.php:38
 msgid "Maximum execution time is set to %d seconds."
 msgstr "Die maximale Ausführungszeit ist auf %d Sekunden festgelegt."
 
-#: includes/i-cal/background-processes/background-synchronizer.php:80
+#: includes/i-cal/background-processes/background-synchronizer.php:85
 msgid "%d URL pulled for parsing."
 msgid_plural "%d URLs pulled for parsing."
 msgstr[0] "%d URL zum Parsen gewählt."
 msgstr[1] "%d URLs zum Parsen gewählt."
 
-#: includes/i-cal/background-processes/background-synchronizer.php:82
+#: includes/i-cal/background-processes/background-synchronizer.php:87
 msgid "Skipped. No URLs found for parsing."
 msgstr "Übersprungen. Keine URLs zum Parsen gefunden."
 
@@ -6210,16 +4642,16 @@ msgid_plural " There were %2$d failures."
 msgstr[0] " Es gab %2$d Fehler."
 msgstr[1] " Es gab %2$d Fehler."
 
-#: includes/license-notice.php:87
-#: includes/license-notice.php:160
+#: includes/license-notice.php:90
+#: includes/license-notice.php:163
 msgid "Your License Key is not active. Please, <a href=\"%s\">activate your License Key</a> to get plugin updates."
 msgstr "Ihr Lizenzschlüssel ist nicht aktiv. Bitte, <a href='%s'>aktivieren Sie Ihren Lizenzschlüssel</a>, um Plugin-Updates zu erhalten."
 
-#: includes/license-notice.php:152
+#: includes/license-notice.php:155
 msgid "Dismiss "
 msgstr "Verwerfen "
 
-#: includes/linked-rooms.php:31
+#: includes/linked-rooms.php:37
 msgid "Blocked because the linked accommodation is booked"
 msgstr "Gesperrt, weil die verlinkte Unterkunft gebucht wurde"
 
@@ -6250,139 +4682,139 @@ msgstr "Seiten aktualisieren"
 msgid "Skip"
 msgstr "Überspringen"
 
-#: includes/payments/gateways/bank-gateway.php:82
-#: includes/payments/gateways/bank-gateway.php:91
+#: includes/payments/gateways/bank-gateway.php:80
+#: includes/payments/gateways/bank-gateway.php:89
 msgid "Direct Bank Transfer"
 msgstr "Direktüberweisung"
 
-#: includes/payments/gateways/bank-gateway.php:92
+#: includes/payments/gateways/bank-gateway.php:90
 msgid "Make your payment directly into our bank account. Please use your Booking ID as the payment reference."
 msgstr "Zahlen Sie direkt auf unser Bankkonto ein. Bitte verwenden Sie Ihre Buchungsnummer als Zahlungsreferenz."
 
-#: includes/payments/gateways/bank-gateway.php:118
+#: includes/payments/gateways/bank-gateway.php:104
 msgid "Enable Auto-Abandonment"
 msgstr "Auto-Verzicht aktivieren"
 
-#: includes/payments/gateways/bank-gateway.php:119
+#: includes/payments/gateways/bank-gateway.php:105
 msgid "Automatically abandon bookings and release reserved slots if payment is not received within a specified time period. You need to manually set the status of paid payments to Completed to avoid automatic abandonment."
 msgstr "Buchungen automatisch aufgeben und reservierte Slots freigeben, wenn die Zahlung innerhalb einer bestimmten Frist nicht eingegangen ist. Sie müssen den Status der bezahlten Zahlungen manuell auf Abgeschlossene festlegen, um eine automatische Aufgabe zu vermeiden."
 
-#: includes/payments/gateways/bank-gateway.php:128
+#: includes/payments/gateways/bank-gateway.php:111
 msgid "Period of time in hours a user has to pay for a booking. Unpaid bookings become abandoned, and accommodations become available for others."
 msgstr "Zeitspanne in Stunden, die ein Nutzer für eine Buchung bezahlen muss, unbezahlte Buchungen werden aufgegeben und andere Unterkünfte stehen zur Verfügung."
 
-#: includes/payments/gateways/beanstream-gateway.php:54
+#: includes/payments/gateways/beanstream-gateway.php:51
 msgid "Beanstream/Bambora"
 msgstr "Beanstream/Bambora"
 
-#: includes/payments/gateways/beanstream-gateway.php:59
-#: includes/payments/gateways/braintree-gateway.php:149
-#: includes/payments/gateways/paypal-gateway.php:72
-#: includes/payments/gateways/two-checkout-gateway.php:70
-msgid "Use the card number %1$s with CVC %2$s and a valid expiration date to test a payment."
-msgstr "Verwenden Sie die Kartennummer %1$s mit CVC %2$s und ein gültiges Ablaufdatum, um eine Zahlung zu testen."
-
-#: includes/payments/gateways/beanstream-gateway.php:66
+#: includes/payments/gateways/beanstream-gateway.php:60
 msgid "Pay by Card (Beanstream)"
 msgstr "Bezahlen per Karte (Beanstream)"
 
-#: includes/payments/gateways/beanstream-gateway.php:67
+#: includes/payments/gateways/beanstream-gateway.php:61
 msgid "Pay with your credit card via Beanstream."
 msgstr "Bezahlen Sie mit Ihrer Kreditkarte über Beanstream."
 
-#: includes/payments/gateways/beanstream-gateway.php:85
-#: includes/payments/gateways/braintree-gateway.php:194
-#: includes/payments/gateways/stripe-gateway.php:226
-msgid "%1$s is enabled, but the <a href=\"%2$s\">Force Secure Checkout</a> option is disabled. Please enable SSL and ensure your server has a valid SSL certificate. Otherwise, %1$s will only work in Test Mode."
-msgstr "%1$s ist aktiviert, aber die Option <a href=\"%2$s\">Sicherer Buchungsvorgang</a> ist deaktiviert. Bitte aktivieren Sie SSL und stellen Sie sicher, dass Ihr Server über ein gültiges SSL-Zertifikat verfügt. Andernfalls wird %1$s nur im Testmodus funktionieren."
-
-#: includes/payments/gateways/beanstream-gateway.php:87
-#: includes/payments/gateways/braintree-gateway.php:196
-#: includes/payments/gateways/stripe-gateway.php:228
-msgid "The <a href=\"%2$s\">Force Secure Checkout</a> option is disabled. Please enable SSL and ensure your server has a valid SSL certificate. Otherwise, %1$s will only work in Test Mode."
-msgstr "Stripe ist aktiviert, aber die Option <a href=\"%2$s\">Sicherer Buchungsvorgang</a> ist deaktiviert. Bitte aktivieren Sie SSL und stellen Sie sicher, dass Ihr Server über ein gültiges SSL-Zertifikat verfügt. Andernfalls funktioniert %1$s nur im Testmodus."
+#: includes/payments/gateways/beanstream-gateway.php:77
+#: includes/payments/gateways/braintree-gateway.php:185
+#: includes/payments/gateways/paypal-gateway.php:94
+#: includes/payments/gateways/two-checkout-gateway.php:112
+msgid "Use the card number %1$s with CVC %2$s and a valid expiration date to test a payment."
+msgstr "Verwenden Sie die Kartennummer %1$s mit CVC %2$s und ein gültiges Ablaufdatum, um eine Zahlung zu testen."
 
 #: includes/payments/gateways/beanstream-gateway.php:90
-msgid "Beanstream"
-msgstr "Beanstream"
-
-#: includes/payments/gateways/beanstream-gateway.php:103
 #: includes/payments/gateways/braintree-gateway.php:212
 msgid "Merchant ID"
 msgstr "Händler-ID"
 
-#: includes/payments/gateways/beanstream-gateway.php:105
+#: includes/payments/gateways/beanstream-gateway.php:91
 msgid "Your Merchant ID can be found in the top-right corner of the screen after logging in to the Beanstream Back Office"
 msgstr "Ihre Händler-ID kann in der oberen rechten Ecke des Bildschirms nach der Anmeldung im Beanstream Back Office gefunden werden"
 
-#: includes/payments/gateways/beanstream-gateway.php:112
+#: includes/payments/gateways/beanstream-gateway.php:96
 msgid "Payments Passcode"
 msgstr "Zahlungen-Passcode"
 
-#: includes/payments/gateways/beanstream-gateway.php:114
+#: includes/payments/gateways/beanstream-gateway.php:97
 msgid "To generate the passcode, navigate to Administration > Account Settings > Order Settings in the sidebar, then scroll to Payment Gateway > Security/Authentication"
 msgstr "Um den Passcode zu generieren, navigieren Sie zu Administration> Kontoeinstellungen> Auftragseinstellungen in der Seitenleiste und scrollen Sie dann zu Payment Gateway> Sicherheit / Authentifizierung"
 
-#: includes/payments/gateways/beanstream-gateway.php:163
+#: includes/payments/gateways/beanstream-gateway.php:115
+#: includes/payments/gateways/braintree-gateway.php:253
+#: includes/payments/gateways/stripe-gateway.php:287
+msgid "%1$s is enabled, but the <a href=\"%2$s\">Force Secure Checkout</a> option is disabled. Please enable SSL and ensure your server has a valid SSL certificate. Otherwise, %1$s will only work in Test Mode."
+msgstr "%1$s ist aktiviert, aber die Option <a href=\"%2$s\">Sicherer Buchungsvorgang</a> ist deaktiviert. Bitte aktivieren Sie SSL und stellen Sie sicher, dass Ihr Server über ein gültiges SSL-Zertifikat verfügt. Andernfalls wird %1$s nur im Testmodus funktionieren."
+
+#: includes/payments/gateways/beanstream-gateway.php:117
+#: includes/payments/gateways/braintree-gateway.php:255
+#: includes/payments/gateways/stripe-gateway.php:289
+msgid "The <a href=\"%2$s\">Force Secure Checkout</a> option is disabled. Please enable SSL and ensure your server has a valid SSL certificate. Otherwise, %1$s will only work in Test Mode."
+msgstr "Stripe ist aktiviert, aber die Option <a href=\"%2$s\">Sicherer Buchungsvorgang</a> ist deaktiviert. Bitte aktivieren Sie SSL und stellen Sie sicher, dass Ihr Server über ein gültiges SSL-Zertifikat verfügt. Andernfalls funktioniert %1$s nur im Testmodus."
+
+#: includes/payments/gateways/beanstream-gateway.php:120
+msgid "Beanstream"
+msgstr "Beanstream"
+
+#: includes/payments/gateways/beanstream-gateway.php:179
 msgid "Beanstream Payment Error: %s"
 msgstr "Beanstream Zahlungsfehler: %s"
 
-#: includes/payments/gateways/beanstream-gateway.php:201
+#: includes/payments/gateways/beanstream-gateway.php:217
 msgid "Payment single use token is required."
 msgstr "Token-Einzelverwendung Zahlung ist erforderlich."
 
-#: includes/payments/gateways/braintree-gateway.php:142
-#: includes/payments/gateways/braintree-gateway.php:199
+#: includes/payments/gateways/braintree-gateway.php:136
+#: includes/payments/gateways/braintree-gateway.php:258
 msgid "Braintree"
 msgstr "Braintree"
 
 #: includes/payments/gateways/braintree-gateway.php:155
-#: includes/payments/gateways/stripe-gateway.php:86
-msgid "Webhooks Destination URL: %s"
-msgstr "Webhooks URL-Ziel: %s"
-
-#: includes/payments/gateways/braintree-gateway.php:168
 msgid "Pay by Card (Braintree)"
 msgstr "Bezahlen per Karte (Braintree)"
 
-#: includes/payments/gateways/braintree-gateway.php:169
+#: includes/payments/gateways/braintree-gateway.php:156
 msgid "Pay with your credit card via Braintree."
 msgstr "Bezahlen Sie mit Ihrer Kreditkarte über Braintree."
 
-#: includes/payments/gateways/braintree-gateway.php:189
-msgid "Braintree gateway cannot be enabled due to some problems: %s"
-msgstr "Braintree Gateway kann aufgrund einiger Probleme nicht aktiviert werden: %s"
+#: includes/payments/gateways/braintree-gateway.php:199
+#: includes/payments/gateways/stripe-gateway.php:130
+msgid "Webhooks Destination URL: %s"
+msgstr "Webhooks URL-Ziel: %s"
 
-#: includes/payments/gateways/braintree-gateway.php:214
+#: includes/payments/gateways/braintree-gateway.php:213
 msgid "In your Braintree account select Account > My User > View Authorizations."
 msgstr "Wählen Sie in Ihrem Braintree-Konto Konto> Mein Benutzer> Berechtigungen anzeigen."
 
-#: includes/payments/gateways/braintree-gateway.php:221
-#: includes/payments/gateways/stripe-gateway.php:284
+#: includes/payments/gateways/braintree-gateway.php:218
+#: includes/payments/gateways/stripe-gateway.php:238
 msgid "Public Key"
 msgstr "Öffentlicher Schlüssel"
 
-#: includes/payments/gateways/braintree-gateway.php:229
+#: includes/payments/gateways/braintree-gateway.php:224
 msgid "Private Key"
 msgstr "Privatschlüssel"
 
-#: includes/payments/gateways/braintree-gateway.php:237
+#: includes/payments/gateways/braintree-gateway.php:230
 msgid "Merchant Account ID"
 msgstr "Händler-Konto-ID"
 
-#: includes/payments/gateways/braintree-gateway.php:238
+#: includes/payments/gateways/braintree-gateway.php:231
 msgid "In case the site currency differs from default currency in your Braintree account, you can set specific merchant account to avoid <a href=\"%s\">complications with currencty conversions</a>. Otherwise leave the field empty."
 msgstr "Falls die Standortwährung von der Standardwährung in Ihrem Braintree-Konto abweicht, können Sie ein bestimmtes Händlerkonto festlegen, um <a href=\"%s\">Komplikationen mit Währungsumwandlungen zu vermeiden</a>. Andernfalls lassen Sie das Feld leer."
 
-#: includes/payments/gateways/braintree-gateway.php:293
+#: includes/payments/gateways/braintree-gateway.php:248
+msgid "Braintree gateway cannot be enabled due to some problems: %s"
+msgstr "Braintree Gateway kann aufgrund einiger Probleme nicht aktiviert werden: %s"
+
+#: includes/payments/gateways/braintree-gateway.php:324
 msgid "Braintree submitted for settlement (Transaction ID: %s)"
 msgstr "Braintree zur Abrechnung eingereicht (Transaction ID: %s)"
 
-#: includes/payments/gateways/braintree-gateway.php:303
+#: includes/payments/gateways/braintree-gateway.php:334
 msgid "Braintree Payment Error: %s"
 msgstr "Braintree Zahlungsfehler: %s"
 
-#: includes/payments/gateways/braintree-gateway.php:330
+#: includes/payments/gateways/braintree-gateway.php:361
 msgid "Payment method nonce is required."
 msgstr "Zahlungsmethode Nonce ist erforderlich."
 
@@ -6406,384 +4838,320 @@ msgstr "Zahlung zurückerstattet in Braintree"
 msgid "Braintree transaction voided"
 msgstr "Braintree Transaktion für ungültig erklärt"
 
-#: includes/payments/gateways/cash-gateway.php:45
-#: includes/payments/gateways/cash-gateway.php:53
+#: includes/payments/gateways/cash-gateway.php:42
+#: includes/payments/gateways/cash-gateway.php:50
 msgid "Pay on Arrival"
 msgstr "Bei Ankunft bezahlen"
 
-#: includes/payments/gateways/cash-gateway.php:54
+#: includes/payments/gateways/cash-gateway.php:51
 msgid "Pay with cash on arrival."
 msgstr "Bei Ankunft bar bezahlen."
 
-#: includes/payments/gateways/gateway.php:301
+#: includes/payments/gateways/gateway.php:277
 msgid "%s is a required field."
 msgstr "%s ist ein Pflichtfeld."
 
-#: includes/payments/gateways/gateway.php:314
+#: includes/payments/gateways/gateway.php:290
 msgid "%s is not a valid email address."
 msgstr "%s ist keine gültige E-Mail-Adresse."
 
 #. translators: %s is the payment gateway title.
-#: includes/payments/gateways/gateway.php:472
+#: includes/payments/gateways/gateway.php:446
 msgid "Enable \"%s\""
 msgstr "\"%s\" aktivieren"
 
-#: includes/payments/gateways/gateway.php:482
+#: includes/payments/gateways/gateway.php:451
 msgid "Test Mode"
 msgstr "Test-Modus"
 
-#: includes/payments/gateways/gateway.php:483
+#: includes/payments/gateways/gateway.php:452
 msgid "Enable Sandbox Mode"
 msgstr "Sandbox-Modus aktivieren"
 
-#: includes/payments/gateways/gateway.php:485
+#: includes/payments/gateways/gateway.php:453
 msgid "Sandbox can be used to test payments."
 msgstr "Sandbox kann verwendet werden, um Zahlungen zu testen."
 
-#: includes/payments/gateways/gateway.php:496
+#: includes/payments/gateways/gateway.php:459
 msgid "Payment method title that the customer will see on your website."
 msgstr "Zahlungsmethode, die der Kunde auf Ihrer Website sehen wird."
 
-#: includes/payments/gateways/gateway.php:506
+#: includes/payments/gateways/gateway.php:466
 msgid "Payment method description that the customer will see on your website."
 msgstr "Zahlungsmethodenbeschreibung, die der Kunde auf Ihrer Website sehen wird."
 
-#: includes/payments/gateways/gateway.php:516
+#: includes/payments/gateways/gateway.php:472
 msgid "Instructions"
 msgstr "Anleitung"
 
-#: includes/payments/gateways/gateway.php:518
+#: includes/payments/gateways/gateway.php:473
 msgid "Instructions for a customer on how to complete the payment."
 msgstr "Anleitung für den Kunden um die Zahlung abzuschließen."
 
-#: includes/payments/gateways/gateway.php:543
+#: includes/payments/gateways/gateway.php:524
 msgid "Reservation #%d"
 msgstr "Reservierung #%d"
 
-#: includes/payments/gateways/gateway.php:545
+#: includes/payments/gateways/gateway.php:526
 msgid "Accommodation(s) reservation"
 msgstr "Reservierung von Unterkunft (Unterkünften)"
 
-#: includes/payments/gateways/manual-gateway.php:14
-#: includes/payments/gateways/manual-gateway.php:19
+#: includes/payments/gateways/manual-gateway.php:15
+#: includes/payments/gateways/manual-gateway.php:20
 msgid "Manual Payment"
 msgstr "Manuelle Zahlung"
 
-#: includes/payments/gateways/paypal-gateway.php:67
-#: includes/payments/gateways/paypal-gateway.php:80
+#: includes/payments/gateways/paypal-gateway.php:63
+#: includes/payments/gateways/paypal-gateway.php:69
 msgid "PayPal"
 msgstr "PayPal"
 
-#: includes/payments/gateways/paypal-gateway.php:81
+#: includes/payments/gateways/paypal-gateway.php:70
 msgid "Pay via PayPal"
 msgstr "Zahlen mit PayPal"
 
-#: includes/payments/gateways/paypal-gateway.php:117
+#: includes/payments/gateways/paypal-gateway.php:107
 msgid "Paypal Business Email"
 msgstr "Paypal Business E-Mail"
 
-#: includes/payments/gateways/paypal-gateway.php:125
+#: includes/payments/gateways/paypal-gateway.php:112
 msgid "Disable IPN Verification"
 msgstr "IPN-Überprüfung deaktivieren"
 
-#: includes/payments/gateways/paypal-gateway.php:127
+#: includes/payments/gateways/paypal-gateway.php:113
 msgid "Specify an IPN listener for a specific payment instead of the listeners specified in your PayPal Profile."
 msgstr "Geben Sie einen IPN-Listener für eine bestimmte Zahlung anstelle der in Ihrem PayPal-Profil angegebenen Zuhörer an."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:164
+#: includes/payments/gateways/paypal/ipn-listener.php:150
 msgid "Payment %s via IPN."
 msgstr "Zahlung %s über IPN."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:183
+#: includes/payments/gateways/paypal/ipn-listener.php:169
 msgid "Payment failed due to invalid PayPal business email."
 msgstr "Die Zahlung fehlgeschlagen aufgrund der ungültigen PayPal-Business-E-Mail."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:200
+#: includes/payments/gateways/paypal/ipn-listener.php:186
 msgid "Payment failed due to invalid currency in PayPal IPN."
 msgstr "Zahlung fehlgeschlagen aufgrund ungültiger Währung in PayPal IPN."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:215
+#: includes/payments/gateways/paypal/ipn-listener.php:201
 msgid "Payment failed due to invalid amount in PayPal IPN."
 msgstr "Zahlung fehlgeschlagen aufgrund eines ungültigen Betrags in PayPal IPN."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:230
+#: includes/payments/gateways/paypal/ipn-listener.php:216
 msgid "Payment failed due to invalid purchase key in PayPal IPN."
 msgstr "Zahlung fehlgeschlagen aufgrund eines ungültigen Kaufschlüssels in PayPal IPN."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:302
+#: includes/payments/gateways/paypal/ipn-listener.php:288
 msgid "Payment made via eCheck and will clear automatically in 5-8 days."
 msgstr "Zahlung erfolgt per eCheck und wird in 5-8 Tagen automatisch gelöscht."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:307
+#: includes/payments/gateways/paypal/ipn-listener.php:293
 msgid "Payment requires a confirmed customer address and must be accepted manually through PayPal."
 msgstr "Zahlung erfordert eine bestätigte Kundenadresse und muss manuell über PayPal akzeptiert werden."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:312
+#: includes/payments/gateways/paypal/ipn-listener.php:298
 msgid "Payment must be accepted manually through PayPal due to international account regulations."
 msgstr "Zahlung muss manuell über PayPal akzeptiert werden."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:317
+#: includes/payments/gateways/paypal/ipn-listener.php:303
 msgid "Payment received in non-shop currency and must be accepted manually through PayPal."
 msgstr "Zahlung in Nicht-Ladenwährung eingegangen und muss manuell über PayPal akzeptiert werden."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:323
+#: includes/payments/gateways/paypal/ipn-listener.php:309
 msgid "Payment is being reviewed by PayPal staff as high-risk or in possible violation of government regulations."
 msgstr "Zahlung wird von PayPal-Mitarbeitern als Hochrisiko oder in einer möglichen Verletzung von Regierungsvorschriften verdächtigt und wird überprüft."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:328
+#: includes/payments/gateways/paypal/ipn-listener.php:314
 msgid "Payment was sent to unconfirmed or non-registered email address."
 msgstr "Zahlung wurde an nicht bestätigte oder nicht registrierte E-Mail-Adresse gesendet."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:333
+#: includes/payments/gateways/paypal/ipn-listener.php:319
 msgid "PayPal account must be upgraded before this payment can be accepted."
 msgstr "PayPal-Konto muss aktualisiert werden, bevor diese Zahlung akzeptiert werden kann."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:338
+#: includes/payments/gateways/paypal/ipn-listener.php:324
 msgid "PayPal account is not verified. Verify account in order to accept this payment."
 msgstr "PayPal-Konto wurde nicht überprüft. Überprüfen Sie das Konto, um diese Zahlung zu akzeptieren."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:343
+#: includes/payments/gateways/paypal/ipn-listener.php:329
 msgid "Payment is pending for unknown reasons. Contact PayPal support for assistance."
 msgstr "Zahlung ist aus unbekannten Gründen ausstehend. Wenden Sie sich an den PayPal-Support."
 
-#: includes/payments/gateways/paypal/ipn-listener.php:363
+#: includes/payments/gateways/paypal/ipn-listener.php:349
 msgid "Partial PayPal refund processed: %s"
 msgstr "Teilweise PayPal-Rückerstattung verarbeitet: %s"
 
-#: includes/payments/gateways/paypal/ipn-listener.php:370
+#: includes/payments/gateways/paypal/ipn-listener.php:356
 msgid "PayPal Payment #%s Refunded for reason: %s"
 msgstr "PayPal Zahlung #%s Rückerstattung für Grund: %s"
 
-#: includes/payments/gateways/paypal/ipn-listener.php:374
+#: includes/payments/gateways/paypal/ipn-listener.php:360
 msgid "PayPal Refund Transaction ID: %s"
 msgstr "PayPal Rückerstattung Transaktion-ID: %s"
 
-#: includes/payments/gateways/stripe-gateway.php:149
-#: includes/payments/gateways/stripe-gateway.php:231
-msgid "Stripe"
-msgstr "Stripe"
-
-#: includes/payments/gateways/stripe-gateway.php:186
+#: includes/payments/gateways/stripe-gateway.php:116
 msgid "Use the card number %1$s with CVC %2$s, a valid expiration date and random 5-digit ZIP-code to test a payment."
 msgstr "Verwenden Sie die Kartennummer %1$s mit CVC %2$s, ein gültiges Ablaufdatum und eine zufällige 5-stellige Postleitzahl, um eine Zahlung zu testen."
 
-#: includes/payments/gateways/stripe-gateway.php:202
+#: includes/payments/gateways/stripe-gateway.php:164
+#: includes/payments/gateways/stripe-gateway.php:292
+msgid "Stripe"
+msgstr "Stripe"
+
+#: includes/payments/gateways/stripe-gateway.php:179
 msgid "Pay by Card (Stripe)"
 msgstr "Bezahlen mit Karte (Stripe)"
 
-#: includes/payments/gateways/stripe-gateway.php:203
+#: includes/payments/gateways/stripe-gateway.php:180
 msgid "Pay with your credit card via Stripe."
 msgstr "Bezahlen Sie mit Ihrer Kreditkarte über Stripe."
 
 #. translators: %1$s - names of payment methods, %2$s - currency codes
-#: includes/payments/gateways/stripe-gateway.php:240
-#: includes/payments/gateways/stripe-gateway.php:259
-#: includes/payments/gateways/stripe-gateway.php:688
+#: includes/payments/gateways/stripe-gateway.php:195
+#: includes/payments/gateways/stripe-gateway.php:215
+#: includes/payments/gateways/stripe-gateway.php:728
 msgid "Bancontact"
 msgstr "Bankverbindung"
 
-#: includes/payments/gateways/stripe-gateway.php:241
-#: includes/payments/gateways/stripe-gateway.php:260
-#: includes/payments/gateways/stripe-gateway.php:689
+#: includes/payments/gateways/stripe-gateway.php:196
+#: includes/payments/gateways/stripe-gateway.php:216
+#: includes/payments/gateways/stripe-gateway.php:729
 msgid "iDEAL"
 msgstr "iDEAL"
 
-#: includes/payments/gateways/stripe-gateway.php:242
-#: includes/payments/gateways/stripe-gateway.php:261
-#: includes/payments/gateways/stripe-gateway.php:690
+#: includes/payments/gateways/stripe-gateway.php:197
+#: includes/payments/gateways/stripe-gateway.php:217
+#: includes/payments/gateways/stripe-gateway.php:730
 msgid "Giropay"
 msgstr "Giropay"
 
-#: includes/payments/gateways/stripe-gateway.php:243
-#: includes/payments/gateways/stripe-gateway.php:262
-#: includes/payments/gateways/stripe-gateway.php:691
+#: includes/payments/gateways/stripe-gateway.php:198
+#: includes/payments/gateways/stripe-gateway.php:218
+#: includes/payments/gateways/stripe-gateway.php:731
 msgid "SEPA Direct Debit"
 msgstr "SEPA-Lastschrift"
 
 #. translators: %1$s - name of payment method, %2$s - currency codes
 #. translators: %s - payment method name
-#: includes/payments/gateways/stripe-gateway.php:244
-#: includes/payments/gateways/stripe-gateway.php:269
-#: includes/payments/gateways/stripe-gateway.php:276
-#: includes/payments/gateways/stripe-gateway.php:692
+#: includes/payments/gateways/stripe-gateway.php:199
+#: includes/payments/gateways/stripe-gateway.php:224
+#: includes/payments/gateways/stripe-gateway.php:231
+#: includes/payments/gateways/stripe-gateway.php:732
 msgid "Klarna"
 msgstr "Klarna"
 
 #. translators: %s - currency codes
-#: includes/payments/gateways/stripe-gateway.php:252
+#: includes/payments/gateways/stripe-gateway.php:208
 msgid "The %s currency is selected in the main settings."
 msgstr "Die %s Währung wird in den Haupteinstellungen ausgewählt."
 
 #. translators: %1$s - names of payment methods, %2$s - currency codes
-#: includes/payments/gateways/stripe-gateway.php:258
+#: includes/payments/gateways/stripe-gateway.php:214
 msgid "%1$s support the following currencies: %2$s."
 msgstr "%1$s Unterstützt folgende Währungen: %2$s."
 
 #. translators: %1$s - name of payment method, %2$s - currency codes
-#: includes/payments/gateways/stripe-gateway.php:268
+#: includes/payments/gateways/stripe-gateway.php:223
 msgid "%1$s supports: %2$s."
 msgstr "%1$s Unterstützung: %2$s."
 
 #. translators: %s - payment method name
-#: includes/payments/gateways/stripe-gateway.php:275
+#: includes/payments/gateways/stripe-gateway.php:230
 msgid "%s special restrictions."
 msgstr "%s Sonderbeschränkungen."
 
-#: includes/payments/gateways/stripe-gateway.php:293
+#: includes/payments/gateways/stripe-gateway.php:245
 msgid "Secret Key"
 msgstr "Geheimer Schlüssel"
 
-#: includes/payments/gateways/stripe-gateway.php:301
+#: includes/payments/gateways/stripe-gateway.php:251
 msgid "Webhook Secret"
 msgstr "Webhook geheim"
 
-#: includes/payments/gateways/stripe-gateway.php:310
+#: includes/payments/gateways/stripe-gateway.php:258
 msgid "Payment Methods"
 msgstr "Zahlungsmethoden"
 
-#: includes/payments/gateways/stripe-gateway.php:311
+#: includes/payments/gateways/stripe-gateway.php:261
 msgid "Card Payments"
 msgstr "Kartenzahlungen"
 
-#: includes/payments/gateways/stripe-gateway.php:322
+#: includes/payments/gateways/stripe-gateway.php:267
 msgid "Checkout Locale"
 msgstr "Checkout-Sprache"
 
-#: includes/payments/gateways/stripe-gateway.php:325
+#: includes/payments/gateways/stripe-gateway.php:268
 msgid "Display Checkout in the user's preferred language, if available."
 msgstr "Checkout in der bevorzugten Sprache des Benutzers zeigen, falls vorhanden."
 
-#: includes/payments/gateways/stripe-gateway.php:395
+#: includes/payments/gateways/stripe-gateway.php:387
 msgid "The payment method is not selected."
 msgstr "Die Zahlungsmethode wurde nicht ausgewählt."
 
-#: includes/payments/gateways/stripe-gateway.php:401
+#: includes/payments/gateways/stripe-gateway.php:393
 msgid "PaymentIntent ID is not set."
 msgstr "PaymentIntent ID ist nicht gesetzt."
 
 #. translators: %s - Stripe PaymentIntent ID
-#: includes/payments/gateways/stripe-gateway.php:430
+#: includes/payments/gateways/stripe-gateway.php:422
 msgid "Payment for PaymentIntent %s succeeded."
 msgstr "Die Zahlung für PaymentIntent %s war erfolgreich."
 
 #. translators: %s - Stripe PaymentIntent ID
-#: includes/payments/gateways/stripe-gateway.php:436
+#: includes/payments/gateways/stripe-gateway.php:428
 msgid "Payment for PaymentIntent %s is processing."
 msgstr "Die Zahlung für PaymentIntent %s wird ausgeführt."
 
 #. translators: %1$s - Stripe PaymentIntent ID, %2$s - Stripe error message text
-#: includes/payments/gateways/stripe-gateway.php:457
+#: includes/payments/gateways/stripe-gateway.php:449
 msgid "Failed to process PaymentIntent %1$s. %2$s"
 msgstr "PaymentIntent %1$s konnte nicht verarbeitet werden. %2$s"
 
-#: includes/payments/gateways/stripe-gateway.php:474
+#: includes/payments/gateways/stripe-gateway.php:466
 msgid "Can't charge the payment again: payment's flow already completed."
 msgstr "Zahlungsmittel kann nicht erneut belastet werden: Zahlungsprozess bereits abgeschlossen."
 
 #. translators: %s - Stripe Charge ID
-#: includes/payments/gateways/stripe-gateway.php:496
+#: includes/payments/gateways/stripe-gateway.php:488
 msgid "Charge %s succeeded."
 msgstr "Belastung des Zahlungsmittels %s war erfolgreich."
 
 #. translators: %1$s - Stripe Charge ID; %2$s - payment price
-#: includes/payments/gateways/stripe-gateway.php:503
+#: includes/payments/gateways/stripe-gateway.php:495
 msgid "Charge %1$s for %2$s created."
 msgstr "Belastung des Zahlungsmittels %1$s für %2$s erstellt."
 
 #. translators: %s - Stripe Charge ID
-#: includes/payments/gateways/stripe-gateway.php:508
+#: includes/payments/gateways/stripe-gateway.php:500
 msgid "Charge %s failed."
 msgstr "Belastung des Zahlungsmittels %s fehlgeschlagen."
 
-#: includes/payments/gateways/stripe-gateway.php:515
+#: includes/payments/gateways/stripe-gateway.php:507
 msgid "Charge error. %s"
 msgstr "Fehler bei Belastung des Zahlungsmittels. %s"
 
-#: includes/payments/gateways/stripe-gateway.php:529
-msgid "Argentinean"
-msgstr "Argentinisch"
-
-#: includes/payments/gateways/stripe-gateway.php:530
-msgid "Simplified Chinese"
-msgstr "Vereinfachtes Chinesisch"
-
-#: includes/payments/gateways/stripe-gateway.php:531
-msgid "Danish"
-msgstr "Dänisch"
-
-#: includes/payments/gateways/stripe-gateway.php:532
-msgid "Dutch"
-msgstr "Niederländisch"
-
-#: includes/payments/gateways/stripe-gateway.php:533
-msgid "English"
-msgstr "Englisch"
-
-#: includes/payments/gateways/stripe-gateway.php:534
-msgid "Finnish"
-msgstr "Finnisch"
-
-#: includes/payments/gateways/stripe-gateway.php:535
-msgid "French"
-msgstr "Französisch"
-
-#: includes/payments/gateways/stripe-gateway.php:536
-msgid "German"
-msgstr "Deutsch"
-
-#: includes/payments/gateways/stripe-gateway.php:537
-msgid "Italian"
-msgstr "Italienisch"
-
-#: includes/payments/gateways/stripe-gateway.php:538
-msgid "Japanese"
-msgstr "Japanisch"
-
-#: includes/payments/gateways/stripe-gateway.php:539
-msgid "Norwegian"
-msgstr "Norwegisch"
-
-#: includes/payments/gateways/stripe-gateway.php:540
-msgid "Polish"
-msgstr "Polnisch"
-
-#: includes/payments/gateways/stripe-gateway.php:541
-msgid "Russian"
-msgstr "Russisch"
-
-#: includes/payments/gateways/stripe-gateway.php:542
-msgid "Spanish"
-msgstr "Spanisch"
-
-#: includes/payments/gateways/stripe-gateway.php:543
-msgid "Swedish"
-msgstr "Schwedisch"
-
-#: includes/payments/gateways/stripe-gateway.php:571
+#: includes/payments/gateways/stripe-gateway.php:611
 msgid "PaymentIntent ID is missing."
 msgstr "PaymentIntent ID fehlt."
 
-#: includes/payments/gateways/stripe-gateway.php:687
+#: includes/payments/gateways/stripe-gateway.php:727
 msgid "Card"
 msgstr "Karte"
 
-#: includes/payments/gateways/stripe-gateway.php:694
+#: includes/payments/gateways/stripe-gateway.php:734
 msgid "Credit or debit card"
 msgstr "Kredit- oder EC-Karte"
 
-#: includes/payments/gateways/stripe-gateway.php:695
+#: includes/payments/gateways/stripe-gateway.php:735
 msgid "IBAN"
 msgstr "IBAN"
 
-#: includes/payments/gateways/stripe-gateway.php:696
-msgid "Select iDEAL Bank"
-msgstr "iDEAL Bank aussuchen"
-
-#: includes/payments/gateways/stripe-gateway.php:698
+#: includes/payments/gateways/stripe-gateway.php:737
 msgid "You will be redirected to a secure page to complete the payment."
 msgstr "Sie werden auf eine sichere Seite weitergeleitet, um Ihre Zahlung abzuschließen."
 
-#: includes/payments/gateways/stripe-gateway.php:699
+#: includes/payments/gateways/stripe-gateway.php:738
 msgid "By providing your IBAN and confirming this payment, you are authorizing this merchant and Stripe, our payment service provider, to send instructions to your bank to debit your account and your bank to debit your account in accordance with those instructions. You are entitled to a refund from your bank under the terms and conditions of your agreement with your bank. A refund must be claimed within 8 weeks starting from the date on which your account was debited."
 msgstr "Durch die Angabe Ihrer IBAN und die Bestätigung dieser Zahlung ermächtigen Sie diesen Händler und unseren Zahlungsdienstleister Stripe, der Bank Anweisungen zur Belastung Ihres Kontos und der Bank Anweisungen zur Belastung Ihres Kontos gemäß diesen Anweisungen zu senden. Sie haben Anspruch auf eine Rückerstattung von Ihrer Bank gemäß den Bedingungen Ihrer Vereinbarung mit Ihrer Bank. Eine Rückerstattung muss innerhalb von 8 Wochen ab dem Datum, an dem Ihr Konto belastet wurde, beantragt werden."
 
@@ -6793,100 +5161,100 @@ msgid "Could not create PaymentIntent for a not allowed payment type: %s"
 msgstr "Konnte keinen PaymentIntent für eine nicht zulässige Zahlungsart erstellen: %s"
 
 #. translators: %s - Stripe event object ID
-#: includes/payments/gateways/stripe/webhook-listener.php:163
+#: includes/payments/gateways/stripe/webhook-listener.php:152
 msgid "Webhook received. Payment %s was cancelled by the customer."
 msgstr "Webhook erhalten. Zahlung %s wurde vom Kunden abgebrochen."
 
 #. translators: %s - Stripe event object ID
-#: includes/payments/gateways/stripe/webhook-listener.php:174
+#: includes/payments/gateways/stripe/webhook-listener.php:163
 msgid "Webhook received. Payment %s failed and couldn't be processed."
 msgstr "Webhook empfangen. Zahlung %s fehlgeschlagen und konnte nicht verarbeitet werden."
 
 #. translators: %s - Stripe event object ID
-#: includes/payments/gateways/stripe/webhook-listener.php:200
+#: includes/payments/gateways/stripe/webhook-listener.php:189
 msgid "Webhook received. Payment %s was successfully processed."
 msgstr "Webhook erhalten. Zahlung %s wurde erfolgreich bearbeitet."
 
 #. translators: %s - Stripe Charge ID
-#: includes/payments/gateways/stripe/webhook-listener.php:215
+#: includes/payments/gateways/stripe/webhook-listener.php:204
 msgid "Webhook received. Charge %s succeeded."
 msgstr "Webhook erhalten. Belastung des Zahlungsmittels %s war erfolgreich."
 
 #. translators: %s - Stripe Charge ID
-#: includes/payments/gateways/stripe/webhook-listener.php:227
+#: includes/payments/gateways/stripe/webhook-listener.php:216
 msgid "Webhook received. Charge %s failed."
 msgstr "Webhook erhalten. Belastung des Zahlungsmittels %s fehlgeschlagen."
 
 #. translators: %s - Stripe Source ID
-#: includes/payments/gateways/stripe/webhook-listener.php:238
+#: includes/payments/gateways/stripe/webhook-listener.php:227
 msgid "Webhook received. The source %s is chargeable."
 msgstr "Webhook erhalten. Das Zahlungsmittels %s ist belastbar."
 
 #. translators: %s - Stripe Source ID
-#: includes/payments/gateways/stripe/webhook-listener.php:252
+#: includes/payments/gateways/stripe/webhook-listener.php:241
 msgid "Webhook received. Payment source %s was cancelled by customer."
 msgstr "Webhook erhalten. Belastung des Zahlungsmittels %s wurde vom Kunden abgebrochen."
 
 #. translators: %s - Stripe Source ID
-#: includes/payments/gateways/stripe/webhook-listener.php:263
+#: includes/payments/gateways/stripe/webhook-listener.php:252
 msgid "Webhook received. Payment source %s failed and couldn't be processed."
 msgstr "Die Zahlungsquelle %s ist fehlgeschlagen und konnte nicht verarbeitet werden."
 
-#: includes/payments/gateways/test-gateway.php:46
-#: includes/payments/gateways/test-gateway.php:52
+#: includes/payments/gateways/test-gateway.php:43
+#: includes/payments/gateways/test-gateway.php:49
 msgid "Test Payment"
 msgstr "Testzahlung"
 
-#: includes/payments/gateways/two-checkout-gateway.php:65
-#: includes/payments/gateways/two-checkout-gateway.php:101
+#: includes/payments/gateways/two-checkout-gateway.php:67
+#: includes/payments/gateways/two-checkout-gateway.php:96
 msgid "2Checkout"
 msgstr "2Checkout"
 
-#: includes/payments/gateways/two-checkout-gateway.php:88
+#: includes/payments/gateways/two-checkout-gateway.php:83
 msgid "To setup the callback process for 2Checkout to automatically mark payments completed, you will need to"
 msgstr "Um den Rückrufprozess für 2Checkout einzurichten und die gezahlten Zahlungen automatisch zu markieren, müssen Sie"
 
-#: includes/payments/gateways/two-checkout-gateway.php:90
+#: includes/payments/gateways/two-checkout-gateway.php:85
 msgid "Login to your 2Checkout account and click the Notifications tab"
 msgstr "Melden Sie sich bei Ihrem 2Checkout-Konto an und klicken Sie auf die Registerkarte Benachrichtigungen"
 
-#: includes/payments/gateways/two-checkout-gateway.php:91
+#: includes/payments/gateways/two-checkout-gateway.php:86
 msgid "Click Enable All Notifications"
 msgstr "Klicken Sie auf Alle Benachrichtigungen aktivieren"
 
-#: includes/payments/gateways/two-checkout-gateway.php:92
+#: includes/payments/gateways/two-checkout-gateway.php:87
 msgid "In the Global URL field, enter the url %s"
 msgstr "Im globalen URL-Feld geben Sie die url %s ein"
 
-#: includes/payments/gateways/two-checkout-gateway.php:93
+#: includes/payments/gateways/two-checkout-gateway.php:88
 msgid "Click Apply"
 msgstr "Klicken Sie auf Übernehmen"
 
-#: includes/payments/gateways/two-checkout-gateway.php:189
+#: includes/payments/gateways/two-checkout-gateway.php:201
 msgid "Account Number"
 msgstr "Accountnummer"
 
-#: includes/payments/gateways/two-checkout-gateway.php:197
+#: includes/payments/gateways/two-checkout-gateway.php:206
 msgid "Secret Word"
 msgstr "Geheimwort"
 
-#: includes/payments/gateways/two-checkout/ins-listener.php:68
+#: includes/payments/gateways/two-checkout/ins-listener.php:72
 msgid "2Checkout \"Order Created\" notification received."
 msgstr "2Checkout \"Bestellung angefertigt\" Benachrichtigung erhalten."
 
-#: includes/payments/gateways/two-checkout/ins-listener.php:73
+#: includes/payments/gateways/two-checkout/ins-listener.php:77
 msgid "Payment refunded in 2Checkout"
 msgstr "Zahlung zurückerstattet in 2Checkout"
 
-#: includes/payments/gateways/two-checkout/ins-listener.php:80
+#: includes/payments/gateways/two-checkout/ins-listener.php:84
 msgid "2Checkout fraud review passed"
 msgstr "2Checkout Betrug-Überprüfung bestanden"
 
-#: includes/payments/gateways/two-checkout/ins-listener.php:83
+#: includes/payments/gateways/two-checkout/ins-listener.php:87
 msgid "2Checkout fraud review failed"
 msgstr "2Checkout Betrug-Überprüfung fehlgeschlagen"
 
-#: includes/payments/gateways/two-checkout/ins-listener.php:86
+#: includes/payments/gateways/two-checkout/ins-listener.php:90
 msgid "2Checkout fraud review in progress"
 msgstr "2Checkout Betrug-Überprüfung im Gange"
 
@@ -7300,39 +5668,39 @@ msgstr "Hochgeladen in diese Zahlung"
 msgid "Payments."
 msgstr "Zahlungen."
 
-#: includes/post-types/payment-cpt.php:169
+#: includes/post-types/payment-cpt.php:170
 msgid "Gateway Mode"
 msgstr "Gateway-Modus"
 
-#: includes/post-types/payment-cpt.php:171
+#: includes/post-types/payment-cpt.php:172
 msgid "Sandbox"
 msgstr "Sandbox"
 
-#: includes/post-types/payment-cpt.php:172
+#: includes/post-types/payment-cpt.php:173
 msgid "Live"
 msgstr "Live"
 
-#: includes/post-types/payment-cpt.php:194
+#: includes/post-types/payment-cpt.php:195
 msgid "Fee"
 msgstr "Gebühr"
 
-#: includes/post-types/payment-cpt.php:215
+#: includes/post-types/payment-cpt.php:216
 msgid "Payment Type"
 msgstr "Zahlungsart"
 
-#: includes/post-types/payment-cpt.php:240
+#: includes/post-types/payment-cpt.php:241
 msgid "Billing Info"
 msgstr "Rechnungsinfo"
 
-#: includes/post-types/payment-cpt.php:287
+#: includes/post-types/payment-cpt.php:288
 msgid "Address 1"
 msgstr "Adresse 1"
 
-#: includes/post-types/payment-cpt.php:295
+#: includes/post-types/payment-cpt.php:296
 msgid "Address 2"
 msgstr "Adresse 2"
 
-#: includes/post-types/payment-cpt.php:319
+#: includes/post-types/payment-cpt.php:320
 msgid "Postal Code (ZIP)"
 msgstr "Postleitzahl (PLZ)"
 
@@ -7637,6 +6005,7 @@ msgstr "Keine Kategorien gefunden."
 
 #: includes/post-types/room-type-cpt.php:123
 #: assets/blocks/blocks.js:816
+#: assets/blocks/blocks.min.js:1
 msgid "Categories"
 msgstr "Kategorien"
 
@@ -7708,6 +6077,7 @@ msgstr "Keine Tags gefunden."
 
 #: includes/post-types/room-type-cpt.php:178
 #: assets/blocks/blocks.js:828
+#: assets/blocks/blocks.min.js:1
 msgid "Tags"
 msgstr "Tags"
 
@@ -7841,11 +6211,6 @@ msgstr "Verfügbare Dienstleistungen"
 #: includes/post-types/season-cpt.php:25
 msgid "Season Info"
 msgstr "Saison-Info"
-
-#: includes/post-types/season-cpt.php:32
-#: includes/reports/earnings-report.php:332
-msgid "Start date"
-msgstr "Anfangsdatum"
 
 #: includes/post-types/season-cpt.php:45
 #: includes/reports/earnings-report.php:344
@@ -8030,6 +6395,7 @@ msgid "From %s to %s"
 msgstr "Von %s bis %s"
 
 #: includes/reports/report-filters.php:61
+#: assets/js/shortcodes/group-availability-calendar/index.js:1
 msgid "Today"
 msgstr "Heute"
 
@@ -8078,145 +6444,149 @@ msgstr "Letztes Jahr"
 msgid "%s - copy"
 msgstr "%s - Kopie"
 
-#: includes/script-managers/admin-script-manager.php:92
+#: includes/script-managers/admin-script-manager.php:110
 msgid "Accommodation Type Gallery"
 msgstr "Unterkunftsart-Galerie"
 
-#: includes/script-managers/admin-script-manager.php:93
+#: includes/script-managers/admin-script-manager.php:111
 msgid "Add Gallery To Accommodation Type"
 msgstr "Galerie zu Unterkunftsart hinzufügen"
 
-#: includes/script-managers/admin-script-manager.php:105
+#: includes/script-managers/admin-script-manager.php:123
 msgid "Display imported bookings."
 msgstr "Importierte Buchungen anzeigen."
 
-#: includes/script-managers/admin-script-manager.php:106
+#: includes/script-managers/admin-script-manager.php:124
 msgid "Processing..."
 msgstr "Bearbeitung..."
 
-#: includes/script-managers/admin-script-manager.php:107
+#: includes/script-managers/admin-script-manager.php:125
 msgid "Cancelling..."
 msgstr "Stornierung..."
 
-#: includes/script-managers/admin-script-manager.php:108
+#: includes/script-managers/admin-script-manager.php:126
 msgid "Want to delete?"
 msgstr "Löschen?"
 
-#: includes/script-managers/public-script-manager.php:204
+#: includes/script-managers/public-script-manager.php:217
 msgid "Not available"
 msgstr "Nicht verfügbar"
 
-#: includes/script-managers/public-script-manager.php:205
+#: includes/script-managers/public-script-manager.php:218
 msgid "This is earlier than allowed by our advance reservation rules."
 msgstr "Das ist früher als in unseren Regeln für die Reservierung im Voraus erlaubt."
 
-#: includes/script-managers/public-script-manager.php:206
+#: includes/script-managers/public-script-manager.php:219
 msgid "This is later than allowed by our advance reservation rules."
 msgstr "Das ist später als in unseren Regeln für die Reservierung im Voraus erlaubt."
 
-#: includes/script-managers/public-script-manager.php:210
+#: includes/script-managers/public-script-manager.php:223
 msgid "Day in the past"
 msgstr "Tag in der Vergangenheit"
 
-#: includes/script-managers/public-script-manager.php:211
+#: includes/script-managers/public-script-manager.php:224
 msgid "Check-in date"
 msgstr "Anreisedatum"
 
-#: includes/script-managers/public-script-manager.php:212
+#: includes/script-managers/public-script-manager.php:225
 msgid "Less than min days stay"
 msgstr "Weniger als Minimalaufenthalt"
 
-#: includes/script-managers/public-script-manager.php:213
+#: includes/script-managers/public-script-manager.php:226
 msgid "More than max days stay"
 msgstr "Mehr als Maximalaufenthalt"
 
-#: includes/script-managers/public-script-manager.php:215
+#: includes/script-managers/public-script-manager.php:228
 msgid "Later than max date for current check-in date"
 msgstr "Später als max. Datum für das aktuelle Anreisedatum"
 
-#: includes/script-managers/public-script-manager.php:216
+#: includes/script-managers/public-script-manager.php:229
 msgid "Rules:"
 msgstr "Regeln:"
 
-#: includes/script-managers/public-script-manager.php:217
+#: includes/script-managers/public-script-manager.php:230
 msgid "Tokenisation failed: %s"
 msgstr "Tokenisierung fehlgeschlagen: %s"
 
-#: includes/script-managers/public-script-manager.php:218
-#: includes/script-managers/public-script-manager.php:219
+#: includes/script-managers/public-script-manager.php:231
+#: includes/script-managers/public-script-manager.php:232
 msgid "%1$d &times; &ldquo;%2$s&rdquo; has been added to your reservation."
 msgid_plural "%1$d &times; &ldquo;%2$s&rdquo; have been added to your reservation."
 msgstr[0] "%1$d &times; &ldquo;%2$s&rdquo; wurde zu Ihrer Reservierung hinzugefügt."
 msgstr[1] "%1$d &times; &ldquo;%2$s&rdquo; wurden zu Ihrer Reservierung hinzugefügt."
 
-#: includes/script-managers/public-script-manager.php:220
-#: includes/script-managers/public-script-manager.php:221
+#: includes/script-managers/public-script-manager.php:233
+#: includes/script-managers/public-script-manager.php:234
 msgid "%s accommodation selected."
 msgid_plural "%s accommodations selected."
 msgstr[0] "%s Unterkunft ausgewählt."
 msgstr[1] "%s Unterkünfte ausgewählt."
 
-#: includes/script-managers/public-script-manager.php:222
+#: includes/script-managers/public-script-manager.php:235
 msgid "Coupon code is empty."
 msgstr "Der Gutscheincode ist leer."
 
-#: includes/script-managers/public-script-manager.php:225
+#: includes/script-managers/public-script-manager.php:238
 msgid "Select dates"
 msgstr "Wähle einen Zeitraum aus"
 
-#: includes/settings/main-settings.php:26
+#: includes/settings/main-settings.php:33
 msgid "Dark Blue"
 msgstr "Dunkelblau"
 
-#: includes/settings/main-settings.php:27
+#: includes/settings/main-settings.php:34
 msgid "Dark Green"
 msgstr "Dunkelgrün"
 
-#: includes/settings/main-settings.php:28
+#: includes/settings/main-settings.php:35
 msgid "Dark Red"
 msgstr "Dunkelrot"
 
-#: includes/settings/main-settings.php:29
+#: includes/settings/main-settings.php:36
 msgid "Grayscale"
 msgstr "Graustufen"
 
-#: includes/settings/main-settings.php:30
+#: includes/settings/main-settings.php:37
 msgid "Light Blue"
 msgstr "Hellblau"
 
-#: includes/settings/main-settings.php:31
+#: includes/settings/main-settings.php:38
 msgid "Light Coral"
 msgstr "Hellkorallenrot"
 
-#: includes/settings/main-settings.php:32
+#: includes/settings/main-settings.php:39
 msgid "Light Green"
 msgstr "Hellgrün"
 
-#: includes/settings/main-settings.php:33
+#: includes/settings/main-settings.php:40
 msgid "Light Yellow"
 msgstr "Hellgelb"
 
-#: includes/settings/main-settings.php:34
+#: includes/settings/main-settings.php:41
 msgid "Minimal Blue"
 msgstr "Minimal Blau"
 
-#: includes/settings/main-settings.php:35
+#: includes/settings/main-settings.php:42
 msgid "Minimal Orange"
 msgstr "Minimal Orange"
 
-#: includes/settings/main-settings.php:36
+#: includes/settings/main-settings.php:43
 msgid "Minimal"
 msgstr "Minimal"
 
-#: includes/settings/main-settings.php:38
+#: includes/settings/main-settings.php:44
+msgid "Peru"
+msgstr "Peru"
+
+#: includes/settings/main-settings.php:45
 msgid "Sky Blue"
 msgstr "Himmelblau"
 
-#: includes/settings/main-settings.php:39
+#: includes/settings/main-settings.php:46
 msgid "Slate Blue"
 msgstr "Schieferblau"
 
-#: includes/settings/main-settings.php:40
+#: includes/settings/main-settings.php:47
 msgid "Turquoise"
 msgstr "Türkis"
 
@@ -8258,15 +6628,15 @@ msgstr "Bitte geben Sie ein gültiges aktuelles Passwort ein."
 msgid "Lost your password?"
 msgstr "Passwort vergessen?"
 
-#: includes/shortcodes/booking-confirmation-shortcode.php:294
+#: includes/shortcodes/booking-confirmation-shortcode.php:302
 msgid "Payment:"
 msgstr "Bezahlung:"
 
-#: includes/shortcodes/booking-confirmation-shortcode.php:302
+#: includes/shortcodes/booking-confirmation-shortcode.php:310
 msgid "Payment Method:"
 msgstr "Zahlungsmethode:"
 
-#: includes/shortcodes/booking-confirmation-shortcode.php:315
+#: includes/shortcodes/booking-confirmation-shortcode.php:323
 #: templates/shortcodes/booking-details/booking-details.php:42
 msgid "Status:"
 msgstr "Status:"
@@ -8279,11 +6649,11 @@ msgstr "Buchungen sind in den Einstellungen deaktiviert."
 msgid "Checkout data is not valid."
 msgstr "Checkout-Daten sind nicht gültig."
 
-#: includes/shortcodes/checkout-shortcode/step-booking.php:449
+#: includes/shortcodes/checkout-shortcode/step-booking.php:454
 msgid "Payment method is not valid."
 msgstr "Zahlungsmethode ist nicht gültig."
 
-#: includes/shortcodes/checkout-shortcode/step-checkout.php:193
+#: includes/shortcodes/checkout-shortcode/step-checkout.php:203
 msgid "Accommodation count is not valid."
 msgstr "Unterkunft-Anzahl ist nicht gültig."
 
@@ -8311,57 +6681,61 @@ msgstr "Wir haben Ihre Buchungsanfrage erhalten. Sobald sie bestätigt ist, werd
 msgid "Choose dates to see relevant prices"
 msgstr "Wählen Sie Daten, um relevante Preise zu sehen"
 
-#: includes/shortcodes/search-results-shortcode.php:766
+#: includes/shortcodes/search-results-shortcode.php:771
 msgid "Select from available accommodations."
 msgstr "Wählen Sie aus verfügbaren Unterkünften."
 
-#: includes/shortcodes/search-results-shortcode.php:775
-#: includes/shortcodes/search-results-shortcode.php:1013
+#: includes/shortcodes/search-results-shortcode.php:780
+#: includes/shortcodes/search-results-shortcode.php:1023
 #: template-functions.php:843
 msgid "Confirm Reservation"
 msgstr "Reservierung bestätigen"
 
-#: includes/shortcodes/search-results-shortcode.php:804
+#: includes/shortcodes/search-results-shortcode.php:810
 msgid "Recommended for %d adult"
 msgid_plural "Recommended for %d adults"
 msgstr[0] "Empfohlen für %d Erwachsenen"
 msgstr[1] "Empfohlen für %d Erwachsene"
 
-#: includes/shortcodes/search-results-shortcode.php:806
+#: includes/shortcodes/search-results-shortcode.php:812
 msgid " and %d child"
 msgid_plural " and %d children"
 msgstr[0] " und %d Kind"
 msgstr[1] " und %d Kinder"
 
-#: includes/shortcodes/search-results-shortcode.php:809
+#: includes/shortcodes/search-results-shortcode.php:816
+msgid "Recommended for your search"
+msgstr ""
+
+#: includes/shortcodes/search-results-shortcode.php:818
 msgid "Recommended for %d guest"
 msgid_plural "Recommended for %d guests"
 msgstr[0] "Empfohlen für %d Gast"
 msgstr[1] "Empfohlen für %d Gäste"
 
-#: includes/shortcodes/search-results-shortcode.php:891
+#: includes/shortcodes/search-results-shortcode.php:901
 msgid "Max occupancy:"
 msgstr "Max. Belegung:"
 
-#: includes/shortcodes/search-results-shortcode.php:910
+#: includes/shortcodes/search-results-shortcode.php:920
 msgid "%d child"
 msgid_plural "%d children"
 msgstr[0] "%d Kind"
 msgstr[1] "%d Kinder"
 
-#: includes/shortcodes/search-results-shortcode.php:945
+#: includes/shortcodes/search-results-shortcode.php:955
 #: templates/create-booking/results/reserve-rooms.php:76
 msgid "Reserve"
 msgstr "Reservieren"
 
-#: includes/shortcodes/search-results-shortcode.php:1002
+#: includes/shortcodes/search-results-shortcode.php:1012
 msgid "of %d accommodation available."
 msgid_plural "of %d accommodations available."
 msgstr[0] "von %d Unterkunft verfügbar."
 msgstr[1] "von %d Unterkünfte verfügbar."
 
 #. translators: Verb. To book an accommodation.
-#: includes/shortcodes/search-results-shortcode.php:1012
+#: includes/shortcodes/search-results-shortcode.php:1022
 #: template-functions.php:531
 #: template-functions.php:544
 msgid "Book"
@@ -8398,15 +6772,15 @@ msgstr "Es wurde kein Kunde gelöscht."
 msgid "An account with this email already exists. Please, log in."
 msgstr "Es gibt bereits ein Konto mit dieser E-Mail-Adresse. Bitte melden Sie sich an."
 
-#: includes/users-and-roles/roles.php:34
+#: includes/users-and-roles/roles.php:35
 msgid "Hotel Manager"
 msgstr "Hotelmanager"
 
-#: includes/users-and-roles/roles.php:41
+#: includes/users-and-roles/roles.php:42
 msgid "Hotel Worker"
 msgstr "Hotelmitarbeiter"
 
-#: includes/users-and-roles/roles.php:48
+#: includes/users-and-roles/roles.php:49
 msgid "Hotel Customer"
 msgstr "Hotelkunde"
 
@@ -8507,6 +6881,7 @@ msgstr "Daten"
 #: assets/blocks/blocks.js:484
 #: assets/blocks/blocks.js:734
 #: assets/blocks/blocks.js:1263
+#: assets/blocks/blocks.min.js:1
 msgid "Details"
 msgstr "Details"
 
@@ -8761,6 +7136,7 @@ msgstr "Titel:"
 #: assets/blocks/blocks.js:448
 #: assets/blocks/blocks.js:698
 #: assets/blocks/blocks.js:1227
+#: assets/blocks/blocks.min.js:1
 msgid "Featured Image"
 msgstr "Beitragsbild"
 
@@ -8768,12 +7144,14 @@ msgstr "Beitragsbild"
 #: assets/blocks/blocks.js:472
 #: assets/blocks/blocks.js:722
 #: assets/blocks/blocks.js:1251
+#: assets/blocks/blocks.min.js:1
 msgid "Excerpt (short description)"
 msgstr "Beitragsauszug (Kurzbeschreibung)"
 
 #: includes/widgets/rooms-widget.php:205
 #: assets/blocks/blocks.js:770
 #: assets/blocks/blocks.js:1299
+#: assets/blocks/blocks.min.js:1
 msgid "Book Button"
 msgstr "Buchungsbutton"
 
@@ -8840,7 +7218,7 @@ msgstr "Transaktion fehlgeschlagen"
 msgid "Unfortunately, your transaction cannot be completed at this time. Please try again or contact us."
 msgstr "Leider kann Ihre Transaktion derzeit nicht abgeschlossen werden. Bitte versuchen Sie es noch einmal oder kontaktieren Sie uns direkt."
 
-#: plugin.php:1100
+#: plugin.php:1125
 msgid "Prices start at: %s"
 msgstr "Preis von: %s"
 
@@ -9298,233 +7676,3 @@ msgstr "Nichts gefunden."
 #: templates/widgets/search-availability/search-form.php:105
 msgid "Children %s:"
 msgstr "Kinder %s:"
-
-#: assets/blocks/blocks.js:178
-#: assets/blocks/blocks.js:190
-msgid "Preset date. Formatted as %s"
-msgstr "Datumsvoreinstellung. Formatiert als %s"
-
-#: assets/blocks/blocks.js:283
-#: assets/blocks/blocks.js:1425
-#: assets/blocks/blocks.js:1507
-msgid "Select an accommodation type. Leave blank to use current."
-msgstr "Wählen Sie einen Unterkunftstyp. Leer lassen, um aktuelle zu verwenden."
-
-#: assets/blocks/blocks.js:284
-#: assets/blocks/blocks.js:1426
-#: assets/blocks/blocks.js:1508
-msgid "ID of an accommodation type. Leave blank to use current."
-msgstr "ID eines Unterkunftstyps. Leer lassen, um aktuell zu verwenden."
-
-#: assets/blocks/blocks.js:460
-#: assets/blocks/blocks.js:710
-#: assets/blocks/blocks.js:1239
-msgid "Gallery"
-msgstr "Galerie"
-
-#: assets/blocks/blocks.js:508
-#: assets/blocks/blocks.js:758
-#: assets/blocks/blocks.js:1287
-msgid "View Button"
-msgstr "\"Ansehen\"-Button"
-
-#: assets/blocks/blocks.js:522
-#: assets/blocks/blocks.js:558
-#: assets/blocks/blocks.js:858
-#: assets/blocks/blocks.js:894
-#: assets/blocks/blocks.js:1042
-#: assets/blocks/blocks.js:1078
-msgid "Order"
-msgstr "Reihenfolge"
-
-#: assets/blocks/blocks.js:530
-#: assets/blocks/blocks.js:866
-#: assets/blocks/blocks.js:1050
-msgid "Order By"
-msgstr "Sortieren nach"
-
-#: assets/blocks/blocks.js:533
-#: assets/blocks/blocks.js:869
-#: assets/blocks/blocks.js:1053
-msgid "No order"
-msgstr "Keine Reihenfolge"
-
-#: assets/blocks/blocks.js:534
-#: assets/blocks/blocks.js:870
-#: assets/blocks/blocks.js:1054
-msgid "Post ID"
-msgstr "Beitrags-ID"
-
-#: assets/blocks/blocks.js:535
-#: assets/blocks/blocks.js:871
-#: assets/blocks/blocks.js:1055
-msgid "Post author"
-msgstr "Beitragsautor"
-
-#: assets/blocks/blocks.js:536
-#: assets/blocks/blocks.js:872
-#: assets/blocks/blocks.js:1056
-msgid "Post title"
-msgstr "Beitragstitel"
-
-#: assets/blocks/blocks.js:537
-#: assets/blocks/blocks.js:873
-#: assets/blocks/blocks.js:1057
-msgid "Post name (post slug)"
-msgstr "Beitragsname (Beitrag-Slug)"
-
-#: assets/blocks/blocks.js:538
-#: assets/blocks/blocks.js:874
-#: assets/blocks/blocks.js:1058
-msgid "Post date"
-msgstr "Veröffentlicht"
-
-#: assets/blocks/blocks.js:539
-#: assets/blocks/blocks.js:875
-#: assets/blocks/blocks.js:1059
-msgid "Last modified date"
-msgstr "Zuletzt geändert"
-
-#: assets/blocks/blocks.js:540
-#: assets/blocks/blocks.js:876
-#: assets/blocks/blocks.js:1060
-msgid "Parent ID"
-msgstr "ID der Oberkategorie"
-
-#: assets/blocks/blocks.js:541
-#: assets/blocks/blocks.js:877
-#: assets/blocks/blocks.js:1061
-msgid "Random order"
-msgstr "Zufällige Reihenfolge"
-
-#: assets/blocks/blocks.js:542
-#: assets/blocks/blocks.js:878
-#: assets/blocks/blocks.js:1062
-msgid "Number of comments"
-msgstr "Anzahl der Kommentare"
-
-#: assets/blocks/blocks.js:543
-#: assets/blocks/blocks.js:879
-#: assets/blocks/blocks.js:1063
-msgid "Relevance"
-msgstr "Relevanz"
-
-#: assets/blocks/blocks.js:544
-#: assets/blocks/blocks.js:880
-#: assets/blocks/blocks.js:1064
-msgid "Page order"
-msgstr "Seitenreihenfolge"
-
-#: assets/blocks/blocks.js:545
-#: assets/blocks/blocks.js:881
-#: assets/blocks/blocks.js:1065
-msgid "Meta value"
-msgstr "Meta-Wert"
-
-#: assets/blocks/blocks.js:546
-#: assets/blocks/blocks.js:882
-#: assets/blocks/blocks.js:1066
-msgid "Numeric meta value"
-msgstr "Numerischer Meta-Wert"
-
-#: assets/blocks/blocks.js:561
-#: assets/blocks/blocks.js:897
-#: assets/blocks/blocks.js:1081
-msgid "Ascending (1, 2, 3)"
-msgstr "Aufsteigend (1, 2, 3)"
-
-#: assets/blocks/blocks.js:562
-#: assets/blocks/blocks.js:898
-#: assets/blocks/blocks.js:1082
-msgid "Descending (3, 2, 1)"
-msgstr "Absteigend (3, 2, 1)"
-
-#: assets/blocks/blocks.js:573
-#: assets/blocks/blocks.js:909
-#: assets/blocks/blocks.js:1093
-msgid "Meta Name"
-msgstr "Meta-Name"
-
-#: assets/blocks/blocks.js:585
-#: assets/blocks/blocks.js:921
-#: assets/blocks/blocks.js:1105
-msgid "Meta Type"
-msgstr "Meta-Typ"
-
-#: assets/blocks/blocks.js:586
-#: assets/blocks/blocks.js:922
-#: assets/blocks/blocks.js:1106
-msgid "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\"."
-msgstr "Angegebener Typ des benutzerdefinierten Felds. Kann in Verbindung mit \"orderby\" = \"meta_value\" verwendet werden."
-
-#: assets/blocks/blocks.js:589
-#: assets/blocks/blocks.js:925
-#: assets/blocks/blocks.js:1109
-msgid "Any"
-msgstr "Beliebig"
-
-#: assets/blocks/blocks.js:590
-#: assets/blocks/blocks.js:926
-#: assets/blocks/blocks.js:1110
-msgid "Numeric"
-msgstr "Numerisch"
-
-#: assets/blocks/blocks.js:591
-#: assets/blocks/blocks.js:927
-#: assets/blocks/blocks.js:1111
-msgid "Binary"
-msgstr "Binär"
-
-#: assets/blocks/blocks.js:592
-#: assets/blocks/blocks.js:928
-#: assets/blocks/blocks.js:1112
-msgid "String"
-msgstr "Zeichenkette"
-
-#: assets/blocks/blocks.js:594
-#: assets/blocks/blocks.js:930
-#: assets/blocks/blocks.js:1114
-msgid "Time"
-msgstr "Uhrzeit"
-
-#: assets/blocks/blocks.js:595
-#: assets/blocks/blocks.js:931
-#: assets/blocks/blocks.js:1115
-msgid "Date and time"
-msgstr "Datum und Uhrzeit"
-
-#: assets/blocks/blocks.js:596
-#: assets/blocks/blocks.js:932
-#: assets/blocks/blocks.js:1116
-msgid "Decimal number"
-msgstr "Dezimalzahl"
-
-#: assets/blocks/blocks.js:597
-#: assets/blocks/blocks.js:933
-#: assets/blocks/blocks.js:1117
-msgid "Signed number"
-msgstr "Zahl mit Vorzeichen"
-
-#: assets/blocks/blocks.js:598
-#: assets/blocks/blocks.js:934
-#: assets/blocks/blocks.js:1118
-msgid "Unsigned number"
-msgstr "Vorzeichenlose Zahl"
-
-#: assets/blocks/blocks.js:784
-#: assets/blocks/blocks.js:1009
-msgid "Query Settings"
-msgstr "Abfrageeinstellungen"
-
-#: assets/blocks/blocks.js:840
-msgid "Relation"
-msgstr "Beziehung"
-
-#: assets/blocks/blocks.js:1029
-msgid "Values: integer, -1 to display all, default: \"Blog pages show at most\""
-msgstr "Werte: Ganzzahl; -1 um alle anzuzeigen; Standard: 'Blogseiten zeigen maximal' (Einstellungen\\Lesen)"
-
-#: assets/blocks/blocks.js:1203
-msgid "Select an accommodation type."
-msgstr "Wählen Sie einen Unterkunftstyp aus."
-

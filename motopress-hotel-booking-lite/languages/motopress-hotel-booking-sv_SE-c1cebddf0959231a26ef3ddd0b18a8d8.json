@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "sv_SE",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Date": [
+                "Datum"
+            ],
+            "Adults": [
+                "Vuxna"
+            ],
+            "Children": [
+                "Barn"
+            ],
+            "Price": [
+                "Pris"
+            ],
+            "Accommodation Type": [
+                "Rumstyp"
+            ],
+            "Title": [
+                "Rubrik"
+            ],
+            "Booking Confirmation": [
+                "Bokningsbekr\u00e4ftelse"
+            ],
+            "Availability Calendar": [
+                "Kalender som visar tillg\u00e4nglighet"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                "Visa priser per natt i kalendern."
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                "Avkorta priserna per natt i kalendern."
+            ],
+            "Display the currency sign in the availability calendar.": [
+                "Visa valutatecknet i kalendern."
+            ],
+            "Settings": [
+                "Inst\u00e4llningar"
+            ],
+            "Availability Search Form": [
+                "S\u00f6kformul\u00e4r f\u00f6r tillg\u00e4nglighet"
+            ],
+            "The number of adults presetted in the search form.": [
+                "Antal vuxna angivna i s\u00f6kformul\u00e4ret."
+            ],
+            "The number of children presetted in the search form.": [
+                "Antal barn angivna i s\u00f6kformul\u00e4ret."
+            ],
+            "Custom attributes for advanced search.": [
+                "Anpassade attribut f\u00f6r avancerad s\u00f6kning."
+            ],
+            "Comma-separated slugs of attributes.": [
+                "Kommaseparerade attribut-slugs."
+            ],
+            "How many months to show.": [
+                "Hur m\u00e5nga m\u00e5nader ska visas."
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                "St\u00e4ll in antalet kolumner eller antalet rader och kolumner separerade med kommatecken. Exempel: \"3\" eller \"2,3\""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                "Visa kalender f\u00f6r aktuell boendetyp eller efter ID."
+            ],
+            "Availability Search Results": [
+                "S\u00f6kresultat f\u00f6r tillg\u00e4ngliga rum"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "Visa listan med alla rum som matchar s\u00f6kningskriterierna."
+            ],
+            "Whether to display title of the accommodation type.": [
+                "Ifall du vill visa rubriker f\u00f6r rumstyper."
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "Ifall du vill visa utvalda bilder f\u00f6r rumstyper."
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "Ifall du vill visa bildgallerier f\u00f6r rumstyper."
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "Ifall du vill visa utdrag (korta beskrivningar) av rumstyper."
+            ],
+            "Whether to display details of the accommodation type.": [
+                "Ifall du vill visa detaljer om rumstyper."
+            ],
+            "Whether to display price of the accommodation type.": [
+                "Om du vill visa pris per rumstyp."
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "Om du vill visa \u00abVisa detaljer\u00bb-knappen tillsammans med l\u00e4nken till rumstyper."
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                "Anpassat f\u00e4ltnamn. Kr\u00e4vs om \"orderby\" \u00e4r n\u00e5got av \"meta_value\", \"meta_value_num\" eller \"meta_value_*\"."
+            ],
+            "Whether to display Book button.": [
+                "Om du vill visa bokningsknappen"
+            ],
+            "Accommodation Types Listing": [
+                "F\u00f6rteckning \u00f6ver rumstyper"
+            ],
+            "Count per page": [
+                "Antal per sida"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "heltal, -1 f\u00f6r att visa alla, standard: \"Bloggsidor visas som mest\""
+            ],
+            "IDs of categories that will be shown.": [
+                "ID f\u00f6r kategorier som kommer att visas."
+            ],
+            "Comma-separated IDs.": [
+                "Kommaseparerade ID."
+            ],
+            "IDs of tags that will be shown.": [
+                "ID f\u00f6r etiketter som kommer att visas."
+            ],
+            "IDs of accommodations that will be shown.": [
+                "ID f\u00f6r boenden som kommer att visas."
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                "Logisk relation mellan varje taxonomi n\u00e4r det finns mer \u00e4n en."
+            ],
+            "Services Listing": [
+                "Lista av tj\u00e4nster"
+            ],
+            "IDs": [
+                "ID"
+            ],
+            "IDs of services that will be shown. ": [
+                "ID av alla tj\u00e4nster."
+            ],
+            "Single Accommodation Type": [
+                "Typ av enkelboende"
+            ],
+            "Checkout Form": [
+                "Utcheckningsformul\u00e4r"
+            ],
+            "Display checkout form.": [
+                "Visa utcheckningsformul\u00e4r."
+            ],
+            "Booking Form": [
+                "Bokningsformul\u00e4r"
+            ],
+            "Accommodation Rates List": [
+                "Lista med rumstariffer"
+            ],
+            "ID of accommodation type.": [
+                "ID f\u00f6r rumstyper."
+            ],
+            "Display booking and payment details.": [
+                "Visa boknings- och betalningsinformation."
+            ],
+            "Check-in Date": [
+                "Incheckningsdatum"
+            ],
+            "Check-out Date": [
+                "Utcheckningsdatum"
+            ],
+            "Categories": [
+                "Kategorier"
+            ],
+            "Tags": [
+                "Etiketter"
+            ],
+            "Details": [
+                "Detaljer"
+            ],
+            "Featured Image": [
+                "Utvald bild"
+            ],
+            "Excerpt (short description)": [
+                "Visa utdrag (kort beskrivning)"
+            ],
+            "Book Button": [
+                "Bokningsknapp"
+            ],
+            "Preset date. Formatted as %s": [
+                "Det valda datumet. Visas som %s"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "Gallery": [
+                "Galleri"
+            ],
+            "View Button": [
+                "Visa knapp"
+            ],
+            "Order": [
+                "Sortera"
+            ],
+            "Order By": [
+                "Sortera efter"
+            ],
+            "No order": [
+                "Ingen order"
+            ],
+            "Post ID": [
+                "Inl\u00e4ggs-ID"
+            ],
+            "Post author": [
+                "Inl\u00e4ggsf\u00f6rfattare"
+            ],
+            "Post title": [
+                "Inl\u00e4ggstitel"
+            ],
+            "Post name (post slug)": [
+                "Inl\u00e4ggsnamn (post slug)"
+            ],
+            "Post date": [
+                "Inl\u00e4ggsdatum"
+            ],
+            "Last modified date": [
+                "Senast \u00e4ndrad datum"
+            ],
+            "Parent ID": [
+                ""
+            ],
+            "Random order": [
+                "Slumpm\u00e4ssig ordning"
+            ],
+            "Number of comments": [
+                "Antal kommentarer"
+            ],
+            "Relevance": [
+                "Relevans"
+            ],
+            "Page order": [
+                "Sidordning"
+            ],
+            "Meta value": [
+                "Metav\u00e4rde"
+            ],
+            "Numeric meta value": [
+                "Numeriskt meta v\u00e4rde"
+            ],
+            "Ascending (1, 2, 3)": [
+                "Stigande (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "Nedstigande (3, 2, 1)"
+            ],
+            "Meta Name": [
+                "Metanamn"
+            ],
+            "Meta Type": [
+                "Metatyp"
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                "Angiven typ av anpassat f\u00e4lt. Kan anv\u00e4ndas tillsammans med \"orderby\" = \"meta_value\"."
+            ],
+            "Any": [
+                "N\u00e5gon"
+            ],
+            "Numeric": [
+                "Numerisk"
+            ],
+            "Binary": [
+                "Bin\u00e4rt"
+            ],
+            "String": [
+                "Str\u00e4ng"
+            ],
+            "Time": [
+                "Tid"
+            ],
+            "Date and time": [
+                "Datum och tid"
+            ],
+            "Decimal number": [
+                "Decimalnummer"
+            ],
+            "Signed number": [
+                "Signerat nummer"
+            ],
+            "Unsigned number": [
+                "Osignerat nummer"
+            ],
+            "Query Settings": [
+                "Inst\u00e4llningar f\u00f6r f\u00f6rfr\u00e5gningar"
+            ],
+            "Relation": [
+                ""
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "V\u00e4rden: heltal, -1 f\u00f6r att visa alla, standard: \"Bloggsidor visas som mest\""
+            ],
+            "Select an accommodation type.": [
+                ""
+            ]
+        }
+    }
+}

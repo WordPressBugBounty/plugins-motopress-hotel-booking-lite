@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "da_DK",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Date": [
+                "Dato"
+            ],
+            "Adults": [
+                "Voksne"
+            ],
+            "Children": [
+                "B\u00f8rn"
+            ],
+            "Price": [
+                "Pris"
+            ],
+            "Accommodation Type": [
+                "Indkvarterings Type"
+            ],
+            "Title": [
+                "Titel"
+            ],
+            "Booking Confirmation": [
+                "Reservationsbekr\u00e6ftelse"
+            ],
+            "Availability Calendar": [
+                "Kalender over tilg\u00e6ngelighed"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Display the currency sign in the availability calendar.": [
+                ""
+            ],
+            "Settings": [
+                "Indstillinger"
+            ],
+            "Availability Search Form": [
+                "Formular til at s\u00f8ge tilg\u00e6ngelighed"
+            ],
+            "The number of adults presetted in the search form.": [
+                "Antallet af voksne som er forudindstillede i s\u00f8geformularen."
+            ],
+            "The number of children presetted in the search form.": [
+                "Antallet af b\u00f8rn som er forudindstillede i s\u00f8geformularen."
+            ],
+            "Custom attributes for advanced search.": [
+                "Brugerdefinerede egenskaber til avanceret s\u00f8gning."
+            ],
+            "Comma-separated slugs of attributes.": [
+                "Kommaseparerede m\u00e5l i egenskaber."
+            ],
+            "How many months to show.": [
+                "Hvor mange m\u00e5neder der skal vises."
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                "Angiv antallet af kolonner eller antallet af r\u00e6kker og kolonner adskilt af komma. Eksempel: \"3\" eller \"2,3\""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                "Vis tilg\u00e6ngelighedskalender for den aktuelle indkvarteringstype eller ID."
+            ],
+            "Availability Search Results": [
+                "Tilg\u00e6ngelighed S\u00f8geresultater"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "Vis liste over indkvarteringstyper der opfylder s\u00f8gekriterierne."
+            ],
+            "Whether to display title of the accommodation type.": [
+                "Om titlen p\u00e5 indkvarteringen skal vises."
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "Om fremh\u00e6vede billede af indkvarteringstypen skal vises."
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "Om der skal vises galleri af indkvarteringstypen."
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "Om der skal vises uddrag (kort beskrivelse) af indkvarteringstypen."
+            ],
+            "Whether to display details of the accommodation type.": [
+                "Om detaljer for indkvarteringstypen skal vises."
+            ],
+            "Whether to display price of the accommodation type.": [
+                "Om prisen skal vises for indkvarteringstypen."
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "Om knappen \"Vis detaljer\" skal vises med linket til indkvarteringstypen."
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                "Brugerdefineret feltnavn. P\u00e5kr\u00e6vet hvis \"orderby\" er et af \"meta_value\", \"meta_value_num\" eller \"meta_value_*\"."
+            ],
+            "Whether to display Book button.": [
+                "Om Booking knappen skal vises."
+            ],
+            "Accommodation Types Listing": [
+                "Liste over indkvarteringsm\u00e5der"
+            ],
+            "Count per page": [
+                "Antal pr. side"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "integer, -1 for at vise alle, standard: \"Blogsider vises h\u00f8jst\""
+            ],
+            "IDs of categories that will be shown.": [
+                "ID'er for kategorier, der vil blive vist."
+            ],
+            "Comma-separated IDs.": [
+                "Kommaseparerede ID'er."
+            ],
+            "IDs of tags that will be shown.": [
+                "Id'er p\u00e5 tags, der vil blive vist."
+            ],
+            "IDs of accommodations that will be shown.": [
+                "ID'er p\u00e5 indkvarteringer, der vil blive vist."
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                "Logisk forhold mellem hver taksonomi, n\u00e5r der er mere end en."
+            ],
+            "Services Listing": [
+                "Oversigt over tjenester"
+            ],
+            "IDs": [
+                "IDer"
+            ],
+            "IDs of services that will be shown. ": [
+                "ID'er p\u00e5 tjenester, der vil blive vist. "
+            ],
+            "Single Accommodation Type": [
+                "Enkelt indkvarteringstype"
+            ],
+            "Checkout Form": [
+                "Check-out formular"
+            ],
+            "Display checkout form.": [
+                "Vis check-out formular."
+            ],
+            "Booking Form": [
+                "Booking formular"
+            ],
+            "Accommodation Rates List": [
+                "Liste over indkvarteringspriser"
+            ],
+            "ID of accommodation type.": [
+                "ID for indkvarteringstype."
+            ],
+            "Display booking and payment details.": [
+                "Vis booking- og betalingsoplysninger."
+            ],
+            "Check-in Date": [
+                "Ankomstdato"
+            ],
+            "Check-out Date": [
+                "Afrejsedato"
+            ],
+            "Categories": [
+                "Kategorier"
+            ],
+            "Tags": [
+                "Tags"
+            ],
+            "Details": [
+                "Detaljer"
+            ],
+            "Featured Image": [
+                "Fremh\u00e6vet billede"
+            ],
+            "Excerpt (short description)": [
+                "Undtagen (kort beskrivelse)"
+            ],
+            "Book Button": [
+                "Knap Til booking"
+            ],
+            "Preset date. Formatted as %s": [
+                "Forudindstillet dato. Formateret som %s"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "Gallery": [
+                "Galleri"
+            ],
+            "View Button": [
+                "Vis Knap"
+            ],
+            "Order": [
+                "Sorter"
+            ],
+            "Order By": [
+                "Sorter Efter"
+            ],
+            "No order": [
+                "Ingen sortering"
+            ],
+            "Post ID": [
+                "Indl\u00e6gets ID"
+            ],
+            "Post author": [
+                "Indl\u00e6gets forfatter"
+            ],
+            "Post title": [
+                "Indl\u00e6gets titel"
+            ],
+            "Post name (post slug)": [
+                "Indl\u00e6gets navn (post slug)"
+            ],
+            "Post date": [
+                "Indl\u00e6gets dato"
+            ],
+            "Last modified date": [
+                "Dato for sidste \u00e6ndring"
+            ],
+            "Parent ID": [
+                "Overordnet ID"
+            ],
+            "Random order": [
+                "Tilf\u00e6ldig r\u00e6kkef\u00f8lge"
+            ],
+            "Number of comments": [
+                "Antal kommentarer"
+            ],
+            "Relevance": [
+                "Relevans"
+            ],
+            "Page order": [
+                "Sider\u00e6kkef\u00f8lge"
+            ],
+            "Meta value": [
+                "Meta value"
+            ],
+            "Numeric meta value": [
+                "Numerisk meta value"
+            ],
+            "Ascending (1, 2, 3)": [
+                "Stigende (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "Faldende (3, 2, 1)"
+            ],
+            "Meta Name": [
+                "Meta Navn"
+            ],
+            "Meta Type": [
+                "Meta Type"
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                "Angiv type af det brugerdefinerede felter. Kan bruges sammen med \"ordnet efter\" = \"meta_value\"."
+            ],
+            "Any": [
+                "Alle"
+            ],
+            "Numeric": [
+                "Numerisk"
+            ],
+            "Binary": [
+                "Bin\u00e6re"
+            ],
+            "String": [
+                "Streng"
+            ],
+            "Time": [
+                "Tid"
+            ],
+            "Date and time": [
+                "Dato og tid"
+            ],
+            "Decimal number": [
+                "Decimaltal"
+            ],
+            "Signed number": [
+                "Signeret nummer"
+            ],
+            "Unsigned number": [
+                "Usigneret nummer"
+            ],
+            "Query Settings": [
+                "Indstillinger For Foresp\u00f8rgsel"
+            ],
+            "Relation": [
+                "Relation"
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "V\u00e6rdier: heltal, -1 for at vise alle, standard: \"Blogsider vises h\u00f8jst\""
+            ],
+            "Select an accommodation type.": [
+                ""
+            ]
+        }
+    }
+}

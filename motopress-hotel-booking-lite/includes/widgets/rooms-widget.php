@@ -73,6 +73,7 @@ class RoomsWidget extends BaseWidget {
 				do_action( 'mphb_widget_rooms_before_loop' );
 
 				while ( $roomQuery->have_posts() ) :
+
 					$roomQuery->the_post();
 
 					do_action( 'mphb_widget_rooms_before_item' );

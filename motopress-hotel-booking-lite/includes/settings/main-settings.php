@@ -615,16 +615,19 @@ class MainSettings {
 	}
 
 	/**
-	 *
+	 * IMPORTANT: In REST API we must use filter mphb_is_current_request_for_admin_ui and set it to true
+	 * if we want to ignore booking rules.
 	 * @return bool
 	 *
 	 * @since 3.9.9
 	 */
 	public function isBookingRulesForAdminDisabled() {
 
-		// TODO: refactore booking rules and check REQUEST DATA outside of core api (in ajax actions and pages)
+		$isCurrentRequestForAdminUI = apply_filters( 'mphb_is_current_request_for_admin_ui', false );
+
 		return get_option( 'mphb_do_not_apply_booking_rules_for_admin', false ) &&
 			(
+				$isCurrentRequestForAdminUI ||
 				( isset( $_REQUEST[ \MPHB\AjaxApi\AbstractAjaxApiAction::REQUEST_DATA_IS_ADMIN ] ) &&
 					// phpcs:ignore
 					filter_var( $_REQUEST[ \MPHB\AjaxApi\AbstractAjaxApiAction::REQUEST_DATA_IS_ADMIN ], FILTER_VALIDATE_BOOLEAN )

@@ -174,11 +174,18 @@ class RoomType {
 	}
 
 	/**
-	 *
 	 * @return int
 	 */
 	public function getOriginalId() {
 		return $this->originalId;
+	}
+
+	public function isOriginalRoomType(): bool {
+		return $this->getId() === $this->getOriginalId();
+	}
+
+	public function getOriginalRoomType(): RoomType {
+		return $this->isOriginalRoomType() ? $this : mphb_rooms_facade()->getRoomTypeById( $this->getOriginalId() );
 	}
 
 	/**

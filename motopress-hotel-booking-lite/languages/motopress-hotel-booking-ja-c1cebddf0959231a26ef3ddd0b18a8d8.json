@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "ja_JP",
+                "plural-forms": "nplurals=1; plural=0;"
+            },
+            "Date": [
+                "\u65e5\u4ed8"
+            ],
+            "Adults": [
+                "\u5927\u4eba"
+            ],
+            "Children": [
+                "\u5b50\u4f9b"
+            ],
+            "Price": [
+                "\u6599\u91d1"
+            ],
+            "Accommodation Type": [
+                "\u304a\u90e8\u5c4b\u30bf\u30a4\u30d7"
+            ],
+            "Title": [
+                "\u30bf\u30a4\u30c8\u30eb"
+            ],
+            "Booking Confirmation": [
+                ""
+            ],
+            "Availability Calendar": [
+                ""
+            ],
+            "Display per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Display the currency sign in the availability calendar.": [
+                ""
+            ],
+            "Settings": [
+                "\u8a2d\u5b9a"
+            ],
+            "Availability Search Form": [
+                ""
+            ],
+            "The number of adults presetted in the search form.": [
+                ""
+            ],
+            "The number of children presetted in the search form.": [
+                ""
+            ],
+            "Custom attributes for advanced search.": [
+                ""
+            ],
+            "Comma-separated slugs of attributes.": [
+                ""
+            ],
+            "How many months to show.": [
+                ""
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                ""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                ""
+            ],
+            "Availability Search Results": [
+                "\u7a7a\u5ba4\u691c\u7d22\u7d50\u679c"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                ""
+            ],
+            "Whether to display title of the accommodation type.": [
+                ""
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                ""
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                ""
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                ""
+            ],
+            "Whether to display details of the accommodation type.": [
+                ""
+            ],
+            "Whether to display price of the accommodation type.": [
+                ""
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                ""
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                ""
+            ],
+            "Whether to display Book button.": [
+                ""
+            ],
+            "Accommodation Types Listing": [
+                ""
+            ],
+            "Count per page": [
+                ""
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                ""
+            ],
+            "IDs of categories that will be shown.": [
+                ""
+            ],
+            "Comma-separated IDs.": [
+                ""
+            ],
+            "IDs of tags that will be shown.": [
+                ""
+            ],
+            "IDs of accommodations that will be shown.": [
+                ""
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                ""
+            ],
+            "Services Listing": [
+                ""
+            ],
+            "IDs": [
+                ""
+            ],
+            "IDs of services that will be shown. ": [
+                ""
+            ],
+            "Single Accommodation Type": [
+                ""
+            ],
+            "Checkout Form": [
+                ""
+            ],
+            "Display checkout form.": [
+                ""
+            ],
+            "Booking Form": [
+                "\u4e88\u7d04\u30d5\u30a9\u30fc\u30e0"
+            ],
+            "Accommodation Rates List": [
+                ""
+            ],
+            "ID of accommodation type.": [
+                ""
+            ],
+            "Display booking and payment details.": [
+                "\u4e88\u7d04\u3068\u6c7a\u6e08\u8a73\u7d30\u3092\u8868\u793a"
+            ],
+            "Check-in Date": [
+                "\u30c1\u30a7\u30c3\u30af\u30a4\u30f3\u65e5"
+            ],
+            "Check-out Date": [
+                "\u30c1\u30a7\u30c3\u30af\u30a2\u30a6\u30c8\u65e5"
+            ],
+            "Categories": [
+                "\u30ab\u30c6\u30b4\u30ea"
+            ],
+            "Tags": [
+                "\u30bf\u30b0"
+            ],
+            "Details": [
+                ""
+            ],
+            "Featured Image": [
+                ""
+            ],
+            "Excerpt (short description)": [
+                ""
+            ],
+            "Book Button": [
+                "\u4e88\u7d04\u30dc\u30bf\u30f3"
+            ],
+            "Preset date. Formatted as %s": [
+                ""
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "Gallery": [
+                ""
+            ],
+            "View Button": [
+                ""
+            ],
+            "Order": [
+                ""
+            ],
+            "Order By": [
+                ""
+            ],
+            "No order": [
+                ""
+            ],
+            "Post ID": [
+                ""
+            ],
+            "Post author": [
+                ""
+            ],
+            "Post title": [
+                ""
+            ],
+            "Post name (post slug)": [
+                ""
+            ],
+            "Post date": [
+                ""
+            ],
+            "Last modified date": [
+                ""
+            ],
+            "Parent ID": [
+                ""
+            ],
+            "Random order": [
+                ""
+            ],
+            "Number of comments": [
+                ""
+            ],
+            "Relevance": [
+                ""
+            ],
+            "Page order": [
+                ""
+            ],
+            "Meta value": [
+                ""
+            ],
+            "Numeric meta value": [
+                ""
+            ],
+            "Ascending (1, 2, 3)": [
+                ""
+            ],
+            "Descending (3, 2, 1)": [
+                ""
+            ],
+            "Meta Name": [
+                ""
+            ],
+            "Meta Type": [
+                ""
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                ""
+            ],
+            "Any": [
+                ""
+            ],
+            "Numeric": [
+                ""
+            ],
+            "Binary": [
+                ""
+            ],
+            "String": [
+                ""
+            ],
+            "Time": [
+                "\u6642\u9593"
+            ],
+            "Date and time": [
+                ""
+            ],
+            "Decimal number": [
+                ""
+            ],
+            "Signed number": [
+                ""
+            ],
+            "Unsigned number": [
+                ""
+            ],
+            "Query Settings": [
+                ""
+            ],
+            "Relation": [
+                ""
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                ""
+            ],
+            "Select an accommodation type.": [
+                ""
+            ]
+        }
+    }
+}

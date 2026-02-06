@@ -2,6 +2,8 @@
 
 namespace MPHB\Bundles;
 
+use MPHB\Libraries\Umpirsky\Umpirsky_Helper;
+
 class CurrencyBundle {
 
 	private $labels;
@@ -13,174 +15,95 @@ class CurrencyBundle {
 	}
 
 	public function init() {
-		$labels = array(
-			'EUR' => __( 'Euro', 'motopress-hotel-booking' ),
-			'USD' => __( 'United States (US) dollar', 'motopress-hotel-booking' ),
-			'GBP' => __( 'Pound sterling', 'motopress-hotel-booking' ),
-			'AED' => __( 'United Arab Emirates dirham', 'motopress-hotel-booking' ),
-			'AFN' => __( 'Afghan afghani', 'motopress-hotel-booking' ),
-			'ALL' => __( 'Albanian lek', 'motopress-hotel-booking' ),
-			'AMD' => __( 'Armenian dram', 'motopress-hotel-booking' ),
-			'ANG' => __( 'Netherlands Antillean guilder', 'motopress-hotel-booking' ),
-			'AOA' => __( 'Angolan kwanza', 'motopress-hotel-booking' ),
-			'ARS' => __( 'Argentine peso', 'motopress-hotel-booking' ),
-			'AUD' => __( 'Australian dollar', 'motopress-hotel-booking' ),
-			'AWG' => __( 'Aruban florin', 'motopress-hotel-booking' ),
-			'AZN' => __( 'Azerbaijani manat', 'motopress-hotel-booking' ),
-			'BAM' => __( 'Bosnia and Herzegovina convertible mark', 'motopress-hotel-booking' ),
-			'BBD' => __( 'Barbadian dollar', 'motopress-hotel-booking' ),
-			'BDT' => __( 'Bangladeshi taka', 'motopress-hotel-booking' ),
-			'BGN' => __( 'Bulgarian lev', 'motopress-hotel-booking' ),
-			'BHD' => __( 'Bahraini dinar', 'motopress-hotel-booking' ),
-			'BIF' => __( 'Burundian franc', 'motopress-hotel-booking' ),
-			'BMD' => __( 'Bermudian dollar', 'motopress-hotel-booking' ),
-			'BND' => __( 'Brunei dollar', 'motopress-hotel-booking' ),
-			'BOB' => __( 'Bolivian boliviano', 'motopress-hotel-booking' ),
-			'BRL' => __( 'Brazilian real', 'motopress-hotel-booking' ),
-			'BSD' => __( 'Bahamian dollar', 'motopress-hotel-booking' ),
-			'BTC' => __( 'Bitcoin', 'motopress-hotel-booking' ),
-			'BTN' => __( 'Bhutanese ngultrum', 'motopress-hotel-booking' ),
-			'BWP' => __( 'Botswana pula', 'motopress-hotel-booking' ),
-			'BYR' => __( 'Belarusian ruble (old)', 'motopress-hotel-booking' ),
-			'BYN' => __( 'Belarusian ruble', 'motopress-hotel-booking' ),
-			'BZD' => __( 'Belize dollar', 'motopress-hotel-booking' ),
-			'CAD' => __( 'Canadian dollar', 'motopress-hotel-booking' ),
-			'CDF' => __( 'Congolese franc', 'motopress-hotel-booking' ),
-			'CHF' => __( 'Swiss franc', 'motopress-hotel-booking' ),
-			'CLP' => __( 'Chilean peso', 'motopress-hotel-booking' ),
-			'CNY' => __( 'Chinese yuan', 'motopress-hotel-booking' ),
-			'COP' => __( 'Colombian peso', 'motopress-hotel-booking' ),
-			'CRC' => __( 'Costa Rican col&oacute;n', 'motopress-hotel-booking' ),
-			'CUC' => __( 'Cuban convertible peso', 'motopress-hotel-booking' ),
-			'CUP' => __( 'Cuban peso', 'motopress-hotel-booking' ),
-			'CVE' => __( 'Cape Verdean escudo', 'motopress-hotel-booking' ),
-			'CZK' => __( 'Czech koruna', 'motopress-hotel-booking' ),
-			'DJF' => __( 'Djiboutian franc', 'motopress-hotel-booking' ),
-			'DKK' => __( 'Danish krone', 'motopress-hotel-booking' ),
-			'DOP' => __( 'Dominican peso', 'motopress-hotel-booking' ),
-			'DZD' => __( 'Algerian dinar', 'motopress-hotel-booking' ),
-			'EGP' => __( 'Egyptian pound', 'motopress-hotel-booking' ),
-			'ERN' => __( 'Eritrean nakfa', 'motopress-hotel-booking' ),
-			'ETB' => __( 'Ethiopian birr', 'motopress-hotel-booking' ),
-			'FJD' => __( 'Fijian dollar', 'motopress-hotel-booking' ),
-			'FKP' => __( 'Falkland Islands pound', 'motopress-hotel-booking' ),
-			'GEL' => __( 'Georgian lari', 'motopress-hotel-booking' ),
-			'GGP' => __( 'Guernsey pound', 'motopress-hotel-booking' ),
-			'GHS' => __( 'Ghana cedi', 'motopress-hotel-booking' ),
-			'GIP' => __( 'Gibraltar pound', 'motopress-hotel-booking' ),
-			'GMD' => __( 'Gambian dalasi', 'motopress-hotel-booking' ),
-			'GNF' => __( 'Guinean franc', 'motopress-hotel-booking' ),
-			'GTQ' => __( 'Guatemalan quetzal', 'motopress-hotel-booking' ),
-			'GYD' => __( 'Guyanese dollar', 'motopress-hotel-booking' ),
-			'HKD' => __( 'Hong Kong dollar', 'motopress-hotel-booking' ),
-			'HNL' => __( 'Honduran lempira', 'motopress-hotel-booking' ),
-			'HRK' => __( 'Croatian kuna', 'motopress-hotel-booking' ),
-			'HTG' => __( 'Haitian gourde', 'motopress-hotel-booking' ),
-			'HUF' => __( 'Hungarian forint', 'motopress-hotel-booking' ),
-			'IDR' => __( 'Indonesian rupiah', 'motopress-hotel-booking' ),
-			'ILS' => __( 'Israeli new shekel', 'motopress-hotel-booking' ),
-			'IMP' => __( 'Manx pound', 'motopress-hotel-booking' ),
-			'INR' => __( 'Indian rupee', 'motopress-hotel-booking' ),
-			'IQD' => __( 'Iraqi dinar', 'motopress-hotel-booking' ),
-			'IRR' => __( 'Iranian rial', 'motopress-hotel-booking' ),
-			'IRT' => __( 'Iranian toman', 'motopress-hotel-booking' ),
-			'ISK' => __( 'Icelandic kr&oacute;na', 'motopress-hotel-booking' ),
-			'JEP' => __( 'Jersey pound', 'motopress-hotel-booking' ),
-			'JMD' => __( 'Jamaican dollar', 'motopress-hotel-booking' ),
-			'JOD' => __( 'Jordanian dinar', 'motopress-hotel-booking' ),
-			'JPY' => __( 'Japanese yen', 'motopress-hotel-booking' ),
-			'KES' => __( 'Kenyan shilling', 'motopress-hotel-booking' ),
-			'KGS' => __( 'Kyrgyzstani som', 'motopress-hotel-booking' ),
-			'KHR' => __( 'Cambodian riel', 'motopress-hotel-booking' ),
-			'KMF' => __( 'Comorian franc', 'motopress-hotel-booking' ),
-			'KPW' => __( 'North Korean won', 'motopress-hotel-booking' ),
-			'KRW' => __( 'South Korean won', 'motopress-hotel-booking' ),
-			'KWD' => __( 'Kuwaiti dinar', 'motopress-hotel-booking' ),
-			'KYD' => __( 'Cayman Islands dollar', 'motopress-hotel-booking' ),
-			'KZT' => __( 'Kazakhstani tenge', 'motopress-hotel-booking' ),
-			'LAK' => __( 'Lao kip', 'motopress-hotel-booking' ),
-			'LBP' => __( 'Lebanese pound', 'motopress-hotel-booking' ),
-			'LKR' => __( 'Sri Lankan rupee', 'motopress-hotel-booking' ),
-			'LRD' => __( 'Liberian dollar', 'motopress-hotel-booking' ),
-			'LSL' => __( 'Lesotho loti', 'motopress-hotel-booking' ),
-			'LYD' => __( 'Libyan dinar', 'motopress-hotel-booking' ),
-			'MAD' => __( 'Moroccan dirham', 'motopress-hotel-booking' ),
-			'MDL' => __( 'Moldovan leu', 'motopress-hotel-booking' ),
-			'MGA' => __( 'Malagasy ariary', 'motopress-hotel-booking' ),
-			'MKD' => __( 'Macedonian denar', 'motopress-hotel-booking' ),
-			'MMK' => __( 'Burmese kyat', 'motopress-hotel-booking' ),
-			'MNT' => __( 'Mongolian t&ouml;gr&ouml;g', 'motopress-hotel-booking' ),
-			'MOP' => __( 'Macanese pataca', 'motopress-hotel-booking' ),
-			'MRO' => __( 'Mauritanian ouguiya', 'motopress-hotel-booking' ),
-			'MUR' => __( 'Mauritian rupee', 'motopress-hotel-booking' ),
-			'MVR' => __( 'Maldivian rufiyaa', 'motopress-hotel-booking' ),
-			'MWK' => __( 'Malawian kwacha', 'motopress-hotel-booking' ),
-			'MXN' => __( 'Mexican peso', 'motopress-hotel-booking' ),
-			'MYR' => __( 'Malaysian ringgit', 'motopress-hotel-booking' ),
-			'MZN' => __( 'Mozambican metical', 'motopress-hotel-booking' ),
-			'NAD' => __( 'Namibian dollar', 'motopress-hotel-booking' ),
-			'NGN' => __( 'Nigerian naira', 'motopress-hotel-booking' ),
-			'NIO' => __( 'Nicaraguan c&oacute;rdoba', 'motopress-hotel-booking' ),
-			'NOK' => __( 'Norwegian krone', 'motopress-hotel-booking' ),
-			'NPR' => __( 'Nepalese rupee', 'motopress-hotel-booking' ),
-			'NZD' => __( 'New Zealand dollar', 'motopress-hotel-booking' ),
-			'OMR' => __( 'Omani rial', 'motopress-hotel-booking' ),
-			'PAB' => __( 'Panamanian balboa', 'motopress-hotel-booking' ),
-			'PEN' => __( 'Sol', 'motopress-hotel-booking' ),
-			'PGK' => __( 'Papua New Guinean kina', 'motopress-hotel-booking' ),
-			'PHP' => __( 'Philippine peso', 'motopress-hotel-booking' ),
-			'PKR' => __( 'Pakistani rupee', 'motopress-hotel-booking' ),
-			'PLN' => __( 'Polish z&#x142;oty', 'motopress-hotel-booking' ),
-			'PRB' => __( 'Transnistrian ruble', 'motopress-hotel-booking' ),
-			'PYG' => __( 'Paraguayan guaran&iacute;', 'motopress-hotel-booking' ),
-			'QAR' => __( 'Qatari riyal', 'motopress-hotel-booking' ),
-			'RON' => __( 'Romanian leu', 'motopress-hotel-booking' ),
-			'RSD' => __( 'Serbian dinar', 'motopress-hotel-booking' ),
-			'RUB' => __( 'Russian ruble', 'motopress-hotel-booking' ),
-			'RWF' => __( 'Rwandan franc', 'motopress-hotel-booking' ),
-			'SAR' => __( 'Saudi riyal', 'motopress-hotel-booking' ),
-			'SBD' => __( 'Solomon Islands dollar', 'motopress-hotel-booking' ),
-			'SCR' => __( 'Seychellois rupee', 'motopress-hotel-booking' ),
-			'SDG' => __( 'Sudanese pound', 'motopress-hotel-booking' ),
-			'SEK' => __( 'Swedish krona', 'motopress-hotel-booking' ),
-			'SGD' => __( 'Singapore dollar', 'motopress-hotel-booking' ),
-			'SHP' => __( 'Saint Helena pound', 'motopress-hotel-booking' ),
-			'SLL' => __( 'Sierra Leonean leone', 'motopress-hotel-booking' ),
-			'SOS' => __( 'Somali shilling', 'motopress-hotel-booking' ),
-			'SRD' => __( 'Surinamese dollar', 'motopress-hotel-booking' ),
-			'SSP' => __( 'South Sudanese pound', 'motopress-hotel-booking' ),
-			'STD' => __( 'S&atilde;o Tom&eacute; and Pr&iacute;ncipe dobra', 'motopress-hotel-booking' ),
-			'SYP' => __( 'Syrian pound', 'motopress-hotel-booking' ),
-			'SZL' => __( 'Swazi lilangeni', 'motopress-hotel-booking' ),
-			'THB' => __( 'Thai baht', 'motopress-hotel-booking' ),
-			'TJS' => __( 'Tajikistani somoni', 'motopress-hotel-booking' ),
-			'TMT' => __( 'Turkmenistan manat', 'motopress-hotel-booking' ),
-			'TND' => __( 'Tunisian dinar', 'motopress-hotel-booking' ),
-			'TOP' => __( 'Tongan pa&#x2bb;anga', 'motopress-hotel-booking' ),
-			'TRY' => __( 'Turkish lira', 'motopress-hotel-booking' ),
-			'TTD' => __( 'Trinidad and Tobago dollar', 'motopress-hotel-booking' ),
-			'TWD' => __( 'New Taiwan dollar', 'motopress-hotel-booking' ),
-			'TZS' => __( 'Tanzanian shilling', 'motopress-hotel-booking' ),
-			'UAH' => __( 'Ukrainian hryvnia', 'motopress-hotel-booking' ),
-			'UGX' => __( 'Ugandan shilling', 'motopress-hotel-booking' ),
-			'UYU' => __( 'Uruguayan peso', 'motopress-hotel-booking' ),
-			'UZS' => __( 'Uzbekistani som', 'motopress-hotel-booking' ),
-			'VEF' => __( 'Venezuelan bol&iacute;var', 'motopress-hotel-booking' ),
-			'VES' => __( 'Bol&iacute;var soberano', 'motopress-hotel-booking' ),
-			'VND' => __( 'Vietnamese &#x111;&#x1ed3;ng', 'motopress-hotel-booking' ),
-			'VUV' => __( 'Vanuatu vatu', 'motopress-hotel-booking' ),
-			'WST' => __( 'Samoan t&#x101;l&#x101;', 'motopress-hotel-booking' ),
-			'XAF' => __( 'Central African CFA franc', 'motopress-hotel-booking' ),
-			'XCD' => __( 'East Caribbean dollar', 'motopress-hotel-booking' ),
-			'XOF' => __( 'West African CFA franc', 'motopress-hotel-booking' ),
-			'XPF' => __( 'CFP franc', 'motopress-hotel-booking' ),
-			'YER' => __( 'Yemeni rial', 'motopress-hotel-booking' ),
-			'ZAR' => __( 'South African rand', 'motopress-hotel-booking' ),
-			'ZMW' => __( 'Zambian kwacha', 'motopress-hotel-booking' ),
-		);
+
+		// labels
+		$labels = static::getCurrenciesLabels();
 		$labels = apply_filters( 'mphb_currency_labels', $labels );
 
-		$symbols = array(
+		// Symbols
+		$symbols = static::getCurrenciesSymbols();
+		$symbols = apply_filters( 'mphb_currency_symbols', $symbols );
+
+		// Append each currency label with its symbol, e.g. "US Dollar ($)"
+		foreach ( $labels as $key => &$label ) {
+			$label .= ' (' . $symbols[ $key ] . ')';
+		}
+
+		$this->labels  = $labels;
+		$this->symbols = $symbols;
+
+		$positions       = array(
+			'before'       => __( 'Before', 'motopress-hotel-booking' ),
+			'after'        => __( 'After', 'motopress-hotel-booking' ),
+			'before_space' => __( 'Before with space', 'motopress-hotel-booking' ),
+			'after_space'  => __( 'After with space', 'motopress-hotel-booking' ),
+		);
+		$this->positions = $positions;
+	}
+
+	public function getLabels() {
+		return $this->labels;
+	}
+
+	public function getPositions() {
+		return $this->positions;
+	}
+
+	public function getSymbols() {
+		return $this->symbols;
+	}
+
+	public function getLabel( $key ) {
+		return isset( $this->labels[ $key ] ) ? $this->labels[ $key ] : '';
+	}
+
+	/**
+	 * Get symbol from settings.
+	 *
+	 * @param string $key
+	 * @return string
+	 */
+	public function getSymbol( $key ) {
+		return isset( $this->symbols[ $key ] ) ? $this->symbols[ $key ] : '';
+	}
+
+	/**
+	 * Get currency labels.
+	 *
+	 * @return array
+	 * @since 5.2.4  added currencies list
+	 */
+	public static function getCurrenciesLabels(): array {
+
+		$currency_list    = Umpirsky_Helper::getCurrencyList();
+		$currency_symbols = static::getCurrenciesSymbols();
+
+		$currencies = array(
+			// Prioritize EUR, USD and GBP currencies:
+			// [EUR, USD, GBP, ... all other currencies]
+			'EUR' => 'Euro',
+			'USD' => 'US Dollar',
+			'GBP' => 'British Pound',
+		);
+
+		// Collect only those currencies that have a symbol defined.
+		foreach ( $currency_list as $code => $label ) {
+			if ( array_key_exists( $code, $currency_symbols ) ) {
+				$currencies[ $code ] = $label;
+			}
+		}
+
+		return $currencies;
+	}
+
+	/**
+	 * Get currency symbols.
+	 *
+	 * @return array
+	 * @since x.x.x
+	 */
+	private static function getCurrenciesSymbols(): array {
+		return array(
 			'AED' => '&#x62f;.&#x625;',
 			'AFN' => '&#x60b;',
 			'ALL' => 'L',
@@ -346,47 +269,5 @@ class CurrencyBundle {
 			'ZAR' => '&#82;',
 			'ZMW' => 'ZK',
 		);
-		$symbols = apply_filters( 'mphb_currency_symbols', $symbols );
-
-		foreach ( $labels as $key => &$label ) {
-			$label .= ' (' . $symbols[ $key ] . ')';
-		}
-		$this->labels  = $labels;
-		$this->symbols = $symbols;
-
-		$positions       = array(
-			'before'       => __( 'Before', 'motopress-hotel-booking' ),
-			'after'        => __( 'After', 'motopress-hotel-booking' ),
-			'before_space' => __( 'Before with space', 'motopress-hotel-booking' ),
-			'after_space'  => __( 'After with space', 'motopress-hotel-booking' ),
-		);
-		$this->positions = $positions;
 	}
-
-	public function getLabels() {
-		return $this->labels;
-	}
-
-	public function getPositions() {
-		return $this->positions;
-	}
-
-	public function getSymbols() {
-		return $this->symbols;
-	}
-
-	public function getLabel( $key ) {
-		return isset( $this->labels[ $key ] ) ? $this->labels[ $key ] : '';
-	}
-
-	/**
-	 * Get symbol from settings.
-	 *
-	 * @param string $key
-	 * @return string
-	 */
-	public function getSymbol( $key ) {
-		return isset( $this->symbols[ $key ] ) ? $this->symbols[ $key ] : '';
-	}
-
 }

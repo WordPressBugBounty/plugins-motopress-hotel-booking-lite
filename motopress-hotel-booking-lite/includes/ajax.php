@@ -185,6 +185,10 @@ class Ajax {
 	public function install_plugin() {
 		$this->verifyNonce( __FUNCTION__ );
 
+		if ( ! current_user_can( 'install_plugins' ) ) {
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to do this action.', 'motopress-hotel-booking' ) ) );
+		}
+
 		$input = $this->retrieveInput( __FUNCTION__ );
 
 		if ( ! isset( $input['plugin_slug'], $input['plugin_zip'] ) ) {

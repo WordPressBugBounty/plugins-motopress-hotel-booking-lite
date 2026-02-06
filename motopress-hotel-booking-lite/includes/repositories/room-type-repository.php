@@ -160,4 +160,81 @@ class RoomTypeRepository extends AbstractPostRepository {
 	public function findById( $id, $force = false ) {
 		return parent::findById( $id, $force );
 	}
+
+	/**
+	 * @param int[]|string[] $accommodationTypeIdsOrSlugs
+	 * @return Entities\RoomType[]
+	 */
+	public function findAllByIdsOrSlugs( array $accommodationTypeIdsOrSlugs ): array {
+
+		if ( empty( $accommodationTypeIdsOrSlugs ) ) {
+			return array();
+		}
+
+		$roomTypeIds   = array();
+		$roomTypeSlugs = array();
+
+		foreach ( $accommodationTypeIdsOrSlugs as $idOrSlug ) {
+
+			if ( is_numeric( $idOrSlug ) ) {
+
+				$roomTypeIds[] = absint( $idOrSlug );
+
+			} else {
+
+				$roomTypeSlugs[] = trim( '' . $idOrSlug );
+			}
+		}
+
+		$roomTypeIds   = array_unique( $roomTypeIds );
+		$roomTypeSlugs = array_unique( $roomTypeSlugs );
+
+		$result = array();
+
+		if ( ! empty( $roomTypeIds ) ) {
+
+			$roomTypePosts = $this->persistence->getPosts(
+				array(
+					'fields'         => 'all',
+					'post_status'    => array( 'publish' ),
+					'post__in'       => $roomTypeIds,
+					'posts_per_page' => -1,
+					// get all posts on all languages
+					'suppress_wpml_where_and_join_filter' => true,
+				)
+			);
+
+			foreach ( $roomTypePosts as $roomTypePost ) {
+
+				if ( empty( $result[ $roomTypePost->ID ] ) ) {
+
+					$result[ $roomTypePost->ID ] = $this->mapPostToEntity( $roomTypePost );
+				}
+			}
+		}
+
+		if ( ! empty( $roomTypeSlugs ) ) {
+
+			$roomTypePosts = $this->persistence->getPosts(
+				array(
+					'fields'         => 'all',
+					'post_status'    => array( 'publish' ),
+					'post_name__in'  => $roomTypeSlugs,
+					'posts_per_page' => -1,
+					// get all posts on all languages
+					'suppress_wpml_where_and_join_filter' => true,
+				)
+			);
+
+			foreach ( $roomTypePosts as $roomTypePost ) {
+
+				if ( empty( $result[ $roomTypePost->ID ] ) ) {
+
+					$result[ $roomTypePost->ID ] = $this->mapPostToEntity( $roomTypePost );
+				}
+			}
+		}
+
+		return $result;
+	}
 }

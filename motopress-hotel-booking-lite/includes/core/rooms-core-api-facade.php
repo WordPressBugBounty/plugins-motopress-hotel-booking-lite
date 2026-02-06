@@ -56,6 +56,21 @@ class RoomsCoreAPIFacade extends AbstractCoreAPIFacade {
 	}
 
 	/**
+	 * @return \MPHB\Entities\RoomType[]
+	 */
+	public function getAllRoomTypes(): array {
+		return MPHB()->getRoomTypeRepository()->findAll();
+	}
+
+	/**
+	 * @param int[]|string[] $accommodationTypeIdsOrSlugs
+	 * @return Entities\RoomType[]
+	 */
+	public function findRoomTypesByIdsOrSlugs( array $accommodationTypeIdsOrSlugs ): array {
+		return MPHB()->getRoomTypeRepository()->findAllByIdsOrSlugs( $accommodationTypeIdsOrSlugs );
+	}
+
+	/**
 	 * @return int
 	 */
 	public function getActiveRoomsCountForRoomType( int $roomTypeOriginalId ) {

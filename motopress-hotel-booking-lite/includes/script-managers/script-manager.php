@@ -101,6 +101,29 @@ abstract class ScriptManager {
 		do_action( 'mphb_before_register_scripts' );
 
 		wp_register_script(
+			'mphb-global-js',
+			MPHB()->getPluginUrl( 'assets/js/global/index.js' ),
+			array(),
+			MPHB()->getVersion(),
+			true
+		);
+		$this->addDependency( 'mphb-global-js' );
+
+		wp_register_script(
+			'mphb-shortcodes-group-availability-calendar-js',
+			MPHB()->getPluginUrl( 'assets/js/shortcodes/group-availability-calendar/index.js' ),
+			array( 'wp-date', 'wp-i18n', 'mphb-global-js' ),
+			MPHB()->getVersion(),
+			true
+		);
+		$this->addDependency( 'mphb-shortcodes-group-availability-calendar-js' );
+		wp_set_script_translations(
+			'mphb-shortcodes-group-availability-calendar-js',
+			'motopress-hotel-booking',
+			MPHB()->getPluginPath( 'languages/' )
+		);
+
+		wp_register_script(
 			'mphb-canjs',
 			$this->scriptUrl( 'vendors/canjs/can.custom.min.js' ),
 			array( 'jquery' ),
@@ -134,6 +157,14 @@ abstract class ScriptManager {
 
 		wp_register_style( 'mphb-kbwood-datepick-css', $this->scriptUrl( 'vendors/kbwood/datepick/jquery.datepick.css' ), null, MPHB()->getVersion() );
 		$this->addStyleDependency( 'mphb-kbwood-datepick-css' );
+
+		wp_register_style(
+			'mphb-shortcodes-group-availability-calendar-css',
+			$this->scriptUrl( 'assets/js/shortcodes/group-availability-calendar/index.css' ),
+			array(),
+			MPHB()->getVersion()
+		);
+		$this->addStyleDependency( 'mphb-shortcodes-group-availability-calendar-css' );
 	}
 
 	public function scriptUrl( $relativePath ) {

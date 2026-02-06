@@ -4,6 +4,7 @@ namespace MPHB\Shortcodes;
 
 class RoomShortcode extends AbstractShortcode {
 
+	private $id;
 	protected $name = 'mphb_room';
 	private $isShowGallery;
 	private $isShowFeaturedImage;
@@ -81,6 +82,7 @@ class RoomShortcode extends AbstractShortcode {
 			do_action( 'mphb_sc_room_before_loop' );
 
 			while ( $roomTypeQuery->have_posts() ) :
+
 				$roomTypeQuery->the_post();
 
 				do_action( 'mphb_sc_room_before_item' );

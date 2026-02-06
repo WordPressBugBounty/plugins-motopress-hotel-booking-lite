@@ -41,6 +41,7 @@ class Server {
 		'seasons'                            => 'SeasonsController',
 		'booking_rules'                      => 'BookingRulesController',
 		'taxes_and_fees'                     => 'TaxesAndFeesController',
+		'availability'                       => 'GetAvailabilityData',
 	);
 
 	/**

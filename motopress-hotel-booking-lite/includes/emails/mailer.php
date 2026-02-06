@@ -3,6 +3,7 @@
 namespace MPHB\Emails;
 
 class Mailer {
+	private ?\WP_Error $lastError = null;
 
 	/**
 	 * Send an email.
@@ -18,16 +19,19 @@ class Mailer {
 	 * @since 3.8.6 actions "mphb_before_send_mail" and "mphb_after_send_mail" moved to AbstractEmail::send().
 	 */
 	public function send( $to, $subject, $message, $headers = '', $attachments = array() ) {
+		$this->lastError = null;
 
 		add_filter( 'wp_mail_from', array( $this, 'filterFromEmail' ) );
 		add_filter( 'wp_mail_from_name', array( $this, 'filterFromName' ) );
 		add_filter( 'wp_mail_content_type', array( $this, 'filterContentType' ) );
+		add_action( 'wp_mail_failed', array( $this, 'onError' ) );
 
 		$result = wp_mail( $to, $subject, $message, $headers, $attachments );
 
 		remove_filter( 'wp_mail_from', array( $this, 'filterFromEmail' ) );
 		remove_filter( 'wp_mail_from_name', array( $this, 'filterFromName' ) );
 		remove_filter( 'wp_mail_content_type', array( $this, 'filterContentType' ) );
+		remove_action( 'wp_mail_failed', array( $this, 'onError' ) );
 
 		return $result;
 	}
@@ -65,4 +69,18 @@ class Mailer {
 		return 'text/html';
 	}
 
+	public function getLastError(): ?\WP_Error {
+		return $this->lastError;
+	}
+
+	/**
+	 * @access private
+	 */
+	public function onError( \WP_Error $error ): void {
+		$this->lastError = $error;
+	}
+
+	public function wasError(): bool {
+		return $this->lastError !== null;
+	}
 }

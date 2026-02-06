@@ -23,22 +23,19 @@ class ApiHelper {
 		return Api::VENDOR . '/' . 'v' . $version;
 	}
 
+
 	/**
-	 * Get the URL to the REST API.
-	 *
-	 * @param  string $path  an endpoint to include in the URL.
-	 *
-	 * @return string the URL.
+	 * @return string REST API URL without last slash
 	 */
-	public static function getApiUrl( string $path ) {
+	public static function getRestApiUrl( string $relativeRestApiUrlWithFirstSlash = '' ): string {
+		return rest_url( self::getNamespace() . $relativeRestApiUrlWithFirstSlash );
+	}
 
-		$url = get_home_url( null, self::getNamespace() . '/', is_ssl() ? 'https' : 'http' );
-
-		if ( ! empty( $path ) && is_string( $path ) ) {
-			$url .= ltrim( $path, '/' );
-		}
-
-		return $url;
+	/**
+	 * @return string REST API WP nonce for simple standard authorization.
+	 */
+	public static function getRestApiWpNonce(): string {
+		return wp_create_nonce( 'wp_rest' );
 	}
 
 	/**

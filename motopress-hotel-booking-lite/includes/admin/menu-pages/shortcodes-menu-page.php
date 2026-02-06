@@ -107,6 +107,36 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 			),
 		);
 
+		$this->shortcodes[ MPHB()->getShortcodes()->getGroupAvailabilityCalendar()->getName() ] = array(
+			'label'       => __( 'Multi-Property Availability Calendar', 'motopress-hotel-booking' ),
+			'description' => __( 'Displays a list of accommodation types and their availability by date in one view.', 'motopress-hotel-booking' ),
+			'parameters'  => array(
+				'accommodation_types'               => array(
+					'label'       => __( 'Accommodation types to display', 'motopress-hotel-booking' ),
+					'values'      => __( 'Comma-separated list of accommodation type ids or slugs.', 'motopress-hotel-booking' ) . ' ' . $this->getOptionalLabel(),
+					'default' =>  __( 'empty string', 'motopress-hotel-booking' ),
+				),
+				'start_date'     => array(
+					'label'       => __( 'Start date', 'motopress-hotel-booking' ),
+					'values'      => sprintf( __( 'date in format %s', 'motopress-hotel-booking' ), 'YYYY-MM-DD' ) . ' ' . $this->getOptionalLabel(),
+					'default'     => __( 'Current date', 'motopress-hotel-booking' ),
+				),
+				'class'            => array(
+					'label'   => __( 'Custom CSS class for shortcode wrapper', 'motopress-hotel-booking' ),
+					'values'  => __( 'whitespace separated css classes', 'motopress-hotel-booking' ) . ' ' . $this->getOptionalLabel(),
+					'default' =>  __( 'empty string', 'motopress-hotel-booking' ),
+				),
+			),
+			'example'     => array(
+				'shortcode'   => MPHB()->getShortcodes()->getGroupAvailabilityCalendar()->generateShortcode(
+					array(
+						'accommodation_types' => '104, 203',
+						'class' => 'mphb-all-room-types__availability',
+					)
+				),
+			),
+		);
+
 		$this->shortcodes[ MPHB()->getShortcodes()->getSearchResults()->getName() ] = array(
 			'label'       => __( 'Availability Search Results', 'motopress-hotel-booking' ),
 			'description' => __( 'Display listing of accommodation types that meet the search criteria.', 'motopress-hotel-booking' ),

@@ -101,20 +101,25 @@ abstract class AbstractEmail {
 	/**
 	 * Send mail.
 	 *
-	 * @return bool
+	 * @return bool|\WP_Error
 	 *
 	 * @since 3.7.2 sends the message to the administrator email address in test mode.
 	 * @since 3.8.6 added actions "mphb_before_send_mail" and "mphb_after_send_mail".
 	 */
 	public function send() {
+		$mailer = MPHB()->emails()->getMailer();
 
 		do_action( 'mphb_before_send_mail', $this );
 
-		$isSended = MPHB()->emails()->getMailer()->send( $this->getReceiver(), $this->getSubject(), $this->getMessage() );
+		$isSended = $mailer->send( $this->getReceiver(), $this->getSubject(), $this->getMessage() );
 
 		do_action( 'mphb_after_send_mail', $this );
 
-		return $isSended;
+		if ( ! $isSended && $mailer->wasError() ) {
+			return $mailer->getLastError();
+		} else {
+			return $isSended;
+		}
 	}
 
 	abstract protected function initLabel();
@@ -123,6 +128,9 @@ abstract class AbstractEmail {
 
 	abstract protected function getReceiver();
 
+	/**
+	 * @param bool|\WP_Error $isSended
+	 */
 	abstract protected function log( $isSended );
 
 	abstract public function getDefaultSubject();
@@ -135,7 +143,7 @@ abstract class AbstractEmail {
 	 * @param Payment $atts['payment']
 	 * @param bool    $atts['test_mode'] Trigger email but don't add the logs.
 	 *        False by default.
-	 * @return bool
+	 * @return bool|\WP_Error
 	 *
 	 * @since 3.7.2 added new attribute - "test_mode".
 	 */
@@ -169,6 +177,7 @@ abstract class AbstractEmail {
 
 	/**
 	 * @param \MPHB\UsersAndRoles\Customer $customer
+	 * @return bool|\WP_Error
 	 */
 	public function triggerCustomerRegistration( $customer, $userAtts, $atts = array(), $booking = null ) {
 

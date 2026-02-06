@@ -130,7 +130,8 @@ class PaymentCPT extends EditableCPT {
 
 		$gatewaysList = array_map(
 			function( $gateway ) {
-				return $gateway->getTitle();
+				$title = $gateway->getTitle();
+				return $title !== '' ? $title : $gateway->getAdminTitle();
 			},
 			MPHB()->gatewayManager()->getList()
 		);

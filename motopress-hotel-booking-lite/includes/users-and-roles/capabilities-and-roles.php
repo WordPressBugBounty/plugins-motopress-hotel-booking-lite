@@ -23,16 +23,17 @@ class CapabilitiesAndRoles {
 	/**
 	 * @var array
 	 */
-	public $capabilities;
+	public $capabilities = array();
 
 	/**
 	 * @var array
 	 */
-	public $roles;
+	public $roles = array();
+
 
 	public function __construct() {
 
-		// we must init translated strings after init hook
+		// We must init translated strings in roles after init hook!
 		add_action(
 			'init',
 			function () {
@@ -42,7 +43,7 @@ class CapabilitiesAndRoles {
 
 				$this->setup();
 			},
-			0 // must be bigger then init hook priority in \MPHB\UsersAndRoles\Roles
+			0
 		);
 	}
 
@@ -78,9 +79,9 @@ class CapabilitiesAndRoles {
 						}
 					}
 				}
-			}
 
-			\HotelBookingPlugin::setCustomRolesVersion( Roles::getCurrentVersion() );
+				\HotelBookingPlugin::setCustomRolesVersion( Roles::getCurrentVersion() );
+			}
 		}
 	}
 

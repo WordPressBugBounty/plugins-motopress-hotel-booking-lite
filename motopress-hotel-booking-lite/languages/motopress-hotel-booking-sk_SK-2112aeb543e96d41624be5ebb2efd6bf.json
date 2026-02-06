@@ -1,0 +1,27 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/js\/blocks\/group-availability-calendar\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "sk_SK",
+                "plural-forms": "nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;"
+            },
+            "Settings": [
+                "Nastavenia"
+            ],
+            "Multi-Property Availability Calendar": [
+                ""
+            ],
+            "Accommodation types to display": [
+                ""
+            ],
+            "Start date": [
+                "Po\u010diato\u010dn\u00fd d\u00e1tum"
+            ]
+        }
+    }
+}

@@ -1,0 +1,303 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.11.0",
+    "source": "assets\/blocks\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "fr_FR",
+                "plural-forms": "nplurals=2; plural=(n > 1);"
+            },
+            "Date": [
+                "Date"
+            ],
+            "Adults": [
+                "Adultes"
+            ],
+            "Children": [
+                "Enfants"
+            ],
+            "Price": [
+                "Prix"
+            ],
+            "Accommodation Type": [
+                "Type de chambre"
+            ],
+            "Title": [
+                "Titre"
+            ],
+            "Booking Confirmation": [
+                "Confirmation de r\u00e9servation"
+            ],
+            "Availability Calendar": [
+                "Calendrier des disponibilit\u00e9s"
+            ],
+            "Display per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Truncate per-night prices in the availability calendar.": [
+                ""
+            ],
+            "Display the currency sign in the availability calendar.": [
+                ""
+            ],
+            "Settings": [
+                "Param\u00e8tres"
+            ],
+            "Availability Search Form": [
+                "Formulaire de recherche de disponibilit\u00e9"
+            ],
+            "The number of adults presetted in the search form.": [
+                "Le nombre d'adultes pr\u00e9d\u00e9fini dans le formulaire de recherche."
+            ],
+            "The number of children presetted in the search form.": [
+                "Le nombre d'enfants pr\u00e9d\u00e9fini dans le formulaire de recherche."
+            ],
+            "Custom attributes for advanced search.": [
+                "Attributs personnalis\u00e9s pour la recherche avanc\u00e9e."
+            ],
+            "Comma-separated slugs of attributes.": [
+                "Slugs s\u00e9par\u00e9s par des virgules."
+            ],
+            "How many months to show.": [
+                "Combien de mois \u00e0 afficher."
+            ],
+            "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
+                "D\u00e9finissez le nombre de colonnes ou le nombre de lignes et de colonnes s\u00e9par\u00e9es par des virgules. Exemple : \"3\" ou \"2,3\""
+            ],
+            "Display availability calendar of the current accommodation type or by ID.": [
+                "Afficher le calendrier des disponibilit\u00e9s de l'h\u00e9bergement actuel par type ou par ID."
+            ],
+            "Availability Search Results": [
+                "R\u00e9sultats de recherche"
+            ],
+            "Display listing of accommodation types that meet the search criteria.": [
+                "Afficher la liste des types d'h\u00e9bergement qui correspondent aux crit\u00e8res de recherche."
+            ],
+            "Whether to display title of the accommodation type.": [
+                "Si vous souhaitez indiquer le titre du type d'h\u00e9bergement."
+            ],
+            "Whether to display featured image of the accommodation type.": [
+                "Si vous souhaitez afficher l'image du type d'h\u00e9bergement."
+            ],
+            "Whether to display gallery of the accommodation type.": [
+                "Si vous souhaitez afficher la galerie du type d'h\u00e9bergement."
+            ],
+            "Whether to display excerpt (short description) of the accommodation type.": [
+                "Si vous souhaitez afficher un extrait (description br\u00e8ve) du type d'h\u00e9bergement."
+            ],
+            "Whether to display details of the accommodation type.": [
+                "Si vous souhaitez afficher les d\u00e9tails du type d'h\u00e9bergement."
+            ],
+            "Whether to display price of the accommodation type.": [
+                "Indiquer le prix du type d'h\u00e9bergement."
+            ],
+            "Whether to display \"View Details\" button with the link to accommodation type.": [
+                "Pour afficher le bouton \"Afficher les d\u00e9tails\" avec le lien vers le type d'h\u00e9bergement."
+            ],
+            "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
+                "Nom du champ personnalis\u00e9. Requis si \"orderby\" est l'une des \"meta_value\", \"meta_value_num\" ou \"meta_value_*\"."
+            ],
+            "Whether to display Book button.": [
+                "Afficher le bouton R\u00e9server."
+            ],
+            "Accommodation Types Listing": [
+                "Liste des Types d'h\u00e9bergement"
+            ],
+            "Count per page": [
+                "Nombre par page"
+            ],
+            "integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "valeurs, -1 pour tout afficher, par d\u00e9faut : \"Les pages du blog montrent au maximum\"."
+            ],
+            "IDs of categories that will be shown.": [
+                "IDs des cat\u00e9gories qui seront montr\u00e9s."
+            ],
+            "Comma-separated IDs.": [
+                "IDs s\u00e9par\u00e9s par des virgules."
+            ],
+            "IDs of tags that will be shown.": [
+                "IDs des \u00e9tiquettes qui seront montr\u00e9s."
+            ],
+            "IDs of accommodations that will be shown.": [
+                "IDs des logements qui seront montr\u00e9s."
+            ],
+            "Logical relationship between each taxonomy when there is more than one.": [
+                "Relation logique entre chaque taxonomie lorsqu'il y en a plus d'une."
+            ],
+            "Services Listing": [
+                "Liste des services"
+            ],
+            "IDs": [
+                "Identifiants"
+            ],
+            "IDs of services that will be shown. ": [
+                "ID des services qui seront affich\u00e9s. "
+            ],
+            "Single Accommodation Type": [
+                "Type d'h\u00e9bergement simple"
+            ],
+            "Checkout Form": [
+                "Formulaire de commande"
+            ],
+            "Display checkout form.": [
+                "Afficher le formulaire de commande."
+            ],
+            "Booking Form": [
+                "Formulaire de reservation"
+            ],
+            "Accommodation Rates List": [
+                "Liste des tarifs d'h\u00e9bergement"
+            ],
+            "ID of accommodation type.": [
+                "ID du type d'h\u00e9bergement."
+            ],
+            "Display booking and payment details.": [
+                "Afficher les d\u00e9tails de la r\u00e9servation et du paiement."
+            ],
+            "Check-in Date": [
+                "Date d'arriv\u00e9e"
+            ],
+            "Check-out Date": [
+                "Date de d\u00e9part"
+            ],
+            "Categories": [
+                "Cat\u00e9gories"
+            ],
+            "Tags": [
+                "\u00c9tiquette"
+            ],
+            "Details": [
+                "D\u00e9tails"
+            ],
+            "Featured Image": [
+                "Image en vitrine"
+            ],
+            "Excerpt (short description)": [
+                "Afficher l'extrait (description courte)"
+            ],
+            "Book Button": [
+                "bouton Livre"
+            ],
+            "Preset date. Formatted as %s": [
+                "Date pr\u00e9d\u00e9finie. Format\u00e9 en %s"
+            ],
+            "Select an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "ID of an accommodation type. Leave blank to use current.": [
+                ""
+            ],
+            "Gallery": [
+                "galerie"
+            ],
+            "View Button": [
+                "bouton de visualisation"
+            ],
+            "Order": [
+                "commande"
+            ],
+            "Order By": [
+                "commander par"
+            ],
+            "No order": [
+                "pas de commande"
+            ],
+            "Post ID": [
+                "Num\u00e9ro de poste"
+            ],
+            "Post author": [
+                "Auteur du message"
+            ],
+            "Post title": [
+                "Titre du poste"
+            ],
+            "Post name (post slug)": [
+                "Nom du message (poste slug)"
+            ],
+            "Post date": [
+                "Date de publication"
+            ],
+            "Last modified date": [
+                "Date de la derni\u00e8re modification"
+            ],
+            "Parent ID": [
+                "num\u00e9ro du parent"
+            ],
+            "Random order": [
+                "Ordre al\u00e9atoire"
+            ],
+            "Number of comments": [
+                "Nombre de commentaires"
+            ],
+            "Relevance": [
+                "Pertinence"
+            ],
+            "Page order": [
+                "Ordre des pages"
+            ],
+            "Meta value": [
+                "Valeur Meta"
+            ],
+            "Numeric meta value": [
+                "Meta value num\u00e9rique "
+            ],
+            "Ascending (1, 2, 3)": [
+                "Croissant (1, 2, 3)"
+            ],
+            "Descending (3, 2, 1)": [
+                "D\u00e9croissant (3, 2, 1)"
+            ],
+            "Meta Name": [
+                "Meta Name"
+            ],
+            "Meta Type": [
+                "Type M\u00e9ta"
+            ],
+            "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
+                "Type sp\u00e9cifi\u00e9 du champ personnalis\u00e9. Peut \u00eatre utilis\u00e9 avec \"orderby\" = \"meta_value\"."
+            ],
+            "Any": [
+                "n'importe quel"
+            ],
+            "Numeric": [
+                "num\u00e9rique"
+            ],
+            "Binary": [
+                "Binaire"
+            ],
+            "String": [
+                "Cha\u00eene"
+            ],
+            "Time": [
+                "dur\u00e9e"
+            ],
+            "Date and time": [
+                "Date et heure"
+            ],
+            "Decimal number": [
+                "Nombre d\u00e9cimal"
+            ],
+            "Signed number": [
+                "Nombre sign\u00e9"
+            ],
+            "Unsigned number": [
+                "Nombre non sign\u00e9"
+            ],
+            "Query Settings": [
+                "Param\u00e8tres de Query"
+            ],
+            "Relation": [
+                "relation"
+            ],
+            "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
+                "Mettre: -1 pour tout afficher, par d\u00e9faut : \"Les pages des blogs s'affichent tout au plus.\"."
+            ],
+            "Select an accommodation type.": [
+                ""
+            ]
+        }
+    }
+}
