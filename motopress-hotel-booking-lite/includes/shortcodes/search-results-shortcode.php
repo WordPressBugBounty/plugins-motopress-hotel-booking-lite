@@ -509,7 +509,7 @@ class SearchResultsShortcode extends AbstractShortcode {
 			MPHB()->settings()->main()->isRecommendAndSearchSingleRoomTypeForRequestedGuestsCount()
 		) {
 
-			// filter room types to show only those which can have all guests inside one room type
+			// filter room types to show only those which can have all guests inside one room
 
 			$availableRoomsData = array();
 
@@ -538,7 +538,7 @@ class SearchResultsShortcode extends AbstractShortcode {
 			
 					$maxRequiredRoomsCount = max( $minRoomsCountForAdults, $minRoomsCountForChildren, $minRoomsCountForTotalGuests );
 
-					if ( $maxRequiredRoomsCount <= $availableRoomsCount ) {
+					if ( 1 === $maxRequiredRoomsCount && $maxRequiredRoomsCount <= $availableRoomsCount ) {
 						$availableRoomsData[ $roomTypeOriginalId ] = $availableRoomsCount;
 					}
 				}

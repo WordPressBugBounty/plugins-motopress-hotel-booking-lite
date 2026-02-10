@@ -877,18 +877,34 @@ class CheckoutView {
 					echo mphb_format_price( $totalPrice );
 					?>
 				</strong>
+				<small class="mphb-payment-fee mphb-hide">(<?php
+					printf(
+						//translators: %s is the transaction fee amount, e.g. "+$2.50". 'txn' is short for 'transaction'.
+						__( '+%s txn fee', 'motopress-hotel-booking' ),
+						'<span class="mphb-payment-fee-field"></span>'
+					);
+				?>)</small>
 				<span class="mphb-preloader mphb-hide"></span>
 			</output>
 		</p>
 		<?php if ( $isShowDeposit ) { ?>
 			<p class="mphb-deposit-amount">
 				<output>
-					<?php esc_html_e( 'Deposit:', 'motopress-hotel-booking' ); ?>
+					<?php
+						//translators: This is a checkout label. It means the part of the booking total that the customer must pay right now.
+						esc_html_e( 'Deposit - Pay Now:', 'motopress-hotel-booking' ); ?>
 					<strong class="mphb-deposit-amount-field">
 						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						echo mphb_format_price( $deposit );
 						?>
 					</strong>
+					<small class="mphb-payment-fee mphb-hide">(<?php
+						printf(
+							//translators: %s is the transaction fee amount, e.g. "+$2.50". 'txn' is short for 'transaction'.
+							__( '+%s txn fee', 'motopress-hotel-booking' ),
+							'<span class="mphb-payment-fee-field"></span>'
+						);
+					?>)</small>
 				</output>
 			</p>
 		<?php } ?>

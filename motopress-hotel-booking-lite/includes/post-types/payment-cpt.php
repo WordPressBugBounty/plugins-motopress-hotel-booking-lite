@@ -192,11 +192,24 @@ class PaymentCPT extends EditableCPT {
 				'_mphb_fee',
 				array(
 					'type'    => 'number',
-					'label'   => __( 'Fee', 'motopress-hotel-booking' ),
+					'label'   => __( 'Gateway Fee', 'motopress-hotel-booking' ),
+					'description' => __( 'Reported by some gateways after payment.' ),
 					'default' => 0,
 					'step'    => 0.01,
 					'min'     => 0,
 					'size'    => 'price',
+				)
+			),
+			Fields\FieldFactory::create(
+				'_mphb_payment_fee',
+				array(
+					'type'     => 'number',
+					//translators: 'txn' is short for 'transaction'.
+					'label'    => __( 'Added Txn Fee', 'motopress-hotel-booking' ),
+					'description' => __( 'Fee added by the property to cover payment processing costs.' ),
+					'default' => 0,
+					'size'     => 'price',
+					'disabled' => true,
 				)
 			),
 			Fields\FieldFactory::create(

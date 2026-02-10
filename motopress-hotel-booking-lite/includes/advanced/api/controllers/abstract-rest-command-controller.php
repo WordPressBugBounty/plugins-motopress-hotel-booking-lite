@@ -57,7 +57,7 @@ abstract class AbstractRestCommandController {
 	/**
 	 * https://developer.wordpress.org/rest-api/extending-the-rest-api/schema/
 	 */
-	abstract protected static function get_response_schema(): array;
+	abstract public static function get_response_schema(): array;
 
 
 	final public static function get_request_parameters_schema(): array {

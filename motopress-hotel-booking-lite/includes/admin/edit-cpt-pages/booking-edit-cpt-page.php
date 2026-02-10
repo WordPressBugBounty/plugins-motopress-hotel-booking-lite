@@ -180,7 +180,7 @@ class BookingEditCPTPage extends EditCPTPage {
 
 		echo '<br/>';
 
-		mphb_tmpl_the_payments_table( $booking );
+		mphb_tmpl_the_payments_table( $booking, true );
 	}
 
 	/**

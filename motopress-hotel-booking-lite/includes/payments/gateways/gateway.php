@@ -141,11 +141,13 @@ abstract class Gateway implements GatewayInterface {
 	 */
 	protected function initDefaultOptions() {
 		return array(
-			'title'        => $this->id,
-			'description'  => '',
-			'instructions' => '',
-			'enabled'      => false,
-			'is_sandbox'   => false,
+			'title'                  => $this->id,
+			'description'            => '',
+			'instructions'           => '',
+			'enabled'                => false,
+			'is_sandbox'             => false,
+			'payment_fee_fixed'      => 0.0,
+			'payment_fee_percentage' => 0.0,
 		);
 	}
 
@@ -169,6 +171,28 @@ abstract class Gateway implements GatewayInterface {
 		}
 
 		return $optionValue;
+	}
+
+	public function getOptionPaymentFeeFixed(): float {
+		return (float) $this->getOption('payment_fee_fixed') ?? 0;
+	}
+
+	public function getOptionPaymentFeePercentage(): float {
+		return (float) $this->getOption('payment_fee_percentage') ?? 0;
+	}
+
+	public function calculatePaymentFee( float $paymentTransactionAmount ): float {
+
+		$paymentFeeFixed      = $this->getOptionPaymentFeeFixed();
+		$paymentFeePercentage = $this->getOptionPaymentFeePercentage();
+
+		$paymentFee = $paymentFeeFixed;
+
+		if ( 0 < $paymentFeePercentage ) {
+			$paymentFee = round( $paymentFeeFixed + ( $paymentFeePercentage / 100 ) * $paymentTransactionAmount, 2 );
+		}
+
+		return $paymentFee;
 	}
 
 	/**
@@ -438,8 +462,12 @@ abstract class Gateway implements GatewayInterface {
 		return $this->optionFields;
 	}
 
+	protected function isPaymentFeeSupported(): bool {
+		return false;
+	}
+
 	protected function initOptionFields(): array {
-		return array(
+		$optionsField = array(
 			'enable' => array(
 				'type'        => 'checkbox',
 				// translators: %s is the payment gateway title.
@@ -475,6 +503,31 @@ abstract class Gateway implements GatewayInterface {
 				'translatable' => true,
 			),
 		);
+
+		if ( $this->isPaymentFeeSupported() ) {
+
+			$optionsField['payment_fee_fixed'] = array(
+				'type'         => 'amount',
+				'label'        => __( 'Fixed Transaction Fee', 'motopress-hotel-booking' ),
+				'description'  => __( 'A fixed fee added to the booking total to cover payment processor fees.', 'motopress-hotel-booking' ),
+				'size'         => 'price',
+				'min'          => 0,
+				'default_render_type' => 'price',
+				'default'      => 0,
+			);
+
+			$optionsField['payment_fee_percentage'] = array(
+				'type'         => 'amount',
+				'label'        => __( 'Percentage Transaction Fee', 'motopress-hotel-booking' ),
+				'description'  => __( 'A percentage fee added to the booking total to cover payment processor fees.', 'motopress-hotel-booking' ),
+				'size'         => 'price',
+				'min'          => 0,
+				'default_render_type' => 'percent',
+				'default'      => 0,
+			);
+		}
+
+		return $optionsField;
 	}
 
 	/**
@@ -482,6 +535,7 @@ abstract class Gateway implements GatewayInterface {
 	 * @since 3.6.1 added new filter - "mphb_gateway_has_instructions".
 	 */
 	public function registerOptionsFields( &$subTab ) {
+
 		$fields = $this->getFields();
 
 		$mainGroup = new Groups\SettingsGroup( "mphb_payments_{$this->id}_group", '', $subTab->getOptionGroupName() );
@@ -502,8 +556,13 @@ abstract class Gateway implements GatewayInterface {
 			$mainGroupFields[] = Fields\FieldFactory::create( "mphb_payment_gateway_{$this->id}_instructions", $fields['instructions'] );
 		}
 
-		$mainGroup->addFields( $mainGroupFields );
+		if ( $this->isPaymentFeeSupported() ) {
 
+			$mainGroupFields[] = Fields\FieldFactory::create( "mphb_payment_gateway_{$this->id}_payment_fee_fixed", $fields['payment_fee_fixed'] );
+			$mainGroupFields[] = Fields\FieldFactory::create( "mphb_payment_gateway_{$this->id}_payment_fee_percentage", $fields['payment_fee_percentage'] );
+		}
+
+		$mainGroup->addFields( $mainGroupFields );
 		$subTab->addGroup( $mainGroup );
 	}
 
@@ -533,10 +592,22 @@ abstract class Gateway implements GatewayInterface {
 	 */
 	public function getCheckoutData( $booking ) {
 
-		return array(
-			'amount'             => $booking->calcDepositAmount(),
+		$paymentTransactionTotal = $booking->calcDepositAmount();
+
+		$checkoutData = array(
+			'amount'             => $paymentTransactionTotal,
 			'paymentDescription' => $this->generateItemName( $booking ),
 		);
+
+		if ( $this->isPaymentFeeSupported() ) {
+
+			$paymentFee = $this->calculatePaymentFee( $paymentTransactionTotal );
+
+			$checkoutData['paymentFee']     = $paymentFee;
+			$checkoutData['paymentFeeHtml'] = mphb_format_price( $paymentFee );
+		}
+
+		return $checkoutData;
 	}
 
 	/**

@@ -317,6 +317,17 @@ class BookingConfirmationShortcode extends AbstractShortcode {
 							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							echo mphb_format_price( $payment->getAmount() );
 							?>
+							<?php if ( 0 < $payment->getPaymentFee() ) : ?>
+								<abbr title="<?php
+									echo wp_strip_all_tags(
+										sprintf(
+											//translators: %s is the transaction fee amount, e.g. "+$2.50". 'txn' is short for 'transaction'.
+											__( '+%s txn fee', 'motopress-hotel-booking' ),
+											mphb_format_price( $payment->getPaymentFee() )
+										)
+									);
+								?>"><sup>*</sup></abbr>
+							<?php endif; ?>
 						</span>
 					</li>
 					<li class="payment-number">

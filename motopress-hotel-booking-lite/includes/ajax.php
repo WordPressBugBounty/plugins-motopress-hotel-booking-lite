@@ -48,10 +48,6 @@ class Ajax {
 			'nopriv' => false,
 		),
 		// Frontend
-		'update_checkout_info'         => array(
-			'method' => 'GET',
-			'nopriv' => true,
-		),
 		'update_rate_prices'           => array(
 			'method' => 'GET',
 			'nopriv' => true,
@@ -586,46 +582,6 @@ class Ajax {
 		return $booking;
 	}
 
-
-	public function update_checkout_info() {
-
-		$this->verifyNonce( __FUNCTION__ );
-
-		$input = $this->retrieveInput( __FUNCTION__ );
-
-		$booking = $this->parseCheckoutFormBooking( $input );
-
-		/**
-		 * @param Booking $booking
-		 */
-		do_action( 'mphb_focus_on_booking', $booking );
-
-		$total = $booking->calcPrice();
-
-		$priceHtml = mphb_format_price( $total );
-
-		$responseData = array(
-			'newAmount'      => $total,
-			'priceHtml'      => $priceHtml,
-			'priceBreakdown' => Views\BookingView::generatePriceBreakdown( $booking ),
-		);
-
-		if ( MPHB()->settings()->main()->getConfirmationMode() === 'payment' ) {
-			$responseData['depositAmount'] = $booking->calcDepositAmount();
-			$responseData['depositPrice']  = mphb_format_price( $responseData['depositAmount'] );
-
-			$responseData['gateways'] = array_map(
-				function( $gateway ) use ( $booking ) {
-					return $gateway->getCheckoutData( $booking );
-				},
-				MPHB()->gatewayManager()->getListActive()
-			);
-
-			$responseData['isFree'] = $total == 0;
-		}
-
-		wp_send_json_success( $responseData );
-	}
 
 	public function get_billing_fields() {
 

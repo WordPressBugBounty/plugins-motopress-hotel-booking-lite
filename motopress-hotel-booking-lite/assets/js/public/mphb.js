@@ -714,13 +714,18 @@
     }, {});
     MPHB.Gateway = can.Construct.extend({}, {
       amount: 0,
+      paymentFee: 0,
+      paymentFeeHtml: '',
       paymentDescription: '',
       init: function init(args) {
         this.billingSection = args.billingSection;
         this.initSettings(args.settings);
       },
       initSettings: function initSettings(settings) {
+        var _settings$paymentFee, _settings$paymentFeeH;
         this.amount = settings.amount;
+        this.paymentFee = (_settings$paymentFee = settings.paymentFee) !== null && _settings$paymentFee !== void 0 ? _settings$paymentFee : 0;
+        this.paymentFeeHtml = (_settings$paymentFeeH = settings.paymentFeeHtml) !== null && _settings$paymentFeeH !== void 0 ? _settings$paymentFeeH : '';
         this.paymentDescription = settings.paymentDescription;
       },
       /**
@@ -738,6 +743,8 @@
       },
       updateData: function updateData(data) {
         this.amount = data.amount;
+        this.paymentFee = data.paymentFee;
+        this.paymentFeeHtml = data.paymentFeeHtml;
         this.paymentDescription = data.paymentDescription;
       },
       afterSelection: function afterSelection(newFieldset) {},
@@ -1011,6 +1018,19 @@
           return 0;
         }
       },
+      getSelectedGatewayPaymentFeeAmount: function getSelectedGatewayPaymentFeeAmount() {
+        var _this$gateways$gatewa;
+        var gatewayId = this.getSelectedGateway();
+        return this.gateways.hasOwnProperty(gatewayId) ? (_this$gateways$gatewa = this.gateways[gatewayId].paymentFee) !== null && _this$gateways$gatewa !== void 0 ? _this$gateways$gatewa : 0 : 0;
+      },
+      getSelectedGatewayPaymentFeeHtml: function getSelectedGatewayPaymentFeeHtml() {
+        var gatewayId = this.getSelectedGateway();
+        if (this.gateways.hasOwnProperty(gatewayId) && this.gateways[gatewayId].paymentFeeHtml) {
+          return this.gateways[gatewayId].paymentFeeHtml;
+        } else {
+          return '';
+        }
+      },
       notifySelectedGateway: function notifySelectedGateway(gatewayId) {
         gatewayId = gatewayId || this.getSelectedGateway();
         if (gatewayId && this.gateways.hasOwnProperty(gatewayId)) {
@@ -1195,9 +1215,15 @@
       updateRatesTimeout: null,
       freeBooking: false,
       currentInfoAjax: null,
+      total: 0,
+      deposit: 0,
+      paymentFee: 0,
       /** @since 3.6.0 */
       toPay: 0,
       init: function init(el, args) {
+        // when we have free booking after checkout submit 
+        // we do not have checkout form so we do not want to init it
+        if (!el.length) return;
         MPHB.CheckoutForm.myThis = this;
         this.bookBtnEl = this.element.find('input[type=submit]');
         this.errorsWrapperEl = this.element.find('.mphb-errors-wrapper');
@@ -1224,35 +1250,25 @@
         $('.mphb-room-details').each(function () {
           self.updateRatePrices($(this));
         });
+        $('[name="mphb_gateway_id"]').on('change', function (e) {
+          self.setPaymentFee();
+          self.element[0].dispatchEvent(new CustomEvent('CheckoutDataChanged', {
+            detail: {
+              total: this.total,
+              deposit: this.deposit,
+              toPay: this.toPay,
+              paymentFee: this.paymentFee
+            }
+          }));
+        });
+
+        // we need this for payment request because it disables mphb_update_checkout_info
+        this.setCheckoutData({
+          newAmount: MPHB._data.checkout.total,
+          depositAmount: MPHB._data.checkout.total,
+          gateways: MPHB._data.gateways
+        });
         this.updateCheckoutInfo();
-      },
-      /**
-       * @param {Number} amount
-       * @param {String} priceHtml
-       *
-       * @since 3.6.0 removed the "value" parameter.
-       * @since 3.6.0 added new parameter - amount.
-       * @since 3.6.0 added new parameter - priceHtml.
-       */
-      setTotal: function setTotal(amount, priceHtml) {
-        this.toPay = amount;
-        this.element.find('.mphb-total-price-field').html(priceHtml);
-      },
-      /**
-       * @param {Number} amount
-       * @param {String} priceHtml
-       *
-       * @since 3.6.0 removed the "value" parameter.
-       * @since 3.6.0 added new parameter - amount.
-       * @since 3.6.0 added new parameter - priceHtml.
-       */
-      setDeposit: function setDeposit(amount, priceHtml) {
-        this.toPay = amount;
-        this.element.find('.mphb-deposit-amount-field').html(priceHtml);
-      },
-      setupPriceBreakdown: function setupPriceBreakdown(priceBreakdown) {
-        this.priceBreakdownTableEl.replaceWith(priceBreakdown);
-        this.priceBreakdownTableEl = this.element.find('table.mphb-price-breakdown');
       },
       updateCheckoutInfo: function updateCheckoutInfo() {
         var self = this;
@@ -1278,20 +1294,13 @@
               }
             },
             success: function success(response) {
-              if (response.hasOwnProperty('success')) {
-                if (response.success) {
-                  if (response.data) {
-                    self.setCheckoutData(response.data);
-                  }
-                } else {
-                  self.showError(response.data.message);
-                }
-              } else {
-                self.showError(MPHB._data.translations.errorHasOccured);
+              if (response.hasOwnProperty('success') && response.success && response.data) {
+                self.setCheckoutData(response.data);
               }
             },
             error: function error(jqXHR) {
-              self.showError(MPHB._data.translations.errorHasOccured);
+              var _ref, _jqXHR$responseJSON$d, _jqXHR$responseJSON, _jqXHR$responseJSON2;
+              self.showError((_ref = (_jqXHR$responseJSON$d = (_jqXHR$responseJSON = jqXHR.responseJSON) === null || _jqXHR$responseJSON === void 0 || (_jqXHR$responseJSON = _jqXHR$responseJSON.data) === null || _jqXHR$responseJSON === void 0 ? void 0 : _jqXHR$responseJSON.message) !== null && _jqXHR$responseJSON$d !== void 0 ? _jqXHR$responseJSON$d : (_jqXHR$responseJSON2 = jqXHR.responseJSON) === null || _jqXHR$responseJSON2 === void 0 || (_jqXHR$responseJSON2 = _jqXHR$responseJSON2.data) === null || _jqXHR$responseJSON2 === void 0 ? void 0 : _jqXHR$responseJSON2.errorMessage) !== null && _ref !== void 0 ? _ref : MPHB._data.translations.errorHasOccured);
             },
             complete: function complete(jqXHR) {
               self.hidePreloader();
@@ -1301,18 +1310,61 @@
         }, 500);
       },
       setCheckoutData: function setCheckoutData(data) {
-        this.setTotal(data.newAmount, data.priceHtml);
-        this.setupPriceBreakdown(data.priceBreakdown);
+        this.billingSection.updateGatewaysData(data.gateways);
+        this.total = data.newAmount;
+        this.toPay = this.total;
+        if (data.priceHtml) {
+          this.element.find('.mphb-total-price-field').html(data.priceHtml);
+        }
+        if (data.priceBreakdown) {
+          this.priceBreakdownTableEl.replaceWith(data.priceBreakdown);
+          this.priceBreakdownTableEl = this.element.find('table.mphb-price-breakdown');
+        }
         if (MPHB._data.settings.useBilling) {
-          this.setDeposit(data.depositAmount, data.depositPrice);
-          this.billingSection.updateGatewaysData(data.gateways);
+          if (data.depositAmount) {
+            this.deposit = data.depositAmount;
+            this.toPay = this.deposit;
+            this.element.find('.mphb-deposit-amount-field').html(data.depositPrice);
+          }
           if (data.isFree) {
             this.setFreeMode();
           } else {
             this.unsetFreeMode();
           }
+          this.setPaymentFee();
         }
-        this.element[0].dispatchEvent(new Event('CheckoutDataChanged'));
+        this.element[0].dispatchEvent(new CustomEvent('CheckoutDataChanged', {
+          detail: {
+            total: this.total,
+            deposit: this.deposit,
+            toPay: this.toPay,
+            paymentFee: this.paymentFee
+          }
+        }));
+      },
+      setPaymentFee: function setPaymentFee() {
+        this.paymentFee = this.billingSection.getSelectedGatewayPaymentFeeAmount();
+        if (!this.freeBooking && 0 < this.paymentFee) {
+          var totalPaymentFeeEl = this.element.find('.mphb-total-price .mphb-payment-fee');
+          var depositPaymentFeeEl = this.element.find('.mphb-deposit-amount .mphb-payment-fee');
+
+          // there is no depositPaymentFeeEl in payment request addon
+          if (!depositPaymentFeeEl.length || this.total === this.deposit) {
+            totalPaymentFeeEl.removeClass('mphb-hide');
+            totalPaymentFeeEl.find('.mphb-payment-fee-field').html(this.billingSection.getSelectedGatewayPaymentFeeHtml());
+            depositPaymentFeeEl.addClass('mphb-hide');
+            depositPaymentFeeEl.find('.mphb-payment-fee-field').html('');
+          } else {
+            totalPaymentFeeEl.addClass('mphb-hide');
+            totalPaymentFeeEl.find('.mphb-payment-fee-field').html('');
+            depositPaymentFeeEl.removeClass('mphb-hide');
+            depositPaymentFeeEl.find('.mphb-payment-fee-field').html(this.billingSection.getSelectedGatewayPaymentFeeHtml());
+          }
+        } else {
+          this.element.find('.mphb-payment-fee-field').html('');
+          this.element.find('.mphb-payment-fee').addClass('mphb-hide');
+        }
+        this.toPay = (this.total === this.deposit ? this.total : this.deposit) + (this.freeBooking ? 0 : this.paymentFee);
       },
       setFreeMode: function setFreeMode() {
         this.freeBooking = true;

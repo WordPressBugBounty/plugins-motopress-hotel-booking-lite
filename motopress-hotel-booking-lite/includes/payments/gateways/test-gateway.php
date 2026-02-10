@@ -37,6 +37,10 @@ class TestGateway extends Gateway {
 		return false;
 	}
 
+	protected function isPaymentFeeSupported(): bool {
+		return true;
+	}
+
 	protected function setupProperties() {
 
 		parent::setupProperties();

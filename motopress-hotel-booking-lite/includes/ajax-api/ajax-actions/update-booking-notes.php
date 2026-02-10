@@ -57,7 +57,9 @@ class UpdateBookingNotes extends AbstractAjaxApiAction {
 
 		$result = array();
 
+		// phpcs:ignore
 		foreach ( $_REQUEST[ $requestDataName ] as $note ) {
+
 			$noteText   = isset( $note['note'] ) ? sanitize_text_field( wp_unslash( $note['note'] ) ) : '';
 			$noteTime   = isset( $note['date'] ) ? (int) ValidateUtils::validateInt( $note['date'], 0 ) : 0;
 			$noteUserId = isset( $note['user'] ) ? (int) ValidateUtils::validateInt( $note['user'], 0 ) : 0;

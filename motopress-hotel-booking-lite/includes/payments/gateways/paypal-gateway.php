@@ -57,6 +57,10 @@ class PaypalGateway extends Gateway {
 		return $show;
 	}
 
+	protected function isPaymentFeeSupported(): bool {
+		return true;
+	}
+
 	protected function setupProperties() {
 
 		parent::setupProperties();
@@ -197,7 +201,7 @@ class PaypalGateway extends Gateway {
 
 		// change name to fix paypal problem with data parsing
 		$paymentParameters['item_name'] = str_replace( ' #', '-', $this->generateItemName( $booking ) );
-		$paymentParameters['amount'] = $payment->getAmount();
+		$paymentParameters['amount'] = $payment->getAmount() + $payment->getPaymentFee();
 
 		$paypalUrl = http_build_query(
 			$paymentParameters,

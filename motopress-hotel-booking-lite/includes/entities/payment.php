@@ -29,6 +29,8 @@ class Payment {
 	 */
 	private $amount;
 
+	private float $paymentFee = 0;
+
 	/**
 	 * @var string
 	 */
@@ -78,9 +80,10 @@ class Payment {
 		$this->transactionId = isset( $atts['transactionId'] ) ? $atts['transactionId'] : '';
 
 		// Payment Info
-		$this->amount    = $atts['amount'];
-		$this->currency  = $atts['currency'];
-		$this->bookingId = $atts['bookingId'];
+		$this->amount     = $atts['amount'];
+		$this->paymentFee = $atts['paymentFee'] ?? 0;
+		$this->currency   = $atts['currency'];
+		$this->bookingId  = $atts['bookingId'];
 
 		// Billing Fields
 		$this->email = ! empty( $atts['email'] ) ? $atts['email'] : '';
@@ -130,6 +133,10 @@ class Payment {
 	 */
 	public function getAmount() {
 		return $this->amount;
+	}
+
+	public function getPaymentFee(): float {
+		return $this->paymentFee;
 	}
 
 	/**

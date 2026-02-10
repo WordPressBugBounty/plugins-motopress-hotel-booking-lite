@@ -12,6 +12,7 @@ class AjaxApiHandler {
 		'\MPHB\AjaxApi\GetRoomTypeAvailabilityData',
 		'\MPHB\AjaxApi\GetAdminCalendarBookingInfo',
 		'\MPHB\AjaxApi\UpdateBookingNotes',
+		'\MPHB\AjaxApi\UpdateCheckoutInfo',
 	);
 
 	private static function getAjaxActionClassNames() {

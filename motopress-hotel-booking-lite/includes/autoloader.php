@@ -59,6 +59,7 @@ class Autoloader {
 		$this->customPathList['AjaxApi\\GetAdminCalendarBookingInfo'] = 'includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php';
 		$this->customPathList['AjaxApi\\CreateStripePaymentIntent']   = 'includes/ajax-api/ajax-actions/create-stripe-payment-intent.php';
 		$this->customPathList['AjaxApi\\UpdateBookingNotes']          = 'includes/ajax-api/ajax-actions/update-booking-notes.php';
+		$this->customPathList['AjaxApi\\UpdateCheckoutInfo']          = 'includes/ajax-api/ajax-actions/update-checkout-info.php';
 
 
 		// lib for countries and currencies lists

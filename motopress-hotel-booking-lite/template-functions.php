@@ -961,7 +961,7 @@ function mphb_tmpl_the_reserved_rooms_details( $reservedRooms ) {
 /**
  * @param \MPHB\Entities\Booking $booking
  */
-function mphb_tmpl_the_payments_table( $booking ) {
+function mphb_tmpl_the_payments_table( $booking, bool $isShowPaymentFee = false ) {
 	/**
 	 * @var \MPHB\Entities\Payment[]
 	 */
@@ -996,8 +996,20 @@ function mphb_tmpl_the_payments_table( $booking ) {
 					echo '<td>', sprintf( '<a href="%1$s">#%2$s</a>', esc_url( get_edit_post_link( $payment->getId() ) ), esc_html( $payment->getId() ) ), '</td>';
 
 					echo '<td>', esc_html( mphb_get_status_label( $payment->getStatus() ) ), '</td>';
-					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					echo '<td>', mphb_format_price( $payment->getAmount() ), '</td>';
+
+					echo '<td>' . mphb_format_price( $payment->getAmount() ); // phpcs:ignore
+
+					if ( $isShowPaymentFee && 0 < $payment->getPaymentFee() ) {
+
+						echo '<br/><small>' .
+							sprintf(
+								//translators: %s is the transaction fee amount, e.g. "+$2.50". 'txn' is short for 'transaction'.
+								__( '+%s txn fee', 'motopress-hotel-booking' ),
+								mphb_format_price( $payment->getPaymentFee() )
+							) .
+							'</small>';
+					}
+					echo '</td>';
 					echo '</tr>';
 				}
 				?>

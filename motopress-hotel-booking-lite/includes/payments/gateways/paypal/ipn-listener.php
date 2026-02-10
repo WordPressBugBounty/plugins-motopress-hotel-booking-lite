@@ -197,7 +197,7 @@ class IpnListener extends Gateways\AbstractNotificationListener {
 	 */
 	private function checkPaymentAmount() {
 
-		if ( number_format( (float) $this->input['mc_gross'], 2 ) < number_format( (float) $this->payment->getAmount(), 2 ) ) {
+		if ( number_format( (float) $this->input['mc_gross'], 2 ) < number_format( (float) $this->payment->getAmount() + $this->payment->getPaymentFee(), 2 ) ) {
 			$log = __( 'Payment failed due to invalid amount in PayPal IPN.', 'motopress-hotel-booking' );
 			$this->paymentFailed( $log );
 			return false;
@@ -343,9 +343,9 @@ class IpnListener extends Gateways\AbstractNotificationListener {
 			return false;
 		}
 
-		$refundAmount = $this->input['mc_gross'] * -1;
+		$refundAmount = abs( $this->input['mc_gross'] );
 
-		if ( number_format( $refundAmount, 2 ) < number_format( (float) $this->payment->getAmount(), 2 ) ) {
+		if ( number_format( $refundAmount, 2 ) < number_format( (float) $this->payment->getAmount() + $this->payment->getPaymentFee(), 2 ) ) {
 			$log = sprintf( __( 'Partial PayPal refund processed: %s', 'motopress-hotel-booking' ), empty( $this->input['parent_txn_id'] ) ? $this->input['parent_txn_id'] : '' );
 			$this->payment->addLog( $log );
 

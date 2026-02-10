@@ -493,13 +493,15 @@ class StepBooking extends Step {
 	 */
 	protected function createPayment( $booking ) {
 
-		$gateway = MPHB()->gatewayManager()->getGateway( $this->gatewayId );
+		$gateway                  = MPHB()->gatewayManager()->getGateway( $this->gatewayId );
+		$paymentTransactionAmount = $booking->calcDepositAmount();
 
 		$paymentData = array(
 			'gatewayId'   => $gateway->getId(),
 			'gatewayMode' => $gateway->getMode(),
 			'bookingId'   => $booking->getId(),
-			'amount'      => $booking->calcDepositAmount(),
+			'amount'      => $paymentTransactionAmount,
+			'paymentFee'  => $gateway->calculatePaymentFee( $paymentTransactionAmount ),
 			'currency'    => MPHB()->settings()->currency()->getCurrencyCode(),
 		);
 

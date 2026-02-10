@@ -35,13 +35,14 @@ abstract class AbstractAjaxApiAction {
 		return true;
 	}
 
-	protected static function getIntegerFromRequest( string $requestDataName, bool $isRequired = false, int $defaultValue = 0 ) {
+	protected static function getIntegerFromRequest( string $requestDataName, bool $isRequired = false, int $defaultValue = 0, $requestData = null ) {
 
-		$result = $defaultValue;
+		$requestData = $requestData ?? $_REQUEST;
+		$result      = $defaultValue;
 
-		if ( isset( $_REQUEST[ $requestDataName ] ) && '' !== $_REQUEST[ $requestDataName ] ) {
+		if ( isset( $requestData[ $requestDataName ] ) && '' !== $requestData[ $requestDataName ] ) {
 
-			$result = intval( wp_unslash( $_REQUEST[ $requestDataName ] ) );
+			$result = intval( wp_unslash( $requestData[ $requestDataName ] ) );
 
 		} elseif ( $isRequired ) {
 			throw new \Exception( 'Required integer parameter ' . $requestDataName . ' is missing in request.' );
@@ -50,13 +51,14 @@ abstract class AbstractAjaxApiAction {
 		return $result;
 	}
 
-	protected static function getFloatFromRequest( string $requestDataName, bool $isRequired = false, float $defaultValue = 0.0 ) {
+	protected static function getFloatFromRequest( string $requestDataName, bool $isRequired = false, float $defaultValue = 0.0, $requestData = null ) {
 
-		$result = $defaultValue;
+		$requestData = $requestData ?? $_REQUEST;
+		$result      = $defaultValue;
 
-		if ( isset( $_REQUEST[ $requestDataName ] ) && '' !== $_REQUEST[ $requestDataName ] ) {
+		if ( isset( $requestData[ $requestDataName ] ) && '' !== $requestData[ $requestDataName ] ) {
 
-			$result = floatval( wp_unslash( $_REQUEST[ $requestDataName ] ) );
+			$result = floatval( wp_unslash( $requestData[ $requestDataName ] ) );
 
 		} elseif ( $isRequired ) {
 			throw new \Exception( 'Required float parameter ' . $requestDataName . ' is missing in request.' );
@@ -65,13 +67,14 @@ abstract class AbstractAjaxApiAction {
 		return $result;
 	}
 
-	protected static function getStringFromRequest( string $requestDataName, bool $isRequired = false, string $defaultValue = '' ) {
+	protected static function getStringFromRequest( string $requestDataName, bool $isRequired = false, string $defaultValue = '', $requestData = null ) {
 
-		$result = $defaultValue;
+		$requestData = $requestData ?? $_REQUEST;
+		$result      = $defaultValue;
 
-		if ( ! empty( $_REQUEST[ $requestDataName ] ) ) {
+		if ( ! empty( $requestData[ $requestDataName ] ) ) {
 
-			$result = sanitize_text_field( wp_unslash( $_REQUEST[ $requestDataName ] ) );
+			$result = sanitize_text_field( wp_unslash( $requestData[ $requestDataName ] ) );
 
 		} elseif ( $isRequired ) {
 			throw new \Exception( 'Required string parameter ' . $requestDataName . ' is missing in request.' );
@@ -86,13 +89,14 @@ abstract class AbstractAjaxApiAction {
 	 * @return DateTime or null
 	 * @throws Exception when request data could not be converted to DateTime
 	 */
-	protected static function getDateFromRequest( string $requestDataName, bool $isRequired = false, $defaultValue = null ) {
+	protected static function getDateFromRequest( string $requestDataName, bool $isRequired = false, $defaultValue = null, $requestData = null ) {
 
-		$result = $defaultValue;
+		$requestData = $requestData ?? $_REQUEST;
+		$result      = $defaultValue;
 
-		if ( ! empty( $_REQUEST[ $requestDataName ] ) ) {
+		if ( ! empty( $requestData[ $requestDataName ] ) ) {
 
-			$stringData = sanitize_text_field( wp_unslash( $_REQUEST[ $requestDataName ] ) );
+			$stringData = sanitize_text_field( wp_unslash( $requestData[ $requestDataName ] ) );
 			$result     = \DateTime::createFromFormat( 'Y-m-d', $stringData, DateUtils::getSiteTimeZone() );
 
 			if ( ! $result instanceof \DateTime ) {
@@ -106,14 +110,15 @@ abstract class AbstractAjaxApiAction {
 		return $result;
 	}
 
-	protected static function getBooleanFromRequest( string $requestDataName, bool $isRequired = false, bool $defaultValue = false ) {
+	protected static function getBooleanFromRequest( string $requestDataName, bool $isRequired = false, bool $defaultValue = false, $requestData = null ) {
 
-		$result = $defaultValue;
+		$requestData = $requestData ?? $_REQUEST;
+		$result      = $defaultValue;
 
-		if ( ! empty( $_REQUEST[ $requestDataName ] ) ) {
+		if ( ! empty( $requestData[ $requestDataName ] ) ) {
 
             // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-			$result = rest_sanitize_boolean( wp_unslash( $_REQUEST[ $requestDataName ] ) );
+			$result = rest_sanitize_boolean( wp_unslash( $requestData[ $requestDataName ] ) );
 
 		} elseif ( $isRequired ) {
 			throw new \Exception( 'Required boolean parameter ' . $requestDataName . ' is missing in request.' );
@@ -122,15 +127,18 @@ abstract class AbstractAjaxApiAction {
 		return $result;
 	}
 
-	protected static function getIdListFromRequest( string $requestDataName, bool $isRequired = false, array $defaultValue = array() ) {
+	protected static function getIdListFromRequest( string $requestDataName, bool $isRequired = false, array $defaultValue = array(), $requestData = null ) {
 
-		$result = $defaultValue;
+		$requestData = $requestData ?? $_REQUEST;
+		$result      = $defaultValue;
 
-		if ( isset( $_REQUEST[ $requestDataName ] ) && is_array( $_REQUEST[ $requestDataName ] ) ) {
+		if ( isset( $requestData[ $requestDataName ] ) && is_array( $requestData[ $requestDataName ] ) ) {
 
 			$result = array();
 
-			foreach ( $_REQUEST[ $requestDataName ] as $stringData ) {
+			// phpcs:ignore
+			foreach ( $requestData[ $requestDataName ] as $stringData ) {
+
 				$resultId = intval( wp_unslash( $stringData ) );
 
 				if ( $resultId > 0 ) {
@@ -187,7 +195,7 @@ abstract class AbstractAjaxApiAction {
 
 		} catch ( Throwable $e ) {
 
-			error_log( $e );
+			// error_log( $e );
 			wp_send_json_error( array( 'errorMessage' => $e->getMessage() ), 400 );
 		}
 

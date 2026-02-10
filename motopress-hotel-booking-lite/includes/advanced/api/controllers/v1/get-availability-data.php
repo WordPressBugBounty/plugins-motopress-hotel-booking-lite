@@ -92,7 +92,7 @@ class GetAvailabilityData extends AbstractRestCommandController {
 	/**
 	 * https://developer.wordpress.org/rest-api/extending-the-rest-api/schema/
 	 */
-	protected static function get_response_schema(): array {
+	public static function get_response_schema(): array {
 		return array(
 			'$schema' => 'http://json-schema.org/draft-04/schema#',
 			'title'   => 'Availability data',

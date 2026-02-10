@@ -97,6 +97,16 @@ class PaymentManageCPTPage extends ManageCPTPage {
 						'currency_symbol' => MPHB()->settings()->currency()->getBundle()->getSymbol( $payment->getCurrency() ),
 					)
 				);
+				if ( 0 < $payment->getPaymentFee() ) {
+
+						echo '<br/><small>' .
+						sprintf(
+							//translators: %s is the transaction fee amount, e.g. "+$2.50". 'txn' is short for 'transaction'.
+							__( '+%s txn fee', 'motopress-hotel-booking' ),
+							mphb_format_price( $payment->getPaymentFee() )
+						) .
+						'</small>';
+				}
 				break;
 
 			case 'mphb_booking_id':

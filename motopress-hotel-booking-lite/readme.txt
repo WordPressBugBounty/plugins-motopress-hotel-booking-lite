@@ -4,7 +4,7 @@ Donate link: https://motopress.com/
 Requires at least: 5.2
 Tags: hotel booking, reservation, hotel, booking engine, booking, booking calendar, booking system, calendar, online booking, airbnb, booking.com, homeaway, vrbo, tripadvisor, booking form, availability calendar, channel manager, property management system, vacation, travel
 Tested up to: 6.9
-Stable tag: 5.3.3
+Stable tag: 5.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -175,6 +175,10 @@ MotoPress Hotel Booking plugin, Copyright (C) 2016, MotoPress https://motopress.
 MotoPress Hotel Booking plugin is distributed under the terms of the GNU GPL.
 
 == Changelog ==
+
+= 5.4.0, Feb 6 2026 =
+* New: Added the ability to apply gateway-specific transaction fees to bookings (PayPal, Stripe, 2Checkout, Braintree, and Beanstream/Bambora) to pass payment processing costs onto the guest.
+* Improvement: Search results now include only accommodations that can host the full number of requested guests when the “Limit search results based on the requested number of guests” option is enabled.
 
 = 5.3.3, Jan 20 2026 =
 * Minor bugfixes and improvements.
