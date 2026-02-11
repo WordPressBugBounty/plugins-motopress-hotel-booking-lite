@@ -1310,7 +1310,9 @@
         }, 500);
       },
       setCheckoutData: function setCheckoutData(data) {
-        this.billingSection.updateGatewaysData(data.gateways);
+        if (MPHB._data.settings.useBilling) {
+          this.billingSection.updateGatewaysData(data.gateways);
+        }
         this.total = data.newAmount;
         this.toPay = this.total;
         if (data.priceHtml) {
