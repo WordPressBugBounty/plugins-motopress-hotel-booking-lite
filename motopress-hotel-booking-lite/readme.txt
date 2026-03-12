@@ -4,7 +4,7 @@ Donate link: https://motopress.com/
 Requires at least: 5.2
 Tags: hotel booking, reservation, hotel, booking engine, booking, booking calendar, booking system, calendar, online booking, airbnb, booking.com, homeaway, vrbo, tripadvisor, booking form, availability calendar, channel manager, property management system, vacation, travel
 Tested up to: 6.9
-Stable tag: 5.5.0
+Stable tag: 5.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -176,7 +176,7 @@ MotoPress Hotel Booking plugin is distributed under the terms of the GNU GPL.
 
 == Changelog ==
 
-= 5.5.0, Mar 12 2026
+= 5.5.1, Mar 12 2026
 * New: Added beta integration with Google Hotels Prices (Phase 1). This first phase collects your property data. Submit via Accommodation > Google Hotels to give your direct booking site a chance to appear in Google Search and Maps.
 
 = 5.4.1, Feb 11 2026 =
