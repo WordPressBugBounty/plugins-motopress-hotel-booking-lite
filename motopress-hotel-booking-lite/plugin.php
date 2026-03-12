@@ -516,6 +516,15 @@ private $upgradeToPremiumMenuPage;
 
 		$this->roomsGeneratorMenuPage = new \MPHB\Admin\MenuPages\RoomsGeneratorMenuPage( 'mphb_rooms_generator', $roomGeneratorAtts );
 
+		new \MPHB\Admin\MenuPages\GoogleHotelsMenuPage(
+			'mphb_google_hotels_settings',
+			array(
+				'capability'  => \MPHB\UsersAndRoles\CapabilitiesAndRoles::MANAGE_SETTINGS,
+				'parent_menu' => MPHB()->postTypes()->roomType()->getMenuSlug(),
+				'order'       => 25,
+			)
+		);
+
 		$settingsAtts = array(
 			'capability'  => \MPHB\UsersAndRoles\CapabilitiesAndRoles::MANAGE_SETTINGS,
 			'parent_menu' => MPHB()->postTypes()->roomType()->getMenuSlug(),
@@ -1429,6 +1438,10 @@ private $upgradeToPremiumMenuPage;
 
 
 	public static function deactivate() {
+
+		// reset roles and capabilities on activation
+		\HotelBookingPlugin::setCustomRolesVersion( 0 );
+
 		$mphbActiveCount  = (int) \MPHB\Utils\ThirdPartyPluginsUtils::isActiveMphb();
 		$mphbActiveCount += (int) \MPHB\Utils\ThirdPartyPluginsUtils::isActiveMphbLite();
 

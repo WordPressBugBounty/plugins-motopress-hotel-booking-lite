@@ -42,6 +42,10 @@ class Server {
 		'booking_rules'                      => 'BookingRulesController',
 		'taxes_and_fees'                     => 'TaxesAndFeesController',
 		'availability'                       => 'GetAvailabilityData',
+		'countries'                          => 'GetCountries',
+		'google-hotels-data-get'             => 'GetGoogleHotelsData',
+		'google-hotels-data-post'            => 'UpdateGoogleHotelsData',
+		'google-hotels-verification-token'   => 'GetGoogleHotelsVerificationToken',
 	);
 
 	/**
@@ -64,8 +68,9 @@ class Server {
 	public function registerRestRoutes() {
 		foreach ( $this->getRestNamespaces() as $namespace => $controllers ) {
 			foreach ( $controllers as $controller_name => $controller_class ) {
-				$this->controllers[ $namespace ][ $controller_name ] = new $controller_class();
-				$this->controllers[ $namespace ][ $controller_name ]->register_routes();
+				$restApiController = new $controller_class();
+				$this->controllers[ $namespace ][ $controller_name ][] = $restApiController;
+				$restApiController->register_routes();
 			}
 		}
 	}

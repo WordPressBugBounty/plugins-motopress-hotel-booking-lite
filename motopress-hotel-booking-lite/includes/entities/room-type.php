@@ -137,6 +137,26 @@ class RoomType {
 	 */
 	private $status;
 
+	// Google Hotels data
+	private bool $isIncludeToGoogleHotels;
+	private string $propertyId;
+	private string $propertyTitle;
+	private bool $isIndoorAccommodation;
+	private bool $isOnsiteManaged;
+	private bool $isAcceptingOvernightGuests;
+	private bool $isAddressPubliclyListed;
+	private string $propertyType; // 'hotel' | 'vacation_rental' | 'outdoor_lodging'
+	private string $propertyCategory; // '' | HOTEL_CATEGORY_VALUE | VACATION_RENTAL_CATEGORY_VALUE
+	private float $latitude;
+	private float $longitude;
+	private string $contactsMainPhone;
+	private string $addressLine1;
+	private string $addressLine2;
+	private string $addressCity;
+	private string $addressProvince;
+	private string $addressPostalCode;
+	private string $addressCountryCode;
+
 	/**
 	 *
 	 * @param array $atts
@@ -163,6 +183,30 @@ class RoomType {
 		$this->imageId       = $atts['image_id'];
 		$this->galleryIds    = $atts['gallery_ids'];
 		$this->status        = $atts['status'];
+
+		// Google Hotels data
+		$this->isIncludeToGoogleHotels = $atts['is_include_to_google_hotels'] ?? false;
+		$this->propertyId = $atts['property_id'] ?? '';
+		$this->propertyTitle = $atts['property_title'] ?? '';
+		$this->isIndoorAccommodation = $atts['is_indoor_accommodation'] ?? false;
+		$this->isOnsiteManaged = $atts['is_onsite_managed'] ?? false;
+		$this->isAcceptingOvernightGuests = $atts['is_accepting_overnight_guests'] ?? false;
+		$this->isAddressPubliclyListed = $atts['is_address_publicly_listed'] ?? false;
+		$this->propertyType = $atts['property_type'] ?? 'outdoor_lodging';
+		$this->propertyCategory = $atts['property_category'] ?? '';
+		$this->latitude = $atts['latitude'] ?? 0;
+		$this->longitude = $atts['longitude'] ?? 0;
+		$this->contactsMainPhone = $atts['contacts_main_phone'] ?? '';
+		$this->addressLine1 = $atts['address_line1'] ?? '';
+		$this->addressLine2 = $atts['address_line2'] ?? '';
+		$this->addressCity = $atts['address_city'] ?? '';
+		$this->addressProvince = $atts['address_province'] ?? '';
+		$this->addressPostalCode = $atts['address_postal_code'] ?? '';
+		$this->addressCountryCode = $atts['address_country_code'] ?? '';
+	}
+
+	public function getPostData(): WPPostData {
+		return MPHB()->getRoomTypeRepository()->mapEntityToPostData( $this );
 	}
 
 	/**
@@ -505,4 +549,147 @@ class RoomType {
 		return $this->getTaxesAndFees()->hasTaxesAndFees();
 	}
 
+	public function isIncludeToGoogleHotels(): bool {
+		return $this->isIncludeToGoogleHotels;
+	}
+
+	public function setIncludeToGoogleHotels( bool $isIncludeToGoogleHotels ): void {
+		$this->isIncludeToGoogleHotels = $isIncludeToGoogleHotels;
+	}
+
+	public function getPropertyId(): string {
+		return $this->propertyId;
+	}
+
+	public function setPropertyId( string $propertyId ): void {
+		$this->propertyId = $propertyId;
+	}
+
+	public function getPropertyTitle(): string {
+		return $this->propertyTitle;
+	}
+
+	public function setPropertyTitle( string $propertyTitle ): void {
+		$this->propertyTitle = $propertyTitle;
+	}
+
+	public function isIndoorAccommodation(): bool {
+		return $this->isIndoorAccommodation;
+	}
+
+	public function setIndoorAccommodation( bool $isIndoorAccommodation ): void {
+		$this->isIndoorAccommodation = $isIndoorAccommodation;
+	}
+
+	public function isOnsiteManaged(): bool {
+		return $this->isOnsiteManaged;
+	}
+
+	public function setOnsiteManaged( bool $isOnsiteManaged ): void {
+		$this->isOnsiteManaged = $isOnsiteManaged;
+	}
+
+	public function isAcceptingOvernightGuests(): bool {
+		return $this->isAcceptingOvernightGuests;
+	}
+
+	public function setAcceptingOvernightGuests( bool $isAcceptingOvernightGuests ): void {
+		$this->isAcceptingOvernightGuests = $isAcceptingOvernightGuests;
+	}
+
+	public function isAddressPubliclyListed(): bool {
+		return $this->isAddressPubliclyListed;
+	}
+
+	public function setAddressPubliclyListed( bool $isAddressPubliclyListed ): void {
+		$this->isAddressPubliclyListed = $isAddressPubliclyListed;
+	}
+
+	public function getPropertyType(): string {
+		return $this->propertyType;
+	}
+
+	public function setPropertyType( string $propertyType ): void {
+		$this->propertyType = $propertyType;
+	}
+
+	public function getPropertyCategory(): string {
+		return $this->propertyCategory;
+	}
+
+	public function setPropertyCategory( string $propertyCategory ): void {
+		$this->propertyCategory = $propertyCategory;
+	}
+
+	public function getLatitude(): float {
+		return $this->latitude;
+	}
+
+	public function setLatitude( float $latitude ): void {
+		$this->latitude = $latitude;
+	}
+
+	public function getLongitude(): float {
+		return $this->longitude;
+	}
+
+	public function setLongitude( float $longitude ): void {
+		$this->longitude = $longitude;
+	}
+
+	public function getContactsMainPhone(): string {
+		return $this->contactsMainPhone;
+	}
+
+	public function setContactsMainPhone( string $contactsMainPhone ): void {
+		$this->contactsMainPhone = $contactsMainPhone;
+	}
+
+	public function getAddressLine1(): string {
+		return $this->addressLine1;
+	}
+
+	public function setAddressLine1( string $addressLine1 ): void {
+		$this->addressLine1 = $addressLine1;
+	}
+
+	public function getAddressLine2(): string {
+		return $this->addressLine2;
+	}
+
+	public function setAddressLine2( string $addressLine2 ): void {
+		$this->addressLine2 = $addressLine2;
+	}
+
+	public function getAddressCity(): string {
+		return $this->addressCity;
+	}
+
+	public function setAddressCity( string $addressCity ): void {
+		$this->addressCity = $addressCity;
+	}
+
+	public function getAddressProvince(): string {
+		return $this->addressProvince;
+	}
+
+	public function setAddressProvince( string $addressProvince ): void {
+		$this->addressProvince = $addressProvince;
+	}
+
+	public function getAddressPostalCode(): string {
+		return $this->addressPostalCode;
+	}
+
+	public function setAddressPostalCode( string $addressPostalCode ): void {
+		$this->addressPostalCode = $addressPostalCode;
+	}
+
+	public function getAddressCountryCode(): string {
+		return $this->addressCountryCode;
+	}
+
+	public function setAddressCountryCode( string $addressCountryCode ): void {
+		$this->addressCountryCode = $addressCountryCode;
+	}
 }

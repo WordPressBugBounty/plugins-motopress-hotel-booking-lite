@@ -50,7 +50,9 @@ abstract class AbstractCoreAPIFacade {
 	/**
 	 * @return array with hooks names if facade use cache or empty array otherwise.
 	 */
-	abstract protected function getHookNamesForClearAllCache(): array;
+	protected function getHookNamesForClearAllCache(): array {
+		return array();
+	}
 
 
 	// TODO: add separate cache for each facade

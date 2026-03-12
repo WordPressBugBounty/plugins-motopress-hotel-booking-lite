@@ -61,9 +61,13 @@ class CapabilitiesAndRoles {
 			}
 		}
 
+		$adminRole = get_role( 'administrator' );
+
 		// update role capabilities if current version of the roles code > roles version in DB
 		// we just add our caps and do not erase already set caps by admin
-		if ( Roles::getCurrentVersion() > \HotelBookingPlugin::getCustomRolesVersion() ) {
+		if ( Roles::getCurrentVersion() > \HotelBookingPlugin::getCustomRolesVersion() ||
+			! ( $adminRole && $adminRole->has_cap( self::MANAGE_SETTINGS ) )
+		) {
 
 			$capabilitiesToRoles = MPHB()->capabilitiesAndRoles()->getRoles();
 
@@ -235,7 +239,6 @@ class CapabilitiesAndRoles {
 			}
 		}
 	}
-
 
 	public static function removeUserRoles() {
 

@@ -43,9 +43,13 @@ class Autoloader {
 		$this->customPathList['Core\\RoomsCoreAPIFacade']             = 'includes/core/rooms-core-api-facade.php';
 		$this->customPathList['Core\\RoomsAvailabilityCoreAPIFacade'] = 'includes/core/rooms-availability-core-api-facade.php';
 		$this->customPathList['Core\\PricesCoreAPIFacade']            = 'includes/core/prices-core-api-facade.php';
+
 		$this->customPathList['Core\\RoomTypeAvailabilityStatus']     = 'includes/core/data/room-type-availability-status.php';
 		$this->customPathList['Core\\BookingRulesData']               = 'includes/core/data/booking-rules-data.php';
 		$this->customPathList['Core\\RoomTypeAvailabilityData']       = 'includes/core/data/room-type-availability-data.php';
+		$this->customPathList['Core\\Abstract_Enum']                  = 'includes/core/data/abstract-enum.php';
+		$this->customPathList['Core\\Country_Enum']                   = 'includes/core/data/country-enum.php';
+
 		$this->customPathList['Core\\BookingHelper']                  = 'includes/core/helpers/booking-helper.php';
 		$this->customPathList['Core\\RoomAvailabilityHelper']         = 'includes/core/helpers/room-availability-helper.php';
 		$this->customPathList['Core\\RoomHelper']                     = 'includes/core/helpers/room-helper.php';

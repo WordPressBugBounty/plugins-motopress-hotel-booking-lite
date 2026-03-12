@@ -5,9 +5,7 @@ namespace MPHB\Core;
 use MPHB\Core\BookingHelper;
 use MPHB\Entities\RoomType;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * This facade must contain all methods for working with rooms and
@@ -50,9 +48,9 @@ class RoomsCoreAPIFacade extends AbstractCoreAPIFacade {
 	/**
 	 * @return \MPHB\Entities\RoomType or null if nothing is found
 	 */
-	public function getRoomTypeById( int $roomTypeId ) {
+	public function getRoomTypeById( int $roomTypeId, bool $isReloadFromDataBase = false ) {
 		// we already have entities cache by id in repository!
-		return MPHB()->getRoomTypeRepository()->findById( $roomTypeId );
+		return MPHB()->getRoomTypeRepository()->findById( $roomTypeId, $isReloadFromDataBase );
 	}
 
 	/**
@@ -157,5 +155,9 @@ class RoomsCoreAPIFacade extends AbstractCoreAPIFacade {
 		$children = min( $children, $roomType->getMaxChildren( $adults ) );
 
 		return [ $adults, $children ];
+	}
+
+	public function updateRoomType( RoomType $roomType ): void {
+		MPHB()->getRoomTypeRepository()->save( $roomType );
 	}
 }

@@ -75,7 +75,7 @@ class ReportEarningsByDatesData extends ReportByDatesData {
 	 * @return array
 	 */
 	private function requestBookings( $args ) {
-		foreach ( $this->getDataTypes() as $dataType ) {
+		foreach ( $this->getDataTypes() as $dataType => $title ) {
 			$bookingsData[ $dataType ] = array();
 		}
 
@@ -230,5 +230,3 @@ class ReportEarningsByDatesData extends ReportByDatesData {
 		return $this->dataFilters;
 	}
 }
-
-

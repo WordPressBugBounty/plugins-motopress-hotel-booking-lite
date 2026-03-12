@@ -639,4 +639,12 @@ class MainSettings {
 		 	);
 	}
 
+	public function isGoogleHotelsIntegrationOn(): bool {
+		return (bool) get_option( 'mphb_google_hotels_integration_on', false );
+	}
+
+	public function updateGoogleHotelsIntegrationOn( bool $isGoogleHotelsIntegrationOn ) {
+		return update_option( 'mphb_google_hotels_integration_on', $isGoogleHotelsIntegrationOn, true );
+	}
+
 }

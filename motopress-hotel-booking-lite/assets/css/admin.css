@@ -268,7 +268,7 @@ table.wp-list-table.posts tbody td.column-handle {
   width: 90%;
 }
 .mphb-preloader {
-  background-image: url("../../images/loading.gif?ver=5.4.1");
+  background-image: url("../../images/loading.gif?ver=5.5.0");
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -1144,6 +1144,7 @@ body.wp-admin.post-type-mphb_booking .check_in_out_date .mphb-booking-nights {
 .mphb-dates-range-custom {
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
 }
 #mphb-graphs-filter.mphb-invisible,
 .mphb-dates-range-custom.mphb-invisible {
@@ -1179,27 +1180,37 @@ body.wp-admin.post-type-mphb_booking .check_in_out_date .mphb-booking-nights {
 }
 #mphb-earnings-report-chart #mphb-chart-legend {
   display: flex;
+  gap: 25px;
   flex-direction: row;
-  margin: 0 0 15px 0;
+  margin: 0;
+}
+@media screen and (max-width: 1250px) {
+  #mphb-earnings-report-chart #mphb-chart-legend {
+    flex-wrap: wrap;
+  }
 }
 #mphb-earnings-report-chart #mphb-chart-legend .mphb-chart-legend-item {
-  border-right: 1px solid #c3c4c7;
-  border-top: 1px solid #c3c4c7;
-  border-bottom-width: 3px;
-  border-bottom-style: solid;
+  background: #e7ebf54a;
+  border-top-width: 3px;
+  border-top-style: solid;
+  border-radius: 0 0 10px 10px;
   display: block;
   margin: 0;
-  padding: 10px 15px;
+  padding: 10px 20px;
   box-sizing: border-box;
   line-height: 1;
   flex: 1;
 }
-#mphb-earnings-report-chart #mphb-chart-legend .mphb-chart-legend-item:first-child {
-  border-left: 1px solid #c3c4c7;
+@media screen and (max-width: 1250px) {
+  #mphb-earnings-report-chart #mphb-chart-legend .mphb-chart-legend-item {
+    flex: 1 0 auto;
+    width: calc(50% - (25px / 2));
+  }
 }
-#mphb-earnings-report-chart #mphb-chart-legend .mphb-chart-legend-item p {
-  margin-top: 0;
-  margin-bottom: 0;
+@media screen and (max-width: 500px) {
+  #mphb-earnings-report-chart #mphb-chart-legend .mphb-chart-legend-item {
+    width: 100%;
+  }
 }
 #mphb-earnings-report-chart #mphb-chart-legend .mphb-chart-legend-item-earnings {
   margin: 3px 0;
@@ -1208,11 +1219,103 @@ body.wp-admin.post-type-mphb_booking .check_in_out_date .mphb-booking-nights {
 #mphb-earnings-report-chart #mphb-earnings-report-info {
   margin-top: 1em;
 }
+.mphb-earnings-report-wrapper {
+  margin-bottom: 30px;
+}
+.mphb-earnings-report-legend-wrapper {
+  box-sizing: border-box;
+  padding: 0 11px;
+}
+.mphb-chart-legend-item-type {
+  font-size: 1.25em;
+  margin-top: 0;
+  font-weight: 500;
+}
+.mphb-chart-legend-item-earnings p {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  border-bottom: 1px solid rgba(195, 196, 199, 0.25);
+  margin-top: 0;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+.mphb-chart-legend-item-earnings p:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+#mphb-graphs-filter {
+  margin-right: auto;
+}
+#mphb-graphs-filter label {
+  display: block;
+}
+#mphb-graphs-filter input[type="submit"] {
+  min-height: var(--input-min-height);
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 16px;
+}
+#mphb-graphs-filter select {
+  min-width: 140px;
+}
+#mphb-graphs-filter .mphb-ctrl-wrapper input[type="text"] {
+  width: 140px;
+}
+#mphb-graphs-filter select,
+#mphb-graphs-filter .mphb-ctrl-wrapper input[type="text"] {
+  border-color: var(--input-border);
+  min-height: var(--input-min-height);
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#mphb-graphs-filter.has-custom-range {
+  width: 100%;
+}
+.mphb-dates-range-select {
+  margin-right: 10px;
+}
 .mphb-tooltip {
   display: block;
   background: #444444;
   color: #ffffff;
   padding: 3px;
+}
+.mphb-earnings-report-filters {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 15px;
+}
+@media screen and (max-width: 1250px) {
+  .mphb-earnings-report-filters {
+    flex-wrap: wrap;
+  }
+}
+.mphb-earnings-report-filters .multi-select .multi-select-header {
+  flex-wrap: nowrap;
+  position: relative;
+}
+.mphb-earnings-report-filters .multi-select .multi-select-header-option {
+  flex-shrink: 0;
+}
+.mphb-earnings-report-filters .multi-select .multi-select-header-max {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  background: #fff;
+}
+.mphb-chart-filter {
+  min-width: 220px;
+}
+.mphb-chart-filter label {
+  display: block;
+}
+.mphb-chart-filter select[multiple] {
+  height: 45px;
+  width: 100%;
 }
 /**
  * Help Tip

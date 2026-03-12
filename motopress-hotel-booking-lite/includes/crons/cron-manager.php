@@ -59,6 +59,7 @@ class CronManager {
 				'check_license_status',
 				self::INTERVAL_WEEKLY
 			),
+			new SyncGoogleHotelsDataCron(),
 		);
 
 		foreach ( $crons as $cron ) {

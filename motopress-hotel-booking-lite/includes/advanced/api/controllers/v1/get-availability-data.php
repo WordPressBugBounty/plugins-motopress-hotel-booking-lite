@@ -177,12 +177,12 @@ class GetAvailabilityData extends AbstractRestCommandController {
 	}
 
 	/**
-	 * @param array $requestData - data from request schema
-	 * @param array $requestFilesData - multipart file parameters from the body (typically find in $_FILES)
-	 * @return mixed data according to response data schema
+	 * @return mixed|\WP_Error data or error if needed to send some additional error data
 	 * @throws Exception when processing failed
 	 */
-	protected static function process_and_get_data_by_response_schema( array $requestData, array $requestFilesData ) {
+	protected static function process_and_get_data_by_response_schema( \WP_REST_Request $request ) {
+
+		$requestData = $request->get_params();
 
 		$roomTypes = array( null );
 

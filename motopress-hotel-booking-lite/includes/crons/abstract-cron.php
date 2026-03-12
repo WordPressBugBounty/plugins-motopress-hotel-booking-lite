@@ -73,6 +73,11 @@ abstract class AbstractCron {
 		wp_clear_scheduled_hook( $this->action );
 	}
 
+	public function reScheduleAt( $timestamp ) {
+		$this->unschedule();
+		$this->scheduleAt( $timestamp );
+	}
+
 	public function isScheduled() {
 		return (bool) wp_next_scheduled( $this->action );
 	}

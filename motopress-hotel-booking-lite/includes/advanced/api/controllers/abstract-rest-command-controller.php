@@ -94,8 +94,12 @@ abstract class AbstractRestCommandController {
 		return 200;
 	}
 
-	protected static function is_successful_response_contains_html(): bool {
-		return false;
+	protected static function is_responce_cachable(): bool {
+		return true;
+	}
+
+	protected static function get_successful_response_content_type(): string {
+		return 'application/json';
 	}
 
 	/**
@@ -105,25 +109,21 @@ abstract class AbstractRestCommandController {
 
 		try {
 
-			$response_data = static::process_and_get_data_by_response_schema(
-				$request->get_params(),
-				$request->get_file_params()
-			);
+			$response_data = static::process_and_get_data_by_response_schema( $request );
 
-			if ( null === $response_data ) {
-
-				return new \WP_Error(
-					'rest_process_error',
-					'Object not found.',
-					array(
-						'status' => 404,
-					)
-				);
+			if ( is_wp_error( $response_data ) ) {
+				return $response_data;
 			}
 
-			if ( static::is_successful_response_contains_html() ) {
+			if ( !static::is_responce_cachable() ) {
+				header( 'Cache-Control: no-store' );
+			}
 
-				header( 'Content-Type: text/html' );
+			header( 'Content-Type: ' . static::get_successful_response_content_type() );
+
+			if ( 'text/plain' === static::get_successful_response_content_type() ||
+				'text/html' === static::get_successful_response_content_type()
+			) {
 				// phpcs:ignore
 				echo $response_data;
 				exit();
@@ -220,10 +220,8 @@ abstract class AbstractRestCommandController {
 	}
 
 	/**
-	 * @param array $request_data - data from request schema
-	 * @param array $request_files_data - multipart file parameters from the body (typically find in $_FILES)
-	 * @return mixed data according to static::get_response_data_schema()
+	 * @return mixed|\WP_Error data or error if needed to send some additional error data
 	 * @throws Exception when processing failed
 	 */
-	abstract protected static function process_and_get_data_by_response_schema( array $request_data, array $request_files_data );
+	abstract protected static function process_and_get_data_by_response_schema( \WP_REST_Request $request );
 }

@@ -2,7 +2,8 @@
 
 namespace MPHB\Repositories;
 
-use \MPHB\Entities;
+use \MPHB\Entities,
+	MPHB\Utils\ValidateUtils;
 
 class RoomTypeRepository extends AbstractPostRepository {
 
@@ -34,6 +35,25 @@ class RoomTypeRepository extends AbstractPostRepository {
 			'mphb_size'                   => $entity->getSize(),
 			'mphb_view'                   => $entity->getView(),
 			'mphb_services'               => $entity->getServices(),
+
+			'mphb_gh_is_include_to_google_hotels'     => $entity->isIncludeToGoogleHotels(),
+			'mphb_gh_property_id'                     => $entity->getPropertyId(),
+			'mphb_gh_property_title'                  => $entity->getPropertyTitle(),
+			'mphb_gh_is_indoor_accommodation'         => $entity->isIndoorAccommodation(),
+			'mphb_gh_is_onsite_managed'               => $entity->isOnsiteManaged(),
+			'mphb_gh_is_accepting_overnight_guests'   => $entity->isAcceptingOvernightGuests(),
+			'mphb_gh_is_address_publicly_listed'      => $entity->isAddressPubliclyListed(),
+			'mphb_gh_property_type'                   => $entity->getPropertyType(),
+			'mphb_gh_property_category'               => $entity->getPropertyCategory(),
+			'mphb_gh_latitude'                        => $entity->getLatitude(),
+			'mphb_gh_longitude'                       => $entity->getLongitude(),
+			'mphb_gh_contacts_main_phone'             => $entity->getContactsMainPhone(),
+			'mphb_gh_address_line1'                   => $entity->getAddressLine1(),
+			'mphb_gh_address_line2'                   => $entity->getAddressLine2(),
+			'mphb_gh_address_city'                    => $entity->getAddressCity(),
+			'mphb_gh_address_province'                => $entity->getAddressProvince(),
+			'mphb_gh_address_postal_code'             => $entity->getAddressPostalCode(),
+			'mphb_gh_address_country_code'            => $entity->getAddressCountryCode(),
 		);
 
 		$postAtts['taxonomies'] = array(
@@ -56,32 +76,48 @@ class RoomTypeRepository extends AbstractPostRepository {
 		$id         = $post->ID;
 		$originalId = MPHB()->translation()->getOriginalId( $id, MPHB()->postTypes()->roomType()->getPostType() );
 
-		$adults = get_post_meta( $id, 'mphb_adults_capacity', true );
-		$adults = (int) ( ! empty( $adults ) ? $adults : MPHB()->settings()->main()->getMinAdults() );
+		$allPostMeta = get_post_meta( $id );
 
-		$children = get_post_meta( $id, 'mphb_children_capacity', true );
-		$children = (int) ( false !== $children ? $children : MPHB()->settings()->main()->getMinChildren() );
+		$adults = ! empty( $allPostMeta['mphb_adults_capacity'] ) ?
+			(int) $allPostMeta['mphb_adults_capacity'][0] :
+			MPHB()->settings()->main()->getMinAdults();
 
-		$total = get_post_meta( $id, 'mphb_total_capacity', true );
+		$children = ! empty( $allPostMeta['mphb_children_capacity'] ) ?
+			(int) $allPostMeta['mphb_children_capacity'][0] :
+			MPHB()->settings()->main()->getMinChildren();
 
-		if ( $total !== '' ) {
-			$total = intval( $total );
-		}
+		$total = ! empty( $allPostMeta['mphb_total_capacity'] ) ?
+			(int) $allPostMeta['mphb_total_capacity'][0] :
+			'';
 
-		$baseAdults = get_post_meta( $id, 'mphb_base_adults_capacity', true );
-		$baseAdults = (int) ( ! empty( $baseAdults ) ? $baseAdults : $adults );
+		$baseAdults = ! empty( $allPostMeta['mphb_base_adults_capacity'] ) ?
+			(int) $allPostMeta['mphb_base_adults_capacity'][0] :
+			$adults;
 
-		$baseChildren = get_post_meta( $id, 'mphb_base_children_capacity', true );
-		$baseChildren = (int) ( ! empty( $baseChildren ) ? $baseChildren : $children );
+		$baseChildren = ! empty( $allPostMeta['mphb_base_children_capacity'] ) ?
+			(int) $allPostMeta['mphb_base_children_capacity'][0] :
+			$children;
 
-		$size = get_post_meta( $id, 'mphb_size', true );
-		$size = ! empty( $size ) ? (float) $size : 0.0;
+		$bed_type = ! empty( $allPostMeta['mphb_bed'] ) ?
+			$allPostMeta['mphb_bed'][0] :
+			'';
 
-		$services = get_post_meta( $id, 'mphb_services', true );
-		$services = ! empty( $services ) ? $services : array();
+		$size = ! empty( $allPostMeta['mphb_size'] ) ?
+			(float) $allPostMeta['mphb_size'][0] :
+			0.0;
 
-		$gallery = get_post_meta( $id, 'mphb_gallery', true );
-		$gallery = ! empty( $gallery ) ? explode( ',', $gallery ) : array();
+		$view = ! empty( $allPostMeta['mphb_view'] ) ?
+			$allPostMeta['mphb_view'][0] :
+			'';
+
+		// array of service ids
+		$services = ! empty( $allPostMeta['mphb_services'] ) ?
+			maybe_unserialize( $allPostMeta['mphb_services'][0] ) :
+			array();
+
+		$gallery = ! empty( $allPostMeta['mphb_gallery'] ) ?
+			explode( ',', $allPostMeta['mphb_gallery'][0] ) :
+			array();
 
 		$atts = array(
 			'id'             => $id,
@@ -94,9 +130,9 @@ class RoomTypeRepository extends AbstractPostRepository {
 			'total_capacity' => $total,
 			'base_adults'    => $baseAdults,
 			'base_children'  => $baseChildren,
-			'bed_type'       => get_post_meta( $id, 'mphb_bed', true ),
+			'bed_type'       => $bed_type,
 			'size'           => $size,
-			'view'           => get_post_meta( $id, 'mphb_view', true ),
+			'view'           => $view,
 			'services_ids'   => $services,
 			'image_id'       => get_post_thumbnail_id( $id ),
 			'gallery_ids'    => $gallery,
@@ -106,6 +142,78 @@ class RoomTypeRepository extends AbstractPostRepository {
 			'attributes'     => $this->getAttributes( $id ),
 			'status'         => get_post_status( $originalId ),
 		);
+
+		$atts['is_include_to_google_hotels'] = ! empty( $allPostMeta['mphb_gh_is_include_to_google_hotels'] ) ?
+			ValidateUtils::validateBool( $allPostMeta['mphb_gh_is_include_to_google_hotels'][0] ) :
+			false;
+
+		$atts['property_id'] = ! empty( $allPostMeta['mphb_gh_property_id'] ) ?
+			$allPostMeta['mphb_gh_property_id'][0] :
+			'';
+
+		$atts['property_title'] = ! empty( $allPostMeta['mphb_gh_property_title'] ) ?
+			$allPostMeta['mphb_gh_property_title'][0] :
+			'';
+
+		$atts['is_indoor_accommodation'] = ! empty( $allPostMeta['mphb_gh_is_indoor_accommodation'] ) ?
+			ValidateUtils::validateBool( $allPostMeta['mphb_gh_is_indoor_accommodation'][0] ) :
+			false;
+
+		$atts['is_onsite_managed'] = ! empty( $allPostMeta['mphb_gh_is_onsite_managed'] ) ?
+			ValidateUtils::validateBool( $allPostMeta['mphb_gh_is_onsite_managed'][0] ) :
+			false;
+
+		$atts['is_accepting_overnight_guests'] = ! empty( $allPostMeta['mphb_gh_is_accepting_overnight_guests'] ) ?
+			ValidateUtils::validateBool( $allPostMeta['mphb_gh_is_accepting_overnight_guests'][0] ) :
+			false;
+
+		$atts['is_address_publicly_listed'] = ! empty( $allPostMeta['mphb_gh_is_address_publicly_listed'] ) ?
+			ValidateUtils::validateBool( $allPostMeta['mphb_gh_is_address_publicly_listed'][0] ) :
+			false;
+
+		$atts['property_type'] = ! empty( $allPostMeta['mphb_gh_property_type'] ) ?
+			$allPostMeta['mphb_gh_property_type'][0] :
+			'';
+
+		$atts['property_category'] = ! empty( $allPostMeta['mphb_gh_property_category'] ) ?
+			$allPostMeta['mphb_gh_property_category'][0] :
+			'';
+
+		$atts['latitude'] = ! empty( $allPostMeta['mphb_gh_latitude'] ) ?
+			(float) $allPostMeta['mphb_gh_latitude'][0] :
+			0.0;
+
+		$atts['longitude'] = ! empty( $allPostMeta['mphb_gh_longitude'] ) ?
+			(float) $allPostMeta['mphb_gh_longitude'][0] :
+			0.0;
+
+		$atts['contacts_main_phone'] = ! empty( $allPostMeta['mphb_gh_contacts_main_phone'] ) ?
+			$allPostMeta['mphb_gh_contacts_main_phone'][0] :
+			'';
+
+		$atts['address_line1'] = ! empty( $allPostMeta['mphb_gh_address_line1'] ) ?
+			$allPostMeta['mphb_gh_address_line1'][0] :
+			'';
+
+		$atts['address_line2'] = ! empty( $allPostMeta['mphb_gh_address_line2'] ) ?
+			$allPostMeta['mphb_gh_address_line2'][0] :
+			'';
+
+		$atts['address_city'] = ! empty( $allPostMeta['mphb_gh_address_city'] ) ?
+			$allPostMeta['mphb_gh_address_city'][0] :
+			'';
+
+		$atts['address_province'] = ! empty( $allPostMeta['mphb_gh_address_province'] ) ?
+			$allPostMeta['mphb_gh_address_province'][0] :
+			'';
+
+		$atts['address_postal_code'] = ! empty( $allPostMeta['mphb_gh_address_postal_code'] ) ?
+			$allPostMeta['mphb_gh_address_postal_code'][0] :
+			'';
+
+		$atts['address_country_code'] = ! empty( $allPostMeta['mphb_gh_address_country_code'] ) ?
+			$allPostMeta['mphb_gh_address_country_code'][0] :
+			'';
 
 		return new Entities\RoomType( $atts );
 	}

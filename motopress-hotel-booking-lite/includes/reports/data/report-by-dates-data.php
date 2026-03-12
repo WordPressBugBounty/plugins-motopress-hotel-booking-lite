@@ -255,5 +255,3 @@ class ReportByDatesData extends AbstractReportsData {
 		return $this->dateTo;
 	}
 }
-
-

@@ -43,24 +43,24 @@ class EarningsReport extends AbstractReport {
 
 		$this->colors = array(
 			'confirmed' => array(
-				'bars'   => 'rgb(7, 33, 30, 0.8)',
-				'dashes' => '#0b3631',
-				'line'   => '#0b3631',
+				'totalBookings'   => '#0f500a',
+				'dashes' => '#159f09',
+				'line'   => '#159f09',
 			),
 			'cancelled' => array(
-				'bars'   => 'rgb(172, 172, 170, 0.8)',
-				'dashes' => '#acacaa',
-				'line'   => '#acacaa',
+				'totalBookings'   => '#9b5757',
+				'dashes' => '#ff9090',
+				'line'   => '#ff9090',
 			),
 			'pending'   => array(
-				'bars'   => 'rgb(161, 132, 99, 0.8)',
-				'dashes' => '#a18463',
-				'line'   => '#a18463',
+				'totalBookings'   => '#6b4f21',
+				'dashes' => '#e8ab4b',
+				'line'   => '#e8ab4b',
 			),
 			'abandoned' => array(
-				'bars'   => 'rgb(112, 106, 117, 0.8)',
-				'dashes' => '#706a75',
-				'line'   => '#706a75',
+				'totalBookings'   => '#70706f',
+				'dashes' => '#acacaa',
+				'line'   => '#acacaa',
 			),
 		);
 
@@ -73,15 +73,20 @@ class EarningsReport extends AbstractReport {
 		wp_register_script( 'jquery-flot', MPHB()->getPluginUrl( 'vendors/jquery-flot/jquery.flot.js' ), array( 'jquery' ), '0.8.1' );
 		wp_register_script( 'jquery-time-flot', MPHB()->getPluginUrl( 'vendors/jquery-flot/jquery.flot.time.js' ), array( 'jquery' ), '0.8.1' );
 		wp_register_script( 'jquery-flot-dashes', MPHB()->getPluginUrl( 'vendors/jquery-flot-dashes/jquery.flot.dashes.js' ), array( 'jquery' ), '0.1.0' );
-		wp_register_script( 'mphb-admin-reports', MPHB()->getPluginUrl( 'assets/js/admin/admin-reports.min.js' ), array( 'jquery' ), MPHB()->getVersion() );
+		wp_register_script( 'jquery-flot-curved-lines', MPHB()->getPluginUrl( 'vendors/jquery-flot-curved-lines/curvedLines.js' ), array( 'jquery' ), '1.1.1' );
+		wp_register_script( 'multi-select-dropdown', MPHB()->getPluginUrl( 'vendors/multi-select-dropdown/MultiSelect.js' ), array(), '1.0.2' );
+		wp_register_script( 'mphb-admin-reports', MPHB()->getPluginUrl( 'assets/js/admin/admin-reports.min.js' ), array( 'jquery', 'multi-select-dropdown' ), MPHB()->getVersion() );
 		wp_enqueue_script( 'jquery-flot' );
 		wp_enqueue_script( 'jquery-time-flot' );
 		wp_enqueue_script( 'jquery-flot-dashes' );
+		wp_enqueue_script( 'jquery-flot-curved-lines' );
 		wp_enqueue_script( 'mphb-admin-reports' );
 
 		$json = $this->prepareJsonData();
 
 		wp_localize_script( 'mphb-admin-reports', 'ReportData', array( 'data' => $json ) );
+
+		wp_enqueue_style( 'multi-select-dropdown', MPHB()->getPluginUrl( 'vendors/multi-select-dropdown/MultiSelect.css' ), array(), '1.0.2' );
 	}
 
 	private function translateDataFilters( $filter ) {
@@ -223,7 +228,7 @@ class EarningsReport extends AbstractReport {
 		$datesArray = $this->data->getDatesArray();
 		$json       = array();
 		$dashLength = array( 0, 0 );
-		$barWidth   = 0;
+		$filters    = array();
 
 		foreach ( $plotData as $dataType => $pd ) {
 
@@ -233,11 +238,14 @@ class EarningsReport extends AbstractReport {
 				if ( in_array( $filter, array( 'totalWithoutTax', 'totalFees', 'totalServices', 'totalDiscount' ) ) ) {
 					$plotType   = 'dashes';
 					$dashLength = $this->getDashLength( $filter );
-				} elseif ( $filter == 'totalBookings' ) {
-					$plotType = 'bars';
-					$barWidth = $this->getBarWidth();
 				} else {
 					$plotType = 'line';
+				}
+
+				$color = $this->colors[ $dataType ][ $plotType ];
+
+				if ( $filter === 'totalBookings' ) {
+					$color = $this->colors[ $dataType ][ 'totalBookings' ];
 				}
 
 				$json['plotData'][] = array(
@@ -245,10 +253,11 @@ class EarningsReport extends AbstractReport {
 					'dataFilter' => $filter,
 					'plotType'   => $plotType,
 					'plotArray'  => $plotArray,
-					'barWidth'   => $barWidth,
 					'dashLength' => $dashLength,
-					'color'      => $this->colors[ $dataType ][ $plotType ],
+					'color'      => $color,
 				);
+
+				$filters[$filter] = $this->translateDataFilters($filter);
 			}
 		}
 
@@ -281,6 +290,7 @@ class EarningsReport extends AbstractReport {
 		$json['tickSize']       = $formats['tickSize'];
 		$json['weeksOfYear']    = $formats['weeksOfYear'];
 		$json['currencySymbol'] = $this->currencySymbol;
+		$json['filters']        = $filters;
 
 		return wp_json_encode( $json );
 	}
@@ -288,7 +298,7 @@ class EarningsReport extends AbstractReport {
 	public function renderReportTitle() {
 		$title = __( 'Revenue', 'motopress-hotel-booking' );
 
-		echo sprintf( '<h3>%s</h3>', esc_html( $title ) );
+		echo sprintf( '<h3>%s — %s</h3>', esc_html( $title ), $this->prepareReportInfoData() );
 	}
 
 	public function renderFilters() {
@@ -302,14 +312,15 @@ class EarningsReport extends AbstractReport {
 	public function renderDatesRangeFilters( $choosenRange ) {
 		$datesRanges = ReportFilters::getDatesRanges();
 		?>
-		<div class="tablenav top">
-			<div class="alignleft actions">
-				<form id="mphb-graphs-filter" method="get">
-					<input type="hidden" name="page" value="mphb_reports">
-					<input type="hidden" name="report_type" value="<?php echo esc_attr( $this->reportType ); ?>">
-					<?php
-					if ( ! empty( $datesRanges ) ) {
-						?>
+		<div class="mphb-earnings-report-filters">
+			<form id="mphb-graphs-filter" method="get" class="<?php echo $this->data->getRange() === 'custom' ? 'has-custom-range' : ''; ?>">
+				<input type="hidden" name="page" value="mphb_reports">
+				<input type="hidden" name="report_type" value="<?php echo esc_attr( $this->reportType ); ?>">
+				<?php
+				if ( ! empty( $datesRanges ) ) {
+					?>
+					<div class="mphb-dates-range-select">
+						<label for="mphb-dates-range-select"><?php echo sprintf( '%s:', esc_html__( 'Period', 'motopress-hotel-booking' ) ); ?></label>
 						<select id="mphb-dates-range-select" name="range">
 							<?php
 							foreach ( $datesRanges as $datesRange ) {
@@ -319,58 +330,85 @@ class EarningsReport extends AbstractReport {
 							}
 							?>
 						</select>
-						<?php
-					}
-					?>
-					<div id="mphb-dates-range-show" class="mphb-dates-range-custom <?php echo $this->data->getRange() != 'custom' ? 'mphb-invisible' : ''; ?>">
-						<?php
-                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						echo FieldFactory::create(
-							'date_from',
-							array(
-								'type'        => 'datepicker',
-								'placeholder' => esc_attr__( 'Start date', 'motopress-hotel-booking' ),
-								'size'        => 'wide',
-								'readonly'    => false,
-							),
-							$this->data->getDateFrom()
-						)->render();
-
-                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						echo FieldFactory::create(
-							'date_to',
-							array(
-								'type'        => 'datepicker',
-								'placeholder' => esc_attr__( 'End date', 'motopress-hotel-booking' ),
-								'size'        => 'wide',
-								'readonly'    => false,
-							),
-							date( 'Y-m-d', strtotime( '-1 day', strtotime( $this->data->getDateTo() ) ) )
-						)->render();
-						?>
 					</div>
-					<input id="mphb-report-dates-filter-button" type="submit" class="button-secondary" value="<?php esc_attr_e( 'Apply', 'motopress-hotel-booking' ); ?>">
-				</form>
-			</div>
+					<?php
+				}
+				?>
+				<div id="mphb-dates-range-show" class="mphb-dates-range-custom <?php echo $this->data->getRange() != 'custom' ? 'mphb-invisible' : ''; ?>">
+					<?php
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo FieldFactory::create(
+						'date_from',
+						array(
+							'type'        => 'datepicker',
+							'placeholder' => esc_attr__( 'Start date', 'motopress-hotel-booking' ),
+							'size'        => 'wide',
+							'readonly'    => false,
+						),
+						$this->data->getDateFrom()
+					)->render();
+
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo FieldFactory::create(
+						'date_to',
+						array(
+							'type'        => 'datepicker',
+							'placeholder' => esc_attr__( 'End date', 'motopress-hotel-booking' ),
+							'size'        => 'wide',
+							'readonly'    => false,
+						),
+						date( 'Y-m-d', strtotime( '-1 day', strtotime( $this->data->getDateTo() ) ) )
+					)->render();
+					?>
+				</div>
+				<input id="mphb-report-dates-filter-button" type="submit" class="button-secondary" value="<?php esc_attr_e( 'Apply', 'motopress-hotel-booking' ); ?>">
+			</form>
+			<?php $this->renderReportDataFilter(); ?>
+			<?php $this->renderReportDataTypesFilter(); ?>
 		</div>
 		<?php
 	}
 
 	public function renderReportDataFilter() {
 		?>
-		<?php echo sprintf( '%s:', esc_html__( 'Show', 'motopress-hotel-booking' ) ); ?>
-		<ul id="mphb-chart-data-filter">
-			<?php
-			foreach ( $this->data->getDataFilters() as $filter ) {
-				$filterName = $this->translateDataFilters( $filter );
-				?>
-				<li data-datafilter="<?php echo esc_attr( $filter ); ?>">
-					<label><input type="checkbox" class="mphb-data-filter-checkbox" <?php echo ( $filter == 'totalPrice' || $filter == 'totalBookings' ) ? 'checked="checked"' : ''; ?> /><?php echo esc_html( $filterName ); ?></label>
-				</li>
+		<div class="mphb-chart-filter">
+			<label for="mphb-chart-data-filter"><?php echo sprintf( '%s:', esc_html__( 'Show', 'motopress-hotel-booking' ) ); ?></label>
+			<select name="mphb-chart-data-filter" id="mphb-chart-data-filter" multiple>
 				<?php
-			}
-			?>
-		</ul>
+				foreach ( $this->data->getDataFilters() as $filter ) {
+					$filterName = $this->translateDataFilters( $filter );
+					?>
+					<option
+						value="<?php echo esc_attr( $filter ); ?>"
+						<?php selected( in_array( $filter, array( 'totalPrice', 'totalBookings' ) ) ); ?>
+					><?php echo esc_html( $filterName ); ?></option>
+					<?php
+				}
+				?>
+			</select>
+		</div>
+		<?php
+	}
+
+	public function renderReportDataTypesFilter() {
+		$dataType = $this->data->getDataTypes();
+		$showDataTypes = $this->getShowDataTypes();
+		?>
+		<div class="mphb-chart-filter">
+			<label for="mphb-chart-data-type-filter"><?php echo sprintf( '%s:', esc_html__( 'Status', 'motopress-hotel-booking' ) ); ?></label>
+			<select name="mphb-chart-data-type-filter" id="mphb-chart-data-type-filter" multiple>
+				<?php
+				foreach ( $dataType as $filter => $filterName ) {
+					?>
+					<option
+						value="<?php echo esc_attr( $filter ); ?>"
+						<?php selected( in_array( $filter, $showDataTypes ) ); ?>
+					><?php echo esc_html( $filterName ); ?></option>
+					<?php
+				}
+				?>
+			</select>
+		</div>
 		<?php
 	}
 
@@ -399,7 +437,7 @@ class EarningsReport extends AbstractReport {
 
 				if ( $dataForTypeSummary > 0 ) {
 					$totalInfo[ $summary ] = sprintf(
-						'%1$s: %2$s',
+						'%1$s: <span>%2$s</span>',
 						$this->translateDataFilters( $summary ),
 						$summary != 'totalBookings' ? mphb_format_price( $dataForTypeSummary ) : $dataForTypeSummary
 					);
@@ -428,8 +466,6 @@ class EarningsReport extends AbstractReport {
 	public function prepareReportLegend() {
 		$legendData = $this->prepareLegendData();
 
-		$showDataTypes = $this->getShowDataTypes();
-
 		$html = '';
 		ob_start();
 		?>
@@ -441,12 +477,8 @@ class EarningsReport extends AbstractReport {
 				?>
 				<li class="mphb-chart-legend-item"
 					data-dataType="<?php echo esc_attr( $datatype ); ?>"
-					style="border-bottom-color: <?php echo esc_attr( $ld['color'] ); ?>;">
-					<p class="mphb-chart-legend-item-type">
-						<label><input type="checkbox" class="mphb-chart-legend-item-checkbox"
-						<?php echo in_array( $datatype, $showDataTypes ) ? 'checked="checked"' : ''; ?>
-						value="<?php echo esc_attr( $ld['dataType'] ); ?>" /><?php echo esc_html( $ld['dataType'] ); ?></label>
-					</p>
+					style="border-top-color: <?php echo esc_attr( $ld['color'] ); ?>;">
+					<p class="mphb-chart-legend-item-type"><?php echo esc_html( $ld['dataType'] ); ?></p>
 					<?php
 					if ( ! empty( $earned ) ) {
 						?>
@@ -502,28 +534,15 @@ class EarningsReport extends AbstractReport {
 		return $info;
 	}
 
-	public function renderReportInfo() {
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo sprintf( '%s', $this->prepareReportInfoData() );
-	}
-
 	public function renderReport() {
 		?>
-		<div id="mphb-earnings-report-chart">
-			<div class="mphb-earnings-report-data-filter-wrapper">
-				<div id="mphb-earnings-report-data-filter">
-					<?php $this->renderReportDataFilter(); ?>
-				</div>
+		<div id="mphb-earnings-report-chart" class="clear">
+			<div class="mphb-earnings-report-wrapper">
+				<div id="mphb-earnings-report"></div>
 			</div>
 			<div class="mphb-earnings-report-legend-wrapper">
 				<div id="mphb-earnings-report-legend">
 					<?php $this->renderReportLegend(); ?>
-				</div>
-			</div>
-			<div class="mphb-earnings-report-wrapper">
-				<div id="mphb-earnings-report"></div>
-				<div id="mphb-earnings-report-info">
-					<?php $this->renderReportInfo(); ?>
 				</div>
 			</div>
 		</div>
@@ -543,5 +562,3 @@ class EarningsReport extends AbstractReport {
 		return $this->data;
 	}
 }
-
-?>
