@@ -76,48 +76,32 @@ class RoomTypeRepository extends AbstractPostRepository {
 		$id         = $post->ID;
 		$originalId = MPHB()->translation()->getOriginalId( $id, MPHB()->postTypes()->roomType()->getPostType() );
 
-		$allPostMeta = get_post_meta( $id );
+		$adults = get_post_meta( $id, 'mphb_adults_capacity', true );
+		$adults = (int) ( ! empty( $adults ) ? $adults : MPHB()->settings()->main()->getMinAdults() );
 
-		$adults = ! empty( $allPostMeta['mphb_adults_capacity'] ) ?
-			(int) $allPostMeta['mphb_adults_capacity'][0] :
-			MPHB()->settings()->main()->getMinAdults();
+		$children = get_post_meta( $id, 'mphb_children_capacity', true );
+		$children = (int) ( false !== $children ? $children : MPHB()->settings()->main()->getMinChildren() );
 
-		$children = ! empty( $allPostMeta['mphb_children_capacity'] ) ?
-			(int) $allPostMeta['mphb_children_capacity'][0] :
-			MPHB()->settings()->main()->getMinChildren();
+		$total = get_post_meta( $id, 'mphb_total_capacity', true );
 
-		$total = ! empty( $allPostMeta['mphb_total_capacity'] ) ?
-			(int) $allPostMeta['mphb_total_capacity'][0] :
-			'';
+		if ( $total !== '' ) {
+			$total = intval( $total );
+		}
 
-		$baseAdults = ! empty( $allPostMeta['mphb_base_adults_capacity'] ) ?
-			(int) $allPostMeta['mphb_base_adults_capacity'][0] :
-			$adults;
+		$baseAdults = get_post_meta( $id, 'mphb_base_adults_capacity', true );
+		$baseAdults = (int) ( ! empty( $baseAdults ) ? $baseAdults : $adults );
 
-		$baseChildren = ! empty( $allPostMeta['mphb_base_children_capacity'] ) ?
-			(int) $allPostMeta['mphb_base_children_capacity'][0] :
-			$children;
+		$baseChildren = get_post_meta( $id, 'mphb_base_children_capacity', true );
+		$baseChildren = (int) ( ! empty( $baseChildren ) ? $baseChildren : $children );
 
-		$bed_type = ! empty( $allPostMeta['mphb_bed'] ) ?
-			$allPostMeta['mphb_bed'][0] :
-			'';
+		$size = get_post_meta( $id, 'mphb_size', true );
+		$size = ! empty( $size ) ? (float) $size : 0.0;
 
-		$size = ! empty( $allPostMeta['mphb_size'] ) ?
-			(float) $allPostMeta['mphb_size'][0] :
-			0.0;
+		$services = get_post_meta( $id, 'mphb_services', true );
+		$services = ! empty( $services ) ? $services : array();
 
-		$view = ! empty( $allPostMeta['mphb_view'] ) ?
-			$allPostMeta['mphb_view'][0] :
-			'';
-
-		// array of service ids
-		$services = ! empty( $allPostMeta['mphb_services'] ) ?
-			maybe_unserialize( $allPostMeta['mphb_services'][0] ) :
-			array();
-
-		$gallery = ! empty( $allPostMeta['mphb_gallery'] ) ?
-			explode( ',', $allPostMeta['mphb_gallery'][0] ) :
-			array();
+		$gallery = get_post_meta( $id, 'mphb_gallery', true );
+		$gallery = ! empty( $gallery ) ? explode( ',', $gallery ) : array();
 
 		$atts = array(
 			'id'             => $id,
@@ -130,9 +114,9 @@ class RoomTypeRepository extends AbstractPostRepository {
 			'total_capacity' => $total,
 			'base_adults'    => $baseAdults,
 			'base_children'  => $baseChildren,
-			'bed_type'       => $bed_type,
+			'bed_type'       => get_post_meta( $id, 'mphb_bed', true ),
 			'size'           => $size,
-			'view'           => $view,
+			'view'           => get_post_meta( $id, 'mphb_view', true ),
 			'services_ids'   => $services,
 			'image_id'       => get_post_thumbnail_id( $id ),
 			'gallery_ids'    => $gallery,
@@ -142,6 +126,8 @@ class RoomTypeRepository extends AbstractPostRepository {
 			'attributes'     => $this->getAttributes( $id ),
 			'status'         => get_post_status( $originalId ),
 		);
+
+		$allPostMeta = get_post_meta( $id );
 
 		$atts['is_include_to_google_hotels'] = ! empty( $allPostMeta['mphb_gh_is_include_to_google_hotels'] ) ?
 			ValidateUtils::validateBool( $allPostMeta['mphb_gh_is_include_to_google_hotels'][0] ) :

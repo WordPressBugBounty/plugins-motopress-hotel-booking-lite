@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Hotel Booking 5.4.1\n"
+"Project-Id-Version: Hotel Booking 5.5.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/motopress-hotel-booking\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-11T12:07:14+00:00\n"
+"POT-Creation-Date: 2026-03-20T08:42:37+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: motopress-hotel-booking\n"
@@ -628,6 +628,7 @@ msgstr ""
 #: includes/admin/sync-logs-list-table.php:72
 #: includes/admin/sync-rooms-list-table.php:127
 #: includes/csv/bookings/bookings-exporter-helper.php:72
+#: includes/reports/earnings-report.php:398
 #: template-functions.php:977
 #: templates/edit-booking/edit-reserved-rooms.php:46
 msgid "Status"
@@ -984,6 +985,7 @@ msgid "These are not physical accommodations, but their types. E.g. standard dou
 msgstr ""
 
 #: includes/admin/manage-cpt-pages/room-type-manage-cpt-page.php:34
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:217
 #: includes/post-types/room-type-cpt.php:275
 #: includes/post-types/room-type-cpt.php:302
 #: templates/create-booking/results/reserve-rooms.php:36
@@ -1490,6 +1492,7 @@ msgid "State / County"
 msgstr ""
 
 #: includes/admin/menu-pages/customers-menu-page.php:255
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:530
 #: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:130
 #: includes/csv/bookings/bookings-exporter-helper.php:85
 #: includes/post-types/booking-cpt.php:123
@@ -1499,6 +1502,8 @@ msgid "Country"
 msgstr ""
 
 #: includes/admin/menu-pages/customers-menu-page.php:268
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:480
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:488
 #: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:138
 #: includes/bundles/customer-bundle.php:146
 #: includes/csv/bookings/bookings-exporter-helper.php:87
@@ -1644,6 +1649,11 @@ msgstr ""
 
 #: includes/admin/menu-pages/extensions-menu-page.php:179
 msgid "No extensions found."
+msgstr ""
+
+#: includes/admin/menu-pages/google-hotels-menu-page.php:15
+#: includes/admin/menu-pages/google-hotels-menu-page.php:31
+msgid "Google Hotels"
 msgstr ""
 
 #: includes/admin/menu-pages/i-cal-import-menu-page.php:80
@@ -1869,6 +1879,8 @@ msgid "Number of accommodations"
 msgstr ""
 
 #: includes/admin/menu-pages/rooms-generator-menu-page.php:57
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:187
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:195
 #: includes/payments/gateways/gateway.php:486
 #: includes/widgets/rooms-widget.php:186
 #: templates/create-booking/results/reserve-rooms.php:35
@@ -2821,7 +2833,7 @@ msgstr ""
 
 #: includes/admin/menu-pages/shortcodes-menu-page.php:120
 #: includes/post-types/season-cpt.php:32
-#: includes/reports/earnings-report.php:332
+#: includes/reports/earnings-report.php:344
 #: assets/js/blocks/group-availability-calendar/index.js:1
 msgid "Start date"
 msgstr ""
@@ -3445,6 +3457,7 @@ msgstr ""
 
 #: includes/advanced/admin/tab/subtabs/api-keys/api-keys-table-list.php:57
 #: includes/advanced/admin/tab/subtabs/api-keys/html-keys-edit.php:22
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:207
 #: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:95
 #: includes/payments/gateways/gateway.php:493
 #: includes/post-types/coupon-cpt.php:37
@@ -3575,6 +3588,112 @@ msgstr ""
 
 #: includes/advanced/admin/tab/subtabs/api-keys/html-keys-edit.php:164
 msgid "QR Code"
+msgstr ""
+
+#. translators: %s is data field name
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:177
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:186
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:233
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:242
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:267
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:409
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:419
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:428
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:450
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:479
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:509
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:529
+#, php-format
+msgid "Required field %s is not set."
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:178
+msgid "Location"
+msgstr ""
+
+#. translators: %1$s is field name, %2$d is max length
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:194
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:206
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:250
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:457
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:469
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:487
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:499
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:517
+#, php-format
+msgid "Field %1$s must not exceed %2$d characters."
+msgstr ""
+
+#. translators: %1$s is field name, %2$d is min value
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:216
+#, php-format
+msgid "Field %1$s must be bigger than %2$d."
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:243
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:251
+msgid "Name of Hotel or Vacation Rental"
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:268
+msgid "Lodging category"
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:281
+msgid "To qualify as a hotel, the property must offer overnight stays and have on-site management and a public address."
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:309
+msgid "Hotel property category is invalid."
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:315
+msgid "Japanese Inn (Ryokan) is only applicable for properties in Japan!"
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:379
+msgid "Holiday park is only applicable for properties in AU, NZ, and European countries!"
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:401
+msgid "Vacation rental property category is invalid."
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:410
+msgid "Latitude"
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:420
+msgid "Longitude"
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:429
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:440
+msgid "Primary Phone Number"
+msgstr ""
+
+#. translators: %1$s is field name, %2$d and %3$d are min and max length
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:439
+#, php-format
+msgid "Field %1$s must contain between %2$d and %3$d characters."
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:451
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:458
+msgid "Address Line 1"
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:470
+msgid "Address Line 2"
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:500
+msgid "Province"
+msgstr ""
+
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:510
+#: includes/advanced/api/controllers/v1/get-google-hotels-data.php:518
+msgid "Postal Code"
 msgstr ""
 
 #: includes/ajax-api/ajax-actions/create-stripe-payment-intent.php:34
@@ -3765,7 +3884,7 @@ msgstr ""
 
 #: includes/bookings-calendar.php:645
 #: includes/reports/abstract-report.php:46
-#: includes/reports/earnings-report.php:361
+#: includes/reports/earnings-report.php:375
 msgid "Show"
 msgstr ""
 
@@ -3997,6 +4116,31 @@ msgid_plural "for %d nights"
 msgstr[0] ""
 msgstr[1] ""
 
+#: includes/crons/sync-google-hotels-data-cron.php:93
+msgid "Google Hotels submission successfully sent for processing."
+msgstr ""
+
+#. translators: %s - space + message from server (or empty)
+#: includes/crons/sync-google-hotels-data-cron.php:110
+#, php-format
+msgid "Google Hotels submission failed.%s To try again, please save your data on this page or wait for the next attempt."
+msgstr ""
+
+#: includes/crons/sync-google-hotels-data-cron.php:116
+msgid "Your Google Hotels submission is being sent…"
+msgstr ""
+
+#. translators: %s date and time of the next data transfer
+#: includes/crons/sync-google-hotels-data-cron.php:132
+#, php-format
+msgid "The next data transfer is scheduled for %s."
+msgstr ""
+
+#: includes/crons/sync-google-hotels-data-cron.php:409
+#: includes/crons/sync-google-hotels-data-cron.php:417
+msgid "Cannot send the Google Hotels submission because it contains errors."
+msgstr ""
+
 #: includes/csv/bookings/bookings-exporter-helper.php:73
 #: templates/account/bookings.php:19
 #: templates/account/bookings.php:70
@@ -4015,7 +4159,6 @@ msgstr ""
 msgid "Check-out"
 msgstr ""
 
-#. translators: The value a hotel wishes to sell their rooms. Also called the Cost, Value, Tariff or Room charge.
 #: includes/csv/bookings/bookings-exporter-helper.php:78
 #: includes/post-types/rate-cpt.php:104
 msgid "Rate"
@@ -5150,7 +5293,6 @@ msgstr ""
 msgid "Pay with your credit card via Stripe."
 msgstr ""
 
-#. translators: %1$s - names of payment methods, %2$s - currency codes
 #: includes/payments/gateways/stripe-gateway.php:199
 #: includes/payments/gateways/stripe-gateway.php:219
 #: includes/payments/gateways/stripe-gateway.php:732
@@ -5175,8 +5317,6 @@ msgstr ""
 msgid "SEPA Direct Debit"
 msgstr ""
 
-#. translators: %1$s - name of payment method, %2$s - currency codes
-#. translators: %s - payment method name
 #: includes/payments/gateways/stripe-gateway.php:203
 #: includes/payments/gateways/stripe-gateway.php:228
 #: includes/payments/gateways/stripe-gateway.php:235
@@ -6404,7 +6544,7 @@ msgid "Season Info"
 msgstr ""
 
 #: includes/post-types/season-cpt.php:45
-#: includes/reports/earnings-report.php:344
+#: includes/reports/earnings-report.php:356
 msgid "End date"
 msgstr ""
 
@@ -6546,42 +6686,46 @@ msgctxt "Booking status"
 msgid "Pending"
 msgstr ""
 
-#: includes/reports/earnings-report.php:91
+#: includes/reports/earnings-report.php:96
 msgid "Total Sales"
 msgstr ""
 
-#: includes/reports/earnings-report.php:94
+#: includes/reports/earnings-report.php:99
 msgid "Total Without Taxes"
 msgstr ""
 
-#: includes/reports/earnings-report.php:97
+#: includes/reports/earnings-report.php:102
 msgid "Total Fees"
 msgstr ""
 
-#: includes/reports/earnings-report.php:100
+#: includes/reports/earnings-report.php:105
 msgid "Total Services"
 msgstr ""
 
-#: includes/reports/earnings-report.php:103
+#: includes/reports/earnings-report.php:108
 msgid "Total Discounts"
 msgstr ""
 
-#: includes/reports/earnings-report.php:106
+#: includes/reports/earnings-report.php:111
 msgid "Total Bookings"
 msgstr ""
 
-#: includes/reports/earnings-report.php:289
+#: includes/reports/earnings-report.php:299
 #: includes/reports/report-filters.php:38
 msgid "Revenue"
 msgstr ""
 
-#: includes/reports/earnings-report.php:352
+#: includes/reports/earnings-report.php:323
+msgid "Period"
+msgstr ""
+
+#: includes/reports/earnings-report.php:364
 #: includes/views/create-booking/checkout-view.php:56
 #: includes/views/shortcodes/checkout-view.php:90
 msgid "Apply"
 msgstr ""
 
-#: includes/reports/earnings-report.php:496
+#: includes/reports/earnings-report.php:528
 #, php-format
 msgid "From %s to %s"
 msgstr ""
@@ -7432,7 +7576,7 @@ msgstr ""
 msgid "Unfortunately, your transaction cannot be completed at this time. Please try again or contact us."
 msgstr ""
 
-#: plugin.php:1120
+#: plugin.php:1129
 #, php-format
 msgid "Prices start at: %s"
 msgstr ""
