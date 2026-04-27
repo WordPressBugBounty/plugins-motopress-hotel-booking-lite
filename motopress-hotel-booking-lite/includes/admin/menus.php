@@ -65,6 +65,8 @@ class Menus {
 	}
 
 	public function createMainMenu() {
+		global $admin_page_hooks;
+
 		$this->mainMenuCapability = apply_filters( 'mphb_main_menu_capability', 'edit_mphb_bookings' );
 		$mainMenuPosition         = apply_filters( 'mphb_main_menu_position', '57.5' );
 
@@ -77,6 +79,8 @@ class Menus {
 			MPHB()->isWPVersion( '4.0', '>=' ) ? 'dashicons-calendar-alt' : null,
 			$mainMenuPosition
 		);
+
+		$admin_page_hooks[ $this->mainMenuSlug ] = $this->mainMenuSlug;
 	}
 
 	/**
@@ -103,6 +107,21 @@ class Menus {
 		$paymentMenuSlug    = add_query_arg( 'post_type', $paymentPostType, 'edit.php' );
 
 		$this->registerSubMenu( 20, $this->mainMenuSlug, $paymentPageTitle, $paymentMenuTitle, 'edit_mphb_payments', $paymentMenuSlug );
+
+		$this->registerSubMenu(
+			51,
+			$this->mainMenuSlug,
+			esc_html__( 'Calendar', 'motopress-hotel-booking' ) . ' (beta)',
+			esc_html__( 'Calendar', 'motopress-hotel-booking' ) . ' (beta)',
+			\MPHB\UsersAndRoles\CapabilitiesAndRoles::VIEW_CALENDAR,
+			add_query_arg(
+				array(
+					'page' => 'mphb_calendar',
+					'beta' => ''
+				),
+				'admin.php'
+			)
+		);
 
 		$couponPostType    = MPHB()->postTypes()->coupon()->getPostType();
 		$couponPostTypeObj = get_post_type_object( $couponPostType );

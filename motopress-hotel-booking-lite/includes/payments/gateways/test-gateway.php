@@ -2,6 +2,8 @@
 
 namespace MPHB\Payments\Gateways;
 
+use MPHB\Entities\{ Booking, Payment };
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -10,7 +12,6 @@ class TestGateway extends Gateway {
 	public const GATEWAY_ID = 'test';
 
 	public function __construct() {
-
 		parent::__construct();
 
 		add_filter(
@@ -42,26 +43,29 @@ class TestGateway extends Gateway {
 	}
 
 	protected function setupProperties() {
-
 		parent::setupProperties();
+
 		$this->adminTitle = __( 'Test Payment', 'motopress-hotel-booking' );
 	}
 
 	protected function initDefaultOptions() {
-
 		$defaults = array(
 			'title'       => __( 'Test Payment', 'motopress-hotel-booking' ),
 			'description' => '',
 			'enabled'     => false,
 		);
+
 		return array_merge( parent::initDefaultOptions(), $defaults );
 	}
 
-	public function processPayment( \MPHB\Entities\Booking $booking, \MPHB\Entities\Payment $payment ) {
+	/**
+	 * @return mixed|null
+	 */
+	public function processPayment( Booking $booking, Payment $payment ) {
+		$isCompleted = $this->paymentCompleted( $payment );
 
-		$isComplete  = $this->paymentCompleted( $payment );
-		$redirectUrl = $isComplete ? MPHB()->settings()->pages()->getReservationReceivedPageUrl( $payment ) : MPHB()->settings()->pages()->getPaymentFailedPageUrl( $payment );
-		wp_redirect( $redirectUrl );
-		exit;
+		if ( ! $isCompleted ) {
+			wp_redirect( MPHB()->settings()->pages()->getPaymentFailedPageUrl( $payment ) );
+		}
 	}
 }

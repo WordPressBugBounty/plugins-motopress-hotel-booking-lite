@@ -229,8 +229,6 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 	}
 
 	private static function isExecutingNow(): bool {
-		// clear wp cache to make sure we get last transient value from database
-		wp_cache_delete( self::TRANSIENT_SYNC_GOOGLE_HOTELS_DATA_LOCK, 'transient' );
 		return false !== get_transient( self::TRANSIENT_SYNC_GOOGLE_HOTELS_DATA_LOCK );
 	}
 
@@ -270,11 +268,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 	}
 
 	public static function getVerificationToken(): ?string {
-
-		// clear wp cache to make sure we get last transient value from database
-		wp_cache_delete( self::TRANSIENT_SYNC_GOOGLE_HOTELS_VERIFICATION_TOKEN, 'transient' );
 		$token = get_transient( self::TRANSIENT_SYNC_GOOGLE_HOTELS_VERIFICATION_TOKEN );
-
 		return false !== $token ? $token : null;
 	}
 
@@ -287,6 +281,10 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 	}
 
 	public function doCronJob() {
+		if ( ! apply_filters( 'mphb_use_google_hotels', true ) ) {
+			$this->unschedule();
+			return;
+		}
 
 		$state          = self::getSyncState();
 		$attempts_count = $state[ self::SYNC_STATE_KEY_ATTEMPTS_COUNT ];
@@ -603,23 +601,23 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 				'id'          => $roomType->getId(),
 				'property_id' => $roomType->getPropertyId(),
 				'name'        => array(
-					$language => trim( $roomType->getTitle() ),
+					$language => trim( wp_strip_all_tags( $roomType->getTitle() ) ),
 				),
 				'url'         => $roomType->getLink(),
 				'capacity'    => $roomType->calcTotalCapacity(),
 			);
 
-			$roomtypeDescription = trim( $roomType->getExcerpt() );
+			$roomtypeDescription = trim( wp_strip_all_tags( $roomType->getExcerpt() ) );
 
 			if ( ! empty( $roomtypeDescription ) ) {
 
 				$roomTypeData['description'] = array(
-					$language => trim( $roomType->getExcerpt() ),
+					$language => $roomtypeDescription,
 				);
 			}
 
 			$featuredImageId  = $roomType->getFeaturedImageId();
-			$featuredImageUrl = $featuredImageId ? wp_get_attachment_image_url( $featuredImageId ) : '';
+			$featuredImageUrl = $featuredImageId ? wp_get_attachment_image_url( $featuredImageId, 'full' ) : '';
 
 			if ( ! empty( $featuredImageUrl ) ) {
 

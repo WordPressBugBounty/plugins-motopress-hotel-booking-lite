@@ -30,8 +30,7 @@ class BookingPersistence extends CPTPersistence {
 		$rooms = $wp_query->get( 'mphb_rooms' );
 		if ( ! empty( $rooms ) ) {
 			$rooms  = "'" . join( "','", $rooms ) . "'";
-			$where .= " AND mphb_reserved_room_room_id.meta_key = '_mphb_room_id'
-							AND mphb_reserved_room_room_id.meta_value IN ( $rooms )";
+			$where .= "AND mphb_reserved_room_room_id.meta_value IN ( $rooms )";
 		}
 		return $where;
 	}
@@ -55,7 +54,8 @@ class BookingPersistence extends CPTPersistence {
 			$join .= " INNER JOIN $wpdb->posts AS mphb_reserved_rooms
 						ON mphb_reserved_rooms.post_parent = $wpdb->posts.ID ";
 			$join .= " INNER JOIN $wpdb->postmeta AS mphb_reserved_room_room_id
-						ON mphb_reserved_rooms.ID = mphb_reserved_room_room_id.post_id ";
+						ON mphb_reserved_rooms.ID = mphb_reserved_room_room_id.post_id
+						AND mphb_reserved_room_room_id.meta_key = '_mphb_room_id' ";
 		}
 		return $join;
 	}

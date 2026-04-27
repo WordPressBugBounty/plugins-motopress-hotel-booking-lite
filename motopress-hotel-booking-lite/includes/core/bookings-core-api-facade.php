@@ -2,8 +2,7 @@
 
 namespace MPHB\Core;
 
-use MPHB\Entities\Booking;
-use MPHB\Entities\Payment;
+use MPHB\Entities\{ Booking, Payment };
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -16,8 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * other plugins and themes).
  */
 class BookingsCoreAPIFacade extends AbstractCoreAPIFacade {
-
-
 	protected function getHookNamesForClearAllCache(): array {
 		return array(
 			'mphb_booking_status_changed',
@@ -73,6 +70,10 @@ class BookingsCoreAPIFacade extends AbstractCoreAPIFacade {
 		return $result;
 	}
 
+	public function findBookingById( $bookingId, bool $ignoreCache = false ): ?Booking {
+		return MPHB()->getBookingRepository()->findById( $bookingId, $ignoreCache );
+	}
+
 	/**
 	 * @since 5.0.0
 	 *
@@ -107,6 +108,10 @@ class BookingsCoreAPIFacade extends AbstractCoreAPIFacade {
 		}
 	}
 
+
+	public function findPaymentById( int $paymentId, bool $ignoreCache = false ): ?Payment {
+		return MPHB()->getPaymentRepository()->findById( $paymentId, $ignoreCache );
+	}
 
 	/**
 	 * @since 5.0.0

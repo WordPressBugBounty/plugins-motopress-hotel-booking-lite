@@ -62,6 +62,7 @@ class BookingRulesSettings {
 	}
 
 	/**
+	 * @deprecated 6.0.0 Use BlocksRepository instead.
 	 *
 	 * @return array
 	 */

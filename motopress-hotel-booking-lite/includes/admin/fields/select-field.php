@@ -2,6 +2,10 @@
 
 namespace MPHB\Admin\Fields;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class SelectField extends InputField {
 
 	const TYPE = 'select';
@@ -16,7 +20,7 @@ class SelectField extends InputField {
 	protected function renderInput() {
 
 		$result = '<select name="' . esc_attr( $this->getName() ) . '" id="' . MPHB()->addPrefix( $this->getName() ) . '" ' . $this->generateAttrs() . '>';
-		foreach ( $this->list as $key => $label ) {
+		foreach ( $this->getList() as $key => $label ) {
 			$result .= '<option value="' . esc_attr( $key ) . '"' . selected( $this->getValue(), $key, false ) . '>' . esc_html( $label ) . '</option>';
 		}
 		$result .= '</select>';
@@ -28,13 +32,13 @@ class SelectField extends InputField {
 	}
 
 	public function sanitize( $value ) {
-		return array_key_exists( $value, $this->list ) ? $value : $this->default;
+		return array_key_exists( $value, $this->getList() ) ? $value : $this->default;
 	}
 
 	public static function renderValue( self $field ) {
 		$value = $field->getValue();
 		$list  = $field->getList();
 
-		return $list[ $value ];
+		return $list[ $value ] ?? '';
 	}
 }

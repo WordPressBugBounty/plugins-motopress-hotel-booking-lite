@@ -9,6 +9,7 @@ final class RestApiSchemaHelper {
 	public static function getGoogleHotelsDataSchema(): array {
 		return array(
 			'$schema' => 'http://json-schema.org/draft-04/schema#',
+			'title'      => 'google_hotels',
 			'type'       => 'object',
 			'required'   => array(
 				'isGoogleHotelsIntegrationOn',
@@ -208,6 +209,127 @@ final class RestApiSchemaHelper {
 						'type' => 'string',
 					),
 				),
+			),
+		);
+	}
+
+	public static function getBlockProperties(): array {
+		return array(
+			'block_id'         => array(
+				'type'    => 'integer',
+				'minimum' => 1,
+			),
+			'comment'          => array(
+				'type' => 'string',
+			),
+			'date_from'        => array(
+				'type'        => 'string',
+				'description' => 'Date in WordPress timezone (YYYY-MM-DD) (inclusive)',
+				'format'      => 'date',
+			),
+			'date_to'          => array(
+				'type'        => 'string',
+				'description' => 'Date in WordPress timezone (YYYY-MM-DD) (inclusive)',
+				'format'      => 'date',
+			),
+			'has_restrictions' => array(
+				'type' => 'boolean',
+			),
+			'not_check_in'     => array(
+				'type' => 'boolean',
+			),
+			'not_check_out'    => array(
+				'type' => 'boolean',
+			),
+			'not_stay_in'      => array(
+				'type' => 'boolean',
+			),
+			'room_id'          => array(
+				'type'    => 'integer',
+				'minimum' => 0,
+			),
+			'room_type_id'     => array(
+				'type'    => 'integer',
+				'minimum' => 0,
+			),
+		);
+	}
+
+	public static function getCustomBookingRuleProperties(): array {
+		return array(
+			'allow_check_in'          => array(
+				'type' => 'boolean',
+			),
+			'allow_check_out'         => array(
+				'type' => 'boolean',
+			),
+			'buffer_days'             => array(
+				'type'    => 'integer',
+				'minimum' => 0,
+			),
+			'min_stay_length'         => array(
+				'type'    => 'integer',
+				'minimum' => 0,
+			),
+			'max_stay_length'         => array(
+				'type'    => 'integer',
+				'minimum' => 0,
+			),
+			'min_advance_reservation' => array(
+				'type'    => 'integer',
+				'minimum' => 0,
+			),
+			'max_advance_reservation' => array(
+				'type'    => 'integer',
+				'minimum' => 0,
+			),
+		);
+	}
+
+	public static function getCustomerProperties(): array {
+		return array(
+			'id'         => array(
+				'type'    => 'integer',
+				'minimum' => 1,
+			),
+			'user_id'    => array(
+				'type'    => array( 'integer', 'null' ),
+				'minimum' => 1,
+			),
+			'email'      => array(
+				'type'   => 'string',
+				'format' => 'email',
+			),
+			'first_name' => array(
+				'type' => 'string',
+			),
+			'last_name'  => array(
+				'type' => 'string',
+			),
+			'phone'      => array(
+				'type' => 'string',
+			),
+			'country'    => array(
+				'type'        => 'string',
+				'description' => 'Country code, like "US".',
+				'minLength'   => 2,
+				'maxLength'   => 2,
+			),
+			'state'      => array(
+				'type' => 'string',
+			),
+			'city'       => array(
+				'type' => 'string',
+			),
+			'address1'   => array(
+				'type' => 'string',
+			),
+			'zip'        => array(
+				'type' => 'string',
+			),
+			'bookings'   => array(
+				'type'    => 'integer',
+				'minimum' => 0,
 			),
 		);
 	}

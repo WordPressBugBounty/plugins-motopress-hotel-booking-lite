@@ -8,8 +8,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class LicenseNotice {
 
-	const ACTION_DISMISS = 'mphb_dismiss_license_notice';
-
 	/**
 	 * @since 5.0.0
 	 */
@@ -30,7 +28,7 @@ class LicenseNotice {
 		$this->pluginFile = plugin_basename( $pluginFile );
 
 		$this->registerPluginNotice();
-		// $this->registerAdminNotice();
+		$this->registerAdminNotice();
 	}
 
 	/**
@@ -45,10 +43,6 @@ class LicenseNotice {
 	 */
 	private function registerAdminNotice() {
 		add_action( 'admin_notices', array( $this, 'showAdminNotice' ) );
-
-		if ( is_multisite() ) {
-			add_action( 'network_admin_notices', array( $this, 'showAdminNotice' ) );
-		}
 	}
 
 	/**
@@ -61,10 +55,7 @@ class LicenseNotice {
 	public function showPluginNotice() {
 		global $wp_list_table;
 
-		if ( $wp_list_table === null
-			|| ! is_main_site()
-			|| MPHB()->settings()->license()->needHideNotice()
-		) {
+		if ( $wp_list_table === null || ! is_main_site() ) {
 			return;
 		}
 
@@ -136,68 +127,96 @@ class LicenseNotice {
 	 */
 	public function showAdminNotice() {
 
-		global $pagenow;
+		$isSettingsPage = MPHB()->getSettingsMenuPage()->isCurrentPage();
+		$isBookingsPage = MPHB()->postTypes()->booking()->getManagePage()->isCurrentPage();
+		$isPaymentsPage = MPHB()->postTypes()->payment()->getManagePage()->isCurrentPage();
 
-		if ( $pagenow !== 'plugins.php' || ! is_main_site() || MPHB()->settings()->license()->needHideNotice() ) {
+		if ( !$isBookingsPage && !$isSettingsPage && !$isPaymentsPage ) {
 			return;
 		}
 
 		$license = MPHB()->settings()->license()->getLicenseKey();
-		$licenseData = $license ? MPHB()->settings()->license()->getLicenseData() : null;
+		$hasLicenseKey = ! empty( $license );
+		$licenseStatus = MPHB()->settings()->license()->getLicenseStatus();
+		// $licenseStatus['status] = expired, inactive, disabled, site_inactive, invalid, invalid_item_id, item_name_mismatch, undefined, deactivated
 
-		if ( isset( $licenseData, $licenseData->license ) && $licenseData->license === 'valid' ) {
+		if ( $hasLicenseKey && in_array( $licenseStatus['status'], array( 'valid' ) ) ) {
 			return;
 		}
 
-		?>
-		<div class="error">
-			<a id="mphb-dismiss-license-notice" href="javascript:void(0);" style="float: right; padding-top: 9px; text-decoration: none;">
-				<?php esc_html_e( 'Dismiss ', 'motopress-hotel-booking' ); ?><strong>X</strong>
-			</a>
-			<p>
-				<b><?php echo esc_html( MPHB()->settings()->license()->getProductName() ); ?></b>
-				<br/>
-				<?php
-				printf(
+		$message = '';
+		switch( $licenseStatus['status'] ) {
+			case 'inactive':
+			case 'deactivated':
+			case 'site_inactive':
+				$message = sprintf(
 					wp_kses(
-						__( 'Your License Key is not active. Please, <a href="%s">activate your License Key</a> to get plugin updates.', 'motopress-hotel-booking' ),
+						__( 'Your License Key is not active for this website. Please <a href="%s">activate your License Key</a> to receive plugin updates and support.', 'motopress-hotel-booking' ),
 						array( 'a' => array( 'href' => array() ) ),
 					),
 					esc_url( $this->getLicensePageUrl() )
 				);
+				break;
+			case 'expired':
+				$message = sprintf(
+					wp_kses(
+						__( 'Your License Key has expired. Please <a href="%s">renew your License Key</a> to continue receiving plugin updates and support.', 'motopress-hotel-booking' ),
+						array( 'a' => array( 'href' => array() ) ),
+					),
+					esc_url( $this->getLicensePageUrl() )
+				);
+				break;
+			case 'disabled':
+				$message = sprintf(
+					wp_kses(
+						__( 'Your License Key has been disabled. Please <a href="%s">check your license details</a> or contact support for assistance.', 'motopress-hotel-booking' ),
+						array( 'a' => array( 'href' => array() ) ),
+					),
+					esc_url( $this->getLicensePageUrl() )
+				);
+				break;
+			case 'invalid':
+			case 'invalid_item_id':
+			case 'item_name_mismatch':
+				$message = sprintf(
+					wp_kses(
+						__(
+							'Your License Key is invalid. Please <a href="%s">enter a valid License Key</a> to enable updates.',
+							'motopress-hotel-booking'
+						),
+						array( 'a' => array( 'href' => array() ) )
+					),
+					esc_url( $this->getLicensePageUrl() )
+				);
+				break;
+			default :
+				$message = __(
+					'We could not verify your License Key status. Please try again or contact support if the issue persists.',
+					'motopress-hotel-booking'
+				);
+				break;
+		}
+
+		if ( !$hasLicenseKey ) {
+			$message = sprintf(
+					wp_kses(
+						__( 'Your License Key is not set for this website. Please <a href="%s">set and activate your License Key</a> to receive plugin updates and support.', 'motopress-hotel-booking' ),
+						array( 'a' => array( 'href' => array() ) ),
+					),
+					esc_url( $this->getLicensePageUrl() )
+				);
+		}
+
+		?>
+		<div class="notice notice-warning is-dismissible">
+			<p>
+				<b><?php echo esc_html( MPHB()->settings()->license()->getProductName() ); ?>:</b>
+				<?php
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $message;
 				?>
 			</p>
 		</div>
-		<script type="text/javascript">
-			(function ( $ ) {
-				var dismissBtn = $( '#mphb-dismiss-license-notice' );
-
-				dismissBtn.one( 'click', function() {
-					$.ajax( {
-						<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-						url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
-						type: 'POST',
-						dataType: 'json',
-						data: {
-							<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-							action: '<?php echo self::ACTION_DISMISS; ?>',
-							<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-							mphb_nonce: '<?php echo wp_create_nonce( self::ACTION_DISMISS ); ?>',
-						},
-						success: function( data ) {
-							if ( ! data.hasOwnProperty( 'success' ) ) {
-								return;
-							}
-							if ( data.success ) {
-								dismissBtn.closest( 'div.error' ).remove();
-							} else {
-								dismissBtn.closest( 'div.error' ).append( data.data.message );
-							}
-						}
-					} );
-				} );
-			})( jQuery );
-		</script>
 		<?php
 	}
 

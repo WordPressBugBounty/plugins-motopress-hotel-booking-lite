@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MPHB;
 
-use MPHB\Utils\BookingUtils;
-use MPHB\Utils\DateUtils;
-use DateTime;
+use MPHB\Entities\Booking;
+use MPHB\Utils\{ BookingUtils, DateUtils };
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -14,30 +15,20 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 4.10.0
  */
 class LinkedRooms {
-
 	/**
-	 * @var array [
+	 * @var array <code>[
 	 *     room_type_id (int) => [
-	 *         linked_room_id (int) => room_ids (int[]),
-	 *         'all' => all_linked_room_ids (int[])
+	 *         room_id (int) => linked_to_room_ids (int[]),
+	 *         ...,
+	 *         "all"         => all_linked_to_room_ids (int[]),
+	 *         "links"       => [ linked_to_room_id (int) => room_ids (int[]) ],
+	 *         "room_ids"    => int[]
 	 *     ]
-	 * ]
+	 * ]</code>
 	 */
-	protected static $cachedLinkedRoomsByRoomType = array();
-
-	protected $comment = '';
+	private static array $cachedLinkedRooms = array();
 
 	public function __construct() {
-
-		// we must init translated strings after init hook
-		add_action(
-			'init',
-			function () {
-
-				$this->comment = esc_html__( 'Blocked because the linked accommodation is booked', 'motopress-hotel-booking' );
-			}
-		);
-
 		add_filter( 'mphb_has_not_stay_in_rules', array( $this, 'checkForLinkedBookings' ) );
 		add_filter( 'mphb_get_booking_rules_for_date', array( $this, 'extendBookingRulesForDate' ), 10, 3 );
 		add_filter( 'mphb_get_admin_blocks_for_export', array( $this, 'extendAdminBlocksForExport' ), 10, 3 );
@@ -45,51 +36,47 @@ class LinkedRooms {
 	}
 
 	/**
-	 * @access protected
+	 * @access private
 	 *
-	 * @param bool $hasNotStayInRules
-	 * @return bool
+	 * @see Core\BookingRulesData::__construct()
 	 */
-	public function checkForLinkedBookings( $hasNotStayInRules ) {
-		if ( ! $hasNotStayInRules ) {
-			$hasNotStayInRules = static::hasBookingsForLinkedRooms();
-		}
-
-		return $hasNotStayInRules;
+	public function checkForLinkedBookings( bool $hasNotStayInRules ): bool {
+		return $hasNotStayInRules || static::hasBookedLinkedRooms();
 	}
 
 	/**
-	 * @access protected
+	 * @access private
 	 *
 	 * @see Core\BookingRulesData::getBookingRulesForDate()
 	 *
-	 * @param array $bookingRules
-	 * @param int $roomTypeId
-	 * @param DateTime $date
 	 * @return array Extended booking rules.
 	 */
-	public function extendBookingRulesForDate( $bookingRules, $roomTypeId, $date ) {
-		$linkedRoomIds = static::getLinkedRoomsForRoomType( $roomTypeId );
+	public function extendBookingRulesForDate( array $bookingRules, int $roomTypeId, \DateTime $date ): array {
+		$linkedRooms = static::getLinkedRoomsForRoomType( $roomTypeId );
 
-		if ( empty( $linkedRoomIds['all'] ) ) {
+		if ( empty( $linkedRooms['all'] ) ) {
 			return $bookingRules;
 		}
 
-		$linkedBookings = static::findLinkedBookingsForRoomType( $date, $date, $roomTypeId );
-		$linkedBlocks   = BookingUtils::convertToBlocks( $linkedBookings, $this->comment );
+		$linkedBookings = static::findLinkedBookingsInPeriod( $roomTypeId, $date, $date );
+		$linkedBlocks   = BookingUtils::convertAllToBlocks( $linkedBookings, $this->getBlockComment() );
 
 		foreach ( $linkedBlocks as $block ) {
-			foreach ( $block['room_ids'] as $linkedRoomId ) {
-				if ( in_array( $linkedRoomId, $linkedRoomIds['all'] ) ) {
-					foreach ( $linkedRoomIds[ $linkedRoomId ] as $roomId ) {
-						$bookingRules['custom_rules_for_room_id'][ $roomId ]['not_stay_in'] = true;
+			$linkedRoomId = $block['room_id'];
 
-						if ( empty( $bookingRules['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] ) ) {
-							$bookingRules['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] = $block['comment'];
-						} else {
-							$bookingRules['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] .= ', ' . $block['comment'];
-						}
-					}
+			if ( ! in_array( $linkedRoomId, $linkedRooms['all'] ) ) {
+				continue;
+			}
+
+			foreach ( $linkedRooms['links'][ $linkedRoomId ] as $roomId ) {
+				$bookingRules['custom_rules_for_room_id'][ $roomId ]['not_stay_in'] = true;
+				$bookingRules['custom_rules_for_room_id'][ $roomId ]['not_check_in'] ??= false;
+				$bookingRules['custom_rules_for_room_id'][ $roomId ]['not_check_out'] ??= false;
+
+				if ( empty( $bookingRules['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] ) ) {
+					$bookingRules['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] = $block['comment'];
+				} else {
+					$bookingRules['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] .= ', ' . $block['comment'];
 				}
 			}
 		}
@@ -98,24 +85,20 @@ class LinkedRooms {
 	}
 
 	/**
-	 * @access protected
+	 * @access private
 	 *
-	 * @param array $adminBlocks
-	 * @param int $roomTypeId
-	 * @param int $roomId
-	 * @return array [
-	 *     [
-	 *         'roomTypeId' => int,
-	 *         'roomId'     => int,
-	 *         'startDate'  => DateTime,
-	 *         'endDate'    => DateTime,
-	 *         'comment'    => string,
-	 *     ],
-	 *     ...
-	 * ]
+	 * @see Core\BookingRulesData::getNotStayInRulesData()
+	 *
+	 * @return array Array of <code>[
+	 *     'roomTypeId' => int,
+	 *     'roomId'     => int,
+	 *     'startDate'  => DateTime,
+	 *     'endDate'    => DateTime,
+	 *     'comment'    => string
+	 * ]</code>
 	 */
-	public function extendAdminBlocksForExport( $adminBlocks, $roomTypeId, $roomId ) {
-		$linkedRoomIds = MPHB()->getRoomRepository()->getLinkedRoomIds( $roomId );
+	public function extendAdminBlocksForExport( array $adminBlocks, int $roomTypeId, int $roomId ): array {
+		$linkedRoomIds = static::getLinkedRoomIds( $roomId );
 
 		if ( empty( $linkedRoomIds ) ) {
 			return $adminBlocks;
@@ -126,97 +109,104 @@ class LinkedRooms {
 			'rooms'       => $linkedRoomIds,
 		) );
 
-		$linkedBlocks = BookingUtils::convertToBlocks( $linkedBookings, $this->comment );
+		$linkedBlocks = BookingUtils::convertAllToBlocks( $linkedBookings, $this->getBlockComment() );
 
 		foreach ( $linkedBlocks as $block ) {
-			$adminBlocks[] = array(
-				'roomTypeId' => $roomTypeId,
-				'roomId'     => $roomId,
-				'startDate'  => $block['date_from'],
-				'endDate'    => $block['date_to'],
-				'comment'    => $block['comment'],
-			);
+			if ( in_array( $block['room_id'], $linkedRoomIds ) ) {
+				$adminBlocks[] = array(
+					'roomTypeId' => $roomTypeId,
+					'roomId'     => $roomId,
+					'startDate'  => $block['date_from'],
+					'endDate'    => $block['date_to'],
+					'comment'    => $block['comment'],
+				);
+			}
 		}
 
 		return $adminBlocks;
 	}
 
 	/**
-	 * @access protected
+	 * @access private
 	 *
-	 * @see \MPHB\Core\Data\BookingRulesData::getNotStayInComments()
+	 * @see Core\BookingRulesData::getNotStayInComments()
 	 *
 	 * @param array $blockComments
-	 * @param int $roomTypeId
 	 * @param int[] $roomIds
-	 * @param ?array $period
-	 * @return array [
+	 * @param \DatePeriod $period
+	 * @return array <code>[
 	 *     room_id (int) => [
-	 *         date (string, 'Y-m-d') => 'Comment 1, Comment 2, ...'
+	 *         date (string, "Y-m-d") => "Comment 1, Comment 2, ..."
 	 *     ]
-	 * ]
+	 * ]</code>
 	 */
-	public function extendBookingCalendarBlocks( $blockComments, $roomTypeId, $roomIds, $period ) {
-		// Skip requests without period
-		if ( empty( $period ) ) {
-			return $blockComments;
-		}
+	public function extendBookingCalendarBlocks(
+		array $blockComments,
+		int $roomTypeId,
+		array $roomIds,
+		$period
+	): array {
+		$linkedRooms = self::getLinkedRoomsForRoomType( $roomTypeId );
 
 		list( $dateFrom, $dateTo ) = DateUtils::getPeriodRangeDates( $period );
 
-		$linkedRoomIds = MPHB()->getRoomRepository()->getLinkedRoomIds( $roomIds );
-
-		$linkedBookings = static::findLinkedBookingsForRoomType( $dateFrom, $dateTo, $roomTypeId );
-		$linkedBlocks   = BookingUtils::convertToBlocks( $linkedBookings, $this->comment );
+		$linkedBookings = static::findLinkedBookingsInPeriod( $roomTypeId, $dateFrom, $dateTo );
+		$linkedBlocks   = BookingUtils::convertAllToBlocks( $linkedBookings, $this->getBlockComment() );
 
 		foreach ( $linkedBlocks as $block ) {
-			$periodDates = array_keys( DateUtils::getPeriodDates( $block['date_period'], true ) ); // 'Y-m-d'[]
+			$linkedRoomId = $block['room_id'];
+			$periodDates  = array_keys( DateUtils::getPeriodDates( $block['date_period'], true ) ); // 'Y-m-d'[]
 
+			// Add this block to each room
 			foreach ( $roomIds as $roomId ) {
-				$blockLinkedRoomIds = array_intersect( $linkedRoomIds[ $roomId ], $block['room_ids'] );
+				if ( ! in_array( $linkedRoomId, $linkedRooms[ $roomId ] ) ) {
+					continue;
+				}
 
-				if ( ! empty( $blockLinkedRoomIds ) ) {
-					foreach ( $periodDates as $date ) {
-						if ( empty( $blockComments[ $roomId ][ $date ] ) ) {
-							$blockComments[ $roomId ][ $date ] = $block['comment'];
-						} else {
-							$blockComments[ $roomId ][ $date ] .= ', ' . $block['comment'];
-						}
+				foreach ( $periodDates as $date ) {
+					if ( empty( $blockComments[ $roomId ][ $date ] ) ) {
+						$blockComments[ $roomId ][ $date ] = $block['comment'];
+					} else {
+						$blockComments[ $roomId ][ $date ] .= ', ' . $block['comment'];
 					}
 				}
-			} // For each room ID
-		} // For each block
+			}
+		}
 
 		return $blockComments;
 	}
 
-	/**
-	 * @global \wpdb $wpdb
-	 *
-	 * @return bool
-	 */
-	public static function hasBookingsForLinkedRooms() {
-		global $wpdb;
-
-		// The answer isn't 100% accurate because the query doesn't look for
-		// distinct values, but that doesn't matter here - we need at least 1
-		$linkedRoomsBooked = (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$wpdb->posts}` AS `reserved_room` INNER JOIN `{$wpdb->postmeta}` AS `postmeta` ON `postmeta`.`meta_value` = `reserved_room`.`ID` WHERE `postmeta`.`meta_key` = 'mphb_linked_room'" );
-
-		return $linkedRoomsBooked > 0;
+	private function getBlockComment(): string {
+		return __( 'Blocked because the linked accommodation is booked', 'motopress-hotel-booking' );
 	}
 
 	/**
-	 * @param DateTime|string $dateFrom
-	 * @param DateTime|string $dateTo
-	 * @param int $roomTypeId
-	 * @return Entities\Booking[]
+	 * @global \wpdb $wpdb
 	 */
-	public static function findLinkedBookingsForRoomType( $dateFrom, $dateTo, $roomTypeId ) {
-		$linkedRoomIds = static::getLinkedRoomsForRoomType( $roomTypeId );
+	public static function hasBookedLinkedRooms(): bool {
+		global $wpdb;
+
+		$hasBookedLinkedRooms = (bool) $wpdb->get_var(
+			"SELECT 1 FROM {$wpdb->posts} AS reserved_rooms"
+				. " INNER JOIN `{$wpdb->postmeta}` AS postmeta"
+					. ' ON postmeta.meta_value = reserved_rooms.ID'
+				. ' WHERE postmeta.meta_key = "mphb_linked_room"'
+		);
+
+		return $hasBookedLinkedRooms;
+	}
+
+	/**
+	 * @param \DateTime|string $dateFrom
+	 * @param \DateTime|string $dateTo
+	 * @return Booking[]
+	 */
+	public static function findLinkedBookingsInPeriod( int $roomTypeId, $dateFrom, $dateTo ): array {
+		$linkedRooms = self::getLinkedRoomsForRoomType( $roomTypeId );
 
 		return MPHB()->getBookingRepository()->findAllInPeriod( $dateFrom, $dateTo, array(
 			'room_locked'         => true,
-			'rooms'               => $linkedRoomIds['all'],
+			'rooms'               => $linkedRooms['all'],
 			'period_edge_overlap' => array(
 				'check_in'  => true,
 				'check_out' => false, // Check-outs will create +1 blocked day
@@ -225,23 +215,37 @@ class LinkedRooms {
 	}
 
 	/**
-	 * @param int $roomTypeId
-	 * @return array
+	 * @return int[]
 	 */
-	protected static function getLinkedRoomsForRoomType( $roomTypeId ) {
-		if ( ! isset( static::$cachedLinkedRoomsByRoomType[ $roomTypeId ] ) ) {
+	public static function getLinkedRoomIds( int $roomId ): array {
+		$roomTypeId  = MPHB()->getRoomRepository()->getRoomTypeId( $roomId );
+		$linkedRooms = self::getLinkedRoomsForRoomType( $roomTypeId );
+
+		return $linkedRooms[ $roomId ] ?? array();
+	}
+
+	/**
+	 * @return int[]
+	 */
+	public static function getLinkedRoomIdsForRoomType( int $roomTypeId ): array {
+		return self::getLinkedRoomsForRoomType( $roomTypeId )['all'];
+	}
+
+	private static function getLinkedRoomsForRoomType( int $roomTypeId ): array {
+		if ( ! isset( self::$cachedLinkedRooms[ $roomTypeId ] ) ) {
 			$roomIds = MPHB()->getRoomRepository()->findIds( array( 'room_type_id' => $roomTypeId ) );
 
 			if ( ! empty( $roomIds ) ) {
-				$linkedRoomIds = MPHB()->getRoomRepository()->getLinkedRoomIds( $roomIds, 'reverse', true );
-
-				static::$cachedLinkedRoomsByRoomType[ $roomTypeId ] = $linkedRoomIds;
+				self::$cachedLinkedRooms[ $roomTypeId ] = MPHB()->getRoomRepository()->getLinkedRooms( $roomIds, 'full' );
 			} else {
-				static::$cachedLinkedRoomsByRoomType[ $roomTypeId ] = array( 'all' => array() );
+				self::$cachedLinkedRooms[ $roomTypeId ] = array(
+					'all'      => array(),
+					'links'    => array(),
+					'room_ids' => array(),
+				);
 			}
 		}
 
-		return static::$cachedLinkedRoomsByRoomType[ $roomTypeId ];
+		return static::$cachedLinkedRooms[ $roomTypeId ];
 	}
-
 }

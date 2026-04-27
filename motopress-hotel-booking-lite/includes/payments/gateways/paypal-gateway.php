@@ -214,6 +214,5 @@ class PaypalGateway extends Gateway {
 
 		// Redirect to paypal checkout
 		wp_redirect( $paypalUrl );
-		exit;
 	}
 }

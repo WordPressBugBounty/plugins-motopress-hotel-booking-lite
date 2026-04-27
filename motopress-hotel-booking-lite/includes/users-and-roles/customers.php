@@ -206,7 +206,7 @@ class Customers {
 			if ( $atts['orderby'] == 'full_name' ) {
 				$orderby = $wpdb->prepare( 'ORDER BY last_name %1s, first_name %2s', $order, $order );
 			} else {
-				$orderby = $wpdb->prepare( 'ORDER BY %1s %1s', $atts['orderby'], $order );
+				$orderby = $wpdb->prepare( 'ORDER BY %1s %2s', $atts['orderby'], $order );
 			}
 		}
 

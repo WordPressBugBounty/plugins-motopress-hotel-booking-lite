@@ -2,6 +2,8 @@
 
 namespace MPHB\Core;
 
+use MPHB\Utils\DateUtils;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -19,6 +21,18 @@ class RoomsAvailabilityCoreAPIFacade extends AbstractCoreAPIFacade {
 	 */
 	private $bookingRules = null;
 
+	/**
+	 * @var array <code>[
+	 *     Room type ID => [
+	 *         Year => [
+	 *             Month => [
+	 *                 Date string ("Y-m-d") => [ buffer_days, check_in_days, ... ]
+	 *             ]
+	 *         ]
+	 *     ]
+	 * ]</code>
+	 */
+	private array $cachedCustomRules = array();
 
 	protected function getHookNamesForClearAllCache(): array {
 		return array(
@@ -141,8 +155,11 @@ class RoomsAvailabilityCoreAPIFacade extends AbstractCoreAPIFacade {
 
 
 	public function hasBufferDaysRules( bool $isIgnoreBookingRules ): bool {
-
-		return $this->getBookingRules()->hasBufferDaysRules( $isIgnoreBookingRules );
+		if ( $isIgnoreBookingRules ) {
+			return false;
+		} else {
+			return $this->getBookingRules()->hasBufferDaysRules();
+		}
 	}
 
 
@@ -155,6 +172,9 @@ class RoomsAvailabilityCoreAPIFacade extends AbstractCoreAPIFacade {
 		);
 	}
 
+	public function getMaxBufferDaysCount( int $roomTypeOriginalId ): int {
+		return $this->getBookingRules()->getMaxBufferDaysCount( $roomTypeOriginalId );
+	}
 
 	public function getBlockedRoomsCountForRoomType( int $roomTypeOriginalId, \DateTime $requestedDate, bool $isIgnoreBookingRules ): int {
 
@@ -220,11 +240,12 @@ class RoomsAvailabilityCoreAPIFacade extends AbstractCoreAPIFacade {
 	}
 
 	/**
-	 * @param \DatePeriod|array $period Optional. Null by default (not limited by period).
+	 * Currently this method is only used in the old booking calendar.
+	 *
+	 * @param \DatePeriod $period
 	 * @return array [ room_id (int) => [ date (string as Y-m-d) => 'comment_1, comment_2, ...' ], ... ]
 	 */
-	public function getNotStayInComments( int $roomTypeOriginalId, array $roomIds, $period = null ) {
-
+	public function getNotStayInComments( int $roomTypeOriginalId, array $roomIds, $period ): array {
 		return $this->getBookingRules()->getNotStayInComments(
 			$roomTypeOriginalId,
 			$roomIds,
@@ -233,10 +254,20 @@ class RoomsAvailabilityCoreAPIFacade extends AbstractCoreAPIFacade {
 	}
 
 	/**
-	 * @return array [ room_id (int) => [ date (string as Y-m-d) => 'comment_1, comment_2, ...' ], ... ]
+	 * Currently this method is only used for export.
+	 *
+	 * @return array <code>[
+	 *     [ 
+	 *         roomTypeId => int,
+	 *         roomId     => int,
+	 *         startDate  => DateTime,
+	 *         endDate    => DateTime,
+	 *         comment    => string
+	 *     ],
+	 *     ...
+	 * ]</code>
 	 */
-	public function getNotStayInRulesData( int $roomTypeOriginalId, int $requestedRoomId ) {
-
+	public function getNotStayInRulesData( int $roomTypeOriginalId, int $requestedRoomId ): array {
 		return $this->getBookingRules()->getNotStayInRulesData(
 			$roomTypeOriginalId,
 			$requestedRoomId

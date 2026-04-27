@@ -2,6 +2,12 @@
 
 namespace MPHB\Shortcodes\CheckoutShortcode;
 
+use MPHB\Utils\DateUtils;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 abstract class Step {
 
 	protected $isValidStep = false;
@@ -16,6 +22,7 @@ abstract class Step {
 	 * @var \DateTime
 	 */
 	protected $checkInDate;
+
 	/**
 	 * @var \DateTime
 	 */
@@ -41,7 +48,7 @@ abstract class Step {
 
 		mphb_set_cookie( 'mphb_check_in_date', $dateString );
 
-		$checkInDate = \MPHB\Utils\DateUtils::createCheckInDate(
+		$checkInDate = DateUtils::createCheckInDate(
 			MPHB()->settings()->dateTime()->getDateTransferFormat(),
 			$dateString
 		);
@@ -52,7 +59,7 @@ abstract class Step {
 		if ( ! $checkInDate ) {
 			$this->errors[] = __( 'Check-in date is not valid.', 'motopress-hotel-booking' );
 			return false;
-		} elseif ( \MPHB\Utils\DateUtils::calcNights( $todayDate, $checkInDate ) < 0 ) {
+		} elseif ( DateUtils::calcNights( $todayDate, $checkInDate ) < 0 ) {
 			$this->errors[] = __( 'Check-in date cannot be earlier than today.', 'motopress-hotel-booking' );
 			return false;
 		}
@@ -75,13 +82,12 @@ abstract class Step {
 		$dateString         = filter_input( INPUT_POST, 'mphb_check_out_date' );
 
 		if ( empty( $dateString ) ) {
-
 			$dateString = filter_input( INPUT_COOKIE, 'mphb_check_out_date' );
 		}
 
 		mphb_set_cookie( 'mphb_check_out_date', $dateString );
 
-		$checkOutDate = \MPHB\Utils\DateUtils::createCheckOutDate( MPHB()->settings()->dateTime()->getDateTransferFormat(), $dateString );
+		$checkOutDate = DateUtils::createCheckOutDate( MPHB()->settings()->dateTime()->getDateTransferFormat(), $dateString );
 
 		$checkOutDate = apply_filters( 'mphb_sc_checkout_parse_check_out_date', $checkOutDate, $dateString, $this->checkInDate );
 

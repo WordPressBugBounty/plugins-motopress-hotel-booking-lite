@@ -97,8 +97,8 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 
 			$roomTypeData = array(
 				'id'                      => $roomType->getId(),
-				'title'                   => $roomType->getTitle(),
-				'excerpt'                 => $roomType->getExcerpt(),
+				'title'                   => wp_strip_all_tags( $roomType->getTitle() ),
+				'excerpt'                 => wp_strip_all_tags( $roomType->getExcerpt() ),
 				'featuredImage'           => $featuredImageUrl,
 				'capacity'                => $originalRoomType->calcTotalCapacity(),
 				'isIncludeToGoogleHotels' => $originalRoomType->isIncludeToGoogleHotels(),

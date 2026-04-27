@@ -2,43 +2,43 @@
 
 namespace MPHB\Admin\EditCPTPages;
 
-class EditCPTPage {
+use MPHB\Admin\Fields\InputField;
+use MPHB\Admin\Groups\MetaBoxGroup;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+class EditCPTPage {
 	const EMPTY_VALUE_PLACEHOLDER = '&#8212;';
 
 	protected $capability;
 	protected $postType;
 
 	/**
-	 *
-	 * @var \MPHB\Admin\Groups\MetaBoxGroup[]
+	 * @var MetaBoxGroup[]
 	 */
 	protected $fieldGroups = array();
 
 	public function __construct( $postType, $fieldGroups = array(), $atts = array() ) {
-
-		$this->postType = $postType;
-
-		$fieldGroups = apply_filters( 'mphb_edit_page_field_groups', $fieldGroups, $postType );
-
-		$this->fieldGroups = $fieldGroups;
-
-		$defaultsArgs = array(
-			'capability' => 'edit_post',
-		);
-
-		$atts = array_merge( $defaultsArgs, $atts );
-
-		$this->capability = $atts['capability'];
+		$this->postType    = $postType;
+		$this->fieldGroups = apply_filters( 'mphb_edit_page_field_groups', $fieldGroups, $postType );
+		$this->capability  = $atts['capability'] ?? 'edit_post';
 
 		$this->addActions();
 	}
 
 	protected function addActions() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueueAdminScripts' ) );
-		add_action( 'save_post', array( $this, 'saveMetaBoxes' ), 10, 3 );
+		add_action( 'save_post', array( $this, 'saveMetaBoxes' ), 10, 3 ); // Only for Groups\MetaBoxGroup classes
 		add_action( 'admin_menu', array( $this, 'customizeMetaBoxes' ) );
 		add_action( "mphb_register_{$this->postType}_metaboxes", array( $this, 'registerMetaBoxes' ) );
+
+		add_action( 'current_screen', function () {
+			if ( $this->isCurrentPage() ) {
+				$this->createNewMetaboxes();
+			}
+		} );
 	}
 
 	/**
@@ -58,8 +58,12 @@ class EditCPTPage {
 		}
 	}
 
-	public function customizeMetaBoxes() {
-	}
+	/**
+	 * @access protected
+	 */
+	public function customizeMetaBoxes() {}
+
+	protected function createNewMetaboxes(): void {}
 
 	/**
 	 *
@@ -169,5 +173,15 @@ class EditCPTPage {
 		}
 
 		return $postId;
+	}
+
+	protected function findField( string $groupName, string $fieldName ): ?InputField {
+		foreach ( $this->fieldGroups as $metaboxGroup ) {
+			if ( $metaboxGroup->getName() === $groupName ) {
+				return $metaboxGroup->getFieldByName( $fieldName );
+			}
+		}
+
+		return null;
 	}
 }

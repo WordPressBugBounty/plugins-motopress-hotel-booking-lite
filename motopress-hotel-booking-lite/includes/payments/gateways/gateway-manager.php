@@ -2,8 +2,7 @@
 
 namespace MPHB\Payments\Gateways;
 
-use \MPHB\Admin\Tabs;
-use MPHB\Entities\Booking;
+use MPHB\Admin\Tabs;
 
 class GatewayManager {
 
@@ -117,8 +116,7 @@ class GatewayManager {
 	}
 
 	/**
-	 *
-	 * @return Gateway[]
+	 * @return Gateway[] <code>[ Gateway ID => Gateway ]</code>
 	 */
 	public function getListActive() {
 		return array_filter(

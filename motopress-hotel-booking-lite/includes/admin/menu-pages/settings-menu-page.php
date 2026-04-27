@@ -644,6 +644,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 					'type'        => 'checkbox',
 					'label'       => __( 'Availability Calendar', 'motopress-hotel-booking' ),
 					'inner_label' => __( 'Display per-night prices in the availability calendar.', 'motopress-hotel-booking' ),
+					'description' => __( 'Applies to the default accommodation page calendar only. Block or shortcode-based calendars have separate settings.', 'motopress-hotel-booking' ),
 					'default'     => false,
 				)
 			),
@@ -1333,7 +1334,10 @@ class SettingsMenuPage extends AbstractMenuPage {
 		$activeTab     = $this->detectTab();
 		$paymentMethod = MPHB()->settings()->main()->getConfirmationMode();
 
-		if ( $activeTab == self::TAB_PAYMENTS && $paymentMethod != 'payment' ) {
+		if ( $this->isCurrentPage() // Don't show notices on other plugins' settings pages
+			&& $activeTab === self::TAB_PAYMENTS
+			&& $paymentMethod !== 'payment'
+		) {
 			echo '<div class="notice notice-warning">';
 			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '<p>', __( '<strong>Note:</strong> Payment methods will appear on the checkout page only when Confirmation Upon Payment is enabled in Accommodation > Settings > General > Confirmation Mode.', 'motopress-hotel-booking' ), '</p>';

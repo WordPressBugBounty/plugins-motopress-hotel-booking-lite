@@ -5,8 +5,11 @@ namespace MPHB\Admin\Groups;
 use MPHB\Admin\Fields\TextField;
 use MPHB\Core\StringEncryptHelper;
 
-class MetaBoxGroup extends InputGroup {
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
+class MetaBoxGroup extends InputGroup {
 	protected $postType;
 	protected $context;
 	protected $priority;
@@ -14,15 +17,14 @@ class MetaBoxGroup extends InputGroup {
 	private $atts;
 
 	/**
+	 * @since 3.9.1
 	 *
 	 * @param string $name
 	 * @param string $label
 	 * @param string $postType
 	 * @param string $context Optional. The context within the screen where the boxes should display ('normal', 'side', and 'advanced'). Default: 'advanced'
 	 * @param string $priority Optional. The priority within the context where the boxes should show ('high', 'default', 'low'). Default: 'default'
-	 *
-	 * @since 3.9.1
-	 * @param array  $atts Optional. Additional attributes for rendering.
+	 * @param array $atts Optional. Additional attributes for rendering.
 	 */
 	public function __construct( $name, $label, $postType, $context = 'advanced', $priority = 'default', $atts = array() ) {
 		parent::__construct( $name, $label );
@@ -44,18 +46,40 @@ class MetaBoxGroup extends InputGroup {
 		$this->postId = $postId;
 	}
 
-	public function render() {
+	protected function load(): bool {
+		$postId = get_the_ID(); // False before "wp" hook
+
+		if ( empty( $this->fields ) || $postId === false ) {
+			return false; // Not loaded
+		}
 
 		foreach ( $this->fields as $field ) {
+			// Update dependency
 			if ( $field->getType() === 'dynamic-select' ) {
-				$field->updateDependency( get_post_meta( get_the_ID(), $field->getDependencyInput(), true ) );
+				$field->updateDependency( get_post_meta( $postId, $field->getDependencyInput(), $single = true ) );
 			}
+
+			// Set value
 			if ( $field->getType() === 'post-id' ) {
-				$field->setValue( get_the_ID() );
+				$field->setValue( $postId );
 			} else {
-				$field->setValue( get_post_meta( get_the_ID(), $field->getName(), $field->isUnique() ) );
+				// Always search with the parameter $single = false to
+				// distinguish an empty field from a missing one
+				$metaValues = get_post_meta( $postId, $field->getName(), $single = false );
+
+				if ( $metaValues !== false && count( $metaValues ) >= 1 ) {
+					$value = $field->isUnique() ? reset( $metaValues ) : $metaValues;
+
+					$field->setValue( $value );
+				}
 			}
 		}
+
+		return true; // Loaded
+	}
+
+	public function render() {
+		$this->load();
 
 		wp_nonce_field( 'save_' . $this->getName(), '_nonce_' . $this->getName() );
 

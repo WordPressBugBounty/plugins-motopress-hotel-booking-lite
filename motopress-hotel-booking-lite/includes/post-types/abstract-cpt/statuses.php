@@ -2,8 +2,11 @@
 
 namespace MPHB\PostTypes\AbstractCPT;
 
-abstract class Statuses {
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
+abstract class Statuses {
 	protected $postType;
 	protected $statuses = array();
 
@@ -16,7 +19,6 @@ abstract class Statuses {
 	abstract protected function initStatuses();
 
 	/**
-	 *
 	 * @return array
 	 */
 	public function getStatuses() {
@@ -24,6 +26,10 @@ abstract class Statuses {
 	}
 
 	abstract public function getStatusArgs( $statusName );
+
+	public function hasStatus( string $status ): bool {
+		return array_key_exists( $status, $this->statuses );
+	}
 
 	public function registerStatuses() {
 		foreach ( $this->statuses as $statusName => $details ) {
@@ -41,5 +47,4 @@ abstract class Statuses {
 
 		return $labels;
 	}
-
 }

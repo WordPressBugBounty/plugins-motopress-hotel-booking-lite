@@ -67,6 +67,12 @@ class RateData extends AbstractPostData {
 				'context'     => array( 'embed', 'view', 'edit' ),
 				'required'    => true,
 			),
+			'readonly'              => array(
+				'description' => 'Is it intended for editing?',
+				'type'        => 'boolean',
+				'context'     => array( 'embed', 'view', 'edit' ),
+				'readonly'    => true,
+			),
 			'season_prices'         => array(
 				'description' => 'Season prices.',
 				'type'        => 'array',
@@ -92,25 +98,21 @@ class RateData extends AbstractPostData {
 							'description' => 'Base adults.',
 							'type'        => 'integer',
 							'context'     => array( 'embed', 'view', 'edit' ),
-							'required'    => false,
 						),
 						'base_children'     => array(
 							'description' => 'Base children',
 							'type'        => 'integer',
 							'context'     => array( 'embed', 'view', 'edit' ),
-							'required'    => false,
 						),
 						'extra_adult_price' => array(
 							'description' => 'Price per extra adult.',
 							'type'        => 'number',
 							'context'     => array( 'embed', 'view', 'edit' ),
-							'required'    => false,
 						),
 						'extra_child_price' => array(
 							'description' => 'Price per extra child.',
 							'type'        => 'number',
 							'context'     => array( 'embed', 'view', 'edit' ),
-							'required'    => false,
 						),
 						'season_id'         => array(
 							'description' => 'Season id.',
@@ -122,6 +124,10 @@ class RateData extends AbstractPostData {
 				),
 			),
 		);
+	}
+
+	protected function getReadonly(): bool {
+		return $this->entity->isReadonly();
 	}
 
 	protected function getStatus() {
@@ -190,9 +196,6 @@ class RateData extends AbstractPostData {
 	}
 
 	protected function setSeasonPrices( $seasonPrices ) {
-		if ( ! count( $seasonPrices ) ) {
-			return;
-		}
 		$seasonPriceEntities = array();
 
 		// Sort the array of season prices by priority.

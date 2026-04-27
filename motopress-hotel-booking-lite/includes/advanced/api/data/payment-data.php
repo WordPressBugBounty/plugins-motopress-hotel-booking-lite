@@ -10,6 +10,10 @@ use MPHB\Advanced\Api\ApiHelper;
 use MPHB\Entities\Payment;
 use MPHB\Utils\DateUtils;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class PaymentData extends AbstractPostData {
 	/**
 	 * @var Payment
@@ -161,7 +165,7 @@ class PaymentData extends AbstractPostData {
 	}
 
 	private function getBillingInfoField( $field ) {
-		return get_post_meta( $this->entity->getId(), '_' . mphb_prefix( $field, '_' ), true );
+		return get_post_meta( $this->entity->getId(), mphb_prefix( $field, '_mphb_' ), true );
 	}
 
 	protected function getStatus() {

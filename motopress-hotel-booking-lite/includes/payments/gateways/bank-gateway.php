@@ -145,7 +145,7 @@ class BankGateway extends Gateway {
 
 	public function processPayment( \MPHB\Entities\Booking $booking, \MPHB\Entities\Payment $payment ) {
 
-		$redirectUrl = MPHB()->settings()->pages()->getReservationReceivedPageUrl( $payment );
+		$redirectUrl = '';
 
 		if ( $this->getOption( 'is_auto_abandon_bookings' ) ) {
 
@@ -185,7 +185,8 @@ class BankGateway extends Gateway {
 			);
 		}
 
-		wp_redirect( $redirectUrl );
-		exit;
+		if ( $redirectUrl !== '' ) {
+			wp_redirect( $redirectUrl );
+		}
 	}
 }

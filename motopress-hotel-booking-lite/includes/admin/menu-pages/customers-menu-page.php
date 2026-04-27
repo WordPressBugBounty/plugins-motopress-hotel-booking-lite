@@ -311,22 +311,19 @@ class CustomersMenuPage extends AbstractMenuPage {
 			<?php
 			if ( ! empty( $this->errors ) ) {
 				foreach ( $this->errors as $key => $error ) {
-					?>
-				   <div class="error notice notice-error is-dismissible"><p><?php echo esc_html( $error->get_error_message() ); ?></p></div>
-					<?php
+					// phpcs:ignore -- HTML content
+					echo mphb_tmpl_admin_notice( esc_html( $error->get_error_message() ), 'error' );
 				}
 			}
 
 			if ( isset( $_GET['customer_updated'] ) && $_GET['customer_updated'] == 1 ) {
-				?>
-				<div class="updated notice notice-success is-dismissible"><p><?php echo esc_html__( 'Customer data updated.', 'motopress-hotel-booking' ); ?></p></div>
-				<?php
+				// phpcs:ignore -- HTML content
+				echo mphb_tmpl_admin_notice( esc_html__( 'Customer data updated.', 'motopress-hotel-booking' ) );
 			}
 
 			if ( isset( $_GET['user_linked'] ) && $_GET['user_linked'] == 1 ) {
-				?>
-				<div class="updated notice notice-success is-dismissible"><p><?php echo esc_html__( 'User account updated.', 'motopress-hotel-booking' ); ?></p></div>
-				<?php
+				// phpcs:ignore -- HTML content
+				echo mphb_tmpl_admin_notice( esc_html__( 'User account updated.', 'motopress-hotel-booking' ) );
 			}
 			?>
 			<form method="POST" action="">

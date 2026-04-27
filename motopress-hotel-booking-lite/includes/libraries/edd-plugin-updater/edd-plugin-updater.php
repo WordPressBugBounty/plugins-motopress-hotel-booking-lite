@@ -349,7 +349,7 @@ class EDD_Plugin_Updater {
 			return;
 		}
 
-		if ( $this->api_url == trailingslashit( home_url() ) ) {
+		if ( $this->api_url == trailingslashit( network_home_url() ) ) {
 			return false; // Don't allow a plugin to ping itself
 		}
 
@@ -361,7 +361,7 @@ class EDD_Plugin_Updater {
 			'version'    => isset( $data['version'] ) ? $data['version'] : false,
 			'slug'       => $data['slug'],
 			'author'     => $data['author'],
-			'url'        => home_url(),
+			'url'        => network_home_url(),
 			'beta'       => ! empty( $data['beta'] ),
 		);
 
@@ -431,7 +431,7 @@ class EDD_Plugin_Updater {
 				'item_id'    => isset( $data['item_id'] ) ? $data['item_id'] : false,
 				'slug'       => $slugFromRequest,
 				'author'     => $data['author'],
-				'url'        => home_url(),
+				'url'        => network_home_url(),
 				'beta'       => ! empty( $data['beta'] ),
 			);
 

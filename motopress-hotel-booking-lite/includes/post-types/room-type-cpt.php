@@ -18,6 +18,7 @@ class RoomTypeCPT extends EditableCPT {
 
 	protected function addActions() {
 		parent::addActions();
+
 		add_action( 'after_setup_theme', array( $this, 'addFeaturedImageSupport' ), 11 );
 
 		add_filter( 'single_template', array( $this, 'filterSingleTemplate' ) );
@@ -26,6 +27,8 @@ class RoomTypeCPT extends EditableCPT {
 		add_action( 'init', array( $this, 'initTaxManagePages' ) );
 
 		add_filter( 'use_block_editor_for_post_type', array( $this, 'useBlockEditor' ), 10, 2 );
+
+		add_action( 'deleted_post', fn( $postId, $post ) => $this->afterRoomTypeDelete( $postId, $post ), 10, 2 );
 	}
 
 	public function useBlockEditor( $useBlockEditor, $postType ) {
@@ -533,4 +536,12 @@ class RoomTypeCPT extends EditableCPT {
 		$this->facilityManagePage = new ManageTaxPages\FacilityManageTaxPage( $this->facilityTaxName );
 	}
 
+	private function afterRoomTypeDelete( int $postId, \WP_Post $post ): void {
+		if ( $post->post_type !== $this->getPostType() ) {
+			return;
+		}
+
+		MPHB()->getBlocksRepository()->deleteAllByRoomType( $postId );
+		MPHB()->getCustomBookingRulesRepository()->removeRulesByRoomType( $postId );
+	}
 }

@@ -263,7 +263,9 @@ class RulesListField extends InputField {
 
 			// TextField, TextareaField, NumberField, SelectField, AmountField, PlaceholderField
 			default:
-				$class = '\MPHB\Admin\Fields\\' . ucfirst( $type ) . 'Field';
+				// "complex-name" → "ComplexNameField"
+				$className = str_replace( '-', '', ucwords( $type, '-' ) ) . 'Field';
+				$class = '\MPHB\Admin\Fields\\' . $className;
 				if ( method_exists( $class, 'renderValue' ) ) {
 					$result = $class::renderValue( $field );
 				}

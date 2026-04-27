@@ -74,12 +74,10 @@ class GetAdminCalendarBookingInfo extends AbstractAjaxApiAction {
 				</tr>
 
 				<?php if ( $booking->isImported() ) : ?>
-
 					<?php
-						$reservedRoomsUID = '';
+					$reservedRoomsUID = '';
 
 					foreach ( $booking->getReservedRooms() as $reservedRoom ) {
-
 						$reservedRoomsUID .= ( empty( $reservedRoomsUID ) ? '' : ', ' ) . $reservedRoom->getUid();
 					}
 					?>

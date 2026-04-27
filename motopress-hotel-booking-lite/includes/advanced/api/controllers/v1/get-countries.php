@@ -48,12 +48,14 @@ class GetCountries extends AbstractRestCommandController {
 	 */
 	public static function get_response_schema(): array {
 		return array(
-			'$schema' => 'http://json-schema.org/draft-04/schema#',
-			'type'    => 'object',
-			'description' => 'List of countries keyed by ISO 3166-1 alpha-2 country codes (country code => country name, ...)',
-			'patternProperties' => array(
+			'$schema'              => 'http://json-schema.org/draft-04/schema#',
+			'component'            => 'countries',
+			'title'                => 'settings',
+			'type'                 => 'object',
+			'description'          => 'List of countries keyed by ISO 3166-1 alpha-2 country codes (country code => country name, ...)',
+			'patternProperties'    => array(
 				'^[A-Z]{2}$' => array( // country code as key, e.g. US, FR, UA
-					'type' => 'string',
+					'type'        => 'string',
 					'description' => 'Country name corresponding to the ISO 3166-1 alpha-2 code',
 				),
 			),

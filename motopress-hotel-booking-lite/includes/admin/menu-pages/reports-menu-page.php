@@ -79,22 +79,22 @@ class ReportsMenuPage extends AbstractMenuPage {
 
 			// Render tabs
 			echo '<h1 class="nav-tab-wrapper">';
-		foreach ( $this->tabs as $tabName => $title ) {
-			if ( $tabName == $currentTab ) {
-				echo '<span class="nav-tab nav-tab-active">', esc_html( $title ), '</span>';
-			} else {
-				$tabUrl = admin_url( 'admin.php' );
-				$tabUrl = add_query_arg(
-					array(
-						'page' => $this->name,
-						'tab'  => $tabName,
-					),
-					$tabUrl
-				);
+				foreach ( $this->tabs as $tabName => $title ) {
+					if ( $tabName == $currentTab ) {
+						echo '<span class="nav-tab nav-tab-active">', esc_html( $title ), '</span>';
+					} else {
+						$tabUrl = admin_url( 'admin.php' );
+						$tabUrl = add_query_arg(
+							array(
+								'page' => $this->name,
+								'tab'  => $tabName,
+							),
+							$tabUrl
+						);
 
-				echo '<a href="', esc_url( $tabUrl ), '" class="nav-tab">', esc_html( $title ), '</a>';
-			}
-		}
+						echo '<a href="', esc_url( $tabUrl ), '" class="nav-tab">', esc_html( $title ), '</a>';
+					}
+				}
 			echo '</h1>';
 
 			// Render postboxes

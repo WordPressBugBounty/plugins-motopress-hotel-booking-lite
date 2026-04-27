@@ -7,6 +7,7 @@
 namespace MPHB\Advanced\Api\Data;
 
 use MPHB\Entities\Room;
+use MPHB\LinkedRooms;
 
 class AccommodationData extends AbstractPostData {
 
@@ -24,30 +25,39 @@ class AccommodationData extends AbstractPostData {
 
 	public static function getProperties() {
 		return array(
-			'id'                    => array(
+			'id'                       => array(
 				'description' => 'Unique identifier for the resource.',
 				'type'        => 'integer',
 				'context'     => array( 'embed', 'view', 'edit' ),
 				'readonly'    => true,
 			),
-			'status'                => array(
+			'status'                   => array(
 				'description' => 'Accommodation status.',
 				'type'        => 'string',
 				'context'     => array( 'embed', 'view', 'edit' ),
 				'readonly'    => true,
 			),
-			'accommodation_type_id' => array(
+			'accommodation_type_id'    => array(
 				'description' => 'Unique identifier for the accommodation type resource.',
 				'type'        => 'integer',
 				'context'     => array( 'embed', 'view', 'edit' ),
 				'readonly'    => true,
 			),
-			'title'                 => array(
+			'linked_accommodation_ids' => array(
+				'description' => 'Accommodation IDs that block current place when the specified ones are booked.',
+				'type'        => 'array',
+				'items'       => array(
+					'type' => 'integer',
+				),
+				'context'     => array( 'embed', 'view', 'edit' ),
+				'readonly'    => true,
+			),
+			'title'                    => array(
 				'description' => 'Title.',
 				'type'        => 'string',
 				'context'     => array( 'embed', 'view', 'edit' ),
 			),
-			'excerpt'               => array(
+			'excerpt'                  => array(
 				'description' => 'Excerpt.',
 				'type'        => 'string',
 				'context'     => array( 'embed', 'view', 'edit' ),
@@ -70,6 +80,13 @@ class AccommodationData extends AbstractPostData {
 		}
 
 		$this->accommodation_type_id = $id;
+	}
+
+	/**
+	 * @return int[]
+	 */
+	protected function getLinkedAccommodationIds(): array {
+		return LinkedRooms::getLinkedRoomIds( $this->entity->getId() );
 	}
 
 	protected function getExcerpt() {

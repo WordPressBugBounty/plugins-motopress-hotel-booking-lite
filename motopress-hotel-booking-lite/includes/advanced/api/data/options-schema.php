@@ -22,6 +22,14 @@ class OptionsSchema {
 	protected $optionsSchema = array();
 
 	/**
+	 * The component name that the API documentation tool uses to distinguish
+	 * one object inside a group from another.
+	 *
+	 * @var string
+	 */
+	protected $component = '';
+
+	/**
 	 * @return array
 	 */
 	public function getOptionsSchema() {
@@ -63,6 +71,10 @@ class OptionsSchema {
 			'properties' => array(),
 		);
 
+		if ( ! empty( $this->component ) ) {
+			$schema['component'] = $this->component;
+		}
+
 		if ( ! count( $this->optionsSchema ) ) {
 			return $schema;
 		}
@@ -76,6 +88,16 @@ class OptionsSchema {
 		$this->schema = $schema;
 
 		return $schema;
+	}
+
+	/**
+	 * @since 6.x.x
+	 *
+	 * @param string $component
+	 * @return void
+	 */
+	public function setComponent( $component ) {
+		$this->component = $component;
 	}
 
 	/**

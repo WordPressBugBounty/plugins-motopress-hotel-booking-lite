@@ -85,18 +85,24 @@ class ApiKeys {
 	}
 
 	private function getTableListHeader() {
-		return '<h2 class="mphb-table-list-header">' .
-			   esc_html__( 'REST API', 'motopress-hotel-booking' ) .
-			   ' <a href="' . esc_url( admin_url( 'admin.php?page=mphb_settings&tab=advanced&create-key=1' ) ) .
-			   '" class="add-new-h2">' . esc_html__( 'Add key', 'motopress-hotel-booking' ) .
-			   '</a></h2>';
+
+		if ( apply_filters( 'mphb_show_mobile_app_offer', true ) ) : ?>
+		<p><?php esc_html_e( 'Manage your bookings on the go with our mobile app. Stay connected and handle reservations anytime, anywhere.', 'motopress-hotel-booking'); ?><br>
+			<strong><?php esc_html_e( 'Download the app:', 'motopress-hotel-booking' ); ?></strong>
+			<a href="https://play.google.com/store/apps/details?id=com.motopress.mphb_app" target="_blank" rel="noopener noreferrer">Google Play</a> | <a href="https://apps.apple.com/app/id1619328436" target="_blank" rel="noopener noreferrer">App Store</a>
+		</p>
+		<?php endif; ?>
+		<h2 class="mphb-table-list-header"><?php esc_html_e( 'REST API', 'motopress-hotel-booking' );?>
+		<a href="<?php echo esc_url( admin_url( 'admin.php?page=mphb_settings&tab=advanced&create-key=1' ) ); ?>" class="add-new-h2">
+			<?php esc_html_e( 'Add key', 'motopress-hotel-booking' ); ?></a></h2>
+		<?php
 	}
 
 	/**
 	 * Table list.
 	 */
 	private function renderTableList() {
-		echo $this->getTableListHeader();
+		$this->getTableListHeader();
 		$keys_table_list = new ApiKeysTableList();
 		$keys_table_list->render();
 	}

@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class BookingRulesData {
 
 	/**
-	 * @var array [ season_id (int) => \MPHB\Entities\Season, ... ]
+	 * @var array [ season_id (int) => Entities\Season, ... ]
 	 */
 	private $seasons;
 
@@ -24,86 +24,130 @@ class BookingRulesData {
 	private $countOfAllRoomTypeOriginalIds;
 
 	/**
-	 * @var array [ room_type_original_id (int if 0 then rules for all room types) => [
-	 *                   'check_in_days'           => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int[] (week days numbers 0 - 6) ], ... ],
-	 *                   'check_out_days'          => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int[] (week days numbers 0 - 6) ], ... ],
-	 *                   'min_advance_reservation' => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int ], ... ],
-	 *                   'max_advance_reservation' => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int ], ... ],
-	 *                   'min_stay_length'         => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int ], ... ],
-	 *                   'max_stay_length'         => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int ], ... ],
-	 *                   'buffer_days'             => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int ], ... ],
-	 *                ], ...
-	 *            ]
+	 * @var array [
+	 *     room_type_original_id (int if 0 then rules for all room types) => [
+	 *         'check_in_days'           => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int[] (week days numbers 0 - 6) ], ... ],
+	 *         'check_out_days'          => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int[] (week days numbers 0 - 6) ], ... ],
+	 *         'min_advance_reservation' => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int ], ... ],
+	 *         'max_advance_reservation' => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int ], ... ],
+	 *         'min_stay_length'         => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int ], ... ],
+	 *         'max_stay_length'         => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int ], ... ],
+	 *         'buffer_days'             => [ [ 'season_id' => int (if 0 then rule for all seasons), 'rule_value' => int ], ... ],
+	 *     ],
+	 *     ...
+	 * ]
 	 */
 	private $reservationRulesByRoomTypeIds = array();
 
 	/**
-	 * @var array [ [
-	 *                 'room_type_id'        => int,
-	 * 			       'room_id'             => $roomId,
-	 *                 'date_from'           => string (Ymd),
-	 *                 'date_to'             => string (Ymd),
-	 *                 'date_period'         => DatePeriod,
-	 *                 'not_check_in'        => bool,
-	 *                 'not_check_out'       => bool,
-	 *                 'not_stay_in'         => bool,
-	 *                 'custom_rule_comment' => string
-	 *              ], ...
-	 *            ]
+	 * @var array [
+	 *     [
+	 *         'room_type_id'        => int,
+	 *         'room_id'             => $roomId,
+	 *         'date_from'           => string (Ymd),
+	 *         'date_to'             => string (Ymd),
+	 *         'date_period'         => DatePeriod,
+	 *         'not_check_in'        => bool,
+	 *         'not_check_out'       => bool,
+	 *         'not_stay_in'         => bool,
+	 *         'custom_rule_comment' => string
+	 *     ],
+	 *     ...
+	 * ]
 	 */
 	private $customRules = array();
 
-	
-	private $hasCheckInDaysRules = false;
-	private $hasCheckOutDaysRules = false;
-	private $hasMinStayLengthRules = false;
-	private $hasMaxStayLengthRules = false;
-	private $hasMinAdvanceReservationRules = false;
-	private $hasMaxAdvanceReservationRules = false;
-	private $hasBufferDaysRules = false;
-	private $hasNotCheckInRules = false;
-	private $hasNotCheckOutRules = false;
-	private $hasNotStayInRules = false;
+	private array $hasReservationRules = array(
+		'check_in_days'           => false,
+		'check_out_days'          => false,
+		'min_stay_length'         => false,
+		'max_stay_length'         => false,
+		'min_advance_reservation' => false,
+		'max_advance_reservation' => false,
+		'buffer_days'             => false,
+	);
+
+	private ?bool $hasNotCheckInRules  = null;
+	private ?bool $hasNotCheckOutRules = null;
+	private ?bool $hasNotStayInRules   = null;
 
 	/**
-	 * @var array [ date (string Ymd) => [
-	 *                 room_type_original_id (int)  => [
-	 *                   'check_in_days'            => int[] (week days numbers 0 - 6),
-	 *                   'check_out_days'           => int[] (week days numbers 0 - 6),
-	 *                   'min_advance_reservation'  => int,
-	 *                   'max_advance_reservation'  => int,
-	 *                   'min_stay_length'          => int,
-	 *                   'max_stay_length'          => int,
-	 *                   'buffer_days'              => int,
-	 *                   'not_check_in'             => bool,
-	 *                   'not_check_out'            => bool,
-	 *                   'not_stay_in'              => bool,
-	 *                   'custom_rule_comment'      => string,
-	 *                   'custom_rules_for_room_id' => [
-	 *                      room_id (int) => [
-	 *                         'not_check_in'        => bool,
-	 *                         'not_check_out'       => bool,
-	 *                         'not_stay_in'         => bool,
-	 *                         'custom_rule_comment' => string,
-	 *                      ], ...
-	 *                   ]
-	 *                 ], ...
-	 *              ], ...
-	 *            ]
+	 * @var array [
+	 *     date (string Ymd) => [
+	 *         room_type_original_id (int) => [
+	 *             'check_in_days'            => int[] (week days numbers 0 - 6),
+	 *             'check_out_days'           => int[] (week days numbers 0 - 6),
+	 *             'min_advance_reservation'  => int,
+	 *             'max_advance_reservation'  => int,
+	 *             'min_stay_length'          => int,
+	 *             'max_stay_length'          => int,
+	 *             'buffer_days'              => int,
+	 *             'not_check_in'             => bool,
+	 *             'not_check_out'            => bool,
+	 *             'not_stay_in'              => bool,
+	 *             'custom_rule_comment'      => string,
+	 *             'custom_rules_for_room_id' => [
+	 *                 room_id (int) => [
+	 *                     'not_check_in'        => bool,
+	 *                     'not_check_out'       => bool,
+	 *                     'not_stay_in'         => bool,
+	 *                     'custom_rule_comment' => string,
+	 *                 ],
+	 *                 ...
+	 *             ]
+	 *         ],
+	 *         ...
+	 *     ],
+	 *     ...
+	 * ]
 	 */
 	private $cachedRulesByDates = array();
 
+	/**
+	 * See <code>loadBlocksForMonth()</code>.
+	 *
+	 * @var array <code>[ Block ID => [ room_type_id, room_id, ... ] ]</code>
+	 */
+	private array $loadedBlocks = array();
+
+	/**
+	 * New items are added with each new month's load. See
+	 * <code>loadBlocksForMonth()</code>.
+	 *
+	 * @var array <code>[
+	 *     Date string ("Y-m-d") => [
+	 *         Block ID => [ room_type_id, room_id, ... ]
+	 *     ]
+	 * ]</code>
+	 */
+	private array $blocksByDate = array();
+
+	/**
+	 * @var array <code>[
+	 *     Room type ID => [
+	 *         Month => [
+	 *             Date string ("Y-m-d") => [ buffer_days, check_in_days, ... ]
+	 *         ]
+	 *     ]
+	 * ]</code>
+	 */
+	private array $cachedCustomBookingRules = array();
+
+	/**
+	 * @var array <code>[ Original room type ID|0 => Max buffer days count (int) ]</code>
+	 */
+	private array $cachedMaxBufferDaysCounts = array();
 
 	public function __construct() {
 
 		/**
 		 * [
-		 *	'check_in_days'           => [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'check_in_days' => int[] (week day numbers: 0..6) ], ... ],
-		 *	'check_out_days'          => [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'check_out_days' => int[] (week day numbers: 0..6) ], ... ],
-		 *	'min_stay_length'         => [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'min_stay_length' => int ], ... ],
-		 *	'max_stay_length'         => [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'max_stay_length' => int ], ... ],
-		 *	'min_advance_reservation' => [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'min_advance_reservation' => int ], ... ],
-		 *	'max_advance_reservation' => [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'max_advance_reservation' => int ], ... ]
+		 *	   'check_in_days'           => [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'check_in_days' => int[] (week day numbers: 0..6) ], ... ],
+		 *	   'check_out_days'          => [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'check_out_days' => int[] (week day numbers: 0..6) ], ... ],
+		 *	   'min_stay_length'         => [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'min_stay_length' => int ], ... ],
+		 *	   'max_stay_length'         => [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'max_stay_length' => int ], ... ],
+		 *	   'min_advance_reservation' => [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'min_advance_reservation' => int ], ... ],
+		 *	   'max_advance_reservation' => [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'max_advance_reservation' => int ], ... ]
 		 * ]
 		 */
 		$reservationRules = MPHB()->settings()->bookingRules()->getReservationRules();
@@ -112,7 +156,6 @@ class BookingRulesData {
 		 * [ [ 'season_ids' => int[], 'room_type_ids' => int[], 'buffer_days' => int ], ... ]
 		 */
 		$reservationRules['buffer_days'] = MPHB()->settings()->bookingRules()->getBufferRules();
-		$this->hasBufferDaysRules        = ! empty( $reservationRules['buffer_days'] );
 
 		$allRoomTypeOriginalIds = mphb_rooms_facade()->getAllRoomTypeOriginalIds();
 		$this->countOfAllRoomTypeOriginalIds = count( $allRoomTypeOriginalIds );
@@ -151,30 +194,7 @@ class BookingRulesData {
 					$isRuleValueValid
 				) {
 
-					switch ( $ruleType ) {
-
-						case 'check_in_days':
-							$this->hasCheckInDaysRules = true;
-							break;
-						case 'check_out_days':
-							$this->hasCheckOutDaysRules = true;
-							break;
-						case 'min_stay_length':
-							$this->hasMinStayLengthRules = true;
-							break;
-						case 'max_stay_length':
-							$this->hasMaxStayLengthRules = true;
-							break;
-						case 'min_advance_reservation':
-							$this->hasMinAdvanceReservationRules = true;
-							break;
-						case 'max_advance_reservation':
-							$this->hasMaxAdvanceReservationRules = true;
-							break;
-						case 'buffer_days':
-							$this->hasBufferDaysRules = true;
-							break;
-					}
+					$this->hasReservationRules[ $ruleType ] = true;
 
 					$ruleSeasons = $ruleData['season_ids'];
 
@@ -184,7 +204,6 @@ class BookingRulesData {
 						// we keep copy of ruleas for all seasons ( where season_id = 0 ) to be able to find common rules
 						$ruleSeasons = array( 0 );
 					}
-
 
 					$ruleRoomTypeIds = $ruleData['room_type_ids'];
 
@@ -210,60 +229,11 @@ class BookingRulesData {
 			}
 		}
 
-		/**
-		 * [
-		 *   'room_type_id' => int,
-		 *   'room_id'      => int,
-		 *   'date_from'    => string (Y-m-d),
-		 *   'date_to'      => string (Y-m-d),
-		 *   'restrictions' => [ 'check-in'?, 'check-out'?, 'stay-in'? ],
-		 *   'comment'      => string
-		 * ]
-		 */
-		$customRules = MPHB()->settings()->bookingRules()->getCustomRules();
-
-		foreach ( $customRules as $customRule ) {
-
-			$timeZone = DateUtils::getSiteTimeZone();
-			$dateFrom = \DateTime::createFromFormat( 'Y-m-d', $customRule['date_from'], $timeZone );
-			$dateTo   = \DateTime::createFromFormat( 'Y-m-d', $customRule['date_to'], $timeZone );
-
-			if ( false !== $dateFrom && false !== $dateTo ) {
-
-				$roomTypeId = absint( $customRule['room_type_id'] );
-				$roomId     = absint( $customRule['room_id'] );
-
-				$isNotCheckIn = in_array( 'check-in', $customRule['restrictions'] );
-				$isNotCheckOut = in_array( 'check-out', $customRule['restrictions'] );
-				$isNotStayIn = in_array( 'stay-in', $customRule['restrictions'] );
-
-				$this->hasNotCheckInRules = $this->hasNotCheckInRules || $isNotCheckIn;
-				$this->hasNotCheckOutRules = $this->hasNotCheckOutRules || $isNotCheckOut;
-				$this->hasNotStayInRules = $this->hasNotStayInRules || $isNotStayIn;
-
-				// we keep all rules in order from UI list
-				// to make sure top rules overwrite bottoms rules
-				$this->customRules[] = array(
-					'room_type_id'        => $roomTypeId,
-					'room_id'             => $roomId,
-					'date_from'           => $dateFrom->format('Ymd'),
-					'date_to'             => $dateTo->format('Ymd'),
-					'date_period'         => DateUtils::createDatePeriod( $dateFrom, $dateTo ),
-					'not_check_in'        => $isNotCheckIn,
-					'not_check_out'       => $isNotCheckOut,
-					'not_stay_in'         => $isNotStayIn,
-					'custom_rule_comment' => isset( $customRule['comment'] ) ? $customRule['comment'] : '',
-				);
+		// Check for existance of custom rules
+		foreach ( $this->hasReservationRules as $ruleType => $rulesExist ) {
+			if ( ! $rulesExist ) {
+				$this->hasReservationRules[ $ruleType ] = MPHB()->getCustomBookingRulesRepository()->hasRules( $ruleType );
 			}
-		}
-
-		if ( ! $this->hasNotStayInRules ) {
-			/**
-			 * @since 4.10.0
-			 *
-			 * @param bool $hasNotStayInRules
-			 */
-			$this->hasNotStayInRules = apply_filters( 'mphb_has_not_stay_in_rules', $this->hasNotStayInRules );
 		}
 	}
 
@@ -296,7 +266,7 @@ class BookingRulesData {
 		if ( ! isset( $this->cachedRulesByDates[ $requestedDateString ][ $roomTypeOriginalId ] ) ) {
 
 			$result = array();
-			
+
 			if ( 0 === $roomTypeOriginalId ) {
 
 				// find common reservation rules for not found rule types
@@ -395,56 +365,61 @@ class BookingRulesData {
 				}
 			}
 
-			// find custom rules data for requested date
-			foreach ( $this->customRules as $ruleData ) {
+			// Find blocks data for requested date
+			$blocksByDate = $this->getBlocksByDate( $roomTypeOriginalId, $requestedDate );
 
-				if ( ( $roomTypeOriginalId === $ruleData['room_type_id'] || 0 === $ruleData['room_type_id'] ) &&
-					( $requestedDateString >= $ruleData['date_from'] && $requestedDateString <= $ruleData['date_to'] )
-				) {
+			foreach ( $blocksByDate as $block ) {
+				$roomId  = $block['room_id'];
+				$comment = $block['comment'];
 
-					$roomId = $ruleData['room_id'];
+				if ( $roomId > 0 ) {
+					if ( ! isset( $result['custom_rules_for_room_id'][ $roomId ] ) ) {
+						$result['custom_rules_for_room_id'][ $roomId ] = array(
+							'custom_rule_comment' => '',
+							'not_check_in'        => false,
+							'not_check_out'       => false,
+							'not_stay_in'         => false,
+						);
+					}
 
-					if ( 0 < $roomId ) {
+					if ( $block['not_check_in'] ) {
+						$result['custom_rules_for_room_id'][ $roomId ]['not_check_in'] = true;
+					}
 
-						$result['custom_rules_for_room_id'][ $roomId ]['not_check_in'] = ( isset( $result['custom_rules_for_room_id'][ $roomId ]['not_check_in'] ) && 
-							$result['custom_rules_for_room_id'][ $roomId ]['not_check_in'] ) || 
-							( isset( $ruleData['not_check_in'] ) && $ruleData['not_check_in'] );
+					if ( $block['not_check_out'] ) {
+						$result['custom_rules_for_room_id'][ $roomId ]['not_check_out'] = true;
+					}
 
-						$result['custom_rules_for_room_id'][ $roomId ]['not_check_out'] = (	isset( $result['custom_rules_for_room_id'][ $roomId ]['not_check_out'] ) &&
-							$result['custom_rules_for_room_id'][ $roomId ]['not_check_out'] ) || 
-							( isset( $ruleData['not_check_out'] ) && $ruleData['not_check_out'] );
+					if ( $block['not_stay_in'] ) {
+						$result['custom_rules_for_room_id'][ $roomId ]['not_stay_in'] = true;
+					}
 
-						$result['custom_rules_for_room_id'][ $roomId ]['not_stay_in'] = ( isset( $result['custom_rules_for_room_id'][ $roomId ]['not_stay_in'] ) &&
-							$result['custom_rules_for_room_id'][ $roomId ]['not_stay_in'] ) ||
-							( isset( $ruleData['not_stay_in'] ) && $ruleData['not_stay_in'] );
-
-						if ( ! isset( $result['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] ) ) {
-
-							$result['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] = $ruleData['custom_rule_comment'];
-
+					if ( $comment !== '' ) {
+						if ( empty( $result['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] ) ) {
+							$result['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] = $comment;
 						} else {
-
-							$result['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] .= ', ' . $ruleData['custom_rule_comment'];
+							$result['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] .= ', ' . $comment;
 						}
+					}
 
-					} else {
+				} else {
+					if ( $block['not_check_in'] ) {
+						$result['not_check_in'] = true;
+					}
 
-						$result['not_check_in'] = ( isset( $result['not_check_in'] ) && $result['not_check_in'] ) || 
-								( isset( $ruleData['not_check_in'] ) && $ruleData['not_check_in'] );
+					if ( $block['not_check_out'] ) {
+						$result['not_check_out'] = true;
+					}
 
-						$result['not_check_out'] = ( isset( $result['not_check_out'] ) && $result['not_check_out'] ) ||
-							( isset( $ruleData['not_check_out'] ) && $ruleData['not_check_out'] );
+					if ( $block['not_stay_in'] ) {
+						$result['not_stay_in'] = true;
+					}
 
-						$result['not_stay_in'] = ( isset( $result['not_stay_in'] ) && $result['not_stay_in'] ) ||
-							( isset( $ruleData['not_stay_in'] ) && $ruleData['not_stay_in'] );
-
-						if ( ! isset( $result['custom_rule_comment'] ) ) {
-
-							$result['custom_rule_comment'] = $ruleData['custom_rule_comment'];
-
+					if ( $comment !== '' ) {
+						if ( empty( $result['custom_rule_comment'] ) ) {
+							$result['custom_rule_comment'] = $comment;
 						} else {
-
-							$result['custom_rule_comment'] .= ', ' . $ruleData['custom_rule_comment'];
+							$result['custom_rule_comment'] .= ', ' . $comment;
 						}
 					}
 				}
@@ -464,7 +439,7 @@ class BookingRulesData {
 					'not_check_in'             => false,
 					'not_check_out'            => false,
 					'not_stay_in'              => false,
-					'custom_rules_comment'     => '',
+					'custom_rule_comment'      => '',
 					'custom_rules_for_room_id' => array(),
 				),
 				$result
@@ -475,6 +450,41 @@ class BookingRulesData {
 			$result['in_check_in_days'] = in_array( $requestedDateWeekDay, $result['check_in_days'] );
 
 			$result['in_check_out_days'] = in_array( $requestedDateWeekDay, $result['check_out_days'] );
+
+			// Merge with custom booking rules
+			$customBookingRules = $this->getCustomBookingRulesByDate( $roomTypeOriginalId, $requestedDate );
+
+			foreach ( $customBookingRules as $ruleType => $value ) {
+				switch ( $ruleType ) {
+					case 'allow_check_in':
+						$dayIndex = (int) $requestedDate->format( 'w' ); // 0-6
+
+						if ( $value ) {
+							mphb_array_add( $result['check_in_days'], $dayIndex );
+						} else {
+							mphb_array_remove( $result['check_in_days'], $dayIndex );
+						}
+
+						$result['in_check_in_days'] = $value;
+						break;
+
+					case 'allow_check_out':
+						$dayIndex = (int) $requestedDate->format( 'w' ); // 0-6
+
+						if ( $value ) {
+							mphb_array_add( $result['check_out_days'], $dayIndex );
+						} else {
+							mphb_array_remove( $result['check_out_days'], $dayIndex );
+						}
+
+						$result['in_check_out_days'] = $value;
+						break;
+
+					default:
+						$result[ $ruleType ] = $value;
+						break;
+				}
+			}
 
 			/**
 			 * @since 4.10.0
@@ -515,7 +525,7 @@ class BookingRulesData {
 		$checkInDateTime = self::getCheckInWithCorrectTimeInSiteTimeZone( $checkInDate );
 
 		return ! $isIgnoreBookingRules &&
-			$this->hasMinAdvanceReservationRules &&
+			$this->hasMinAdvanceReservationRules() &&
 			DateUtils::calcNightsSinceToday( $checkInDateTime ) < $this->getMinAdvanceReservationDaysCount(
 				$roomTypeOriginalId,
 				$checkInDateTime,
@@ -528,7 +538,7 @@ class BookingRulesData {
 
 		$result = 0;
 
-		if ( ! $isIgnoreBookingRules && $this->hasMinAdvanceReservationRules ) {
+		if ( ! $isIgnoreBookingRules && $this->hasMinAdvanceReservationRules() ) {
 
 			$checkInDateTime = self::getCheckInWithCorrectTimeInSiteTimeZone( $requestedDate );
 			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDateTime );
@@ -550,7 +560,7 @@ class BookingRulesData {
 		);
 
 		return ! $isIgnoreBookingRules &&
-			$this->hasMaxAdvanceReservationRules &&
+			$this->hasMaxAdvanceReservationRules() &&
 			0 < $maxStayDaysCount &&
 			DateUtils::calcNightsSinceToday( $checkInDateTime ) > $maxStayDaysCount;
 	}
@@ -560,7 +570,7 @@ class BookingRulesData {
 
 		$result = 0;
 
-		if ( ! $isIgnoreBookingRules && $this->hasMaxAdvanceReservationRules ) {
+		if ( ! $isIgnoreBookingRules && $this->hasMaxAdvanceReservationRules() ) {
 
 			$checkInDateTime = self::getCheckInWithCorrectTimeInSiteTimeZone( $requestedDate );
 			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDateTime );
@@ -598,7 +608,7 @@ class BookingRulesData {
 		$checkOutDateTime = self::getCheckOutWithCorrectTimeInSiteTimeZone( $checkOutDate );
 
 		return ! $isIgnoreBookingRules &&
-			$this->hasMinStayLengthRules &&
+			$this->hasMinStayLengthRules() &&
 			DateUtils::calcNights( $checkInDateTime, $checkOutDateTime ) < $this->getMinStayNightsCount(
 				$roomTypeOriginalId,
 				$checkInDateTime,
@@ -611,7 +621,7 @@ class BookingRulesData {
 
 		$result = 1;
 
-		if ( ! $isIgnoreBookingRules && $this->hasMinStayLengthRules ) {
+		if ( ! $isIgnoreBookingRules && $this->hasMinStayLengthRules() ) {
 
 			$checkInDateTime = self::getCheckInWithCorrectTimeInSiteTimeZone( $requestedDate );
 			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDateTime );
@@ -634,7 +644,7 @@ class BookingRulesData {
 		);
 
 		return ! $isIgnoreBookingRules &&
-			$this->hasMaxStayLengthRules &&
+			$this->hasMaxStayLengthRules() &&
 			0 < $maxStayDaysCount &&
 			DateUtils::calcNights( $checkInDateTime, $checkOutDateTime ) > $maxStayDaysCount;
 	}
@@ -644,7 +654,7 @@ class BookingRulesData {
 
 		$result = 0;
 
-		if ( ! $isIgnoreBookingRules && $this->hasMaxStayLengthRules ) {
+		if ( ! $isIgnoreBookingRules && $this->hasMaxStayLengthRules() ) {
 
 			$checkInDateTime = self::getCheckInWithCorrectTimeInSiteTimeZone( $requestedDate );
 			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDateTime );
@@ -655,9 +665,8 @@ class BookingRulesData {
 	}
 
 
-	public function hasBufferDaysRules( bool $isIgnoreBookingRules ): bool {
-
-		return ! $isIgnoreBookingRules && $this->hasBufferDaysRules;
+	public function hasBufferDaysRules(): bool {
+		return $this->hasReservationRules['buffer_days'];
 	}
 
 
@@ -665,7 +674,7 @@ class BookingRulesData {
 
 		$result = 0;
 
-		if ( ! $isIgnoreBookingRules && $this->hasBufferDaysRules ) {
+		if ( ! $isIgnoreBookingRules && $this->hasBufferDaysRules() ) {
 
 			$checkInDateTime = self::getCheckInWithCorrectTimeInSiteTimeZone( $requestedDate );
 			$bookingRules = $this->getBookingRulesForDate( $roomTypeOriginalId, $checkInDateTime );
@@ -676,11 +685,50 @@ class BookingRulesData {
 	}
 
 
+	/**
+	 * @param int $roomTypeOriginalId Room type ID or 0 (all room types).
+	 */
+	public function getMaxBufferDaysCount( int $roomTypeOriginalId ): int {
+		if ( ! $this->hasBufferDaysRules() ) {
+			return 0;
+		} elseif ( array_key_exists( $roomTypeOriginalId, $this->cachedMaxBufferDaysCounts ) ) {
+			return $this->cachedMaxBufferDaysCounts[ $roomTypeOriginalId ];
+		}
+
+		$maxBuffer = 0;
+
+		if ( $roomTypeOriginalId !== 0 ) {
+			if ( isset( $this->reservationRulesByRoomTypeIds[ $roomTypeOriginalId ]['buffer_days'] ) ) {
+				foreach ( $this->reservationRulesByRoomTypeIds[ $roomTypeOriginalId ]['buffer_days'] as $rule ) {
+					$maxBuffer = max( $maxBuffer, $rule['rule_value'] );
+				}
+			}
+
+			// Get custom max buffer days
+			$maxBuffer = max(
+				$maxBuffer,
+				MPHB()->getCustomBookingRulesRepository()->getMaxBufferDays( $roomTypeOriginalId )
+			);
+
+		} else {
+			$roomTypeIds = array_keys( $this->reservationRulesByRoomTypeIds );
+
+			foreach( $roomTypeIds as $roomTypeId ) {
+				$maxBuffer = max( $maxBuffer, $this->getMaxBufferDaysCount( $roomTypeId ) );
+			}
+		}
+
+		$this->cachedMaxBufferDaysCounts[ $roomTypeOriginalId ] = $maxBuffer;
+
+		return $maxBuffer;
+	}
+
+
 	public function getBlockedRoomsCountForRoomType( int $roomTypeOriginalId, \DateTime $requestedDate, bool $isIgnoreBookingRules ): int {
 
 		$result = 0;
 
-		if ( ! $isIgnoreBookingRules && $this->hasNotStayInRules ) {
+		if ( ! $isIgnoreBookingRules && $this->hasNotStayInRules() ) {
 
 			$availableRoomsCount = mphb_rooms_facade()->getActiveRoomsCountForRoomType( $roomTypeOriginalId );
 
@@ -714,7 +762,7 @@ class BookingRulesData {
 		$result = false;
 
 		if ( ! $isIgnoreBookingRules &&
-			( $this->hasNotCheckInRules || $this->hasCheckInDaysRules )
+			( $this->hasNotCheckInRules() || $this->hasCheckInDaysRules() )
 		) {
 
 			$checkInDateTime = self::getCheckInWithCorrectTimeInSiteTimeZone( $checkInDate );
@@ -731,7 +779,7 @@ class BookingRulesData {
 		$result = false;
 
 		if ( ! $isIgnoreBookingRules &&
-			( $this->hasNotCheckOutRules || $this->hasCheckOutDaysRules )
+			( $this->hasNotCheckOutRules() || $this->hasCheckOutDaysRules() )
 		) {
 
 			$checkOutDateTime = self::getCheckOutWithCorrectTimeInSiteTimeZone( $checkOutDate );
@@ -744,7 +792,7 @@ class BookingRulesData {
 
 	public function isStayInNotAllowed( int $roomTypeOriginalId, \DateTime $checkInDate, \DateTime $checkOutDate, bool $isIgnoreBookingRules ): bool {
 
-		if ( ! $isIgnoreBookingRules && $this->hasNotStayInRules ) {
+		if ( ! $isIgnoreBookingRules && $this->hasNotStayInRules() ) {
 
 			$testingDate = self::getCheckInWithCorrectTimeInSiteTimeZone( $checkInDate );
 			$checkOutDateString = self::getCheckOutWithCorrectTimeInSiteTimeZone( $checkOutDate )->format('Ymd');
@@ -791,10 +839,10 @@ class BookingRulesData {
 		if ( $isIgnoreBookingRules ) {
 			return array();
 
-		} elseif ( ! $this->hasCheckInDaysRules && ! $this->hasCheckOutDaysRules &&
-			! $this->hasMinAdvanceReservationRules && ! $this->hasMaxAdvanceReservationRules &&
-			! $this->hasMinStayLengthRules && ! $this->hasMaxStayLengthRules &&
-			! $this->hasNotCheckInRules && ! $this->hasNotCheckOutRules && ! $this->hasNotStayInRules
+		} elseif ( ! $this->hasCheckInDaysRules() && ! $this->hasCheckOutDaysRules() &&
+			! $this->hasMinAdvanceReservationRules() && ! $this->hasMaxAdvanceReservationRules() &&
+			! $this->hasMinStayLengthRules() && ! $this->hasMaxStayLengthRules() &&
+			! $this->hasNotCheckInRules() && ! $this->hasNotCheckOutRules() && ! $this->hasNotStayInRules()
 		) {
 			return array();
 
@@ -850,59 +898,52 @@ class BookingRulesData {
 	}
 
 	/**
+	 * Currently this method is only used in the old booking calendar.
+	 *
 	 * @since 4.10.0 added new parameter - $period.
 	 *
-	 * @param DatePeriod|array $period Optional. Null by default (not limited by period).
-	 * @return array [ room_id (int) => [ date (string as Y-m-d) => 'comment_1, comment_2, ...' ], ... ]
+	 * @param \DatePeriod $period
+	 * @return array <code>[
+	 *     Room ID => [
+	 *         Date string ("Y-m-d") => "comment_1, comment_2, ..."
+	 *     ]
+	 * ]</code>
 	 */
-	public function getNotStayInComments( int $roomTypeOriginalId, array $roomIds, $period = null ) {
-
+	public function getNotStayInComments( int $roomTypeOriginalId, array $roomIds, $period ): array {
 		$result = array();
 
-		foreach ( $this->customRules as $ruleData ) {
+		foreach ( $period as $date ) {
+			$dateStr = DateUtils::formatDateDB( $date );
+			$blocksByDate = $this->getBlocksByDate( $roomTypeOriginalId, $date );
 
-			if ( $roomTypeOriginalId === $ruleData['room_type_id'] || 0 === $ruleData['room_type_id'] ) {
+			foreach ( $blocksByDate as $block ) {
+				if ( $block['room_type_id'] !== 0 && $block['room_type_id'] !== $roomTypeOriginalId ) {
+					continue;
+				}
 
-				if ( $ruleData['not_stay_in'] ) {
+				if ( ! $block['not_stay_in'] ) {
+					continue;
+				}
 
-					$ruleDate = \DateTime::createFromFormat( 'Ymd', $ruleData['date_from'], DateUtils::getSiteTimeZone() );
-					$ruleDateString = $ruleDate->format('Ymd');
-					$formattedRuleDate = $ruleDate->format('Y-m-d');
+				$roomId = $block['room_id'];
 
-					if ( ! is_null( $period )
-						&& ! DateUtils::isPeriodsIntersect( $ruleData['date_period'], $period )
-					) {
-						continue; // Skip rule
+				if ( $roomId === 0 ) {
+					// Copy block for each requested room
+					foreach( $roomIds as $id ) {
+						if ( ! isset( $result[ $id ][ $dateStr ] ) ) {
+							$result[ $id ][ $dateStr ] = $block['comment'];
+						} else {
+							$result[ $id ][ $dateStr ] .= ', ' . $block['comment'];
+						}
 					}
 
-					$roomId = $ruleData['room_id'];
-
-					do {
-
-						if ( 0 === $roomId ) {
-
-							foreach ( $roomIds as $id ) {
-
-								if ( empty( $result[ $id ][ $formattedRuleDate ] ) ) {
-									$result[ $id ][ $formattedRuleDate ] = $ruleData['custom_rule_comment'];
-								} else {
-									$result[ $id ][ $formattedRuleDate ] .= ', ' . $ruleData['custom_rule_comment'];
-								}
-							}
-						} elseif ( in_array( $roomId, $roomIds ) ) {
-
-							if ( empty( $result[ $roomId ][ $formattedRuleDate ] ) ) {
-								$result[ $roomId ][ $formattedRuleDate ] = $ruleData['custom_rule_comment'];
-							} else {
-								$result[ $roomId ][ $formattedRuleDate ] .= ', ' . $ruleData['custom_rule_comment'];
-							}
-						}
-
-						$ruleDate->modify( '+1 day' );
-						$ruleDateString = $ruleDate->format('Ymd');
-						$formattedRuleDate = $ruleDate->format('Y-m-d');
-
-					} while ( $ruleDateString <= $ruleData['date_to'] );
+				} elseif ( in_array( $roomId, $roomIds ) ) {
+					// Add comment for one room
+					if ( ! isset( $result[ $roomId ][ $dateStr ] ) ) {
+						$result[ $roomId ][ $dateStr ] = $block['comment'];
+					} else {
+						$result[ $roomId ][ $dateStr ] .= ', ' . $block['comment'];
+					}
 				}
 			}
 		}
@@ -913,7 +954,7 @@ class BookingRulesData {
 		 * @param array $calendarComments
 		 * @param int $roomTypeId
 		 * @param int[] $roomIds
-		 * @param ?array $period
+		 * @param \DatePeriod $period
 		 */
 		$result = apply_filters( 'mphb_get_calendar_comments_for_room_type', $result, $roomTypeOriginalId, $roomIds, $period );
 
@@ -921,36 +962,35 @@ class BookingRulesData {
 	}
 
 	/**
-	 * @return array [ [ 
-	 *                  'roomTypeId' => int,
-	 *                  'roomId'     => int,
-	 *                  'startDate'  => string (Ymd),
-	 *                  'endDate'    => string (Ymd),
-	 *                  'comment'    => string
-	 *                  
-	 *               ], ... ]
+	 * Currently this method is only used for export.
+	 *
+	 * @return array <code>[
+	 *     [ 
+	 *         roomTypeId => int,
+	 *         roomId     => int,
+	 *         startDate  => DateTime,
+	 *         endDate    => DateTime,
+	 *         comment    => string
+	 *     ],
+	 *     ...
+	 * ]</code>
 	 */
-	public function getNotStayInRulesData( int $roomTypeOriginalId, int $requestedRoomId ) {
-
+	public function getNotStayInRulesData( int $roomTypeOriginalId, int $requestedRoomId ): array {
 		$result = array();
 
-		foreach ( $this->customRules as $ruleData ) {
+		$periods = MPHB()->getBlocksRepository()->getNoStayPeriodsForRoom( $roomTypeOriginalId, $requestedRoomId );
 
-			if ( $ruleData['not_stay_in'] &&
-				( $roomTypeOriginalId === $ruleData['room_type_id'] || 0 === $ruleData['room_type_id'] ) &&
-				( 0 === $requestedRoomId || 0 === $ruleData['room_id'] || $requestedRoomId === $ruleData['room_id'] )
-			) {
+		foreach ( $periods as $period ) {
+			$dateFrom = DateUtils::createDate( $period['date_from'] );
+			$dateTo   = DateUtils::createDate( $period['date_to'] );
 
-				$timeZone  = DateUtils::getSiteTimeZone();
-				$startDate = \DateTime::createFromFormat( 'Ymd', $ruleData['date_from'], $timeZone );
-				$endDate   = \DateTime::createFromFormat( 'Ymd', $ruleData['date_to'], $timeZone );
-
+			if ( $dateFrom !== null && $dateTo !== null ) {
 				$result[] = array(
 					'roomTypeId' => $roomTypeOriginalId,
 					'roomId'     => $requestedRoomId,
-					'startDate'  => $startDate,
-					'endDate'    => $endDate,
-					'comment'    => $ruleData['custom_rule_comment'],
+					'startDate'  => $dateFrom,
+					'endDate'    => $dateTo,
+					'comment'    => $period['comment'],
 				);
 			}
 		}
@@ -965,5 +1005,144 @@ class BookingRulesData {
 		$result = apply_filters( 'mphb_get_admin_blocks_for_export', $result, $roomTypeOriginalId, $requestedRoomId );
 
 		return $result;
+	}
+
+	/**
+	 * @return array <code>[ buffer_days, allow_check_in, ... ]</code>
+	 */
+	private function getCustomBookingRulesByDate( int $roomTypeId, \DateTime $date ): array {
+		if ( $roomTypeId === 0 ) {
+			return array(); // Custom booking rules does not have 0-room-type rules
+		}
+
+		$year  = (int) $date->format( 'Y' );
+		$month = $year * 12 + (int) $date->format( 'n' );
+
+		if ( ! isset( $this->cachedCustomBookingRules[ $roomTypeId ][ $month ] ) ) {
+			$rulesForMonth = $this->getCustomBookingRulesForMonth( $roomTypeId, $date );
+
+			$this->cachedCustomBookingRules[ $roomTypeId ][ $month ] = $rulesForMonth;
+		}
+
+		$dateStr = DateUtils::formatDateDB( $date );
+
+		return $this->cachedCustomBookingRules[ $roomTypeId ][ $month ][ $dateStr ] ?? array();
+	}
+
+	/**
+	 * @return array <code>[ Date string ("Y-m-d") => [ buffer_days, allow_check_in, ... ] ]</code>
+	 */
+	private function getCustomBookingRulesForMonth( int $roomTypeId, \DateTime $dateOfMonth ): array {
+		$dateFromStr = date( 'Y-m-01', $dateOfMonth->getTimestamp() );
+		$dateToStr   = date( 'Y-m-t', $dateOfMonth->getTimestamp() );
+
+		return MPHB()->getCustomBookingRulesRepository()->getRulesForPeriod( $roomTypeId, $dateFromStr, $dateToStr );
+	}
+
+	private function hasCheckInDaysRules(): bool {
+		return $this->hasReservationRules['check_in_days'];
+	}
+
+	private function hasCheckOutDaysRules(): bool {
+		return $this->hasReservationRules['check_out_days'];
+	}
+
+	private function hasMaxAdvanceReservationRules(): bool {
+		return $this->hasReservationRules['max_advance_reservation'];
+	}
+
+	private function hasMaxStayLengthRules(): bool {
+		return $this->hasReservationRules['max_stay_length'];
+	}
+
+	private function hasMinAdvanceReservationRules(): bool {
+		return $this->hasReservationRules['min_advance_reservation'];
+	}
+
+	private function hasMinStayLengthRules(): bool {
+		return $this->hasReservationRules['min_stay_length'];
+	}
+
+	private function hasNotCheckInRules(): bool {
+		if ( $this->hasNotCheckInRules === null ) {
+			$this->hasNotCheckInRules = MPHB()->getBlocksRepository()->hasNotCheckInRules();
+		}
+
+		return $this->hasNotCheckInRules;
+	}
+
+	private function hasNotCheckOutRules(): bool {
+		if ( $this->hasNotCheckOutRules === null ) {
+			$this->hasNotCheckOutRules = MPHB()->getBlocksRepository()->hasNotCheckOutRules();
+		}
+
+		return $this->hasNotCheckOutRules;
+	}
+
+	private function hasNotStayInRules(): bool {
+		if ( $this->hasNotStayInRules === null ) {
+			$this->hasNotStayInRules = MPHB()->getBlocksRepository()->hasNotStayInRules();
+
+			if ( ! $this->hasNotStayInRules ) {
+				// Filter for linked accommodations
+				/**
+				 * @since 4.10.0
+				 *
+				 * @param bool $hasNotStayInRules
+				 */
+				$this->hasNotStayInRules = apply_filters( 'mphb_has_not_stay_in_rules', $this->hasNotStayInRules );
+			}
+		}
+
+		return $this->hasNotStayInRules;
+	}
+
+	/**
+	 * @return array <code>[ Block ID => [ room_type_id, room_id, ... ] ]</code>
+	 */
+	private function getBlocksByDate( int $roomTypeId, \DateTime $date ): array {
+		$dateStr = DateUtils::formatDateDB( $date );
+
+		if ( ! isset( $this->blocksByDate[ $dateStr ] ) ) {
+			$this->loadBlocksForMonth( $roomTypeId, $date );
+		}
+
+		return $this->blocksByDate[ $dateStr ];
+	}
+
+	private function loadBlocksForMonth( int $roomTypeId, \DateTime $dateOfMonth ): void {
+		$monthStartStr = date( 'Y-m-01', $dateOfMonth->getTimestamp() );
+		$monthEndStr   = date( 'Y-m-t', $dateOfMonth->getTimestamp() );
+
+		$monthStart    = DateUtils::createDate( $monthStartStr );
+		$monthEnd      = DateUtils::createDate( $monthEndStr );
+
+		if ( $monthStart === null || $monthEnd === null ) {
+			return;
+		}
+
+		$blocksForMonth = MPHB()->getBlocksRepository()->getItemsForPeriod( $roomTypeId, $monthStartStr, $monthEndStr );
+
+		// Filter blocks without restrictions
+		$blocksForMonth = array_filter( $blocksForMonth, fn( $block ) => $block['has_restrictions'] );
+
+		// Filter blocks with invalid dates
+		$blocksForMonth = array_filter( $blocksForMonth, fn( $block ) => $block['date_to'] >= $block['date_from'] );
+
+		$this->loadedBlocks += $blocksForMonth;
+
+		// Sort blocks by date
+		$datesInMonth = DateUtils::createDatesInRange( $monthStart, $monthEnd );
+		$blocksByDate = array_fill_keys( array_keys( $datesInMonth ), array() );
+
+		foreach ( array_keys( $datesInMonth ) as $dateStr ) {
+			foreach ( $blocksForMonth as $blockId => $block ) {
+				if ( $dateStr >= $block['date_from'] && $dateStr <= $block['date_to'] ) {
+					$blocksByDate[ $dateStr ][ $blockId ] = &$this->loadedBlocks[ $blockId ];
+				}
+			}
+		}
+
+		$this->blocksByDate += $blocksByDate;
 	}
 }

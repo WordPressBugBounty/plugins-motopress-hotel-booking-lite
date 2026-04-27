@@ -28,6 +28,8 @@ class TaxesAndFeesController extends AbstractRestOptionsController {
 
 		$options = new OptionsSchema();
 
+		$options->setComponent( 'taxes_and_fees' );
+
 		$feesSchema = array(
 			'type'  => 'array',
 			'items' => array(
@@ -226,7 +228,7 @@ class TaxesAndFeesController extends AbstractRestOptionsController {
 						$optionItem['amount']['children'],
 					);
 					break;
-				case 'per_accommodation_per_day':
+				case 'per_room_per_day':
 					$amount = $optionItem['amount'];
 					break;
 				default:
@@ -251,7 +253,7 @@ class TaxesAndFeesController extends AbstractRestOptionsController {
 					}
 					$option[ $key ]['amount'] = array_combine( $fields, array_values( $optionItem['amount'] ) );
 					break;
-				case 'per_accommodation_per_day':
+				case 'per_room_per_day':
 					if ( ! is_int( $optionItem['amount'] ) && ! is_float( $optionItem['amount'] ) ) {
 						throw new \Exception( 'Unknown error.' );
 					}

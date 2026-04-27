@@ -8,6 +8,10 @@ namespace MPHB\Advanced\Api;
 
 use MPHB\Utils\DateUtils;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class ApiHelper {
 
 	const DATETIME_FORMAT_ISO8601 = 'Y-m-d\TH:i:s';
@@ -126,10 +130,32 @@ class ApiHelper {
 	 */
 	public static function urlencodeRfc3986( $value ) {
 		if ( is_array( $value ) ) {
-			return array_map( 'self::urlencodeRfc3986', $value );
+			return array_map( array( self::class, 'urlencodeRfc3986' ), $value );
 		}
 
 		return str_replace( array( '+', '%7E' ), array( ' ', '~' ), rawurlencode( $value ) );
+	}
+
+	/**
+	 * @see \MPHB\Repositories\BlocksRepository::mapToBlocks()
+	 */
+	public static function prepareCustomBookingRuleResponse( array $block ): array {
+		// Add "restrictions"
+		$block['restrictions'] = array();
+
+		if ( $block['not_check_in'] ) {
+			$block['restrictions'][] = 'check-in';
+		}
+
+		if ( $block['not_check_out'] ) {
+			$block['restrictions'][] = 'check-out';
+		}
+
+		if ( $block['not_stay_in'] ) {
+			$block['restrictions'][] = 'stay-in';
+		}
+
+		return $block;
 	}
 
 	/**
@@ -181,6 +207,6 @@ class ApiHelper {
 	 * @return string
 	 */
 	public static function convertSnakeToCamelString( string $snakeString ) {
-		return str_replace( ' ', '', ucwords( str_replace( '_', ' ', $snakeString ) ) );
+		return str_replace( '_', '', ucwords( $snakeString, '_' ) );
 	}
 }

@@ -4,6 +4,10 @@ namespace MPHB\Payments\Gateways;
 
 use MPHB\Entities\Payment;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 abstract class AbstractNotificationListener {
 	/**
 	 * @var Gateway
@@ -11,31 +15,26 @@ abstract class AbstractNotificationListener {
 	protected $gateway;
 
 	/**
-	 *
 	 * @var string
 	 */
 	protected $urlKey = 'mphb-listener';
 
 	/**
-	 *
 	 * @var string
 	 */
 	protected $urlValue = '';
 
 	/**
-	 *
 	 * @var array
 	 */
 	protected $input;
 
 	/**
-	 *
-	 * @var \MPHB\Entities\Payment
+	 * @var Payment
 	 */
 	protected $payment;
 
 	/**
-	 *
 	 * @param array $atts
 	 */
 	public function __construct( $gateway, $atts = array() ) {
@@ -50,10 +49,8 @@ abstract class AbstractNotificationListener {
 	 * @sinse 3.6.0 all "exit;" was replaced with fireExit().
 	 */
 	public function checkRequest() {
-
-		if (
-			empty( $_GET[ $this->urlKey ] ) ||
-			$_GET[ $this->urlKey ] !== $this->urlValue
+		if ( empty( $_GET[ $this->urlKey ] )
+			|| $_GET[ $this->urlKey ] !== $this->urlValue
 		) {
 			return;
 		}
@@ -133,8 +130,7 @@ abstract class AbstractNotificationListener {
 	abstract protected function validate( $input );
 
 	/**
-	 *
-	 * @return \MPHB\Entities\Payment|null
+	 * @return Payment|null
 	 */
 	abstract protected function retrievePayment();
 

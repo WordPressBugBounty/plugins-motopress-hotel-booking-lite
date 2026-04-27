@@ -16,7 +16,7 @@ class LicenseSettings {
 	public function __construct() {
 		$pluginData        = MPHB()->getPluginData();
 		$this->storeUrl    = $pluginData['PluginURI'];
-		$this->productName = MPHB()->getProductSlug();
+		$this->productName = MPHB()->getName();
 		$this->productId   = 439190;
 	}
 
@@ -25,7 +25,7 @@ class LicenseSettings {
 	 * @return string
 	 */
 	public function getLicenseKey() {
-		return get_option( 'mphb_license_key', '' );
+		return get_site_option( 'mphb_license_key', '' );
 	}
 
 	/**
@@ -74,9 +74,9 @@ class LicenseSettings {
 		}
 
 		if ( ! empty( $licenseKey ) ) {
-			update_option( 'mphb_license_key', $licenseKey );
+			update_site_option( 'mphb_license_key', $licenseKey );
 		} else {
-			delete_option( 'mphb_license_key' );
+			delete_site_option( 'mphb_license_key' );
 		}
 	}
 
@@ -84,7 +84,7 @@ class LicenseSettings {
 	 * @since 5.0.0
 	 */
 	public function clearLicenseStatus() {
-		delete_option( 'mphb_license_status' );
+		delete_site_option( 'mphb_license_status' );
 	}
 
 	/**
@@ -92,17 +92,15 @@ class LicenseSettings {
 	 *
 	 * @see https://easydigitaldownloads.com/docs/software-licensing-api/
 	 *
-	 * @param array $licenseData
+	 * @param stdClass $licenseData
 	 */
 	public function setLicenseStatusFromData( $licenseData ) {
-		if ( $licenseData->success ) {
-			$licenseStatus = [
-				'status'  => $licenseData->license,
-				'expires' => $licenseData->expires, // 'lifetime' or date like '2020-04-28 23:59:59'
-			];
+		$licenseStatus = [
+			'status'  => $licenseData->license,
+			'expires' => isset( $licenseData->expires ) ? $licenseData->expires : '', // 'lifetime' or date like '2020-04-28 23:59:59'
+		];
 
-			update_option( 'mphb_license_status', $licenseStatus );
-		}
+		update_site_option( 'mphb_license_status', $licenseStatus );
 	}
 
 	/**
@@ -116,7 +114,7 @@ class LicenseSettings {
 			'expires' => self::EXPIRATION_LIFETIME,
 		];
 
-		$licenseStatus = get_option( 'mphb_license_status', $defaultStatus );
+		$licenseStatus = get_site_option( 'mphb_license_status', $defaultStatus );
 
 		if ( ! is_array( $licenseStatus ) ) {
 			$licenseStatus = $defaultStatus;
@@ -141,22 +139,6 @@ class LicenseSettings {
 	 *
 	 * @return bool
 	 */
-	public function needHideNotice() {
-		return (bool) get_option( 'mphb_hide_license_notice', false );
-	}
-
-	/**
-	 *
-	 * @param bool $isHide
-	 */
-	public function setNeedHideNotice( $isHide ) {
-		update_option( 'mphb_hide_license_notice', $isHide );
-	}
-
-	/**
-	 *
-	 * @return bool
-	 */
 	public function isEnabled() {
 		return false;
 	}
@@ -171,7 +153,7 @@ class LicenseSettings {
 			'edd_action' => 'check_license',
 			'license'    => $this->getLicenseKey(),
 			'item_id'    => $this->getProductId(),
-			'url'        => home_url(),
+			'url'        => network_home_url(),
 		);
 
 		$checkLicenseUrl = add_query_arg( $apiParams, $this->getStoreUrl() );

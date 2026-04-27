@@ -2,25 +2,27 @@
 
 namespace MPHB\Repositories;
 
-use \MPHB\Persistences;
+use MPHB\Persistences\CPTPersistence;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 abstract class AbstractPostRepository {
-
 	protected $type  = 'abstract';
 	protected $items = array();
 
 	/**
-	 *
-	 * @var Persistences\CPTPersistence
+	 * @var CPTPersistence
 	 */
 	protected $persistence;
 
-	public function __construct( Persistences\CPTPersistence $persistence ) {
+	public function __construct( CPTPersistence $persistence ) {
 		$this->persistence = $persistence;
 	}
 
 	/**
-	 * @return \MPHB\Persistences\CPTPersistence
+	 * @return CPTPersistence
 	 *
 	 * @since 3.7.2
 	 */
@@ -97,13 +99,11 @@ abstract class AbstractPostRepository {
 	 * @return int
 	 */
 	public function save( &$entity ) {
-
 		$postData = $this->mapEntityToPostData( $entity );
 
 		$id = $this->persistence->createOrUpdate( $postData );
 
 		if ( $id ) {
-
 			$entity = $this->findById( $id, true );
 
 			$this->items[ $id ] = $entity;

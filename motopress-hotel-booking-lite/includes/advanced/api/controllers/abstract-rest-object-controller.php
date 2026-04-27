@@ -295,10 +295,18 @@ abstract class AbstractRestObjectController extends AbstractRestController {
 	 * @return WP_Error|WP_REST_Response
 	 */
 	public function prepare_item_for_response( $object, $request ) {
-		$context  = ! empty( $request['context'] ) ? $request['context'] : 'view';
-		$data     = $object->getData();
-		$data     = $this->add_additional_fields_to_object( $data, $request );
-		$data     = $this->filter_response_by_context( $data, $context );
+		$context = ! empty( $request['context'] ) ? $request['context'] : 'view';
+
+		$data = $object->getData();
+		$data = $this->add_additional_fields_to_object( $data, $request );
+		$data = $this->filter_response_by_context( $data, $context );
+
+		if ( $context === 'view' ) {
+			if ( isset( $data['title'] ) ) {
+				$data['title'] = html_entity_decode( $data['title'] );
+			}
+		}
+
 		$response = rest_ensure_response( $data );
 		$response->add_links( $this->prepare_links( $object, $request ) );
 
@@ -455,17 +463,15 @@ abstract class AbstractRestObjectController extends AbstractRestController {
 	}
 
 	/**
-	 * Prepare objects query.
+	 * Prepare objects query (for get_items()).
 	 *
-	 * @param  WP_REST_Request $request  Full details about the request.
+	 * @since 4.1.1
 	 *
+	 * @param WP_REST_Request $request  Full details about the request.
 	 * @return array
-	 * @since  4.1.1
 	 */
 	protected function prepareQuery( $request ) {
-		/**
-		 * Map WordPress to API query keys
-		 */
+		// Map WordPress to API query keys
 		$queryArgsMap = array(
 			'offset'              => 'offset',
 			'order'               => 'order',
@@ -481,6 +487,7 @@ abstract class AbstractRestObjectController extends AbstractRestController {
 		);
 
 		$args = array();
+
 		foreach ( $queryArgsMap as $queryWPArg => $queryAPIArg ) {
 			if ( isset( $request[ $queryAPIArg ] ) && $request[ $queryAPIArg ] ) {
 				$args[ $queryWPArg ] = $request[ $queryAPIArg ];
@@ -488,25 +495,28 @@ abstract class AbstractRestObjectController extends AbstractRestController {
 		}
 
 		$args['date_query'] = array();
-		// Set before into date query. Date query must be specified as an array of an array.
+
+		// Set before into date query. Date query must be specified as an array
+		// of an array.
 		if ( isset( $request['before'] ) ) {
 			$args['date_query'][0]['before'] = $request['before'];
 		}
 
-		// Set after into date query. Date query must be specified as an array of an array.
+		// Set after into date query. Date query must be specified as an array
+		// of an array.
 		if ( isset( $request['after'] ) ) {
 			$args['date_query'][0]['after'] = $request['after'];
 		}
 
 		if ( is_array( $request['filter'] ) ) {
 			$args = array_merge( $args, $request['filter'] );
+
 			unset( $args['filter'] );
 		}
 
 		// Force the post_type argument, since it's not a user input variable.
 		$args['post_type'] = $this->post_type;
-
-		$args['fields'] = 'ids';
+		$args['fields']    = 'ids';
 
 		/**
 		 * Filter the query arguments for a request.
@@ -514,8 +524,8 @@ abstract class AbstractRestObjectController extends AbstractRestController {
 		 * Enables adding extra arguments or setting defaults for a post
 		 * collection request.
 		 *
-		 * @param  array  $args  Key value array of query var to query value.
-		 * @param  WP_REST_Request  $request  The request used.
+		 * @param array            $args    Key value array of query var to query value.
+		 * @param WP_REST_Request  $request The request used.
 		 */
 		$args = apply_filters( "mphb_rest_{$this->post_type}_query", $args, $request );
 
@@ -526,17 +536,16 @@ abstract class AbstractRestObjectController extends AbstractRestController {
 	/**
 	 * Get a collection of posts.
 	 *
-	 * @param  WP_REST_Request $request  Full details about the request.
-	 *
+	 * @param WP_REST_Request $request Full details about the request.
 	 * @return WP_Error|WP_REST_Response
 	 */
 	public function get_items( $request ) {
-		$queryArgs = $this->prepareQuery( $request );
-
+		$queryArgs  = $this->prepareQuery( $request );
 		$postsQuery = new WP_Query();
-		$postIds    = $postsQuery->query( $queryArgs );
 
-		$posts = array();
+		$postIds = $postsQuery->query( $queryArgs );
+		$posts   = array();
+
 		foreach ( $postIds as $postId ) {
 			if ( ! ApiHelper::checkPostPermissions( $this->post_type, 'read', $postId ) ) {
 				continue;
@@ -556,43 +565,52 @@ abstract class AbstractRestObjectController extends AbstractRestController {
 			$posts[] = $this->prepare_response_for_collection( $data );
 		}
 
-		$page        = (int) $queryArgs['paged'];
-		$total_posts = $postsQuery->found_posts;
+		$page       = (int) $queryArgs['paged'];
+		$totalPosts = $postsQuery->found_posts;
 
-		if ( $total_posts < 1 ) {
-			// Out-of-bounds, run the query again without LIMIT for total count.
+		if ( $totalPosts < 1 ) {
+			// Out-of-bounds, run the query again without LIMIT for total count
 			unset( $queryArgs['paged'] );
-			$count_query = new WP_Query();
-			$count_query->query( $queryArgs );
-			$total_posts = $count_query->found_posts;
+
+			$countQuery = new WP_Query();
+			$countQuery->query( $queryArgs );
+
+			$totalPosts = $countQuery->found_posts;
 		}
 
-		$max_pages = ceil( $total_posts / (int) $queryArgs['posts_per_page'] );
+		$maxPages = ceil( $totalPosts / (int) $queryArgs['posts_per_page'] );
 
 		$response = rest_ensure_response( $posts );
-		$response->header( 'X-WP-Total', (int) $total_posts );
-		$response->header( 'X-WP-TotalPages', (int) $max_pages );
+		$response->header( 'X-WP-Total', (int) $totalPosts );
+		$response->header( 'X-WP-TotalPages', (int) $maxPages );
 
-		$request_params = $request->get_query_params();
-		if ( ! empty( $request_params['filter'] ) ) {
+		$requestParams = $request->get_query_params();
+
+		if ( ! empty( $requestParams['filter'] ) ) {
 			// Normalize the pagination params.
-			unset( $request_params['filter']['posts_per_page'] );
-			unset( $request_params['filter']['paged'] );
+			unset( $requestParams['filter']['posts_per_page'] );
+			unset( $requestParams['filter']['paged'] );
 		}
-		$base = add_query_arg( $request_params, rest_url( sprintf( '/%s/%s', $this->namespace, $this->rest_base ) ) );
+
+		$base = add_query_arg( $requestParams, rest_url( sprintf( '/%s/%s', $this->namespace, $this->rest_base ) ) );
 
 		if ( $page > 1 ) {
-			$prev_page = $page - 1;
-			if ( $prev_page > $max_pages ) {
-				$prev_page = $max_pages;
+			$prevPage = $page - 1;
+
+			if ( $prevPage > $maxPages ) {
+				$prevPage = $maxPages;
 			}
-			$prev_link = add_query_arg( 'page', $prev_page, $base );
-			$response->link_header( 'prev', $prev_link );
+
+			$prevLink = add_query_arg( 'page', $prevPage, $base );
+
+			$response->link_header( 'prev', $prevLink );
 		}
-		if ( $max_pages > $page ) {
-			$next_page = $page + 1;
-			$next_link = add_query_arg( 'page', $next_page, $base );
-			$response->link_header( 'next', $next_link );
+
+		if ( $maxPages > $page ) {
+			$nextPage = $page + 1;
+			$nextLink = add_query_arg( 'page', $nextPage, $base );
+
+			$response->link_header( 'next', $nextLink );
 		}
 
 		return $response;

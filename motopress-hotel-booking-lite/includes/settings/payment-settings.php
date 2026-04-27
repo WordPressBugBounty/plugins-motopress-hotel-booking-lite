@@ -3,11 +3,13 @@
 namespace MPHB\Settings;
 
 class PaymentSettings {
+	private const AMOUNT_TYPE_DEPOSIT = 'deposit';
+	private const AMOUNT_TYPE_FULL    = 'full';
 
-	private $defaultAmountType       = 'full';
-	private $defaultDepositType      = 'percent';
-	private $defaultDepositAmount    = 10;
-	private $defaultForceCheckoutSSL = false;
+	private const DEFAULT_AMOUNT_TYPE        = self::AMOUNT_TYPE_FULL;
+	private const DEFAULT_DEPOSIT_AMOUNT     = 10.0;
+	private const DEFAULT_DEPOSIT_TYPE       = 'percent';
+	private const DEFAULT_FORCE_CHECKOUT_SSL = false;
 
 	/**
 	 * Retrieve type of payment. Possible values: full, deposit
@@ -18,12 +20,16 @@ class PaymentSettings {
 		return get_option( 'mphb_payment_amount_type', $this->getDefaultAmountType() );
 	}
 
+	public function isDepositEnabled(): bool {
+		return $this->getAmountType() === self::AMOUNT_TYPE_DEPOSIT;
+	}
+
 	/**
 	 *
 	 * @return string
 	 */
 	public function getDefaultAmountType() {
-		return $this->defaultAmountType;
+		return self::DEFAULT_AMOUNT_TYPE;
 	}
 
 	/**
@@ -40,7 +46,7 @@ class PaymentSettings {
 	 * @return string
 	 */
 	public function getDefaultDepositType() {
-		return $this->defaultDepositType;
+		return self::DEFAULT_DEPOSIT_TYPE;
 	}
 
 	/**
@@ -56,7 +62,7 @@ class PaymentSettings {
 	 * @return float
 	 */
 	public function getDefaultDepositAmount() {
-		return $this->defaultDepositAmount;
+		return self::DEFAULT_DEPOSIT_AMOUNT;
 	}
 
 	/**
@@ -111,7 +117,7 @@ class PaymentSettings {
 	 * @return bool
 	 */
 	public function getDefaultForceCheckoutSSL() {
-		return $this->defaultForceCheckoutSSL;
+		return self::DEFAULT_FORCE_CHECKOUT_SSL;
 	}
 
 }

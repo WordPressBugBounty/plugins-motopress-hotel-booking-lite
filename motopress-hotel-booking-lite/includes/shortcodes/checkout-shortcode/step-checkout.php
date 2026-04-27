@@ -2,30 +2,30 @@
 
 namespace MPHB\Shortcodes\CheckoutShortcode;
 
-use \MPHB\Entities;
+use MPHB\Entities\{ Booking, ReservedRoom, RoomType };
+use MPHB\Views\Shortcodes\CheckoutView;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class StepCheckout extends Step {
-
 	/**
-	 *
-	 * @var Entities\Booking
+	 * @var Booking
 	 */
 	protected $booking;
 
 	/**
-	 *
-	 * @var Entities\ReservedRoom[]
+	 * @var ReservedRoom[]
 	 */
 	protected $reservedRooms;
 
 	/**
-	 *
 	 * @var boolean
 	 */
 	protected $alreadyBooked = false;
 
 	/**
-	 *
 	 * @var array
 	 */
 	protected $roomDetails = array();
@@ -35,7 +35,6 @@ class StepCheckout extends Step {
 	private $isCorrectBookingData = true;
 
 	public function __construct() {
-
 		add_action( 'mphb_before_register_public_scripts', array( $this, 'addScriptDependencies' ) );
 
 		add_action( 'init', array( $this, 'addInitActions' ) );
@@ -44,14 +43,12 @@ class StepCheckout extends Step {
 	}
 
 	public function addInitActions() {
-
 		add_action( 'mphb_sc_checkout_before_errors', array( $this, 'showErrorsMessage' ) );
 
 		add_action( 'mphb_sc_checkout_before_form', array( '\MPHB\Views\Shortcodes\CheckoutView', 'renderCustomerErrors' ), 10 );
-
 		add_action( 'mphb_sc_checkout_before_form', array( '\MPHB\Views\Shortcodes\CheckoutView', 'renderLoginForm' ), 10 );
 
-		// templates hooks
+		// Template hooks
 		add_action( 'mphb_sc_checkout_form', array( '\MPHB\Views\Shortcodes\CheckoutView', 'renderBookingDetails' ), 10, 2 );
 
 		add_action( 'mphb_sc_checkout_room_details', array( '\MPHB\Views\Shortcodes\CheckoutView', 'renderRoomTypeTitle' ), 10, 3 );
@@ -62,6 +59,7 @@ class StepCheckout extends Step {
 		if ( MPHB()->settings()->main()->isCouponsEnabled() ) {
 			add_action( 'mphb_sc_checkout_form', array( '\MPHB\Views\Shortcodes\CheckoutView', 'renderCoupon' ), 20 );
 		}
+
 		add_action( 'mphb_sc_checkout_form', array( '\MPHB\Views\Shortcodes\CheckoutView', 'renderPriceBreakdown' ), 30 );
 		add_action( 'mphb_sc_checkout_form', array( '\MPHB\Views\Shortcodes\CheckoutView', 'renderCheckoutText' ), 35 );
 		add_action( 'mphb_sc_checkout_form', array( '\MPHB\Views\Shortcodes\CheckoutView', 'renderCustomerDetails' ), 40, 3 );
@@ -101,7 +99,6 @@ class StepCheckout extends Step {
 	 * @since 3.7.0 added new filter - "mphb_sc_checkout_step_checkout_booking_object".
 	 */
 	public function setup() {
-
 		$this->isCorrectBookingData = $this->parseBookingData();
 
 		$this->parseCustomerData();
@@ -114,27 +111,24 @@ class StepCheckout extends Step {
 			);
 
 			MPHB()->reservationRequest()->setupParameter( 'pricing_strategy', 'base-price' );
-			$this->booking = apply_filters( 'mphb_sc_checkout_step_checkout_booking_object', Entities\Booking::create( $bookingAtts ) );
+			$this->booking = apply_filters( 'mphb_sc_checkout_step_checkout_booking_object', Booking::create( $bookingAtts ) );
 			MPHB()->reservationRequest()->resetDefaults( array( 'pricing_strategy' ) );
 
 			$this->stepValid();
 
 			/**
-			 * @param Entities\Booking $booking
+			 * @param Booking $booking
 			 */
 			do_action( 'mphb_focus_on_booking', $this->booking );
-
-			mphb_set_cookie( 'mphb_checkout_step', \MPHB\Shortcodes\CheckoutShortcode::STEP_CHECKOUT );
 		}
 	}
 
 	/**
 	 * @since 5.0.0
 	 *
-	 * @param Entities\RoomType $roomType
 	 * @return int[] [ 0 => Adults, 1 => Children ]
 	 */
-	protected function getSingleRoomTypeOccupancyPresetsFromSearch( $roomType ) {
+	protected function getDefaultOccupancyForSingleRoom( RoomType $roomType ): array {
 		list( $adultsPreset, $childrenPreset ) = mphb_rooms_facade()->getRoomTypeOccupancyPresetsFromSearch( $roomType );
 
 		if ( $adultsPreset === '' || $childrenPreset === '' ) {
@@ -147,21 +141,20 @@ class StepCheckout extends Step {
 	}
 
 	/**
-	 * @return bool
-	 *
 	 * @since 3.7.0 added new filter - "mphb_sc_checkout_step_checkout_selected_rooms".
 	 * @since 3.7.0 added new filter - "mphb_sc_checkout_step_checkout_room_to_reserve".
 	 * @since 3.7.0 added new filter - "mphb_sc_checkout_step_checkout_rooms_details".
 	 * @since 3.7.0 added new filter - "mphb_sc_checkout_step_checkout_reserved_rooms".
 	 */
-	protected function parseBookingData() {
-
+	protected function parseBookingData(): bool {
 		$isCorrectCheckInDate  = $this->parseCheckInDate();
 		$isCorrectCheckOutDate = $this->parseCheckOutDate();
 
 		if ( ! $isCorrectCheckInDate || ! $isCorrectCheckOutDate ) {
 			return false;
 		}
+
+		$roomDetails = null;
 
 		if ( ! empty( $_POST['mphb_rooms_details'] ) && is_array( $_POST['mphb_rooms_details'] ) ) {
 			$roomDetails = (array) wp_unslash( $_POST['mphb_rooms_details'] );
@@ -173,6 +166,7 @@ class StepCheckout extends Step {
 
 		if ( empty( $roomDetails ) || ! is_array( $roomDetails ) ) {
 			$this->errors[] = __( 'There are no accommodations selected for reservation.', 'motopress-hotel-booking' );
+
 			return false;
 		}
 
@@ -262,7 +256,7 @@ class StepCheckout extends Step {
 				&& count( $selectedRooms ) == 1
 				&& MPHB()->settings()->main()->isUseOccupancyPresetsOnCheckout()
 			) {
-				list( $adultsToBook, $childrenToBook ) = $this->getSingleRoomTypeOccupancyPresetsFromSearch( $roomType );
+				list( $adultsToBook, $childrenToBook ) = $this->getDefaultOccupancyForSingleRoom( $roomType );
 			} else {
 				$adultsToBook   = $roomType->getAdultsCapacity();
 				$childrenToBook = $roomType->getChildrenCapacity();
@@ -273,13 +267,11 @@ class StepCheckout extends Step {
 				'adults'   => $adultsToBook,
 				'children' => $childrenToBook,
 			);
+
 			$reservedRoomAtts = apply_filters( 'mphb_sc_checkout_step_checkout_room_to_reserve', $reservedRoomAtts, $roomTypeId );
 
 			for ( $i = 1; $i <= $roomsCount; $i++ ) {
-
-				$reservedRoom = Entities\ReservedRoom::create( $reservedRoomAtts );
-
-				$reservedRooms[] = $reservedRoom;
+				$reservedRooms[] = ReservedRoom::create( $reservedRoomAtts );
 				$roomDetails[]   = array(
 					'room_type_id'  => $roomTypeId,
 					'rate_id'       => $defaultRate->getOriginalId(),
@@ -322,22 +314,21 @@ class StepCheckout extends Step {
 	 * @since 3.7.0 added new action - "mphb_sc_checkout_before_errors".
 	 */
 	public function render() {
-
 		if ( ! $this->isCorrectBookingData ) {
 			do_action( 'mphb_sc_checkout_before_errors' );
+
 			return;
 		}
 
 		if ( $this->alreadyBooked ) {
 			$this->showAlreadyBookedMessage();
+
 			return;
 		}
 
-		MPHB()->getSession()->set( 'mphb_checkout_step', \MPHB\Shortcodes\CheckoutShortcode::STEP_CHECKOUT );
-
 		do_action( 'mphb_sc_checkout_before_form' );
 
-		\MPHB\Views\Shortcodes\CheckoutView::renderCheckoutForm( $this->booking, $this->roomDetails, $this->customer );
+		CheckoutView::renderCheckoutForm( $this->booking, $this->roomDetails, $this->customer );
 
 		do_action( 'mphb_sc_checkout_after_form' );
 	}
@@ -346,7 +337,6 @@ class StepCheckout extends Step {
 	 * @since 3.7.2 added new action - "mphb_enqueue_checkout_scripts".
 	 */
 	public function enqueueScripts() {
-
 		if ( ! $this->isValidStep ) {
 			return;
 		}
@@ -374,11 +364,9 @@ class StepCheckout extends Step {
 	}
 
 	/**
-	 *
 	 * @since 4.2.1
 	 */
 	public function redirectOnFailedLogin() {
-
 		$referrer = wp_get_referer();
 
 		if ( false === $referrer ) {
@@ -390,7 +378,6 @@ class StepCheckout extends Step {
 		$slug           = $page->post_name;
 
 		if ( strstr( $referrer, $slug ) ) {
-
 			$redirectTo = add_query_arg( 'login_failed', 'error', $referrer );
 			wp_safe_redirect( $redirectTo );
 			exit;
@@ -398,11 +385,9 @@ class StepCheckout extends Step {
 	}
 
 	/**
-	 *
 	 * @since 4.2.1
 	 */
 	public function redirectAfterLogout() {
-
 		$referrer = wp_get_referer();
 
 		if ( false === $referrer ) {
@@ -414,10 +399,8 @@ class StepCheckout extends Step {
 		$slug           = $page->post_name;
 
 		if ( strstr( $referrer, $slug ) ) {
-
 			wp_safe_redirect( $referrer );
 			exit;
 		}
 	}
-
 }

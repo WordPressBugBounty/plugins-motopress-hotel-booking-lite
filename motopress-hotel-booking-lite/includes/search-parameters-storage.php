@@ -2,6 +2,12 @@
 
 namespace MPHB;
 
+use MPHB\Utils\DateUtils;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class SearchParametersStorage {
 
 	private $defaults = array();
@@ -52,13 +58,14 @@ class SearchParametersStorage {
 
 		if ( ! empty( $parameters['mphb_check_in_date'] ) && ! empty( $parameters['mphb_check_out_date'] ) ) {
 
-			$checkInDateObj  = \DateTime::createFromFormat( $dateFormat, $parameters['mphb_check_in_date'] );
-			$checkOutDateObj = \DateTime::createFromFormat( $dateFormat, $parameters['mphb_check_out_date'] );
-			$todayDateObj    = \DateTime::createFromFormat( 'Y-m-d', mphb_current_time( 'Y-m-d' ) );
+			$checkInDateObj  = DateUtils::createCheckInDate( $dateFormat, $parameters['mphb_check_in_date'] );
+			$checkOutDateObj = DateUtils::createCheckOutDate( $dateFormat, $parameters['mphb_check_out_date'] );
+			$todayDateObj    = new \DateTime( 'today', DateUtils::getSiteTimeZone() );
 
-			if ( $checkInDateObj &&	$checkOutDateObj &&
-				$checkInDateObj >= $todayDateObj &&
-				! mphb_availability_facade()->isBookingRulesViolated(
+			if ( $checkInDateObj
+				&& $checkOutDateObj
+				&& $checkInDateObj >= $todayDateObj
+				&& ! mphb_availability_facade()->isBookingRulesViolated(
 					0,
 					$checkInDateObj,
 					$checkOutDateObj,
@@ -110,8 +117,8 @@ class SearchParametersStorage {
 
 		if ( ! empty( $parameters['mphb_check_in_date'] ) && ! empty( $parameters['mphb_check_out_date'] ) ) {
 
-			$checkInDate  = \DateTime::createFromFormat( $dateFormat, $parameters['mphb_check_in_date'] );
-			$checkOutDate = \DateTime::createFromFormat( $dateFormat, $parameters['mphb_check_out_date'] );
+			$checkInDate  = DateUtils::createCheckInDate( $dateFormat, $parameters['mphb_check_in_date'] );
+			$checkOutDate = DateUtils::createCheckOutDate( $dateFormat, $parameters['mphb_check_out_date'] );
 
 			$searchAtts = apply_filters(
 				'mphb_search_available_rooms',

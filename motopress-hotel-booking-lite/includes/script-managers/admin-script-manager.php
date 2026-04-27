@@ -27,6 +27,9 @@ class AdminScriptManager extends ScriptManager {
 		wp_register_script( 'mphb-bgrins-spectrum', $this->scriptUrl( 'vendors/bgrins-spectrum/build/spectrum-min.js' ), array( 'jquery' ), MPHB()->getVersion(), true );
 		$this->addDependency( 'mphb-bgrins-spectrum' );
 
+		$this->addDependency( 'wp-i18n' );
+		$this->addDependency( 'wp-url' );
+
 		wp_register_script( 'mphb-admin', $this->scriptUrl( 'assets/js/admin/admin.min.js' ), $this->scriptDependencies, MPHB()->getVersion(), true );
 	}
 
@@ -121,6 +124,7 @@ class AdminScriptManager extends ScriptManager {
 					'numberOfMonthCalendar'   => 2,
 					'numberOfMonthDatepicker' => 2,
 					'dateFormat'              => MPHB()->settings()->dateTime()->getDateFormatJS(),
+					'dateFormatWp'            => MPHB()->settings()->dateTime()->getDateFormatWP(),
 					'dateTransferFormat'      => MPHB()->settings()->dateTime()->getDateTransferFormatJS(),
 					'datepickerClass'         => MPHB()->settings()->main()->getDatepickerThemeClass(),
 					'upgradeToPremiumMsgHtml'	 => mphb_upgrade_to_premium_message(),

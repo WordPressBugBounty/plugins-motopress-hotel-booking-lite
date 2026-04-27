@@ -86,13 +86,14 @@ abstract class AbstractRestOptionsController extends AbstractRestController {
 	 * - Sanitize values according to the scheme (type conversion and removal of values missing in the scheme)
 	 */
 	protected function prepareResponse( $option, $optionName, $schema ) {
-		if ( count( static::ENDPOINT_REPLACEMENT_RULES ) ) {
-			$option = $this->replaceAllOccurrencesKeysAndValues( $option, static::ENDPOINT_REPLACEMENT_RULES );
-		}
-
 		$prepareResponseCallback = 'prepareResponse' . ApiHelper::convertSnakeToCamelString( $optionName );
+
 		if ( method_exists( $this, $prepareResponseCallback ) ) {
 			$option = $this->{$prepareResponseCallback}( $option );
+		}
+
+		if ( count( static::ENDPOINT_REPLACEMENT_RULES ) ) {
+			$option = $this->replaceAllOccurrencesKeysAndValues( $option, static::ENDPOINT_REPLACEMENT_RULES );
 		}
 
 		return rest_sanitize_value_from_schema( $option, $schema );
@@ -188,19 +189,20 @@ abstract class AbstractRestOptionsController extends AbstractRestController {
 	 * @throws \Exception
 	 */
 	protected function prepareRequestItem( $option, $optionName ) {
-		$prepareRequestCallback = 'prepareRequest' . ApiHelper::convertSnakeToCamelString( $optionName );
-		if ( method_exists( $this, $prepareRequestCallback ) ) {
-			$option = $this->{$prepareRequestCallback}( $option );
-		}
-
 		if ( count( static::ENDPOINT_REPLACEMENT_RULES ) ) {
 			$option = $this->replaceAllOccurrencesKeysAndValues( $option, array_flip( static::ENDPOINT_REPLACEMENT_RULES ) );
+		}
+
+		$prepareRequestCallback = 'prepareRequest' . ApiHelper::convertSnakeToCamelString( $optionName );
+
+		if ( method_exists( $this, $prepareRequestCallback ) ) {
+			$option = $this->{$prepareRequestCallback}( $option );
 		}
 
 		return $option;
 	}
 
-	private function prepareRequest( WP_REST_Request $request ) {
+	protected function prepareRequest( WP_REST_Request $request ) {
 		$preparedRequest = array();
 		$options         = $this->options->getOptionsSchema();
 
@@ -223,7 +225,14 @@ abstract class AbstractRestOptionsController extends AbstractRestController {
 				 * delete all options that have invalid values from the
 				 * database.
 				 */
-				if ( is_wp_error( rest_validate_value_from_schema( get_option( $args['option_name'], false ), $args['schema'] ) ) ) {
+				$isValidStoredValue = ! is_wp_error(
+					rest_validate_value_from_schema(
+						get_option( $args['option_name'], false ),
+						$args['schema']
+					)
+				);
+
+				if ( ! $isValidStoredValue ) {
 					return new WP_Error(
 						'rest_invalid_stored_value',
 						sprintf( __( 'The %s property has an invalid stored value, and cannot be updated to null.' ), $name ),

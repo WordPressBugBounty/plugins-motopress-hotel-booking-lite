@@ -37,26 +37,14 @@ function mphb_load_template( $template, $templateArgs = array() ) {
 }
 
 /**
+ * @deprecated 6.0.0 Use <code>current_time()</code> instead.
  *
- * @global string $wp_version
  * @param string $type
- * @param bool   $gmt
- * @return string
+ * @param int|bool $gmt
+ * @return int|string
  */
 function mphb_current_time( $type, $gmt = 0 ) {
-	global $wp_version;
-	if ( version_compare( $wp_version, '3.9', '<=' ) && ! in_array(
-		$type,
-		array(
-			'timestmap',
-			'mysql',
-		)
-	) ) {
-		$timestamp = current_time( 'timestamp', $gmt );
-		return date( $type, $timestamp );
-	} else {
-		return current_time( $type, $gmt );
-	}
+	return current_time( $type, $gmt );
 }
 
 /**
@@ -89,9 +77,23 @@ function mphb_get_status_label( $status ) {
  * @param int    $expire
  */
 function mphb_set_cookie( $name, $value, $expire = 0 ) {
-	setcookie( $name, $value, $expire, COOKIEPATH, COOKIE_DOMAIN );
+	// samesite is set to None for WP instances running in an iframe embedded on domains different from the WP instance domain
+	setcookie( $name, $value, [
+		'expires'  => $expire,
+		'path'     => COOKIEPATH,
+		'domain'   => COOKIE_DOMAIN,
+		'secure'   => is_ssl(),
+		'samesite' => is_ssl() ? 'None' : 'Lax'
+	] );
+
 	if ( COOKIEPATH != SITECOOKIEPATH ) {
-		setcookie( $name, $value, $expire, SITECOOKIEPATH, COOKIE_DOMAIN );
+		setcookie( $name, $value, [
+			'expires'  => $expire,
+			'path'     => SITECOOKIEPATH,
+			'domain'   => COOKIE_DOMAIN,
+			'secure'   => is_ssl(),
+			'samesite' => is_ssl() ? 'None' : 'Lax'
+		] );
 	}
 }
 
@@ -128,6 +130,15 @@ function mphb_unset_cookie( $name ) {
 function mphb_is_checkout_page() {
 	$checkoutPageId = MPHB()->settings()->pages()->getCheckoutPageId();
 	return $checkoutPageId && is_page( $checkoutPageId );
+}
+
+/**
+ * @since 6.0.0
+ */
+function mphb_is_reservation_received_page(): bool {
+	$reservationReceivedPageId = MPHB()->settings()->pages()->getReservationReceivedPageId();
+
+	return $reservationReceivedPageId && is_page( $reservationReceivedPageId );
 }
 
 function mphb_is_search_results_page() {
@@ -482,34 +493,6 @@ function mphb_get_edit_post_link_for_everyone( $id, $context = 'display' ) {
 	return apply_filters( 'get_edit_post_link', $link, $post->ID, $context );
 
 	return $link;
-}
-
-/**
- *
- * @param int $typeId Room type ID.
- *
- * @return array [%Room ID% => %Room Number%].
- */
-function mphb_get_rooms_select_list( $typeId ) {
-	$rooms = MPHB()->getRoomPersistence()->getIdTitleList(
-		array(
-			'room_type_id' => $typeId,
-			'post_status'  => 'all',
-		)
-	);
-
-	$roomType  = MPHB()->getRoomTypeRepository()->findById( $typeId );
-	$typeTitle = ( $roomType ? $roomType->getTitle() : '' );
-
-	if ( ! empty( $typeTitle ) ) {
-		foreach ( $rooms as &$room ) {
-			$room = str_replace( $typeTitle, '', $room );
-			$room = trim( $room );
-		}
-		unset( $room );
-	}
-
-	return $rooms;
 }
 
 function mphb_show_multiple_instances_notice() {
@@ -1013,6 +996,12 @@ function mphb_limit( $value, $min, $max ) {
 	return max( $min, min( $value, $max ) );
 }
 
+function mphb_array_add( array &$array, $value ): void {
+	if ( ! in_array( $value, $array ) ) {
+		$array[] = $value;
+	}
+}
+
 /**
  * Add an array after the specified position.
  *
@@ -1057,6 +1046,14 @@ function mphb_array_insert_after_key( $array, $searchKey, $insert ) {
 	}
 }
 
+function mphb_array_remove( array &$array, $value ): void {
+	$index = array_search( $value, $array );
+
+	if ( $index !== false ) {
+		unset( $array[ $index ] );
+	}
+}
+
 /**
  * @param array    $haystack
  * @param callable $checkCallback The callback check function. The function must
@@ -1077,14 +1074,15 @@ function mphb_array_usearch( array $haystack, callable $checkCallback ) {
 }
 
 /**
- * @param string $str
- * @param string $separator Optional. "_" by default.
- * @return string
- *
  * @since 3.7.3
+ * @since 6.0.0 replaced argument <code>$separator</code> with <code>$prefix</code>.
  */
-function mphb_prefix( $str, $separator = '_' ) {
-	return MPHB()->addPrefix( $str, $separator );
+function mphb_prefix( string $string, string $prefix = 'mphb_' ): string {
+	if ( strpos( $string, $prefix ) !== 0 ) {
+		return $prefix . $string;
+	} else {
+		return $string; // Already prefixed
+	}
 }
 
 /**
@@ -1134,7 +1132,7 @@ function mphb_get_customer( $bookingId ) {
  * @since 3.8
  */
 function mphb_get_room_type( $roomTypeId, $force = false ) {
-	return MPHB()->getRoomTypeRepository()->findById( $roomTypeId, $force );
+	return mphb_rooms_facade()->getRoomTypeById( $roomTypeId, $force );
 }
 
 /**
@@ -1525,14 +1523,14 @@ add_filter( 'mphb_is_rooms_free_query_atts', 'mphb_is_rooms_free_query_atts_with
 /**
  * Display a help tip.
  *
- * @param  string $tip        Help tip text.
- * @param  bool   $allow_html Allow sanitized HTML if true or escape.
+ * @param  string $tip       Help tip text.
+ * @param  bool   $allowHtml Allow sanitized HTML if true or escape.
  * @return string
  *
  * @since  3.9.8
  */
-function mphb_help_tip( $tip, $allow_html = false ) {
-	if ( $allow_html ) {
+function mphb_help_tip( $tip, $allowHtml = false ) {
+	if ( $allowHtml ) {
 		$tip = htmlspecialchars(
 			wp_kses(
 				html_entity_decode( $tip ),
@@ -1627,4 +1625,23 @@ function mphb_print_version_comment() {
 		esc_html( 'v' . MPHB()->getVersion() ),
 		esc_url( MPHB()->getPluginStoreUri() )
 	) . "\n";
+}
+
+function mphb_get_current_page_url( bool $stripFlag = false ): string {
+	if ( ! isset( $_SERVER['REQUEST_URI'] ) ) {
+		return '';
+	}
+
+	$url = sanitize_url( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+
+	if ( $stripFlag ) {
+		/** @var string|false $flag */
+		$flag = strstr( $url, '#' );
+
+		if ( $flag !== false ) {
+			$url = substr( $url, 0, -strlen( $flag ) );
+		}
+	}
+
+	return $url;
 }

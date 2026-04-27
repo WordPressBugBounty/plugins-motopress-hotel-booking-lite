@@ -227,12 +227,11 @@ class RoomTypeRepository extends AbstractPostRepository {
 	}
 
 	public function getIdTitleList( $atts = array() ) {
-
 		$defaults = array(
-			'fields'          => 'all',
-			// 'orderby'        => 'ID',
-			// 'order'          => 'ASC',
-				'post_status' => array( 'publish', 'pending', 'draft', 'future', 'private' ),
+			'fields'      => 'all',
+//			'orderby'     => 'ID',
+//			'order'       => 'ASC',
+			'post_status' => array( 'publish', 'pending', 'draft', 'future', 'private' ),
 		);
 
 		$atts = array_merge( $defaults, $atts );

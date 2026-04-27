@@ -1,6 +1,81 @@
 (function ($) {
 	$(function () {
-		MPHBAdmin.BookingsCalendar = can.Control.extend({}, {
+		MPHBAdmin.ajaxApiHelper = can.Control.extend(
+	{
+		/**
+		 * @param {Number} roomTypeId
+		 * @returns {Promise}
+		 */
+		getAccommodationList: function ( roomTypeId ) {
+			return MPHBAdmin.ajaxApiHelper._request(
+				'get_accommodation_list',
+				'GET',
+				{
+					room_type_id: roomTypeId,
+				}
+			);
+		},
+
+		/**
+		 * @param {String} action
+		 * @param {String} nonce
+		 * @param {String} method Optional. "GET"|"POST". "GET" by default.
+		 * @param {Object} params Optional.
+		 * @returns {Promise}
+		 */
+		_request: function ( action, method, params ) {
+			if ( action.substring( 0, 5 ) !== 'mphb_' ) {
+				action = 'mphb_' + action;
+			}
+
+			if ( ! params ) {
+				params = {};
+			}
+
+			var nonce = MPHBAdmin.Plugin.myThis.data.nonces[ action ] || '';
+
+			if ( 'nonce' in params ) {
+				nonce = params['nonce'];
+				delete params['nonce'];
+			}
+
+			return new Promise( function ( resolve, reject ) {
+				jQuery.ajax( {
+					data: jQuery.extend(
+						{
+							action: action,
+							mphb_nonce: nonce,
+						},
+						params
+					),
+					dataType: 'json',
+					type: method,
+					url: MPHBAdmin.Plugin.myThis.data.ajaxUrl,
+
+					success: function ( response ) {
+						if ( response.hasOwnProperty( 'success' ) ) {
+							if ( response.success ) {
+								resolve( response.data || {} );
+							} else if ( response.data && response.data.errorMessage ) {
+								reject( new Error( response.data.errorMessage ) );
+							} else {
+								reject( new Error( MPHBAdmin.Plugin.myThis.data.translations.errorHasOccured ) );
+							}
+						} else {
+							reject( new Error( MPHBAdmin.Plugin.myThis.data.translations.errorHasOccured ) );
+						}
+					},
+					error: function () {
+						reject( new Error( MPHBAdmin.Plugin.myThis.data.translations.errorHasOccured ) );
+					},
+				} ); // $.ajax()
+			} ); // new Promise()
+		},
+	},
+	{}
+);
+
+MPHBAdmin.BookingsCalendar = can.Control.extend({}, {
 	filtersForm: null,
 	customPeriodWrapper: null,
 	btnPeriodPrev: null,
@@ -3592,6 +3667,694 @@ MPHBAdmin.BookingEditor = can.Control.extend(
 	}
 );
 
+MPHBAdmin.BlocksListTable = can.Control.extend(
+	{},
+	{
+		$body: null,
+		$cancelButton: null,
+		$commentTextarea: null,
+		$dateFromInput: null,
+		$dateToInput: null,
+		$editRow: null,    // Row with input fields
+		$editingRow: null, // Row whose entry is currently being edited
+		$hiddenRow: null,  // Row between $editingRow and $editRow to apply the
+		                   // same styles to both
+		$noCheckInCheckbox: null,
+		$noCheckOutCheckbox: null,
+		$noItemsRow: null,
+		$noStayInCheckbox: null,
+		$notice: null,
+		$roomPreloader: null,
+		$roomSelect: null,
+		$roomTypeSelect: null,
+		$saveButton: null,
+		$updateSpinner: null,
+		editingBlockId: 0,
+		isUpdating: false,
+		itemsCount: 0,
+		loadedBlocks: {},    // { Block ID => Block data }
+		loadedRoomTypes: {}, // { Room type ID => Room type title }
+		loadedRooms: {},     // { Room type ID => { Room ID => Room title } }
+
+		init: function ( $element, args ) {
+			this.loadedRoomTypes = this._getListTableData().room_types;
+			this.$editRow = this._renderEditRow(); // Requires this.loadedRoomTypes
+
+			this.$body               = $element.find( '#the-list' );
+			this.$cancelButton       = this.$editRow.find( '.inline-edit-save .cancel' );
+			this.$commentTextarea    = this.$editRow.find( '.column-comment textarea' );
+			this.$dateFromInput      = this.$editRow.find( '.column-date_from input' );
+			this.$dateToInput        = this.$editRow.find( '.column-date_to input' );
+			this.$hiddenRow          = jQuery( '<tr class="hidden"></tr>' );
+			this.$noCheckInCheckbox  = this.$editRow.find( '.column-restrictions input:eq(0)' );
+			this.$noCheckOutCheckbox = this.$editRow.find( '.column-restrictions input:eq(1)' );
+			this.$noItemsRow         = this.$body.find( '.no-items' );
+			this.$noStayInCheckbox   = this.$editRow.find( '.column-restrictions input:eq(2)' );
+			this.$roomPreloader      = this.$editRow.find( '.column-accommodation .mphb-preloader' );
+			this.$roomSelect         = this.$editRow.find( '.column-accommodation select' );
+			this.$roomTypeSelect     = this.$editRow.find( '.column-accommodation_type select' );
+			this.$saveButton         = this.$editRow.find( '.inline-edit-save .save' );
+			this.$updateSpinner      = this.$editRow.find( '.column-accommodation_type .spinner' );
+			this.itemsCount          = this._getListTableData().items_total;
+			this.loadedRooms         = this._getListTableData().rooms;
+
+			if ( this.$noItemsRow.length === 0 ) {
+				this.$noItemsRow = null;
+			}
+
+			var blocks = this._getListTableData().items;
+
+			for ( var i = 0; i < blocks.length; i++ ) {
+				var blockId = blocks[ i ].block_id;
+
+				this.loadedBlocks[ blockId ] = blocks[ i ];
+			}
+
+			// Add listeners
+			this.$cancelButton.on( 'click', this._onCancelEditing.bind( this ) );
+			this.$roomTypeSelect.on( 'change', this._onRoomTypeIdChange.bind( this ) );
+			this.$saveButton.on( 'click', this._onSaveChanges.bind( this ) );
+
+			jQuery( '.actions.top .add-rule' ).on( 'click', { which: 'top' }, this._onInsertRule.bind( this ) );
+			jQuery( '.actions.bottom .add-rule' ).on( 'click', { which: 'bottom' }, this._onInsertRule.bind( this ) );
+
+			this._initDatepicker( this.$dateFromInput );
+			this._initDatepicker( this.$dateToInput );
+		},
+
+		// Quick Edit
+		'#the-list .row-actions button.editinline click': function ( element, event ) {
+			var $row = jQuery( element ).parents( 'tr' );
+			var blockId = parseInt( $row.find( 'input[name="ids[]"]' ).val() );
+
+			if ( $row.length !== 0 && ! isNaN( blockId ) ) {
+				this._onQuickEdit( $row, blockId );
+			}
+		},
+
+		_clearLastError: function () {
+			if ( this.$notice !== null ) {
+				this.$notice.remove();
+				this.$notice = null;
+			}
+		},
+
+		/**
+		 * @returns {Number}
+		 */
+		_getColumnsCount: function () {
+			return this.element.find( 'thead th, thead td' ).length;
+		},
+
+		/**
+		 * @returns {Object}
+		 */
+		_getListTableData: function () {
+			return blocks_list_table_data
+				|| {
+					items: {},
+					items_total: 0,
+					nonce: {
+						'delete': '',
+					},
+					room_types: {},
+					rooms: {},
+				};
+		},
+
+		/**
+		 * @returns {Number}
+		 */
+		_getVisibleColumnsCount: function () {
+			return this.element.find( 'thead th:not(.hidden), thead td:not(.hidden)' ).length;
+		},
+
+		_increaseItemsCount: function () {
+			this.itemsCount++;
+
+			jQuery( '.displaying-num' ).text(
+				wp.i18n._n( '%s item', '%s items', this.itemsCount ).replace( '%s', this.itemsCount )
+			);
+		},
+
+		_initDatepicker: function ( $input ) {
+			var settings = MPHBAdmin.Plugin.myThis.data.settings;
+
+			$input.datepick(
+				{
+					dateFormat:      settings.dateFormat || 'MM d, yyyy',
+					firstDay:        settings.firstDay,
+					monthsToShow:    settings.numberOfMonthDatepicker,
+					pickerClass:     settings.datepickerClass,
+					showOtherMonths: true,
+					showSpeed:       0,
+					useMouseWheel:   false,
+				}
+			);
+		},
+
+		_onCancelEditing: function () {
+			if ( this.isUpdating ) {
+				return;
+			}
+
+			this._resetEdit();
+		},
+
+		_onInsertRule: function ( event ) {
+			if ( this.isUpdating ) {
+				return;
+			}
+
+			if ( this.$editingRow !== null ) {
+				this._resetEdit();
+			}
+
+			if ( event.data.which === 'top' ) {
+				this.$body.prepend( this.$editRow );
+			} else {
+				this.$body.append( this.$editRow );
+			}
+
+			if ( this.$noItemsRow !== null ) {
+				this.$noItemsRow.addClass( 'hidden' );
+			}
+
+			this.element.addClass( 'editing' );
+		},
+
+		_onQuickEdit: function ( $row, blockId ) {
+			if ( this.isUpdating ) {
+				return;
+			}
+
+			if ( this.$editingRow !== null ) {
+				this._resetEdit();
+			}
+
+			if ( blockId in this.loadedBlocks ) {
+				this._setBlockForEdit( this.loadedBlocks[ blockId ] );
+			}
+
+			this.$editRow.insertAfter( $row );
+			this.$hiddenRow.insertAfter( $row );
+
+			$row.addClass( 'hidden' );
+			this.element.addClass( 'editing' );
+
+			this.$editingRow = $row;
+			this.editingBlockId = blockId;
+		},
+
+		_onRoomTypeIdChange: function () {
+			this.$roomSelect.children( 'option[value!="0"]' ).remove();
+			this.$roomSelect.val( '0' );
+
+			var roomTypeId = parseInt( this.$roomTypeSelect.val() );
+
+			if ( isNaN( roomTypeId ) || roomTypeId === 0 ) {
+				return;
+			}
+
+			var getRooms = ( roomTypeId in this.loadedRooms )
+				? Promise.resolve( this.loadedRooms[ roomTypeId ] )
+				: MPHBAdmin.ajaxApiHelper.getAccommodationList( roomTypeId );
+
+			this.$roomPreloader.removeClass( 'mphb-hide' );
+
+			var self = this;
+
+			getRooms.then(
+				// Success
+				function ( rooms ) {
+					self.loadedRooms[ roomTypeId ] = rooms;
+					self._updateRoomList( rooms, roomTypeId );
+					self.$roomPreloader.addClass( 'mphb-hide' );
+				},
+
+				// Error
+				function () {
+					self.$roomPreloader.addClass( 'mphb-hide' );
+				}
+			);
+		},
+
+		_onSaveChanges: function () {
+			if ( this.isUpdating ) {
+				return;
+			}
+
+			this._clearLastError();
+
+			var dateFrom    = this.$dateFromInput.datepick( 'getDate' )[0] || null;
+			var dateFromStr = ( dateFrom !== null ) ? jQuery.datepick.formatDate( 'yyyy-mm-dd', dateFrom ) : '';
+
+			var dateTo    = this.$dateToInput.datepick( 'getDate' )[0] || null;
+			var dateToStr = ( dateTo !== null ) ? jQuery.datepick.formatDate( 'yyyy-mm-dd', dateTo ) : '';
+
+			if ( ! dateFromStr || ! dateToStr ) {
+				// Translators: %s: The cause of the error.
+				var errorMessage = wp.i18n.__( 'Unable to save the object. %s', 'motopress-hotel-booking' )
+					.replace( '%s', wp.i18n.__( 'The start and end dates of the block are required.', 'motopress-hotel-booking' ) )
+
+				this._showError( errorMessage );
+
+				return;
+			}
+
+			var roomId     = parseInt( this.$roomSelect.val() ) || 0;
+			var roomTypeId = parseInt( this.$roomTypeSelect.val() ) || 0;
+
+			var block = {
+				block_id:         this.editingBlockId,
+				comment:          this.$commentTextarea.val(),
+				date_from:        dateFromStr,
+				date_to:          dateToStr,
+				has_restrictions: false,
+				not_check_in:     this.$noCheckInCheckbox.prop( 'checked' ),
+				not_check_out:    this.$noCheckOutCheckbox.prop( 'checked' ),
+				not_stay_in:      this.$noStayInCheckbox.prop( 'checked' ),
+				room_id:          roomId,
+				room_type_id:     roomTypeId,
+			};
+
+			block['has_restrictions'] = block['not_check_in']
+				|| block['not_check_out']
+				|| block['not_stay_in'];
+
+			var self = this;
+
+			if ( this.editingBlockId === 0 ) {
+				// Insert new item
+				this.$cancelButton.prop( 'disabled', true );
+				this.$saveButton.prop( 'disabled', true );
+				this.$updateSpinner.addClass( 'is-active' );
+
+				this.isUpdating = true;
+
+				MPHB.restApiHelper.createBlock( block )
+					.then( function ( response ) {
+						var blockId = response.block_id;
+						var $newRow = self._renderNewRow( blockId );
+
+						block['block_id'] = blockId;
+
+						$newRow.insertAfter( self.$editRow );
+
+						self._updateRow( $newRow, block );
+						self._increaseItemsCount();
+						self.loadedBlocks[ blockId ] = block;
+
+						if ( self.$noItemsRow !== null ) {
+							self.$noItemsRow.remove();
+							self.$noItemsRow = null;
+						}
+
+						self.$cancelButton.prop( 'disabled', false );
+						self.$saveButton.prop( 'disabled', false );
+						self.$updateSpinner.removeClass( 'is-active' );
+
+						self._resetEdit();
+					} )
+					.catch( function ( error ) {
+						self._showError(
+							// Translators: %s: The cause of the error.
+							wp.i18n.__( 'Unable to save the object. %s', 'motopress-hotel-booking' )
+								.replace( '%s', error.message )
+						);
+
+						self.$cancelButton.prop( 'disabled', false );
+						self.$saveButton.prop( 'disabled', false );
+						self.$updateSpinner.removeClass( 'is-active' );
+					} )
+					.finally( function () {
+						self.isUpdating = false;
+					} );
+
+			} else {
+				// Update item
+				this.$cancelButton.prop( 'disabled', true );
+				this.$saveButton.prop( 'disabled', true );
+				this.$updateSpinner.addClass( 'is-active' );
+
+				this.isUpdating = true;
+
+				MPHB.restApiHelper.updateBlock( this.editingBlockId, block )
+					.then( function () {
+						self.loadedBlocks[ self.editingBlockId ] = block;
+
+						if ( self.$editingRow !== null ) {
+							self._updateRow( self.$editingRow, block );
+						}
+
+						self.$cancelButton.prop( 'disabled', false );
+						self.$saveButton.prop( 'disabled', false );
+						self.$updateSpinner.removeClass( 'is-active' );
+
+						self._resetEdit();
+					} )
+					.catch( function ( error ) {
+						self._showError(
+							// Translators: %s: The cause of the error.
+							wp.i18n.__( 'Unable to save the object. %s', 'motopress-hotel-booking' )
+								.replace( '%s', error.message )
+						);
+
+						self.$cancelButton.prop( 'disabled', false );
+						self.$saveButton.prop( 'disabled', false );
+						self.$updateSpinner.removeClass( 'is-active' );
+					} )
+					.finally( function () {
+						self.isUpdating = false;
+					} );
+			}
+		},
+
+		_renderEditRow: function () {
+			var __ = wp.i18n.__;
+
+			var roomTypeSelectHmtl = '<select name="room_type_id">'
+				+ '<option value="0">' + __( 'All', 'motopress-hotel-booking' ) + '</option>';
+
+			for ( var roomTypeId in this.loadedRoomTypes ) {
+				var title = this.loadedRoomTypes[ roomTypeId ];
+
+				roomTypeSelectHmtl += '<option value="' + roomTypeId + '">' + title + '</option>';
+			}
+
+			roomTypeSelectHmtl += '</select>';
+
+			var editRowHtml =
+				'<tr class="inline-edit-row">'
+					+ '<td class="column-cb">&nbsp;</td>'
+					+ '<td class="column-accommodation_type" data-colname="' + __( 'Accommodation Type', 'motopress-hotel-booking' ) + '">'
+						+ roomTypeSelectHmtl
+						+ '<div class="submit inline-edit-save">'
+							+ '<button class="button button-primary save" type="button">' + __( 'Save', 'motopress-hotel-booking' ) + '</button>'
+							+ '<button class="button cancel" type="button">' + __( 'Cancel', 'motopress-hotel-booking' ) + '</button>'
+							+ '<span class="spinner"></span>'
+						+ '</div>'
+						
+					+ '</td>'
+					+ '<td class="column-accommodation" data-colname="' + __( 'Accommodation', 'motopress-hotel-booking' ) + '">'
+						+ '<select name="room_id">'
+							+ '<option value="0">' + __( 'All', 'motopress-hotel-booking' ) + '</option>'
+						+ '</select>'
+						+ '<span class="mphb-preloader mphb-hide"></span>'
+					+ '</td>'
+					+ '<td class="column-date_from" data-colname="' + __( 'From', 'motopress-hotel-booking' ) + '">'
+						+ '<input inputmode="none" name="date_from" readonly="readonly" type="text">'
+					+ '</td>'
+					+ '<td class="column-date_to" data-colname="' + __( 'Till', 'motopress-hotel-booking' ) + '">'
+						+ '<input inputmode="none" name="date_to" readonly="readonly" type="text">'
+					+ '</td>'
+					+ '<td class="column-restrictions" data-colname="' + __( 'Restriction', 'motopress-hotel-booking' ) + '">'
+						+ '<label>'
+							+ '<input name="restrictions[]" type="checkbox">'
+							+ __( 'Not check-in', 'motopress-hotel-booking' )
+						+ '</label>'
+						+ '<br>'
+						+ '<label>'
+							+ '<input name="restrictions[]" type="checkbox">'
+							+ __( 'Not check-out', 'motopress-hotel-booking' )
+						+ '</label>'
+						+ '<br>'
+						+ '<label>'
+							+ '<input name="restrictions[]" type="checkbox">'
+							+ __( 'Not stay-in', 'motopress-hotel-booking' )
+						+ '</label>'
+					+ '</td>'
+					+ '<td class="column-comment" data-colname="' + __( 'Comment', 'motopress-hotel-booking' ) + '">'
+						+ '<textarea name="comment"></textarea>'
+					+ '</td>'
+				+ '</tr>';
+
+			var $editRow = jQuery( editRowHtml );
+
+			return $editRow;
+		},
+
+		_renderNewRow: function ( blockId ) {
+			var __ = wp.i18n.__;
+
+			// Translators: %s: Block ID.
+			var quickEditText = __( 'Quick edit block #%s inline', 'motopress-hotel-booking' )
+				.replace( '%s', blockId );
+
+			var deleteUrl = wp.url.addQueryArgs(
+				window.location.href,
+				{
+					_wpnonce: this._getListTableData().nonce.delete,
+					action1:  'delete',
+					id:       blockId,
+				}
+			);
+
+			var newRowHtml =
+				'<tr>'
+					+ '<th scope="row" class="check-column">'
+						+ '<input name="ids[]" type="checkbox" value="' + blockId + '">'
+					+ '</th>'
+					+ '<td class="accommodation_type column-accommodation_type has-row-actions column-primary" data-colname="' + __( 'Accommodation Type', 'motopress-hotel-booking' ) + '">'
+						+ '<label></label>'
+						+ ' '
+						+ '<div class="row-actions">'
+							+ '<span class="editinline">'
+								+ '<button aria-expanded="false" aria-label="' + quickEditText + '" class="button-link editinline" type="button">' + __( 'Quick Edit', 'motopress-hotel-booking' ) + '</button>'
+								+ ' | '
+							+ '</span>'
+							+ '<span class="delete">'
+								+ '<a href="' + deleteUrl + '">' + __( 'Delete', 'motopress-hotel-booking' ) + '</a>'
+							+ '</span>'
+						+ '</div>'
+					+ '</td>'
+					+ '<td class="accommodation column-accommodation" data-colname="' + __( 'Accommodation', 'motopress-hotel-booking' ) + '"></td>'
+					+ '<td class="date_from column-date_from" data-colname="' + __( 'From', 'motopress-hotel-booking' ) + '"></td>'
+					+ '<td class="date_to column-date_to" data-colname="' + __( 'Till', 'motopress-hotel-booking' ) + '"></td>'
+					+ '<td class="restrictions column-restrictions" data-colname="' + __( 'Restriction', 'motopress-hotel-booking' ) + '"></td>'
+					+ '<td class="comment column-comment" data-colname="' + __( 'Comment', 'motopress-hotel-booking' ) + '"></td>'
+				+ '</tr>';
+
+			var $newRow = jQuery( newRowHtml );
+
+			// Hide columns disabled in Screen Options
+			this.element.find( 'thead td.hidden, thead th.hidden' ).each( function ( i, element ) {
+				$newRow.find( 'td.column-' + element.id ).addClass( 'hidden' );
+			} );
+
+			return $newRow;
+		},
+
+		_resetEdit: function () {
+			this.$editRow.detach();
+			this.$hiddenRow.detach();
+
+			if ( this.$editingRow !== null ) {
+				this.$editingRow.removeClass( 'hidden' );
+				this.$editingRow = null;
+			}
+
+			if ( this.$noItemsRow !== null ) {
+				this.$noItemsRow.removeClass( 'hidden' );
+			}
+
+			this.$commentTextarea.val( '' );
+			this.$dateFromInput.datepick( 'clear' );
+			this.$dateToInput.datepick( 'clear' );
+			this.$noCheckInCheckbox.prop( 'checked', false );
+			this.$noCheckOutCheckbox.prop( 'checked', false );
+			this.$noStayInCheckbox.prop( 'checked', false );
+			this.$roomSelect.val( '0' );
+			this.$roomTypeSelect.val( '0' );
+			this.editingBlockId = 0;
+
+			this._clearLastError();
+
+			this.element.removeClass( 'editing' );
+		},
+
+		_setBlockForEdit: function ( block ) {
+			this.$commentTextarea.val( block.comment );
+			this.$dateFromInput.datepick( 'setDate', jQuery.datepick.parseDate( 'yyyy-mm-dd', block.date_from ) );
+			this.$dateToInput.datepick( 'setDate', jQuery.datepick.parseDate( 'yyyy-mm-dd', block.date_to ) );
+			this.$noCheckInCheckbox.prop( 'checked', block.not_check_in );
+			this.$noCheckOutCheckbox.prop( 'checked', block.not_check_out );
+			this.$noStayInCheckbox.prop( 'checked', block.not_stay_in );
+			this.$roomTypeSelect.val( block.room_type_id );
+
+			var rooms = this.loadedRooms[ block.room_type_id ] || {};
+
+			this._updateRoomList( rooms, block.room_type_id, block.room_id );
+		},
+
+		/**
+		 * @param {String} message
+		 */
+		_showError: function ( message ) {
+			if ( this.$notice === null ) {
+				this.$notice = jQuery(
+					'<div class="notice notice-error inline">'
+						+ '<p>' + message + '</p>'
+					+ '</div>'
+				);
+
+				this.$notice.insertAfter( this.$updateSpinner );
+			} else {
+				this.$notice.find( 'p' ).html( message );
+			}
+		},
+
+		/**
+		 * @param {Object} rooms <code>{ Room ID: Room title }</code>
+		 * @param {Number} roomTypeId
+		 */
+		_updateRoomList: function ( rooms, roomTypeId, roomId ) {
+			this.$roomSelect.children( 'option[value!="0"]' ).remove();
+
+			var roomTypeTitle = this.loadedRoomTypes[ roomTypeId ] || '';
+
+			for ( var id in rooms ) {
+				var roomTitle = rooms[ id ];
+
+				// Trim title
+				roomTitle = roomTitle.replace( roomTypeTitle, '' ).trim();
+
+				this.$roomSelect.append(
+					'<option value="' + id + '">' + roomTitle + '</option>'
+				);
+			}
+
+			if ( ! roomId ) {
+				this.$roomSelect.val( '0' );
+			} else {
+				this.$roomSelect.val( roomId );
+			}
+		},
+
+		_updateRow: function ( $row, block ) {
+			var __          = wp.i18n.__;
+			var comment     = block.comment;
+			var dateFrom    = block.date_from;
+			var dateTo      = block.date_to;
+			var notCheckIn  = block.not_check_in;
+			var notCheckOut = block.not_check_out;
+			var notStayIn   = block.not_stay_in;
+			var roomId      = block.room_id;
+			var roomTypeId  = block.room_type_id;
+
+			if ( roomTypeId === 0 ) {
+				$row.find( '.column-accommodation_type label' ).text( __( 'All', 'motopress-hotel-booking' ) );
+			} else {
+				var roomTypeTitle = this.loadedRoomTypes[ roomTypeId ] || '#' + roomTypeId;
+
+				$row.find( '.column-accommodation_type label' ).text( roomTypeTitle );
+			}
+
+			if ( roomId === 0 ) {
+				$row.find( '.column-accommodation' ).text( __( 'All', 'motopress-hotel-booking' ) );
+			} else {
+				var roomTitle = ( roomTypeId in this.loadedRooms && roomId in this.loadedRooms[ roomTypeId ] )
+					? this.loadedRooms[ roomTypeId ][ roomId ]
+					: '#' + roomId;
+
+				$row.find( '.column-accommodation' ).text( roomTitle );
+			}
+
+			var dateFormat = '';
+
+			switch ( MPHBAdmin.Plugin.myThis.data.settings.dateFormatWp ) {
+				case 'Y-m-d': dateFormat = 'yyyy-mm-dd'; break;
+				case 'm/d/Y': dateFormat = 'mm/dd/yyyy'; break;
+				case 'd/m/Y': dateFormat = 'dd/mm/yyyy'; break;
+				case 'd.m.Y': dateFormat = 'dd.mm.yyyy'; break;
+
+				case 'F j, Y':
+				default: // Don't bother with custom format
+					dateFormat = 'MM d, yyyy';
+					break;
+			}
+
+			var dateFromObj = jQuery.datepick.parseDate( 'yyyy-mm-dd', dateFrom );
+			$row.find( '.column-date_from' ).text( jQuery.datepick.formatDate( dateFormat, dateFromObj ) );
+
+			var dateToObj = jQuery.datepick.parseDate( 'yyyy-mm-dd', dateTo );
+			$row.find( '.column-date_to' ).text( jQuery.datepick.formatDate( dateFormat, dateToObj ) );
+
+			if ( notCheckIn && notCheckOut && notStayIn ) {
+				$row.find( '.column-restrictions' ).text( __( 'All', 'motopress-hotel-booking' ) );
+			} else if ( ! notCheckIn && ! notCheckOut && ! notStayIn ) {
+				$row.find( '.column-restrictions' ).text( __( 'None', 'motopress-hotel-booking' ) );
+			} else {
+				var restrictions = [];
+
+				if ( notCheckIn ) {
+					restrictions.push( __( 'Not check-in', 'motopress-hotel-booking' ) );
+				}
+
+				if ( notCheckOut ) {
+					restrictions.push( __( 'Not check-out', 'motopress-hotel-booking' ) );
+				}
+
+				if ( notStayIn ) {
+					restrictions.push( __( 'Not stay-in', 'motopress-hotel-booking' ) );
+				}
+
+				$row.find( '.column-restrictions' ).text( restrictions.join( ', ' ) );
+			}
+
+			if ( comment !== '' ) {
+				$row.find( '.column-comment' ).text( comment );
+			} else {
+				$row.find( '.column-comment' ).html( '&#8212;' );
+			}
+		},
+	}
+);
+
+MPHBAdmin.PaymentAuthedFundsMetabox = can.Control.extend(
+	{
+		createFrom: function ( $element ) {
+			if ( $element.length === 1 ) {
+				return new MPHBAdmin.PaymentAuthedFundsMetabox( $element );
+			} else {
+				return null;
+			}
+		},
+	},
+	{
+		$buttonCancelRelease: null,
+		$buttonConfirmRelease: null,
+		$buttonReleaseFunds: null,
+		$dialogReleaseConfirmation: null,
+
+		init: function ( $element, args ) {
+			this.$buttonCancelRelease       = $element.find( 'dialog .button-cancel' );
+			this.$buttonConfirmRelease      = $element.find( 'dialog .button-ok' );
+			this.$buttonReleaseFunds        = $element.find( '#mphb_maybe_release_authed_amount' );
+			this.$dialogReleaseConfirmation = $element.find( '#mphb_release_funds_confirmation' );
+
+			// Add listeners
+			var self = this;
+
+			this.$buttonCancelRelease.on( 'click', function ( event ) { self._closeReleaseDialog(); } );
+			this.$buttonConfirmRelease.on( 'click', function ( event ) { self._closeReleaseDialog(); } );
+			this.$buttonReleaseFunds.on( 'click', function ( event ) { self._openReleaseDialog(); } );
+		},
+
+		_closeReleaseDialog: function () {
+			if ( this.$dialogReleaseConfirmation.length > 0 ) {
+				this.$dialogReleaseConfirmation[0].close();
+			}
+		},
+
+		_openReleaseDialog: function () {
+			if ( this.$dialogReleaseConfirmation.length > 0 ) {
+				this.$dialogReleaseConfirmation[0].showModal();
+			}
+		},
+	}
+);
+
 new MPHBAdmin.Plugin();
 
 $(function () {
@@ -3607,7 +4370,10 @@ $(function () {
 		new MPHBAdmin.AttributesCustomOrder($('table.wp-list-table'));
 	}
 
-
+	var $blocksListTable = $( '.mphb-blocks-list-table' );
+	if ( $blocksListTable.length > 0 ) {
+		new MPHBAdmin.BlocksListTable( $blocksListTable );
+	}
 
 	new MPHBAdmin.ServiceQuantity('.post-type-mphb_room_service #mphb_price');
 
@@ -3655,6 +4421,7 @@ $(function () {
 		} // if (listTable.length > 0)
 	} // if (displayImportCheckbox)
 
+	MPHBAdmin.PaymentAuthedFundsMetabox.createFrom( $( '#mphb_payment_authed_funds_metabox' ) );
 });
 
 	});

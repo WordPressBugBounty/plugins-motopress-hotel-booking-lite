@@ -103,7 +103,7 @@ abstract class ScriptManager {
 		wp_register_script(
 			'mphb-global-js',
 			MPHB()->getPluginUrl( 'assets/js/global/index.js' ),
-			array(),
+			array( 'wp-url' ),
 			MPHB()->getVersion(),
 			true
 		);

@@ -2,16 +2,13 @@
 
 namespace MPHB\Utils;
 
-use MPHB\Entities\Booking;
-use MPHB\Entities\Customer;
-use MPHB\Entities\ReservedRoom;
+use MPHB\Entities\{ Booking, Customer, ReservedRoom };
 use MPHB\PostTypes\BookingCPT\Statuses as BookingStatuses;
 
 /**
  * @since 3.7.0
  */
 class BookingUtils {
-
 	/**
 	 * @param \MPHB\Entities\Booking $booking
 	 * @param string|null            $language Optional. Language code, "original" (get the
@@ -118,39 +115,41 @@ class BookingUtils {
 	}
 
 	/**
-	 * @since 4.10.0
+	 * @since 6.0.0
 	 *
-	 * @param Booking $booking
-	 * @param string $comment Optional.
-	 * @return array
+	 * @param Booking[] $bookings
 	 */
-	public static function convertToBlock( $booking, $comment = '' ) {
-		$dateFrom = clone $booking->getCheckInDate();
+	public static function convertAllToBlocks( array $bookings, string $comment = '' ): array {
+		$blocks = array();
 
-		$dateTo = clone $booking->getCheckOutDate();
-		$dateTo->modify('-1 day');
+		foreach ( $bookings as $booking ) {
+			$blocks = array_merge( $blocks, static::convertToBlocks( $booking, $comment ) );
+		}
 
-		return array(
-			'date_from'   => $dateFrom,
-			'date_to'     => $dateTo,
-			'date_period' => DateUtils::createDatePeriod( $dateFrom, $dateTo ),
-			'room_ids'    => $booking->getRoomIds(),
-			'comment'     => $comment,
-		);
+		return $blocks;
 	}
 
 	/**
 	 * @since 4.10.0
-	 *
-	 * @param Booking[] $bookings
-	 * @param string $comment Optional.
-	 * @return array
 	 */
-	public static function convertToBlocks( $bookings, $comment = '' ) {
+	public static function convertToBlocks( Booking $booking, string $comment = '' ): array {
+		$dateFrom = $booking->getCheckInDate();
+		$dateTo   = DateUtils::cloneModify( $booking->getCheckOutDate(), '-1 day' );
+
 		$blocks = array();
-		
-		foreach ( $bookings as $booking ) {
-			$blocks[] = static::convertToBlock( $booking, $comment );
+
+		foreach ( $booking->getReservedRooms() as $reservedRoom ) {
+			$blocks[] = array(
+				'comment'      => $comment,
+				'date_from'    => clone $dateFrom,
+				'date_to'      => clone $dateTo,
+				'restrictions' => array( 'stay-in' ),
+				'room_id'      => $reservedRoom->getRoomId(),
+				'room_type_id' => $reservedRoom->getRoomTypeId(),
+
+				// Additional fields
+				'date_period' => DateUtils::createDatePeriod( $dateFrom, $dateTo ),
+			);
 		}
 
 		return $blocks;

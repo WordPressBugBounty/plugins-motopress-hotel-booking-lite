@@ -2,23 +2,19 @@
 
 namespace MPHB;
 
-use MPHB\Entities\Booking;
-use \MPHB\Entities;
-use \MPHB\Views;
-use \MPHB\Utils\ThirdPartyPluginsUtils;
+use MPHB\Entities\{ Booking, ReservedRoom, ReservedService };
+use MPHB\Utils\{ ThirdPartyPluginsUtils, ValidateUtils };
+use MPHB\Views\BookingView;
 
 /**
- * TODO move each ajax controller to separate class
- *
  * @since 3.5.0 added new event - "export_bookings_csv".
  * @since 3.5.0 added new event - "check_bookings_csv".
  * @since 3.5.0 added new event - "cancel_bookings_csv".
  *
- * @deprecated put all ajax code to the \MPHB\AjaxApi\AjaxApiHandler and its actions
- * pay attansion to the #nolite comments
+ * @todo Move each ajax controllers to separate classes and AjaxApiHandler
+ *     actions (pay attansion to the #nolite comments).
  */
 class Ajax {
-
 	protected $nonceName    = 'mphb_nonce';
 	protected $actionPrefix = 'mphb_';
 	protected $ajaxActions  = array(
@@ -39,10 +35,6 @@ class Ajax {
 			'method' => 'GET',
 			'nopriv' => false,
 		),
-		'dismiss_license_notice'       => array(
-			'method' => 'POST',
-			'nopriv' => false,
-		),
 		'attributes_custom_ordering'   => array(
 			'method' => 'POST',
 			'nopriv' => false,
@@ -59,9 +51,6 @@ class Ajax {
 		'apply_coupon'                 => array(
 			'method' => 'POST',
 			'nopriv' => true,
-		),
-		'get_accommodations_list'      => array(
-			'method' => 'GET',
 		),
 		'remove_customer'              => array(
 			'method' => 'POST',
@@ -223,8 +212,8 @@ class Ajax {
 			);
 		}
 
-		$newValue = Utils\ValidateUtils::validateBool( $input['new_value'] );
-		$userId   = Utils\ValidateUtils::parseInt( $input['user_id'] );
+		$newValue = ValidateUtils::validateBool( $input['new_value'] );
+		$userId   = ValidateUtils::parseInt( $input['user_id'] );
 
 		if ( $userId > 0 ) {
 			MPHB()->settings()->main()->displayImportedBookings( $userId, $newValue );
@@ -278,7 +267,7 @@ class Ajax {
 			'reserved_rooms' => $reservedRooms,
 		);
 
-		$booking = Entities\Booking::create( $bookingAtts );
+		$booking = Booking::create( $bookingAtts );
 
 		/**
 		 * @param Booking $booking
@@ -301,7 +290,7 @@ class Ajax {
 				// [MB-684] Prevent excess number of digits
 				'total'                => round( $booking->calcPrice(), MPHB()->settings()->currency()->getPriceDecimalsCount() ),
 				'price_breakdown'      => json_encode( $priceBreakdown ),
-				'price_breakdown_html' => \MPHB\Views\BookingView::generatePriceBreakdownArray( $priceBreakdown ),
+				'price_breakdown_html' => BookingView::generatePriceBreakdownArray( $priceBreakdown ),
 			)
 		);
 	}
@@ -345,7 +334,7 @@ class Ajax {
 	}
 
 	protected function parseAdults( $input, $allowEmptyString = false ) {
-		$adults = Utils\ValidateUtils::validateInt( $input, 1 );
+		$adults = ValidateUtils::validateInt( $input, 1 );
 
 		if ( $adults === false ) {
 			if ( $allowEmptyString ) {
@@ -370,7 +359,7 @@ class Ajax {
 	}
 
 	protected function parseChildren( $input, $allowEmptyString = false ) {
-		$children = Utils\ValidateUtils::validateInt( $input, 0 );
+		$children = ValidateUtils::validateInt( $input, 0 );
 
 		if ( $children === false ) {
 			if ( $allowEmptyString ) {
@@ -403,11 +392,11 @@ class Ajax {
 			);
 		}
 
-		$rates        = \MPHB\Utils\ValidateUtils::validateIds( $input['rates'] );
+		$rates        = ValidateUtils::validateIds( $input['rates'] );
 		$adults       = $this->parseAdults( $input['adults'], true );
 		$children     = $this->parseChildren( $input['children'], true );
 		$checkInDate  = $this->parseCheckInDate( $input['check_in_date'] );
-		$checkOutDate = $this->parseCheckInDate( $input['check_out_date'] );
+		$checkOutDate = $this->parseCheckOutDate( $input['check_out_date'] );
 
 		MPHB()->reservationRequest()->setupParameters(
 			array(
@@ -439,7 +428,7 @@ class Ajax {
 	 * Parse booking from checkout form values.
 	 *
 	 * @param array $input
-	 * @return Entities\Booking
+	 * @return Booking
 	 */
 	protected function parseCheckoutFormBooking( $input ) {
 
@@ -486,7 +475,7 @@ class Ajax {
 
 		foreach ( $atts['mphb_room_details'] as $roomDetails ) {
 
-			$roomTypeId = Utils\ValidateUtils::validateInt( $roomDetails['room_type_id'], 0 );
+			$roomTypeId = ValidateUtils::validateInt( $roomDetails['room_type_id'], 0 );
 			$roomType   = $roomTypeId ? MPHB()->getRoomTypeRepository()->findById( $roomTypeId ) : null;
 			if ( ! $roomType ) {
 				wp_send_json_error(
@@ -496,7 +485,7 @@ class Ajax {
 				);
 			}
 
-			$roomRateId = Utils\ValidateUtils::validateInt( $roomDetails['rate_id'], 0 );
+			$roomRateId = ValidateUtils::validateInt( $roomDetails['rate_id'], 0 );
 			$roomRate   = $roomRateId ? mphb_prices_facade()->getRateById( $roomRateId ) : null;
 
 			if ( ! $roomRate ) {
@@ -529,17 +518,17 @@ class Ajax {
 						continue;
 					}
 
-					$serviceAdults = Utils\ValidateUtils::validateInt( $serviceDetails['adults'] );
+					$serviceAdults = ValidateUtils::validateInt( $serviceDetails['adults'] );
 					if ( $serviceAdults === false || $serviceAdults < 1 ) {
 						continue;
 					}
 
-					$quantity = isset( $serviceDetails['quantity'] ) ? Utils\ValidateUtils::validateInt( $serviceDetails['quantity'] ) : 1;
+					$quantity = isset( $serviceDetails['quantity'] ) ? ValidateUtils::validateInt( $serviceDetails['quantity'] ) : 1;
 					if ( isset( $serviceDetails['quantity'] ) && $quantity < 1 ) {
 						continue;
 					}
 
-					$services[] = Entities\ReservedService::create(
+					$services[] = ReservedService::create(
 						array(
 							'id'       => (int) $serviceDetails['id'],
 							'adults'   => $serviceAdults,
@@ -558,7 +547,7 @@ class Ajax {
 				'reserved_services' => $services,
 			);
 
-			$reservedRooms[] = Entities\ReservedRoom::create( $reservedRoomAtts );
+			$reservedRooms[] = ReservedRoom::create( $reservedRoomAtts );
 		}
 
 		$bookingAtts = array(
@@ -567,7 +556,7 @@ class Ajax {
 			'reserved_rooms' => $reservedRooms,
 		);
 
-		$booking = Entities\Booking::create( $bookingAtts );
+		$booking = Booking::create( $bookingAtts );
 
 		if (
 			MPHB()->settings()->main()->isCouponsEnabled() &&
@@ -581,7 +570,6 @@ class Ajax {
 
 		return $booking;
 	}
-
 
 	public function get_billing_fields() {
 
@@ -701,7 +689,7 @@ class Ajax {
 
 		$responseData['newAmount']      = $total;
 		$responseData['priceHtml']      = mphb_format_price( $total );
-		$responseData['priceBreakdown'] = Views\BookingView::generatePriceBreakdown( $booking );
+		$responseData['priceBreakdown'] = BookingView::generatePriceBreakdown( $booking );
 
 		if ( MPHB()->settings()->main()->getConfirmationMode() === 'payment' ) {
 			$responseData['depositAmount'] = $booking->calcDepositAmount();
@@ -718,15 +706,6 @@ class Ajax {
 		}
 
 		wp_send_json_success( $responseData );
-	}
-
-	public function dismiss_license_notice() {
-
-		$this->verifyNonce( __FUNCTION__ );
-
-		MPHB()->settings()->license()->setNeedHideNotice( true );
-
-		wp_send_json_success();
 	}
 
 	public function attributes_custom_ordering() {
@@ -748,20 +727,6 @@ class Ajax {
 		mphb_reorder_attributes( $termId, $nextTermId, $taxonomyName );
 
 		wp_send_json_success();
-	}
-
-
-
-	public function get_accommodations_list() {
-		$this->verifyNonce( __FUNCTION__ );
-
-		$input = $this->retrieveInput( __FUNCTION__ );
-
-		$formValues = $input['formValues'];
-		$typeId     = ( isset( $formValues['room_type_id'] ) ) ? (int) $formValues['room_type_id'] : 0;
-		$roomsList  = mphb_get_rooms_select_list( $typeId );
-
-		wp_send_json_success( array( 'options' => $roomsList ) );
 	}
 
 

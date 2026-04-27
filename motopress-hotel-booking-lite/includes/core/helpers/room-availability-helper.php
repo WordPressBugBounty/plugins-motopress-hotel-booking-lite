@@ -561,6 +561,10 @@ class RoomAvailabilityHelper {
 
 			$isStayInNotAllowed = mphb_availability_facade()->isStayInNotAllowed( $roomTypeOriginalId, $date, $date, $isIgnoreBookingRules );
 
+			$isCheckInNotAllowed = static::isCheckInNotAllowed( $roomTypeOriginalId, $date, $isIgnoreBookingRules );
+
+			$isCheckOutNotAllowed = static::isCheckOutNotAllowed( $roomTypeOriginalId, $date, $isIgnoreBookingRules );
+
 			$isEarlierThanMinAdvanceDate = mphb_availability_facade()->isCheckInEarlierThanMinAdvanceDate( $roomTypeOriginalId, $date, $isIgnoreBookingRules );
 
 			$isLaterThanMaxAdvanceDate = mphb_availability_facade()->isCheckInLaterThanMaxAdvanceDate( $roomTypeOriginalId, $date, $isIgnoreBookingRules );
@@ -579,8 +583,8 @@ class RoomAvailabilityHelper {
 				$isCheckInDate,
 				$isСheckOutDate,
 				$isStayInNotAllowed,
-				static::isCheckInNotAllowed( $roomTypeOriginalId, $date, $isIgnoreBookingRules ),
-				static::isCheckOutNotAllowed( $roomTypeOriginalId, $date, $isIgnoreBookingRules ),
+				$isCheckInNotAllowed,
+				$isCheckOutNotAllowed,
 				$isEarlierThanMinAdvanceDate,
 				$isLaterThanMaxAdvanceDate,
 				$minStayNights,

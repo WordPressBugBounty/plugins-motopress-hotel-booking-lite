@@ -39,7 +39,7 @@ do_action( 'mphb_cb_checkout_form_before_start' );
 	?>
 
 	<p class="mphb-submit-button-wrapper">
-		<input type="submit" class="button" value="<?php esc_attr_e( 'Book Now', 'motopress-hotel-booking' ); ?>" />
+		<input type="submit" class="button button-primary" value="<?php esc_attr_e( 'Book Now', 'motopress-hotel-booking' ); ?>" />
 	</p>
 
 	<?php

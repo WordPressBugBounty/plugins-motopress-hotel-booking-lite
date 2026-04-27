@@ -21,7 +21,7 @@ class GoogleHotelsMenuPage extends AbstractMenuPage {
 
 		if ( $isGoogleHotelsAttenstionRequired ) {
 
-			$menu_title .= ' <span class="menu-counter">!</span>';
+			$menu_title .= ' <span class="menu-counter">1</span>';
 		}
 
 		return $menu_title;
@@ -34,6 +34,16 @@ class GoogleHotelsMenuPage extends AbstractMenuPage {
 	public function addActions() {
 
 		parent::addActions();
+
+		add_action(
+			'admin_menu',
+			function () {
+				if ( ! apply_filters( 'mphb_use_google_hotels', true ) ) {
+					remove_action( 'admin_menu', array( $this, 'createMenu' ), $this->order );
+				}
+			},
+			10 // Priority must be lower than the menu item order
+		);
 
 		add_action(
 			'admin_enqueue_scripts',

@@ -39,7 +39,12 @@ class GetGoogleHotelsVerificationToken extends AbstractRestCommandController {
 	 * https://developer.wordpress.org/rest-api/extending-the-rest-api/schema/
 	 */
 	public static function get_response_schema(): array {
-		return array();
+		return array(
+			'$schema'   => 'http://json-schema.org/draft-04/schema#',
+			'component' => 'google_hotels-verification_token',
+			'title'     => 'google_hotels',
+			'type'      => 'string',
+		);
 	}
 
 	protected static function is_responce_cachable(): bool {

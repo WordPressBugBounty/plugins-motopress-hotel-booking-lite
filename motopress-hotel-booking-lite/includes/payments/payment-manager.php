@@ -2,12 +2,16 @@
 
 namespace MPHB\Payments;
 
-use \MPHB\PostTypes\PaymentCPT\Statuses;
+use MPHB\Entities\Payment;
+use MPHB\PostTypes\PaymentCPT\Statuses;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class PaymentManager {
-
 	/**
-	 * @param \MPHB\Entities\Payment $payment
+	 * @param Payment $payment
 	 * @return bool
 	 *
 	 * @since 3.7.6 added second parameter to filter "mphb_can_payment_be_completed" - $payment.
@@ -23,7 +27,7 @@ class PaymentManager {
 	}
 
 	/**
-	 * @param \MPHB\Entities\Payment $payment
+	 * @param Payment $payment
 	 * @return bool
 	 *
 	 * @since 3.7.6 added second parameter to filter "mphb_can_payment_be_refunded" - $payment.
@@ -38,7 +42,7 @@ class PaymentManager {
 	}
 
 	/**
-	 * @param \MPHB\Entities\Payment $payment
+	 * @param Payment $payment
 	 * @return bool
 	 *
 	 * @since 3.7.6 added second parameter to filter "mphb_can_payment_be_failed" - $payment.
@@ -52,7 +56,7 @@ class PaymentManager {
 	}
 
 	/**
-	 * @param \MPHB\Entities\Payment $payment
+	 * @param Payment $payment
 	 * @return bool
 	 *
 	 * @since 3.7.6 added second parameter to filter "mphb_can_payment_be_on_hold" - $payment.
@@ -65,7 +69,7 @@ class PaymentManager {
 	}
 
 	/**
-	 * @param \MPHB\Entities\Payment $payment
+	 * @param Payment $payment
 	 * @return bool
 	 *
 	 * @since 3.7.6 added second parameter to filter "mphb_can_payment_be_abandoned" - $payment.
@@ -75,7 +79,7 @@ class PaymentManager {
 	}
 
 	/**
-	 * @param \MPHB\Entities\Payment $payment
+	 * @param Payment $payment
 	 * @return bool
 	 *
 	 * @since 3.9.6
@@ -94,11 +98,10 @@ class PaymentManager {
 	}
 
 	/**
-	 *
-	 * @param \MPHB\Entities\Payment $payment
-	 * @param string                 $log Optional. Default empty string
-	 * @param bool                   $skipCheck Skip check of possibility
-	 * @return boolean
+	 * @param Payment $payment
+	 * @param string $log Optional. Default empty string
+	 * @param bool $skipCheck Skip check of possibility
+	 * @return bool
 	 */
 	public function failPayment( &$payment, $log = '', $skipCheck = false ) {
 
@@ -122,11 +125,10 @@ class PaymentManager {
 	}
 
 	/**
-	 *
-	 * @param \MPHB\Entities\Payment $payment
-	 * @param string                 $log Optional. Default empty string
-	 * @param bool                   $skipCheck Skip check of possibility
-	 * @return boolean
+	 * @param Payment $payment
+	 * @param string $log Optional. Default empty string
+	 * @param bool $skipCheck Skip check of possibility
+	 * @return bool
 	 */
 	public function completePayment( &$payment, $log = '', $skipCheck = false ) {
 		if ( ! ( $skipCheck || $this->canBeCompleted( $payment ) ) ) {
@@ -149,11 +151,10 @@ class PaymentManager {
 	}
 
 	/**
-	 *
-	 * @param \MPHB\Entities\Payment $payment
-	 * @param string                 $log Optional. Default empty string
-	 * @param bool                   $skipCheck Skip check of possibility
-	 * @return boolean
+	 * @param Payment $payment
+	 * @param string $log Optional. Default empty string
+	 * @param bool $skipCheck Skip check of possibility
+	 * @return bool
 	 */
 	public function abandonPayment( &$payment, $log = '', $skipCheck = false ) {
 
@@ -177,11 +178,10 @@ class PaymentManager {
 	}
 
 	/**
-	 *
-	 * @param \MPHB\Entities\Payment $payment
-	 * @param string                 $log Optional. Default empty string
-	 * @param bool                   $skipCheck Skip check of possibility
-	 * @return boolean
+	 * @param Payment $payment
+	 * @param string $log Optional. Default empty string
+	 * @param bool $skipCheck Skip check of possibility
+	 * @return bool
 	 */
 	public function holdPayment( &$payment, $log = '', $skipCheck = false ) {
 		if ( ! ( $skipCheck || $this->canBeOnHold( $payment ) ) ) {
@@ -204,11 +204,10 @@ class PaymentManager {
 	}
 
 	/**
-	 *
-	 * @param \MPHB\Entities\Payment $payment
-	 * @param string                 $log Optional. Default empty string
-	 * @param bool                   $skipCheck Skip check of possibility
-	 * @return boolean
+	 * @param Payment $payment
+	 * @param string $log Optional. Default empty string
+	 * @param bool $skipCheck Skip check of possibility
+	 * @return bool
 	 */
 	public function refundPayment( &$payment, $log = '', $skipCheck = false ) {
 		if ( ! ( $skipCheck || $this->canBeRefunded( $payment ) ) ) {
@@ -231,15 +230,29 @@ class PaymentManager {
 	}
 
 	/**
-	 *
-	 * @param \MPHB\Entities\Payment $payment
-	 * @param string                 $log Optional. Default empty string
-	 * @param bool                   $skipCheck Skip check of possibility
-	 * @return boolean
+	 * @param Payment $payment
+	 * @param string $log Optional. Default empty string
+	 * @param bool $skipCheck Skip check of possibility
+	 * @return bool
 	 *
 	 * @since 3.9.6
+	 * @deprecated 6.0.0, use <code>cancelPayment()</code> instead.
 	 */
 	public function cancellPayment( &$payment, $log = '', $skipCheck = false ) {
+		// TODO: Remove method from mphb-woocommerce.
+
+		return $this->cancelPayment( $payment, $log, $skipCheck );
+	}
+
+	/**
+	 * @param Payment $payment
+	 * @param string $log Optional. Default empty string
+	 * @param bool $skipCheck Skip check of possibility
+	 * @return bool
+	 *
+	 * @since 6.0.0
+	 */
+	public function cancelPayment( &$payment, $log = '', $skipCheck = false ) {
 		if ( ! ( $skipCheck || $this->canBeCancelled( $payment ) ) ) {
 			return false;
 		}
@@ -265,4 +278,89 @@ class PaymentManager {
 		return $cancelled;
 	}
 
+	public function captureAuthorizedFunds( Payment $payment, string $log = '' ): bool {
+		if ( ! $payment->hasPendingAuthedFunds() ) {
+			return false;
+		}
+
+		/**
+		 * @param Payment $payment
+		 */
+		do_action( 'mphb_focus_on_payment', $payment );
+
+		$isCaptured = false;
+
+		try {
+			$gateway = MPHB()->gatewayManager()->getGateway( $payment->getGatewayId() );
+
+			if ( $gateway !== null ) {
+				$isCaptured = $gateway->captureAuthorizedFunds( $payment );
+			}
+
+			if ( $isCaptured ) {
+				if ( $log !== '' ) {
+					$payment->addLog( $log );
+				} else {
+					$payment->addLog(
+						sprintf(
+							// Translators: %s: Payment amount.
+							__( 'A payment of %s was successfully captured.', 'motopress-hotel-booking' ),
+							mphb_format_price( $payment->getAmount(), array( 'as_html' => false ) )
+						)
+					);
+				}
+			}
+
+		} catch ( \Exception $e ) {
+			$payment->addLog(
+				sprintf(
+					// Translators: %s: Error message text.
+					__( 'Unable to capture authorized funds. %s', 'motopress-hotel-booking' ),
+					$e->getMessage()
+				)
+			);
+		}
+
+		return $isCaptured;
+	}
+
+	public function releaseAuthorizedFunds( Payment $payment, string $log = '' ): bool {
+		if ( ! $payment->hasPendingAuthedFunds() ) {
+			return false;
+		}
+
+		/**
+		 * @param Payment $payment
+		 */
+		do_action( 'mphb_focus_on_payment', $payment );
+
+		$isReleased = false;
+
+		try {
+			$gateway = MPHB()->gatewayManager()->getGateway( $payment->getGatewayId() );
+
+			if ( $gateway !== null ) {
+				$isReleased = $gateway->releaseAuthorizedFunds( $payment );
+			}
+
+			if ( $isReleased ) {
+				if ( $log !== '' ) {
+					$payment->addLog( $log );
+				} else {
+					$payment->addLog( __( 'Payment authorization was successfully cancelled.', 'motopress-hotel-booking' ) );
+				}
+			}
+
+		} catch ( \Exception $e ) {
+			$payment->addLog(
+				sprintf(
+					// Translators: %s: Error message text.
+					__( 'Unable to release authorized funds. %s', 'motopress-hotel-booking' ),
+					$e->getMessage()
+				)
+			);
+		}
+
+		return $isReleased;
+	}
 }

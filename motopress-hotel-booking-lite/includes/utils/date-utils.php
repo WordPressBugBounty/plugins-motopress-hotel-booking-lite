@@ -2,6 +2,10 @@
 
 namespace MPHB\Utils;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class DateUtils {
 
 	/**
@@ -51,6 +55,8 @@ class DateUtils {
 		if ( ! empty( $dateString ) ) {
 			if ( ! $format ) {
 				$format = MPHB()->settings()->dateTime()->getDateTransferFormat();
+			} elseif ( $format === 'mysql' ) {
+				$format = 'Y-m-d H:i:s';
 			}
 
 			$date = \DateTime::createFromFormat( $format, $dateString, static::getSiteTimeZone() );
@@ -61,6 +67,21 @@ class DateUtils {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Unlike <code>createDateTime()</code> create date with "00:00:00" time.
+	 *
+	 * @param string|null $format "Y-m-d" by default.
+	 */
+	public static function createDate( string $dateString, ?string $format = null ): ?\DateTime {
+		$dateTime = static::createDateTime( $dateString, $format );
+
+		// DateTime::createFromFormat( "Y-m-d", ... ) in createDateTime()
+		// creates date with current time
+		$dateTime->setTime( 0, 0 );
+
+		return $dateTime;
 	}
 
 	/**
@@ -82,6 +103,12 @@ class DateUtils {
 		return $dateObj ? $dateObj : false;
 	}
 
+	public static function setTimeForCheckInDate( \DateTime $checkInDate ): void {
+		$checkInTime = MPHB()->settings()->dateTime()->getCheckInTime( $asArray = true );
+
+		$checkInDate->setTime( $checkInTime[0], $checkInTime[1], $checkInTime[2] );
+	}
+
 	/**
 	 *
 	 * @param string $format See http://php.net/manual/ru/datetime.formats.php
@@ -99,6 +126,12 @@ class DateUtils {
 		}
 
 		return $dateObj ? $dateObj : false;
+	}
+
+	public static function setTimeForCheckOutDate( \DateTime $checkOutDate ): void {
+		$checkOutTime = MPHB()->settings()->dateTime()->getCheckOutTime( $asArray = true );
+
+		$checkOutDate->setTime( $checkOutTime[0], $checkOutTime[1], $checkOutTime[2] );
 	}
 
 	/**
@@ -335,17 +368,50 @@ class DateUtils {
 	/**
 	 * DateTime or string - all dates must be of the same type.
 	 *
+	 * @param \DateTime|string $start1
+	 * @param \DateTime|string $end1
+	 * @param \DateTime|string $start2
+	 * @param \DateTime|string $end2
+	 * @return array|false <code>[ Start date, End date ]</code> or false if
+	 *     dates does not overlap.
+	 */
+	public static function getOverlappingDates( $start1, $end1, $start2, $end2 ) {
+		if ( ! static::isDatesOverlap( $start1, $end1, $start2, $end2 ) ) {
+			return false;
+		}
+
+		$start = ( $start1 < $start2 ) ? $start2 : $start1; // Get max date
+		$end   = ( $end1 < $end2 ) ? $end1 : $end2; // Get min date
+
+		return array( $start, $end );
+	}
+
+	/**
+	 * DateTime or string - all dates must be of the same type.
+	 *
+	 * @param \DateTime|string $start1
+	 * @param \DateTime|string $end1
+	 * @param \DateTime|string $start2
+	 * @param \DateTime|string $end2
+	 */
+	public static function isDatesOverlap( $start1, $end1, $start2, $end2 ): bool {
+		return $start1 <= $end2 && $end1 >= $start2;
+	}
+
+	/**
+	 * DateTime or string - all dates must be of the same type.
+	 *
 	 * @since 4.10.0
 	 *
 	 * @param \DatePeriod|\DateTime[]|string[] $period1
 	 * @param \DatePeriod|\DateTime[]|string[] $period2
 	 * @return bool
 	 */
-	public static function isPeriodsIntersect( $period1, $period2 ) {
+	public static function isPeriodsOverlap( $period1, $period2 ) {
 		list( $start1, $end1 ) = static::getPeriodRangeDates( $period1 );
 		list( $start2, $end2 ) = static::getPeriodRangeDates( $period2 );
 
-		return $start1 <= $end2 && $end1 >= $start2;
+		return static::isDatesOverlap( $start1, $end1, $start2, $end2 );
 	}
 
 	/**
@@ -381,6 +447,38 @@ class DateUtils {
 
 		foreach ( $dateRange as $date ) {
 			$dates[ $date->format( 'Y-m-d' ) ] = $date->format( MPHB()->settings()->dateTime()->getDateFormat() );
+		}
+
+		return $dates;
+	}
+
+	/**
+	 * @param string $exclude "none"|"start"|"end"|"both" - which dates to
+	 *     exclude from the results array.
+	 * @return array <code>[ "Y-m-d" => DateTime ]</code>
+	 */
+	public static function createDatesInRange(
+		\DateTime $startDate,
+		\DateTime $endDate,
+		string $exclude = 'none'
+	): array {
+		if ( $exclude === 'start' || $exclude === 'both' ) {
+			$startDate = static::cloneModify( $startDate, '+1 day' );
+		}
+
+		if ( $exclude === 'end' || $exclude === 'both' ) {
+			$includeEndDate = false;
+		} else {
+			$includeEndDate = true;
+		}
+
+		$datePeriod = static::createDatePeriod( $startDate, $endDate, $includeEndDate );
+		$dates = array();
+
+		foreach ( $datePeriod as $date ) {
+			$dateStr = static::formatDateDB( $date );
+
+			$dates[ $dateStr ] = $date;
 		}
 
 		return $dates;
@@ -612,5 +710,4 @@ class DateUtils {
 
 		return $postDateTime;
 	}
-
 }

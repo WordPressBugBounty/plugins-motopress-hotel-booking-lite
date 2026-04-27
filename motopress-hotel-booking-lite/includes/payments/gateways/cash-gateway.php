@@ -2,6 +2,8 @@
 
 namespace MPHB\Payments\Gateways;
 
+use MPHB\Entities\{ Booking, Payment };
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -10,7 +12,6 @@ class CashGateway extends Gateway {
 	public const GATEWAY_ID = 'cash';
 
 	public function __construct() {
-
 		parent::__construct();
 
 		add_filter(
@@ -43,7 +44,6 @@ class CashGateway extends Gateway {
 	}
 
 	protected function initDefaultOptions() {
-
 		return array_merge(
 			parent::initDefaultOptions(),
 			array(
@@ -54,12 +54,14 @@ class CashGateway extends Gateway {
 		);
 	}
 
+	/**
+	 * @return mixed|null
+	 */
+	public function processPayment( Booking $booking, Payment $payment ) {
+		$isHolded = $this->paymentOnHold( $payment );
 
-	public function processPayment( \MPHB\Entities\Booking $booking, \MPHB\Entities\Payment $payment ) {
-
-		$isHolded    = $this->paymentOnHold( $payment );
-		$redirectUrl = $isHolded ? MPHB()->settings()->pages()->getReservationReceivedPageUrl( $payment ) : MPHB()->settings()->pages()->getPaymentFailedPageUrl( $payment );
-		wp_redirect( $redirectUrl );
-		exit;
+		if ( ! $isHolded ) {
+			wp_redirect( MPHB()->settings()->pages()->getPaymentFailedPageUrl( $payment ) );
+		}
 	}
 }

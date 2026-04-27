@@ -135,8 +135,10 @@ abstract class AbstractRestCommandController {
 			return $wp_rest_response;
 
 		} catch ( \Throwable $e ) {
+			if ( ! apply_filters( 'mphb_suppress_rest_error_logs', false ) ) {
+				error_log( $e );
+			}
 
-			error_log( $e );
 			return new \WP_Error(
 				'rest_process_error',
 				$e->getMessage(),

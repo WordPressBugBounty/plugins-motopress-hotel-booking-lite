@@ -2,53 +2,46 @@
 
 namespace MPHB\Admin\Groups;
 
-use \MPHB\Admin\Fields;
+use MPHB\Admin\Fields\InputField;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 abstract class InputGroup {
-
 	/**
-	 * @var \MPHB\Admin\Fields\InputField[]
+	 * @var InputField[]
 	 */
 	protected $fields = array();
 	protected $name;
 	protected $label;
 
-
 	public function __construct( $name, $label ) {
-
 		$this->name  = $name;
 		$this->label = $label;
 	}
 
 	/**
-	 * @param \MPHB\Admin\Fields\InputField $field
+	 * @param InputField $field
 	 */
-	public function addField( Fields\InputField $field ) {
-
+	public function addField( InputField $field ) {
 		$this->fields[] = $field;
 	}
 
 	/**
-	 * @param \MPHB\Admin\Fields\InputField[] $fields
+	 * @param InputField[] $fields
 	 */
 	public function addFields( $fields ) {
-
 		foreach ( $fields as $field ) {
-
 			$this->addField( $field );
 		}
 	}
 
 	/**
-	 * @param \MPHB\Admin\Fields\InputField $field
-	 * @param int                           $index
+	 * @param InputField $field
+	 * @param int $index
 	 */
-	public function insertField( Fields\InputField $field, $index ) {
-
+	public function insertField( InputField $field, $index ) {
 		$this->fields[ $index ] = $field;
 	}
 
@@ -57,7 +50,6 @@ abstract class InputGroup {
 	 * @return boolean true if removed, false - otherwise
 	 */
 	public function removeField( $key ) {
-
 		$index = is_numeric( $key ) ? intval( $key ) : $this->getIndexByName( $key );
 
 		if ( isset( $this->fields[ $index ] ) ) {
@@ -74,20 +66,18 @@ abstract class InputGroup {
 	}
 
 	/**
-	 * @return \MPHB\Admin\Fields\InputField[]
+	 * @return InputField[]
 	 */
 	public function getFields() {
-
 		return $this->fields;
 	}
 
 	/**
 	 * @param string $name
-	 * @return \MPHB\Admin\Fields\InputField|null Searched field or null if
+	 * @return InputField|null Searched field or null if
 	 * nothing found.
 	 */
 	public function getFieldByName( $name ) {
-
 		$index = $this->getIndexByName( $name );
 
 		return ( $index != -1 ) ? $this->fields[ $index ] : null;
@@ -98,13 +88,10 @@ abstract class InputGroup {
 	 * @return int Field index or -1 if nothing found.
 	 */
 	public function getIndexByName( $name ) {
-
 		// Don't use for() here - don't rely on the absence of gaps
 		// in $this->fields
 		foreach ( $this->fields as $i => $field ) {
-
 			if ( $field->getName() === $name ) {
-
 				return $i;
 			}
 		}
@@ -114,26 +101,23 @@ abstract class InputGroup {
 
 	/**
 	 * @since 4.2.4
+	 *
 	 * @param string $name
 	 * @return bool
 	 */
 	public function hasField( $name ) {
-
 		return $this->getIndexByName( $name ) >= 0;
 	}
 
 	public function getName() {
-
 		return $this->name;
 	}
 
 	public function getLabel() {
-
 		return $this->label;
 	}
 
 	public function setName( $name ) {
-
 		$this->name = $name;
 	}
 
@@ -142,7 +126,6 @@ abstract class InputGroup {
 	abstract public function save();
 
 	public function getAttsFromRequest( $request = null, $allowReadonly = true ) {
-
 		if ( is_null( $request ) ) {
 			$request = $_REQUEST;
 		}
@@ -150,7 +133,6 @@ abstract class InputGroup {
 		$atts = array();
 
 		foreach ( $this->fields as $field ) {
-
 			// Skip read-only fields
 			if ( ! $allowReadonly && $field->isReadonly() ) {
 				continue;
@@ -164,7 +146,6 @@ abstract class InputGroup {
 			$fieldName = $field->getName();
 
 			if ( isset( $request[ $fieldName ] ) ) {
-
 				$value = $request[ $fieldName ];
 
 				$atts[ $fieldName ] = $field->sanitize( $value );

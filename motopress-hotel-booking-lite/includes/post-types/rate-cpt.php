@@ -11,6 +11,12 @@ class RateCPT extends EditableCPT {
 
 	protected $postType = 'mphb_rate';
 
+	protected function addActions() {
+		parent::addActions();
+
+		add_action( 'deleted_post', fn( $postId, $post ) => $this->afterRateDelete( $postId, $post ), 10, 2 );
+	}
+
 	protected function createEditPage() {
 		return new EditCPTPages\RateEditCPTPage( $this->postType, $this->getFieldGroups() );
 	}
@@ -47,13 +53,15 @@ class RateCPT extends EditableCPT {
 							array(
 								'type'     => 'select',
 								'label'    => __( 'Season', 'motopress-hotel-booking' ),
-								'list'     => MPHB()->getSeasonPersistence()->getIdTitleList(
-									array(
-										'orderby'       => 'ID',
-										'order'         => 'ASC',
-										'mphb_language' => 'original',
-									)
-								),
+								'list'     => array( 0 => __( '— Select —', 'motopress-hotel-booking' ) )
+									+ MPHB()->getSeasonPersistence()->getIdTitleList(
+										array(
+											'orderby'       => 'ID',
+											'order'         => 'ASC',
+											'post_status'   => array( 'publish', 'pending', 'draft', 'future', 'private', 'trash' ), // Default array + "trash"
+											'mphb_language' => 'original',
+										)
+									),
 								'required' => true,
 							)
 						),
@@ -134,4 +142,11 @@ class RateCPT extends EditableCPT {
 		register_post_type( $this->postType, $args );
 	}
 
+	private function afterRateDelete( int $postId, \WP_Post $post ): void {
+		if ( $post->post_type !== $this->getPostType() ) {
+			return;
+		}
+
+		MPHB()->getCustomPricesRepository()->removePricesForRate( $postId );
+	}
 }

@@ -10,6 +10,12 @@ class RoomCPT extends EditableCPT {
 
 	protected $postType = 'mphb_room';
 
+	protected function addActions() {
+		parent::addActions();
+
+		add_action( 'deleted_post', fn( $postId, $post ) => $this->afterRoomDelete( $postId, $post ), 10, 2 );
+	}
+
 	protected function createManagePage() {
 		return new \MPHB\Admin\ManageCPTPages\RoomManageCPTPage( $this->postType );
 	}
@@ -115,5 +121,13 @@ class RoomCPT extends EditableCPT {
 			'general'      => $generalGroup,
 			'linked_rooms' => $linkedRoomsGroup,
 		);
+	}
+
+	private function afterRoomDelete( int $postId, \WP_Post $post ): void {
+		if ( $post->post_type !== $this->getPostType() ) {
+			return;
+		}
+
+		MPHB()->getBlocksRepository()->deleteAllByRoom( $postId );
 	}
 }

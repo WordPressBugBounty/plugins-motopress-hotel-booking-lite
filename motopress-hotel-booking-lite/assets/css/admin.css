@@ -268,7 +268,7 @@ table.wp-list-table.posts tbody td.column-handle {
   width: 90%;
 }
 .mphb-preloader {
-  background-image: url("../../images/loading.gif?ver=5.5.2");
+  background-image: url("../../images/loading.gif?ver=6.0.0");
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -973,6 +973,26 @@ body.wp-admin.post-type-mphb_booking .check_in_out_date .mphb-booking-nights {
   vertical-align: middle;
   font-size: 16px;
 }
+.mphb-is-popup-window #adminmenumain,
+.mphb-is-popup-window #wpadminbar,
+.mphb-is-popup-window #wpfooter,
+.mphb-is-popup-window .notice,
+.mphb-is-popup-window .page-title-action {
+  display: none;
+}
+.mphb-is-popup-window #wpfooter,
+.mphb-is-popup-window #wpcontent {
+  margin-left: 0;
+}
+.mphb-spaced-actions {
+  display: flex;
+  justify-content: space-between;
+}
+.dialog-confirm .controls {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
 .mphb-popup .mphb-popup-backdrop {
   position: fixed;
   z-index: 90000;
@@ -1432,6 +1452,26 @@ body.wp-admin.post-type-mphb_booking .check_in_out_date .mphb-booking-nights {
   border-width: 6px;
   height: 0;
   width: 0;
+}
+.mphb-blocks-list-table.editing th.hidden,
+.mphb-blocks-list-table.editing td.hidden {
+  display: table-cell;
+}
+.mphb-blocks-list-table .inline-edit-row td,
+.mphb-blocks-list-table .inline-edit-row th {
+  padding: 8px 10px;
+}
+.mphb-blocks-list-table .inline-edit-row input,
+.mphb-blocks-list-table .inline-edit-row select {
+  max-width: 90%;
+}
+.mphb-blocks-list-table .inline-edit-row textarea {
+  field-sizing: content;
+  min-height: 3.5em;
+  width: 90%;
+}
+.mphb-blocks-list-table td .mphb-preloader {
+  vertical-align: middle;
 }
 .mphb-deprecated {
   opacity: 0.5;

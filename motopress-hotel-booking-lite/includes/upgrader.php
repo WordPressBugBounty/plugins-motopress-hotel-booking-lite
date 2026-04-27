@@ -36,6 +36,8 @@ class Upgrader {
 	 */
 	private $bgBookingUpgrader4_2_0;
 
+	private Upgrades\BackgroundBookingUpgrader_6_0_0 $bgBookingUpgrader6_0_0;
+
 	/**
 	 *
 	 * @var Upgrades\BackgroundUpgrader
@@ -129,6 +131,11 @@ class Upgrader {
 		'5.2.0' => array(
 			'fixForV5_2_0',
 		),
+		'6.0.0' => array(
+			'createCustomCalendarTablesForV6_0_0',
+			'createBlocksTableForV6_0_0',
+			'moveBlocksToCustomTableForV6_0_0',
+		),
 	);
 
 	public function __construct() {
@@ -137,6 +144,7 @@ class Upgrader {
 		$this->bgBookingUpgrader2_2_0 = new Upgrades\BackgroundBookingUpgrader_2_2_0();
 		$this->bgBookingUpgrader2_3_0 = new Upgrades\BackgroundBookingUpgrader_2_3_0();
 		$this->bgBookingUpgrader4_2_0 = new Upgrades\BackgroundBookingUpgrader_4_2_0();
+		$this->bgBookingUpgrader6_0_0 = new Upgrades\BackgroundBookingUpgrader_6_0_0();
 		$this->bgUpgrader             = new Upgrades\BackgroundUpgrader();
 
 		$this->checkVersion();
@@ -205,6 +213,7 @@ class Upgrader {
 		do_action( $this->bgBookingUpgrader2_2_0->getIdentifier() . '_cron' );
 		do_action( $this->bgBookingUpgrader2_3_0->getIdentifier() . '_cron' );
 		do_action( $this->bgBookingUpgrader4_2_0->getIdentifier() . '_cron' );
+		do_action( $this->bgBookingUpgrader6_0_0->getIdentifier() . '_cron' );
 
 		if ( ! $this->bgUpgrader->isInProgress() ) {
 			MPHB()->notices()->hideNotice( 'force_upgrade' );
@@ -1184,6 +1193,61 @@ class Upgrader {
 
 				update_option( $encodingOption, $optionValue, true );
 			}
+		}
+	}
+
+	public function createCustomCalendarTablesForV6_0_0(): void {
+		MPHB()->getCustomBookingRulesRepository()->createTable();
+		MPHB()->getCustomPricesRepository()->createTable();
+	}
+
+	public function createBlocksTableForV6_0_0(): void {
+		MPHB()->getBlocksRepository()->createTable();
+	}
+
+	/**
+	 * @return string|false False means the task is complete.
+	 */
+	public function moveBlocksToCustomTableForV6_0_0() {
+		$customRules = MPHB()->settings()->bookingRules()->getCustomRules();
+
+		if ( empty( $customRules ) ) {
+			return false;
+
+		} elseif ( count( $customRules ) <= Upgrades\BackgroundBookingUpgrader_6_0_0::BATCH_SIZE ) {
+			Upgrades\BackgroundBookingUpgrader_6_0_0::saveAsBlocks( $customRules );
+
+			return false;
+
+		} else {
+			if ( $this->bgBookingUpgrader6_0_0->isInProgress() ) {
+				$this->bgUpgrader->pause();
+
+				return __FUNCTION__;
+			}
+
+			$this->bgBookingUpgrader6_0_0->data(
+				// Batch/data
+				array(
+					// Single item
+					array(
+						'items_finished' => 0,
+						'items_total'    => count( $customRules ),
+						'page'           => 1,
+					),
+				)
+			);
+
+			$this->bgBookingUpgrader6_0_0->save();
+
+			$this->setTotalQueueSize( $this->getTotalQueueSize() + 1 );
+			$this->bgUpgrader->waitAction( $this->bgBookingUpgrader6_0_0->getIdentifier() . '_complete' );
+
+			$this->bgBookingUpgrader6_0_0->dispatch();
+
+			$this->bgUpgrader->pause();
+
+			return false;
 		}
 	}
 }

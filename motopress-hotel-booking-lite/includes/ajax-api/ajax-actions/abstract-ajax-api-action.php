@@ -155,6 +155,22 @@ abstract class AbstractAjaxApiAction {
 		return $result;
 	}
 
+	protected static function getEmailFromRequest( string $requestDataName, bool $isRequired = false, string $defaultValue = '', $requestData = null ) {
+
+		$requestData = $requestData ?? $_REQUEST;
+		$result      = $defaultValue;
+
+		if ( ! empty( $requestData[ $requestDataName ] ) ) {
+
+			$result = sanitize_email( wp_unslash( $requestData[ $requestDataName ] ) );
+
+		} elseif ( $isRequired ) {
+			throw new \Exception( 'Required email parameter ' . $requestDataName . ' is missing in request.' );
+		}
+
+		return $result;
+	}
+
 	protected static function isValidateWPNonce(): bool {
 		return true;
 	}

@@ -139,7 +139,14 @@ final class WP_Session extends Recursive_ArrayAccess implements \Iterator, \Coun
 		// because of some cron (fix for MPI-7906).
 		if ( ! headers_sent() ) {
 
-			setcookie( 'WP_SESSION_COOKIE', $this->session_id . '||' . $this->expires . '||' . $this->exp_variant, $this->expires, COOKIEPATH, COOKIE_DOMAIN );
+			// samesite is set to None for WP instances running in an iframe embedded on domains different from the WP instance domain
+			setcookie('WP_SESSION_COOKIE', $this->session_id . '||' . $this->expires . '||' . $this->exp_variant, [
+				'expires'  => $this->expires,
+				'path'     => COOKIEPATH,
+				'domain'   => COOKIE_DOMAIN,
+				'secure'   => is_ssl(),
+				'samesite' => is_ssl() ? 'None' : 'Lax'
+			]);
 		}
 	}
 

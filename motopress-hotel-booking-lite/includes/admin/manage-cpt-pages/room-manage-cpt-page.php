@@ -2,9 +2,9 @@
 
 namespace MPHB\Admin\ManageCPTPages;
 
-use \MPHB\PostTypes\BookingCPT;
-use \MPHB\Views;
-use \MPHB\Entities;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class RoomManageCPTPage extends ManageCPTPage {
 

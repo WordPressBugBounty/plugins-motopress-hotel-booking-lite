@@ -51,7 +51,7 @@ class BlockScriptManager extends ScriptManager {
 	}
 
 	public function register() {
-		wp_register_script( 'mphb-blocks', $this->scriptUrl( 'assets/blocks/blocks.min.js' ), array( 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor', 'jquery' ), MPHB()->getVersion(), true );
+		wp_register_script( 'mphb-blocks', $this->scriptUrl( 'assets/blocks/blocks.min.js' ), array( 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor', 'wp-core-data', 'jquery' ), MPHB()->getVersion(), true );
 
 		$roomTypeIds = MPHB()->getRoomTypePersistence()->getPosts(
 			array(

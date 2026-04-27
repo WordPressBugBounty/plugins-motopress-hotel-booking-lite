@@ -138,6 +138,24 @@ abstract class AbstractEmail {
 	abstract public function getDefaultMessageHeaderText();
 
 	/**
+	 * Adapter between Booking + Payment actions and trigger().
+	 *
+	 * @since 6.0.0
+	 *
+	 * @param array $atts {
+	 *     Optional.
+	 *
+	 *     @type bool $test_mode Trigger email but don't add the logs. False by default.
+	 * }
+	 * @return bool|\WP_Error
+	 */
+	public function triggerWithPayment( Booking $booking, Payment $payment, array $atts = array() ) {
+		$atts['payment'] = $payment;
+
+		return $this->trigger( $booking, $atts );
+	}
+
+	/**
 	 * @param Booking $booking
 	 * @param array   $atts Optional.
 	 * @param Payment $atts['payment']

@@ -2,8 +2,7 @@
 
 namespace MPHB\Utils;
 
-use MPHB\Entities\Booking;
-use MPHB\Entities\RoomType;
+use MPHB\Entities\{ Booking, RoomType };
 use DateTime;
 use RuntimeException as Error;
 
@@ -63,128 +62,139 @@ class ParseUtils {
 	}
 
 	/**
-	 * @param string $rawData Raw check-in date string.
-	 * @param array  $args Optional.
-	 *     @param bool   $args['allow_past_dates'] Optional. FALSE by default.
-	 * @return DateTime
-	 *
-	 * @throws Error If check-in date is not valid or earlier than today (if past dates not allowed).
-	 *
-	 * @since 3.8
+	 * @param mixed $values
+	 * @return int[] Does not allow 0, unlike ValidateUtils::parseIds().
 	 */
-	public static function parseCheckInDate( $rawData, $args = array() ) {
-		// Init settings
-		$allowPastDates = isset( $args['allow_past_dates'] ) ? $args['allow_past_dates'] : false;
-		$dateFormat     = MPHB()->settings()->dateTime()->getDateFormat();
+	public static function parseIds( array $values ): array {
+		$ids = array();
 
-		// Parse date
-		$checkInString = sanitize_text_field( wp_unslash( $rawData ) );
-		$checkInDate   = DateUtils::createCheckInDate( $dateFormat, $checkInString );
+		foreach ( $values as $value ) {
+			$id = ValidateUtils::validateInt( $value, 0 );
 
-		$today = DateTime::createFromFormat( $dateFormat, 'today' );
-
-		if ( ! $checkInDate ) {
-			throw new Error( __( 'Check-in date is not valid.', 'motopress-hotel-booking' ) );
-		} elseif ( ! $allowPastDates && DateUtils::calcNights( $today, $checkInDate ) < 0 ) {
-			throw new Error( __( 'Check-in date cannot be earlier than today.', 'motopress-hotel-booking' ) );
-		} else {
-			return $checkInDate;
+			if ( $id !== false && $id !== 0 ) {
+				$ids[] = $id;
+			}
 		}
+
+		return $ids;
 	}
 
 	/**
-	 * @param string              $rawData Raw check-out date string.
-	 * @param array               $args Optional.
-	 *     @param bool                $args['check_booking_rules'] Optional. TRUE by default.
-	 *     @param DateTime|null|false $args['check_in_date'] Optional. Check-in
-	 *         date to verify the booking rules (only if "check_booking_rules"
-	 *         is set). Not set by default (FALSE).
-	 * @return DateTime
-	 *
-	 * @throws Error
-	 *
 	 * @since 3.8
+	 * @since 6.0.0 Added <code>$dateFormat</code> and <code>$allowPastDate</code>
+	 *     parameters.
+	 *
+	 * @param string|null $dateFormat Custom date format. "Y-m-d" by default.
+	 *
+	 * @throws \RuntimeException If check-in date is not valid or earlier than
+	 *     today and <code>$allowPastDate</code> is false.
 	 */
-	public static function parseCheckOutDate( $rawData, $args = array() ) {
-		// Init settings
-		$checkBookingRules = isset( $args['check_booking_rules'] ) ? $args['check_booking_rules'] : true;
-		$checkInDate       = isset( $args['check_in_date'] ) ? $args['check_in_date'] : false;
-		$dateFormat        = MPHB()->settings()->dateTime()->getDateFormat();
-
-		// Parse date
-		$checkOutString = sanitize_text_field( wp_unslash( $rawData ) );
-		$checkOutDate   = DateUtils::createCheckOutDate( $dateFormat, $checkOutString );
-
-		if ( ! $checkOutDate ) {
-
-			throw new Error( __( 'Check-out date is not valid.', 'motopress-hotel-booking' ) );
-
-		} elseif ( $checkBookingRules && $checkInDate &&
-			mphb_availability_facade()->isBookingRulesViolated(
-				0,
-				$checkInDate,
-				$checkOutDate,
-				MPHB()->settings()->main()->isBookingRulesForAdminDisabled()
-			)
-		) {
-
-			throw new Error( __( 'Nothing found. Please try again with different search parameters.', 'motopress-hotel-booking' ) );
-
-		} elseif ( $checkInDate && DateUtils::calcNights( $checkInDate, $checkOutDate ) < 0 ) {
-
-			throw new Error( __( 'Check-out date cannot be earlier than check-in date.', 'motopress-hotel-booking' ) );
-
-		} else {
-
-			return $checkOutDate;
+	public static function parseCheckInDate(
+		string $checkInDateStr,
+		?string $dateFormat = null,
+		bool $allowPastDate = false
+	): DateTime {
+		if ( $dateFormat === null ) {
+			$dateFormat = MPHB()->settings()->dateTime()->getDateTransferFormat(); // "Y-m-d"
 		}
+
+		$checkInDate = DateUtils::createCheckInDate( $dateFormat, $checkInDateStr );
+
+		if ( $checkInDate === null ) {
+			throw new \RuntimeException( esc_html__( 'Check-in date is not valid.', 'motopress-hotel-booking' ) );
+		}
+
+		if ( ! $allowPastDate ) {
+			$today = new DateTime( 'today', DateUtils::getSiteTimeZone() );
+
+			if ( DateUtils::calcNights( $today, $checkInDate ) < 0 ) {
+				throw new \RuntimeException( esc_html__( 'Check-in date cannot be earlier than today.', 'motopress-hotel-booking' ) );
+			}
+		}
+
+		return $checkInDate;
 	}
 
 	/**
-	 * @param array $rawData Raw adults string.
-	 * @param array $args Optional. No args at the moment.
-	 * @return int
-	 *
-	 * @throws Error
-	 *
 	 * @since 3.8
+	 * @since 6.0.0 Added <code>$checkInDate</code>, <code>$dateFormat</code>
+	 *     and <code>$allowPastDate</code> parameters.
+	 *
+	 * @param string|null $dateFormat Custom date format. "Y-m-d" by default.
+	 *
+	 * @throws \RuntimeException
 	 */
-	public static function parseAdults( $rawData, $args = array() ) {
+	public static function parseCheckOutDate(
+		string $checkOutDateStr,
+		?DateTime $checkInDate = null,
+		?string $dateFormat = null,
+		bool $ignoreBookingRules = false
+	): DateTime {
+		if ( $dateFormat === null ) {
+			$dateFormat = MPHB()->settings()->dateTime()->getDateTransferFormat(); // "Y-m-d"
+		}
+
+		$checkOutDate = DateUtils::createCheckOutDate( $dateFormat, $checkOutDateStr );
+
+		if ( $checkOutDate === null ) {
+			throw new \RuntimeException( esc_html__( 'Check-out date is not valid.', 'motopress-hotel-booking' ) );
+		}
+
+		if ( $checkInDate !== null ) {
+			if ( DateUtils::calcNights( $checkInDate, $checkOutDate ) < 0 ) {
+				throw new \RuntimeException( esc_html__( 'Check-out date cannot be earlier than check-in date.', 'motopress-hotel-booking' ) );
+			}
+
+			if ( ! $ignoreBookingRules ) {
+				$bookingRulesViolated = mphb_availability_facade()->isBookingRulesViolated(
+					$roomTypeId = 0,
+					$checkInDate,
+					$checkOutDate,
+					$ignoreBookingRules
+				);
+
+				if ( $bookingRulesViolated ) {
+					throw new \RuntimeException( esc_html__( 'Nothing found. Please try again with different search parameters.', 'motopress-hotel-booking' ) );
+				}
+			}
+		}
+
+		return $checkOutDate;
+	}
+
+	/**
+	 * @since 3.8
+	 *
+	 * @throws \RuntimeException If adults number is not valid.
+	 */
+	public static function parseAdults( string $adultsStr ): int {
 		$minAdults = mphb_get_min_adults();
-		$maxAdults = mphb_get_max_adults();
+		$adults    = ValidateUtils::validateInt( $adultsStr, $minAdults );
 
-		$adults = ValidateUtils::validateInt( $rawData, -1 );
-
-		if ( $adults === false ) {
-			throw new Error( __( 'Adults number is not valid', 'motopress-hotel-booking' ) );
-		} elseif ( $adults == -1 || ( $adults >= $minAdults && $adults <= $maxAdults ) ) {
+		if ( $adults !== false ) {
 			return $adults;
 		} else {
-			throw new Error( __( 'Adults number is not valid.', 'motopress-hotel-booking' ) );
+			if ( MPHB()->settings()->main()->isChildrenAllowed() ) {
+				throw new \RuntimeException( esc_html__( 'Adults number is not valid.', 'motopress-hotel-booking' ) );
+			} else {
+				throw new \RuntimeException( esc_html__( 'The number of guests is not valid.', 'motopress-hotel-booking' ) );
+			}
 		}
 	}
 
 	/**
-	 * @param array $rawData Raw children string.
-	 * @param array $args Optional. No args at the moment.
-	 * @return int
-	 *
-	 * @throws Error
-	 *
 	 * @since 3.8
+	 *
+	 * @throws \RuntimeException If children number is not valid.
 	 */
-	public static function parseChildren( $rawData, $args = array() ) {
+	public static function parseChildren( string $childrenStr ): int {
 		$minChildren = mphb_get_min_children();
-		$maxChildren = mphb_get_max_children();
+		$children    = ValidateUtils::validateInt( $childrenStr, $minChildren );
 
-		$children = ValidateUtils::validateInt( $rawData, -1 );
-
-		if ( $children === false ) {
-			throw new Error( __( 'Children number is not valid', 'motopress-hotel-booking' ) );
-		} elseif ( $children == -1 || ( $children >= $minChildren && $children <= $maxChildren ) ) {
+		if ( $children !== false ) {
 			return $children;
 		} else {
-			throw new Error( __( 'Children number is not valid.', 'motopress-hotel-booking' ) );
+			throw new \RuntimeException( esc_html__( 'Children number is not valid.', 'motopress-hotel-booking' ) );
 		}
 	}
 
@@ -401,25 +411,30 @@ class ParseUtils {
 	}
 
 	/**
+	 * @since 3.7.2
+	 *
 	 * @param array $rawData
 	 * @param array $errors Optional. An array to add the errors to.
 	 * @return array|false Customer data or FALSE.
-	 *
-	 * @since 3.7.2
 	 */
-	public static function parseCustomer( $rawData, &$errors = null ) {
+	public static function parseCustomer( $rawData, ?array &$errors = null ) {
 		if ( is_null( $errors ) ) {
 			$errors = array();
 		}
 
-		if ( ! is_admin() ) {
+		$isAdmin = is_admin() || apply_filters( 'mphb_is_current_request_for_admin_ui', false );
+
+		if ( ! $isAdmin ) {
 			$customerFields = mphb_get_customer_fields();
 		} else {
 			$customerFields = mphb_get_admin_checkout_customer_fields();
 		}
 
 		// [Field name => '']
-		$customerData = array_combine( array_keys( $customerFields ), array_fill( 0, count( $customerFields ), '' ) );
+		$customerData = array_combine(
+			array_keys( $customerFields ),
+			array_fill( 0, count( $customerFields ), '' )
+		);
 
 		// Parse inputs
 		foreach ( $customerFields as $fieldName => $field ) {
@@ -447,23 +462,20 @@ class ParseUtils {
 		}
 
 		/**
-		 *
 		 * @since 4.3.0 $rawData
 		 * @since 4.3.0 $customerFields
 		 */
 		$customerData = apply_filters( 'mphb_parse_customer_data', $customerData, $rawData, $customerFields );
 
 		/**
+		 * @since 4.3.0
 		 *
 		 * @param array $errors
-		 *
-		 * @since 4.3.0
 		 */
 		$errors = apply_filters( 'mphb_parse_customer_errors', $errors );
 
 		// Check for errors
 		foreach ( $customerFields as $fieldName => $field ) {
-
 			$value = $customerData[ $fieldName ];
 
 			if ( empty( $value ) && $field['required'] ) {
@@ -477,5 +489,23 @@ class ParseUtils {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * @since 6.0.0
+	 *
+	 * @throws \RuntimeException in case of any error.
+	 */
+	public static function parseGatewayId( string $gatewayId, ?Booking $booking = null ): string {
+		$gatewayId = sanitize_text_field( wp_unslash( $gatewayId ) );
+		$activeGateways = array_keys( MPHB()->gatewayManager()->getListActive() );
+
+		if ( empty( $activeGateways ) || ( $booking !== null && $booking->calcDepositAmount() == 0 ) ) {
+			return 'manual';
+		} elseif ( ! in_array( $gatewayId, $activeGateways ) ) {
+			throw new \RuntimeException( esc_html__( 'Payment method is not valid.', 'motopress-hotel-booking' ) );
+		}
+
+		return $gatewayId;
 	}
 }

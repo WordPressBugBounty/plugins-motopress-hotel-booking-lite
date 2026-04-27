@@ -2,13 +2,15 @@
 
 namespace MPHB\PostTypes;
 
-use \MPHB\Admin\Fields;
-use \MPHB\Admin\Groups;
-use \MPHB\Admin\ManageCPTPages;
-use \MPHB\Entities;
+use MPHB\Admin\Fields\FieldFactory;
+use MPHB\Admin\Groups\MetaBoxGroup;
+use MPHB\Admin\ManageCPTPages;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class PaymentCPT extends EditableCPT {
-
 	protected $postType = 'mphb_payment';
 	protected $statuses;
 
@@ -28,7 +30,6 @@ class PaymentCPT extends EditableCPT {
 	}
 
 	/**
-	 *
 	 * @since 4.0.0 - Add custom capabilities.
 	 */
 	public function register() {
@@ -61,17 +62,16 @@ class PaymentCPT extends EditableCPT {
 			'supports'             => false,
 			'register_meta_box_cb' => array( $this, 'registerMetaBoxes' ),
 			'capability_type'      => $this->getCapabilityType(),
-			// 'capabilities'           => array(
-			// 'create_posts' => 'do_not_allow',
-			// ),
-				'map_meta_cap'     => true,
+//			'capabilities'         => array(
+//				'create_posts' => 'do_not_allow',
+//			),
+			'map_meta_cap'         => true,
 		);
 
 		register_post_type( $this->postType, $args );
 	}
 
 	/**
-	 *
 	 * @param int $bookingId
 	 * @return array
 	 */
@@ -95,7 +95,6 @@ class PaymentCPT extends EditableCPT {
 	}
 
 	/**
-	 *
 	 * @return array
 	 */
 	private function detectCustomFieldsDefaults() {
@@ -119,14 +118,13 @@ class PaymentCPT extends EditableCPT {
 	}
 
 	/**
-	 *
-	 * @return Groups\MetaBoxGroup[]
+	 * @return MetaBoxGroup[]
 	 */
 	public function getFieldGroups() {
 
 		$defaults = $this->detectCustomFieldsDefaults();
 
-		$mainGroup = new Groups\MetaBoxGroup( 'mphb_main', __( 'Payment Details', 'motopress-hotel-booking' ), $this->postType, 'normal' );
+		$mainGroup = new MetaBoxGroup( 'mphb_main', __( 'Payment Details', 'motopress-hotel-booking' ), $this->postType, 'normal' );
 
 		$gatewaysList = array_map(
 			function( $gateway ) {
@@ -136,7 +134,7 @@ class PaymentCPT extends EditableCPT {
 			MPHB()->gatewayManager()->getList()
 		);
 
-		$bookings     = MPHB()->getBookingPersistence()->getPosts(
+		$bookings = MPHB()->getBookingPersistence()->getPosts(
 			array(
 				'fields' => 'ids',
 			)
@@ -144,16 +142,16 @@ class PaymentCPT extends EditableCPT {
 		$bookingsList = ! empty( $bookings ) ? array_combine( $bookings, $bookings ) : array();
 
 		$paymentFields = array(
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_id',
 				array(
 					'type'     => 'post-id',
 					'label'    => __( 'ID', 'motopress-hotel-booking' ),
-					'size'     => 'all-options',
+					'size'     => 'long-price',
 					'readonly' => true,
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_gateway',
 				array(
 					'type'     => 'select',
@@ -163,7 +161,7 @@ class PaymentCPT extends EditableCPT {
 					'required' => true,
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_gateway_mode',
 				array(
 					'type'     => 'select',
@@ -176,7 +174,7 @@ class PaymentCPT extends EditableCPT {
 					'required' => true,
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_amount',
 				array(
 					'type'     => 'number',
@@ -188,7 +186,7 @@ class PaymentCPT extends EditableCPT {
 					'required' => true,
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_fee',
 				array(
 					'type'    => 'number',
@@ -200,7 +198,7 @@ class PaymentCPT extends EditableCPT {
 					'size'    => 'price',
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_payment_fee',
 				array(
 					'type'     => 'number',
@@ -212,7 +210,7 @@ class PaymentCPT extends EditableCPT {
 					'disabled' => true,
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_currency',
 				array(
 					'type'     => 'select',
@@ -222,7 +220,7 @@ class PaymentCPT extends EditableCPT {
 					'required' => true,
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_payment_type',
 				array(
 					'type'    => 'text',
@@ -230,7 +228,7 @@ class PaymentCPT extends EditableCPT {
 					'default' => '',
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_transaction_id',
 				array(
 					'type'    => 'text',
@@ -238,7 +236,7 @@ class PaymentCPT extends EditableCPT {
 					'default' => '',
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_booking_id',
 				array(
 					'type'    => 'select',
@@ -251,10 +249,10 @@ class PaymentCPT extends EditableCPT {
 
 		$mainGroup->addFields( $paymentFields );
 
-		$billingInfoGroup = new Groups\MetaBoxGroup( 'mphb_billing_info', __( 'Billing Info', 'motopress-hotel-booking' ), $this->postType );
+		$billingInfoGroup = new MetaBoxGroup( 'mphb_billing_info', __( 'Billing Info', 'motopress-hotel-booking' ), $this->postType );
 
 		$billingInfoFields = array(
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_first_name',
 				array(
 					'type'    => 'text',
@@ -262,7 +260,7 @@ class PaymentCPT extends EditableCPT {
 					'default' => ! empty( $defaults['_mphb_first_name'] ) ? sanitize_text_field( $defaults['_mphb_first_name'] ) : '',
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_last_name',
 				array(
 					'type'    => 'text',
@@ -270,7 +268,7 @@ class PaymentCPT extends EditableCPT {
 					'default' => ! empty( $defaults['_mphb_last_name'] ) ? sanitize_text_field( $defaults['_mphb_last_name'] ) : '',
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_email',
 				array(
 					'type'    => 'text',
@@ -278,7 +276,7 @@ class PaymentCPT extends EditableCPT {
 					'default' => ! empty( $defaults['_mphb_email'] ) ? sanitize_email( $defaults['_mphb_email'] ) : '',
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_phone',
 				array(
 					'type'    => 'text',
@@ -286,7 +284,7 @@ class PaymentCPT extends EditableCPT {
 					'default' => ! empty( $defaults['_mphb_phone'] ) ? sanitize_text_field( $defaults['_mphb_phone'] ) : '',
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_country',
 				array(
 					'type'    => 'text',
@@ -294,7 +292,7 @@ class PaymentCPT extends EditableCPT {
 					'default' => '',
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_address1',
 				array(
 					'type'    => 'text',
@@ -302,7 +300,7 @@ class PaymentCPT extends EditableCPT {
 					'default' => '',
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_address2',
 				array(
 					'type'    => 'text',
@@ -310,7 +308,7 @@ class PaymentCPT extends EditableCPT {
 					'default' => '',
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_city',
 				array(
 					'type'    => 'text',
@@ -318,7 +316,7 @@ class PaymentCPT extends EditableCPT {
 					'default' => '',
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_state',
 				array(
 					'type'    => 'text',
@@ -326,7 +324,7 @@ class PaymentCPT extends EditableCPT {
 					'default' => '',
 				)
 			),
-			Fields\FieldFactory::create(
+			FieldFactory::create(
 				'_mphb_zip',
 				array(
 					'type'    => 'text',
@@ -342,7 +340,6 @@ class PaymentCPT extends EditableCPT {
 	}
 
 	/**
-	 *
 	 * @return PaymentCPT\Statuses
 	 */
 	public function statuses() {

@@ -41,6 +41,15 @@ class RoomRepository extends AbstractPostRepository {
 		return $list;
 	}
 
+	/**
+	 * @since 6.0.0
+	 */
+	public function getIdTitleListForRoomType( int $roomTypeId, $atts = array() ): array {
+		$atts['room_type_id'] = $roomTypeId;
+
+		return $this->getIdTitleList( $atts );
+	}
+
 	function mapPostToEntity( $post ) {
 		$id = ( is_a( $post, '\WP_Post' ) ) ? $post->ID : $post;
 
@@ -221,69 +230,69 @@ class RoomRepository extends AbstractPostRepository {
 	/**
 	 * @since 4.10.0
 	 *
-	 * @param int|int[] $roomIds One or more IDs.
-	 * @param 'normal'|'reverse' $output Optional. 'normal' by default.
-	 * @param bool $includeAll Optional. Whether to add the "all" field to the final array. False by default.
-	 * @return array [room_id (int) => linked_room_ids (int[])] or [linked_room_id (int) => room_ids (int[])].
+	 * @param int|int[] $roomIds
+	 * @param string $output "int[]"|"full". "int[]" by default.
+	 * @return array int[] or <code>[
+	 *     room_id (int) => linked_to_room_ids (int[]),
+	 *     ...,
+	 *     "all"         => all_linked_to_room_ids (int[]),
+	 *     "links"       => [ linked_to_room_id (int) => room_ids (int[]) ],
+	 *     "room_ids"    => int[]
+	 * ]</code> if $output = "full".
 	 *
 	 * @global \wpdb $wpdb
 	 */
-	public function getLinkedRoomIds( $roomIds, $output = 'normal', $includeAll = false ) {
+	public function getLinkedRooms( $roomIds, string $output = 'int[]' ): array {
 		global $wpdb;
 
-		$roomIdsString = is_array( $roomIds ) ? implode( ', ', $roomIds ) : $roomIds;
+		$roomIds = (array) $roomIds;
 
-		$query = "SELECT `post_id` AS `room_id`, `meta_value` AS `linked_room_id` FROM `{$wpdb->postmeta}` WHERE `meta_key` = 'mphb_linked_room' AND `post_id` IN ({$roomIdsString})";
-		$results = $wpdb->get_results( $query, ARRAY_A );
+		$roomIdsPlaceholder = array_fill( 0, count( $roomIds ), '%d' );
+		$roomIdsPlaceholder = implode( ', ', $roomIdsPlaceholder );
 
-		$linkedRoomIds = $allLinkedRoomIds = array();
+		$results = $wpdb->get_results(
+			$wpdb->prepare(
+				'SELECT post_id AS room_id, meta_value AS linked_to_room_id'
+					. " FROM {$wpdb->postmeta}"
+					. ' WHERE meta_key = "mphb_linked_room"'
+						. " AND post_id IN ({$roomIdsPlaceholder})",
+				$roomIds
+			),
+			ARRAY_A
+		);
 
-		if ( $output == 'normal' ) {
-			$linkedRoomIds += array_fill_keys( (array) $roomIds, array() );
-		}
+		$linkedRooms = array_fill_keys( $roomIds, array() );
+
+		$linkedRooms['all'] = array();
+		$linkedRooms['links'] = array(); // Reverse output
+		$linkedRooms['room_ids'] = $roomIds;
 
 		foreach ( $results as $row ) {
 			$roomId = absint( $row['room_id'] );
-			$linkedRoomId = absint( $row['linked_room_id'] );
+			$linkedToRoomId = absint( $row['linked_to_room_id'] );
 
-			if ( $output == 'normal' ) {
-				$linkedRoomIds[ $roomId ][] = $linkedRoomId;
-			} else {
-				$linkedRoomIds[ $linkedRoomId ][] = $roomId;
-			}
+			$linkedRooms[ $roomId ][] = $linkedToRoomId;
+			$linkedRooms['links'][ $linkedToRoomId ][] = $roomId;
 
-			$allLinkedRoomIds[] = $linkedRoomId;
+			$linkedRooms['all'][] = $linkedToRoomId;
 		}
 
-		if ( $includeAll ) {
-			$linkedRoomIds['all'] = array_values( array_unique( $allLinkedRoomIds ) );
-		}
+		$linkedRoomIds['all'] = array_values( array_unique( $linkedRooms['all'] ) );
 
-		// Search:
-		//     $roomIds = [10] (House)
-		//
-		// Result (default output):
-		//     $linkedRoomIds = [
-		//         House ID => Room IDs
-		//         10       => [21, 22, 23, 24, 25],
-		//         'all'    => [21, 22, 23, 24, 25],
-		//     ]
-		//
-		// Result (reverse output):
-		//     $linkedRoomIds = [
-		//         Room IDs => House ID
-		//         21       => [10],
-		//         22       => [10],
-		//         23       => [10],
-		//         24       => [10],
-		//         25       => [10],
-		//         'all'    => [21, 22, 23, 24, 25],
-		//     ]
-		if ( is_array( $roomIds ) || $includeAll ) {
-			return $linkedRoomIds;
+		if ( $output === 'full' ) {
+			return $linkedRooms;
 		} else {
-			return $linkedRoomIds[ $roomIds ];
+			return $linkedRooms['all'];
 		}
 	}
 
+	public function getRoomTypeId( int $roomId ): int {
+		$roomTypeIdStr = get_post_meta( $roomId, 'mphb_room_type_id', $single = true );
+
+		if ( $roomTypeIdStr !== '' ) {
+			return (int) $roomTypeIdStr;
+		} else {
+			return 0;
+		}
+	}
 }

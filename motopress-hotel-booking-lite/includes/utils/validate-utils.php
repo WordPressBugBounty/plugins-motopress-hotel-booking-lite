@@ -2,7 +2,43 @@
 
 namespace MPHB\Utils;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class ValidateUtils {
+	public static function convertCustomBookingRulesToBlocks( array $rules ): array {
+		$blocks = array();
+
+		foreach ( $rules as $rule ) {
+			$block = array(
+				'block_id'         => 0,
+				'comment'          => $rule['comment'],
+				'date_from'        => $rule['date_from'],
+				'date_to'          => $rule['date_to'],
+				'has_restrictions' => false, // Set later below
+				'not_check_in'     => $rule['not_check_in'] ?? false,
+				'not_check_out'    => $rule['not_check_out'] ?? false,
+				'not_stay_in'      => $rule['not_stay_in'] ?? false,
+				'room_id'          => absint( $rule['room_id'] ),
+				'room_type_id'     => absint( $rule['room_type_id'] ),
+			);
+
+			if ( isset( $rule['restrictions'] ) ) {
+				$block['not_check_in']  = in_array( 'check-in',  $rule['restrictions'] );
+				$block['not_check_out'] = in_array( 'check-out', $rule['restrictions'] );
+				$block['not_stay_in']   = in_array( 'stay-in',   $rule['restrictions'] );
+			}
+
+			$block['has_restrictions'] = $block['not_check_in']
+				|| $block['not_check_out']
+				|| $block['not_stay_in'];
+
+			$blocks[] = $block;
+		}
+
+		return $blocks;
+	}
 
 	/**
 	 * @since 5.0.0
@@ -86,18 +122,27 @@ class ValidateUtils {
 	}
 
 	/**
-	 * @param array $values
-	 *
-	 * @return int[]
+	 * @param mixed $value
+	 * @return int|false
 	 */
-	public static function validateIds( $values ) {
+	public static function validateId( $value ) {
+		return static::validateInt( $value, 0 );
+	}
+
+	/**
+	 * @param mixed $values
+	 * @return int[] Allows 0, unlike ParseUtils::parseIds().
+	 */
+	public static function validateIds( array $values ): array {
 		$ids = array();
 
-		foreach ( $values as $id ) {
-			$ids[] = self::validateInt( $id, 0 );
-		}
+		foreach ( $values as $value ) {
+			$id = static::validateInt( $value, 0 );
 
-		$ids = array_filter( $ids );
+			if ( $id !== false ) {
+				$ids[] = $id;
+			}
+		}
 
 		return $ids;
 	}
@@ -146,5 +191,4 @@ class ValidateUtils {
 
 		return self::validateInt( $value, $minChildren, $maxChildren );
 	}
-
 }

@@ -4,6 +4,10 @@ namespace MPHB\Entities;
 
 use MPHB\Utils\DateUtils;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class Rate {
 
 	/**
@@ -179,9 +183,41 @@ class Rate {
 			foreach ( $this->seasonPrices as $seasonPrice ) {
 				$this->datePrices = array_merge( $this->datePrices, $seasonPrice->getDatePrices() );
 			}
+
+			/**
+			 * @param array $datePrices <code>[ Date string ("Y-m-d") => Price (float) ]</code>
+			 * @param Rate $rate
+			 */
+			$this->datePrices = apply_filters( 'mphb_get_rate_date_prices', $this->datePrices, $this );
 		}
 
 		return $this->datePrices;
+	}
+
+	/**
+	 * Does not recalculate prices, unlike <code>getPriceBreakdown()</code>.
+	 *
+	 * @since 6.0.0
+	 *
+	 * @param string|\DateTime $dateFrom
+	 * @param string|\DateTime $dateTo
+	 * @return array <code>[ Date string (Y-m-d) => Price (float) ]</code>
+	 */
+	public function getDatePricesForPeriod( $dateFrom, $dateTo ): array {
+		$period = DateUtils::createDatePeriod( $dateFrom, $dateTo );
+		$prices = array();
+
+		$datePrices = $this->getDatePrices();
+
+		foreach ( $period as $date ) {
+			$dateStr = DateUtils::formatDateDB( $date );
+
+			if ( array_key_exists( $dateStr, $datePrices ) ) {
+				$prices[ $dateStr ] = $datePrices[ $dateStr ];
+			}
+		}
+
+		return $prices;
 	}
 
 	/**
@@ -190,6 +226,18 @@ class Rate {
 	 */
 	public function isActive() {
 		return $this->isActive;
+	}
+
+	/**
+	 * Is it intended for editing? Can we change this event in the admin
+	 * calendar?
+	 *
+	 * True for rates like Pricelabs_Rate.
+	 *
+	 * @since 6.0.0
+	 */
+	public function isReadonly(): bool {
+		return false;
 	}
 
 	/**
@@ -259,11 +307,13 @@ class Rate {
 	}
 
 	/**
-	 * @param string $checkInDate date in format 'Y-m-d'
-	 * @param string $checkOutDate date in format 'Y-m-d'
-	 * @return array Array where keys are dates and values are prices
+	 * Recalculates prices, unlike <code>getDatePricesForPeriod()</code>.
 	 *
 	 * @since 3.5.0 removed optional parameter $occupancyParams.
+	 *
+	 * @param \DateTime|string $checkInDate
+	 * @param \DateTime|string $checkOutDate
+	 * @return array Array where keys are dates and values are prices
 	 */
 	public function getPriceBreakdown( $checkInDate, $checkOutDate ) {
 

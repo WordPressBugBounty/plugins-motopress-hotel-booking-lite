@@ -2,6 +2,9 @@
 
 namespace MPHB\Core;
 
+use MPHB\Entities\{ Rate, RecurrentSeason };
+use MPHB\Utils\DateUtils;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -13,7 +16,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  * other plugins and themes).
  */
 class PricesCoreAPIFacade extends AbstractCoreAPIFacade {
+	public function __construct() {
+		parent::__construct();
 
+		// Replace rate prices with custom amounts from mphb_custom_prices table
+		add_filter(
+			'mphb_get_rate_date_prices',
+			fn( $datePrices, $rate ) => array_merge( $datePrices, $this->getCustomPricesForRate( $rate ) ),
+			10,
+			2
+		);
+	}
 
 	protected function getHookNamesForClearAllCache(): array {
 		return array(
@@ -108,7 +121,6 @@ class PricesCoreAPIFacade extends AbstractCoreAPIFacade {
 		$rateArgs = array(
 			'check_in_date'  => $startDate,
 			'check_out_date' => $endDate,
-			'mphb_language'  => 'original',
 		);
 
 		if ( $isGetOnDefaultLanguage ) {
@@ -116,7 +128,7 @@ class PricesCoreAPIFacade extends AbstractCoreAPIFacade {
 			$rateArgs['mphb_language'] = 'original';
 		}
 
-		$rates =  MPHB()->getRateRepository()->findAllActiveByRoomType(
+		$rates = MPHB()->getRateRepository()->findAllActiveByRoomType(
 			$roomTypeIdOnAnyLanguage,
 			$rateArgs
 		);
@@ -124,6 +136,20 @@ class PricesCoreAPIFacade extends AbstractCoreAPIFacade {
 		return apply_filters( 'mphb_get_active_rates', $rates, $roomTypeIdOnAnyLanguage, $startDate, $endDate, $isGetOnDefaultLanguage );
 	}
 
+	/**
+	 * @return int[]
+	 */
+	public function getAllRateIds( bool $isGetOnDefaultLanguage = true ): array {
+		$rateArgs = array();
+
+		if ( $isGetOnDefaultLanguage ) {
+			$rateArgs['mphb_language'] = 'original';
+		}
+
+		$rateIds = MPHB()->getRateRepository()->findIds( $rateArgs );
+
+		return apply_filters( 'mphb_get_all_rate_ids', $rateIds, $isGetOnDefaultLanguage );
+	}
 
 	public function isRoomTypeHasActiveRate( int $roomTypeIdOnAnyLanguage, \DateTime $startDate, \DateTime $endDate ): bool {
 
@@ -168,21 +194,39 @@ class PricesCoreAPIFacade extends AbstractCoreAPIFacade {
 	}
 
 	/**
-	 * @param array $atts with:
-	 * 'decimal_separator' => string,
-	 * 'thousand_separator' => string,
-	 * 'decimals' => int, Number of decimals
-	 * 'is_truncate_price' => bool, false by default
-	 * 'currency_position' => string, Possible values: after, before, after_space, before_space
-	 * 'currency_symbol' => string,
-	 * 'literal_free' => bool, Use "Free" text instead of 0 price.
-	 * 'trim_zeros' => bool, true by default
-	 * 'period' => bool,
-	 * 'period_title' => '',
-	 * 'period_nights' => 1,
-	 * 'as_html' => bool, true by default
+	 * @param array $atts {
+	 *     @type bool   $as_html            True by default.
+	 *     @type string $currency_position  "after"|"after_space"|"before"|"before_space"
+	 *     @type string $currency_symbol
+	 *     @type string $decimal_separator
+	 *     @type int    $decimals           Number of decimals.
+	 *     @type bool   $is_truncate_price  False by default.
+	 *     @type bool   $literal_free       Use text "Free" instead of number 0.
+	 *     @type bool   $period             Whether to show period or not.
+	 *     @type int    $period_nights
+	 *     @type string $period_title
+	 *     @type string $thousand_separator
+	 *     @type bool   $trim_zeros         True by default.
+	 * }
 	 */
 	public function formatPrice( float $price, array $atts = array() ) {
 		return PriceHelper::formatPrice( $price, $atts );
+	}
+
+	/**
+	 * @param int|Rate $rate
+	 * @return array <code>[ Date string ("Y-m-d") => Price (float) ]</code>
+	 */
+	private function getCustomPricesForRate( $rate ): array {
+		$rateId = is_int( $rate ) ? $rate : $rate->getOriginalId();
+
+		// Limit the max date to +1 year from the current date, just like
+		// RecurrentSeason or GetRoomTypeCalendarData do
+		$startDate = new \DateTime( 'today', DateUtils::getSiteTimeZone() );
+		$endDate   = new \DateTime( '+1 year', DateUtils::getSiteTimeZone() );
+
+		$customPrices = MPHB()->getCustomPricesRepository()->getPricesForPeriod( $rateId, $startDate, $endDate );
+
+		return $customPrices;
 	}
 }

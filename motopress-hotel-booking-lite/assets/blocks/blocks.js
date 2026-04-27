@@ -1,6 +1,8 @@
 var __ = wp.i18n.__,
 	createElement = wp.element.createElement,
 	useState = wp.element.useState,
+	useMemo = wp.element.useMemo,
+	useEffect = wp.element.useEffect,
 	registerBlockType = wp.blocks.registerBlockType,
 	ServerSideRender = wp.serverSideRender || wp.components.ServerSideRender, // New version deprecates ServerSideRender in wp.components
 	editorControls = wp.blockEditor || wp.editor, // New version deprecates wp.editor
@@ -36,21 +38,57 @@ var getEditWrapperProps = function (attributes) {
 const AccommodationSelect = function (props) {
 
 	const [isSelect, setIsSelect] = useState(true);
+	const [page, setPage] = useState(1);
+	const [allRecords, setAllRecords] = useState([]);
 
-	let accommodations = useSelect( (select) => {
-		let accommodations = select( 'core' ).getEntityRecords( 'postType', 'mphb_room_type' );
-		accommodations = accommodations?.map(accommodation => {
-			return {
-				label: accommodation.title.raw + ' #' + accommodation.id.toString(),
-				value: accommodation.id.toString(),
-			}
+	const { records, totalPages, isLoading } = useSelect((select) => {
+		const core = select('core');
+		const coreData = select('core/data');
+
+		const query = { per_page: 100, page };
+		return {
+			records: core.getEntityRecords('postType', 'mphb_room_type', query ),
+			totalPages: core.getEntityRecordsTotalPages(
+				'postType',
+				'mphb_room_type',
+				{ per_page: query.per_page }
+			),
+			isLoading: coreData.isResolving('core', 'getEntityRecords', [
+				'postType',
+				'mphb_room_type',
+				query
+			])
+		};
+	}, [page]);
+
+	useEffect(() => {
+		if (!records) {
+			return;
+		}
+
+		setAllRecords((prev) => {
+			const merged = [...prev];
+
+			records.forEach((r) => {
+				if (!merged.find((m) => m.id === r.id)) {
+					merged.push(r);
+				}
+			});
+
+			return merged;
 		});
-		return accommodations;
-	}, [] );
 
-	if ( ! accommodations ) {
-		accommodations = [];
-	}
+		if (totalPages && page < totalPages) {
+			setPage((p) => p + 1);
+		}
+	}, [records, totalPages]);
+
+	const accommodations = useMemo(() => {
+		return allRecords.map((accommodation) => ({
+			label: accommodation.title.raw + ' #' + accommodation.id,
+			value: accommodation.id.toString(),
+		}));
+	}, [allRecords]);
 
 	return createElement(
 		Flex,
@@ -97,7 +135,8 @@ const AccommodationSelect = function (props) {
 					value: props.value,
 					options: accommodations,
 					onChange: props.onChange,
-					disabled: !accommodations
+					disabled: isLoading,
+					isLoading: isLoading
 				}
 			),
 			!isSelect && createElement(

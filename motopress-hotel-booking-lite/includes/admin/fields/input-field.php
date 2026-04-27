@@ -2,8 +2,11 @@
 
 namespace MPHB\Admin\Fields;
 
-abstract class InputField {
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
+abstract class InputField {
 	/**
 	 * @since 5.0.0
 	 *
@@ -29,6 +32,10 @@ abstract class InputField {
 	protected $innerLabel        = '';
 	protected $description       = '';
 	protected $description2      = '';
+	// Don't name the variable "$topDescription": the MailChimp Integration
+	// already has such field. This will result in a duplicate description being
+	// displayed.
+	protected $descriptionTop    = ''; // Description in the top, just before the field
 	protected $additionalClasses = '';
 
 	const TYPE = '';
@@ -52,6 +59,7 @@ abstract class InputField {
 		$this->innerLabel        = ( isset( $details['inner_label'] ) ) ? $details['inner_label'] : $this->innerLabel;
 		$this->description       = ( isset( $details['description'] ) ) ? $details['description'] : $this->description;
 		$this->description2      = ( isset( $details['description2'] ) ) ? $details['description2'] : $this->description2;
+		$this->descriptionTop    = $details['description_top'] ?? '';
 		$this->translatable      = ( isset( $details['translatable'] ) ) ? $details['translatable'] : $this->translatable;
 		$this->unique            = ( isset( $details['unique'] ) ) ? $details['unique'] : $this->unique;
 		$this->additionalClasses = ( isset( $details['classes'] ) ) ? $details['classes'] : $this->additionalClasses;
@@ -198,6 +206,10 @@ abstract class InputField {
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div class="mphb-ctrl-wrapper ' . esc_attr( $this->getCtrlClasses() ) . '" ' . $this->getCtrlAtts() . '>';
 
+		if ( $this->descriptionTop !== '' ) {
+			echo '<div class="mphb-ctrl-description mphb-top-description">' . wp_kses_post( $this->descriptionTop ) . '</div>';
+		}
+
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $this->renderInput();
 
@@ -209,7 +221,7 @@ abstract class InputField {
 		}
 
 		if ( ! empty( $this->description2 ) ) {
-			echo '<div class="mphb-ctrl-description">' . wp_kses_post( $this->description2 ) . '</div>';
+			echo '<div class="mphb-ctrl-description mphb-bottom-description">' . wp_kses_post( $this->description2 ) . '</div>';
 		}
 
 		echo '</div>';
@@ -270,5 +282,12 @@ abstract class InputField {
 	 */
 	public function isDisabled() {
 		return $this->disabled;
+	}
+
+	/**
+	 * @since 6.0.0
+	 */
+	public function isEditable(): bool {
+		return ! $this->isDisabled() && ! $this->isReadonly();
 	}
 }

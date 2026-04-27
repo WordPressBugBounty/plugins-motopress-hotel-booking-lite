@@ -2,6 +2,8 @@
 
 namespace MPHB\AjaxApi;
 
+use MPHB\Utils\DateUtils;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -44,6 +46,9 @@ class GetRoomTypeAvailabilityData extends AbstractAjaxApiAction {
 
 		$requestData[ static::REQUEST_DATA_CHECK_IN_DATE ]  = static::getDateFromRequest( static::REQUEST_DATA_CHECK_IN_DATE, true );
 		$requestData[ static::REQUEST_DATA_CHECK_OUT_DATE ] = static::getDateFromRequest( static::REQUEST_DATA_CHECK_OUT_DATE, true );
+
+		DateUtils::setTimeForCheckInDate( $requestData[ static::REQUEST_DATA_CHECK_IN_DATE ] );
+		DateUtils::setTimeForCheckOutDate( $requestData[ static::REQUEST_DATA_CHECK_OUT_DATE ] );
 
 		if ( $requestData[ static::REQUEST_DATA_CHECK_IN_DATE ] > $requestData[ static::REQUEST_DATA_CHECK_OUT_DATE ] ) {
 

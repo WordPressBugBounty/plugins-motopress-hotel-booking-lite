@@ -14,13 +14,19 @@ class LicenseSettingsGroup extends SettingsGroup {
 		$license = MPHB()->settings()->license()->getLicenseKey();
 		$licenseData = $license ? MPHB()->settings()->license()->getLicenseData() : null;
 
+		$storeURL = add_query_arg( array(
+			'utm_source' => 'customer_website_dashboard',
+			'utm_medium' => MPHB()->getPluginSlug(),
+			'utm_campaign' => 'purchase-new-license',
+		), MPHB()->settings()->license()->getStoreUrl() );
+
 		?>
-		<i>
+		<p>
 			<?php
 			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo __( "The License Key is required in order to get automatic plugin updates and support. You can manage your License Key in your personal account. <a href='https://motopress.zendesk.com/hc/en-us/articles/202812996-How-to-use-your-personal-MotoPress-account' target='_blank'>Learn more</a>.", 'motopress-hotel-booking' );
 			?>
-		</i>
+		</p>
 		<table class="form-table">
 			<tbody>
 				<tr valign="top">
@@ -30,7 +36,14 @@ class LicenseSettingsGroup extends SettingsGroup {
 					<td>
 						<input id="mphb_edd_license_key" name="mphb_edd_license_key" type="password"
 							   class="regular-text" value="<?php esc_attr_e( $license ); ?>"/>
-
+						<a
+							class="button button-secondary"
+							href="<?php echo esc_url( $storeURL ); ?>"
+							target="_blank"
+							style="background:#11ae29;color:#fff;border-color:transparent;"
+						>
+							<?php esc_html_e( 'Purchase New License', 'motopress-hotel-booking' ); ?>
+						</a>
 						<?php if ( $license ) { ?>
 							<i style="display: block;"><?php echo esc_html( str_repeat( '&#8226;', 20 ) . substr( $license, -7 ) ); ?></i>
 						<?php } ?>
@@ -174,7 +187,7 @@ class LicenseSettingsGroup extends SettingsGroup {
 			'edd_action' => 'activate_license',
 			'license'    => $licenseKey,
 			'item_id'    => MPHB()->settings()->license()->getProductId(),
-			'url'        => home_url(),
+			'url'        => network_home_url(),
 		);
 
 		$activateUrl = add_query_arg( $apiParams, MPHB()->settings()->license()->getStoreUrl() );
@@ -212,7 +225,7 @@ class LicenseSettingsGroup extends SettingsGroup {
 			'edd_action' => 'deactivate_license',
 			'license'    => $licenseKey,
 			'item_id'    => MPHB()->settings()->license()->getProductId(),
-			'url'        => home_url(),
+			'url'        => network_home_url(),
 		);
 
 		$deactivateUrl = add_query_arg( $apiParams, MPHB()->settings()->license()->getStoreUrl() );

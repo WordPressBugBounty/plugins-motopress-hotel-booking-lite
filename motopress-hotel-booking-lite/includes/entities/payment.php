@@ -2,8 +2,11 @@
 
 namespace MPHB\Entities;
 
-class Payment {
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
+class Payment {
 	/**
 	 * @var int
 	 */
@@ -61,6 +64,8 @@ class Payment {
 	 */
 	private $email;
 
+	private ?AuthorizedFunds $authedFunds = null;
+
 	/**
 	 * @param array $atts
 	 */
@@ -87,6 +92,10 @@ class Payment {
 
 		// Billing Fields
 		$this->email = ! empty( $atts['email'] ) ? $atts['email'] : '';
+
+		if ( isset( $atts['authed_funds'] ) ) {
+			$this->authedFunds = $atts['authed_funds'];
+		}
 	}
 
 	/**
@@ -181,6 +190,10 @@ class Payment {
 		return $this->transactionId;
 	}
 
+	public function setAmount( float $amount ): void {
+		$this->amount = $amount;
+	}
+
 	/**
 	 * @param int $id
 	 */
@@ -242,8 +255,8 @@ class Payment {
 	 * @param string $message
 	 */
 	public function addLog( $message ) {
+		$logs = $this->getLogs();
 
-		$logs   = $this->getLogs();
 		$logs[] = array(
 			'date'    => mphb_current_time( 'mysql' ),
 			'message' => $message,
@@ -256,8 +269,8 @@ class Payment {
 	 * @return array
 	 */
 	public function getLogs() {
-
 		$logs = get_post_meta( $this->id, '_mphb_logs', true );
+
 		return is_array( $logs ) ? $logs : array();
 	}
 
@@ -268,34 +281,53 @@ class Payment {
 		return $this->email;
 	}
 
+	public function isFailed(): bool {
+		return in_array( $this->status, MPHB()->postTypes()->payment()->statuses()->getFailedStatuses() );
+	}
+
 	/**
 	 * @return bool
 	 * @since 4.2.2
 	 */
 	public function isFinished() {
-
 		return in_array( $this->status, MPHB()->postTypes()->payment()->statuses()->getFinishedStatuses() );
 	}
 
 	/**
 	 * The customer went to the payment page (redirect) and authorized the
-	 * payment. Used for payment gateways with redirects: Stripe, PayPal, WooCommerce.
+	 * payment. Intended for payment gateways with redirects: Stripe, PayPal,
+	 * WooCommerce.
 	 *
 	 * @since 4.2.2
 	 */
 	public function setAuthorized() {
-
 		update_post_meta( $this->id, '_mphb_is_authorized', true );
 	}
 
 	/**
-	 * @return bool
 	 * @since 4.2.2
+	 *
+	 * @return bool
 	 */
 	public function isAuthorized() {
-
 		$isAuthorized = get_post_meta( $this->id, '_mphb_is_authorized', true );
 
 		return (bool) $isAuthorized;
+	}
+
+	public function getAuthedFunds(): ?AuthorizedFunds {
+		return $this->authedFunds;
+	}
+
+	public function hasAuthedFunds(): bool {
+		return $this->authedFunds !== null;
+	}
+
+	public function hasPendingAuthedFunds(): bool {
+		return $this->authedFunds !== null && $this->authedFunds->isPending();
+	}
+
+	public function setAuthedFunds( ?AuthorizedFunds $authedFunds ): void {
+		$this->authedFunds = $authedFunds;
 	}
 }

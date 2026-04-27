@@ -2,6 +2,10 @@
 
 use MPHB\PostTypes\PaymentCPT\Statuses as PaymentStatuses;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Display the room type default (average minimal) price for min days stay
  *
@@ -637,17 +641,13 @@ function mphb_tmpl_the_room_reservation_form( $roomTypeId = 0 ) {
 
 	$roomType = null;
 
-	if ( 0 < $roomTypeId ) {
-
+	if ( $roomTypeId > 0 ) {
 		$roomType = MPHB()->getRoomTypeRepository()->findById( $roomTypeId );
-
 	} else {
-
 		$roomType = MPHB()->getCurrentRoomType();
 	}
 
 	if ( null == $roomType || 'publish' != $roomType->getStatus() ) {
-
 		$errorMessage = sprintf(
 			__( 'Accommodation %s not found.', 'motopress-hotel-booking' ),
 			$roomTypeId
@@ -680,21 +680,19 @@ function mphb_tmpl_the_room_reservation_form( $roomTypeId = 0 ) {
 	$formDirectBookingClass = '';
 
 	if ( $isDirectBooking ) {
-
 		$actionUrl              = MPHB()->settings()->pages()->getCheckoutPageUrl();
 		$formMethod             = 'POST';
 		$formDirectBookingClass = 'mphb-booking-form--direct-booking';
 	}
 
 	$firstAvailableCheckInDate = mphb_availability_facade()->getFirstAvailableCheckInDate(
-			$isDirectBooking ? $roomType->getOriginalId() : 0,
-			MPHB()->settings()->main()->isBookingRulesForAdminDisabled()
-		)->format( 'Y-m-d' );
+		$isDirectBooking ? $roomType->getOriginalId() : 0,
+		MPHB()->settings()->main()->isBookingRulesForAdminDisabled()
+	)->format( 'Y-m-d' );
 	?>
 	<form method="<?php echo esc_attr( $formMethod ); ?>" action="<?php echo esc_url( $actionUrl ); ?>" class="mphb-booking-form <?php echo esc_attr( $formDirectBookingClass ); ?>" id="<?php echo esc_attr( 'booking-form-' . $roomType->getId() ); ?>" data-first_available_check_in_date="<?php echo esc_attr( $firstAvailableCheckInDate ); ?>">
 
 		<p class="mphb-required-fields-tip"><small><?php printf( esc_html__( 'Required fields are followed by %s', 'motopress-hotel-booking' ), '<abbr title="required">*</abbr>' ); ?></small></p>
-		<?php wp_nonce_field( \MPHB\Shortcodes\CheckoutShortcode::NONCE_ACTION_CHECKOUT, \MPHB\Shortcodes\CheckoutShortcode::NONCE_NAME ); ?>
 		<?php
 		foreach ( mphb_get_query_args( $actionUrl ) as $paramName => $paramValue ) {
 			printf( '<input type="hidden" name="%s" value="%s" />', esc_attr( $paramName ), esc_attr( $paramValue ) );
@@ -995,7 +993,16 @@ function mphb_tmpl_the_payments_table( $booking, bool $isShowPaymentFee = false 
 					printf( '<tr class="%s">', esc_attr( 'mphb-payment mphb-payment-status-' . $payment->getStatus() ) );
 					echo '<td>', sprintf( '<a href="%1$s">#%2$s</a>', esc_url( get_edit_post_link( $payment->getId() ) ), esc_html( $payment->getId() ) ), '</td>';
 
-					echo '<td>', esc_html( mphb_get_status_label( $payment->getStatus() ) ), '</td>';
+					echo '<td>';
+						echo esc_html( mphb_get_status_label( $payment->getStatus() ) );
+
+						if ( $payment->hasPendingAuthedFunds() ) {
+							echo '<br>';
+							echo '<span style="color: #b32d2e">' .
+								// Translators: "Awaiting charge" refers to a payment that has been authorized but not yet charged
+								esc_html__( 'Awaiting charge', 'motopress-hotel-booking' ) . '</span>';
+						}
+					echo '</td>';
 
 					echo '<td>' . mphb_format_price( $payment->getAmount() ); // phpcs:ignore
 
@@ -1230,4 +1237,25 @@ function mphb_tmpl_get_anchor_html_for_current_page( $htmlId, $linkText = '#' ) 
 	);
 
 	return $anchorHtml;
+}
+
+function mphb_tmpl_placeholder(): string {
+	return '&#8212;';
+}
+
+/**
+ * @param string $type "info"|"success"|"warning"|"error"|""
+ */
+function mphb_tmpl_admin_notice( string $message, string $type = 'success', bool $isDismissible = true ): string {
+	$classes = "notice notice-{$type}";
+
+	if ( $isDismissible ) {
+		$classes .= ' is-dismissible';
+	}
+
+	$output = '<div class="' . esc_attr( $classes ) . '">';
+		$output .= '<p>' . $message . '</p>'; // HTML allowed
+	$output .= '</div>';
+
+	return $output;
 }

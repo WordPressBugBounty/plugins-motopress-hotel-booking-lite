@@ -2,7 +2,17 @@
 
 namespace MPHB\Admin\Fields;
 
-class PostIdField extends TextField {
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
+class PostIdField extends TextField {
 	const TYPE = 'post-id';
+
+	protected function generateAttrs() {
+		$attrs = InputField::generateAttrs();
+		$attrs .= ' type="text"';
+
+		return $attrs;
+	}
 }

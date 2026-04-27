@@ -2,19 +2,20 @@
 
 namespace MPHB\Repositories;
 
-use \MPHB\Entities;
+use MPHB\Entities\{ AuthorizedFunds, Payment, WPPostData };
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class PaymentRepository extends AbstractPostRepository {
-
 	protected $type = 'payment';
 
 	/**
-	 *
-	 * @param type $post
-	 * @return \MPHB\Entities\Payment
+	 * @param \WP_Post|int $post
+	 * @return Payment
 	 */
 	public function mapPostToEntity( $post ) {
-
 		if ( is_a( $post, '\WP_Post' ) ) {
 			$id = $post->ID;
 		} else {
@@ -37,13 +38,24 @@ class PaymentRepository extends AbstractPostRepository {
 			'email'         => get_post_meta( $id, '_mphb_email', true ),
 		);
 
-		return new Entities\Payment( $atts );
+		$authedFunds = array(
+			'amount'            => get_post_meta( $id, '_mphb_authed_funds_amount', true ),
+			'amount_capturable' => get_post_meta( $id, '_mphb_authed_funds_amount_capturable', true ),
+			'expiration_action' => get_post_meta( $id, '_mphb_authed_funds_expiration_action', true ),
+			'expiration_time'   => get_post_meta( $id, '_mphb_authed_funds_expiration_time', true ),
+			'time'              => get_post_meta( $id, '_mphb_authed_funds_time', true ),
+		);
+
+		if ( ! empty( $authedFunds['amount'] ) || ! empty( $authedFunds['amount_capturable'] ) ) {
+			$atts['authed_funds'] = AuthorizedFunds::createFromFields( $id, $authedFunds );
+		}
+
+		return new Payment( $atts );
 	}
 
 	/**
-	 *
-	 * @param Entities\Payment $entity
-	 * @return \MPHB\Entities\WPPostData
+	 * @param Payment $entity
+	 * @return WPPostData
 	 */
 	public function mapEntityToPostData( $entity ) {
 
@@ -65,22 +77,33 @@ class PaymentRepository extends AbstractPostRepository {
 			'_mphb_booking_id'     => $entity->getBookingId(),
 			'_mphb_email'          => $entity->getEmail(),
 		);
-		return new Entities\WPPostData( $postAtts );
+
+		if ( $entity->hasAuthedFunds() ) {
+			$authedFunds = $entity->getAuthedFunds()->toArray();
+
+			$postAtts['post_metas'] += array(
+				'_mphb_authed_funds_amount'            => $authedFunds['amount'],
+				'_mphb_authed_funds_amount_capturable' => $authedFunds['amount_capturable'],
+				'_mphb_authed_funds_expiration_action' => $authedFunds['expiration_action'],
+				'_mphb_authed_funds_expiration_time'   => $authedFunds['expiration_time'],
+				'_mphb_authed_funds_time'              => $authedFunds['time'],
+			);
+		}
+
+		return new WPPostData( $postAtts );
 	}
 
 	/**
-	 *
 	 * @param int $id
-	 * @return Entities\Payment
+	 * @return Payment
 	 */
 	public function findById( $id, $force = false ) {
 		return parent::findById( $id, $force );
 	}
 
 	/**
-	 *
 	 * @param array $atts
-	 * @return Entities\Payment[]
+	 * @return Payment[]
 	 */
 	public function findAll( $atts = array() ) {
 		return parent::findAll( $atts );

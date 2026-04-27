@@ -24,6 +24,10 @@ class RecurrentSeason extends Season {
 	 */
 	private $periods = [];
 
+	public function getPeriods(): array {
+		return $this->periods;
+	}
+
 	protected function setupDates() {
 
 		if ( is_null( $this->startDate ) || is_null( $this->endDate ) ) {

@@ -2,6 +2,7 @@
 
 namespace MPHB\Views\Shortcodes;
 
+use MPHB\Shortcodes\CheckoutShortcode;
 use MPHB\Utils\DateUtils;
 
 /**
@@ -449,17 +450,17 @@ class CheckoutView {
 
 						<?php if ( $service->isFlexiblePay() ) { ?>
 							<?php
-								$minQuantity = $service->getMinQuantity();
-								$maxQuantity = $service->getMaxQuantityNumber();
+							$minQuantity = $service->getMinQuantity();
+							$maxQuantity = $service->getMaxQuantityNumber();
 
 							if ( $service->isAutoLimit() ) {
 								$maxQuantity = DateUtils::calcNights( $booking->getCheckInDate(), $booking->getCheckOutDate() );
 							}
 
-								$maxQuantity = max( $minQuantity, $maxQuantity );
+							$maxQuantity = max( $minQuantity, $maxQuantity );
 
-								$presetQuantity = apply_filters( 'mphb_sc_checkout_preset_service_quantity', $minQuantity, $service, $reservedRoom, $roomType );
-								$presetQuantity = mphb_limit( $presetQuantity, $minQuantity, $maxQuantity );
+							$presetQuantity = apply_filters( 'mphb_sc_checkout_preset_service_quantity', $minQuantity, $service, $reservedRoom, $roomType );
+							$presetQuantity = mphb_limit( $presetQuantity, $minQuantity, $maxQuantity );
 							?>
 							&#215; <input type="number" name="<?php echo esc_attr( $namePrefix ); ?>[quantity]" class="mphb_sc_checkout-service-quantity mphb_checkout-service-quantity" value="<?php echo esc_attr( $presetQuantity ); ?>" min="<?php echo esc_attr( $minQuantity ); ?>" <?php echo ! $service->isUnlimited() ? 'max="' . esc_attr( $maxQuantity ) . '"' : ''; ?> step="1"> <?php esc_html_e( 'time(s)', 'motopress-hotel-booking' ); ?>
 						<?php } // Is flexible pay? ?>
@@ -770,7 +771,7 @@ class CheckoutView {
 		 */
 		$gateways = MPHB()->gatewayManager()->getListActive();
 		?>
-		<section id="mphb-billing-details" class="mphb-checkout-section">
+		<section id="mphb-billing-details" class="mphb-checkout-section mphb-billing-fields-wrapper">
 			<h3 class="mphb-gateway-chooser-title">
 				<?php esc_html_e( 'Payment Method', 'motopress-hotel-booking' ); ?>
 			</h3>
@@ -864,8 +865,8 @@ class CheckoutView {
 	public static function renderTotalPrice( $booking ) {
 		$deposit       = $booking->calcDepositAmount();
 		$totalPrice    = $booking->getTotalPrice();
-		$isShowDeposit = MPHB()->settings()->main()->getConfirmationMode() === 'payment'
-			&& MPHB()->settings()->payment()->getAmountType() === 'deposit'
+		$isShowDeposit = MPHB()->settings()->main()->isConfirmationUponPayment()
+			&& MPHB()->settings()->payment()->isDepositEnabled()
 			&& ! mphb_is_create_booking_page()
 			&& $deposit < $totalPrice; // If not in the time frame, then they both will be equal
 		?>
@@ -992,16 +993,13 @@ class CheckoutView {
 	 * @param array                  $roomDetails
 	 */
 	public static function renderCheckoutForm( $booking, $roomDetails, $customer = null ) {
-		$actionUrl   = add_query_arg( 'step', \MPHB\Shortcodes\CheckoutShortcode::STEP_BOOKING, MPHB()->settings()->pages()->getCheckoutPageUrl() );
-		$checkoutId  = mphb_generate_uuid4();
-		$nonceAction = \MPHB\Shortcodes\CheckoutShortcode::NONCE_ACTION_BOOKING . '-' . $checkoutId;
+		$actionUrl  = MPHB()->settings()->pages()->getCheckoutPageUrl();
+		$checkoutId = mphb_generate_uuid4();
+
 		?>
 		<form class="mphb_sc_checkout-form" enctype="<?php echo esc_attr( apply_filters( 'mphb_checkout_form_enctype_data', '' ) ); ?>" method="POST" action="<?php echo esc_url( $actionUrl ); ?>">
-
-			<?php wp_nonce_field( $nonceAction, \MPHB\Shortcodes\CheckoutShortcode::NONCE_NAME ); ?>
-
 			<input type="hidden"
-				   name="<?php echo esc_attr( \MPHB\Shortcodes\CheckoutShortcode::BOOKING_CID_NAME ); ?>"
+				   name="<?php echo esc_attr( CheckoutShortcode::CHECKOUT_ID_FIELD ); ?>"
 				   value="<?php echo esc_attr( $checkoutId ); ?>"
 				   />
 			<input type="hidden"
@@ -1012,22 +1010,12 @@ class CheckoutView {
 				   name="mphb_check_out_date"
 				   value="<?php echo esc_attr( $booking->getCheckOutDate()->format( MPHB()->settings()->dateTime()->getDateTransferFormat() ) ); ?>"
 				   />
-			<input type="hidden"
-				   name="mphb_checkout_step"
-				   value="<?php
-						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						echo \MPHB\Shortcodes\CheckoutShortcode::STEP_BOOKING;
-				   ?>"
-				   />
 
 			<?php do_action( 'mphb_sc_checkout_form', $booking, $roomDetails, $customer ); ?>
-			
-			
 
 			<p class="mphb_sc_checkout-submit-wrapper">
 				<input type="submit" class="button" value="<?php esc_attr_e( 'Book Now', 'motopress-hotel-booking' ); ?>"/>
 			</p>
-
 		</form>
 		<?php
 	}

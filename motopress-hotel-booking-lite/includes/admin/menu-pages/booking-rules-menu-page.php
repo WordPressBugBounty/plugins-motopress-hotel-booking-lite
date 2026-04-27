@@ -2,186 +2,179 @@
 
 namespace MPHB\Admin\MenuPages;
 
-use \MPHB\Admin\Fields\FieldFactory;
+use MPHB\Admin\Fields\{ FieldFactory, InputField };
+use MPHB\Admin\BlocksListTable;
+use MPHB\Utils\DateUtils;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class BookingRulesMenuPage extends AbstractMenuPage {
+	private const TAB_BLOCKS = 'blocks';
+	private const TAB_RESERVATION_RULES = 'reservation';
 
-	const BOOKING_RULES_PAGE_NONCE_NAME = 'mphb_booking_rules';
+	private const TABS = array(
+		self::TAB_BLOCKS,
+		self::TAB_RESERVATION_RULES,
+	);
 
-	private $fields = array();
+	private const NONCE_ACTION = 'mphb_save_booking_rules';
+	private const NONCE_FIELD_NAME = 'mphb_booking_rules';
 
+	private ?BlocksListTable $blocksList = null;
+
+	/**
+	 * @var array|null Fields for reservation rules tab
+	 */
+	private ?array $fields = null;
+
+	/**
+	 * @access private
+	 */
 	public function addActions() {
-
 		parent::addActions();
 
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueueAdminScripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueueScripts' ) );
 		add_action( 'admin_notices', array( $this, 'showNotices' ) );
 	}
 
-	public function enqueueAdminScripts() {
-
-		if ( $this->isCurrentPage() ) {
-
-			MPHB()->getAdminScriptManager()->enqueue();
-			wp_enqueue_script( 'mphb-jquery-serialize-json' );
-		}
-	}
-
-	public function showNotices() {
-
-		if ( $this->isCurrentPage() && isset( $_POST['save'] ) ) {
-
-			echo '<div class="updated notice notice-success is-dismissible"><p>' . esc_html__( 'Booking rules saved.', 'motopress-hotel-booking' ) . '</p></div>';
-		}
-	}
-
-	public function render() {
-		?>
-		<div class="wrap">
-			<h1 class="wp-heading-inline"><?php esc_html_e( 'Booking Rules', 'motopress-hotel-booking' ); ?></h1>
-
-			<hr class="wp-header-end" />
-
-			<form method="POST" action="" autocomplete="off">
-				<?php
-
-				wp_nonce_field( static::BOOKING_RULES_PAGE_NONCE_NAME, static::BOOKING_RULES_PAGE_NONCE_NAME );
-
-				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $this->fields['mphb_check_in_days']->render();
-				?>
-				<br/><hr/>
-
-				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $this->fields['mphb_check_out_days']->render();
-				?>
-				<br/><hr/>
-
-				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $this->fields['mphb_min_stay_length']->render();
-				?>
-				<br/><hr/>
-
-				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $this->fields['mphb_max_stay_length']->render();
-				?>
-				<br/><hr/>
-
-				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $this->fields['mphb_booking_rules_custom']->render();
-				?>
-				<br/><hr/>
-
-				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $this->fields['mphb_min_advance_reservation']->render();
-				?>
-				<br/><hr/>
-
-				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $this->fields['mphb_max_advance_reservation']->render();
-				?>
-				<br/><hr/>
-
-                <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $this->fields['mphb_buffer_days']->render();
-				?>
-
-				<p class="submit">
-					<input name="save" type="submit" class="button button-primary" id="publish" value="<?php esc_attr_e( 'Save Changes', 'motopress-hotel-booking' ); ?>" />
-				</p>
-			</form>
-		</div>
-		<?php
-	}
-
-	public function onLoad() {
-
+	/**
+	 * @access private
+	 */
+	public function enqueueScripts(): void {
 		if ( ! $this->isCurrentPage() ) {
 			return;
 		}
 
-		$this->createFields();
+		$currentTab = $this->getCurrentTab();
 
-		if ( isset( $_POST['save'] ) &&
-			isset( $_POST[ static::BOOKING_RULES_PAGE_NONCE_NAME ] ) &&
-			wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST[ static::BOOKING_RULES_PAGE_NONCE_NAME ] ) ), static::BOOKING_RULES_PAGE_NONCE_NAME )
-		) {
-			$this->saveCustomRules();
-			$this->processReservationRules();
+		if ( $currentTab === self::TAB_RESERVATION_RULES ) {
+			MPHB()->getAdminScriptManager()->enqueue();
+
+			wp_enqueue_script( 'mphb-jquery-serialize-json' );
+
+		} elseif ( $currentTab === self::TAB_BLOCKS ) {
+			MPHB()->getAdminScriptManager()->enqueue();
 		}
 	}
 
-	private function saveCustomRules() {
+	/**
+	 * @access protected
+	 */
+	public function onLoad() {
+		if ( ! $this->isCurrentPage() ) {
+			return;
+		}
 
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		$customRules = ! empty( $_POST['mphb_booking_rules_custom'] ) ? $_POST['mphb_booking_rules_custom'] : array();
-		$customRules = $this->sanitize( 'mphb_booking_rules_custom', $customRules );
-		$this->save( 'mphb_booking_rules_custom', $customRules );
+		$currentTab = $this->getCurrentTab();
+
+		if ( $currentTab === self::TAB_RESERVATION_RULES ) {
+			$canSave = false;
+
+			if ( isset( $_POST['save'] ) && isset( $_POST[ self::NONCE_FIELD_NAME ] ) ) {
+				$nonce = sanitize_text_field( wp_unslash( $_POST[ self::NONCE_FIELD_NAME ] ) );
+
+				$canSave = wp_verify_nonce( $nonce, self::NONCE_ACTION );
+			}
+
+			if ( $canSave ) {
+				$this->saveReservationRules();
+			}
+
+		} elseif ( $currentTab === self::TAB_BLOCKS ) {
+			$this->blocksList = new BlocksListTable();
+			$this->blocksList->process_actions();
+		}
 	}
 
 	/**
-	 * Build reservation rules and prepare season priorities.
+	 * @access protected
 	 */
-	private function processReservationRules() {
-
-		$postFields = array(
-			'mphb_check_in_days',
-			'mphb_check_out_days',
-			'mphb_min_stay_length',
-			'mphb_max_stay_length',
-			'mphb_min_advance_reservation',
-			'mphb_max_advance_reservation',
-			'mphb_buffer_days',
+	public function render() {
+		$tabs = array(
+			self::TAB_RESERVATION_RULES => __( 'Booking Rules', 'motopress-hotel-booking' ),
+			// translators: Section label. Refers to options for blocking an accommodation’s availability.
+			self::TAB_BLOCKS            => __( 'Block Accommodations', 'motopress-hotel-booking' ),
 		);
 
-		foreach ( $postFields as $postField ) {
-			// Use array_values() to reset numeric indexes
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-			$postValues = ! empty( $_POST[ $postField ] ) ? array_values( $_POST[ $postField ] ) : array();
-			$postValues = $this->sanitize( $postField, $postValues );
+		$currentTab = $this->getCurrentTab();
 
-			// All values are numbers, so convert all strings in the array into numbers
-			array_walk_recursive(
-				$postValues,
-				function ( &$value, $key ) {
-					$value = (int) $value;
+		?>
+		<div class="wrap">
+			<h1 class="nav-tab-wrapper">
+				<?php
+				foreach ( $tabs as $tab => $title ) {
+					if ( $tab === $currentTab ) {
+						echo '<span class="nav-tab nav-tab-active">', esc_html( $title ), '</span>';
+					} else {
+						$urlArgs = ( $tab === self::TAB_RESERVATION_RULES ) ? array() : array( 'tab' => $tab );
+						$tabUrl  = $this->getUrl( $urlArgs );
+
+						echo '<a href="' . esc_url( $tabUrl ) . '" class="nav-tab">', esc_html( $title ), '</a>';
+					}
 				}
-			);
+				?>
+			</h1>
 
-			$this->save( $postField, $postValues );
-		}
+			<hr class="wp-header-end">
+
+			<?php
+			switch( $this->getCurrentTab() ) {
+				case self::TAB_RESERVATION_RULES: $this->renderReservationRules(); break;
+				case self::TAB_BLOCKS:            $this->renderBlocks();           break;
+			}
+			?>
+		</div>
+		<?php
 	}
 
 	/**
-	 * @param string $option
-	 * @param mixed  $value
-	 * @return mixed Sanitized value.
+	 * @access private
 	 */
-	private function sanitize( $option, $value ) {
+	public function showNotices(): void {
+		if ( ! $this->isCurrentPage() ) {
+			return;
+		}
 
-		$field = $this->fields[ $option ];
+		$currentTab = $this->getCurrentTab();
 
-		$value = wp_unslash( $value );
-		$value = $field->sanitize( $value );
+		if ( $currentTab === self::TAB_RESERVATION_RULES ) {
+			if ( isset( $_POST['save'] ) ) {
+				// phpcs:ignore -- HTML content
+				echo mphb_tmpl_admin_notice( __( 'Booking rules saved.', 'motopress-hotel-booking' ) );
+			}
 
-		return $value;
+		} elseif ( $currentTab === self::TAB_BLOCKS ) {
+			$this->blocksList->display_notices();
+		}
 	}
 
-	private function save( $option, $value ) {
-
-		$this->fields[ $option ]->setValue( $value );
-		update_option( $option, $value, 'no' );
+	protected function getMenuTitle() {
+		return __( 'Booking Rules', 'motopress-hotel-booking' );
 	}
 
-	private function createFields() {
+	protected function getPageTitle() {
+		return __( 'Booking Rules', 'motopress-hotel-booking' );
+	}
 
+	private function createFields(): void {
 		// Load room types only on default language
 		MPHB()->translation()->setupDefaultLanguage();
-		$roomTypes = MPHB()->getRoomTypePersistence()->getIdTitleList( array(), array( 0 => __( 'All', 'motopress-hotel-booking' ) ) );
+
+		$roomTypes = MPHB()->getRoomTypePersistence()->getIdTitleList(
+			$atts = array(),
+			$extend = array( 0 => __( 'All', 'motopress-hotel-booking' ) )
+		);
+
 		MPHB()->translation()->restoreLanguage();
 
-		$seasons    = MPHB()->getSeasonPersistence()->getIdTitleList( array(), array( 0 => __( 'All', 'motopress-hotel-booking' ) ) );
-		$daysOfWeek = \MPHB\Utils\DateUtils::getDaysList();
+		$seasons = MPHB()->getSeasonPersistence()->getIdTitleList(
+			$atts = array(),
+			$extend = array( 0 => __( 'All', 'motopress-hotel-booking' ) )
+		);
+
+		$daysOfWeek = DateUtils::getDaysList();
 
 		// Consider first day settings: move first day to the top of the list
 		$startDay = MPHB()->settings()->dateTime()->getFirstDay();
@@ -191,6 +184,8 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 			$endPart    = array_slice( $daysOfWeek, 0, $startDay, true );
 			$daysOfWeek = array_replace( $startPart, $endPart );
 		}
+
+		$this->fields = array();
 
 		$this->fields['mphb_check_in_days'] = FieldFactory::create(
 			'mphb_check_in_days',
@@ -218,7 +213,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Accommodations', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $roomTypes,
 						)
 					),
@@ -228,7 +223,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Seasons', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $seasons,
 						)
 					),
@@ -263,7 +258,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Accommodations', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $roomTypes,
 						)
 					),
@@ -273,7 +268,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Seasons', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $seasons,
 						)
 					),
@@ -309,7 +304,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Accommodations', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $roomTypes,
 						)
 					),
@@ -319,7 +314,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Seasons', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $seasons,
 						)
 					),
@@ -355,7 +350,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Accommodations', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $roomTypes,
 						)
 					),
@@ -365,98 +360,13 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Seasons', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $seasons,
 						)
 					),
 				),
 			),
 			get_option( 'mphb_max_stay_length', array() )
-		);
-
-		$this->fields['mphb_booking_rules_custom'] = FieldFactory::create(
-			'mphb_booking_rules_custom',
-			array(
-				'type'        => 'rules-list',
-				'label'       => __( 'Block accommodation', 'motopress-hotel-booking' ),
-				'empty_label' => __( 'There are no blocking accommodation rules.', 'motopress-hotel-booking' ),
-				'add_label'   => __( 'Add rule', 'motopress-hotel-booking' ),
-				'add_anchor'  => true,
-				'default'     => array(),
-				'order_by'    => 'date_from',
-				'order'       => 'DESC',
-				'fields'      => array(
-					FieldFactory::create(
-						'room_type_id',
-						array(
-							'type'    => 'select',
-							'label'   => __( 'Accommodation Type', 'motopress-hotel-booking' ),
-							'default' => 0,
-							'list'    => $roomTypes,
-						)
-					),
-					FieldFactory::create(
-						'room_id',
-						array(
-							'type'             => 'dynamic-select',
-							'label'            => __( 'Accommodation', 'motopress-hotel-booking' ),
-							'dependency_input' => 'room_type_id',
-							'ajax_action'      => 'mphb_get_accommodations_list',
-							'list_callback'    => 'mphb_get_rooms_select_list',
-							'default'          => 0,
-							'list'             => array( 0 => __( 'All', 'motopress-hotel-booking' ) ),
-						)
-					),
-					FieldFactory::create(
-						'date_from',
-						array(
-							'type'     => 'datepicker',
-							'label'    => __( 'From', 'motopress-hotel-booking' ),
-							'size'     => 'wide',
-							'required' => true,
-							'readonly' => false,
-						)
-					),
-					FieldFactory::create(
-						'date_to',
-						array(
-							'type'     => 'datepicker',
-							'label'    => __( 'Till', 'motopress-hotel-booking' ),
-							'size'     => 'wide',
-							'required' => true,
-							'readonly' => false,
-						)
-					),
-					FieldFactory::create(
-						'restrictions',
-						array(
-							'type'    => 'multiple-checkbox',
-							'label'   => __( 'Restriction', 'motopress-hotel-booking' ) .
-								mphb_help_tip(
-									'<p>' . __( 'Not check-in rule marks the date as unavailable for check-in.', 'motopress-hotel-booking' ) . '</p>' .
-										'<p>' . __( 'Not check-out rule marks the date as unavailable for check-out.', 'motopress-hotel-booking' ) . '</p>' .
-										'<p>' . __( 'Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.', 'motopress-hotel-booking' ) . '</p>' .
-										'<p>' . __( 'Not stay-in with Not check-out rules completely block the selected date, additionally displaying the previous date as unavailable for check-in.', 'motopress-hotel-booking' ) . '</p>',
-									true
-								),
-							'default' => array( 'stay-in' ),
-							'list'    => array(
-								'check-in'  => __( 'Not check-in', 'motopress-hotel-booking' ),
-								'check-out' => __( 'Not check-out', 'motopress-hotel-booking' ),
-								'stay-in'   => __( 'Not stay-in', 'motopress-hotel-booking' ),
-							),
-						)
-					),
-					FieldFactory::create(
-						'comment',
-						array(
-							'type'  => 'textarea',
-							'label' => __( 'Comment', 'motopress-hotel-booking' ),
-						)
-					),
-				),
-			),
-			get_option( 'mphb_booking_rules_custom', array() )
 		);
 
 		$this->fields['mphb_min_advance_reservation'] = FieldFactory::create(
@@ -486,7 +396,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Accommodations', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $roomTypes,
 						)
 					),
@@ -496,7 +406,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Seasons', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $seasons,
 						)
 					),
@@ -532,7 +442,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Accommodations', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $roomTypes,
 						)
 					),
@@ -542,7 +452,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Seasons', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $seasons,
 						)
 					),
@@ -578,7 +488,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Accommodations', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $roomTypes,
 						)
 					),
@@ -588,7 +498,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 							'type'      => 'multiple-checkbox',
 							'label'     => __( 'Seasons', 'motopress-hotel-booking' ),
 							'all_value' => 0,
-							'default'   => array( 0 ),
+							'default'   => array(),
 							'list'      => $seasons,
 						)
 					),
@@ -598,11 +508,126 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 		);
 	}
 
-	protected function getMenuTitle() {
-		return __( 'Booking Rules', 'motopress-hotel-booking' );
+	protected function getCurrentTab() {
+		if ( ! isset( $_GET['tab'] ) ) {
+			return self::TAB_RESERVATION_RULES;
+		}
+
+		$tab = sanitize_text_field( wp_unslash( $_GET['tab'] ) );
+
+		if ( in_array( $tab, self::TABS ) ) {
+			return $tab;
+		} else {
+			return self::TAB_RESERVATION_RULES;
+		}
 	}
 
-	protected function getPageTitle() {
-		return __( 'Booking Rules', 'motopress-hotel-booking' );
+	private function getField( string $name ): ?InputField {
+		$fields = $this->getFields();
+
+		return $fields[ $name ] ?? null;
+	}
+
+	/**
+	 * @return InputField[]
+	 */
+	private function getFields(): array {
+		if ( is_null( $this->fields ) ) {
+			$this->createFields();
+		}
+
+		return $this->fields;
+	}
+
+	private function renderBlocks(): void {
+		$this->blocksList->prepare_items();
+
+		$page = isset( $_REQUEST['page'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ) : '';
+
+		echo '<form action="" id="' . sanitize_key( $this->blocksList->get_plural() ), '-filter" method="POST">';
+			// Make sure to return to our current page
+			echo '<input name="page" type="hidden" value="' . esc_attr( $page ) . '">';
+
+			$this->blocksList->display();
+		echo '</form>';
+	}
+
+	private function renderReservationRules(): void {
+		?>
+		<form action="" autocomplete="off" method="POST">
+			<?php
+			wp_nonce_field( self::NONCE_ACTION, self::NONCE_FIELD_NAME );
+
+			$fields  = $this->getFields();
+			$lastKey = array_key_last( $fields );
+
+			foreach ( $fields as $name => $field ) {
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $field->render();
+
+				if ( $name !== $lastKey ) {
+					echo '<br>';
+					echo '<hr>';
+				}
+			}
+			?>
+
+			<p class="submit">
+				<input class="button button-primary" id="publish" name="save" type="submit" value="<?php esc_attr_e( 'Save Changes', 'motopress-hotel-booking' ); ?>">
+			</p>
+		</form>
+		<?php
+	}
+
+	private function sanitizeField( string $option, $value ) {
+		$value = wp_unslash( $value );
+
+		$field = $this->getField( $option );
+
+		if ( $field !== null ) {
+			$value = $field->sanitize( $value );
+		}
+
+		return $value;
+	}
+
+	private function saveField( string $option, $value ) {
+		$field = $this->getField( $option );
+
+		if ( $field !== null ) {
+			$field->setValue( $value );
+		}
+
+		update_option( $option, $value, $autoload = false );
+	}
+
+	/**
+	 * Build reservation rules and prepare season priorities.
+	 */
+	private function saveReservationRules(): void {
+		$fields = array(
+			'mphb_check_in_days',
+			'mphb_check_out_days',
+			'mphb_min_stay_length',
+			'mphb_max_stay_length',
+			'mphb_min_advance_reservation',
+			'mphb_max_advance_reservation',
+			'mphb_buffer_days',
+		);
+
+		foreach ( $fields as $fieldName ) {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+			$rules = ! empty( $_POST[ $fieldName ] ) ? $_POST[ $fieldName ] : array();
+
+			// Use array_values() to remove custom indexes
+			$rules = $this->sanitizeField( $fieldName, array_values( $rules ) );
+
+			// All values are numbers, so convert all strings in the array into numbers
+			array_walk_recursive( $rules, function ( &$value ) {
+				$value = (int) $value;
+			} );
+
+			$this->saveField( $fieldName, $rules );
+		}
 	}
 }

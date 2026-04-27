@@ -135,7 +135,6 @@ class Booking {
 	 */
 	public function __construct( $atts ) {
 		$this->setupParameters( $atts );
-
 	}
 
 	/**
@@ -181,7 +180,6 @@ class Booking {
 	 * @param array          $atts['internal_notes'] Optional.
 	 */
 	protected function setupParameters( $atts = array() ) {
-
 		if ( isset( $atts['id'] ) ) {
 			$this->id = $atts['id'];
 		}
@@ -238,7 +236,7 @@ class Booking {
 
 		$this->language = isset( $atts['language'] ) ? $atts['language'] : MPHB()->translation()->getCurrentLanguage();
 
-		if ( isset( $atts['checkout_id'] ) ) {
+		if ( ! empty( $atts['checkout_id'] ) ) {
 			$this->checkoutId = $atts['checkout_id'];
 		}
 

@@ -29,9 +29,9 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 	}
 
 	public function showNotices() {
-
 		if ( $this->isCurrentPage() && isset( $_POST['save'] ) ) {
-			echo '<div class="updated notice notice-success is-dismissible"><p>' . esc_html__( 'Taxes and fees saved.', 'motopress-hotel-booking' ) . '</p></div>';
+			// phpcs:ignore -- HTML content
+			echo mphb_tmpl_admin_notice( esc_html__( 'Taxes and fees saved.', 'motopress-hotel-booking' ) );
 		}
 	}
 

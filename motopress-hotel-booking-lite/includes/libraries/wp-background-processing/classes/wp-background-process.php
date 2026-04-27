@@ -197,11 +197,12 @@ abstract class WP_Background_Process extends WP_Async_Request {
 
 		$key = $this->identifier . '_batch_%';
 
-		$count = $wpdb->get_var( $wpdb->prepare( "
-		SELECT COUNT(*)
-		FROM {$table}
-		WHERE {$column} LIKE %s
-	", $key ) );
+		$count = (int) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT COUNT(*) FROM {$table} WHERE {$column} LIKE %s",
+				$key
+			)
+		);
 
 		return ( $count > 0 ) ? false : true;
 	}
@@ -317,7 +318,9 @@ abstract class WP_Background_Process extends WP_Async_Request {
 			}
 
 			// Update or delete current batch. Fork notice: added filter {identifier}_aborting.
-			if ( ! empty( $batch->data ) && ! apply_filters( $this->identifier . '_aborting', false ) ) {
+			$isAborting = apply_filters( $this->identifier . '_aborting', false );
+
+			if ( ! empty( $batch->data ) && ! $isAborting ) {
 				$this->update( $batch->key, $batch->data );
 			} else {
 				$this->delete( $batch->key );

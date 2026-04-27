@@ -1,5 +1,9 @@
 "use strict";
 
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 (function ($) {
   $(function () {
     MPHB.calendarHelper = {
@@ -717,8 +721,10 @@
       paymentFee: 0,
       paymentFeeHtml: '',
       paymentDescription: '',
-      init: function init(args) {
+      paymentFields: {},
+      init: function init(gatewayId, args) {
         this.billingSection = args.billingSection;
+        this.gatewayId = gatewayId;
         this.initSettings(args.settings);
       },
       initSettings: function initSettings(settings) {
@@ -728,6 +734,14 @@
         this.paymentFeeHtml = (_settings$paymentFeeH = settings.paymentFeeHtml) !== null && _settings$paymentFeeH !== void 0 ? _settings$paymentFeeH : '';
         this.paymentDescription = settings.paymentDescription;
       },
+      /**
+       * @param {Object} paymentFields
+       * @returns {Promise}
+       */
+      afterProcessing: function afterProcessing(paymentFields) {
+        return Promise.resolve(null);
+      },
+      afterSelection: function afterSelection(newFieldset) {},
       /**
        * @param {Number} amount The price to pay.
        * @param {Object} customer Maximum information about the customer. See
@@ -741,91 +755,30 @@
       canSubmit: function canSubmit(amount, customer) {
         return Promise.resolve(true);
       },
-      updateData: function updateData(data) {
-        this.amount = data.amount;
-        this.paymentFee = data.paymentFee;
-        this.paymentFeeHtml = data.paymentFeeHtml;
-        this.paymentDescription = data.paymentDescription;
-      },
-      afterSelection: function afterSelection(newFieldset) {},
       cancelSelection: function cancelSelection() {},
+      getGatewayId: function getGatewayId() {
+        return this.gatewayId;
+      },
+      getPaymentFields: function getPaymentFields() {
+        return this.paymentFields;
+      },
       /**
        * @param {String} name
        * @param {String} value
        *
        * @since 3.6.0
        */
-      onInput: function onInput(name, value) {}
-    });
-
-    /**
-     *
-     * @requires ./gateway.js
-     */
-    MPHB.BeanstreamGateway = MPHB.Gateway.extend({}, {
-      scriptUrl: '',
-      isCanSubmit: false,
-      loadHandler: null,
-      validityHandler: null,
-      tokenRequestHandler: null,
-      tokenUpdatedHandler: null,
-      initSettings: function initSettings(settings) {
-        this._super(settings);
-        this.scriptUrl = settings.scriptUrl || 'https://payform.beanstream.com/v1.1.0/payfields/beanstream_payfields.js';
-        this.validityHandler = this.validityChanged.bind(this);
-        this.tokenRequestHandler = this.tokenRequested.bind(this);
-        this.tokenUpdatedHandler = this.tokenUpdated.bind(this);
+      onInput: function onInput(name, value) {},
+      updateData: function updateData(data) {
+        this.amount = data.amount;
+        this.paymentFee = data.paymentFee;
+        this.paymentFeeHtml = data.paymentFeeHtml;
+        this.paymentDescription = data.paymentDescription;
       },
-      canSubmit: function canSubmit(amount, customer) {
-        return Promise.resolve(this.isCanSubmit);
-      },
-      afterSelection: function afterSelection(newFieldset) {
-        this._super(newFieldset);
-        if (newFieldset.length > 0) {
-          var script = document.createElement('script');
-          // <script> must have id "fields-script" or it will fail to init
-          script.id = 'payfields-script';
-          script.src = this.scriptUrl;
-          script.dataset.submitform = 'true';
-          // Use async load only. Otherwise the script will wait infinitely for window.load event
-          script.dataset.async = 'true';
-
-          // Create new handler for Beanstream "loaded" (inited) event
-          if (this.loadHandler != null) {
-            $(document).off('beanstream_payfields_loaded', this.loadHandler);
-          }
-          this.loadHandler = function (data) {
-            $('[data-beanstream-id]').appendTo(newFieldset);
-          };
-          $(document).on('beanstream_payfields_loaded', this.loadHandler);
-          newFieldset.append(script);
-          newFieldset.removeClass('mphb-billing-fields-hidden');
-        }
-
-        // See all available events: https://github.com/Beanstream/checkoutfields#payfields-
-        $(document).on('beanstream_payfields_inputValidityChanged', this.validityHandler).on('beanstream_payfields_tokenRequested', this.tokenRequestHandler).on('beanstream_payfields_tokenUpdated', this.tokenUpdatedHandler);
-      },
-      cancelSelection: function cancelSelection() {
-        $(document).off('beanstream_payfields_inputValidityChanged', this.validityHandler).off('beanstream_payfields_tokenRequested', this.tokenRequestHandler).off('beanstream_payfields_tokenUpdated', this.tokenUpdatedHandler);
-      },
-      validityChanged: function validityChanged(event) {
-        var eventDetail = event.eventDetail || event.originalEvent.eventDetail;
-        if (!eventDetail.isValid) {
-          this.isCanSubmit = false;
-        }
-      },
-      tokenRequested: function tokenRequested(event) {
-        this.billingSection.showPreloader();
-      },
-      tokenUpdated: function tokenUpdated(event) {
-        var eventDetail = event.eventDetail || event.originalEvent.eventDetail;
-        if (eventDetail.success) {
-          this.isCanSubmit = true;
-        } else {
-          this.isCanSubmit = false;
-          this.billingSection.showError(MPHB._data.translations.tokenizationFailure.replace('(%s)', eventDetail.message));
-        }
-        this.billingSection.hidePreloader();
+      _setPaymentField: function _setPaymentField(name, value) {
+        var fieldId = 'mphb_' + this.getGatewayId() + '_' + name;
+        this.paymentFields[fieldId] = value;
+        this.mountWrapper.find('#' + fieldId).val(value);
       }
     });
 
@@ -856,16 +809,20 @@
           try {
             switch (gatewayId) {
               case 'braintree':
-                gateway = new MPHB.BraintreeGateway(gatewaySettings);
+                gateway = new MPHB.BraintreeGateway(gatewayId, gatewaySettings);
                 break;
               case 'beanstream':
-                gateway = new MPHB.BeanstreamGateway(gatewaySettings);
+                gateway = new MPHB.BeanstreamGateway(gatewayId, gatewaySettings);
                 break;
               case 'stripe':
-                gateway = new MPHB.StripeGateway(gatewaySettings);
+                if (settings.paymentMode === 'payment') {
+                  gateway = new MPHB.StripeGateway(gatewayId, gatewaySettings);
+                } else {
+                  gateway = new MPHB.StripeLegacyGateway(gatewayId, gatewaySettings);
+                }
                 break;
               default:
-                gateway = new MPHB.Gateway(gatewaySettings);
+                gateway = new MPHB.Gateway(gatewayId, gatewaySettings);
                 break;
             }
           } catch (error) {
@@ -881,6 +838,17 @@
       },
       getBookingDetails: function getBookingDetails() {
         return this.parentForm.parseFormToJSON();
+      },
+      getCheckoutForm: function getCheckoutForm() {
+        return this.parentForm;
+      },
+      getPaymentDetails: function getPaymentDetails() {
+        var gatewayId = this.getSelectedGatewayId();
+        var gateway = this.gateways[gatewayId];
+        return {
+          gateway_id: gatewayId,
+          payment_fields: gateway ? gateway.getPaymentFields() : {}
+        };
       },
       getRoomDetails: function getRoomDetails() {
         var bookingDetails = this.getBookingDetails();
@@ -968,7 +936,7 @@
        * @since 3.6.0
        */
       onInput: function onInput(name, value) {
-        var gateway = this.gateways[this.getSelectedGateway()];
+        var gateway = this.getSelectedGateway();
         if (gateway) {
           gateway.onInput(name, value);
         }
@@ -984,19 +952,35 @@
        * @since 3.6.0 changed the return value from Boolean to Promise.
        */
       canSubmit: function canSubmit(amount, customer) {
-        var gateway = this.gateways[this.getSelectedGateway()];
+        var gateway = this.getSelectedGateway();
         if (gateway) {
           return gateway.canSubmit(amount, customer);
         } else {
           return Promise.resolve(true);
         }
       },
+      /**
+       * @param {Object} paymentFields
+       * @returns {Promise}
+       */
+      afterProcessing: function afterProcessing(paymentFields) {
+        var gateway = this.getSelectedGateway();
+        if (gateway !== null) {
+          return gateway.afterProcessing(paymentFields);
+        } else {
+          return Promise.resolve(null);
+        }
+      },
       getSelectedGateway: function getSelectedGateway() {
+        return this.gateways[this.getSelectedGatewayId()] || null;
+      },
+      getSelectedGatewayId: function getSelectedGatewayId() {
         var gatewayEl = this.getSelectedGatewayEl();
         if (gatewayEl && gatewayEl.length > 0) {
           return gatewayEl.val();
+        } else {
+          return '';
         }
-        return '';
       },
       /**
        * @since 3.9.9
@@ -1011,7 +995,7 @@
       },
       /** @since 3.6.1 */
       getSelectedGatewayAmount: function getSelectedGatewayAmount() {
-        var gatewayId = this.getSelectedGateway();
+        var gatewayId = this.getSelectedGatewayId();
         if (this.amounts.hasOwnProperty(gatewayId)) {
           return this.amounts[gatewayId];
         } else {
@@ -1019,20 +1003,25 @@
         }
       },
       getSelectedGatewayPaymentFeeAmount: function getSelectedGatewayPaymentFeeAmount() {
-        var _this$gateways$gatewa;
-        var gatewayId = this.getSelectedGateway();
-        return this.gateways.hasOwnProperty(gatewayId) ? (_this$gateways$gatewa = this.gateways[gatewayId].paymentFee) !== null && _this$gateways$gatewa !== void 0 ? _this$gateways$gatewa : 0 : 0;
+        var gateway = this.getSelectedGateway();
+        if (gateway !== null) {
+          var _gateway$paymentFee;
+          return (_gateway$paymentFee = gateway.paymentFee) !== null && _gateway$paymentFee !== void 0 ? _gateway$paymentFee : 0;
+        } else {
+          return 0;
+        }
       },
       getSelectedGatewayPaymentFeeHtml: function getSelectedGatewayPaymentFeeHtml() {
-        var gatewayId = this.getSelectedGateway();
-        if (this.gateways.hasOwnProperty(gatewayId) && this.gateways[gatewayId].paymentFeeHtml) {
-          return this.gateways[gatewayId].paymentFeeHtml;
+        var gateway = this.getSelectedGateway();
+        if (gateway !== null) {
+          var _gateway$paymentFeeHt;
+          return (_gateway$paymentFeeHt = gateway.paymentFeeHtml) !== null && _gateway$paymentFeeHt !== void 0 ? _gateway$paymentFeeHt : '';
         } else {
           return '';
         }
       },
       notifySelectedGateway: function notifySelectedGateway(gatewayId) {
-        gatewayId = gatewayId || this.getSelectedGateway();
+        gatewayId = gatewayId || this.getSelectedGatewayId();
         if (gatewayId && this.gateways.hasOwnProperty(gatewayId)) {
           this.gateways[gatewayId].afterSelection(this.billingFieldsWrapperEl);
 
@@ -1051,70 +1040,6 @@
             self.gateways[gatewayId].updateData(gatewayData);
           }
         });
-      }
-    });
-
-    /**
-     *
-     * @requires ./gateway.js
-     */
-    MPHB.BraintreeGateway = MPHB.Gateway.extend({}, {
-      clientToken: '',
-      checkout: null,
-      // Used to remove all fields and events of the Braintree SDK
-      initSettings: function initSettings(settings) {
-        this._super(settings);
-        this.clientToken = settings.clientToken;
-      },
-      canSubmit: function canSubmit(amount, customer) {
-        return Promise.resolve(this.isNonceStored());
-      },
-      /**
-       *
-       * @param {String} nonce
-       * @returns {undefined}
-       */
-      storeNonce: function storeNonce(nonce) {
-        var $nonceEl = this.billingSection.billingFieldsWrapperEl.find('[name="mphb_braintree_payment_nonce"]');
-        $nonceEl.val(nonce);
-      },
-      /**
-       *
-       * @returns {Boolean}
-       */
-      isNonceStored: function isNonceStored() {
-        var $nonceEl = this.billingSection.billingFieldsWrapperEl.find('[name="mphb_braintree_payment_nonce"]');
-        return $nonceEl.length && $nonceEl.val() != '';
-      },
-      afterSelection: function afterSelection(newFieldset) {
-        this._super(newFieldset);
-        if (braintree != undefined) {
-          var containerId = 'mphb-braintree-container-' + this.clientToken.substr(0, 8);
-          newFieldset.append('<div id="' + containerId + '"></div>');
-          var self = this;
-          braintree.setup(this.clientToken, 'dropin', {
-            container: containerId,
-            onReady: function onReady(integration) {
-              // We can use integration's teardown() method to remove all DOM elements and attached events
-              self.checkout = integration;
-            },
-            onPaymentMethodReceived: function onPaymentMethodReceived(response) {
-              self.storeNonce(response.nonce);
-              self.billingSection.parentForm.element.submit();
-              self.billingSection.showPreloader();
-            }
-          });
-          newFieldset.removeClass('mphb-billing-fields-hidden');
-        }
-      },
-      cancelSelection: function cancelSelection() {
-        this._super();
-        if (this.checkout != null) {
-          var self = this;
-          this.checkout.teardown(function () {
-            self.checkout = null; // braintree.setup() can safely be run again
-          });
-        }
       }
     });
     MPHB.CouponSection = can.Control.extend({}, {
@@ -1220,11 +1145,22 @@
       paymentFee: 0,
       /** @since 3.6.0 */
       toPay: 0,
+      mode: 'booking',
+      // "booking"|"payment". Use "payment" with bookingId in Payment Request.
+      bookingId: 0,
       init: function init(el, args) {
         // when we have free booking after checkout submit 
         // we do not have checkout form so we do not want to init it
         if (!el.length) return;
         MPHB.CheckoutForm.myThis = this;
+        if (args) {
+          if (args.bookingId) {
+            this.bookingId = args.bookingId;
+          }
+          if (args.mode) {
+            this.mode = args.mode;
+          }
+        }
         this.bookBtnEl = this.element.find('input[type=submit]');
         this.errorsWrapperEl = this.element.find('.mphb-errors-wrapper');
         this.preloaderEl = this.element.find('.mphb-preloader');
@@ -1366,7 +1302,10 @@
           this.element.find('.mphb-payment-fee-field').html('');
           this.element.find('.mphb-payment-fee').addClass('mphb-hide');
         }
-        this.toPay = (this.total === this.deposit ? this.total : this.deposit) + (this.freeBooking ? 0 : this.paymentFee);
+        this.toPay = this.total === this.deposit ? this.total : this.deposit;
+        if (!this.freeBooking) {
+          this.toPay += this.paymentFee;
+        }
       },
       setFreeMode: function setFreeMode() {
         this.freeBooking = true;
@@ -1502,6 +1441,14 @@
         }
         return false;
       },
+      isRequiredField: function isRequiredField(name) {
+        var field = document.getElementById('mphb_' + name);
+        if (field !== null) {
+          return field.required;
+        } else {
+          return false;
+        }
+      },
       /**
        * @param {String} fieldName
        * @returns {Object}
@@ -1517,8 +1464,8 @@
         }
       },
       /**
-       * @returns {Object} The maximum information about the customer: name, email,
-       *     full address (if required) etc.
+       * @returns {Object} The maximum information about the customer: name,
+       *     email, full address (if required) etc.
        *
        * @since 3.6.0
        */
@@ -1542,6 +1489,9 @@
         }
         return customer;
       },
+      getCustomerEmail: function getCustomerEmail() {
+        return this.getCustomerDetail('email');
+      },
       /**
        * @since 3.6.1
        */
@@ -1558,28 +1508,76 @@
       'submit': function submit(el, e) {
         if (this.waitResponse) {
           return false;
-        } else if (MPHB._data.settings.useBilling && !this.freeBooking) {
-          var amount = this.getToPayAmount();
-          var customer = this.getCustomerDetails();
-          var self = this;
-          this.showPreloader();
-          this.billingSection.canSubmit(amount, customer).then(function (canSubmit) {
-            if (canSubmit) {
-              // jQuery.submit() will re-trigger the "submit" event
-              // (and current function). Instead, method form.submit()
-              // does not trigger the event
-              self.element[0].submit();
-            } else {
-              self.hidePreloader();
-            }
-          })["catch"](function (error) {
-            self.hidePreloader();
-            console.error('Billing error. ' + error.message);
-          });
-
-          // Wait for response from billing section
-          return false;
         }
+        this.hideErrors();
+        this.showPreloader(); // waitResponse = true
+
+        var bookingDetails = this._parseBookingDetails();
+        var isDoingPayment = MPHB._data.settings.useBilling && !this.freeBooking;
+        var self = this;
+
+        // Start request
+        var submitPromise = null;
+        if (isDoingPayment) {
+          submitPromise = this.billingSection.canSubmit(this.getToPayAmount(), bookingDetails.customer);
+        } else {
+          submitPromise = Promise.resolve(true);
+        }
+        submitPromise.then(function (canSubmit) {
+          if (!canSubmit) {
+            // No error message here. It is displayed in the billing or
+            // gateway section.
+            throw new Error();
+          }
+          if (self.mode === 'booking') {
+            // Submit booking + payment
+            return self._submitCheckout(bookingDetails);
+          } else {
+            // Submit payment only
+            var paymentDetails = bookingDetails['payment_details'];
+
+            // Need custom fields for Payment Request: request_type, request_amount
+            paymentDetails['custom_fields'] = bookingDetails['custom_fields'];
+            return MPHB.restApiHelper.submitPayment(paymentDetails);
+          }
+        }).then(function (response) {
+          var finishPromise = null;
+          if (isDoingPayment) {
+            var paymentFields = response.payment_fields || {};
+            finishPromise = self.billingSection.afterProcessing(paymentFields);
+          } else {
+            finishPromise = Promise.resolve(null);
+          }
+
+          // Return REST response
+          return finishPromise.then(function () {
+            return response;
+          });
+        }).then(function (response) {
+          // Show success message
+          var successMessage = response.success_message;
+          if (response.redirect_url) {
+            successMessage += ' ' + '<span class="mphb-preloader"></span>';
+          }
+          self.element.html('<p class="mphb_checkout-success-reservation-message">' + successMessage + '</p>');
+          self.element[0].scrollIntoView();
+
+          // Redirect?
+          if (response.redirect_url) {
+            window.location.href = response.redirect_url;
+          }
+        })["catch"](function (error) {
+          // Cancel block
+          self.hidePreloader(); // waitResponse = false
+
+          // Show error message
+          if (error.message !== '') {
+            self.showError(error.message);
+          }
+        });
+
+        // Wait for response(s)
+        return false;
       },
       '#mphb-price-details .mphb-remove-coupon click': function mphbPriceDetails_MphbRemoveCoupon_click(el, e) {
         e.preventDefault();
@@ -1587,6 +1585,332 @@
         if (MPHB._data.settings.useCoupons) {
           this.couponSection.removeCoupon();
           this.updateCheckoutInfo();
+        }
+      },
+      _buildFormData: function _buildFormData(bookingDetails) {
+        if (!bookingDetails) {
+          bookingDetails = this._parseBookingDetails();
+        }
+        var formData = new FormData();
+        for (var key in bookingDetails) {
+          var data = bookingDetails[key];
+          if (key === 'custom_fields') {
+            for (var field in data) {
+              var value = data[field];
+              if (value !== '') {
+                // Example: customer_fields[mphb_custom_field_name]
+                formData.append("customer_fields[".concat(field, "]"), value);
+              }
+            }
+          } else if (key === 'customer') {
+            for (var field in data) {
+              var value = data[field];
+              if (value !== '') {
+                // Example: customer_fields[mphb_first_name]
+                formData.append("customer_fields[mphb_".concat(field, "]"), value);
+              }
+            }
+          } else if (key === 'files') {
+            for (var field in data) {
+              formData.append(field, data[field]);
+            }
+          } else if (key === 'payment_details') {
+            for (var field in data) {
+              if (field !== 'payment_fields') {
+                // Example: payment_details[gateway_id]
+                formData.append("".concat(key, "[").concat(field, "]"), data[field]);
+              } else {
+                for (var nestedField in data[field]) {
+                  // Example: payment_details[payment_fields][...]
+                  formData.append("".concat(key, "[").concat(field, "][").concat(nestedField, "]"), data[field][nestedField]);
+                }
+              }
+            }
+          } else if (key === 'room_details') {
+            for (var i in data) {
+              var roomDetails = data[i];
+              for (var field in roomDetails) {
+                if (field !== 'services') {
+                  // Example: room_details[0][adults]
+                  formData.append("".concat(key, "[").concat(i, "][").concat(field, "]"), roomDetails[field]);
+                } else {
+                  var services = roomDetails[field];
+                  for (var j in services) {
+                    var serviceDetails = services[j];
+                    for (var serviceField in serviceDetails) {
+                      // Example: room_details[0][services][1][quantity]
+                      formData.append("".concat(key, "[").concat(i, "][").concat(field, "][").concat(j, "][").concat(serviceField, "]"), serviceDetails[serviceField]);
+                    }
+                  }
+                }
+              }
+            }
+          } else {
+            // check_in_date, note etc.
+            formData.append(key, data);
+          }
+        }
+        return formData;
+      },
+      _parseBookingDetails: function _parseBookingDetails() {
+        var formData = this.parseFormToJSON();
+
+        // Parse rooms
+        var roomDetails = [];
+        if (_typeof(formData['mphb_room_details']) === 'object') {
+          var minAdults = MPHB._data.checkout.min_adults;
+          var minChildren = MPHB._data.checkout.min_children;
+          for (var roomIndex in formData['mphb_room_details']) {
+            var roomData = formData['mphb_room_details'][roomIndex];
+            var adults = roomData['adults'] ? parseInt(roomData['adults']) : minAdults;
+            var children = roomData['children'] ? parseInt(roomData['children']) : minChildren;
+            var rateId = roomData['rate_id'] ? parseInt(roomData['rate_id']) : 0;
+            var roomId = roomData['room_id'] ? parseInt(roomData['room_id']) : 0;
+            var roomTypeId = roomData['room_type_id'] ? parseInt(roomData['room_type_id']) : 0;
+            if (!adults || isNaN(children) || !rateId || isNaN(roomId) || !roomTypeId) {
+              continue;
+            }
+            var services = [];
+            if (_typeof(roomData['services']) === 'object') {
+              for (var serviceIndex in roomData['services']) {
+                var serviceData = roomData['services'][serviceIndex];
+                var id = serviceData['id'] ? parseInt(serviceData['id']) : 0;
+                var guests = serviceData['adults'] ? parseInt(serviceData['adults']) : 0;
+                var quantity = serviceData['quantity'] ? parseInt(serviceData['quantity']) : 1;
+                if (!id || !guests || !quantity) {
+                  continue;
+                }
+                services.push({
+                  id: id,
+                  adults: guests,
+                  quantity: quantity
+                });
+              }
+            }
+            roomDetails.push({
+              adults: adults,
+              children: children,
+              guest_name: roomData['guest_name'] || '',
+              rate_id: rateId,
+              room_id: roomId,
+              room_type_id: roomTypeId,
+              services: services
+            });
+          }
+        }
+        var bookingDetails = {
+          check_in_date: formData['mphb_check_in_date'] || '',
+          check_out_date: formData['mphb_check_out_date'] || '',
+          checkout_id: formData['mphb-checkout-id'] || '',
+          coupon_code: formData['mphb_coupon_code'] || '',
+          custom_fields: {},
+          customer: this.getCustomerDetails(),
+          files: {},
+          note: formData['mphb_note'] || '',
+          room_details: roomDetails
+        };
+
+        // Add payment details
+        if (MPHB._data.settings.useBilling && !this.freeBooking) {
+          bookingDetails['payment_details'] = this.billingSection.getPaymentDetails();
+          if (this.mode === 'payment') {
+            bookingDetails['payment_details']['amount'] = this.getToPayAmount();
+            if (this.bookingId !== 0) {
+              bookingDetails['payment_details']['booking_id'] = this.bookingId;
+            }
+          }
+        }
+
+        // Parse custom fields
+        var knownFields = ['mphb_applied_coupon_code', 'mphb_check_in_date', 'mphb_check_out_date', 'mphb-checkout-id', 'mphb-checkout-nonce', 'mphb_coupon_code', 'mphb_gateway_id', 'mphb_new_booking_status', 'mphb_note', 'mphb_room_details'];
+        for (var fieldName in formData) {
+          var unprefixedName = fieldName.replace('mphb_', '');
+          if (knownFields.includes(fieldName) || fieldName.indexOf('mphb') !== 0 || unprefixedName in bookingDetails['customer']) {
+            continue;
+          }
+          bookingDetails['custom_fields'][fieldName] = formData[fieldName];
+        }
+
+        // Parse files
+        var $fileInputs = this.element.find('input[type="file"]');
+        if ($fileInputs.length > 0) {
+          $fileInputs.each(function (i, input) {
+            if (input.files.length > 0) {
+              bookingDetails['files'][input.name] = input.files[0];
+            }
+          });
+        }
+        return bookingDetails;
+      },
+      _setField: function _setField(name, value) {
+        var inputId = 'mphb_' + name;
+        var $input = this.element.find('#' + inputId);
+        if ($input.length > 0) {
+          $input.val(value);
+        } else {
+          this.element.append($('<input>', {
+            id: inputId,
+            name: inputId,
+            type: 'hidden',
+            value: value
+          }));
+        }
+      },
+      _submitCheckout: function _submitCheckout(bookingDetails) {
+        return MPHB.restApiHelper.submitCheckout(this._buildFormData(bookingDetails));
+      }
+    });
+
+    /**
+     * @requires ./checkout-form.js
+     */
+    MPHB.AdminCheckoutForm = MPHB.CheckoutForm.extend({}, {
+      _parseBookingDetails: function _parseBookingDetails() {
+        var bookingDetails = this._super();
+
+        // Get status
+        var status = this.element.find('select[name="mphb_new_booking_status"]');
+        if (status.length !== 0) {
+          bookingDetails['status'] = status.val();
+        }
+        return bookingDetails;
+      },
+      _submitCheckout: function _submitCheckout(bookingDetails) {
+        return MPHB.restApiHelper.submitAdminCheckout(this._buildFormData(bookingDetails));
+      }
+    });
+
+    /**
+     *
+     * @requires ./gateway.js
+     */
+    MPHB.BeanstreamGateway = MPHB.Gateway.extend({}, {
+      scriptUrl: '',
+      isCanSubmit: false,
+      loadHandler: null,
+      validityHandler: null,
+      tokenRequestHandler: null,
+      tokenUpdatedHandler: null,
+      initSettings: function initSettings(settings) {
+        this._super(settings);
+        this.scriptUrl = settings.scriptUrl || 'https://payform.beanstream.com/v1.1.0/payfields/beanstream_payfields.js';
+        this.validityHandler = this.validityChanged.bind(this);
+        this.tokenRequestHandler = this.tokenRequested.bind(this);
+        this.tokenUpdatedHandler = this.tokenUpdated.bind(this);
+      },
+      canSubmit: function canSubmit(amount, customer) {
+        return Promise.resolve(this.isCanSubmit);
+      },
+      afterSelection: function afterSelection(newFieldset) {
+        this._super(newFieldset);
+        if (newFieldset.length > 0) {
+          var script = document.createElement('script');
+          // <script> must have id "fields-script" or it will fail to init
+          script.id = 'payfields-script';
+          script.src = this.scriptUrl;
+          script.dataset.submitform = 'true';
+          // Use async load only. Otherwise the script will wait infinitely for window.load event
+          script.dataset.async = 'true';
+
+          // Create new handler for Beanstream "loaded" (inited) event
+          if (this.loadHandler != null) {
+            $(document).off('beanstream_payfields_loaded', this.loadHandler);
+          }
+          this.loadHandler = function (data) {
+            $('[data-beanstream-id]').appendTo(newFieldset);
+          };
+          $(document).on('beanstream_payfields_loaded', this.loadHandler);
+          newFieldset.append(script);
+          newFieldset.removeClass('mphb-billing-fields-hidden');
+        }
+
+        // See all available events: https://github.com/Beanstream/checkoutfields#payfields-
+        $(document).on('beanstream_payfields_inputValidityChanged', this.validityHandler).on('beanstream_payfields_tokenRequested', this.tokenRequestHandler).on('beanstream_payfields_tokenUpdated', this.tokenUpdatedHandler);
+      },
+      cancelSelection: function cancelSelection() {
+        $(document).off('beanstream_payfields_inputValidityChanged', this.validityHandler).off('beanstream_payfields_tokenRequested', this.tokenRequestHandler).off('beanstream_payfields_tokenUpdated', this.tokenUpdatedHandler);
+      },
+      validityChanged: function validityChanged(event) {
+        var eventDetail = event.eventDetail || event.originalEvent.eventDetail;
+        if (!eventDetail.isValid) {
+          this.isCanSubmit = false;
+        }
+      },
+      tokenRequested: function tokenRequested(event) {
+        this.billingSection.showPreloader();
+      },
+      tokenUpdated: function tokenUpdated(event) {
+        var eventDetail = event.eventDetail || event.originalEvent.eventDetail;
+        if (eventDetail.success) {
+          this.isCanSubmit = true;
+        } else {
+          this.isCanSubmit = false;
+          this.billingSection.showError(MPHB._data.translations.tokenizationFailure.replace('(%s)', eventDetail.message));
+        }
+        this.billingSection.hidePreloader();
+      }
+    });
+
+    /**
+     *
+     * @requires ./gateway.js
+     */
+    MPHB.BraintreeGateway = MPHB.Gateway.extend({}, {
+      clientToken: '',
+      checkout: null,
+      // Used to remove all fields and events of the Braintree SDK
+      initSettings: function initSettings(settings) {
+        this._super(settings);
+        this.clientToken = settings.clientToken;
+      },
+      canSubmit: function canSubmit(amount, customer) {
+        return Promise.resolve(this.isNonceStored());
+      },
+      /**
+       *
+       * @param {String} nonce
+       * @returns {undefined}
+       */
+      storeNonce: function storeNonce(nonce) {
+        var $nonceEl = this.billingSection.billingFieldsWrapperEl.find('[name="mphb_braintree_payment_nonce"]');
+        $nonceEl.val(nonce);
+      },
+      /**
+       *
+       * @returns {Boolean}
+       */
+      isNonceStored: function isNonceStored() {
+        var $nonceEl = this.billingSection.billingFieldsWrapperEl.find('[name="mphb_braintree_payment_nonce"]');
+        return $nonceEl.length && $nonceEl.val() != '';
+      },
+      afterSelection: function afterSelection(newFieldset) {
+        this._super(newFieldset);
+        if (braintree != undefined) {
+          var containerId = 'mphb-braintree-container-' + this.clientToken.substr(0, 8);
+          newFieldset.append('<div id="' + containerId + '"></div>');
+          var self = this;
+          braintree.setup(this.clientToken, 'dropin', {
+            container: containerId,
+            onReady: function onReady(integration) {
+              // We can use integration's teardown() method to remove all DOM elements and attached events
+              self.checkout = integration;
+            },
+            onPaymentMethodReceived: function onPaymentMethodReceived(response) {
+              self.storeNonce(response.nonce);
+              self.billingSection.parentForm.element.submit();
+              self.billingSection.showPreloader();
+            }
+          });
+          newFieldset.removeClass('mphb-billing-fields-hidden');
+        }
+      },
+      cancelSelection: function cancelSelection() {
+        this._super();
+        if (this.checkout != null) {
+          var self = this;
+          this.checkout.teardown(function () {
+            self.checkout = null; // braintree.setup() can safely be run again
+          });
         }
       }
     });
@@ -1679,17 +2003,307 @@
     /**
      * @requires ./gateway.js
      *
+     * @since 6.0.0
+     */
+    MPHB.StripeGateway = MPHB.Gateway.extend({
+      // https://docs.stripe.com/upgrades#api-versions (Breaking changes)
+      // https://docs.stripe.com/changelog#2025-06-30.basil (Version changelog)
+      API_VERSION: '2025-06-30.basil'
+    }, {
+      // Settings (in addition to "amount" and "paymentDescription" in Gateway)
+      currency: 'EUR',
+      locale: 'auto',
+      isCountryRequired: MPHB._data.settings.countryRequired,
+      isFullAddressRequired: MPHB._data.settings.fullAddressRequired,
+      isManualCapture: false,
+      paymentsConfigurationId: '',
+      publicKey: '',
+      returnUrl: '',
+      // API & controls
+      stripe: null,
+      elements: null,
+      control: null,
+      // Elements
+      mountWrapper: null,
+      errorsWrapper: null,
+      /**
+       * What we know about the customer at the start of the page. Generally
+       * it's an empty object (on Checkout Page). But on Payment Request
+       * Checkout page, when we already have the booking and customer
+       * information, this object is set with some basic information required
+       * for the script.
+       */
+      defaultCustomer: null,
+      init: function init(gatewayId, args) {
+        this._super(gatewayId, args); // initSettings()
+
+        // https://docs.stripe.com/js/elements_object/create
+        this.stripe = Stripe(this.publicKey, {
+          apiVersion: MPHB.StripeGateway.API_VERSION
+        });
+      },
+      initSettings: function initSettings(settings) {
+        this._super(settings);
+        this.currency = settings.currency;
+        this.locale = settings.locale;
+        this.isManualCapture = settings.isManualCapture;
+        this.paymentsConfigurationId = settings.paymentsConfigurationId;
+        this.publicKey = settings.publicKey;
+        this.returnUrl = settings.returnUrl;
+
+        // See StripeGateway::getCheckoutData()
+        this.defaultCustomer = settings.customer;
+      },
+      /**
+       * @param {Object} paymentFields
+       * @returns {Promise}
+       */
+      afterProcessing: function afterProcessing(paymentFields) {
+        var paymentIntent = paymentFields.payment_intent;
+        if (paymentIntent && paymentIntent.status === 'requires_action') {
+          // For some payment methods Stripe redirects user to an intermediate
+          // page to authorize the payment (without resolving the promise)
+
+          // https://docs.stripe.com/js/payment_intents/handle_next_action
+          return this.stripe.handleNextAction({
+            clientSecret: paymentFields.payment_intent.client_secret
+          });
+        } else {
+          return Promise.resolve(null);
+        }
+      },
+      afterSelection: function afterSelection(mountWrapper) {
+        this._super(mountWrapper);
+        this._mount(mountWrapper);
+      },
+      cancelSelection: function cancelSelection() {
+        this._super();
+        this.control.destroy();
+        this.control = null;
+        this.mountWrapper = null;
+        this.errorsWrapper = null;
+      },
+      canSubmit: function canSubmit(amount, customer) {
+        this._disableControls();
+        this._hideErrors();
+        var self = this;
+
+        // https://docs.stripe.com/js/elements/submit
+        return this.elements.submit() // Validate and submit billing fields
+        .then(function (result) {
+          if (result.error) {
+            throw new Error(result.error.message);
+          }
+
+          // https://docs.stripe.com/js/confirmation_tokens/create_confirmation_token
+          return self.stripe.createConfirmationToken({
+            elements: self.elements,
+            params: {
+              payment_method_data: {
+                billing_details: self._toBillingDetails(customer)
+              },
+              return_url: self.returnUrl
+            }
+          });
+        }).then(function (result) {
+          if (result.error) {
+            throw new Error(result.error.message);
+          }
+          self._setPaymentField('payment_method', 'payment');
+          self._setPaymentField('confirmation_token_id', result.confirmationToken.id);
+          self._enableControls();
+          return true;
+        })["catch"](function (error) {
+          self._showError(error.message);
+          self._enableControls();
+          return false;
+        });
+      },
+      updateData: function updateData(data) {
+        this._super(data);
+        if (this.amount > 0 && this.elements !== null) {
+          this.elements.update({
+            amount: this._convertToSmallestUnit(this.amount),
+            currency: this.currency.toLowerCase()
+          });
+        }
+      },
+      _convertToSmallestUnit: function _convertToSmallestUnit(amount, currency) {
+        if (!currency) {
+          currency = this.currency;
+        }
+
+        // See all currencies (presented as links):
+        //     https://docs.stripe.com/currencies#presentment-currencies
+        switch (currency) {
+          // Zero decimal currencies
+          case 'BIF':
+          case 'CLP':
+          case 'DJF':
+          case 'GNF':
+          case 'JPY':
+          case 'KMF':
+          case 'KRW':
+          case 'MGA':
+          case 'PYG':
+          case 'RWF':
+          case 'UGX':
+          case 'VND':
+          case 'VUV':
+          case 'XAF':
+          case 'XOF':
+          case 'XPF':
+            return Math.floor(amount);
+          // Remove cents
+
+          default:
+            return Math.round(amount * 100);
+          // In cents
+        }
+      },
+      _disableControls: function _disableControls() {
+        if (this.control !== null) {
+          this.control.update({
+            readOnly: true
+          });
+        }
+      },
+      _enableControls: function _enableControls() {
+        if (this.control !== null) {
+          this.control.update({
+            readOnly: false
+          });
+        }
+      },
+      _hideErrors: function _hideErrors() {
+        this.errorsWrapper.addClass('mphb-hide').text('');
+      },
+      _mount: function _mount(mountWrapper) {
+        this.mountWrapper = mountWrapper;
+        mountWrapper.append('<section id="mphb-stripe-payment-container" class="mphb-stripe-payment-container">' + '<div class="mphb-stripe-payment-fields payment">' + '<fieldset>' + '<div id="mphb-stripe-payment-element" class="mphb-stripe-element"></div>' + '</fieldset>' + '</div>' + '<div id="mphb-stripe-errors"></div>' + '</section>');
+        this.errorsWrapper = mountWrapper.find('#mphb-stripe-errors');
+        if (this.elements === null) {
+          // https://docs.stripe.com/js/elements_object/create_without_intent
+          this.elements = this.stripe.elements({
+            amount: this._convertToSmallestUnit(this.amount),
+            captureMethod: this.isManualCapture ? 'manual' : 'automatic_async',
+            currency: this.currency.toLowerCase(),
+            locale: this.locale,
+            mode: 'payment',
+            paymentMethodConfiguration: this.paymentsConfigurationId
+          });
+        }
+
+        // Create control:
+        //     https://docs.stripe.com/js/elements_object/create_payment_element
+        var checkoutForm = MPHB.CheckoutForm.myThis;
+        var controlOptions = {
+          fields: {
+            billingDetails: {
+              // Keep in mind Hotel Booking Checkout Fields addon
+              name: checkoutForm.isRequiredField('name') ? 'never' : 'auto',
+              email: 'never',
+              // Always required, even in Checkout Fields
+              phone: checkoutForm.isRequiredField('phone') ? 'never' : 'auto'
+            }
+          }
+        };
+        if (!this.isCountryRequired && !this.isFullAddressRequired) {
+          controlOptions.fields.billingDetails['address'] = 'if_required';
+        } else {
+          controlOptions.fields.billingDetails['address'] = {
+            city: checkoutForm.isRequiredField('city') ? 'never' : 'auto',
+            country: checkoutForm.isRequiredField('country') ? 'never' : 'auto',
+            line1: checkoutForm.isRequiredField('address1') ? 'never' : 'auto',
+            postalCode: checkoutForm.isRequiredField('zip') ? 'never' : 'auto',
+            state: checkoutForm.isRequiredField('state') ? 'never' : 'auto'
+          };
+        }
+        this.control = this.elements.create('payment', controlOptions);
+        this.control.mount('#mphb-stripe-payment-element');
+        var self = this;
+
+        // https://docs.stripe.com/js/element/input_validation
+        this.control.on('change', function (event) {
+          self._setError(event.error ? event.error.message : '');
+        });
+
+        // Show controls
+        mountWrapper.removeClass('mphb-billing-fields-hidden');
+      },
+      _setError: function _setError(message) {
+        if (message !== '') {
+          this._showError(message);
+        } else {
+          this._hideErrors();
+        }
+      },
+      _showError: function _showError(message) {
+        this.errorsWrapper.html(message).removeClass('mphb-hide');
+      },
+      _toBillingDetails: function _toBillingDetails(customer) {
+        var customerFields = ['name', 'email', 'phone'];
+        if (this.isCountryRequired || this.isFullAddressRequired) {
+          customerFields.push('country');
+        }
+        if (this.isFullAddressRequired) {
+          customerFields = customerFields.concat(['address1', 'city', 'state', 'zip']);
+        }
+        var billingDetails = {};
+        var addressDetails = {};
+        var _iterator = _createForOfIteratorHelper(customerFields),
+          _step;
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var field = _step.value;
+            var value = customer[field] || this.defaultCustomer[field] || '';
+            if (!value) {
+              continue;
+            }
+            switch (field) {
+              case 'name':
+              case 'email':
+              case 'phone':
+                billingDetails[field] = value;
+                break;
+              case 'country':
+              case 'city':
+              case 'state':
+                addressDetails[field] = value;
+                break;
+              case 'address1':
+                addressDetails['line1'] = value;
+                break;
+              case 'zip':
+                addressDetails['postal_code'] = value;
+                break;
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+        if (Object.keys(addressDetails).length > 0) {
+          billingDetails['address'] = addressDetails;
+        }
+        return billingDetails;
+      }
+    });
+
+    /**
+     * @requires ./gateway.js
+     *
      * @since 3.6.0
      */
-    MPHB.StripeGateway = MPHB.Gateway.extend({}, {
+    MPHB.StripeLegacyGateway = MPHB.Gateway.extend({}, {
       // Settings
       publicKey: '',
       locale: 'auto',
       currency: 'EUR',
-      successUrl: window.location.href,
+      returnUrl: window.location.href,
       defaultCountry: '',
       paymentDescription: 'Accommodation(s) reservation',
-      statementDescriptor: 'Hotel Booking',
       fullAddressRequired: false,
       i18n: {},
       style: {},
@@ -1706,7 +2320,7 @@
       /**
        * What we know about the customer at the start of the page. Generally
        * it's an empty object (on Checkout Page). But on Payment Request
-       * Checkout page, when we already have the bookign and customer
+       * Checkout page, when we already have the booking and customer
        * information, this object is set with some basic information required
        * for the script.
        *
@@ -1719,11 +2333,12 @@
       // Errors
       hasErrors: false,
       undefinedError: MPHB._data.translations.errorHasOccured,
-      init: function init(args) {
-        this._super(args); // initSettings()
+      init: function init(gatewayId, args) {
+        this._super(gatewayId, args); // initSettings()
 
-        // Docs: https://stripe.com/docs/stripe-js/reference#stripe-elements
+        // https://docs.stripe.com/js/initializing
         this.api = Stripe(this.publicKey);
+        // https://docs.stripe.com/js/elements_object/create
         this.elements = this.api.elements({
           locale: this.locale
         });
@@ -1743,17 +2358,16 @@
         this.publicKey = settings.publicKey;
         this.locale = settings.locale;
         this.currency = settings.currency;
-        this.successUrl = settings.successUrl;
+        this.returnUrl = settings.returnUrl;
         this.defaultCountry = settings.defaultCountry;
         this.paymentDescription = settings.paymentDescription;
-        this.statementDescriptor = settings.statementDescriptor;
         this.fullAddressRequired = MPHB._data.settings.fullAddressRequired;
 
         // See StripeGateway::getCheckoutData()
         this.defaultCustomer = settings.customer;
         this.i18n = settings.i18n;
         this.style = settings.style;
-        this.idempotencyKey = $('.mphb_sc_checkout-form').find('input[name="' + settings.idempotencyKeyFieldName + '"]').val();
+        this.idempotencyKey = $('.mphb_sc_checkout-form').find('input[name="' + settings.idempotencyKeyField + '"]').val();
       },
       addListeners: function addListeners() {
         var onChange = this.onChange.bind(this);
@@ -1837,8 +2451,6 @@
         }
         if (!customer.name) {
           customer.name = this.defaultCustomer.name;
-          customer.first_name = this.defaultCustomer.first_name;
-          customer.last_name = this.defaultCustomer.last_name;
         }
 
         // Add field "country" if not exists
@@ -1848,8 +2460,8 @@
         this.customer = customer;
       },
       createPaymentMethod: function createPaymentMethod() {
-        // https://stripe.com/docs/js/payment_methods/create_payment_method
-        // https://stripe.com/docs/api/payment_methods/create#create_payment_method-type
+        // https://docs.stripe.com/js/payment_methods/create_payment_method
+        // https://docs.stripe.com/api/payment_methods/object#payment_method_object-type
         if ('card' === this.payments.currentPayment) {
           return this.api.createPaymentMethod({
             type: 'card',
@@ -1919,7 +2531,8 @@
             paymentMethodType: paymentMethodData.paymentMethod.type,
             paymentMethodId: paymentMethodData.paymentMethod.id,
             idempotencyKey: self.idempotencyKey,
-            roomTypeIds: self.billingSection.getRoomTypeIds()
+            roomTypeIds: self.billingSection.getRoomTypeIds(),
+            customerEmail: self.billingSection.getCheckoutForm().getCustomerEmail()
           }, {
             success: function success(response) {
               if (response.hasOwnProperty('success') && response.success) {
@@ -1934,9 +2547,9 @@
               }
             },
             error: function error(jqXHR) {
-              if (undefined !== response.responseJSON.data.errorMessage) {
-                self.showError(response.responseJSON.data.errorMessage);
-                reject(new Error(response.responseJSON.data.errorMessage));
+              if (undefined !== jqXHR.responseJSON.data.errorMessage) {
+                self.showError(jqXHR.responseJSON.data.errorMessage);
+                reject(new Error(jqXHR.responseJSON.data.errorMessage));
               } else {
                 self.showError(self.undefinedError);
                 reject(new Error(self.undefinedError));
@@ -1947,44 +2560,44 @@
       },
       confirmPayment: function confirmPayment(paymentIntentResult) {
         if ('card' === this.payments.currentPayment) {
-          // https://stripe.com/docs/js/payment_intents/confirm_card_payment
+          // https://docs.stripe.com/js/payment_intents/confirm_card_payment
           return this.api.confirmCardPayment(paymentIntentResult.clientSecret, {
             payment_method: paymentIntentResult.paymentMethodId
           });
         } else if ('bancontact' === this.payments.currentPayment) {
-          // https://stripe.com/docs/js/payment_intents/confirm_bancontact_payment
+          // https://docs.stripe.com/js/payment_intents/confirm_bancontact_payment
           return this.api.confirmBancontactPayment(paymentIntentResult.clientSecret, {
             payment_method: paymentIntentResult.paymentMethodId,
-            return_url: this.successUrl
+            return_url: this.returnUrl
           }, {
             handleActions: false
           });
         } else if ('ideal' === this.payments.currentPayment) {
-          // https://stripe.com/docs/js/payment_intents/confirm_ideal_payment
+          // https://docs.stripe.com/js/payment_intents/confirm_ideal_payment
           return this.api.confirmIdealPayment(paymentIntentResult.clientSecret, {
             payment_method: paymentIntentResult.paymentMethodId,
-            return_url: this.successUrl
+            return_url: this.returnUrl
           }, {
             handleActions: false
           });
         } else if ('giropay' === this.payments.currentPayment) {
-          // https://stripe.com/docs/js/payment_intents/confirm_giropay_payment
+          // https://docs.stripe.com/js/payment_intents/confirm_giropay_payment
           return this.api.confirmGiropayPayment(paymentIntentResult.clientSecret, {
             payment_method: paymentIntentResult.paymentMethodId,
-            return_url: this.successUrl
+            return_url: this.returnUrl
           }, {
             handleActions: false
           });
         } else if ('sepa_debit' === this.payments.currentPayment) {
-          // https://stripe.com/docs/js/payment_intents/confirm_sepa_debit_payment
+          // https://docs.stripe.com/js/payment_intents/confirm_sepa_debit_payment
           return this.api.confirmSepaDebitPayment(paymentIntentResult.clientSecret, {
             payment_method: paymentIntentResult.paymentMethodId
           });
         } else if ('klarna' === this.payments.currentPayment) {
-          // https://stripe.com/docs/js/payment_intents/confirm_klarna_payment
+          // https://docs.stripe.com/js/payment_intents/confirm_klarna_payment
           return this.api.confirmKlarnaPayment(paymentIntentResult.clientSecret, {
             payment_method: paymentIntentResult.paymentMethodId,
-            return_url: this.successUrl
+            return_url: this.returnUrl
           }, {
             handleActions: false
           });
@@ -1999,15 +2612,12 @@
         }
       },
       completePayment: function completePayment(paymentIntent) {
-        this.saveToCheckout('payment_method', this.payments.currentPayment);
-        this.saveToCheckout('payment_intent_id', paymentIntent.id);
+        this._setPaymentField('payment_method', this.payments.currentPayment);
+        this._setPaymentField('payment_intent_id', paymentIntent.id);
         if (paymentIntent.status == 'requires_action' && paymentIntent.next_action.type == 'redirect_to_url') {
-          this.saveToCheckout('redirect_url', paymentIntent.next_action.redirect_to_url.url);
+          this._setPaymentField('redirect_url', paymentIntent.next_action.redirect_to_url.url);
         }
         return true; // Can submit
-      },
-      saveToCheckout: function saveToCheckout(field, value) {
-        this.mountWrapper.find('#mphb_stripe_' + field).val(value);
       },
       mountHtml: function mountHtml() {
         var html = '<section id="mphb-stripe-payment-container" class="mphb-stripe-payment-container">';
@@ -3189,7 +3799,7 @@
      */
     MPHB.StripeGateway.PaymentMethods = can.Construct.extend({}, {
       listAll: ['card', 'bancontact', 'ideal', 'giropay', 'sepa_debit', 'klarna'],
-      klarnaAllowedCountryCodes: ['AT', 'AU', 'BE', 'CA', 'CH', 'CZ', 'DE', 'DK', 'ES', 'FI', 'FR', 'GB', 'GR', 'IE', 'IT', 'NL', 'NO', 'NZ', 'PL', 'PT', 'SE', 'US'],
+      klarnaAllowedCountryCodes: ['AT', 'AU', 'BE', 'CA', 'CH', 'CZ', 'DE', 'DK', 'ES', 'FI', 'FR', 'GB', 'GR', 'IE', 'IT', 'NL', 'NO', 'NZ', 'PL', 'PT', 'RO', 'SE', 'US'],
       listEnabled: ['card'],
       paymentMethods: {},
       currentPayment: 'card',
@@ -3237,6 +3847,7 @@
           return;
         }
         this.currentCountry = country;
+
         // Reset selected payment method
         this.selectPayment('card');
         this.showRelevantMethods();
@@ -3302,7 +3913,7 @@
     if (MPHB._data.page.isCheckoutPage) {
       new MPHB.CheckoutForm($('.mphb_sc_checkout-form'));
     } else if (MPHB._data.page.isCreateBookingPage) {
-      new MPHB.CheckoutForm($('.mphb_cb_checkout_form'));
+      new MPHB.AdminCheckoutForm($('.mphb_cb_checkout_form'));
     }
     if (MPHB._data.page.isSearchResultsPage) {
       new MPHB.ReservationCart($('.mphb_sc_search_results-wrapper'));

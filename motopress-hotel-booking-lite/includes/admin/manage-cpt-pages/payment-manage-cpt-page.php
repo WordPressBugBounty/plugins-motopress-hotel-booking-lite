@@ -2,8 +2,11 @@
 
 namespace MPHB\Admin\ManageCPTPages;
 
-use \MPHB\Entities;
-use \MPHB\PostTypes\PaymentCPT;
+use MPHB\PostTypes\PaymentCPT;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class PaymentManageCPTPage extends ManageCPTPage {
 
@@ -73,6 +76,12 @@ class PaymentManageCPTPage extends ManageCPTPage {
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				?><span class="column-status-<?php echo esc_attr( $payment->getStatus() ); ?>"><?php echo mphb_get_status_label( $payment->getStatus() ); ?></span>
 				<?php
+				if ( $payment->hasPendingAuthedFunds() ) {
+					echo '<br>';
+					echo '<span style="color: #b32d2e">' .
+						// Translators: "Awaiting charge" refers to a payment that has been authorized but not yet charged
+						esc_html__( 'Awaiting charge', 'motopress-hotel-booking' ) . '</span>';
+				}
 				if ( $payment->getStatus() === PaymentCPT\Statuses::STATUS_PENDING ) {
 					$expireTime = $payment->retrieveExpiration();
 					if ( $expireTime ) {

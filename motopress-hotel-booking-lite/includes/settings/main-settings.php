@@ -2,6 +2,12 @@
 
 namespace MPHB\Settings;
 
+use MPHB\AjaxApi\AbstractAjaxApiAction;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class MainSettings {
 
 	private $defaultUserApprovalTime = 20;
@@ -99,8 +105,26 @@ class MainSettings {
 	 * @return string
 	 */
 	public function getConfirmationMode() {
-		$mode = get_option( 'mphb_confirmation_mode', $this->defaultConfirmationMode );
-		return $mode;
+		return get_option( 'mphb_confirmation_mode', $this->defaultConfirmationMode );
+	}
+
+	public function isAutoConfirmation(): bool {
+		return $this->getConfirmationMode() === 'auto';
+	}
+
+	public function isConfirmationByAdmin(): bool {
+		return $this->getConfirmationMode() === 'manual';
+	}
+
+	/**
+	 * An alias of <code>isAutoConfirmation()</code>.
+	 */
+	public function isConfirmationByEmail(): bool {
+		return $this->getConfirmationMode() === 'auto';
+	}
+
+	public function isConfirmationUponPayment(): bool {
+		return $this->getConfirmationMode() === 'payment';
 	}
 
 	/**
@@ -223,7 +247,8 @@ class MainSettings {
 	 */
 	public function isBookingDisabled() {
 		$disabled = get_option( 'mphb_booking_disabled', false );
-		return (bool) $disabled;
+
+		return apply_filters( 'mphb_block_booking', (bool) $disabled );
 	}
 
 	/**
@@ -377,7 +402,6 @@ class MainSettings {
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	public function isCouponsEnabled() {
@@ -622,25 +646,26 @@ class MainSettings {
 	 * @since 3.9.9
 	 */
 	public function isBookingRulesForAdminDisabled() {
-
 		$isCurrentRequestForAdminUI = apply_filters( 'mphb_is_current_request_for_admin_ui', false );
 
-		return get_option( 'mphb_do_not_apply_booking_rules_for_admin', false ) &&
-			(
-				$isCurrentRequestForAdminUI ||
-				( isset( $_REQUEST[ \MPHB\AjaxApi\AbstractAjaxApiAction::REQUEST_DATA_IS_ADMIN ] ) &&
+		return get_option( 'mphb_do_not_apply_booking_rules_for_admin', false )
+			&& (
+				$isCurrentRequestForAdminUI
+				|| (
+					isset( $_REQUEST[ AbstractAjaxApiAction::REQUEST_DATA_IS_ADMIN ] )
 					// phpcs:ignore
-					filter_var( $_REQUEST[ \MPHB\AjaxApi\AbstractAjaxApiAction::REQUEST_DATA_IS_ADMIN ], FILTER_VALIDATE_BOOLEAN )
-				) ||
-				( is_admin() &&
-					isset( $_REQUEST['page'] ) &&
-					in_array( $_REQUEST['page'], array( 'mphb_add_new_booking', 'mphb_edit_booking' ) )
+					&& filter_var( $_REQUEST[ AbstractAjaxApiAction::REQUEST_DATA_IS_ADMIN ], FILTER_VALIDATE_BOOLEAN )
+				)
+				|| ( is_admin()
+					&& isset( $_REQUEST['page'] )
+					&& in_array( $_REQUEST['page'], array( 'mphb_add_new_booking', 'mphb_edit_booking' ) )
 				)
 		 	);
 	}
 
 	public function isGoogleHotelsIntegrationOn(): bool {
-		return (bool) get_option( 'mphb_google_hotels_integration_on', false );
+		return apply_filters( 'mphb_use_google_hotels', true )
+			&& (bool) get_option( 'mphb_google_hotels_integration_on', false );
 	}
 
 	public function updateGoogleHotelsIntegrationOn( bool $isGoogleHotelsIntegrationOn ) {

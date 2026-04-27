@@ -2,6 +2,13 @@
 
 namespace MPHB\Persistences;
 
+use MPHB\Core\BookingHelper;
+use MPHB\Utils\DateUtils;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class RoomPersistence extends RoomTypeDependencedPersistence {
 
 	/**
@@ -94,10 +101,10 @@ class RoomPersistence extends RoomTypeDependencedPersistence {
 		}
 
 		// Find locked rooms
-		if ( $atts['skip_buffer_rules'] ||
-			! mphb_availability_facade()->hasBufferDaysRules(
-				MPHB()->settings()->main()->isBookingRulesForAdminDisabled()
-			)
+		$ignoreBookingRules = MPHB()->settings()->main()->isBookingRulesForAdminDisabled();
+
+		if ( $atts['skip_buffer_rules']
+			|| ! mphb_availability_facade()->hasBufferDaysRules( $ignoreBookingRules )
 		) {
 
 			$roomIds = $this->findLockedRooms( $atts );
@@ -118,12 +125,20 @@ class RoomPersistence extends RoomTypeDependencedPersistence {
 				$bufferDays = mphb_availability_facade()->getBufferDaysCount(
 					$roomTypeId,
 					$atts['from_date'],
-					MPHB()->settings()->main()->isBookingRulesForAdminDisabled()
+					$ignoreBookingRules
 				);
 
-				if ( $bufferDays > 0 ) {
+				$maxBufferDays = mphb_availability_facade()->getMaxBufferDaysCount( $roomTypeId );
 
-					list($fromDate, $toDate) = \MPHB\Core\BookingHelper::addBufferToCheckInAndCheckOutDates(
+				if ( $maxBufferDays > $bufferDays ) {
+					$modifiedAtts['lookup_range'] = BookingHelper::addBufferToCheckInAndCheckOutDates(
+						$modifiedAtts['from_date'],
+						$modifiedAtts['to_date'],
+						$maxBufferDays
+					);
+
+				} elseif ( $bufferDays > 0 ) {
+					list($fromDate, $toDate) = BookingHelper::addBufferToCheckInAndCheckOutDates(
 						$atts['from_date'],
 						$atts['to_date'],
 						$bufferDays
@@ -152,18 +167,39 @@ class RoomPersistence extends RoomTypeDependencedPersistence {
 	}
 
 	/**
-	 * @param array $atts Optional.
-	 * @return int[]
+	 * @since 3.9
+	 * @since 6.0.0 added the <code>$lookup_range</code> attribute.
+	 *
+	 * @param array $atts {
+	 *     @type string           $availability     "free"|"booked"|"pending"|"locked".
+	 *     @type \DateTime        $from_date        Usually, this is a check-in date.
+	 *     @type \DateTime        $to_date          Usually, this is a check-out date.
+	 *     @type int|null         $count            Optional.
+	 *     @type int|int[]|null   $room_type_id     Optional. 1 or more IDs.
+	 *     @type int|int[]|null   $exclude_bookings Optional. 1 or more IDs.
+	 *     @type \DateTime[]|null $lookup_range     Optional. A wider period for searching
+	 *                                              for bookings with different buffer days.
+	 * }
+	 * @return int[] Room IDs.
 	 *
 	 * @global \wpdb $wpdb
-	 *
-	 * @since 3.9
 	 */
 	protected function findLockedRooms( $atts ) {
 		global $wpdb;
 
+		$dateFrom = $atts['from_date'];
+		$dateTo   = $atts['to_date'];
+
+		if ( isset( $atts['lookup_range'] ) ) {
+			list( $lookupFrom, $lookupTo ) = $atts['lookup_range'];
+
+			$isWiderLookup = true;
+		} else {
+			$isWiderLookup = false;
+		}
+
 		switch ( $atts['availability'] ) {
-			// For 'free' find locked rooms and then find all others (free)
+			// For "free" find locked rooms and then find all others (free)
 			case 'free':
 				$bookingStatuses = MPHB()->postTypes()->booking()->statuses()->getLockedRoomStatuses();
 				break;
@@ -174,55 +210,157 @@ class RoomPersistence extends RoomTypeDependencedPersistence {
 				$bookingStatuses = MPHB()->postTypes()->booking()->statuses()->getPendingRoomStatuses();
 				break;
 			case 'locked':
+			default:
 				$bookingStatuses = MPHB()->postTypes()->booking()->statuses()->getLockedRoomStatuses();
 				break;
 		}
 
-		$bookingStatusesStr = "'" . implode( "', '", $bookingStatuses ) . "'";
+		$bookingStatusesPlaceholder = array_fill( 0, count( $bookingStatuses ), '%s' );
+		$bookingStatusesPlaceholder = implode( ', ', $bookingStatusesPlaceholder );
 
-		$sql = 'SELECT DISTINCT room_id.meta_value AS ID'
-			. " FROM {$wpdb->posts} AS reserved_rooms"
-			. " INNER JOIN {$wpdb->postmeta} AS room_id ON room_id.post_id = reserved_rooms.ID AND room_id.meta_key = '_mphb_room_id'"
-			. " INNER JOIN {$wpdb->posts} AS bookings ON bookings.ID = reserved_rooms.post_parent"
-			. " INNER JOIN {$wpdb->postmeta} AS check_in_date ON check_in_date.post_id = bookings.ID AND check_in_date.meta_key = 'mphb_check_in_date'"
-			. " INNER JOIN {$wpdb->postmeta} AS check_out_date ON check_out_date.post_id = bookings.ID AND check_out_date.meta_key = 'mphb_check_out_date'"
-			. ' WHERE reserved_rooms.post_type = %s'
-				. " AND reserved_rooms.post_status = 'publish'"
-				. " AND bookings.post_status IN ({$bookingStatusesStr})"
-				. ' AND check_in_date.meta_value < %s'   // check_in_date  < $atts['to_date']
-				. ' AND check_out_date.meta_value > %s'; // check_out_date > $atts['from_date']
+		// Build SQL
+		$select = 'SELECT DISTINCT room_meta.meta_value AS room_id';
 
-		if ( ! empty( $atts['exclude_bookings'] ) ) {
-			$bookingIds = implode( ', ', (array) $atts['exclude_bookings'] );
+		$from = "FROM {$wpdb->posts} AS reserved_rooms"
+			. " INNER JOIN {$wpdb->postmeta} AS room_meta"
+				. ' ON room_meta.post_id = reserved_rooms.ID'
+				. ' AND room_meta.meta_key = "_mphb_room_id"'
+			. " INNER JOIN {$wpdb->posts} AS bookings"
+				. ' ON bookings.ID = reserved_rooms.post_parent'
+			. " INNER JOIN {$wpdb->postmeta} AS check_in_meta"
+				. ' ON check_in_meta.post_id = bookings.ID'
+				. ' AND check_in_meta.meta_key = "mphb_check_in_date"'
+			. " INNER JOIN {$wpdb->postmeta} AS check_out_meta"
+				. ' ON check_out_meta.post_id = bookings.ID'
+				. ' AND check_out_meta.meta_key = "mphb_check_out_date"';
 
-			$sql .= " AND bookings.ID NOT IN ({$bookingIds})";
-		}
+		$roomTypeJoinAdded = false;
 
-		if ( ! empty( $atts['room_type_id'] ) ) {
-			$roomTypeIds = implode( ', ', (array) $atts['room_type_id'] );
+		$where = 'WHERE reserved_rooms.post_type = %s'
+			. ' AND reserved_rooms.post_status = "publish"'
+			// Default dates overlap check
+			. ' AND check_out_meta.meta_value > %s' // check_out_date > $dateFrom
+			. ' AND check_in_meta.meta_value < %s'  // check_in_date  < $dateTo
+			// Add booking statuses after dates, so we can easily change
+			// $dateFrom and $dateTo in $placeholderData later
+			. " AND bookings.post_status IN ({$bookingStatusesPlaceholder})";
 
-			$sql .= " AND EXISTS(SELECT 1 FROM {$wpdb->postmeta} AS room_type_id WHERE room_type_id.post_id = room_id.meta_value AND room_type_id.meta_key = 'mphb_room_type_id' AND room_type_id.meta_value IN ({$roomTypeIds}) LIMIT 1)";
-		}
-
-		if ( ! empty( $atts['count'] ) ) {
-			$sql .= ' LIMIT ' . absint( $atts['count'] );
-		}
-
-		// Prepare SQL
-		$dateFormat = MPHB()->settings()->dateTime()->getDateTransferFormat();
-
-		$sql = $wpdb->prepare(
-			$sql,
+		$placeholderData = array(
 			MPHB()->postTypes()->reservedRoom()->getPostType(),
-			$atts['to_date']->format( $dateFormat ),
-			$atts['from_date']->format( $dateFormat )
+			DateUtils::formatDateDB( $dateFrom ),
+			DateUtils::formatDateDB( $dateTo ),
+			...$bookingStatuses,
 		);
 
-		// Find rooms
-		$roomIds = $wpdb->get_col( $sql );
-		$roomIds = array_map( 'absint', $roomIds );
+		$endSql = ''; // ORDER BY, LIMIT
 
-		return $roomIds;
+		// Exclude bookings
+		if ( ! empty( $atts['exclude_bookings'] ) ) {
+			$bookingIds = (array) $atts['exclude_bookings'];
+
+			$bookingIdsPlaceholder = array_fill( 0, count( $bookingIds ), '%d' );
+			$bookingIdsPlaceholder = implode( ', ', $bookingIdsPlaceholder );
+
+			$where .= " AND bookings.ID NOT IN ({$bookingIdsPlaceholder})";
+
+			$placeholderData = array_merge( $placeholderData, $bookingIds );
+		}
+
+		// Limit by room type ID
+		if ( ! empty( $atts['room_type_id'] ) ) {
+			$roomTypeIds = (array) $atts['room_type_id'];
+
+			$roomTypeIdsPlaceholder = array_fill( 0, count( $roomTypeIds ), '%d' );
+			$roomTypeIdsPlaceholder = implode( ', ', $roomTypeIdsPlaceholder );
+
+			$from .= " INNER JOIN {$wpdb->postmeta} AS room_type_meta"
+				. ' ON room_type_meta.post_id = room_meta.meta_value'
+				. ' AND room_type_meta.meta_key = "mphb_room_type_id"';
+
+			$where .= " AND room_type_meta.meta_value IN ({$roomTypeIdsPlaceholder})";
+
+			$roomTypeJoinAdded = true;
+			$placeholderData = array_merge( $placeholderData, $roomTypeIds );
+		}
+
+		// Add LIMIT %d
+		if ( ! empty( $atts['count'] ) ) {
+			$endSql = ltrim( $endSql . ' LIMIT %d', ' ' );
+
+			$placeholderData[] = absint( $atts['count'] );
+		}
+
+		// Query results
+		if ( $isWiderLookup ) {
+			// Do a wider lookup checking bookings with different buffer days
+			$select = 'SELECT room_meta.meta_value AS room_id,'
+				. ' room_type_meta.meta_value AS room_type_id,'
+				. ' check_in_meta.meta_value AS check_in_date,'
+				. ' check_out_meta.meta_value AS check_out_date';
+
+			if ( ! $roomTypeJoinAdded ) {
+				$from .= " INNER JOIN {$wpdb->postmeta} AS room_type_meta"
+					. ' ON room_type_meta.post_id = room_meta.meta_value'
+					. ' AND room_type_meta.meta_key = "mphb_room_type_id"';
+			}
+
+			$placeholderData[1] = DateUtils::formatDateDB( $lookupFrom );
+			$placeholderData[2] = DateUtils::formatDateDB( $lookupTo );
+
+			// Find rooms
+			$sql = "{$select} {$from} {$where} {$endSql}";
+			$sql = $wpdb->prepare( $sql, $placeholderData );
+
+			$reservedRooms = $wpdb->get_results( $sql, ARRAY_A );
+
+			$roomIds = array();
+			$dateFormat = MPHB()->settings()->dateTime()->getDateTransferFormat();
+
+			foreach ( $reservedRooms as $reservedRoom ) {
+				$roomId       = absint( $reservedRoom['room_id'] );
+				$roomTypeId   = absint( $reservedRoom['room_type_id'] );
+				$checkInDate  = DateUtils::createCheckInDate( $dateFormat, $reservedRoom['check_in_date'] );
+				$checkOutDate = DateUtils::createCheckOutDate( $dateFormat, $reservedRoom['check_out_date'] );
+
+				$bufferDays = mphb_availability_facade()->getBufferDaysCount(
+					$roomTypeId,
+					$checkInDate,
+					$isIgnoreBookingRules = false // Otherwise there would be no lookup dates
+				);
+
+				if ( $bufferDays > 0 ) {
+					list( $checkInDate, $checkOutDate ) = BookingHelper::addBufferToCheckInAndCheckOutDates(
+						$checkInDate,
+						$checkOutDate,
+						$bufferDays
+					);
+				}
+
+				$periodsOverlap = DateUtils::isDatesOverlap(
+					$dateFrom, $dateTo,
+					$checkInDate, $checkOutDate
+				);
+
+				if ( $periodsOverlap ) {
+					$roomIds[] = $roomId;
+				}
+			}
+
+			// Remove duplicates and key gaps
+			$roomIds = array_values( array_unique( $roomIds ) );
+
+			return $roomIds;
+
+		} else {
+			// Find rooms
+			$sql = "{$select} {$from} {$where} {$endSql}";
+			$sql = $wpdb->prepare( $sql, $placeholderData );
+
+			$roomIds = $wpdb->get_col( $sql ); // Have only DISTINCT room_id
+			$roomIds = array_map( 'absint', $roomIds );
+
+			return $roomIds;
+		}
 	}
 
 	/**

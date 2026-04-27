@@ -2,13 +2,16 @@
 
 namespace MPHB\PostTypes\PaymentCPT;
 
-use \MPHB\PostTypes\AbstractCPT;
+use MPHB\PostTypes\AbstractCPT\Statuses as AbstractStatuses;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * @since 3.9.6 - 'mphb-p-cancelled' status added.
  */
-class Statuses extends AbstractCPT\Statuses {
-
+class Statuses extends AbstractStatuses {
 	const STATUS_PENDING   = 'mphb-p-pending';
 	const STATUS_COMPLETED = 'mphb-p-completed';
 	const STATUS_FAILED    = 'mphb-p-failed';
@@ -18,13 +21,12 @@ class Statuses extends AbstractCPT\Statuses {
 	const STATUS_CANCELLED = 'mphb-p-cancelled';
 
 	public function __construct( $postType ) {
-
 		parent::__construct( $postType );
+
 		add_action( 'transition_post_status', array( $this, 'transitionStatus' ), 10, 3 );
 	}
 
 	protected function initStatuses() {
-
 		$this->statuses[ self::STATUS_PENDING ]   = array();
 		$this->statuses[ self::STATUS_COMPLETED ] = array();
 		$this->statuses[ self::STATUS_FAILED ]    = array();
@@ -35,11 +37,9 @@ class Statuses extends AbstractCPT\Statuses {
 	}
 
 	public function getStatusArgs( $statusName ) {
-
 		$args = array();
 
 		switch ( $statusName ) {
-
 			case self::STATUS_PENDING:
 				$args = array(
 					'label'                     => _x( 'Pending', 'Payment status', 'motopress-hotel-booking' ),
@@ -121,9 +121,7 @@ class Statuses extends AbstractCPT\Statuses {
 	}
 
 	public function transitionStatus( $newStatus, $oldStatus, $post ) {
-
 		if ( $post->post_type === $this->postType && $newStatus !== $oldStatus ) {
-
 			// Prevent logging status change while importing
 			if ( apply_filters( 'mphb_prevent_handle_payment_status_transition', false ) ) {
 				return;
@@ -140,7 +138,6 @@ class Statuses extends AbstractCPT\Statuses {
 			);
 
 			if ( $newStatus === self::STATUS_PENDING ) {
-
 				$payment->updateExpiration( time() + MPHB()->settings()->payment()->getPendingTime() * MINUTE_IN_SECONDS );
 
 				MPHB()->cronManager()->getCron( 'abandon_payment_pending' )->schedule();
@@ -157,7 +154,6 @@ class Statuses extends AbstractCPT\Statuses {
 			$handleStatusAs = ( $newStatus == self::STATUS_ON_HOLD && $isInstantMethod ) ? self::STATUS_COMPLETED : $newStatus;
 
 			switch ( $handleStatusAs ) {
-
 				case self::STATUS_COMPLETED:
 					$booking = MPHB()->getBookingRepository()->findById( $payment->getBookingId(), true );
 					if ( $booking && $booking->isExpectPayment( $payment->getId() ) ) {
@@ -208,6 +204,20 @@ class Statuses extends AbstractCPT\Statuses {
 						MPHB()->getBookingRepository()->save( $booking );
 					}
 					break;
+
+				case self::STATUS_CANCELLED:
+					// Don't cancel the booking automatically. Administrator
+					// should do this manually. (See MPI-6398)
+					break;
+			}
+
+			// Capture/release authorized funds
+			if ( $payment->hasPendingAuthedFunds() ) {
+				if ( $newStatus === self::STATUS_COMPLETED ) {
+					MPHB()->paymentManager()->captureAuthorizedFunds( $payment );
+				} elseif ( in_array( $newStatus, $this->getFailedStatuses() ) ) {
+					MPHB()->paymentManager()->releaseAuthorizedFunds( $payment );
+				}
 			}
 
 			$payment->addLog( sprintf( __( 'Status changed from %s to %s.', 'motopress-hotel-booking' ), mphb_get_status_label( $oldStatus ), mphb_get_status_label( $newStatus ) ) );
@@ -218,10 +228,21 @@ class Statuses extends AbstractCPT\Statuses {
 
 	/**
 	 * @return string[]
-	 * @since 4.2.2
 	 */
-	public function getFinishedStatuses() {
+	public function getFailedStatuses(): array {
+		return array(
+			self::STATUS_ABANDONED,
+			self::STATUS_CANCELLED,
+			self::STATUS_FAILED,
+		);
+	}
 
+	/**
+	 * @since 4.2.2
+	 *
+	 * @return string[]
+	 */
+	public function getFinishedStatuses(): array {
 		 // All, except STATUS_PENDING and STATUS_ON_HOLD
 		return array(
 			self::STATUS_COMPLETED,

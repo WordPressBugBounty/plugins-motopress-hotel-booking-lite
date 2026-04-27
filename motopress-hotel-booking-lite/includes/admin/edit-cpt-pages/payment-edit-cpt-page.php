@@ -2,24 +2,38 @@
 
 namespace MPHB\Admin\EditCPTPages;
 
+use MPHB\Admin\Metaboxes\PaymentAuthedFundsMetabox;
+use MPHB\PostTypes\PaymentCPT\Statuses as PaymentStatuses;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class PaymentEditCPTPage extends EditCPTPage {
-
 	public function customizeMetaBoxes() {
-
 		remove_meta_box( 'submitdiv', $this->postType, 'side' );
-
 		add_meta_box( 'submitdiv', __( 'Update Payment', 'motopress-hotel-booking' ), array( $this, 'renderSubmitMetaBox' ), $this->postType, 'side' );
+
 		add_meta_box( 'logs', __( 'Logs', 'motopress-hotel-booking' ), array( $this, 'renderLogMetaBox' ), $this->postType, 'side' );
+
+		// Disable "amount" if "authorized_amount" exists
+		if ( $this->isPaymentWithManualCapture() ) {
+			$amountField = $this->findField( 'mphb_main', '_mphb_amount' );
+
+			if ( $amountField !== null ) {
+				$amountField->setRequired( false );
+				$amountField->setDisabled( true );
+			}
+		}
 	}
 
 	public function renderSubmitMetaBox( $post, $metabox ) {
 		$postTypeObject = get_post_type_object( $this->postType );
-		$can_publish    = current_user_can( $postTypeObject->cap->publish_posts );
 		$postStatus     = get_post_status( $post->ID );
 
 		// Select Completed status by default on the payment addition page
 		if ( $this->isCurrentAddNewPage() && $postStatus === 'auto-draft' ) {
-			$postStatus = \MPHB\PostTypes\PaymentCPT\Statuses::STATUS_COMPLETED;
+			$postStatus = PaymentStatuses::STATUS_COMPLETED;
 		}
 		?>
 		<div class="submitbox" id="submitpost">
@@ -106,14 +120,17 @@ class PaymentEditCPTPage extends EditCPTPage {
 
 		$status = isset( $_POST['mphb_post_status'] ) ? sanitize_text_field( wp_unslash( $_POST['mphb_post_status'] ) ) : '';
 
-		if ( ! array_key_exists( $status, MPHB()->postTypes()->payment()->statuses()->getStatuses() ) ) {
+		if ( ! MPHB()->postTypes()->payment()->statuses()->hasStatus( $status ) ) {
 			$status = '';
 		}
 
-		$paymentRepository = MPHB()->getPaymentRepository();
+		$payment = mphb_bookings_facade()->findPaymentById( $postId );
 
-		$payment = $paymentRepository->findById( $postId, true );
-		$payment->setStatus( $status );
+		if ( $status !== '' && $payment->getStatus() !== $status ) {
+			$payment->setStatus( $status );
+
+			wp_update_post( array( 'ID' => $postId, 'post_status' => $status ) );
+		}
 
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		$addLog = isset( $_POST['_mphb_add_log'] ) ? mphb_clean( wp_unslash( $_POST['_mphb_add_log'] ) ) : '';
@@ -121,7 +138,18 @@ class PaymentEditCPTPage extends EditCPTPage {
 		if ( ! empty( $addLog ) ) {
 			$payment->addLog( $addLog );
 		}
+	}
 
-		$paymentRepository->save( $payment );
+	protected function createNewMetaboxes(): void {
+		new PaymentAuthedFundsMetabox( $this, 'normal' );
+	}
+
+	private function isPaymentWithManualCapture(): bool {
+		$postId  = $this->getPostId();
+		$payment = ( $postId !== 0 ) ? mphb_bookings_facade()->findPaymentById( $postId ) : null;
+
+		return $payment !== null
+			&& $payment->getStatus() !== PaymentStatuses::STATUS_PENDING
+			&& $payment->hasAuthedFunds();
 	}
 }

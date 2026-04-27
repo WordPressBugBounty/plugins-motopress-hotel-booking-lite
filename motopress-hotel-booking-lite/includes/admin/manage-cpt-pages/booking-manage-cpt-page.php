@@ -6,7 +6,6 @@ use \MPHB\PostTypes\BookingCPT;
 use \MPHB\Utils\BookingUtils;
 use \MPHB\Utils\DateUtils;
 use \MPHB\Views;
-use \MPHB\Entities;
 
 class BookingManageCPTPage extends ManageCPTPage {
 

@@ -94,9 +94,10 @@ class GetAvailabilityData extends AbstractRestCommandController {
 	 */
 	public static function get_response_schema(): array {
 		return array(
-			'$schema' => 'http://json-schema.org/draft-04/schema#',
-			'title'   => 'Availability data',
-			'type'    => 'object',
+			'$schema'           => 'http://json-schema.org/draft-04/schema#',
+			'component'         => 'accommodation_types-availability',
+			'title'             => 'accommodation_types',
+			'type'              => 'object',
 			'patternProperties' => array(
 				'^[0-9]+$' => array(
 					'type' => 'object',

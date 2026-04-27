@@ -762,7 +762,6 @@ class SearchResultsShortcode extends AbstractShortcode {
 				   value="<?php echo esc_attr( $this->checkInDate->format( MPHB()->settings()->dateTime()->getDateTransferFormat() ) ); ?>"/>
 			<input type="hidden" name="mphb_check_out_date"
 				   value="<?php echo esc_attr( $this->checkOutDate->format( MPHB()->settings()->dateTime()->getDateTransferFormat() ) ); ?>"/>
-				   <?php wp_nonce_field( \MPHB\Shortcodes\CheckoutShortcode::NONCE_ACTION_CHECKOUT, \MPHB\Shortcodes\CheckoutShortcode::NONCE_NAME, true ); ?>
 			<div class="mphb-reservation-details">
 				<p class="mphb-empty-cart-message"><?php esc_html_e( 'Select from available accommodations.', 'motopress-hotel-booking' ); ?></p>
 				<p class="mphb-cart-message"></p>
@@ -828,7 +827,6 @@ class SearchResultsShortcode extends AbstractShortcode {
 			  method="POST"
 			  id="mphb-recommendation"
 			  class="mphb-recommendation">
-				  <?php wp_nonce_field( \MPHB\Shortcodes\CheckoutShortcode::NONCE_ACTION_CHECKOUT, \MPHB\Shortcodes\CheckoutShortcode::RECOMMENDATION_NONCE_NAME, true ); ?>
 			<input type="hidden" name="mphb_check_in_date"
 				   value="<?php echo esc_attr( $this->checkInDate->format( MPHB()->settings()->dateTime()->getDateTransferFormat() ) ); ?>"/>
 			<input type="hidden" name="mphb_check_out_date"

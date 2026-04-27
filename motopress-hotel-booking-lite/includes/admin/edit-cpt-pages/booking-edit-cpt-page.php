@@ -2,6 +2,10 @@
 
 namespace MPHB\Admin\EditCPTPages;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class BookingEditCPTPage extends EditCPTPage {
 
 	protected function addActions() {
@@ -10,6 +14,42 @@ class BookingEditCPTPage extends EditCPTPage {
 		add_action( 'admin_init', array( $this, 'resendConfirmationEmail' ) );
 		add_filter( 'post_updated_messages', array( $this, 'onResendEmailMessage' ) );
 		add_action( 'add_meta_boxes', array( $this, 'addResendEmailMetabox' ), 10, 2 );
+		add_action( 'admin_notices', array( $this, 'displayNotices' ) );
+	}
+
+	/**
+	 * @access protected
+	 */
+	public function displayNotices(): void {
+		if ( ! $this->isCurrentPage() ) {
+			return;
+		}
+
+		// Show "Booking has uncaptured funds" notice
+		$bookingId = get_the_ID();
+
+		if ( $bookingId !== false ) {
+			$payments = mphb_bookings_facade()->findPaymentsByBookingId( $bookingId );
+			$uncapturedPaymentExits = false;
+
+			foreach ( $payments as $payment ) {
+				if ( $payment->hasPendingAuthedFunds() ) {
+					$uncapturedPaymentExits = true;
+					break;
+				}
+			}
+
+			if ( $uncapturedPaymentExits ) {
+				// phpcs:ignore -- HTML content
+				echo mphb_tmpl_admin_notice(
+					wp_kses(
+						__( 'Notice: This booking has a payment that hasn’t been charged yet. <a href="#mphb_other">Review and charge the payment.</a>', 'motopress-hotel-booking' ),
+						array( 'a' => array( 'href' => array() ) )
+					),
+					'warning'
+				);
+			}
+		}
 	}
 
 	public function customizeMetaBoxes() {

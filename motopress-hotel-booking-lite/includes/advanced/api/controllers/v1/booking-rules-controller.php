@@ -8,7 +8,10 @@ namespace MPHB\Advanced\Api\Controllers\V1;
 
 use MPHB\Advanced\Api\Controllers\AbstractRestOptionsController;
 use MPHB\Advanced\Api\Data\OptionsSchema;
+use MPHB\Advanced\Api\ApiHelper;
+use MPHB\Utils\ValidateUtils;
 use WP_Error;
+use WP_REST_Request;
 
 class BookingRulesController extends AbstractRestOptionsController {
 
@@ -28,14 +31,16 @@ class BookingRulesController extends AbstractRestOptionsController {
 	protected function initOptions() {
 		$options = new OptionsSchema();
 
+		$options->setComponent( 'booking_rules' );
+
 		$checkInDays           = $this->getDaysAccommodationTypeIdsSeasonIdsOption( 'check_in_days' );
 		$checkOutDays          = $this->getDaysAccommodationTypeIdsSeasonIdsOption( 'check_out_days' );
 		$minStayLength         = $this->getLengthAccommodationTypeIdsSeasonIds( 'min_stay_length' );
 		$maxStayLength         = $this->getLengthAccommodationTypeIdsSeasonIds( 'max_stay_length' );
 		$bookingRulesCustom    = $this->getBookingRulesCustom();
-		$minAdvanceReservation = $this->getLengthAccommodationTypeIdsSeasonIds( 'min_advance_reservation' );
-		$maxAdvanceReservation = $this->getLengthAccommodationTypeIdsSeasonIds( 'max_advance_reservation' );
-		$bufferDays            = $this->getLengthAccommodationTypeIdsSeasonIds( 'buffer_days' );
+		$minAdvanceReservation = $this->getZeroLengthAccommodationTypeIdsSeasonIds( 'min_advance_reservation' );
+		$maxAdvanceReservation = $this->getZeroLengthAccommodationTypeIdsSeasonIds( 'max_advance_reservation' );
+		$bufferDays            = $this->getZeroLengthAccommodationTypeIdsSeasonIds( 'buffer_days' );
 
 		$options->addOption( 'mphb_check_in_days', 'check_in_days', $checkInDays );
 		$options->addOption( 'mphb_check_out_days', 'check_out_days', $checkOutDays );
@@ -94,20 +99,26 @@ class BookingRulesController extends AbstractRestOptionsController {
 	 * @return int[]
 	 */
 	private function getAccommodationTypeIds() {
-		$atts                 = array(
-			'fields' => 'ids',
+		$accommodationTypeIds = MPHB()->getRoomTypePersistence()->getPosts(
+			array(
+				'fields'      => 'ids',
+				'post_status' => 'any',
+			)
 		);
-		$accommodationTypeIds = MPHB()->getRoomTypePersistence()->getPosts( $atts );
+
 		array_unshift( $accommodationTypeIds, 0 );
 
 		return $accommodationTypeIds;
 	}
 
 	private function getSeasonIdsProperty() {
-		$atts      = array(
-			'fields' => 'ids',
+		$seasonIds = MPHB()->getSeasonPersistence()->getPosts(
+			array(
+				'fields'      => 'ids',
+				'post_status' => 'any',
+			)
 		);
-		$seasonIds = MPHB()->getSeasonPersistence()->getPosts( $atts );
+
 		array_unshift( $seasonIds, 0 );
 
 		return array(
@@ -131,6 +142,23 @@ class BookingRulesController extends AbstractRestOptionsController {
 					$optionName              => array(
 						'type'    => 'integer',
 						'minimum' => 1,
+					),
+					'accommodation_type_ids' => $this->getAccommodationTypeProperty(),
+					'season_ids'             => $this->getSeasonIdsProperty(),
+				),
+			),
+		);
+	}
+
+	private function getZeroLengthAccommodationTypeIdsSeasonIds( string $optionName ) {
+		return array(
+			'type'  => 'array',
+			'items' => array(
+				'type'       => 'object',
+				'properties' => array(
+					$optionName              => array(
+						'type'    => 'integer',
+						'minimum' => 0,
 					),
 					'accommodation_type_ids' => $this->getAccommodationTypeProperty(),
 					'season_ids'             => $this->getSeasonIdsProperty(),
@@ -183,7 +211,7 @@ class BookingRulesController extends AbstractRestOptionsController {
 		);
 	}
 
-	private function isValidAccommodationIdPropery( $value ) {
+	private function isValidAccommodationIdProperty( $value ) {
 		$accommodationIds = array_column( $value, 'accommodation_id' );
 		$accommodationIds = array_diff( $accommodationIds, array( 0 ) );
 		if ( ! count( $accommodationIds ) ) {
@@ -203,7 +231,13 @@ class BookingRulesController extends AbstractRestOptionsController {
 		}
 
 		foreach ( $value as $valueItem ) {
-			$accommodationId = $valueItem['accommodation_id'];
+			// Check accommodation ID
+			$accommodationId = intval( $valueItem['accommodation_id'] );
+
+			if ( $accommodationId === 0 ) {
+				continue;
+			}
+
 			if ( ! isset( $accommodations[ $accommodationId ] ) ) {
 				return new WP_Error(
 					'mphb_rest_invalid_accommodation_id',
@@ -214,7 +248,10 @@ class BookingRulesController extends AbstractRestOptionsController {
 					)
 				);
 			}
-			$accommodationTypeId = $valueItem['accommodation_type_id'];
+
+			// Check accommodation type ID
+			$accommodationTypeId = intval( $valueItem['accommodation_type_id'] );
+
 			if ( $accommodations[ $accommodationId ] != $accommodationTypeId ) {
 				return new WP_Error(
 					'mphb_rest_invalid_accommodation_id',
@@ -231,6 +268,8 @@ class BookingRulesController extends AbstractRestOptionsController {
 				);
 			}
 		}
+
+		return true;
 	}
 
 	public function boookingRulesCustomValidate( $value, $request, $param ) {
@@ -239,11 +278,92 @@ class BookingRulesController extends AbstractRestOptionsController {
 			return $isValid;
 		}
 
-		$isValid = $this->isValidAccommodationIdPropery( $value );
+		$isValid = $this->isValidAccommodationIdProperty( $value );
 		if ( is_wp_error( $isValid ) ) {
 			return $isValid;
 		}
 
 		return true;
+	}
+
+	/**
+	 * Retrieves the options.
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 * @return array|WP_Error Array on success, or WP_Error object on failure.
+	 */
+	public function get_item( $request ) {
+		$options  = $this->options->getOptionsSchema();
+		$response = array();
+
+		foreach ( $options as $name => $args ) {
+			if ( $name !== 'booking_rules_custom' ) {
+				$option = get_option( $args['option_name'], $args['schema']['default'] );
+			} else {
+				$option = array_values( MPHB()->getBlocksRepository()->getAll() );
+			}
+
+			// Calls prepareResponseBookingRulesCustom() for custom booking rules
+			$response[ $name ] = $this->prepareResponse( $option, $name, $args['schema'] );
+		}
+
+		return $response;
+	}
+
+	/**
+	 * Converts new blocks to old rules.
+	 *
+	 * @see AbstractRestOptionsController::prepareResponse()
+	 */
+	protected function prepareResponseBookingRulesCustom( array $blocks ): array {
+		return array_map(
+			fn( array $block ) => ApiHelper::prepareCustomBookingRuleResponse( $block ),
+			$blocks
+		);
+	}
+
+	/**
+	 * Updates settings for the settings object.
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 * @return array|WP_Error Array on success, or error object on failure.
+	 */
+	public function update_item( $request ) {
+		// Calls prepareRequestBookingRulesCustom() for custom booking rules
+		$preparedRequest = $this->prepareRequest( $request );
+
+		if ( is_wp_error( $preparedRequest ) ) {
+			return $preparedRequest;
+		}
+
+		foreach ( $preparedRequest as $option => $value ) {
+			if ( $option !== 'mphb_booking_rules_custom' ) {
+				/*
+				 * A null value for an option would have the same effect as
+				 * deleting the option from the database, and relying on the
+				 * default value.
+				 */
+				if ( is_null( $value ) ) {
+					delete_option( $option );
+				} else {
+					update_option( $option, $value );
+				}
+
+			} else {
+				MPHB()->getBlocksRepository()->deleteAll();
+				MPHB()->getBlocksRepository()->insertItems( $value );
+			}
+		}
+
+		return $this->get_item( $request );
+	}
+
+	/**
+	 * Converts old rules to new blocks.
+	 *
+	 * @see AbstractRestOptionsController::prepareRequestItem()
+	 */
+	protected function prepareRequestBookingRulesCustom( array $rules ): array {
+		return ValidateUtils::convertCustomBookingRulesToBlocks( $rules );
 	}
 }

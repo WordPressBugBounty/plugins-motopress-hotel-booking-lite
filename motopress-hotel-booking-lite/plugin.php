@@ -5,6 +5,12 @@
  * Alternatively, you can copy template files from './templates/' folder to '/your-theme/hotel-booking/' to override them.
  */
 
+use MPHB\Repositories;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 HotelBookingPlugin::setPluginDirPathAndUrl( MPHB_PLUGIN_FILE, ( isset( $plugin ) ? $plugin : null ), ( isset( $network_plugin ) ? $network_plugin : null ) );
 
 class HotelBookingPlugin {
@@ -56,7 +62,7 @@ class HotelBookingPlugin {
 	private $pluginSlug; // "motopress-hotel-booking" or "motopress-hotel-booking-lite"
 	private $productSlug; // Always "motopress-hotel-booking"
 	private $productDir; // "motopress-hotel-booking" or "motopress-hotel-booking-lite"
-	private $prefix;
+	private $prefix = 'mphb';
 	private $pluginDir;
 	private $pluginDirUrl;
 
@@ -307,6 +313,12 @@ private $upgradeToPremiumMenuPage;
 	private $syncUrlsRepository;
 	private $attributeRepository;
 
+	private ?Repositories\BlocksRepository $blocksRepository = null;
+
+	private ?Repositories\CustomBookingRulesRepository $customBookingRulesRepository = null;
+
+	private ?Repositories\CustomPricesRepository $customPricesRepository = null;
+
 	/**
 	 * @var \MPHB\Crons\CronManager
 	 */
@@ -343,10 +355,9 @@ private $upgradeToPremiumMenuPage;
 
 		$this->pluginDir    = self::$_pluginDirPath;
 		$this->pluginDirUrl = self::$_pluginDirUrl;
-		$this->pluginSlug = 'motopress-hotel-booking-lite';
-		$this->productSlug = 'motopress-hotel-booking';
-		$this->productDir  = basename( dirname( MPHB_PLUGIN_FILE ) );
-		$this->prefix      = 'mphb';
+		$this->pluginSlug   = 'motopress-hotel-booking-lite';
+		$this->productSlug  = 'motopress-hotel-booking';
+		$this->productDir   = basename( dirname( MPHB_PLUGIN_FILE ) );
 
 		$pluginData           = $this->getPluginData();
 		$this->author         = isset( $pluginData['Author'] ) ? $pluginData['Author'] : '';
@@ -373,6 +384,7 @@ private $upgradeToPremiumMenuPage;
 
 		add_action( 'plugins_loaded', array( $this, 'loadTextDomain' ) );
 		add_action( 'init', array( $this, 'rewriteRules' ) );
+		add_action( 'init', array( $this, 'patchAddons' ) );
 		add_action( 'admin_init', array( $this, 'initAutoUpdater' ), 9 );
 		// add_action( 'wp', array( $this, 'setupRoomTypeMicrodata' ) );
 		// add_action( 'wp_head', array( $this, 'pushRoomTypeMicrodata' ) );
@@ -516,12 +528,16 @@ private $upgradeToPremiumMenuPage;
 
 		$this->roomsGeneratorMenuPage = new \MPHB\Admin\MenuPages\RoomsGeneratorMenuPage( 'mphb_rooms_generator', $roomGeneratorAtts );
 
+		// There is no point in checking the "mphb_use_google_hotels" filter
+		// here, because other plugins cannot use it - the code executes very
+		// early
 		new \MPHB\Admin\MenuPages\GoogleHotelsMenuPage(
 			'mphb_google_hotels_settings',
 			array(
 				'capability'  => \MPHB\UsersAndRoles\CapabilitiesAndRoles::MANAGE_SETTINGS,
 				'parent_menu' => MPHB()->postTypes()->roomType()->getMenuSlug(),
-				'order'       => 25,
+				'order'       => 25, // Order must be greater than the priority of
+				                     // the "admin_menu" action inside the class
 			)
 		);
 
@@ -615,6 +631,30 @@ private $upgradeToPremiumMenuPage;
 		);
 
 		$this->extensionsPage = new \MPHB\Admin\MenuPages\ExtensionsMenuPage( 'mphb_extensions', $extensionsPageSettings );
+	}
+
+	/**
+	 * Adds patches for addons that may break with a fatal error (old version of
+	 * addons with new version of plugin).
+	 *
+	 * @access private
+	 */
+	public function patchAddons(): void {
+		// Accommodation-Based Payments
+		if ( defined( 'MPGM\VERSION' ) && version_compare( MPGM\VERSION, '1.2.1', '<=' ) ) {
+			add_filter( 'mphb_stripe_fields', function ( $fields ) {
+				$fields['endpoint_secret'] = array(
+					'description' => __( 'This field is no longer supported in the new version of the plugin. Please update the addon to the latest version.', 'motopress-hotel-booking' ),
+					'label'       => __( 'Webhook Secret', 'motopress-hotel-booking' ),
+					'type'        => 'placeholder',
+				);
+
+				$fields['payment_methods']['label'] = __( 'Payment Methods', 'motopress-hotel-booking' );
+				$fields['payment_methods']['description_top'] = '';
+
+				return $fields;
+			} );
+		}
 	}
 
 	/**
@@ -1001,6 +1041,9 @@ private $upgradeToPremiumMenuPage;
 		$tables[] = $wpdb->prefix . 'mphb_sync_logs';
 		$tables[] = $wpdb->prefix . 'mphb_customers';
 		$tables[] = $wpdb->prefix . 'mphb_customers_meta';
+		$tables[] = $this->getBlocksRepository()->getTableName();
+		$tables[] = $this->getCustomBookingRulesRepository()->getTableName();
+		$tables[] = $this->getCustomPricesRepository()->getTableName();
 
 		restore_current_blog();
 
@@ -1434,6 +1477,12 @@ private $upgradeToPremiumMenuPage;
 		$wpdb->query( $customersMeta );
 		$wpdb->query( $apiKeys );
 
+		/** @var self $mphb */
+		$mphb = self::getInstance();
+
+		$mphb->getBlocksRepository()->createTable();
+		$mphb->getCustomBookingRulesRepository()->createTable();
+		$mphb->getCustomPricesRepository()->createTable();
 	}
 
 
@@ -1629,6 +1678,30 @@ private $upgradeToPremiumMenuPage;
 	 */
 	public function getAttributeRepository() {
 		return $this->attributeRepository;
+	}
+
+	public function getBlocksRepository(): Repositories\BlocksRepository {
+		if ( is_null( $this->blocksRepository ) ) {
+			$this->blocksRepository = new Repositories\BlocksRepository();
+		}
+
+		return $this->blocksRepository;
+	}
+
+	public function getCustomBookingRulesRepository(): Repositories\CustomBookingRulesRepository {
+		if ( is_null( $this->customBookingRulesRepository ) ) {
+			$this->customBookingRulesRepository = new Repositories\CustomBookingRulesRepository();
+		}
+
+		return $this->customBookingRulesRepository;
+	}
+
+	public function getCustomPricesRepository(): Repositories\CustomPricesRepository {
+		if ( is_null( $this->customPricesRepository ) ) {
+			$this->customPricesRepository = new Repositories\CustomPricesRepository();
+		}
+
+		return $this->customPricesRepository;
 	}
 
 	/**

@@ -4,7 +4,7 @@ Donate link: https://motopress.com/
 Requires at least: 5.2
 Tags: hotel booking, reservation, hotel, booking engine, booking, booking calendar, booking system, calendar, online booking, airbnb, booking.com, homeaway, vrbo, tripadvisor, booking form, availability calendar, channel manager, property management system, vacation, travel
 Tested up to: 6.9
-Stable tag: 5.5.2
+Stable tag: 6.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -175,6 +175,16 @@ MotoPress Hotel Booking plugin, Copyright (C) 2016, MotoPress https://motopress.
 MotoPress Hotel Booking plugin is distributed under the terms of the GNU GPL.
 
 == Changelog ==
+
+= 6.0.0, Apr 22 2026
+* New: Added a new admin calendar to create bookings and manage dates, rates, and availability in a single interface.
+* New: Added the ability to set daily pricing and availability in the new admin calendar.
+* New: Updated Stripe integration with support for managing payment methods via the Stripe dashboard, including local payment methods, Apple Pay, and Google Pay.
+* New: Added support for payment authorization in Stripe, allowing you to capture or release funds later.
+* Improvement: Fixed rare cases where payments were completed without creating a booking.
+* Improvement: Minor improvements and fixes to enhance overall usability and stability.
+* Notice: This update requires a database upgrade. Please back up your site before updating the plugin. New REST API routes have also been added.
+* Notice: Update the Accommodation-Based Payments, Payment Request, and WooCommerce Payments add-ons to the latest versions for proper compatibility with the core plugin.
 
 = 5.5.2, Mar 20 2026
 * Bug fix: Fixed issues with accommodations related to empty capacity, media display, and REST API data.

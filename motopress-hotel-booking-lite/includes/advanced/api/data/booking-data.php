@@ -6,13 +6,14 @@
 
 namespace MPHB\Advanced\Api\Data;
 
-use MPHB\Entities\Booking;
-use MPHB\Entities\Customer;
 use MPHB\Advanced\Api\ApiHelper;
-use MPHB\Entities\ReservedRoom;
-use MPHB\Entities\ReservedService;
+use MPHB\Entities\{ Booking, Customer, ReservedRoom, ReservedService };
 use MPHB\Utils\DateUtils;
 use WP_Error;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class BookingData extends AbstractPostData {
 
@@ -137,6 +138,12 @@ class BookingData extends AbstractPostData {
 							'description' => 'Guest name.',
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
+						),
+						'uid'                          => array(
+							'description' => 'Universally unique identifier.',
+							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
 						),
 						'services'                     => array(
 							'description' => 'Services.',
@@ -327,27 +334,39 @@ class BookingData extends AbstractPostData {
 				'items'       => array(
 					'type'       => 'object',
 					'properties' => array(
-						'id'       => array(
+						'id'                       => array(
 							'description' => 'Identifier of payment resource.',
 							'type'        => 'integer',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'status'   => array(
+						'status'                   => array(
 							'description' => 'Payment status.',
 							'type'        => 'string',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'amount'   => array(
+						'amount'                   => array(
 							'description' => 'Amount.',
 							'type'        => 'number',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-						'currency' => array(
+						'currency'                 => array(
 							'description' => 'Payment currency in ISO format.',
 							'type'        => 'string',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'has_pending_authed_funds' => array(
+							'description' => 'Is there an authorized amount that can be captured.',
+							'type'        => 'boolean',
+							'context'     => array( 'view', 'edit' ),
+							'readonly'    => true,
+						),
+						'payment_fee'              => array(
+							'description' => 'Added txn fee.',
+							'type'        => 'number',
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
@@ -520,6 +539,7 @@ class BookingData extends AbstractPostData {
 			$reservedAccommodations[ $key ]['adults']             = $reservedAccommodation->getAdults();
 			$reservedAccommodations[ $key ]['children']           = $reservedAccommodation->getChildren();
 			$reservedAccommodations[ $key ]['guest_name']         = $reservedAccommodation->getGuestName();
+			$reservedAccommodations[ $key ]['uid']                = $reservedAccommodation->getUid();
 			$reservedAccommodations[ $key ]['services']           = array_map(
 				function ( $service ) {
 					$serviceResponse['id'] = $service->getId();
@@ -551,10 +571,12 @@ class BookingData extends AbstractPostData {
 
 		foreach ( $paymentEntities as $paymentEntity ) {
 			$payments[] = array(
-				'id'       => $paymentEntity->getId(),
-				'status'   => str_replace( PaymentData::STATUS_PREFIX, '', $paymentEntity->getStatus() ),
-				'amount'   => $paymentEntity->getAmount(),
-				'currency' => $paymentEntity->getCurrency(),
+				'id'                       => $paymentEntity->getId(),
+				'status'                   => str_replace( PaymentData::STATUS_PREFIX, '', $paymentEntity->getStatus() ),
+				'amount'                   => $paymentEntity->getAmount(),
+				'currency'                 => $paymentEntity->getCurrency(),
+				'has_pending_authed_funds' => $paymentEntity->hasPendingAuthedFunds(),
+				'payment_fee'              => $paymentEntity->getPaymentFee(),
 			);
 		}
 
@@ -786,8 +808,9 @@ class BookingData extends AbstractPostData {
 			$accommodationType = MPHB()->getRoomTypeRepository()->findById( $accommodationTypeId );
 
 			throw new \Exception(
-				sprintf( 'Invalid %s: %d.', 'accommodation_type', $accommodationTypeId ) . ' ' .
-								  sprintf( 'Selected dates do not meet booking rules for type %s', $accommodationType->getTitle() )
+				sprintf( 'Invalid %s: %d.', 'accommodation_type', $accommodationTypeId )
+					. ' '
+					. sprintf( 'Selected dates do not meet booking rules for type %s', $accommodationType->getTitle() )
 			);
 		}
 
@@ -807,13 +830,14 @@ class BookingData extends AbstractPostData {
 	}
 
 	/**
-	 * @param  array $reservedAccommodationsRequest
+	 * @param array $reservedAccommodationsRequest
 	 *
 	 * @return ReservedRoom[]
 	 * @throws \Exception
 	 */
 	private function parseReservedAccommodations( array $reservedAccommodationsRequest ) {
 		$reservedAccommodations = array();
+
 		foreach ( $reservedAccommodationsRequest as $accommodationDetails ) {
 			$accommodation = array(
 				'room_id'  => $accommodationDetails['accommodation'],
@@ -821,12 +845,10 @@ class BookingData extends AbstractPostData {
 				'adults'   => $accommodationDetails['adults'],
 				'children' => $accommodationDetails['children'] ?? 0,
 			);
+
 			if ( isset( $accommodationDetails['services'] ) && is_array( $accommodationDetails['services'] ) ) {
-				try {
-					$accommodation['reserved_services'] = $this->parseReservedServices( $accommodationDetails['services'] );
-				} catch ( \Exception $e ) {
-					throw new \Exception( $e->getMessage() );
-				}
+				/** @throws \Exception */
+				$accommodation['reserved_services'] = $this->parseReservedServices( $accommodationDetails['services'] );
 			}
 
 			$reservedAccommodations[] = ReservedRoom::create( $accommodation );
