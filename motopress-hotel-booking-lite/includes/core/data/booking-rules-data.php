@@ -283,7 +283,7 @@ class BookingRulesData {
 							$collectingRules[ $ruleType ]['common_rule_value'] = null;
 						}
 
-						if ( empty( $result[ $ruleType ] ) && 
+						if ( empty( $result[ $ruleType ] ) &&
 							'buffer_days' !== $ruleType &&
 							! in_array( $roomTypeId, $collectingRules[ $ruleType ]['room_type_ids'] )
 						) {
@@ -297,30 +297,30 @@ class BookingRulesData {
 								) {
 
 									if ( ( 'min_stay_length' === $ruleType || 'min_advance_reservation' === $ruleType ) &&
-										( null === $collectingRules[ $ruleType ]['common_rule_value'] || 
+										( null === $collectingRules[ $ruleType ]['common_rule_value'] ||
 											$collectingRules[ $ruleType ]['common_rule_value'] > $seasonRuleData['rule_value'] )
 									) {
-	
+
 										// searching min rule value as common rule value
 										$collectingRules[ $ruleType ]['common_rule_value'] = $seasonRuleData['rule_value'];
-	
+
 									} elseif ( ( 'max_stay_length' === $ruleType || 'max_advance_reservation' === $ruleType ) &&
-										( null === $collectingRules[ $ruleType ]['common_rule_value'] || 
+										( null === $collectingRules[ $ruleType ]['common_rule_value'] ||
 										$collectingRules[ $ruleType ]['common_rule_value'] < $seasonRuleData['rule_value'] )
 									) {
-	
+
 										// searching max rule value as common rule value
 										$collectingRules[ $ruleType ]['common_rule_value'] = $seasonRuleData['rule_value'];
-	
+
 									} elseif ( 'check_in_days' === $ruleType || 'check_out_days' === $ruleType ) {
-	
+
 										if ( null === $collectingRules[ $ruleType ]['common_rule_value'] ) {
-	
+
 											$collectingRules[ $ruleType ]['common_rule_value'] = array();
 										}
-	
+
 										$collectingRules[ $ruleType ]['common_rule_value'] = array_merge(
-											$collectingRules[ $ruleType ]['common_rule_value'], 
+											$collectingRules[ $ruleType ]['common_rule_value'],
 											$seasonRuleData['rule_value']
 										);
 									}
@@ -328,12 +328,12 @@ class BookingRulesData {
 									$collectingRules[ $ruleType ]['room_type_ids'][] = $roomTypeId;
 
 									if ( 0 === $roomTypeId || $this->countOfAllRoomTypeOriginalIds === count( $collectingRules[ $ruleType ]['room_type_ids'] ) ) {
-			
+
 										if ( 'check_in_days' === $ruleType || 'check_out_days' === $ruleType ) {
-			
+
 											$collectingRules[ $ruleType ]['common_rule_value'] = array_unique( $collectingRules[ $ruleType ]['common_rule_value'] );
 										}
-			
+
 										$result[ $ruleType ] = $collectingRules[ $ruleType ]['common_rule_value'];
 									}
 
@@ -367,10 +367,22 @@ class BookingRulesData {
 
 			// Find blocks data for requested date
 			$blocksByDate = $this->getBlocksByDate( $roomTypeOriginalId, $requestedDate );
+			$notCheckInRoomsCount = 0;
+			$notCheckOutRoomsCount = 0;
+			$notStayInRoomsCount = 0;
 
 			foreach ( $blocksByDate as $block ) {
-				$roomId  = $block['room_id'];
-				$comment = $block['comment'];
+				$roomId      = $block['room_id'];
+				$roomTypeId  = $block['room_type_id'];
+				$comment     = $block['comment'];
+
+				if (
+					$roomTypeId !== 0
+					&& $roomTypeOriginalId > 0
+					&& $roomTypeId != $roomTypeOriginalId
+				) {
+					continue;
+				}
 
 				if ( $roomId > 0 ) {
 					if ( ! isset( $result['custom_rules_for_room_id'][ $roomId ] ) ) {
@@ -384,14 +396,17 @@ class BookingRulesData {
 
 					if ( $block['not_check_in'] ) {
 						$result['custom_rules_for_room_id'][ $roomId ]['not_check_in'] = true;
+						$notCheckInRoomsCount++;
 					}
 
 					if ( $block['not_check_out'] ) {
 						$result['custom_rules_for_room_id'][ $roomId ]['not_check_out'] = true;
+						$notCheckOutRoomsCount++;
 					}
 
 					if ( $block['not_stay_in'] ) {
 						$result['custom_rules_for_room_id'][ $roomId ]['not_stay_in'] = true;
+						$notStayInRoomsCount++;
 					}
 
 					if ( $comment !== '' ) {
@@ -402,6 +417,43 @@ class BookingRulesData {
 						}
 					}
 
+				} else if ( $roomTypeId > 0 ) {
+
+					$rooms = MPHB()->getRoomPersistence()->findAllIdsByType( $roomTypeId );
+
+					foreach( $rooms as $roomId) {
+						if ( ! isset( $result['custom_rules_for_room_id'][ $roomId ] ) ) {
+							$result['custom_rules_for_room_id'][ $roomId ] = array(
+								'custom_rule_comment' => '',
+								'not_check_in'        => false,
+								'not_check_out'       => false,
+								'not_stay_in'         => false,
+							);
+						}
+
+						if ( $block['not_check_in'] ) {
+							$result['custom_rules_for_room_id'][ $roomId ]['not_check_in'] = true;
+							$notCheckInRoomsCount++;
+						}
+
+						if ( $block['not_check_out'] ) {
+							$result['custom_rules_for_room_id'][ $roomId ]['not_check_out'] = true;
+							$notCheckOutRoomsCount++;
+						}
+
+						if ( $block['not_stay_in'] ) {
+							$result['custom_rules_for_room_id'][ $roomId ]['not_stay_in'] = true;
+							$notStayInRoomsCount++;
+						}
+
+						if ( $comment !== '' ) {
+							if ( empty( $result['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] ) ) {
+								$result['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] = $comment;
+							} else {
+								$result['custom_rules_for_room_id'][ $roomId ]['custom_rule_comment'] .= ', ' . $comment;
+							}
+						}
+					}
 				} else {
 					if ( $block['not_check_in'] ) {
 						$result['not_check_in'] = true;
@@ -424,6 +476,19 @@ class BookingRulesData {
 					}
 				}
 			}
+
+			$allRoomsCount = 0;
+			if ( 0 === $roomTypeOriginalId ) {
+				$allRoomsCount = MPHB()->getRoomPersistence()->getCount();
+			}
+
+			if ( 0 < $roomTypeOriginalId ) {
+				$allRoomsCount = count( MPHB()->getRoomPersistence()->findAllIdsByType( $roomTypeOriginalId ) );
+			}
+
+			$result['not_check_in'] = $result['not_check_in'] ?? $allRoomsCount <= $notCheckInRoomsCount;
+			$result['not_check_out'] = $result['not_check_out'] ?? $allRoomsCount <= $notCheckOutRoomsCount;
+			$result['not_stay_in'] = $result['not_stay_in'] ?? $allRoomsCount <= $notStayInRoomsCount;
 
 			$result = array_merge(
 				array(
@@ -965,7 +1030,7 @@ class BookingRulesData {
 	 * Currently this method is only used for export.
 	 *
 	 * @return array <code>[
-	 *     [ 
+	 *     [
 	 *         roomTypeId => int,
 	 *         roomId     => int,
 	 *         startDate  => DateTime,
@@ -1103,11 +1168,11 @@ class BookingRulesData {
 	private function getBlocksByDate( int $roomTypeId, \DateTime $date ): array {
 		$dateStr = DateUtils::formatDateDB( $date );
 
-		if ( ! isset( $this->blocksByDate[ $dateStr ] ) ) {
+		if ( ! isset( $this->blocksByDate[ $roomTypeId ][ $dateStr ] ) ) {
 			$this->loadBlocksForMonth( $roomTypeId, $date );
 		}
 
-		return $this->blocksByDate[ $dateStr ];
+		return $this->blocksByDate[ $roomTypeId ][ $dateStr ];
 	}
 
 	private function loadBlocksForMonth( int $roomTypeId, \DateTime $dateOfMonth ): void {
@@ -1143,6 +1208,10 @@ class BookingRulesData {
 			}
 		}
 
-		$this->blocksByDate += $blocksByDate;
+		if ( ! isset( $this->blocksByDate[ $roomTypeId ] ) ) {
+			$this->blocksByDate[ $roomTypeId ] = [];
+		}
+
+		$this->blocksByDate[ $roomTypeId ] += $blocksByDate;
 	}
 }

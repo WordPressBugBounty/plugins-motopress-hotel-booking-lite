@@ -1149,7 +1149,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       // "booking"|"payment". Use "payment" with bookingId in Payment Request.
       bookingId: 0,
       init: function init(el, args) {
-        // when we have free booking after checkout submit 
+        // when we have free booking after checkout submit
         // we do not have checkout form so we do not want to init it
         if (!el.length) return;
         MPHB.CheckoutForm.myThis = this;
@@ -1702,7 +1702,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           check_in_date: formData['mphb_check_in_date'] || '',
           check_out_date: formData['mphb_check_out_date'] || '',
           checkout_id: formData['mphb-checkout-id'] || '',
-          coupon_code: formData['mphb_coupon_code'] || '',
+          coupon_code: formData['mphb_applied_coupon_code'] || '',
           custom_fields: {},
           customer: this.getCustomerDetails(),
           files: {},
@@ -1718,6 +1718,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             if (this.bookingId !== 0) {
               bookingDetails['payment_details']['booking_id'] = this.bookingId;
             }
+          }
+          if (this.billingSection.element.length == 0) {
+            bookingDetails['payment_details']['gateway_id'] = formData['mphb_gateway_id'] || '';
           }
         }
 
@@ -1803,12 +1806,14 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       },
       afterSelection: function afterSelection(newFieldset) {
         this._super(newFieldset);
+        this.mountWrapper = newFieldset;
         if (newFieldset.length > 0) {
           var script = document.createElement('script');
           // <script> must have id "fields-script" or it will fail to init
           script.id = 'payfields-script';
           script.src = this.scriptUrl;
-          script.dataset.submitform = 'true';
+          // controlled in /vendors/beanstream-sdk/js/beanstream_payfields.js:1238
+          // script.dataset.submitform = 'true';
           // Use async load only. Otherwise the script will wait infinitely for window.load event
           script.dataset.async = 'true';
 
@@ -1848,6 +1853,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           this.billingSection.showError(MPHB._data.translations.tokenizationFailure.replace('(%s)', eventDetail.message));
         }
         this.billingSection.hidePreloader();
+        if (eventDetail.success) {
+          this.paymentFields['singleUseToken'] = eventDetail.token;
+          this.billingSection.parentForm.element.submit();
+        }
       }
     });
 
@@ -1868,15 +1877,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       },
       /**
        *
-       * @param {String} nonce
-       * @returns {undefined}
-       */
-      storeNonce: function storeNonce(nonce) {
-        var $nonceEl = this.billingSection.billingFieldsWrapperEl.find('[name="mphb_braintree_payment_nonce"]');
-        $nonceEl.val(nonce);
-      },
-      /**
-       *
        * @returns {Boolean}
        */
       isNonceStored: function isNonceStored() {
@@ -1885,6 +1885,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       },
       afterSelection: function afterSelection(newFieldset) {
         this._super(newFieldset);
+        this.mountWrapper = newFieldset;
         if (braintree != undefined) {
           var containerId = 'mphb-braintree-container-' + this.clientToken.substr(0, 8);
           newFieldset.append('<div id="' + containerId + '"></div>');
@@ -1896,7 +1897,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               self.checkout = integration;
             },
             onPaymentMethodReceived: function onPaymentMethodReceived(response) {
-              self.storeNonce(response.nonce);
+              self._setPaymentField('payment_nonce', response.nonce);
               self.billingSection.parentForm.element.submit();
               self.billingSection.showPreloader();
             }

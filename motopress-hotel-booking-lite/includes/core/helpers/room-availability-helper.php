@@ -557,7 +557,7 @@ class RoomAvailabilityHelper {
 			$bookedDays     = mphb_bookings_facade()->getBookedDaysForRoomType( $roomTypeOriginalId );
 			$formattedDate  = $date->format( 'Y-m-d' );
 			$isCheckInDate  = ! empty( $bookedDays['check-ins'][ $formattedDate ] );
-			$isСheckOutDate = ! empty( $bookedDays['check-outs'][ $formattedDate ] );
+			$isCheckOutDate = ! empty( $bookedDays['check-outs'][ $formattedDate ] );
 
 			$isStayInNotAllowed = mphb_availability_facade()->isStayInNotAllowed( $roomTypeOriginalId, $date, $date, $isIgnoreBookingRules );
 
@@ -581,7 +581,7 @@ class RoomAvailabilityHelper {
 				$availabilityStatus,
 				$availableRoomsCount,
 				$isCheckInDate,
-				$isСheckOutDate,
+				$isCheckOutDate,
 				$isStayInNotAllowed,
 				$isCheckInNotAllowed,
 				$isCheckOutNotAllowed,

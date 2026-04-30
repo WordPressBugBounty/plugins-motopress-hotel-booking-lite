@@ -4,7 +4,7 @@ Donate link: https://motopress.com/
 Requires at least: 5.2
 Tags: hotel booking, reservation, hotel, booking engine, booking, booking calendar, booking system, calendar, online booking, airbnb, booking.com, homeaway, vrbo, tripadvisor, booking form, availability calendar, channel manager, property management system, vacation, travel
 Tested up to: 6.9
-Stable tag: 6.0.0
+Stable tag: 6.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -176,6 +176,9 @@ MotoPress Hotel Booking plugin is distributed under the terms of the GNU GPL.
 
 == Changelog ==
 
+= 6.0.1, Apr 30 2026
+* Bug fix: Fixed several issues related to search, checkout, and payments after the 6.0.0 update.
+
 = 6.0.0, Apr 22 2026
 * New: Added a new admin calendar to create bookings and manage dates, rates, and availability in a single interface.
 * New: Added the ability to set daily pricing and availability in the new admin calendar.
@@ -185,30 +188,6 @@ MotoPress Hotel Booking plugin is distributed under the terms of the GNU GPL.
 * Improvement: Minor improvements and fixes to enhance overall usability and stability.
 * Notice: This update requires a database upgrade. Please back up your site before updating the plugin. New REST API routes have also been added.
 * Notice: Update the Accommodation-Based Payments, Payment Request, and WooCommerce Payments add-ons to the latest versions for proper compatibility with the core plugin.
-
-= 5.5.2, Mar 20 2026
-* Bug fix: Fixed issues with accommodations related to empty capacity, media display, and REST API data.
-
-= 5.5.1, Mar 12 2026
-* New: Added beta integration with Google Hotels Prices (Phase 1). This first phase collects your property data. Submit via Accommodation > Google Hotels to give your direct booking site a chance to appear in Google Search and Maps.
-
-= 5.4.1, Feb 11 2026 =
-* Bug fix: Fixed a checkout issue in version 5.4.0 when confirmation by admin or customer was enabled.
-
-= 5.4.0, Feb 6 2026 =
-* New: Added the ability to apply gateway-specific transaction fees to bookings (PayPal, Stripe, 2Checkout, Braintree, and Beanstream/Bambora) to pass payment processing costs onto the guest.
-* Improvement: Search results now include only accommodations that can host the full number of requested guests when the “Limit search results based on the requested number of guests” option is enabled.
-
-= 5.3.3, Jan 20 2026 =
-* Minor bugfixes and improvements.
-
-= 5.3.0, Jan 14 2026 =
-* New: Multi-Property Availability Calendar for showing availability of multiple chosen properties in one overview on your website.
-* Improvement: Adjusted the property recommendation title for searches with ‘Adults’ and ‘Children’ disabled in plugin settings.
-* Improvement: Optimized plugin translations.
-* Bug fix: Fixed an issue with displaying custom payment gateway labels instead of the default ones.
-* Bug fix: Fixed an issue where availability was not updated correctly in the search form after changing the year in the selector.
-* Bug fix: Fixed an issue where the no-check-in restriction was ignored.
 
 --------
 
