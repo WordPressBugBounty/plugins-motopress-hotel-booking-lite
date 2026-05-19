@@ -19,6 +19,7 @@ class CapabilitiesAndRoles {
 	const VIEW_CUSTOMERS        = 'mphb_view_customers';
 	const EDIT_CUSTOMER         = 'mphb_edit_customer';
 	const DELETE_CUSTOMER       = 'mphb_delete_customer';
+	const EDIT_BOOKINGS         = 'edit_mphb_bookings';
 
 	/**
 	 * @var array

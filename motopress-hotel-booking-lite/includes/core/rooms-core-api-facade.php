@@ -162,4 +162,41 @@ class RoomsCoreAPIFacade extends AbstractCoreAPIFacade {
 	public function updateRoomType( RoomType $roomType ): void {
 		MPHB()->getRoomTypeRepository()->save( $roomType );
 	}
+
+	/**
+	 * @return int[]
+	 */
+	public function getTrashedRoomIds( int $roomTypeId = 0 ): array {
+		if ( ! $roomTypeId ) {
+			return MPHB()->getRoomPersistence()->getPosts(
+				array(
+					'fields'         => 'ids',
+					'post_status'    => 'trash',
+					'posts_per_page' => -1,
+				)
+			);
+		} else {
+			return MPHB()->getRoomPersistence()->getPosts(
+				array(
+					'fields'         => 'ids',
+					'post_status'    => 'trash',
+					'posts_per_page' => -1,
+					'room_type_id'   => $roomTypeId,
+				)
+			);
+		}
+	}
+
+	/**
+	 * @return int[]
+	 */
+	public function getTrashedRoomTypeIds(): array {
+		return MPHB()->getRoomTypePersistence()->getPosts(
+			array(
+				'fields'         => 'ids',
+				'post_status'    => 'trash',
+				'posts_per_page' => -1,
+			)
+		);
+	}
 }

@@ -1732,7 +1732,6 @@ private $upgradeToPremiumMenuPage;
 	public function initAutoUpdater() {
 
 		if ( $this->settings->license()->isEnabled() ) {
-
 			$pluginData = $this->getPluginData();
 
 			$apiData = array(
@@ -1743,6 +1742,9 @@ private $upgradeToPremiumMenuPage;
 			);
 
 			new MPHB\Libraries\EDD_Plugin_Updater\EDD_Plugin_Updater( MPHB()->settings()->license()->getStoreUrl(), self::$_pluginFile, $apiData );
+		}
+
+		if ( $this->settings->license()->isVisible() ) {
 			new MPHB\LicenseNotice( MPHB_PLUGIN_FILE );
 		}
 	}

@@ -68,20 +68,19 @@ class GetBlocksController extends AbstractRestCommandController {
 				'sanitize_callback' => 'rest_sanitize_request_arg',
 			),
 			'per_page'     => array(
-				'description' => 'Maximum number of items to be returned in result set.',
-				'oneOf'       => array(
+				'description'       => 'Maximum number of items to be returned in result set.',
+				'oneOf'             => array(
 					array(
-						'type'              => 'integer',
-						'minimum'           => 1,
-						'sanitize_callback' => 'rest_sanitize_request_arg',
+						'type'    => 'integer',
+						'minimum' => 1,
 					),
 					array(
-						'type'              => 'integer',
-						'minimum'           => -1,
-						'maximum'           => -1,
-						'sanitize_callback' => 'rest_sanitize_request_arg',
+						'type'    => 'integer',
+						'minimum' => -1,
+						'maximum' => -1,
 					),
 				),
+				'sanitize_callback' => 'rest_sanitize_request_arg',
 			),
 			'restrictions' => array(
 				'type'              => 'array',

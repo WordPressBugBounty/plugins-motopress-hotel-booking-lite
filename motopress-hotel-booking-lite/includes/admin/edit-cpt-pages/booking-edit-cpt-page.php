@@ -161,14 +161,7 @@ class BookingEditCPTPage extends EditCPTPage {
 		$booking = MPHB()->getBookingRepository()->findById( $post->ID );
 
 		foreach ( array_reverse( $booking->getLogs() ) as $log ) {
-			?>
-			<strong> <?php esc_html_e( 'Date:', 'motopress-hotel-booking' ); ?></strong>
-			<span>
-				<?php comment_date( MPHB()->settings()->dateTime()->getDateTimeFormatWP( ' @ ' ), $log->comment_ID ); ?>
-			</span>
-			<br/>
-			<strong><?php esc_html_e( 'Author:', 'motopress-hotel-booking' ); ?></strong>
-			<?php
+
 			if ( ! empty( $log->user_id ) ) {
 				$userInfo = get_userdata( $log->user_id );
 				$userName = $userInfo ? $userInfo->display_name : ( $log->comment_author ?: 'DELETED' );
@@ -185,21 +178,24 @@ class BookingEditCPTPage extends EditCPTPage {
 				$authorName = '<i>' . __( 'Auto', 'motopress-hotel-booking' ) . '</i>';
 			}
 			?>
-			<span>
-			<?php
-				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $authorName;
-			?>
+			<div class="mphb-log-wrapper">
+				<div class="mphb-log-message">
+				<?php
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $log->comment_content;
+				?>
+				</div>
+				<span class="mphb-log-meta">
+				<?php
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					printf(
+						'%s / %s',
+						comment_date( MPHB()->settings()->dateTime()->getDateTimeFormatWP( ' @ ' ), $log->comment_ID ),
+						$authorName
+					);
+				?>
 				</span>
-			<br/>
-			<strong><?php esc_html_e( 'Message:', 'motopress-hotel-booking' ); ?></strong>
-			<span> 
-			<?php
-				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $log->comment_content;
-			?>
-				</span>
-			<hr/>
+			</div>
 			<?php
 		}
 	}

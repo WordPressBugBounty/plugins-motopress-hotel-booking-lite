@@ -2,6 +2,7 @@
 
 namespace MPHB\AjaxApi;
 
+use MPHB\UsersAndRoles\CapabilitiesAndRoles;
 use MPHB\Utils\ValidateUtils;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,6 +17,10 @@ class UpdateBookingNotes extends AbstractAjaxApiAction {
 	const REQUEST_DATA_BOOKING_ID = 'booking_id';
 	const REQUEST_DATA_NOTES = 'notes';
 
+	public static function isActionForGuestUser() {
+		return false;
+	}
+
 	public static function getAjaxActionNameWithouPrefix() {
 		return 'update_booking_notes';
 	}
@@ -27,7 +32,14 @@ class UpdateBookingNotes extends AbstractAjaxApiAction {
 	protected static function getValidatedRequestData() {
 		$requestData = parent::getValidatedRequestData();
 
-		$requestData[ static::REQUEST_DATA_BOOKING_ID ] = static::getIntegerFromRequest( static::REQUEST_DATA_BOOKING_ID, true );
+		$bookingId = static::getIntegerFromRequest( static::REQUEST_DATA_BOOKING_ID, $isRequired = true );
+		$booking   = mphb_bookings_facade()->findBookingById( $bookingId );
+
+		if ( is_null( $booking ) ) {
+			throw new \Exception( esc_html__( 'The booking not found.', 'motopress-hotel-booking' ) );
+		}
+
+		$requestData[ static::REQUEST_DATA_BOOKING_ID ] = $bookingId;
 
 		// $isRequired = false to save [] when the list is empty, since jQuery.ajax() skips empty objects
 		$requestData[ static::REQUEST_DATA_NOTES ] = static::getNotesFromRequest( static::REQUEST_DATA_NOTES );
@@ -77,6 +89,10 @@ class UpdateBookingNotes extends AbstractAjaxApiAction {
 	}
 
 	protected static function doAction( array $requestData ) {
+		if ( ! current_user_can( CapabilitiesAndRoles::EDIT_BOOKINGS ) ) {
+			throw new \Exception( esc_html__( 'Request does not pass security verification. Please refresh the page and try one more time.', 'motopress-hotel-booking' ) );
+		}
+
 		$bookingId = $requestData[ static::REQUEST_DATA_BOOKING_ID ];
 		$notes = $requestData[ static::REQUEST_DATA_NOTES ];
 

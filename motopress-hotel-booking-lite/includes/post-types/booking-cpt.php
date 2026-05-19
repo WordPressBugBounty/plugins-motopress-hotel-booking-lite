@@ -160,7 +160,7 @@ class BookingCPT extends EditableCPT {
 				'mphb_note',
 				array(
 					'type'  => 'textarea',
-					'rows'  => 8,
+					'rows'  => 3,
 					'label' => __( 'Customer Note', 'motopress-hotel-booking' ),
 				)
 			),

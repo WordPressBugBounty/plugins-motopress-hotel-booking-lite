@@ -894,6 +894,7 @@ function mphb_verify_nonce( $action, $nonceName = 'mphb_nonce' ) {
 function mphb_get_polyfill_for( $function ) {
 	switch ( $function ) {
 		case 'mb_convert_encoding':
+		case 'mb_encode_numericentity':
 			require_once MPHB()->getPluginPath( 'includes/polyfills/mbstring.php' );
 			break;
 	}
@@ -1234,16 +1235,16 @@ function mphb_is_failed_booking( $booking ) {
  * @since 3.8
  */
 function mphb_get_available_rooms( $from, $to, $atts = array() ) {
-		$roomTypeId = isset( $atts['room_type_id'] ) ? $atts['room_type_id'] : 0;
-		$searchAtts = array();
+	$roomTypeId = isset( $atts['room_type_id'] ) ? $atts['room_type_id'] : 0;
+	$searchAtts = array();
 
 	if ( isset( $atts['exclude_bookings'] ) ) {
-			$searchAtts['exclude_bookings'] = $atts['exclude_bookings'];
+		$searchAtts['exclude_bookings'] = $atts['exclude_bookings'];
 	}
 
-		$searchAtts['skip_buffer_rules'] = false;
+	$searchAtts['skip_buffer_rules'] = false;
 
-		return MPHB()->getRoomRepository()->getAvailableRooms( $from, $to, $roomTypeId, $searchAtts );
+	return MPHB()->getRoomRepository()->getAvailableRooms( $from, $to, $roomTypeId, $searchAtts );
 }
 
 /**
@@ -1525,11 +1526,13 @@ add_filter( 'mphb_is_rooms_free_query_atts', 'mphb_is_rooms_free_query_atts_with
  *
  * @param  string $tip       Help tip text.
  * @param  bool   $allowHtml Allow sanitized HTML if true or escape.
+ * @param  string $cssClass  Custom CSS class.
+ *
  * @return string
  *
  * @since  3.9.8
  */
-function mphb_help_tip( $tip, $allowHtml = false ) {
+function mphb_help_tip( $tip, $allowHtml = false, $cssClass = '' ) {
 	if ( $allowHtml ) {
 		$tip = htmlspecialchars(
 			wp_kses(
@@ -1551,7 +1554,7 @@ function mphb_help_tip( $tip, $allowHtml = false ) {
 		$tip = esc_attr( $tip );
 	}
 
-	return '<span class="mphb-help-tip" data-tip="' . $tip . '"></span>';
+	return '<span class="mphb-help-tip ' . esc_attr( $cssClass ) . '" data-tip="' . $tip . '"></span>';
 }
 
 /**

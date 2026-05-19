@@ -91,24 +91,24 @@ class PaymentEditCPTPage extends EditCPTPage {
 	public function renderLogMetaBox( $post, $metabox ) {
 		$payment = MPHB()->getPaymentRepository()->findById( $post->ID );
 
-		echo '<textarea rows="3" name="_mphb_add_log" style="width:100%"></textarea><br/>';
-
 		foreach ( array_reverse( $payment->getLogs() ) as $log ) {
 			?>
-			<hr/>
-			<strong> <?php esc_html_e( 'Date:', 'motopress-hotel-booking' ); ?></strong>
-			<span>
+			<div class="mphb-log-wrapper">
+				<div class="mphb-log-message">
+				<?php
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $log['message'];
+				?>
+				</div>
+				<span class="mphb-log-meta">
 				<?php echo esc_html( mysql2date( MPHB()->settings()->dateTime()->getDateTimeFormatWP( ' @ ' ), $log['date'] ) ); ?>
-			</span><br/>
-			<strong><?php esc_html_e( 'Message:', 'motopress-hotel-booking' ); ?></strong>
-			<span> 
-			<?php
-				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $log['message'];
-			?>
 				</span>
+			</div>
 			<?php
 		}
+
+		echo '<br/><textarea rows="2" name="_mphb_add_log" style="width:100%" placeholder="' .
+			esc_html( 'Add new', 'motopress-hotel-booking' ) . '"></textarea>';
 	}
 
 	public function saveMetaBoxes( $postId, $post, $update ) {

@@ -284,8 +284,6 @@ class Customers {
 	 * @return \WP_Error|true
 	 */
 	public static function validateCustomer( $customer ) {
-		global $wpdb;
-
 		if ( ! $customer->getEmail() ) {
 			return new \WP_Error( 'empty_email', __( 'Please, provide a valid email.', 'motopress-hotel-booking' ) );
 		}

@@ -722,6 +722,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       paymentFeeHtml: '',
       paymentDescription: '',
       paymentFields: {},
+      mountWrapper: null,
       init: function init(gatewayId, args) {
         this.billingSection = args.billingSection;
         this.gatewayId = gatewayId;
@@ -741,7 +742,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       afterProcessing: function afterProcessing(paymentFields) {
         return Promise.resolve(null);
       },
-      afterSelection: function afterSelection(newFieldset) {},
+      afterSelection: function afterSelection(newFieldset) {
+        this.mountWrapper = newFieldset;
+      },
       /**
        * @param {Number} amount The price to pay.
        * @param {Object} customer Maximum information about the customer. See
@@ -755,12 +758,22 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       canSubmit: function canSubmit(amount, customer) {
         return Promise.resolve(true);
       },
-      cancelSelection: function cancelSelection() {},
+      cancelSelection: function cancelSelection() {
+        this.mountWrapper = null;
+      },
       getGatewayId: function getGatewayId() {
         return this.gatewayId;
       },
+      getPaymentField: function getPaymentField(name) {
+        var fieldId = 'mphb_' + this.getGatewayId() + '_' + name;
+        return this.paymentFields[fieldId] || '';
+      },
       getPaymentFields: function getPaymentFields() {
         return this.paymentFields;
+      },
+      hasPaymentField: function hasPaymentField(name) {
+        var fieldId = 'mphb_' + this.getGatewayId() + '_' + name;
+        return fieldId in this.paymentFields;
       },
       /**
        * @param {String} name
@@ -778,7 +791,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       _setPaymentField: function _setPaymentField(name, value) {
         var fieldId = 'mphb_' + this.getGatewayId() + '_' + name;
         this.paymentFields[fieldId] = value;
-        this.mountWrapper.find('#' + fieldId).val(value);
+        if (this.mountWrapper !== null) {
+          this.mountWrapper.find('#' + fieldId).val(value);
+        }
       }
     });
 
@@ -835,6 +850,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         }); // For each gateway
 
         this.notifySelectedGateway();
+      },
+      isEmpty: function isEmpty() {
+        return this.element.length === 0;
       },
       getBookingDetails: function getBookingDetails() {
         return this.parentForm.parseFormToJSON();
@@ -1614,6 +1632,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             for (var field in data) {
               formData.append(field, data[field]);
             }
+          } else if (key === 'note') {
+            // customer_fields[mphb_note]
+            formData.append("customer_fields[mphb_".concat(key, "]"), data);
           } else if (key === 'payment_details') {
             for (var field in data) {
               if (field !== 'payment_fields') {
@@ -1719,7 +1740,12 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               bookingDetails['payment_details']['booking_id'] = this.bookingId;
             }
           }
-          if (this.billingSection.element.length == 0) {
+
+          // If only the WooCommerce payment method is available and option
+          // "Hide the payment method description on the checkout page..." is
+          // on, the billing section block is missing, but the hidden field
+          // "mphb_gateway_id" is present with a pre-selected value
+          if (this.billingSection.isEmpty()) {
             bookingDetails['payment_details']['gateway_id'] = formData['mphb_gateway_id'] || '';
           }
         }
@@ -1806,7 +1832,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       },
       afterSelection: function afterSelection(newFieldset) {
         this._super(newFieldset);
-        this.mountWrapper = newFieldset;
         if (newFieldset.length > 0) {
           var script = document.createElement('script');
           // <script> must have id "fields-script" or it will fail to init
@@ -1833,6 +1858,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         $(document).on('beanstream_payfields_inputValidityChanged', this.validityHandler).on('beanstream_payfields_tokenRequested', this.tokenRequestHandler).on('beanstream_payfields_tokenUpdated', this.tokenUpdatedHandler);
       },
       cancelSelection: function cancelSelection() {
+        this._super();
         $(document).off('beanstream_payfields_inputValidityChanged', this.validityHandler).off('beanstream_payfields_tokenRequested', this.tokenRequestHandler).off('beanstream_payfields_tokenUpdated', this.tokenUpdatedHandler);
       },
       validityChanged: function validityChanged(event) {
@@ -1876,16 +1902,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         return Promise.resolve(this.isNonceStored());
       },
       /**
-       *
        * @returns {Boolean}
        */
       isNonceStored: function isNonceStored() {
-        var $nonceEl = this.billingSection.billingFieldsWrapperEl.find('[name="mphb_braintree_payment_nonce"]');
-        return $nonceEl.length && $nonceEl.val() != '';
+        return this.hasPaymentField('payment_nonce') && this.getPaymentField('payment_nonce') !== '';
       },
       afterSelection: function afterSelection(newFieldset) {
         this._super(newFieldset);
-        this.mountWrapper = newFieldset;
         if (braintree != undefined) {
           var containerId = 'mphb-braintree-container-' + this.clientToken.substr(0, 8);
           newFieldset.append('<div id="' + containerId + '"></div>');
@@ -2025,7 +2048,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       elements: null,
       control: null,
       // Elements
-      mountWrapper: null,
       errorsWrapper: null,
       /**
        * What we know about the customer at the start of the page. Generally
@@ -2081,7 +2103,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         this._super();
         this.control.destroy();
         this.control = null;
-        this.mountWrapper = null;
         this.errorsWrapper = null;
       },
       canSubmit: function canSubmit(amount, customer) {
@@ -2180,7 +2201,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         this.errorsWrapper.addClass('mphb-hide').text('');
       },
       _mount: function _mount(mountWrapper) {
-        this.mountWrapper = mountWrapper;
         mountWrapper.append('<section id="mphb-stripe-payment-container" class="mphb-stripe-payment-container">' + '<div class="mphb-stripe-payment-fields payment">' + '<fieldset>' + '<div id="mphb-stripe-payment-element" class="mphb-stripe-element"></div>' + '</fieldset>' + '</div>' + '<div id="mphb-stripe-errors"></div>' + '</section>');
         this.errorsWrapper = mountWrapper.find('#mphb-stripe-errors');
         if (this.elements === null) {
@@ -2329,7 +2349,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        */
       defaultCustomer: null,
       // Elements
-      mountWrapper: null,
       errorsWrapper: null,
       // Errors
       hasErrors: false,
@@ -2392,7 +2411,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       afterSelection: function afterSelection(mountWrapper) {
         this._super(mountWrapper);
         mountWrapper.append(this.mountHtml());
-        this.mountWrapper = mountWrapper;
         this.errorsWrapper = mountWrapper.find('#mphb-stripe-errors');
 
         // Mount all controls
@@ -2424,7 +2442,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       },
       cancelSelection: function cancelSelection() {
         this._super();
-        this.mountWrapper = null;
         this.errorsWrapper = null;
 
         // Unmount all controls

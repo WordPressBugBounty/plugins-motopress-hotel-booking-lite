@@ -136,11 +136,15 @@ class LicenseSettings {
 	}
 
 	/**
-	 *
 	 * @return bool
 	 */
 	public function isEnabled() {
 		return false;
+	}
+
+	public function isVisible(): bool {
+		return false;
+
 	}
 
 	/**

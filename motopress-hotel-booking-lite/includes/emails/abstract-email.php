@@ -286,10 +286,10 @@ abstract class AbstractEmail {
 		// apply CSS styles inline for picky email clients
 		$emogrifier = new Emogrifier\Emogrifier( $html, $styles );
 
-		// Load polyfill for function mb_convert_encoding() if it not exists.
-		// Emogrifier is bad in converting non-ASCII characters. See MB-1023
-		if ( ! function_exists( 'mb_convert_encoding' ) ) {
-			mphb_get_polyfill_for( 'mb_convert_encoding' );
+		// Load polyfill for function mb_encode_numericentity() if it not exists.
+		// Emogrifier is bad in converting non-ASCII characters. See MPI-5089
+		if ( ! function_exists( 'mb_encode_numericentity' ) ) {
+			mphb_get_polyfill_for( 'mb_encode_numericentity' );
 		}
 
 		$html = $emogrifier->emogrify();

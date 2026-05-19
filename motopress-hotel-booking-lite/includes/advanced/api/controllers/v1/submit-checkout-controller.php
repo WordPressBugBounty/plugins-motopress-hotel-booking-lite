@@ -89,11 +89,6 @@ class SubmitCheckoutController extends AbstractRestCommandController {
 				'required'             => true,
 				'sanitize_callback'    => 'rest_sanitize_request_arg',
 			),
-			'note' => array(
-				'type'              => 'string',
-				'default'           => '',
-				'sanitize_callback' => 'rest_sanitize_request_arg',
-			),
 			'payment_details' => array(
 				'type'              => 'object',
 				'properties'        => array(
@@ -274,7 +269,7 @@ class SubmitCheckoutController extends AbstractRestCommandController {
 			'check_out_date' => $checkOutDate,
 			'checkout_id'    => $requestArgs['checkout_id'],
 			'customer'       => $customer,
-			'note'           => $requestArgs['note'],
+			'note'           => $customerData['note'] ?? '',
 			'reserved_rooms' => self::parseRooms( $requestArgs, $checkInDate, $checkOutDate ),
 			'status'         => MPHB()->postTypes()->booking()->statuses()->getDefaultNewBookingStatus(),
 		);
@@ -309,7 +304,10 @@ class SubmitCheckoutController extends AbstractRestCommandController {
 		$isDoingPayment = apply_filters( 'mphb_checkout_doing_payment', $isDoingPayment );
 
 		if ( $isDoingPayment ) {
-			$paymentDetails = $requestArgs['payment_details'] + array(
+			// There is no "payment_details" in $requestArgs if the booking is free
+			$paymentDetails = $requestArgs['payment_details'] ?? array();
+
+			$paymentDetails += array(
 				'currency'       => MPHB()->settings()->currency()->getCurrencyCode(),
 				'gateway_id'     => 'manual',
 				'payment_fields' => array(),

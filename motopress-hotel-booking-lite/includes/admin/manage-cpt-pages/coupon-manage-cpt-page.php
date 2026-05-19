@@ -37,70 +37,80 @@ class CouponManageCPTPage extends ManageCPTPage {
 		switch ( $column ) {
 
 			case 'amount':
+
 				// Accommodation discount
-				esc_html_e( 'Accommodation:', 'motopress-hotel-booking' );
+				if ( $coupon->getRoomDiscountType() !== CouponCPT::TYPE_ACCOMMODATION_NONE ) {
 
-				echo '&nbsp;';
+					esc_html_e( 'Accommodation:', 'motopress-hotel-booking' );
 
-				switch ( $coupon->getRoomDiscountType() ) {
-					case CouponCPT::TYPE_ACCOMMODATION_NONE:
-						echo esc_html( self::EMPTY_VALUE_PLACEHOLDER );
-						break;
+					echo '&nbsp;';
 
-					case CouponCPT::TYPE_ACCOMMODATION_PERCENTAGE:
-						printf( '%d%%', $coupon->getRoomAmount() );
-						break;
+					switch ( $coupon->getRoomDiscountType() ) {
+						case CouponCPT::TYPE_ACCOMMODATION_NONE:
+							echo esc_html( self::EMPTY_VALUE_PLACEHOLDER );
+							break;
 
-					case CouponCPT::TYPE_ACCOMMODATION_FIXED:
-						echo mphb_format_price( $coupon->getRoomAmount() );
-						break;
+						case CouponCPT::TYPE_ACCOMMODATION_PERCENTAGE:
+							printf( '%d%%', $coupon->getRoomAmount() );
+							break;
 
-					case CouponCPT::TYPE_ACCOMMODATION_FIXED_PER_DAY:
-						// translators: %s is a coupon amount per day
-						printf( esc_html__( '%s per day', 'motopress-hotel-booking' ), mphb_format_price( $coupon->getRoomAmount() ) );
-						break;
+						case CouponCPT::TYPE_ACCOMMODATION_FIXED:
+							echo mphb_format_price( $coupon->getRoomAmount() );
+							break;
+
+						case CouponCPT::TYPE_ACCOMMODATION_FIXED_PER_DAY:
+							// translators: %s is a coupon amount per day
+							printf( esc_html__( '%s per day', 'motopress-hotel-booking' ), mphb_format_price( $coupon->getRoomAmount() ) );
+							break;
+					}
+
+					echo '<br>';
 				}
-
-				echo '<br>';
 
 				// Service discount
-				esc_html_e( 'Service:', 'motopress-hotel-booking' );
+				if ( $coupon->getServiceDiscountType() !== CouponCPT::TYPE_SERVICE_NONE ) {
 
-				echo '&nbsp;';
+					esc_html_e( 'Service:', 'motopress-hotel-booking' );
 
-				switch ( $coupon->getServiceDiscountType() ) {
-					case CouponCPT::TYPE_SERVICE_NONE:
-						echo esc_html( self::EMPTY_VALUE_PLACEHOLDER );
-						break;
+					echo '&nbsp;';
 
-					case CouponCPT::TYPE_SERVICE_PERCENTAGE:
-						printf( '%d%%', $coupon->getServiceAmount() );
-						break;
+					switch ( $coupon->getServiceDiscountType() ) {
+						case CouponCPT::TYPE_SERVICE_NONE:
+							echo esc_html( self::EMPTY_VALUE_PLACEHOLDER );
+							break;
 
-					case CouponCPT::TYPE_SERVICE_FIXED:
-						echo mphb_format_price( $coupon->getServiceAmount() );
-						break;
+						case CouponCPT::TYPE_SERVICE_PERCENTAGE:
+							printf( '%d%%', $coupon->getServiceAmount() );
+							break;
+
+						case CouponCPT::TYPE_SERVICE_FIXED:
+							echo mphb_format_price( $coupon->getServiceAmount() );
+							break;
+					}
+
+					echo '<br>';
 				}
 
-				echo '<br>';
-
 				// Fee discount
-				esc_html_e( 'Fee:', 'motopress-hotel-booking' );
+				if ( $coupon->getFeeDiscountType() !== CouponCPT::TYPE_FEE_NONE ) {
 
-				echo '&nbsp;';
+					esc_html_e( 'Fee:', 'motopress-hotel-booking' );
 
-				switch ( $coupon->getFeeDiscountType() ) {
-					case CouponCPT::TYPE_FEE_NONE:
-						echo esc_html( self::EMPTY_VALUE_PLACEHOLDER );
-						break;
+					echo '&nbsp;';
 
-					case CouponCPT::TYPE_FEE_PERCENTAGE:
-						printf( '%d%%', $coupon->getFeeAmount() );
-						break;
+					switch ( $coupon->getFeeDiscountType() ) {
+						case CouponCPT::TYPE_FEE_NONE:
+							echo esc_html( self::EMPTY_VALUE_PLACEHOLDER );
+							break;
 
-					case CouponCPT::TYPE_FEE_FIXED:
-						echo mphb_format_price( $coupon->getFeeAmount() );
-						break;
+						case CouponCPT::TYPE_FEE_PERCENTAGE:
+							printf( '%d%%', $coupon->getFeeAmount() );
+							break;
+
+						case CouponCPT::TYPE_FEE_FIXED:
+							echo mphb_format_price( $coupon->getFeeAmount() );
+							break;
+					}
 				}
 
 				break;
@@ -108,7 +118,7 @@ class CouponManageCPTPage extends ManageCPTPage {
 			case 'usage_count':
 				if ( $coupon->getUsageLimit() ) {
 
-					printf( '%d/%d', $coupon->getUsageCount(), $coupon->getUsageLimit() );
+					printf( '%d / %d', $coupon->getUsageCount(), $coupon->getUsageLimit() );
 
 				} else {
 

@@ -179,7 +179,7 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 						'limit',
 						array(
 							'type'        => 'number',
-							'label'       => __( 'Limit', 'motopress-hotel-booking' ) . mphb_help_tip(
+							'label'       => __( 'Limit', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
 								__( 'How often this fee is charged. Set 0 to charge each day of the stay period. Set 1 to charge once.', 'motopress-hotel-booking' )
 							),
 							'inner_label' => __( 'days', 'motopress-hotel-booking' ),
@@ -194,7 +194,7 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 						'included',
 						array(
 							'type'        => 'single-checkbox',
-							'label'       => __( 'Include', 'motopress-hotel-booking' ) . mphb_help_tip(
+							'label'       => __( 'Include', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
 								__( 'Show accommodation rate with this charge included', 'motopress-hotel-booking' )
 							),
 							'inner_label' => __( 'Include', 'motopress-hotel-booking' ),
@@ -275,7 +275,7 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 						'limit',
 						array(
 							'type'        => 'number',
-							'label'       => __( 'Limit', 'motopress-hotel-booking' ) . mphb_help_tip(
+							'label'       => __( 'Limit', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
 								__( 'Limit of days the fee is charged. Set 0 to charge each day of stay period. Set 1 to charge once.', 'motopress-hotel-booking' )
 							),
 							'inner_label' => __( 'days', 'motopress-hotel-booking' ),
@@ -290,7 +290,7 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 						'included',
 						array(
 							'type'        => 'single-checkbox',
-							'label'       => __( 'Include', 'motopress-hotel-booking' ) . mphb_help_tip(
+							'label'       => __( 'Include', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
 								__( 'Show accommodation rate with this charge included', 'motopress-hotel-booking' )
 							),
 							'inner_label' => __( 'Include', 'motopress-hotel-booking' ),
@@ -361,7 +361,7 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 						'limit',
 						array(
 							'type'        => 'number',
-							'label'       => __( 'Limit', 'motopress-hotel-booking' ) . mphb_help_tip(
+							'label'       => __( 'Limit', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
 								__( 'Limit of days the fee is charged. Set 0 to charge each day of stay period. Set 1 to charge once.', 'motopress-hotel-booking' )
 							),
 							'inner_label' => __( 'days', 'motopress-hotel-booking' ),
@@ -432,7 +432,7 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 						'limit',
 						array(
 							'type'        => 'number',
-							'label'       => __( 'Limit', 'motopress-hotel-booking' ) . mphb_help_tip(
+							'label'       => __( 'Limit', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
 								__( 'Limit of days the fee is charged. Set 0 to charge each day of stay period. Set 1 to charge once.', 'motopress-hotel-booking' )
 							),
 							'inner_label' => __( 'days', 'motopress-hotel-booking' ),

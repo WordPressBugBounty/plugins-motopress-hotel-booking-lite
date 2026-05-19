@@ -558,8 +558,16 @@ class Emogrifier {
 			$bodyWithoutUnprocessableTags = $this->html;
 		}
 
-		if ( function_exists( 'mb_convert_encoding' ) ) {
-			return mb_convert_encoding( $bodyWithoutUnprocessableTags, 'HTML-ENTITIES', self::ENCODING );
+		// Fork notice: mb_convert_encoding() replaced with mb_encode_numericentity() for MPI-13456
+		if ( function_exists( 'mb_encode_numericentity' ) ) {
+			return mb_encode_numericentity(
+				htmlspecialchars_decode(
+					htmlentities( $bodyWithoutUnprocessableTags, ENT_NOQUOTES, self::ENCODING, false ),
+					ENT_NOQUOTES
+				),
+				array( 0x80, 0x10FFFF, 0, ~0 ),
+				self::ENCODING
+			);
 		} else {
 			return htmlspecialchars_decode( utf8_decode( htmlentities( $bodyWithoutUnprocessableTags, ENT_COMPAT, self::ENCODING, false ) ) );
 		}

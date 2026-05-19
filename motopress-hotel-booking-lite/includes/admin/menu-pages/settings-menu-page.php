@@ -49,7 +49,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 			$generateTabs[] = self::TAB_ADVANCED;
 		}
 
-		if ( MPHB()->settings()->license()->isEnabled() ) {
+		if ( MPHB()->settings()->license()->isVisible() ) {
 			$generateTabs[] = self::TAB_LICENSE;
 		}
 

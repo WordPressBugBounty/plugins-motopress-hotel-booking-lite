@@ -463,7 +463,7 @@ class BlocksRepository {
 		$queryArgs += array(
 			'orderby'  => array( 'block_id' => 'ASC' ),
 			'page'     => 1,
-			'per_page' => self::ITEMS_PER_PAGE,
+			'per_page' => $this->getDefaultItemsPerPage(),
 		);
 
 		// countItems() changes this part to "SELECT COUNT(*)"
@@ -521,7 +521,7 @@ class BlocksRepository {
 		}
 
 		// Build LIMIT SQL
-		if ( $queryArgs['per_page'] !== -1 ) {
+		if ( $queryArgs['per_page'] > 0 ) {
 			$itemsOffset = ( $queryArgs['page'] - 1 ) * $queryArgs['per_page'];
 
 			$preparedSql .= $wpdb->prepare( " LIMIT %d, %d", $itemsOffset, $queryArgs['per_page'] );

@@ -106,7 +106,8 @@ class VariablePricingField extends InputField {
 				$result .= '</tr>';
 
 				$result .= '<tr class="mphb-pricing-headers">';
-					$result .= '<th colspan="2">' . esc_html__( 'Base Occupancy', 'motopress-hotel-booking' ) . '</th>';
+					$result .= '<th colspan="2">' . esc_html__( 'Base Occupancy', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
+						__( 'Number of guests included in the base nightly price.', 'motopress-hotel-booking' ) ) . '</th>';
 					$result .= '<th class="mphb-pricing-price-per-night" colspan="' . count( $periods ) . '">' . esc_html__( 'Price per night', 'motopress-hotel-booking' ) . '</th>';
 					$result .= '<th>&nbsp;</th>';
 				$result .= '</tr>';

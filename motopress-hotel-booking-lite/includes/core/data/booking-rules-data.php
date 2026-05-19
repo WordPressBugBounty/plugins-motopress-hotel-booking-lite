@@ -104,7 +104,7 @@ class BookingRulesData {
 	private $cachedRulesByDates = array();
 
 	/**
-	 * See <code>loadBlocksForMonth()</code>.
+	 * See <code>getBlocksForMonth()</code>.
 	 *
 	 * @var array <code>[ Block ID => [ room_type_id, room_id, ... ] ]</code>
 	 */
@@ -112,11 +112,13 @@ class BookingRulesData {
 
 	/**
 	 * New items are added with each new month's load. See
-	 * <code>loadBlocksForMonth()</code>.
+	 * <code>getBlocksByDate()</code>.
 	 *
 	 * @var array <code>[
-	 *     Date string ("Y-m-d") => [
-	 *         Block ID => [ room_type_id, room_id, ... ]
+	 *     Room type ID (int) => [
+	 *         Date string ("Y-m-d") => [
+	 *             Block ID => [ room_type_id, room_id, ... ]
+	 *         ]
 	 *     ]
 	 * ]</code>
 	 */
@@ -478,17 +480,16 @@ class BookingRulesData {
 			}
 
 			$allRoomsCount = 0;
+
 			if ( 0 === $roomTypeOriginalId ) {
 				$allRoomsCount = MPHB()->getRoomPersistence()->getCount();
-			}
-
-			if ( 0 < $roomTypeOriginalId ) {
+			} elseif ( 0 < $roomTypeOriginalId ) {
 				$allRoomsCount = count( MPHB()->getRoomPersistence()->findAllIdsByType( $roomTypeOriginalId ) );
 			}
 
-			$result['not_check_in'] = $result['not_check_in'] ?? $allRoomsCount <= $notCheckInRoomsCount;
+			$result['not_check_in']  = $result['not_check_in']  ?? $allRoomsCount <= $notCheckInRoomsCount;
 			$result['not_check_out'] = $result['not_check_out'] ?? $allRoomsCount <= $notCheckOutRoomsCount;
-			$result['not_stay_in'] = $result['not_stay_in'] ?? $allRoomsCount <= $notStayInRoomsCount;
+			$result['not_stay_in']   = $result['not_stay_in']   ?? $allRoomsCount <= $notStayInRoomsCount;
 
 			$result = array_merge(
 				array(
@@ -1163,27 +1164,70 @@ class BookingRulesData {
 	}
 
 	/**
+	 * @param int $roomTypeId Room type ID or 0 (all room types).
 	 * @return array <code>[ Block ID => [ room_type_id, room_id, ... ] ]</code>
 	 */
 	private function getBlocksByDate( int $roomTypeId, \DateTime $date ): array {
 		$dateStr = DateUtils::formatDateDB( $date );
 
 		if ( ! isset( $this->blocksByDate[ $roomTypeId ][ $dateStr ] ) ) {
-			$this->loadBlocksForMonth( $roomTypeId, $date );
+			$blocksByDate = $this->getBlocksForMonth( $roomTypeId, $date );
+
+			// Treat trashed rooms as deleted, especially since "trash" is not
+			// included in the "all" list in RoomPersistence
+
+			// Filter trashed rooms
+			$trashedRooms = mphb_rooms_facade()->getTrashedRoomIds( $roomTypeId );
+
+			if ( ! empty( $trashedRooms ) ) {
+				foreach ( array_keys( $blocksByDate ) as $dateStr ) {
+					$blocksByDate[ $dateStr ] = array_filter(
+						$blocksByDate[ $dateStr ],
+						fn( $block ) => ! in_array( $block['room_id'], $trashedRooms )
+					);
+				}
+			}
+
+			// Filter trashed room types
+			if ( $roomTypeId === 0 ) {
+				$trashedRoomTypes = mphb_rooms_facade()->getTrashedRoomTypeIds();
+
+				if ( ! empty( $trashedRoomTypes ) ) {
+					foreach ( array_keys( $blocksByDate ) as $dateStr ) {
+						$blocksByDate[ $dateStr ] = array_filter(
+							$blocksByDate[ $dateStr ],
+							fn( $block ) => ! in_array( $block['room_type_id'], $trashedRoomTypes )
+						);
+					}
+				}
+			}
+
+			if ( ! isset( $this->blocksByDate[ $roomTypeId ] ) ) {
+				$this->blocksByDate[ $roomTypeId ] = array();
+			}
+
+			$this->blocksByDate[ $roomTypeId ] += $blocksByDate;
 		}
 
 		return $this->blocksByDate[ $roomTypeId ][ $dateStr ];
 	}
 
-	private function loadBlocksForMonth( int $roomTypeId, \DateTime $dateOfMonth ): void {
-		$monthStartStr = date( 'Y-m-01', $dateOfMonth->getTimestamp() );
-		$monthEndStr   = date( 'Y-m-t', $dateOfMonth->getTimestamp() );
+	/**
+	 * @return array <code>[
+	 *     Date string ("Y-m-d") => [
+	 *         Block ID => [ room_type_id, room_id, ... ]
+	 *     ]
+	 * ]
+	 */
+	private function getBlocksForMonth( int $roomTypeId, \DateTime $dateOfMonth ): array {
+		$monthStartStr = $dateOfMonth->format( 'Y-m-01' );
+		$monthEndStr   = $dateOfMonth->format( 'Y-m-t' );
 
 		$monthStart    = DateUtils::createDate( $monthStartStr );
 		$monthEnd      = DateUtils::createDate( $monthEndStr );
 
 		if ( $monthStart === null || $monthEnd === null ) {
-			return;
+			return array();
 		}
 
 		$blocksForMonth = MPHB()->getBlocksRepository()->getItemsForPeriod( $roomTypeId, $monthStartStr, $monthEndStr );
@@ -1208,10 +1252,6 @@ class BookingRulesData {
 			}
 		}
 
-		if ( ! isset( $this->blocksByDate[ $roomTypeId ] ) ) {
-			$this->blocksByDate[ $roomTypeId ] = [];
-		}
-
-		$this->blocksByDate[ $roomTypeId ] += $blocksByDate;
+		return $blocksByDate;
 	}
 }

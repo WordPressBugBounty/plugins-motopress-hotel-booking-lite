@@ -2,6 +2,12 @@
 
 namespace MPHB\Admin\Fields;
 
+use MPHB\Views\BookingView;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class PriceBreakdownField extends InputField {
 
 	const TYPE = 'price-breakdown';
@@ -19,7 +25,10 @@ class PriceBreakdownField extends InputField {
 		$priceBreakdown = json_decode( mphb_strip_price_breakdown_json( $this->value ), true );
 
 		if ( is_array( $priceBreakdown ) ) {
-			$result .= \MPHB\Views\BookingView::generatePriceBreakdownArray( $priceBreakdown );
+			$result .= BookingView::generatePriceBreakdownArray(
+				$priceBreakdown,
+				array( 'coupon_removable' => false )
+			);
 		}
 
 		$result .= '</div>';

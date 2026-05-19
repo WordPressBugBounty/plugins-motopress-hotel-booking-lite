@@ -214,6 +214,16 @@ class ServiceCPT extends EditableCPT {
 
 		$priceGroup->addField( $priceQuantityField );
 
+		$priceGroup->addField(
+			Fields\FieldFactory::create(
+				'mphb_help_notice',
+				array(
+					'type'        => 'placeholder',
+					'description' => '<i>' . __('Note: this service will appear at checkout only if it is selected in the accommodation type settings.', 'motopress-hotel-booking') . '</i>',
+				)
+			)
+		);
+
 		return array( $priceGroup );
 	}
 

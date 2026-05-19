@@ -290,7 +290,10 @@ class Ajax {
 				// [MB-684] Prevent excess number of digits
 				'total'                => round( $booking->calcPrice(), MPHB()->settings()->currency()->getPriceDecimalsCount() ),
 				'price_breakdown'      => json_encode( $priceBreakdown ),
-				'price_breakdown_html' => BookingView::generatePriceBreakdownArray( $priceBreakdown ),
+				'price_breakdown_html' => BookingView::generatePriceBreakdownArray(
+					$priceBreakdown,
+					array( 'coupon_removable' => false )
+				),
 			)
 		);
 	}
