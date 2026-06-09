@@ -141,9 +141,9 @@ class RulesListField extends InputField {
 		$result = '';
 
 		$result .= '<td>';
-		$result .= '<button type="button" class="button mphb-edit-button mphb-done-button">' . esc_html( $editText ) . '</button>';
+		$result .= '<button type="button" class="button button-compact mphb-edit-button mphb-done-button">' . esc_html( $editText ) . '</button>';
 		$result .= ' ';
-		$result .= '<button type="button" class="button mphb-delete-button">' . esc_html( $this->deleteLabel ) . '</button>';
+		$result .= '<button type="button" class="button button-compact mphb-delete-button">' . esc_html( $this->deleteLabel ) . '</button>';
 		$result .= '</td>';
 
 		return $result;

@@ -34,12 +34,12 @@ class ApiKeys {
 	}
 
 	private function getButtonMarkupBackToKeysList( $destinationUrl ) {
-		$backToKeysListUrl = remove_query_arg( array( 'create-key', 'edit-key' ), $destinationUrl );
-		$linkStyles        = 'display: flex; width: max-content; align-items: center';
-		$linkIcon          = '<span class="dashicons dashicons-arrow-left"></span>';
-		$linkLabel         = __( 'Back', 'motopress-hotel-booking' );
 
-		return sprintf( '<p><a href="%s" class="button" style="%s">%s<span> %s</span></a></p>', $backToKeysListUrl, $linkStyles, $linkIcon, $linkLabel );
+		return sprintf(
+			'<p><a href="%s" class="button">%s</a></p>',
+			esc_url( remove_query_arg( array( 'create-key', 'edit-key' ), $destinationUrl ) ),
+			esc_html( __( 'Back', 'motopress-hotel-booking' ) )
+		);
 	}
 
 	public function render( $destinationUrl ) {

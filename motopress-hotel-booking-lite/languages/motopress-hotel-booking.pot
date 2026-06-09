@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Hotel Booking 6.0.2\n"
+"Project-Id-Version: Hotel Booking 6.0.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/motopress-hotel-booking\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-11T14:22:20+00:00\n"
+"POT-Creation-Date: 2026-05-27T16:01:47+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: motopress-hotel-booking\n"
@@ -102,6 +102,7 @@ msgstr[1] ""
 #: assets/blocks/blocks.js:1463
 #: assets/blocks/blocks.js:1545
 #: assets/blocks/blocks.min.js:1
+#: assets/calendar/index.js:55
 msgid "Accommodation Type"
 msgstr ""
 
@@ -117,6 +118,8 @@ msgstr ""
 #: includes/post-types/room-type-cpt.php:63
 #: templates/edit-booking/add-room-popup.php:36
 #: templates/edit-booking/edit-reserved-rooms.php:45
+#: assets/calendar/index.js:55
+#: assets/guide/index.js:1
 msgid "Accommodation"
 msgstr ""
 
@@ -131,18 +134,22 @@ msgid "Till"
 msgstr ""
 
 #: includes/admin/blocks-list-table.php:95
+#: assets/calendar/index.js:55
 msgid "Restriction"
 msgstr ""
 
 #: includes/admin/blocks-list-table.php:98
+#: assets/calendar/index.js:55
 msgid "Not check-in rule marks the date as unavailable for check-in."
 msgstr ""
 
 #: includes/admin/blocks-list-table.php:99
+#: assets/calendar/index.js:55
 msgid "Not check-out rule marks the date as unavailable for check-out."
 msgstr ""
 
 #: includes/admin/blocks-list-table.php:100
+#: assets/calendar/index.js:55
 msgid "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date."
 msgstr ""
 
@@ -151,6 +158,7 @@ msgid "Not stay-in with Not check-out rules completely block the selected date, 
 msgstr ""
 
 #: includes/admin/blocks-list-table.php:104
+#: assets/calendar/index.js:55
 msgid "Comment"
 msgstr ""
 
@@ -164,6 +172,9 @@ msgstr ""
 #: includes/admin/menu-pages/taxes-and-fees-menu-page.php:211
 #: includes/admin/menu-pages/taxes-and-fees-menu-page.php:307
 #: includes/script-managers/admin-script-manager.php:107
+#: assets/calendar/index.js:25
+#: assets/calendar/index.js:52
+#: assets/calendar/index.js:55
 msgid "All"
 msgstr ""
 
@@ -183,21 +194,28 @@ msgstr ""
 #: includes/admin/fields/abstract-complex-field.php:25
 #: includes/admin/fields/rules-list-field.php:61
 #: includes/admin/sync-rooms-list-table.php:147
+#: assets/calendar/index.js:10
+#: assets/calendar/index.js:55
+#: assets/calendar/index.js:61
+#: assets/calendar/index.js:64
 msgid "Delete"
 msgstr ""
 
 #: includes/admin/blocks-list-table.php:317
 #: includes/script-managers/public-script-manager.php:213
+#: assets/calendar/index.js:55
 msgid "Not check-in"
 msgstr ""
 
 #: includes/admin/blocks-list-table.php:321
 #: includes/script-managers/public-script-manager.php:214
+#: assets/calendar/index.js:55
 msgid "Not check-out"
 msgstr ""
 
 #: includes/admin/blocks-list-table.php:325
 #: includes/script-managers/public-script-manager.php:212
+#: assets/calendar/index.js:55
 msgid "Not stay-in"
 msgstr ""
 
@@ -251,6 +269,7 @@ msgstr ""
 #: includes/post-types/payment-cpt.php:275
 #: includes/views/shortcodes/checkout-view.php:619
 #: templates/account/account-details.php:34
+#: assets/calendar/index.js:34
 msgid "Email"
 msgstr ""
 
@@ -273,8 +292,6 @@ msgstr ""
 #. translators: Terms are variations for Attributes and bear no relation to the Terms and Conditions Page.
 #: includes/admin/edit-cpt-pages/attributes-edit-cpt-page.php:16
 #: includes/admin/manage-cpt-pages/attributes-manage-cpt-page.php:33
-#: lite/includes/admin/menu-pages/attributes-menu-page.php:39
-#: lite/includes/admin/menu-pages/attributes-menu-page.php:59
 msgid "Terms"
 msgstr ""
 
@@ -331,6 +348,7 @@ msgid "Move to Trash"
 msgstr ""
 
 #: includes/admin/edit-cpt-pages/booking-edit-cpt-page.php:109
+#: assets/calendar/index.js:25
 msgid "Create Booking"
 msgstr ""
 
@@ -348,27 +366,12 @@ msgstr ""
 msgid "Edit Accommodations"
 msgstr ""
 
-#: includes/admin/edit-cpt-pages/booking-edit-cpt-page.php:165
-#: includes/admin/edit-cpt-pages/payment-edit-cpt-page.php:99
-#: includes/shortcodes/booking-confirmation-shortcode.php:306
-msgid "Date:"
-msgstr ""
-
-#: includes/admin/edit-cpt-pages/booking-edit-cpt-page.php:170
-msgid "Author:"
-msgstr ""
-
-#: includes/admin/edit-cpt-pages/booking-edit-cpt-page.php:185
+#: includes/admin/edit-cpt-pages/booking-edit-cpt-page.php:178
 #: includes/payments/gateways/stripe-gateway.php:631
 msgid "Auto"
 msgstr ""
 
-#: includes/admin/edit-cpt-pages/booking-edit-cpt-page.php:195
-#: includes/admin/edit-cpt-pages/payment-edit-cpt-page.php:103
-msgid "Message:"
-msgstr ""
-
-#: includes/admin/edit-cpt-pages/booking-edit-cpt-page.php:267
+#: includes/admin/edit-cpt-pages/booking-edit-cpt-page.php:263
 msgid "Confirmation email has been sent to customer."
 msgstr ""
 
@@ -406,6 +409,7 @@ msgstr ""
 #: templates/create-booking/results/reserve-rooms.php:51
 #: templates/widgets/rooms/room-content.php:77
 #: templates/widgets/search-availability/search-form.php:78
+#: assets/calendar/index.js:28
 msgid "Adults:"
 msgstr ""
 
@@ -417,6 +421,7 @@ msgstr ""
 #: templates/create-booking/results/reserve-rooms.php:52
 #: templates/widgets/rooms/room-content.php:91
 #: templates/widgets/search-availability/search-form.php:103
+#: assets/calendar/index.js:28
 msgid "Children:"
 msgstr ""
 
@@ -437,7 +442,7 @@ msgid "Update Rate"
 msgstr ""
 
 #: includes/admin/edit-cpt-pages/rate-edit-cpt-page.php:97
-#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:136
+#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:146
 msgid "Active"
 msgstr ""
 
@@ -470,6 +475,7 @@ msgstr ""
 #: includes/post-types/room-cpt.php:37
 #: includes/post-types/room-cpt.php:47
 #: includes/wizard.php:103
+#: assets/calendar/index.js:55
 msgid "Accommodations"
 msgstr ""
 
@@ -477,9 +483,6 @@ msgstr ""
 #: includes/post-types/attributes-cpt.php:54
 #: includes/post-types/attributes-cpt.php:61
 #: includes/post-types/attributes-cpt.php:65
-#: lite/includes/admin/menu-pages/attributes-menu-page.php:12
-#: lite/includes/admin/menu-pages/attributes-menu-page.php:68
-#: lite/includes/admin/menu-pages/attributes-menu-page.php:72
 msgid "Attributes"
 msgstr ""
 
@@ -563,18 +566,26 @@ msgid "Actions"
 msgstr ""
 
 #: includes/admin/fields/complex-horizontal-field.php:111
+#: assets/calendar/index.js:13
+#: assets/calendar/index.js:19
 msgid "Move up"
 msgstr ""
 
 #: includes/admin/fields/complex-horizontal-field.php:112
+#: assets/calendar/index.js:13
+#: assets/calendar/index.js:19
 msgid "Move down"
 msgstr ""
 
 #: includes/admin/fields/complex-horizontal-field.php:113
+#: assets/calendar/index.js:13
+#: assets/calendar/index.js:19
 msgid "Move to top"
 msgstr ""
 
 #: includes/admin/fields/complex-horizontal-field.php:114
+#: assets/calendar/index.js:13
+#: assets/calendar/index.js:19
 msgid "Move to bottom"
 msgstr ""
 
@@ -626,11 +637,15 @@ msgstr ""
 
 #: includes/admin/fields/multiple-checkbox-field.php:88
 #: template-functions.php:1107
+#: assets/calendar/index.js:25
+#: assets/calendar/index.js:40
 msgid "Select all"
 msgstr ""
 
 #: includes/admin/fields/multiple-checkbox-field.php:92
 #: template-functions.php:1109
+#: assets/calendar/index.js:25
+#: assets/calendar/index.js:40
 msgid "Unselect all"
 msgstr ""
 
@@ -652,8 +667,12 @@ msgstr ""
 #: includes/admin/fields/rules-list-field.php:59
 #: includes/admin/room-list-table.php:154
 #: includes/advanced/admin/tab/subtabs/api-keys/api-keys-table-list.php:115
-#: includes/bookings-calendar.php:613
+#: includes/bookings-calendar.php:635
 #: includes/script-managers/admin-script-manager.php:109
+#: assets/calendar/index.js:13
+#: assets/calendar/index.js:19
+#: assets/calendar/index.js:28
+#: assets/calendar/index.js:64
 msgid "Edit"
 msgstr ""
 
@@ -668,12 +687,19 @@ msgstr ""
 msgid "HH:MM"
 msgstr ""
 
-#: includes/admin/fields/total-price-field.php:18
+#: includes/admin/fields/total-price-field.php:19
 msgid "Recalculate Total Price"
+msgstr ""
+
+#: includes/admin/fields/total-price-field.php:20
+msgid "Recalculate the total price and price breakdown using current rates, fees, taxes, and coupons. No changes are saved until the booking is updated."
 msgstr ""
 
 #: includes/admin/fields/variable-pricing-field.php:89
 #: includes/views/booking-view.php:121
+#: assets/calendar/index.js:25
+#: assets/calendar/index.js:46
+#: assets/calendar/index.js:52
 msgid "Nights"
 msgstr ""
 
@@ -688,6 +714,8 @@ msgstr ""
 #: includes/shortcodes/search-results-shortcode.php:1013
 #: includes/views/booking-view.php:400
 #: templates/edit-booking/edit-reserved-rooms.php:70
+#: assets/calendar/index.js:13
+#: assets/calendar/index.js:19
 msgid "Remove"
 msgstr ""
 
@@ -697,6 +725,10 @@ msgstr ""
 
 #: includes/admin/fields/variable-pricing-field.php:109
 msgid "Base Occupancy"
+msgstr ""
+
+#: includes/admin/fields/variable-pricing-field.php:109
+msgid "Number of guests included in the base nightly price."
 msgstr ""
 
 #: includes/admin/fields/variable-pricing-field.php:110
@@ -732,10 +764,14 @@ msgid "Children"
 msgstr ""
 
 #: includes/admin/fields/variable-pricing-field.php:130
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:64
 msgid "Price per extra adult"
 msgstr ""
 
 #: includes/admin/fields/variable-pricing-field.php:137
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:64
 msgid "Price per extra child"
 msgstr ""
 
@@ -775,6 +811,7 @@ msgstr ""
 #: includes/reports/earnings-report.php:398
 #: template-functions.php:975
 #: templates/edit-booking/edit-reserved-rooms.php:46
+#: assets/calendar/index.js:28
 msgid "Status"
 msgstr ""
 
@@ -792,7 +829,7 @@ msgstr ""
 
 #: includes/admin/groups/license-settings-group.php:77
 #: includes/admin/manage-cpt-pages/booking-manage-cpt-page.php:122
-#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:136
+#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:146
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:94
 msgid "Expired"
 msgstr ""
@@ -826,7 +863,6 @@ msgid "Renew License"
 msgstr ""
 
 #: includes/admin/manage-cpt-pages/attributes-manage-cpt-page.php:9
-#: lite/includes/admin/menu-pages/attributes-menu-page.php:24
 msgid "Attributes let you define extra accommodation data, such as location or type. You can use these attributes in the search availability form as advanced search filters."
 msgstr ""
 
@@ -891,6 +927,7 @@ msgstr ""
 #: assets/blocks/blocks.js:1106
 #: assets/blocks/blocks.js:1314
 #: assets/blocks/blocks.min.js:1
+#: assets/calendar/index.js:10
 msgid "Price"
 msgstr ""
 
@@ -923,8 +960,11 @@ msgstr[1] ""
 msgid "Summary: %s."
 msgstr ""
 
+#. translators: %s - total paid
 #: includes/admin/manage-cpt-pages/booking-manage-cpt-page.php:279
-#, php-format
+#: assets/calendar/index.js:10
+#: assets/calendar/index.js:76
+#, php-format,js-format
 msgid "Paid: %s"
 msgstr ""
 
@@ -979,31 +1019,31 @@ msgstr ""
 msgid "Expiration Date"
 msgstr ""
 
-#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:41
+#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:44
 #: includes/views/edit-booking/checkout-view.php:115
 #: template-functions.php:898
 msgid "Accommodation:"
 msgstr ""
 
 #. translators: %s is a coupon amount per day
-#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:60
+#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:63
 #, php-format
 msgid "%s per day"
 msgstr ""
 
-#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:67
+#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:73
 msgid "Service:"
 msgstr ""
 
-#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:88
+#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:97
 msgid "Fee:"
 msgstr ""
 
-#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:153
+#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:163
 msgid "Note: the use of coupons is disabled in settings."
 msgstr ""
 
-#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:165
+#: includes/admin/manage-cpt-pages/coupon-manage-cpt-page.php:175
 #: includes/admin/menu-pages/settings-menu-page.php:299
 msgid "Enable the use of coupons."
 msgstr ""
@@ -1033,21 +1073,24 @@ msgstr ""
 #. Translators: "Awaiting charge" refers to a payment that has been authorized but not yet charged
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:83
 #: template-functions.php:1003
+#: assets/calendar/index.js:37
 msgid "Awaiting charge"
 msgstr ""
 
 #. translators: %s is the transaction fee amount, e.g. "+$2.50". 'txn' is short for 'transaction'.
+#. Translators: %s: Transaction fee amount, e.g. "+$2.50". "txn" is short for "transaction".
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:114
 #: includes/shortcodes/booking-confirmation-shortcode.php:325
 #: includes/views/shortcodes/checkout-view.php:884
 #: includes/views/shortcodes/checkout-view.php:905
 #: template-functions.php:1014
-#, php-format
+#: assets/calendar/index.js:40
+#, php-format,js-format
 msgid "+%s txn fee"
 msgstr ""
 
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:124
-#: includes/bookings-calendar.php:606
+#: includes/bookings-calendar.php:628
 #: includes/script-managers/admin-script-manager.php:115
 #, php-format
 msgid "Booking #%s"
@@ -1063,6 +1106,7 @@ msgstr ""
 
 #: includes/admin/manage-cpt-pages/rate-manage-cpt-page.php:67
 #: includes/post-types/rate-cpt.php:81
+#: assets/calendar/index.js:58
 msgid "Add New Season Price"
 msgstr ""
 
@@ -1139,11 +1183,14 @@ msgstr ""
 #: includes/admin/manage-cpt-pages/season-manage-cpt-page.php:22
 #: includes/admin/menu-pages/booking-rules-menu-page.php:205
 #: includes/admin/menu-pages/booking-rules-menu-page.php:250
+#: assets/calendar/index.js:43
+#: assets/calendar/index.js:49
 msgid "Days"
 msgstr ""
 
 #: includes/admin/manage-cpt-pages/season-manage-cpt-page.php:23
 #: includes/post-types/season-cpt.php:67
+#: assets/calendar/index.js:64
 msgid "Repeat"
 msgstr ""
 
@@ -1198,11 +1245,15 @@ msgstr ""
 #: includes/admin/menu-pages/booking-rules-menu-page.php:154
 #: includes/admin/menu-pages/booking-rules-menu-page.php:158
 #: includes/admin/menu-pages/settings-menu-page.php:622
+#: assets/calendar/index.js:1
+#: assets/calendar/index.js:19
+#: assets/guide/index.js:1
 msgid "Booking Rules"
 msgstr ""
 
 #. translators: Section label. Refers to options for blocking an accommodation’s availability.
 #: includes/admin/menu-pages/booking-rules-menu-page.php:98
+#: assets/calendar/index.js:55
 msgid "Block Accommodations"
 msgstr ""
 
@@ -1211,6 +1262,10 @@ msgid "Booking rules saved."
 msgstr ""
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:194
+#: assets/calendar/index.js:1
+#: assets/calendar/index.js:19
+#: assets/calendar/index.js:55
+#: assets/calendar/index.js:67
 msgid "Check-in days"
 msgstr ""
 
@@ -1227,10 +1282,20 @@ msgstr ""
 #: includes/admin/menu-pages/booking-rules-menu-page.php:499
 #: includes/post-types/season-cpt.php:98
 #: includes/post-types/season-cpt.php:108
+#: assets/calendar/index.js:1
+#: assets/calendar/index.js:43
+#: assets/calendar/index.js:46
+#: assets/calendar/index.js:49
+#: assets/calendar/index.js:52
+#: assets/guide/index.js:1
 msgid "Seasons"
 msgstr ""
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:239
+#: assets/calendar/index.js:1
+#: assets/calendar/index.js:19
+#: assets/calendar/index.js:55
+#: assets/calendar/index.js:67
 msgid "Check-out days"
 msgstr ""
 
@@ -1240,6 +1305,8 @@ msgstr ""
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:284
 #: includes/admin/menu-pages/booking-rules-menu-page.php:295
+#: assets/calendar/index.js:55
+#: assets/calendar/index.js:67
 msgid "Minimum stay"
 msgstr ""
 
@@ -1257,6 +1324,8 @@ msgstr ""
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:330
 #: includes/admin/menu-pages/booking-rules-menu-page.php:341
+#: assets/calendar/index.js:55
+#: assets/calendar/index.js:67
 msgid "Maximum stay"
 msgstr ""
 
@@ -1266,6 +1335,7 @@ msgstr ""
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:376
 #: includes/admin/menu-pages/booking-rules-menu-page.php:387
+#: assets/calendar/index.js:55
 msgid "Minimum advance reservation"
 msgstr ""
 
@@ -1275,6 +1345,7 @@ msgstr ""
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:422
 #: includes/admin/menu-pages/booking-rules-menu-page.php:433
+#: assets/calendar/index.js:55
 msgid "Maximum advance reservation"
 msgstr ""
 
@@ -1284,6 +1355,9 @@ msgstr ""
 
 #: includes/admin/menu-pages/booking-rules-menu-page.php:468
 #: includes/admin/menu-pages/booking-rules-menu-page.php:479
+#: assets/calendar/index.js:25
+#: assets/calendar/index.js:55
+#: assets/calendar/index.js:67
 msgid "Booking buffer"
 msgstr ""
 
@@ -1328,7 +1402,7 @@ msgstr ""
 #: includes/admin/menu-pages/edit-booking/booking-control.php:38
 #: includes/admin/menu-pages/edit-booking/checkout-control.php:57
 #: includes/admin/menu-pages/edit-booking/summary-control.php:57
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:465
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:481
 #: includes/shortcodes/checkout-shortcode/step-checkout.php:168
 #: includes/utils/parse-utils.php:260
 msgid "There are no accommodations selected for reservation."
@@ -1345,7 +1419,7 @@ msgstr ""
 
 #: includes/admin/menu-pages/create-booking/checkout-step.php:167
 #: includes/admin/menu-pages/create-booking/step.php:191
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:481
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:497
 #: includes/ajax-api/ajax-actions/update-checkout-info.php:74
 #: includes/ajax.php:608
 #: includes/shortcodes/checkout-shortcode/step-checkout.php:191
@@ -1361,7 +1435,7 @@ msgid "There are no rates for requested dates."
 msgstr ""
 
 #: includes/admin/menu-pages/create-booking/checkout-step.php:188
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:535
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:551
 #: includes/shortcodes/checkout-shortcode/step-checkout.php:249
 #: includes/utils/parse-utils.php:355
 #, php-format
@@ -1424,7 +1498,7 @@ msgstr ""
 
 #: includes/admin/menu-pages/create-booking/step.php:211
 #: includes/admin/menu-pages/create-booking/step.php:215
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:510
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:526
 #: includes/shortcodes/search-results-shortcode.php:635
 #: includes/utils/parse-utils.php:178
 #: includes/utils/parse-utils.php:336
@@ -1433,8 +1507,8 @@ msgstr ""
 
 #: includes/admin/menu-pages/create-booking/step.php:235
 #: includes/admin/menu-pages/create-booking/step.php:239
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:517
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:520
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:533
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:536
 #: includes/ajax-api/ajax-actions/update-checkout-info.php:101
 #: includes/ajax.php:496
 #: includes/shortcodes/search-results-shortcode.php:651
@@ -1464,6 +1538,7 @@ msgstr ""
 #: includes/post-types/payment-cpt.php:259
 #: includes/views/shortcodes/checkout-view.php:589
 #: templates/account/account-details.php:22
+#: assets/calendar/index.js:34
 msgid "First Name"
 msgstr ""
 
@@ -1475,6 +1550,7 @@ msgstr ""
 #: includes/post-types/payment-cpt.php:267
 #: includes/views/shortcodes/checkout-view.php:604
 #: templates/account/account-details.php:26
+#: assets/calendar/index.js:34
 msgid "Last Name"
 msgstr ""
 
@@ -1486,6 +1562,7 @@ msgstr ""
 #: includes/post-types/payment-cpt.php:283
 #: includes/views/shortcodes/checkout-view.php:634
 #: templates/account/account-details.php:38
+#: assets/calendar/index.js:34
 msgid "Phone"
 msgstr ""
 
@@ -1496,6 +1573,7 @@ msgstr ""
 #: includes/post-types/booking-cpt.php:131
 #: includes/views/shortcodes/checkout-view.php:676
 #: templates/account/account-details.php:42
+#: assets/calendar/index.js:34
 msgid "Address"
 msgstr ""
 
@@ -1507,6 +1585,7 @@ msgstr ""
 #: includes/post-types/payment-cpt.php:323
 #: includes/views/shortcodes/checkout-view.php:706
 #: templates/account/account-details.php:64
+#: assets/calendar/index.js:34
 msgid "State / County"
 msgstr ""
 
@@ -1517,6 +1596,7 @@ msgstr ""
 #: includes/post-types/booking-cpt.php:123
 #: includes/post-types/payment-cpt.php:291
 #: templates/account/account-details.php:46
+#: assets/calendar/index.js:34
 msgid "Country"
 msgstr ""
 
@@ -1530,6 +1610,7 @@ msgstr ""
 #: includes/post-types/payment-cpt.php:315
 #: includes/views/shortcodes/checkout-view.php:691
 #: templates/account/account-details.php:68
+#: assets/calendar/index.js:34
 msgid "City"
 msgstr ""
 
@@ -1540,6 +1621,7 @@ msgstr ""
 #: includes/post-types/booking-cpt.php:155
 #: includes/views/shortcodes/checkout-view.php:721
 #: templates/account/account-details.php:72
+#: assets/calendar/index.js:34
 msgid "Postcode"
 msgstr ""
 
@@ -1548,7 +1630,7 @@ msgstr ""
 #: includes/admin/menu-pages/i-cal-import-menu-page.php:162
 #: includes/admin/menu-pages/i-cal-import-menu-page.php:209
 #: includes/admin/menu-pages/i-cal-menu-page.php:152
-#: includes/advanced/admin/tab/subtabs/api-keys/api-keys.php:40
+#: includes/advanced/admin/tab/subtabs/api-keys/api-keys.php:41
 #: includes/post-types/editable-cpt.php:95
 msgid "Back"
 msgstr ""
@@ -1583,11 +1665,11 @@ msgstr ""
 #: includes/admin/menu-pages/edit-booking-menu-page.php:88
 #: includes/advanced/api/controllers/v1/submit-payment-controller.php:138
 #: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:49
+#: includes/ajax-api/ajax-actions/update-booking-notes.php:39
 msgid "The booking not found."
 msgstr ""
 
 #: includes/admin/menu-pages/edit-booking-menu-page.php:143
-#: lite/includes/admin/menu-pages/edit-booking-menu-page.php:31
 #, php-format
 msgid "Edit Booking #%d"
 msgstr ""
@@ -1595,15 +1677,13 @@ msgstr ""
 #: includes/admin/menu-pages/edit-booking-menu-page.php:146
 #: includes/admin/menu-pages/reports-menu-page.php:201
 #: includes/admin/metaboxes/payment-authed-funds-metabox.php:44
-#: lite/includes/admin/menu-pages/edit-booking-menu-page.php:34
+#: assets/calendar/index.js:10
 msgid "Cancel"
 msgstr ""
 
 #: includes/admin/menu-pages/edit-booking-menu-page.php:230
 #: includes/admin/menu-pages/edit-booking-menu-page.php:237
 #: includes/post-types/booking-cpt.php:245
-#: lite/includes/admin/menu-pages/edit-booking-menu-page.php:76
-#: lite/includes/admin/menu-pages/edit-booking-menu-page.php:83
 msgid "Edit Booking"
 msgstr ""
 
@@ -1616,6 +1696,7 @@ msgstr ""
 
 #: includes/admin/menu-pages/edit-booking/booking-control.php:26
 #: includes/ajax-api/ajax-actions/abstract-ajax-api-action.php:191
+#: includes/ajax-api/ajax-actions/update-booking-notes.php:93
 #: includes/ajax.php:168
 msgid "Request does not pass security verification. Please refresh the page and try one more time."
 msgstr ""
@@ -1723,7 +1804,6 @@ msgid "This calendar has already been imported for another accommodation."
 msgstr ""
 
 #: includes/admin/menu-pages/i-cal-menu-page.php:104
-#: lite/includes/admin/menu-pages/i-cal-menu-page.php:10
 msgid "Sync, Import and Export Calendars"
 msgstr ""
 
@@ -1739,7 +1819,6 @@ msgid "Sync All External Calendars"
 msgstr ""
 
 #: includes/admin/menu-pages/i-cal-menu-page.php:124
-#: lite/includes/admin/menu-pages/i-cal-menu-page.php:14
 msgid "Sync your bookings across all online channels like Booking.com, TripAdvisor, Airbnb etc. via iCalendar file format."
 msgstr ""
 
@@ -1753,8 +1832,6 @@ msgstr ""
 
 #: includes/admin/menu-pages/i-cal-menu-page.php:234
 #: includes/admin/menu-pages/i-cal-menu-page.php:238
-#: lite/includes/admin/menu-pages/i-cal-menu-page.php:29
-#: lite/includes/admin/menu-pages/i-cal-menu-page.php:33
 msgid "Sync Calendars"
 msgstr ""
 
@@ -1917,6 +1994,9 @@ msgstr ""
 #: assets/blocks/blocks.js:725
 #: assets/blocks/blocks.js:1254
 #: assets/blocks/blocks.min.js:1
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:61
+#: assets/calendar/index.js:64
 msgid "Title"
 msgstr ""
 
@@ -2487,6 +2567,11 @@ msgstr ""
 #: includes/post-types/room-type-cpt.php:56
 #: includes/post-types/room-type-cpt.php:67
 #: includes/widgets/rooms-widget.php:21
+#: assets/calendar/index.js:25
+#: assets/calendar/index.js:43
+#: assets/calendar/index.js:46
+#: assets/calendar/index.js:49
+#: assets/calendar/index.js:52
 msgid "Accommodation Types"
 msgstr ""
 
@@ -3554,6 +3639,9 @@ msgstr ""
 #: includes/payments/gateways/gateway.php:492
 #: includes/post-types/coupon-cpt.php:37
 #: includes/post-types/rate-cpt.php:89
+#: assets/calendar/index.js:28
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:61
 msgid "Description"
 msgstr ""
 
@@ -3818,58 +3906,58 @@ msgstr ""
 msgid "Reservation created. Redirecting to the booking page..."
 msgstr ""
 
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:221
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:226
 #: includes/shortcodes/checkout-shortcode/step.php:126
 #: includes/shortcodes/checkout-shortcode/step.php:135
 #: includes/shortcodes/checkout-shortcode/step.php:144
 msgid "Reservation submitted"
 msgstr ""
 
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:234
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:239
 #: includes/advanced/api/controllers/v1/submit-payment-controller.php:130
 msgid "Booking is blocked due to maintenance reason. Please try again later."
 msgstr ""
 
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:340
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:356
 msgid "Unable to create booking. Please try again."
 msgstr ""
 
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:384
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:400
 #: includes/advanced/api/controllers/v1/submit-payment-controller.php:181
 msgid "Server error. Failed to create payment for this booking."
 msgstr ""
 
 #. Translators: %s: Error message text.
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:413
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:429
 #: includes/advanced/api/controllers/v1/submit-payment-controller.php:226
 #, php-format
 msgid "Unable to process your payment. %s"
 msgstr ""
 
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:483
 #: includes/advanced/api/controllers/v1/submit-checkout-controller.php:499
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:515
 #: includes/ajax-api/ajax-actions/update-checkout-info.php:82
 #: includes/ajax.php:619
 #: includes/utils/parse-utils.php:332
 msgid "Rate is not valid."
 msgstr ""
 
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:512
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:528
 #: includes/ajax-api/ajax-actions/update-checkout-info.php:92
 #: includes/ajax.php:473
 #: includes/utils/parse-utils.php:180
 msgid "The number of guests is not valid."
 msgstr ""
 
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:522
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:538
 #: includes/ajax-api/ajax-actions/update-checkout-info.php:106
 #: includes/ajax.php:630
 #: includes/utils/parse-utils.php:344
 msgid "The total number of guests is not valid."
 msgstr ""
 
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:577
-#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:598
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:593
+#: includes/advanced/api/controllers/v1/submit-checkout-controller.php:614
 #: includes/shortcodes/checkout-shortcode/step.php:116
 msgid "Accommodation is already booked."
 msgstr ""
@@ -3888,7 +3976,7 @@ msgid "Thank you for your payment. Your transaction is being processed."
 msgstr ""
 
 #: includes/ajax-api/ajax-actions/create-stripe-payment-intent.php:34
-#: includes/ajax-api/ajax-actions/update-booking-notes.php:52
+#: includes/ajax-api/ajax-actions/update-booking-notes.php:64
 #: includes/ajax.php:332
 #: includes/ajax.php:376
 #: includes/csv/bookings/bookings-query.php:85
@@ -3941,10 +4029,12 @@ msgid "Check-out Date"
 msgstr ""
 
 #: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:89
+#: assets/calendar/index.js:28
 msgid "Summary"
 msgstr ""
 
 #: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:97
+#: assets/calendar/index.js:28
 msgid "Source"
 msgstr ""
 
@@ -3962,6 +4052,7 @@ msgstr ""
 #: includes/csv/bookings/bookings-exporter-helper.php:90
 #: includes/emails/templaters/email-templater.php:189
 #: includes/post-types/booking-cpt.php:164
+#: assets/calendar/index.js:34
 msgid "Customer Note"
 msgstr ""
 
@@ -3974,6 +4065,7 @@ msgstr ""
 #: includes/csv/bookings/bookings-exporter-helper.php:107
 #: includes/post-types/booking-cpt.php:178
 #: includes/post-types/coupon-cpt.php:289
+#: assets/calendar/index.js:40
 msgid "Coupon"
 msgstr ""
 
@@ -3986,6 +4078,7 @@ msgstr ""
 #: includes/bundles/customer-bundle.php:173
 #: includes/post-types/booking-cpt.php:201
 #: includes/views/shortcodes/checkout-view.php:736
+#: assets/calendar/index.js:40
 msgid "Notes"
 msgstr ""
 
@@ -4062,49 +4155,58 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
+#: includes/bookings-calendar.php:603
+#: includes/bookings-calendar.php:605
+#: includes/bookings-calendar.php:697
+#: includes/script-managers/public-script-manager.php:205
+#: assets/calendar/index.js:67
+msgid "Booked"
+msgstr ""
+
 #: includes/bookings-calendar.php:608
+#: includes/bookings-calendar.php:610
+#: includes/bookings-calendar.php:698
+#: includes/script-managers/public-script-manager.php:207
+#: assets/calendar/index.js:67
+msgid "Pending"
+msgstr ""
+
+#: includes/bookings-calendar.php:613
+#: includes/bookings-calendar.php:615
+#: assets/calendar/index.js:7
+#: assets/calendar/index.js:28
+#: assets/calendar/index.js:67
+#: assets/calendar/index.js:76
+msgid "External"
+msgstr ""
+
+#: includes/bookings-calendar.php:618
+#: includes/bookings-calendar.php:620
+#: includes/bookings-calendar.php:1133
+#: assets/calendar/index.js:1
+#: assets/calendar/index.js:67
+msgid "Blocked"
+msgstr ""
+
+#: includes/bookings-calendar.php:630
 #: includes/post-types/booking-cpt/statuses.php:102
 #: includes/reports/data/report-earnings-by-dates-data.php:28
+#: assets/calendar/index.js:1
 msgctxt "Booking status"
 msgid "Confirmed"
 msgstr ""
 
-#: includes/bookings-calendar.php:645
+#: includes/bookings-calendar.php:667
 #: includes/reports/abstract-report.php:46
 #: includes/reports/earnings-report.php:375
 msgid "Show"
 msgstr ""
 
-#: includes/bookings-calendar.php:649
+#: includes/bookings-calendar.php:671
 #: templates/create-booking/search/search-form.php:131
 #: templates/shortcodes/search/search-form.php:138
 #: templates/widgets/search-availability/search-form.php:142
 msgid "Search"
-msgstr ""
-
-#: includes/bookings-calendar.php:652
-#: includes/bookings-calendar.php:654
-#: includes/bookings-calendar.php:697
-#: includes/script-managers/public-script-manager.php:205
-msgid "Booked"
-msgstr ""
-
-#: includes/bookings-calendar.php:657
-#: includes/bookings-calendar.php:659
-#: includes/bookings-calendar.php:698
-#: includes/script-managers/public-script-manager.php:207
-msgid "Pending"
-msgstr ""
-
-#: includes/bookings-calendar.php:662
-#: includes/bookings-calendar.php:664
-msgid "External"
-msgstr ""
-
-#: includes/bookings-calendar.php:667
-#: includes/bookings-calendar.php:669
-#: includes/bookings-calendar.php:1133
-msgid "Blocked"
 msgstr ""
 
 #: includes/bookings-calendar.php:687
@@ -4334,6 +4436,8 @@ msgstr ""
 #: templates/create-booking/search/search-form.php:42
 #: templates/edit-booking/edit-dates.php:29
 #: templates/shortcodes/search/search-form.php:35
+#: assets/calendar/index.js:25
+#: assets/calendar/index.js:28
 msgid "Check-in"
 msgstr ""
 
@@ -4343,6 +4447,8 @@ msgstr ""
 #: templates/create-booking/search/search-form.php:62
 #: templates/edit-booking/edit-dates.php:38
 #: templates/shortcodes/search/search-form.php:55
+#: assets/calendar/index.js:25
+#: assets/calendar/index.js:28
 msgid "Check-out"
 msgstr ""
 
@@ -5110,6 +5216,7 @@ msgid "Your License Key is not set for this website. Please <a href=\"%s\">set a
 msgstr ""
 
 #: includes/linked-rooms.php:180
+#: assets/calendar/index.js:1
 msgid "Blocked because the linked accommodation is booked"
 msgstr ""
 
@@ -5162,8 +5269,6 @@ msgid "Period of time in hours a user has to pay for a booking. Unpaid bookings 
 msgstr ""
 
 #: includes/payments/gateways/beanstream-gateway.php:55
-#: lite/includes/payments/gateways/beanstream-gateway.php:25
-#: lite/includes/payments/gateways/beanstream-gateway.php:29
 msgid "Beanstream/Bambora"
 msgstr ""
 
@@ -5231,8 +5336,6 @@ msgstr ""
 
 #: includes/payments/gateways/braintree-gateway.php:140
 #: includes/payments/gateways/braintree-gateway.php:262
-#: lite/includes/payments/gateways/braintree-gateway.php:25
-#: lite/includes/payments/gateways/braintree-gateway.php:29
 msgid "Braintree"
 msgstr ""
 
@@ -5402,7 +5505,6 @@ msgstr ""
 
 #: includes/payments/gateways/paypal-gateway.php:67
 #: includes/payments/gateways/paypal-gateway.php:73
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:68
 msgid "PayPal"
 msgstr ""
 
@@ -5553,8 +5655,6 @@ msgstr ""
 
 #: includes/payments/gateways/stripe-gateway.php:405
 #: includes/payments/gateways/stripe-gateway.php:615
-#: lite/includes/payments/gateways/stripe-gateway.php:25
-#: lite/includes/payments/gateways/stripe-gateway.php:29
 msgid "Stripe"
 msgstr ""
 
@@ -5798,8 +5898,6 @@ msgstr ""
 
 #: includes/payments/gateways/two-checkout-gateway.php:71
 #: includes/payments/gateways/two-checkout-gateway.php:100
-#: lite/includes/payments/gateways/two-checkout-gateway.php:25
-#: lite/includes/payments/gateways/two-checkout-gateway.php:29
 msgid "2Checkout"
 msgstr ""
 
@@ -5879,7 +5977,6 @@ msgid "Attribute"
 msgstr ""
 
 #: includes/post-types/attributes-cpt.php:56
-#: lite/includes/admin/menu-pages/attributes-menu-page.php:14
 msgctxt "Add New Attribute"
 msgid "Add New"
 msgstr ""
@@ -5905,7 +6002,6 @@ msgid "Search Attribute"
 msgstr ""
 
 #: includes/post-types/attributes-cpt.php:63
-#: lite/includes/admin/menu-pages/attributes-menu-page.php:46
 msgid "No Attributes found"
 msgstr ""
 
@@ -6044,6 +6140,7 @@ msgid "Uploaded to this booking"
 msgstr ""
 
 #: includes/post-types/booking-cpt/statuses.php:58
+#: assets/calendar/index.js:1
 msgctxt "Booking status"
 msgid "Pending User Confirmation"
 msgstr ""
@@ -6056,6 +6153,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: includes/post-types/booking-cpt/statuses.php:69
+#: assets/calendar/index.js:1
 msgctxt "Booking status"
 msgid "Pending Payment"
 msgstr ""
@@ -6068,6 +6166,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: includes/post-types/booking-cpt/statuses.php:80
+#: assets/calendar/index.js:1
 msgctxt "Booking status"
 msgid "Pending Admin"
 msgstr ""
@@ -6081,6 +6180,7 @@ msgstr[1] ""
 
 #: includes/post-types/booking-cpt/statuses.php:91
 #: includes/reports/data/report-earnings-by-dates-data.php:31
+#: assets/calendar/index.js:1
 msgctxt "Booking status"
 msgid "Abandoned"
 msgstr ""
@@ -6102,6 +6202,7 @@ msgstr[1] ""
 
 #: includes/post-types/booking-cpt/statuses.php:113
 #: includes/reports/data/report-earnings-by-dates-data.php:30
+#: assets/calendar/index.js:1
 msgctxt "Booking status"
 msgid "Cancelled"
 msgstr ""
@@ -6277,6 +6378,7 @@ msgid "Search Payment"
 msgstr ""
 
 #: includes/post-types/payment-cpt.php:46
+#: assets/calendar/index.js:40
 msgid "No payments found"
 msgstr ""
 
@@ -6422,6 +6524,8 @@ msgstr ""
 
 #: includes/post-types/rate-cpt.php:55
 #: includes/post-types/season-cpt.php:99
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:64
 msgid "Season"
 msgstr ""
 
@@ -6436,6 +6540,8 @@ msgstr ""
 #. translators: The value a hotel wishes to sell their rooms. Also called the Cost, Value, Tariff or Room charge.
 #: includes/post-types/rate-cpt.php:111
 #: includes/post-types/rate-cpt.php:121
+#: assets/calendar/index.js:10
+#: assets/guide/index.js:1
 msgid "Rates"
 msgstr ""
 
@@ -6445,6 +6551,8 @@ msgid "Add New"
 msgstr ""
 
 #: includes/post-types/rate-cpt.php:114
+#: assets/calendar/index.js:10
+#: assets/calendar/index.js:58
 msgid "Add New Rate"
 msgstr ""
 
@@ -6807,6 +6915,8 @@ msgid "Leave this option empty to calculate total capacity automatically to meet
 msgstr ""
 
 #: includes/post-types/room-type-cpt.php:316
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:64
 msgid "Base Adults Occupancy"
 msgstr ""
 
@@ -6816,6 +6926,8 @@ msgid "An optional starting value used when creating seasonal prices in the Rate
 msgstr ""
 
 #: includes/post-types/room-type-cpt.php:327
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:64
 msgid "Base Children Occupancy"
 msgstr ""
 
@@ -6863,6 +6975,7 @@ msgid "End date"
 msgstr ""
 
 #: includes/post-types/season-cpt.php:55
+#: assets/calendar/index.js:64
 msgid "Applied for days"
 msgstr ""
 
@@ -6871,6 +6984,7 @@ msgid "Hold Ctrl / Cmd to select multiple."
 msgstr ""
 
 #: includes/post-types/season-cpt.php:68
+#: assets/calendar/index.js:64
 msgid "Annual repeats begin on the Start date of the season, for one year from the current date."
 msgstr ""
 
@@ -6879,6 +6993,7 @@ msgid "Does not repeat"
 msgstr ""
 
 #: includes/post-types/season-cpt.php:81
+#: assets/calendar/index.js:64
 msgid "Repeat until date"
 msgstr ""
 
@@ -6888,10 +7003,15 @@ msgid "Add New"
 msgstr ""
 
 #: includes/post-types/season-cpt.php:101
+#: assets/calendar/index.js:1
+#: assets/calendar/index.js:40
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:64
 msgid "Add New Season"
 msgstr ""
 
 #: includes/post-types/season-cpt.php:102
+#: assets/calendar/index.js:64
 msgid "Edit Season"
 msgstr ""
 
@@ -6995,6 +7115,10 @@ msgstr ""
 msgid "Empty means unlimited"
 msgstr ""
 
+#: includes/post-types/service-cpt.php:222
+msgid "Note: this service will appear at checkout only if it is selected in the accommodation type settings."
+msgstr ""
+
 #: includes/reports/data/report-earnings-by-dates-data.php:29
 msgctxt "Booking status"
 msgid "Pending"
@@ -7030,12 +7154,14 @@ msgid "Revenue"
 msgstr ""
 
 #: includes/reports/earnings-report.php:323
+#: assets/guide/index.js:1
 msgid "Period"
 msgstr ""
 
 #: includes/reports/earnings-report.php:364
 #: includes/views/create-booking/checkout-view.php:56
 #: includes/views/shortcodes/checkout-view.php:91
+#: assets/calendar/index.js:25
 msgid "Apply"
 msgstr ""
 
@@ -7045,6 +7171,8 @@ msgid "From %s to %s"
 msgstr ""
 
 #: includes/reports/report-filters.php:61
+#: assets/calendar/index.js:25
+#: assets/js/shortcodes/group-availability-calendar/index.js:1
 msgid "Today"
 msgstr ""
 
@@ -7053,6 +7181,7 @@ msgid "Yesterday"
 msgstr ""
 
 #: includes/reports/report-filters.php:67
+#: assets/calendar/index.js:25
 msgid "This week"
 msgstr ""
 
@@ -7065,6 +7194,7 @@ msgid "Last 30 days"
 msgstr ""
 
 #: includes/reports/report-filters.php:76
+#: assets/calendar/index.js:25
 msgid "This month"
 msgstr ""
 
@@ -7073,6 +7203,7 @@ msgid "Last month"
 msgstr ""
 
 #: includes/reports/report-filters.php:82
+#: assets/calendar/index.js:25
 msgid "This quarter"
 msgstr ""
 
@@ -7081,6 +7212,7 @@ msgid "Last quarter"
 msgstr ""
 
 #: includes/reports/report-filters.php:88
+#: assets/calendar/index.js:25
 msgid "This year"
 msgstr ""
 
@@ -7285,6 +7417,10 @@ msgstr ""
 msgid "Payment:"
 msgstr ""
 
+#: includes/shortcodes/booking-confirmation-shortcode.php:306
+msgid "Date:"
+msgstr ""
+
 #: includes/shortcodes/booking-confirmation-shortcode.php:310
 msgid "Payment Method:"
 msgstr ""
@@ -7378,6 +7514,7 @@ msgstr[1] ""
 #: includes/shortcodes/search-results-shortcode.php:1016
 #: template-functions.php:535
 #: template-functions.php:548
+#: assets/calendar/index.js:4
 msgid "Book"
 msgstr ""
 
@@ -7564,19 +7701,23 @@ msgstr ""
 msgid "Additional Services"
 msgstr ""
 
+#. translators: %d - number of guests
 #: includes/views/edit-booking/checkout-view.php:249
 #: includes/views/reserved-room-view.php:26
 #: template-functions.php:935
-#, php-format
+#: assets/calendar/index.js:31
+#, php-format,js-format
 msgid "x %d guest"
 msgid_plural "x %d guests"
 msgstr[0] ""
 msgstr[1] ""
 
+#. translators: %d - number of times
 #: includes/views/edit-booking/checkout-view.php:253
 #: includes/views/reserved-room-view.php:31
 #: template-functions.php:938
-#, php-format
+#: assets/calendar/index.js:34
+#, php-format,js-format
 msgid "x %d time"
 msgid_plural "x %d times"
 msgstr[0] ""
@@ -7656,6 +7797,8 @@ msgid "Accommodation #%d"
 msgstr ""
 
 #: includes/views/shortcodes/checkout-view.php:187
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:64
 msgid "Accommodation Type:"
 msgstr ""
 
@@ -7863,130 +8006,6 @@ msgstr ""
 msgid "Unfortunately, your transaction cannot be completed at this time. Please try again or contact us."
 msgstr ""
 
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:10
-msgid "Upgrade to Hotel Booking Premium"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:20
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:135
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:151
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:155
-msgid "Go Premium"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:30
-#, php-format
-msgid "Want to see and test the PRO features first-hand on the backend? %3$s %1$s Start a free trial %2$s with the PRO plugin version. %4$s"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:43
-msgid "Take full advantage of Hotel Booking with the premium plugin version. Compare the features:"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:50
-msgid "Lite Version"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:51
-msgid "Pro Version"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:57
-msgid "Technical support"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:58
-msgid "Priority support via live chat, email, and ticket system."
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:60
-msgid "FAQ"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:61
-msgid "Email, tickets system (we even login to your WordPress to help)"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:65
-msgid "Built-in payment gateways"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:66
-msgid "Already integrated payment gateways for secure online payments and bookings."
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:69
-msgid "PayPal, 2Checkout, Braintree, Stripe, Beanstream/Bambora, more on the way"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:73
-msgid "Extendable with Hotel Booking addons"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:74
-msgid "The facility to connect any extra free or premium Hotel Booking extension."
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:81
-msgid "Rates based on the number of guests"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:82
-msgid "Increase or decrease property price based on how many guests stay in."
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:89
-msgid "Rates based on the length of stay"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:90
-msgid "Increase or decrease property price based on the period guests stay in (weekly, monthly or any custom period)."
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:97
-msgid "Bookings synchronization to OTAs (e.g., Airbnb)"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:98
-msgid "Automatically or manually sync bookings to OTAs like Booking.com or Airbnb to have up-to-date property availability across all channels."
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:105
-msgid "Adding bookings manually by site admins"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:106
-msgid "Register new guests manually via the site admin dashboard."
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:113
-msgid "Editable original booking details"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:114
-msgid "Manually update original booking information (e.g., arrival/departure dates, booked accommodations/services)."
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:121
-msgid "Custom filters for the property search form"
-msgstr ""
-
-#: lite/includes/admin/menu-pages/upgrade-to-premium-menu-page.php:122
-msgid "Add any custom search filters (e.g., location, room type) to improve the property search for guests."
-msgstr ""
-
-#: lite/includes/payments/gateways/beanstream-gateway.php:34
-#: lite/includes/payments/gateways/braintree-gateway.php:34
-#: lite/includes/payments/gateways/stripe-gateway.php:34
-#: lite/includes/payments/gateways/two-checkout-gateway.php:34
-#, php-format
-msgid "<a href=\"%s\">Upgrade to Premium</a> version to enable this payment gateway for online bookings."
-msgstr ""
-
-#: lite/motopress-hotel-booking.php:40
-msgid "Upgrade"
-msgstr ""
-
 #: plugin.php:726
 msgid "This field is no longer supported in the new version of the plugin. Please update the addon to the latest version."
 msgstr ""
@@ -8041,14 +8060,19 @@ msgid "Check Availability"
 msgstr ""
 
 #: template-functions.php:908
+#: assets/calendar/index.js:28
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:64
 msgid "Rate:"
 msgstr ""
 
 #: template-functions.php:928
+#: assets/calendar/index.js:28
 msgid "Services:"
 msgstr ""
 
 #: template-functions.php:951
+#: assets/calendar/index.js:28
 msgid "Guest:"
 msgstr ""
 
@@ -8057,14 +8081,17 @@ msgid "Payment ID"
 msgstr ""
 
 #: template-functions.php:1027
+#: assets/calendar/index.js:40
 msgid "Total Paid"
 msgstr ""
 
 #: template-functions.php:1036
+#: assets/calendar/index.js:40
 msgid "To Pay"
 msgstr ""
 
 #: template-functions.php:1061
+#: assets/calendar/index.js:40
 msgid "Add Payment Manually"
 msgstr ""
 
@@ -8090,6 +8117,7 @@ msgstr ""
 
 #: templates/account/bookings.php:116
 #: templates/account/bookings.php:121
+#: assets/calendar/index.js:76
 msgid "No bookings found."
 msgstr ""
 
@@ -8099,6 +8127,8 @@ msgid "From your account dashboard you can view <a href=\"%1$s\">your recent boo
 msgstr ""
 
 #: templates/create-booking/results/reserve-rooms.php:37
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:64
 msgid "Base price"
 msgstr ""
 
@@ -8122,6 +8152,15 @@ msgid "Add Accommodation"
 msgstr ""
 
 #: templates/edit-booking/checkout-form.php:28
+#: assets/calendar/index.js:10
+#: assets/calendar/index.js:43
+#: assets/calendar/index.js:46
+#: assets/calendar/index.js:49
+#: assets/calendar/index.js:52
+#: assets/calendar/index.js:55
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:61
+#: assets/calendar/index.js:64
 msgid "Save"
 msgstr ""
 
@@ -8754,4 +8793,269 @@ msgstr ""
 #: assets/blocks/blocks.js:1242
 #: assets/blocks/blocks.min.js:1
 msgid "Select an accommodation type."
+msgstr ""
+
+#: assets/calendar/index.js:1
+msgid "Season is a period used to set different property prices."
+msgstr ""
+
+#. translators: Action button. Refers to blocking an accommodation to make it temporarily unavailable for booking.
+#: assets/calendar/index.js:7
+msgid "Block"
+msgstr ""
+
+#: assets/calendar/index.js:10
+msgid "Daily price"
+msgstr ""
+
+#: assets/calendar/index.js:10
+#: assets/calendar/index.js:13
+#: assets/calendar/index.js:19
+msgid "Select an action"
+msgstr ""
+
+#. translators: Refers to setting prices or availability on a per-day (daily) basis.
+#: assets/calendar/index.js:13
+#: assets/calendar/index.js:16
+msgid "Daily"
+msgstr ""
+
+#. translators: %1$d - booking rule index
+#: assets/calendar/index.js:19
+#, js-format
+msgid "Rule #%1$d"
+msgstr ""
+
+#: assets/calendar/index.js:19
+#: assets/calendar/index.js:25
+msgid "Min. stay"
+msgstr ""
+
+#: assets/calendar/index.js:19
+#: assets/calendar/index.js:25
+msgid "Max. stay"
+msgstr ""
+
+#. translators: Abbreviation for “Minimum advance reservation”
+#: assets/calendar/index.js:22
+msgid "Min. adv. res."
+msgstr ""
+
+#. translators: Abbreviation for “Maximum advance reservation”
+#: assets/calendar/index.js:25
+msgid "Max. adv. res."
+msgstr ""
+
+#: assets/calendar/index.js:25
+msgid "Allow"
+msgstr ""
+
+#: assets/calendar/index.js:25
+msgid "Disallow"
+msgstr ""
+
+#: assets/calendar/index.js:25
+#: assets/calendar/index.js:67
+msgid "Max. advance reservation"
+msgstr ""
+
+#: assets/calendar/index.js:25
+#: assets/calendar/index.js:67
+msgid "Min. advance reservation"
+msgstr ""
+
+#: assets/calendar/index.js:25
+msgid "Please select at least one accommodation type."
+msgstr ""
+
+#: assets/calendar/index.js:25
+msgid "It looks like you haven`t created any accommodation types yet."
+msgstr ""
+
+#: assets/calendar/index.js:25
+msgid "Create your first accommodation type."
+msgstr ""
+
+#: assets/calendar/index.js:25
+msgid "Next 7 days"
+msgstr ""
+
+#: assets/calendar/index.js:25
+msgid "Next 14 days"
+msgstr ""
+
+#: assets/calendar/index.js:25
+msgid "Next 30 days"
+msgstr ""
+
+#: assets/calendar/index.js:25
+#: assets/js/shortcodes/group-availability-calendar/index.js:1
+msgid "Previous"
+msgstr ""
+
+#: assets/calendar/index.js:25
+#: assets/js/shortcodes/group-availability-calendar/index.js:1
+msgid "Next"
+msgstr ""
+
+#: assets/calendar/index.js:25
+msgid "Reload"
+msgstr ""
+
+#: assets/calendar/index.js:25
+#: assets/calendar/index.js:55
+msgid "Filter items…"
+msgstr ""
+
+#: assets/calendar/index.js:25
+#: assets/calendar/index.js:55
+msgid "No items found."
+msgstr ""
+
+#. translators: %1$d- booking ID
+#: assets/calendar/index.js:28
+#, js-format
+msgid "Booking #%1$d"
+msgstr ""
+
+#: assets/calendar/index.js:40
+msgid "Total Price"
+msgstr ""
+
+#: assets/calendar/index.js:40
+#: assets/calendar/index.js:58
+msgid "You haven’t created any seasons yet. Season is a period used to set different property prices."
+msgstr ""
+
+#: assets/calendar/index.js:40
+#: assets/calendar/index.js:43
+#: assets/calendar/index.js:46
+#: assets/calendar/index.js:49
+#: assets/calendar/index.js:55
+#: assets/calendar/index.js:61
+#: assets/calendar/index.js:64
+msgid "Repeat annually"
+msgstr ""
+
+#. translators: %1$s - repeat until date
+#: assets/calendar/index.js:43
+#: assets/calendar/index.js:46
+#: assets/calendar/index.js:49
+#: assets/calendar/index.js:52
+#: assets/calendar/index.js:58
+#: assets/calendar/index.js:64
+#: assets/calendar/index.js:67
+#, js-format
+msgid "Repeat annually, until %1$s"
+msgstr ""
+
+#: assets/calendar/index.js:43
+#: assets/calendar/index.js:46
+#: assets/calendar/index.js:58
+msgid "Priority"
+msgstr ""
+
+#: assets/calendar/index.js:43
+#: assets/calendar/index.js:46
+#: assets/calendar/index.js:58
+msgid "First"
+msgstr ""
+
+#: assets/calendar/index.js:43
+#: assets/calendar/index.js:46
+#: assets/calendar/index.js:58
+msgid "Last"
+msgstr ""
+
+#: assets/calendar/index.js:55
+#: assets/calendar/index.js:64
+msgid "From/Till"
+msgstr ""
+
+#: assets/calendar/index.js:55
+msgid "Edit Block"
+msgstr ""
+
+#: assets/calendar/index.js:55
+msgid "Select…"
+msgstr ""
+
+#. translators: %1$s - rate title, %2$s - accommodation type title
+#: assets/calendar/index.js:61
+#, js-format
+msgid "Update %1$s rate for %2$s"
+msgstr ""
+
+#: assets/calendar/index.js:64
+msgid "Edit Season Price"
+msgstr ""
+
+#: assets/calendar/index.js:67
+msgid "Quick booking rules"
+msgstr ""
+
+#. translators: Label on booking card in admin. Indicates that the booking’s check-in date is today
+#: assets/calendar/index.js:70
+msgid "Check-in today"
+msgstr ""
+
+#. translators: Label on booking card in admin. Indicates that the booking’s check-out date is today
+#: assets/calendar/index.js:73
+msgid "Check-out today"
+msgstr ""
+
+#: assets/calendar/index.js:76
+msgid "In-House"
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "Quick Start Guide"
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "Get familiar with the main interface and key features of the calendar."
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "Select a period to display. Use the arrows to navigate and the refresh button to update data."
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "View Options"
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "Display bookings in the Calendar or List view. Use filters to show all accommodations or specific ones."
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "Timeline"
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "The timeline shows the selected period and can be scrolled to view additional dates."
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "Create seasons to set prices or booking rules for specific periods."
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "View your accommodations, prices, bookings, and booking rules."
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "Working Area"
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "View your bookings and blocked availability. Choose a date range to create a new booking or block."
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "Use rates to set prices for seasons or individual days."
+msgstr ""
+
+#: assets/guide/index.js:1
+msgid "Set rules for specific periods or individual days, such as allowed check-in days and min or max length of stay."
 msgstr ""

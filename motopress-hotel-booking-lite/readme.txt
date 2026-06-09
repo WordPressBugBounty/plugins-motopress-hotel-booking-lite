@@ -4,7 +4,7 @@ Donate link: https://motopress.com/
 Requires at least: 5.2
 Tags: hotel booking, reservation, hotel, booking engine, booking, booking calendar, booking system, calendar, online booking, airbnb, booking.com, homeaway, vrbo, tripadvisor, booking form, availability calendar, channel manager, property management system, vacation, travel
 Tested up to: 6.9
-Stable tag: 6.0.2
+Stable tag: 6.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -175,6 +175,10 @@ MotoPress Hotel Booking plugin, Copyright (C) 2016, MotoPress https://motopress.
 MotoPress Hotel Booking plugin is distributed under the terms of the GNU GPL.
 
 == Changelog ==
+
+= 6.0.3, Jun 9 2026
+* Bug fix: Fixed an issue where administrators could not add bookings when the "Hide reservation forms and buttons" option was enabled.
+* Bug fix: Fixed an issue with adding and editing accommodation blocking rules on mobile devices.
 
 = 6.0.2, May 18 2026
 * Bug fix: Fixed several issues related to search, checkout, and payments after the 6.0.0 update.

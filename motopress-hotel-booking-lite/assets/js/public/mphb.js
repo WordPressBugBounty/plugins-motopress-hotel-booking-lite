@@ -1727,6 +1727,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           custom_fields: {},
           customer: this.getCustomerDetails(),
           files: {},
+          lang: MPHB._data.settings.currentLanguage,
           note: formData['mphb_note'] || '',
           room_details: roomDetails
         };

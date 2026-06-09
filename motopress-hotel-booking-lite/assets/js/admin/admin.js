@@ -3714,7 +3714,7 @@ MPHBAdmin.BlocksListTable = can.Control.extend(
 			this.$roomSelect         = this.$editRow.find( '.column-accommodation select' );
 			this.$roomTypeSelect     = this.$editRow.find( '.column-accommodation_type select' );
 			this.$saveButton         = this.$editRow.find( '.inline-edit-save .save' );
-			this.$updateSpinner      = this.$editRow.find( '.column-accommodation_type .spinner' );
+			this.$updateSpinner      = this.$editRow.find( '.inline-edit-save .spinner' );
 			this.itemsCount          = this._getListTableData().items_total;
 			this.loadedRooms         = this._getListTableData().rooms;
 
@@ -4046,46 +4046,58 @@ MPHBAdmin.BlocksListTable = can.Control.extend(
 
 			var editRowHtml =
 				'<tr class="inline-edit-row">'
-					+ '<td class="column-cb">&nbsp;</td>'
-					+ '<td class="column-accommodation_type" data-colname="' + __( 'Accommodation Type', 'motopress-hotel-booking' ) + '">'
-						+ roomTypeSelectHmtl
-						+ '<div class="submit inline-edit-save">'
-							+ '<button class="button button-primary save" type="button">' + __( 'Save', 'motopress-hotel-booking' ) + '</button>'
-							+ '<button class="button cancel" type="button">' + __( 'Cancel', 'motopress-hotel-booking' ) + '</button>'
-							+ '<span class="spinner"></span>'
+					+ '<td colspan="7">'
+						+ '<div class="inline-edit-wrapper">'
+							+ '<div class="inline-edit-col">'
+								+ '<fieldset class="column-accommodation_type">'
+									+ '<label for="room_type_id">' + __( 'Accommodation Type', 'motopress-hotel-booking' ) + '</label>'
+									+ roomTypeSelectHmtl
+								+ '</fieldset>'
+								+ '<fieldset class="column-accommodation">'
+									+ '<label for="room_id">' + __( 'Accommodation', 'motopress-hotel-booking' ) + '</label>'
+									+ '<select name="room_id">'
+										+ '<option value="0">' + __( 'All', 'motopress-hotel-booking' ) + '</option>'
+									+ '</select>'
+									+ '<span class="mphb-preloader mphb-hide"></span>'
+								+ '</fieldset>'
+							+ '</div>'
+							+ '<div class="inline-edit-col">'
+								+ '<fieldset class="column-date_from">'
+									+ '<label for="date_from">' + __( 'From', 'motopress-hotel-booking' ) + '</label>'
+									+ '<input inputmode="none" name="date_from" readonly="readonly" type="text">'
+								+ '</fieldset>'
+								+ '<fieldset class="column-date_to">'
+									+ '<label for="date_to">' + __( 'Till', 'motopress-hotel-booking' ) + '</label>'
+									+ '<input inputmode="none" name="date_to" readonly="readonly" type="text">'
+								+ '</fieldset>'
+							+ '</div>'
+							+ '<div class="inline-edit-col">'
+								+ '<fieldset class="column-restrictions">'
+									+ '<label>' + __( 'Restriction', 'motopress-hotel-booking' ) + '</label>'
+									+ '<label>'
+										+ '<input name="restrictions[]" type="checkbox">'
+										+ __( 'Not check-in', 'motopress-hotel-booking' )
+									+ '</label>'
+									+ '<label>'
+										+ '<input name="restrictions[]" type="checkbox">'
+										+ __( 'Not check-out', 'motopress-hotel-booking' )
+									+ '</label>'
+									+ '<label>'
+										+ '<input name="restrictions[]" type="checkbox">'
+										+ __( 'Not stay-in', 'motopress-hotel-booking' )
+									+ '</label>'
+								+ '</fieldset>'
+							+ '</div>'
+							+ '<fieldset class="column-comment">'
+								+ '<label for="comment">' + __( 'Comment', 'motopress-hotel-booking' ) + '</label>'
+								+ '<textarea name="comment" rows="1"></textarea>'
+							+ '</fieldset>'
+							+ '<div class="submit inline-edit-save">'
+								+ '<button class="button button-primary save" type="button">' + __( 'Save', 'motopress-hotel-booking' ) + '</button>'
+								+ '<button class="button cancel" type="button">' + __( 'Cancel', 'motopress-hotel-booking' ) + '</button>'
+								+ '<span class="spinner"></span>'
+							+ '</div>'
 						+ '</div>'
-						
-					+ '</td>'
-					+ '<td class="column-accommodation" data-colname="' + __( 'Accommodation', 'motopress-hotel-booking' ) + '">'
-						+ '<select name="room_id">'
-							+ '<option value="0">' + __( 'All', 'motopress-hotel-booking' ) + '</option>'
-						+ '</select>'
-						+ '<span class="mphb-preloader mphb-hide"></span>'
-					+ '</td>'
-					+ '<td class="column-date_from" data-colname="' + __( 'From', 'motopress-hotel-booking' ) + '">'
-						+ '<input inputmode="none" name="date_from" readonly="readonly" type="text">'
-					+ '</td>'
-					+ '<td class="column-date_to" data-colname="' + __( 'Till', 'motopress-hotel-booking' ) + '">'
-						+ '<input inputmode="none" name="date_to" readonly="readonly" type="text">'
-					+ '</td>'
-					+ '<td class="column-restrictions" data-colname="' + __( 'Restriction', 'motopress-hotel-booking' ) + '">'
-						+ '<label>'
-							+ '<input name="restrictions[]" type="checkbox">'
-							+ __( 'Not check-in', 'motopress-hotel-booking' )
-						+ '</label>'
-						+ '<br>'
-						+ '<label>'
-							+ '<input name="restrictions[]" type="checkbox">'
-							+ __( 'Not check-out', 'motopress-hotel-booking' )
-						+ '</label>'
-						+ '<br>'
-						+ '<label>'
-							+ '<input name="restrictions[]" type="checkbox">'
-							+ __( 'Not stay-in', 'motopress-hotel-booking' )
-						+ '</label>'
-					+ '</td>'
-					+ '<td class="column-comment" data-colname="' + __( 'Comment', 'motopress-hotel-booking' ) + '">'
-						+ '<textarea name="comment"></textarea>'
 					+ '</td>'
 				+ '</tr>';
 

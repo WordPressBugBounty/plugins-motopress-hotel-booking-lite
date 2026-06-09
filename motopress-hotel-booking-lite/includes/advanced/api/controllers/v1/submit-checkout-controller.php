@@ -89,6 +89,11 @@ class SubmitCheckoutController extends AbstractRestCommandController {
 				'required'             => true,
 				'sanitize_callback'    => 'rest_sanitize_request_arg',
 			),
+			'lang' => array(
+				'type'              => 'string',
+				'minLength'         => 2,
+				'sanitize_callback' => 'rest_sanitize_request_arg',
+			),
 			'payment_details' => array(
 				'type'              => 'object',
 				'properties'        => array(
@@ -235,6 +240,13 @@ class SubmitCheckoutController extends AbstractRestCommandController {
 		}
 
 		$requestArgs = $request->get_params();
+		$language = MPHB()->translation()->getCurrentLanguage();
+
+		if ( isset( $requestArgs['lang'] ) ) {
+			$language = $requestArgs['lang'];
+
+			MPHB()->translation()->switchLanguage( $language );
+		}
 
 		$ignoreBookingRules = MPHB()->settings()->main()->isBookingRulesForAdminDisabled();
 
@@ -269,6 +281,7 @@ class SubmitCheckoutController extends AbstractRestCommandController {
 			'check_out_date' => $checkOutDate,
 			'checkout_id'    => $requestArgs['checkout_id'],
 			'customer'       => $customer,
+			'language'       => $language,
 			'note'           => $customerData['note'] ?? '',
 			'reserved_rooms' => self::parseRooms( $requestArgs, $checkInDate, $checkOutDate ),
 			'status'         => MPHB()->postTypes()->booking()->statuses()->getDefaultNewBookingStatus(),

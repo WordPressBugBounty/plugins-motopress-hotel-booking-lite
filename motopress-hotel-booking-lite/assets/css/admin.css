@@ -18,7 +18,7 @@
   text-align: left;
 }
 .mphb-date-input-width {
-  width: 90px;
+  width: 105px;
 }
 .mphb-subscript {
   color: #999;
@@ -288,7 +288,7 @@ table.wp-list-table.posts tbody td.column-handle {
   width: 90%;
 }
 .mphb-preloader {
-  background-image: url("../../images/loading.gif?ver=6.0.2");
+  background-image: url("../../images/loading.gif?ver=6.0.3");
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -373,9 +373,15 @@ h3 .mphb-link-anchor {
   #rate_cpt .inside > table > tbody > tr > th {
     display: none;
   }
-  div[data-group="mphb_season_prices"] > table.mphb-separate-sortable-table th:first-of-type {
-    width: 20px;
+}
+@media screen and (max-width: 782px) {
+  .mphb-ctrl-multiple-checkbox label {
+    margin: 0.35em 0 0.5em !important;
+    display: inline-block;
   }
+}
+div#rate_cpt .mphb-select-row .mphb-ctrl-select select {
+  width: 100%;
 }
 .mphb-bookings-calendar-wrapper {
   max-width: 100%;
@@ -623,46 +629,6 @@ h3 .mphb-link-anchor {
 .mphb-bookings-calendar-wrapper .mphb-bookings-calendar-filters-wrapper .mphb-bookings-calendar-search #mphb-booking-calendar-search-room-availability-status {
   max-width: 120px;
 }
-.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-filters-wrapper .mphb-bookings-calendar-legend {
-  margin: 10px 0;
-  display: flex;
-}
-.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-filters-wrapper .mphb-bookings-calendar-legend .legend-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 5px;
-  font-size: 12px;
-  max-width: 60px;
-}
-.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-filters-wrapper .mphb-bookings-calendar-legend .legend-item span {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 100%;
-}
-.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-filters-wrapper .mphb-bookings-calendar-legend .legend-item:before {
-  position: relative;
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  margin-right: 2px;
-  top: 3px;
-  content: "";
-  margin-bottom: 5px;
-}
-.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-filters-wrapper .mphb-bookings-calendar-legend .legend-item.booked:before {
-  background-color: #cef093;
-}
-.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-filters-wrapper .mphb-bookings-calendar-legend .legend-item.pending:before {
-  background-color: #fed24d;
-}
-.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-filters-wrapper .mphb-bookings-calendar-legend .legend-item.blocked:before {
-  background-color: #ffd0d0;
-}
-.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-filters-wrapper .mphb-bookings-calendar-legend .legend-item.external:before {
-  background-color: #b0c4de;
-}
 .mphb-bookings-calendar-wrapper .mphb-bookings-calendar-filters-wrapper .mphb-custom-period-wrapper {
   display: inline-block;
 }
@@ -676,6 +642,32 @@ h3 .mphb-link-anchor {
 .mphb-bookings-calendar-wrapper .mphb-booking-calendar-tables-wrapper.mphb-booking-calendar-size-large table.mphb-bookings-date-table > tbody > tr > td {
   height: 45px;
   max-height: 45px;
+}
+.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-legend {
+  margin: 20px 0 0;
+  display: flex;
+  gap: 15px;
+}
+.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-legend .legend-item:before {
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 2px;
+  top: 3px;
+  content: "";
+}
+.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-legend .legend-item.booked:before {
+  background-color: #cef093;
+}
+.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-legend .legend-item.pending:before {
+  background-color: #fed24d;
+}
+.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-legend .legend-item.blocked:before {
+  background-color: #ffd0d0;
+}
+.mphb-bookings-calendar-wrapper .mphb-bookings-calendar-legend .legend-item.external:before {
+  background-color: #b0c4de;
 }
 body.wp-admin .mphb_cb_search-wrapper select,
 body.wp-admin .mphb_cb_checkout-wrapper select,
@@ -1499,25 +1491,33 @@ body.wp-admin.post-type-mphb_booking .check_in_out_date .mphb-booking-nights {
   height: 0;
   width: 0;
 }
+body.mphb_booking_menu_page_mphb_booking_rules .tablenav.top .actions.add-rule {
+  display: block;
+}
 .mphb-blocks-list-table.editing th.hidden,
 .mphb-blocks-list-table.editing td.hidden {
   display: table-cell;
 }
-.mphb-blocks-list-table .inline-edit-row td,
-.mphb-blocks-list-table .inline-edit-row th {
-  padding: 8px 10px;
-}
-.mphb-blocks-list-table .inline-edit-row input,
-.mphb-blocks-list-table .inline-edit-row select {
-  max-width: 90%;
-}
 .mphb-blocks-list-table .inline-edit-row textarea {
-  field-sizing: content;
-  min-height: 3.5em;
-  width: 90%;
+  width: 100%;
+}
+.mphb-blocks-list-table .inline-edit-row select {
+  max-width: 100%;
+}
+.mphb-blocks-list-table .inline-edit-row fieldset {
+  min-width: 0;
+}
+.mphb-blocks-list-table .inline-edit-row .submit {
+  padding-top: 1em;
 }
 .mphb-blocks-list-table td .mphb-preloader {
   vertical-align: middle;
+}
+@media screen and (min-width: 783px) {
+  .mphb-blocks-list-table .inline-edit-row .inline-edit-col {
+    width: 33%;
+    float: left;
+  }
 }
 .mphb-deprecated {
   opacity: 0.5;

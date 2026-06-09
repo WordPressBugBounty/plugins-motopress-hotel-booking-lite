@@ -184,7 +184,7 @@ class BlocksListTable extends \WP_List_Table {
 		}
 
 		printf(
-			'<script type="text/javascript">blocks_list_table_data = %s;</script>\n',
+			'<script type="text/javascript">blocks_list_table_data = %s;</script>',
 			wp_json_encode( $data, JSON_HEX_TAG | JSON_UNESCAPED_SLASHES )
 		);
 
@@ -343,7 +343,7 @@ class BlocksListTable extends \WP_List_Table {
 	 */
 	protected function extra_tablenav( $which ) {
 		?>
-		<div class="alignleft actions <?php echo esc_attr( $which ); ?>">
+		<div class="alignleft actions add-rule <?php echo esc_attr( $which ); ?>">
 			<button class="button button-primary add-rule" type="button"><?php esc_html_e( 'Add rule', 'motopress-hotel-booking' ); ?></button>
 		</div>
 		<?php
@@ -483,5 +483,9 @@ class BlocksListTable extends \WP_List_Table {
 		if ( $isRedirecting ) {
 			exit;
 		}
+	}
+
+	protected function get_primary_column_name() {
+		return 'accommodation_type';
 	}
 }

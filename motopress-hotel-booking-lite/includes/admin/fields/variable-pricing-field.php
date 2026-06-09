@@ -106,8 +106,7 @@ class VariablePricingField extends InputField {
 				$result .= '</tr>';
 
 				$result .= '<tr class="mphb-pricing-headers">';
-					$result .= '<th colspan="2">' . esc_html__( 'Base Occupancy', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
-						__( 'Number of guests included in the base nightly price.', 'motopress-hotel-booking' ) ) . '</th>';
+					$result .= '<th colspan="2">' . esc_html__( 'Base Occupancy', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip( __( 'Number of guests included in the base nightly price.', 'motopress-hotel-booking' ) ) . '</th>';
 					$result .= '<th class="mphb-pricing-price-per-night" colspan="' . count( $periods ) . '">' . esc_html__( 'Price per night', 'motopress-hotel-booking' ) . '</th>';
 					$result .= '<th>&nbsp;</th>';
 				$result .= '</tr>';
@@ -186,7 +185,7 @@ class VariablePricingField extends InputField {
 			$result .= '<tfoot>';
 				$result .= '<tr>';
 					$result .= '<td colspan="' . ( count( $this->value['periods'] ) + 3 ) . '">';
-						$result .= '<button type="button" class="button mphb-pricing-add-variation">' . esc_html__( 'Add Variation', 'motopress-hotel-booking' ) . '</button>';
+						$result .= '<button type="button" class="button button-compact mphb-pricing-add-variation">' . esc_html__( 'Add Variation', 'motopress-hotel-booking' ) . '</button>';
 					$result .= '</td>';
 				$result .= '</tr>';
 			$result .= '</tfoot>';

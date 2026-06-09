@@ -599,6 +599,28 @@ class BookingsCalendar {
 					<?php $this->renderDatesTable(); ?>
 				</div>
 			</div>
+			<div class="mphb-bookings-calendar-legend">
+				<legend class="legend-item booked" title="<?php esc_attr_e( 'Booked', 'motopress-hotel-booking' ); ?>"><span>
+					<?php
+						esc_html_e( 'Booked', 'motopress-hotel-booking' );
+					?>
+				</span></legend>
+				<legend class="legend-item pending" title="<?php esc_attr_e( 'Pending', 'motopress-hotel-booking' ); ?>"><span>
+					<?php
+						esc_html_e( 'Pending', 'motopress-hotel-booking' );
+					?>
+				</span></legend>
+				<legend class="legend-item external" title="<?php esc_attr_e( 'External', 'motopress-hotel-booking' ); ?>"><span>
+					<?php
+						esc_html_e( 'External', 'motopress-hotel-booking' );
+					?>
+				</span></legend>
+				<legend class="legend-item blocked" title="<?php esc_attr_e( 'Blocked', 'motopress-hotel-booking' ); ?>"><span>
+					<?php
+						esc_html_e( 'Blocked', 'motopress-hotel-booking' );
+					?>
+				</span></legend>
+			</div>
 			<div id="mphb-bookings-calendar-popup" class="mphb-popup mphb-hide">
 				<div class="mphb-popup-backdrop"></div>
 				<div class="mphb-popup-body">
@@ -644,31 +666,9 @@ class BookingsCalendar {
 					<?php $this->renderPeriodFilter(); ?>
 					<?php submit_button( __( 'Show', 'motopress-hotel-booking' ), 'button', 'action_filter', false ); ?>
 				</div>
-				<div class="mphb-bookings-calendar-search alignleft">
+				<div class="mphb-bookings-calendar-search alignright">
 					<?php $this->renderRoomSearch(); ?>
 					<?php submit_button( __( 'Search', 'motopress-hotel-booking' ), 'button', 'action_search', false ); ?>
-				</div>
-				<div class="mphb-bookings-calendar-legend alignright">
-					<legend class="legend-item booked" title="<?php esc_attr_e( 'Booked', 'motopress-hotel-booking' ); ?>"><span>
-						<?php
-							esc_html_e( 'Booked', 'motopress-hotel-booking' );
-						?>
-					</span></legend>
-					<legend class="legend-item pending" title="<?php esc_attr_e( 'Pending', 'motopress-hotel-booking' ); ?>"><span>
-						<?php
-							esc_html_e( 'Pending', 'motopress-hotel-booking' );
-						?>
-					</span></legend>
-					<legend class="legend-item external" title="<?php esc_attr_e( 'External', 'motopress-hotel-booking' ); ?>"><span>
-						<?php
-							esc_html_e( 'External', 'motopress-hotel-booking' );
-						?>
-					</span></legend>
-					<legend class="legend-item blocked" title="<?php esc_attr_e( 'Blocked', 'motopress-hotel-booking' ); ?>"><span>
-						<?php
-							esc_html_e( 'Blocked', 'motopress-hotel-booking' );
-						?>
-					</span></legend>
 				</div>
 			</form>
 		</div>

@@ -80,6 +80,11 @@ class SubmitAdminCheckoutController extends SubmitCheckoutController {
 			return $bookingDetails;
 		};
 
+		// Don't disable admin bookings with "Disable Booking" > "Hide
+		// reservation forms and buttons" option. Some clients block checkout
+		// on the frontend to limit bookings only through the admin.
+		add_filter( 'mphb_block_booking', '__return_false' );
+
 		/**
 		 * @param \WP_REST_Request $request
 		 */
