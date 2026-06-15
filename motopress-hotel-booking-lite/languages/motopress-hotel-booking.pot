@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Hotel Booking 6.0.3\n"
+"Project-Id-Version: Hotel Booking 6.0.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/motopress-hotel-booking\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-27T16:01:47+00:00\n"
+"POT-Creation-Date: 2026-06-10T06:42:44+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: motopress-hotel-booking\n"
@@ -262,7 +262,7 @@ msgstr ""
 
 #: includes/admin/customers-list-table.php:213
 #: includes/admin/menu-pages/customers-menu-page.php:207
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:120
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:129
 #: includes/bundles/customer-bundle.php:110
 #: includes/csv/bookings/bookings-exporter-helper.php:83
 #: includes/post-types/booking-cpt.php:106
@@ -319,7 +319,7 @@ msgid "Notice: This booking has a payment that hasn’t been charged yet. <a hre
 msgstr ""
 
 #: includes/admin/edit-cpt-pages/booking-edit-cpt-page.php:60
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:105
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:114
 #: includes/post-types/reserved-room-cpt.php:22
 msgid "Reserved Accommodations"
 msgstr ""
@@ -885,7 +885,7 @@ msgstr ""
 #: includes/admin/manage-cpt-pages/booking-manage-cpt-page.php:60
 #: includes/admin/manage-cpt-pages/payment-manage-cpt-page.php:29
 #: includes/admin/menu-pages/shortcodes-menu-page.php:406
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:64
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:73
 #: includes/csv/bookings/bookings-exporter-helper.php:71
 #: includes/post-types/booking-cpt.php:42
 #: includes/post-types/payment-cpt.php:149
@@ -1531,7 +1531,7 @@ msgid "Username"
 msgstr ""
 
 #: includes/admin/menu-pages/customers-menu-page.php:183
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:112
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:121
 #: includes/bundles/customer-bundle.php:92
 #: includes/csv/bookings/bookings-exporter-helper.php:81
 #: includes/post-types/booking-cpt.php:90
@@ -1543,7 +1543,7 @@ msgid "First Name"
 msgstr ""
 
 #: includes/admin/menu-pages/customers-menu-page.php:195
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:116
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:125
 #: includes/bundles/customer-bundle.php:101
 #: includes/csv/bookings/bookings-exporter-helper.php:82
 #: includes/post-types/booking-cpt.php:98
@@ -1555,7 +1555,7 @@ msgid "Last Name"
 msgstr ""
 
 #: includes/admin/menu-pages/customers-menu-page.php:219
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:124
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:133
 #: includes/bundles/customer-bundle.php:119
 #: includes/csv/bookings/bookings-exporter-helper.php:84
 #: includes/post-types/booking-cpt.php:114
@@ -1567,7 +1567,7 @@ msgid "Phone"
 msgstr ""
 
 #: includes/admin/menu-pages/customers-menu-page.php:231
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:132
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:141
 #: includes/bundles/customer-bundle.php:137
 #: includes/csv/bookings/bookings-exporter-helper.php:86
 #: includes/post-types/booking-cpt.php:131
@@ -1578,7 +1578,7 @@ msgid "Address"
 msgstr ""
 
 #: includes/admin/menu-pages/customers-menu-page.php:243
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:140
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:149
 #: includes/bundles/customer-bundle.php:155
 #: includes/csv/bookings/bookings-exporter-helper.php:88
 #: includes/post-types/booking-cpt.php:147
@@ -1591,7 +1591,7 @@ msgstr ""
 
 #: includes/admin/menu-pages/customers-menu-page.php:255
 #: includes/advanced/api/controllers/v1/get-google-hotels-data.php:530
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:128
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:137
 #: includes/csv/bookings/bookings-exporter-helper.php:85
 #: includes/post-types/booking-cpt.php:123
 #: includes/post-types/payment-cpt.php:291
@@ -1603,7 +1603,7 @@ msgstr ""
 #: includes/admin/menu-pages/customers-menu-page.php:268
 #: includes/advanced/api/controllers/v1/get-google-hotels-data.php:480
 #: includes/advanced/api/controllers/v1/get-google-hotels-data.php:488
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:136
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:145
 #: includes/bundles/customer-bundle.php:146
 #: includes/csv/bookings/bookings-exporter-helper.php:87
 #: includes/post-types/booking-cpt.php:139
@@ -1615,7 +1615,7 @@ msgid "City"
 msgstr ""
 
 #: includes/admin/menu-pages/customers-menu-page.php:280
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:144
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:153
 #: includes/bundles/customer-bundle.php:164
 #: includes/csv/bookings/bookings-exporter-helper.php:89
 #: includes/post-types/booking-cpt.php:155
@@ -1664,8 +1664,8 @@ msgstr ""
 
 #: includes/admin/menu-pages/edit-booking-menu-page.php:88
 #: includes/advanced/api/controllers/v1/submit-payment-controller.php:138
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:49
-#: includes/ajax-api/ajax-actions/update-booking-notes.php:39
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:58
+#: includes/ajax-api/ajax-actions/update-booking-notes.php:43
 msgid "The booking not found."
 msgstr ""
 
@@ -1695,8 +1695,9 @@ msgid "You cannot edit the imported booking. Please update the source booking an
 msgstr ""
 
 #: includes/admin/menu-pages/edit-booking/booking-control.php:26
-#: includes/ajax-api/ajax-actions/abstract-ajax-api-action.php:191
-#: includes/ajax-api/ajax-actions/update-booking-notes.php:93
+#: includes/ajax-api/ajax-actions/abstract-ajax-api-action.php:199
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:52
+#: includes/ajax-api/ajax-actions/update-booking-notes.php:97
 #: includes/ajax.php:168
 msgid "Request does not pass security verification. Please refresh the page and try one more time."
 msgstr ""
@@ -3635,7 +3636,7 @@ msgstr ""
 #: includes/advanced/admin/tab/subtabs/api-keys/api-keys-table-list.php:57
 #: includes/advanced/admin/tab/subtabs/api-keys/html-keys-edit.php:22
 #: includes/advanced/api/controllers/v1/get-google-hotels-data.php:207
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:93
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:102
 #: includes/payments/gateways/gateway.php:492
 #: includes/post-types/coupon-cpt.php:37
 #: includes/post-types/rate-cpt.php:89
@@ -3778,17 +3779,17 @@ msgstr ""
 msgid "QR Code"
 msgstr ""
 
-#: includes/advanced/api/controllers/v1/create-block-controller.php:102
-#: includes/advanced/api/controllers/v1/delete-block-controller.php:63
-#: includes/advanced/api/controllers/v1/delete-blocks-controller.php:69
-#: includes/advanced/api/controllers/v1/update-block-controller.php:117
+#: includes/advanced/api/controllers/v1/create-block-controller.php:110
+#: includes/advanced/api/controllers/v1/delete-block-controller.php:71
+#: includes/advanced/api/controllers/v1/delete-blocks-controller.php:77
+#: includes/advanced/api/controllers/v1/update-block-controller.php:125
 #: includes/users-and-roles/customers.php:561
 msgid "A database error."
 msgstr ""
 
-#: includes/advanced/api/controllers/v1/delete-block-controller.php:57
-#: includes/advanced/api/controllers/v1/get-block-controller.php:57
-#: includes/advanced/api/controllers/v1/update-block-controller.php:88
+#: includes/advanced/api/controllers/v1/delete-block-controller.php:65
+#: includes/advanced/api/controllers/v1/get-block-controller.php:65
+#: includes/advanced/api/controllers/v1/update-block-controller.php:96
 msgid "Block not found."
 msgstr ""
 
@@ -3976,7 +3977,7 @@ msgid "Thank you for your payment. Your transaction is being processed."
 msgstr ""
 
 #: includes/ajax-api/ajax-actions/create-stripe-payment-intent.php:34
-#: includes/ajax-api/ajax-actions/update-booking-notes.php:64
+#: includes/ajax-api/ajax-actions/update-booking-notes.php:68
 #: includes/ajax.php:332
 #: includes/ajax.php:376
 #: includes/csv/bookings/bookings-query.php:85
@@ -3995,12 +3996,12 @@ msgstr ""
 msgid "Accommodation type %s not found."
 msgstr ""
 
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:60
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:69
 #: includes/post-types/booking-cpt.php:35
 msgid "Booking Information"
 msgstr ""
 
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:68
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:77
 #: includes/emails/templaters/email-templater.php:136
 #: includes/post-types/booking-cpt.php:51
 #: template-functions.php:704
@@ -4014,7 +4015,7 @@ msgstr ""
 msgid "Check-in Date"
 msgstr ""
 
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:72
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:81
 #: includes/emails/templaters/email-templater.php:140
 #: includes/post-types/booking-cpt.php:60
 #: template-functions.php:713
@@ -4028,17 +4029,17 @@ msgstr ""
 msgid "Check-out Date"
 msgstr ""
 
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:89
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:98
 #: assets/calendar/index.js:28
 msgid "Summary"
 msgstr ""
 
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:97
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:106
 #: assets/calendar/index.js:28
 msgid "Source"
 msgstr ""
 
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:108
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:117
 #: includes/post-types/booking-cpt.php:83
 #: templates/emails/customer-approved-booking.php:31
 #: templates/emails/customer-cancelled-booking.php:29
@@ -4048,7 +4049,7 @@ msgstr ""
 msgid "Customer Information"
 msgstr ""
 
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:148
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:157
 #: includes/csv/bookings/bookings-exporter-helper.php:90
 #: includes/emails/templaters/email-templater.php:189
 #: includes/post-types/booking-cpt.php:164
@@ -4056,12 +4057,12 @@ msgstr ""
 msgid "Customer Note"
 msgstr ""
 
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:154
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:163
 #: includes/post-types/booking-cpt.php:171
 msgid "Additional Information"
 msgstr ""
 
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:158
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:167
 #: includes/csv/bookings/bookings-exporter-helper.php:107
 #: includes/post-types/booking-cpt.php:178
 #: includes/post-types/coupon-cpt.php:289
@@ -4069,12 +4070,12 @@ msgstr ""
 msgid "Coupon"
 msgstr ""
 
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:162
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:171
 #: includes/post-types/booking-cpt.php:187
 msgid "Total Booking Price"
 msgstr ""
 
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:171
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:180
 #: includes/bundles/customer-bundle.php:173
 #: includes/post-types/booking-cpt.php:201
 #: includes/views/shortcodes/checkout-view.php:736
@@ -4082,7 +4083,7 @@ msgstr ""
 msgid "Notes"
 msgstr ""
 
-#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:190
+#: includes/ajax-api/ajax-actions/get-admin-calendar-booking-info.php:199
 #, php-format
 msgid "%1$s on %2$s"
 msgstr ""

@@ -2,6 +2,8 @@
 
 namespace MPHB\AjaxApi;
 
+use MPHB\UsersAndRoles\CapabilitiesAndRoles;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -13,6 +15,10 @@ class GetAdminCalendarBookingInfo extends AbstractAjaxApiAction {
 
 	public static function getAjaxActionNameWithouPrefix() {
 		return 'get_admin_calendar_booking_info';
+	}
+
+	public static function isActionForCurrentUser(): bool {
+		return current_user_can( CapabilitiesAndRoles::VIEW_CALENDAR );
 	}
 
 	public static function isActionForGuestUser() {
@@ -42,6 +48,9 @@ class GetAdminCalendarBookingInfo extends AbstractAjaxApiAction {
 
 
 	protected static function doAction( array $requestData ) {
+		if ( ! current_user_can( CapabilitiesAndRoles::VIEW_CALENDAR ) ) {
+			throw new \Exception( esc_html__( 'Request does not pass security verification. Please refresh the page and try one more time.', 'motopress-hotel-booking' ) );
+		}
 
 		$booking = MPHB()->getBookingRepository()->findById( $requestData[ static::REQUEST_DATA_BOOKING_ID ] );
 

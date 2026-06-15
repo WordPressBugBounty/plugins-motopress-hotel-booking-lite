@@ -17,6 +17,10 @@ class UpdateBookingNotes extends AbstractAjaxApiAction {
 	const REQUEST_DATA_BOOKING_ID = 'booking_id';
 	const REQUEST_DATA_NOTES = 'notes';
 
+	public static function isActionForCurrentUser(): bool {
+		return current_user_can( CapabilitiesAndRoles::EDIT_BOOKINGS );
+	}
+
 	public static function isActionForGuestUser() {
 		return false;
 	}

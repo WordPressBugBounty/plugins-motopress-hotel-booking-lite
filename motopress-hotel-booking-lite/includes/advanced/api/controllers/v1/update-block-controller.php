@@ -6,6 +6,7 @@ namespace MPHB\Advanced\Api\Controllers\V1;
 
 use MPHB\Advanced\Api\Controllers\AbstractRestCommandController;
 use MPHB\Advanced\Api\RestApiSchemaHelper;
+use MPHB\UsersAndRoles\CapabilitiesAndRoles;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -30,6 +31,13 @@ class UpdateBlockController extends AbstractRestCommandController {
 
 	public static function get_supported_methods(): string {
 		return \WP_REST_Server::EDITABLE;
+	}
+
+	/**
+	 * @return \WP_Error|bool
+	 */
+	public static function is_request_allowed( \WP_REST_Request $request ) {
+		return current_user_can( CapabilitiesAndRoles::MANAGE_RULES );
 	}
 
 	protected static function get_request_schema(): array {

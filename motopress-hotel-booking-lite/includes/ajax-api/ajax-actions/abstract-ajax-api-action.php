@@ -31,6 +31,14 @@ abstract class AbstractAjaxApiAction {
 		return true;
 	}
 
+	/**
+	 * <code>isActionForLoggedInUser()</code> runs too early to check the
+	 * current user.
+	 */
+	public static function isActionForCurrentUser(): bool {
+		return static::isActionForLoggedInUser();
+	}
+
 	public static function isActionForGuestUser() {
 		return true;
 	}

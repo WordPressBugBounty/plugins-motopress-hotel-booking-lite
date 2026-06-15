@@ -30,16 +30,13 @@ class AjaxApiHandler {
 		}
 
 		foreach ( static::getAjaxActionClassNames() as $ajaxActionClassName ) {
-
 			$ajaxActionName = $ajaxActionClassName::getAjaxActionName();
 
 			if ( $ajaxActionClassName::isActionForLoggedInUser() ) {
-
 				add_action( 'wp_ajax_' . $ajaxActionName, array( $ajaxActionClassName, 'processAjaxRequest' ) );
 			}
 
 			if ( $ajaxActionClassName::isActionForGuestUser() ) {
-
 				add_action( 'wp_ajax_nopriv_' . $ajaxActionName, array( $ajaxActionClassName, 'processAjaxRequest' ) );
 			}
 		}
@@ -49,26 +46,23 @@ class AjaxApiHandler {
 	 * @return array of [ action name => wp nonce ]
 	 */
 	public static function getAjaxActionWPNonces() {
-
 		$wpNonces = array();
 
 		if ( is_user_logged_in() ) {
-
 			foreach ( static::getAjaxActionClassNames() as $ajaxActionClassName ) {
-
-				if ( $ajaxActionClassName::isActionForLoggedInUser() ) {
-
+				if ( $ajaxActionClassName::isActionForLoggedInUser()
+					// Don't expose admin nonces to any user
+					&& $ajaxActionClassName::isActionForCurrentUser()
+				) {
 					$ajaxActionName = $ajaxActionClassName::getAjaxActionName();
 
 					$wpNonces[ $ajaxActionName ] = wp_create_nonce( $ajaxActionName );
 				}
 			}
+
 		} else {
-
 			foreach ( static::getAjaxActionClassNames() as $ajaxActionClassName ) {
-
 				if ( $ajaxActionClassName::isActionForGuestUser() ) {
-
 					$ajaxActionName = $ajaxActionClassName::getAjaxActionName();
 
 					$wpNonces[ $ajaxActionName ] = wp_create_nonce( $ajaxActionName );
