@@ -54,6 +54,11 @@ class RoomTypeRepository extends AbstractPostRepository {
 			'mphb_gh_address_province'                => $entity->getAddressProvince(),
 			'mphb_gh_address_postal_code'             => $entity->getAddressPostalCode(),
 			'mphb_gh_address_country_code'            => $entity->getAddressCountryCode(),
+			'mphb_gh_property_images'                 => implode( ',', $entity->getPropertyImages() ),
+			// accommodation type fields
+			'mphb_gh_images'                          => implode( ',', $entity->getImages() ),
+			'mphb_gh_title'                           => $entity->getGHTitle(),
+			'mphb_gh_description'                     => $entity->getGHDescription(),
 		);
 
 		$postAtts['taxonomies'] = array(
@@ -199,6 +204,22 @@ class RoomTypeRepository extends AbstractPostRepository {
 
 		$atts['address_country_code'] = ! empty( $allPostMeta['mphb_gh_address_country_code'] ) ?
 			$allPostMeta['mphb_gh_address_country_code'][0] :
+			'';
+
+		$atts['property_images'] = ! empty( $allPostMeta['mphb_gh_property_images'] ) ?
+			ValidateUtils::validateCommaSeparatedIds( $allPostMeta['mphb_gh_property_images'][0] ) :
+			array();
+
+		$atts['images'] = ! empty( $allPostMeta['mphb_gh_images'] ) ?
+			ValidateUtils::validateCommaSeparatedIds( $allPostMeta['mphb_gh_images'][0] ) :
+			array();
+
+		$atts['gh_title'] = ! empty( $allPostMeta['mphb_gh_title'] ) ?
+			$allPostMeta['mphb_gh_title'][0] :
+			'';
+
+		$atts['gh_description'] = ! empty( $allPostMeta['mphb_gh_description'] ) ?
+			$allPostMeta['mphb_gh_description'][0] :
 			'';
 
 		return new Entities\RoomType( $atts );

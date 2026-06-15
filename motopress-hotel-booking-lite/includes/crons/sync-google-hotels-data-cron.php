@@ -451,7 +451,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 				'is_plugin_pro_version' => ! defined( 'MPHB_IS_LITE' ) || ! MPHB_IS_LITE,
 				'plugin_version'        => MPHB()->getVersion(),
 				'admin_email'           => get_option( 'admin_email' ),
-				'data_schema_version'   => '1.0.0',
+				'data_schema_version'   => '1.0.1',
 				'properties'            => $this->getPropertiesData( $roomTypesForGoogleHotels ),
 				'room_types'            => $this->getRoomTypesData( $roomTypesForGoogleHotels ),
 			),
@@ -555,10 +555,37 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 
 		foreach ( $roomTypes as $roomType ) {
 
+			$images = array();
+
+			foreach ( $roomType->getPropertyImages() as $image_id ) {
+				$image_info = wp_get_attachment_image_src( $image_id, 'full' );
+
+				if ( ! $image_info ) {
+					continue;
+				}
+
+				$image = array(
+					'url'    => $image_info[0],
+					'width'  => $image_info[1],
+					'height' => $image_info[2],
+					'date'   => get_post_timestamp( $image_id ),
+				);
+
+				$description = wp_strip_all_tags( wp_get_attachment_caption( $image_id ) );
+
+				if ( ! empty( $description ) ) {
+					$image['description'] = array(
+						$language => $description,
+					);
+				}
+
+				$images[] = $image;
+			}
+
 			$propertiesData[ $roomType->getPropertyId() ] = array(
 				'id'        => $roomType->getPropertyId(),
 				'name'      => array(
-					$language => $roomType->getPropertyTitle(),
+					$language => wp_strip_all_tags( $roomType->getPropertyTitle() ),
 				),
 				'type'      => $roomType->getPropertyType(),
 				'contacts'  => array(
@@ -574,6 +601,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 					'postal_code'  => $roomType->getAddressPostalCode(),
 					'country_code' => $roomType->getAddressCountryCode(),
 				),
+				'images'    => $images,
 			);
 
 			if ( ! empty( $roomType->getPropertyCategory() ) ) {
@@ -597,44 +625,60 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 
 		foreach ( $roomTypes as $roomType ) {
 
+			$title = $roomType->getGHTitle();
+
+			if ( empty( $title ) ) {
+				$title = $roomType->getTitle();
+			}
+
 			$roomTypeData = array(
 				'id'          => $roomType->getId(),
 				'property_id' => $roomType->getPropertyId(),
 				'name'        => array(
-					$language => trim( wp_strip_all_tags( $roomType->getTitle() ) ),
+					$language => trim( wp_strip_all_tags( $title ) ),
 				),
 				'url'         => $roomType->getLink(),
 				'capacity'    => $roomType->calcTotalCapacity(),
 			);
 
-			$roomtypeDescription = trim( wp_strip_all_tags( $roomType->getExcerpt() ) );
+			$description = $roomType->getGHDescription();
 
-			if ( ! empty( $roomtypeDescription ) ) {
+			if ( empty( $description ) ) {
+				$description = $roomType->getExcerpt();
+			}
+
+			$description = trim( wp_strip_all_tags( $description ) );
+
+			if ( ! empty( $description ) ) {
 
 				$roomTypeData['description'] = array(
-					$language => $roomtypeDescription,
+					$language => $description,
 				);
 			}
 
-			$featuredImageId  = $roomType->getFeaturedImageId();
-			$featuredImageUrl = $featuredImageId ? wp_get_attachment_image_url( $featuredImageId, 'full' ) : '';
+			foreach ( $roomType->getImages() as $image_id ) {
+				$image_info = wp_get_attachment_image_src( $image_id, 'full' );
 
-			if ( ! empty( $featuredImageUrl ) ) {
+				if ( ! $image_info ) {
+					continue;
+				}
 
-				$featuredPhotoData = array(
-					'url' => $featuredImageUrl,
+				$photo = array(
+					'url'    => $image_info[0],
+					'width'  => $image_info[1],
+					'height' => $image_info[2],
+					'date'   => get_post_timestamp( $image_id ),
 				);
 
-				$featuredImageCaption = $featuredImageId ? wp_get_attachment_caption( $featuredImageId ) : '';
+				$description = wp_strip_all_tags( wp_get_attachment_caption( $image_id ) );
 
-				if ( ! empty( $featuredImageCaption ) ) {
-
-					$featuredPhotoData['description'] = array(
-						$language => $featuredImageCaption,
+				if ( ! empty( $description ) ) {
+					$photo['description'] = array(
+						$language => $description,
 					);
 				}
 
-				$roomTypeData['photos'][] = $featuredPhotoData;
+				$roomTypeData['photos'][] = $photo;
 			}
 
 			$roomTypesData[ $roomType->getId() ] = $roomTypeData;

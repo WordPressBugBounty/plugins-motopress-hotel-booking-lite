@@ -147,6 +147,8 @@ class RoomType {
 	private bool $isAddressPubliclyListed;
 	private string $propertyType; // 'hotel' | 'vacation_rental' | 'outdoor_lodging'
 	private string $propertyCategory; // '' | HOTEL_CATEGORY_VALUE | VACATION_RENTAL_CATEGORY_VALUE
+	private array $images;
+	private array $propertyImages;
 	private float $latitude;
 	private float $longitude;
 	private string $contactsMainPhone;
@@ -156,6 +158,8 @@ class RoomType {
 	private string $addressProvince;
 	private string $addressPostalCode;
 	private string $addressCountryCode;
+	private string $ghTitle;
+	private string $ghDescription;
 
 	/**
 	 *
@@ -203,6 +207,10 @@ class RoomType {
 		$this->addressProvince = $atts['address_province'] ?? '';
 		$this->addressPostalCode = $atts['address_postal_code'] ?? '';
 		$this->addressCountryCode = $atts['address_country_code'] ?? '';
+		$this->images = $atts['images'] ?? array();
+		$this->propertyImages = $atts['property_images'] ?? array();
+		$this->ghTitle = $atts['gh_title'] ?? '';
+		$this->ghDescription = $atts['gh_description'] ?? '';
 	}
 
 	public function getPostData(): WPPostData {
@@ -691,5 +699,37 @@ class RoomType {
 
 	public function setAddressCountryCode( string $addressCountryCode ): void {
 		$this->addressCountryCode = $addressCountryCode;
+	}
+
+	public function getPropertyImages(): array {
+		return $this->propertyImages;
+	}
+
+	public function setPropertyImages( array $images ): void {
+		$this->propertyImages = $images;
+	}
+
+	public function getImages(): array {
+		return $this->images;
+	}
+
+	public function setImages( array $images ): void {
+		$this->images = $images;
+	}
+
+	public function getGHTitle() {
+		return $this->ghTitle;
+	}
+
+	public function setGHTitle( string $title ): void {
+		$this->ghTitle = $title;
+	}
+
+	public function getGHDescription() {
+		return $this->ghDescription;
+	}
+
+	public function setGHDescription( string $description ): void {
+		$this->ghDescription = $description;
 	}
 }

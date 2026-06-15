@@ -53,6 +53,8 @@ class GoogleHotelsMenuPage extends AbstractMenuPage {
 					return;
 				}
 
+				wp_enqueue_media();
+
 				// we need global script
 				MPHB()->getPublicScriptManager()->register();
 				MPHB()->getPublicScriptManager()->localize();

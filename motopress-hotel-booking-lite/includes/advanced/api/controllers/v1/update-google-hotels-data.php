@@ -86,6 +86,7 @@ class UpdateGoogleHotelsData extends AbstractRestCommandController {
 				'isAddressPubliclyListed'    => $propertyData['isAddressPubliclyListed'] ?? false,
 				'propertyType'               => trim( $propertyData['propertyType'] ?? 'outdoor_lodging' ),
 				'propertyCategory'           => trim( $propertyData['propertyCategory'] ?? '' ),
+				'propertyImages'             => $propertyData['propertyImages'] ?? array(),
 				'latitude'                   => $propertyData['latitude'] ?? 0.0,
 				'longitude'                  => $propertyData['longitude'] ?? 0.0,
 				'contactsMainPhone'          => isset( $propertyData['contacts']['mainPhone'] ) ? trim( $propertyData['contacts']['mainPhone'] ) : '',
@@ -149,6 +150,10 @@ class UpdateGoogleHotelsData extends AbstractRestCommandController {
 			$originalRoomType->setAddressProvince( $propertyData['addressProvince'] ?? '' );
 			$originalRoomType->setAddressPostalCode( $propertyData['addressPostalCode'] ?? '' );
 			$originalRoomType->setAddressCountryCode( $propertyData['addressCountryCode'] ?? '' );
+			$originalRoomType->setPropertyImages( $propertyData['propertyImages'] ?? array() );
+			$originalRoomType->setImages( $roomTypeData['ghImages'] ?? array() );
+			$originalRoomType->setGHTitle( $roomTypeData['ghTitle'] ?? '' );
+			$originalRoomType->setGHDescription( $roomTypeData['ghDescription'] ?? '' );
 
 			mphb_rooms_facade()->updateRoomType( $originalRoomType );
 		}

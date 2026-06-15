@@ -149,6 +149,13 @@ final class RestApiSchemaHelper {
 								),
 							),
 
+							'propertyImages' => array(
+								'type'  => 'array',
+								'items' => array(
+									'type' => 'integer',
+								)
+							),
+
 							// errors?: Record<string, string>
 							'errors' => array(
 								'type' => 'object',
@@ -189,6 +196,21 @@ final class RestApiSchemaHelper {
 							),
 	
 							'propertyId' => array(
+								'type' => 'string',
+							),
+
+							'ghImages' => array(
+								'type'  => 'array',
+								'items' => array(
+									'type' => 'integer',
+								)
+							),
+
+							'ghTitle' => array(
+								'type' => 'string',
+							),
+
+							'ghDescription' => array(
 								'type' => 'string',
 							),
 

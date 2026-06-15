@@ -136,6 +136,9 @@ class Upgrader {
 			'createBlocksTableForV6_0_0',
 			'moveBlocksToCustomTableForV6_0_0',
 		),
+		'6.1.0' => array(
+			'resetGoogleHotelsAttentionOption'
+		),
 	);
 
 	public function __construct() {
@@ -1249,5 +1252,9 @@ class Upgrader {
 
 			return false;
 		}
+	}
+
+	public function resetGoogleHotelsAttentionOption() {
+		update_option( 'mphb_gh_attention_required', 1 );
 	}
 }
