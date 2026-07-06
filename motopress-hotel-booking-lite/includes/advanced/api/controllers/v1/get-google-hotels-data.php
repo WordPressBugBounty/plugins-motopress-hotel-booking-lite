@@ -45,16 +45,8 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 	}
 
 	/**
-	 * @return \WP_Error|null - returns null if all parameters are valid.
-	 */
-	public static function validate_request( \WP_REST_Request $request ): ?\WP_Error {
-
-		return parent::validate_request( $request );
-	}
-
-	/**
 	 * @return mixed|\WP_Error data or error if needed to send some additional error data
-	 * @throws Exception when processing failed
+	 * @throws \Exception when processing failed
 	 */
 	protected static function process_and_get_data_by_response_schema( \WP_REST_Request $request ) {
 
@@ -82,8 +74,14 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 
 		if ( null !== $lastSyncDatetime ) {
 
-			$result['lastSyncDateTime'] = $lastSyncDatetime->format( 'Y-m-d\TH:i:sP' );
-			$result['lastSyncMessage']  = wp_kses_post( SyncGoogleHotelsDataCron::getLastSyncAttemptMessage() );
+			$result['lastSyncDateTime']         = $lastSyncDatetime->format( 'Y-m-d\TH:i:sP' );
+			$result['lastSyncMessage']          = wp_kses_post( SyncGoogleHotelsDataCron::getLastSyncAttemptMessage() );
+			$result['lastSyncMessageState']     = self::getLastSyncMessageState();
+			$result['lastSyncValidationErrors'] = array_map(
+				'sanitize_text_field',
+				SyncGoogleHotelsDataCron::getLastSyncAttemptValidationErrors()
+			);
+			$result['nextSyncMessage']          = wp_kses_post( SyncGoogleHotelsDataCron::getNextSyncAttemptMessage() );
 		}
 
 		$addedPropertyIds = array();
@@ -171,6 +169,24 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 		return $result;
 	}
 
+	/**
+	 * Maps the last server status to the message background state shown on the page.
+	 *
+	 * @return string 'updated' | 'failed' | 'unknown'
+	 */
+	private static function getLastSyncMessageState(): string {
+
+		if ( SyncGoogleHotelsDataCron::isServerStatusUpdated() ) {
+			return 'updated';
+		}
+
+		if ( SyncGoogleHotelsDataCron::isServerStatusFailed() ) {
+			return 'failed';
+		}
+
+		return 'unknown';
+	}
+
 	public static function getRoomTypeDataErrors( \MPHB\Entities\RoomType $roomType ): array {
 
 		$roomTypeDataErrors = array();
@@ -226,11 +242,11 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 			);
 		}
 
-		if ( 1 > $roomType->calcTotalCapacity()	) {
+		if ( 1 > $roomType->calcTotalCapacity() ) {
 
 			$roomTypeDataErrors['capacity'] = sprintf(
 				// translators: %1$s is field name, %2$d is min value
-				__( 'Field "%1$s" must be bigger than %2$d.', 'motopress-hotel-booking' ),
+				__( 'Field "%1$s" must be greater than %2$d.', 'motopress-hotel-booking' ),
 				__( 'Capacity', 'motopress-hotel-booking' ),
 				1
 			);
@@ -311,27 +327,27 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 		if ( 'hotel' === $roomType->getPropertyType() ) {
 
 			if ( ! in_array(
-					$roomType->getPropertyCategory(),
-					array(
-						'hotel',
-						'motel',
-						'hostel',
-						'resort_hotel',
-						'mountain_hut',
-						'camping_cabin',
-						'aparthotel',
-						'love_hotel',
-						'inn',
-						'bed_and_breakfast',
-						'farm_stay',
-						'japanese_inn',
-						'capsule_hotel',
-						'religious_accommodation',
-						'budget_japanese_inn',
-						'holiday_park',
-					),
-					true
-				)
+				$roomType->getPropertyCategory(),
+				array(
+					'hotel',
+					'motel',
+					'hostel',
+					'resort_hotel',
+					'mountain_hut',
+					'camping_cabin',
+					'aparthotel',
+					'love_hotel',
+					'inn',
+					'bed_and_breakfast',
+					'farm_stay',
+					'japanese_inn',
+					'capsule_hotel',
+					'religious_accommodation',
+					'budget_japanese_inn',
+					'holiday_park',
+				),
+				true
+			)
 			) {
 				$propertyDataErrors['propertyCategory'] = __( 'Hotel property category is invalid.', 'motopress-hotel-booking' );
 			}

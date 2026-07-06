@@ -99,6 +99,8 @@ $firstAvailableCheckInDate = mphb_availability_facade()->getFirstAvailableCheckI
 				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $adults, $value ); ?>><?php echo esc_html( $label ); ?></option>
 			<?php } ?>
 		</select>
+		<br />
+		<?php esc_html_e( 'Select a value to filter, or leave blank to show all.', 'motopress-hotel-booking' ); ?>
 	</p>
 
 	<p class="mphb-children">
@@ -118,6 +120,8 @@ $firstAvailableCheckInDate = mphb_availability_facade()->getFirstAvailableCheckI
 				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $children, $value ); ?>><?php echo esc_html( $label ); ?></option>
 			<?php } ?>
 		</select>
+		<br />
+		<?php esc_html_e( 'Select a value to filter, or leave blank to show all.', 'motopress-hotel-booking' ); ?>
 	</p>
 
 	<?php

@@ -1615,7 +1615,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           if (key === 'custom_fields') {
             for (var field in data) {
               var value = data[field];
-              if (value !== '') {
+              if (_typeof(value) === 'object') {
+                // Date of birth, for example
+                for (var subfield in value) {
+                  // Example: customer_fields[mphb_date_of_birth][day]
+                  formData.append("customer_fields[".concat(field, "][").concat(subfield, "]"), value[subfield]);
+                }
+              } else if (value !== '') {
                 // Example: customer_fields[mphb_custom_field_name]
                 formData.append("customer_fields[".concat(field, "]"), value);
               }

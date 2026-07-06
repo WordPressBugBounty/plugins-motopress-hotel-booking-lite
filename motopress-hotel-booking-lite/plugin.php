@@ -529,15 +529,13 @@ private $upgradeToPremiumMenuPage;
 		$this->roomsGeneratorMenuPage = new \MPHB\Admin\MenuPages\RoomsGeneratorMenuPage( 'mphb_rooms_generator', $roomGeneratorAtts );
 
 		// There is no point in checking the "mphb_use_google_hotels" filter
-		// here, because other plugins cannot use it - the code executes very
-		// early
+		// here, because other plugins cannot use it - the code executes very early
 		new \MPHB\Admin\MenuPages\GoogleHotelsMenuPage(
 			'mphb_google_hotels_settings',
 			array(
 				'capability'  => \MPHB\UsersAndRoles\CapabilitiesAndRoles::MANAGE_SETTINGS,
 				'parent_menu' => MPHB()->postTypes()->roomType()->getMenuSlug(),
-				'order'       => 25, // Order must be greater than the priority of
-				                     // the "admin_menu" action inside the class
+				'order'       => 25, // Order must be greater than the priority of the "admin_menu" action inside the class
 			)
 		);
 

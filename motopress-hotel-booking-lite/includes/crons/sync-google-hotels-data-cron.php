@@ -23,15 +23,18 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 	public const SYNC_STATE_KEY_ATTEMPTS_COUNT           = 'attempts_count';
 	public const SYNC_STATE_KEY_LAST_STATUS_FROM_SERVER  = 'last_server_status';
 	public const SYNC_STATE_KEY_LAST_MESSAGE_FROM_SERVER = 'last_server_message';
+	public const SYNC_STATE_KEY_LAST_VALIDATION_ERRORS   = 'last_server_validation_errors';
 	public const SYNC_STATE_KEY_LAST_ATTEMPT_TIMESTAMP   = 'last_try_timestamp';
 
 	private const SYNC_STATUS_STARTED  = 'started';
 	private const SYNC_STATUS_FAILED   = 'failed';
 	private const SYNC_STATUS_FINISHED = 'finished';
 
-	private const SERVER_STATUS_ERROR           = 'error';
+	private const SERVER_STATUS_FAILED          = 'failed';
 	private const SERVER_STATUS_UPDATED         = 'updated';
+	private const SERVER_STATUS_UNREGISTERED    = 'unregistered';
 	private const SERVER_STATUS_NOTHING_TO_SEND = 'nothing_to_send';
+	private const SERVER_STATUS_UNKNOWN         = 'unknown'; // server unreachable or response without a known status
 
 
 	public function __construct() {
@@ -53,6 +56,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 				$state[ self::SYNC_STATE_KEY_ATTEMPTS_COUNT ],
 				$state[ self::SYNC_STATE_KEY_LAST_STATUS_FROM_SERVER ],
 				$state[ self::SYNC_STATE_KEY_LAST_MESSAGE_FROM_SERVER ],
+				$state[ self::SYNC_STATE_KEY_LAST_VALIDATION_ERRORS ],
 				true
 			);
 
@@ -90,52 +94,69 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 			return '';
 		}
 
-		$message = __( 'Google Hotels submission successfully sent for processing.', 'motopress-hotel-booking' );
+		// the server gave a definitive answer: show its message
+		if ( self::isServerStatusUpdated() || self::isServerStatusFailed() ) {
+			return trim( self::getLastMessageFromServer() );
+		}
 
-		$messageFromServer = self::getLastMessageFromServer();
+		// no server message: show the cron's own (neutral) message
+		if ( self::isStarted() && self::isExecutingNow() ) {
+			return __( 'Your Google Hotels submission is being sent…', 'motopress-hotel-booking' );
+		}
 
-		if ( self::isFinished() ) {
-
-			$message = empty( $messageFromServer ) ? $message : $messageFromServer;
-
-		} elseif ( self::isFailed() ||
+		if ( self::isFailed() ||
 			(
 				self::isStarted() &&
 				! self::isExecutingNow()
 			)
 		) {
-
-			$message = sprintf(
-				// translators: %s - space + message from server (or empty)
-				__( 'Google Hotels submission failed.%s To try again, please save your data on this page or wait for the next attempt.', 'motopress-hotel-booking' ),
-				empty( $messageFromServer ) ? '' : ' ' . $messageFromServer
-			);
-
-		} elseif ( self::isStarted() && self::isExecutingNow() ) {
-
-			$message = __( 'Your Google Hotels submission is being sent…', 'motopress-hotel-booking' );
+			return __( 'Google Hotels submission failed. To try again, please save the data on this page or wait for the next automatic submission attempt.', 'motopress-hotel-booking' );
 		}
 
-		if ( ! self::isExecutingNow() && ! self::isFinished() ) {
+		return __( 'Google Hotels submission successfully sent for processing.', 'motopress-hotel-booking' );
+	}
 
-			$nextSyncDatetime = self::getNextSyncDateTimeInWPTimezone();
+	/**
+	 * Validation errors returned by the server for the last attempt.
+	 *
+	 * @return string[]
+	 */
+	public static function getLastSyncAttemptValidationErrors(): array {
 
-			if ( $nextSyncDatetime ) {
-
-				$dateFormat = get_option( 'date_format', 'Y-m-d' );
-				$timeFormat = get_option( 'time_format', 'H:i:s' );
-
-				$formattedNextSync = $nextSyncDatetime->format( "$dateFormat $timeFormat" );
-
-				$message .= ' ' . sprintf(
-					// translators: %s date and time of the next data transfer
-					__( 'The next data transfer is scheduled for %s.', 'motopress-hotel-booking' ),
-					$formattedNextSync
-				);
-			}
+		if ( null === self::getLastSyncAttemptDateTimeInWPTimezone() ) {
+			return array();
 		}
 
-		return $message;
+		if ( ! self::isServerStatusUpdated() && ! self::isServerStatusFailed() ) {
+			return array();
+		}
+
+		return array_values( array_filter( array_map( 'trim', self::getLastValidationErrors() ) ) );
+	}
+
+	/**
+	 * The "next data transfer" line, shown in small font next to the last attempt date.
+	 */
+	public static function getNextSyncAttemptMessage(): string {
+
+		if ( self::isExecutingNow() || self::isFinished() ) {
+			return '';
+		}
+
+		$nextSyncDatetime = self::getNextSyncDateTimeInWPTimezone();
+
+		if ( null === $nextSyncDatetime ) {
+			return '';
+		}
+
+		$dateFormat = get_option( 'date_format', 'Y-m-d' );
+		$timeFormat = get_option( 'time_format', 'H:i:s' );
+
+		return sprintf(
+			// translators: %s date and time of the next data transfer
+			__( 'The next data transfer is scheduled for %s.', 'motopress-hotel-booking' ),
+			$nextSyncDatetime->format( "$dateFormat $timeFormat" )
+		);
 	}
 
 	private static function getNextSyncDateTimeInWPTimezone(): ?\DateTime {
@@ -154,23 +175,23 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 	}
 
 	private static function isStarted(): bool {
-		return self::SYNC_STATUS_STARTED == self::getSyncState()[ self::SYNC_STATE_KEY_SYNC_STATUS ];
+		return self::SYNC_STATUS_STARTED === self::getSyncState()[ self::SYNC_STATE_KEY_SYNC_STATUS ];
 	}
 
 	private static function isFailed(): bool {
-		return self::SYNC_STATUS_FAILED == self::getSyncState()[ self::SYNC_STATE_KEY_SYNC_STATUS ];
+		return self::SYNC_STATUS_FAILED === self::getSyncState()[ self::SYNC_STATE_KEY_SYNC_STATUS ];
 	}
 
 	private static function isFinished(): bool {
-		return self::SYNC_STATUS_FINISHED == self::getSyncState()[ self::SYNC_STATE_KEY_SYNC_STATUS ];
+		return self::SYNC_STATUS_FINISHED === self::getSyncState()[ self::SYNC_STATE_KEY_SYNC_STATUS ];
 	}
 
-	private static function isServerStatusUpdated(): string {
+	public static function isServerStatusUpdated(): bool {
 		return self::SERVER_STATUS_UPDATED === self::getSyncState()[ self::SYNC_STATE_KEY_LAST_STATUS_FROM_SERVER ];
 	}
 
-	private static function isServerStatusError(): string {
-		return self::SERVER_STATUS_ERROR === self::getSyncState()[ self::SYNC_STATE_KEY_LAST_STATUS_FROM_SERVER ];
+	public static function isServerStatusFailed(): bool {
+		return self::SERVER_STATUS_FAILED === self::getSyncState()[ self::SYNC_STATE_KEY_LAST_STATUS_FROM_SERVER ];
 	}
 
 	private static function isServerStatusNothingToSend(): string {
@@ -181,19 +202,25 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 		return self::getSyncState()[ self::SYNC_STATE_KEY_LAST_MESSAGE_FROM_SERVER ];
 	}
 
+	private static function getLastValidationErrors(): array {
+		return self::getSyncState()[ self::SYNC_STATE_KEY_LAST_VALIDATION_ERRORS ];
+	}
+
 	private static function isNeedsResync(): bool {
 		return (bool) self::getSyncState()[ self::SYNC_STATE_KEY_NEEDS_RESYNC ];
 	}
 
 	private static function getSyncState(): array {
-		return get_option(
-			self::OPTION_NAME_SYNC_GOOGLE_HOTELS_STATE,
+		// merge with defaults so upgraded sites without newly added keys do not break
+		return wp_parse_args(
+			get_option( self::OPTION_NAME_SYNC_GOOGLE_HOTELS_STATE, array() ),
 			array(
 				self::SYNC_STATE_KEY_SYNC_STATUS    => self::SYNC_STATUS_FINISHED,
 				self::SYNC_STATE_KEY_NEEDS_RESYNC   => false,
 				self::SYNC_STATE_KEY_ATTEMPTS_COUNT => 0,
-				self::SYNC_STATE_KEY_LAST_STATUS_FROM_SERVER => '',
+				self::SYNC_STATE_KEY_LAST_STATUS_FROM_SERVER => self::SERVER_STATUS_UNKNOWN,
 				self::SYNC_STATE_KEY_LAST_MESSAGE_FROM_SERVER => '',
+				self::SYNC_STATE_KEY_LAST_VALIDATION_ERRORS => array(),
 				self::SYNC_STATE_KEY_LAST_ATTEMPT_TIMESTAMP => 0,
 			)
 		);
@@ -204,6 +231,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 		int $attempts_count,
 		string $last_status_from_server = '',
 		string $last_message_from_server = '',
+		array $last_validation_errors = array(),
 		bool $needs_resync = false
 	): void {
 
@@ -215,6 +243,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 				self::SYNC_STATE_KEY_ATTEMPTS_COUNT => $attempts_count,
 				self::SYNC_STATE_KEY_LAST_STATUS_FROM_SERVER => $last_status_from_server,
 				self::SYNC_STATE_KEY_LAST_MESSAGE_FROM_SERVER => $last_message_from_server,
+				self::SYNC_STATE_KEY_LAST_VALIDATION_ERRORS => $last_validation_errors,
 				self::SYNC_STATE_KEY_LAST_ATTEMPT_TIMESTAMP => time(),
 			)
 		);
@@ -301,6 +330,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 				$state[ self::SYNC_STATE_KEY_ATTEMPTS_COUNT ],
 				$state[ self::SYNC_STATE_KEY_LAST_STATUS_FROM_SERVER ],
 				$state[ self::SYNC_STATE_KEY_LAST_MESSAGE_FROM_SERVER ],
+				$state[ self::SYNC_STATE_KEY_LAST_VALIDATION_ERRORS ],
 				false
 			);
 			// try to finish next day
@@ -316,22 +346,26 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 
 		self::updateCronState( self::SYNC_STATUS_STARTED, $attempts_count );
 
-		$isSyncFinished    = false;
-		$statusFromServer  = '';
-		$messageFromServer = '';
+		$isSyncFinished             = false;
+		$statusFromServer           = self::SERVER_STATUS_UNKNOWN;
+		$messageFromServer          = '';
+		$validationErrorsFromServer = array();
 
 		try {
 
 			$result = self::syncGoogleHotelsData();
 
-			$statusFromServer  = $result['status'];
-			$messageFromServer = $result['message'];
-			$isSyncFinished    = true;
+			$statusFromServer           = $result['status'];
+			$messageFromServer          = $result['message'];
+			$validationErrorsFromServer = $result['validationErrors'] ?? array();
+			$isSyncFinished             = true;
 
 		} catch ( \Throwable $e ) {
 
-			$statusFromServer  = self::SERVER_STATUS_ERROR;
-			$messageFromServer = $e->getMessage();
+			// no usable response from the server: mark status unknown so the cron's own
+			// message is shown instead of a server message
+			$statusFromServer  = self::SERVER_STATUS_UNKNOWN;
+			$messageFromServer = '';
 			error_log( $e );
 
 		} finally {
@@ -341,6 +375,22 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 
 		$isNeedsReSync = self::isNeedsResync();
 
+		if ( self::SERVER_STATUS_UNREGISTERED === $statusFromServer ) {
+
+			// the secret was erased in syncGoogleHotelsData(); retry soon to re-register
+			self::updateCronState(
+				self::SYNC_STATUS_STARTED,
+				$attempts_count,
+				$statusFromServer,
+				$messageFromServer,
+				array(),
+				$isNeedsReSync
+			);
+
+			$this->reScheduleAt( time() + self::SYNC_ATTEMPTS_DELAY_IN_SECONDS );
+			return;
+		}
+
 		if ( $isSyncFinished ) {
 
 			self::updateCronState(
@@ -348,6 +398,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 				$attempts_count,
 				$statusFromServer,
 				$messageFromServer,
+				$validationErrorsFromServer,
 				false // clear resync flag because we will sync data in the next execution
 			);
 
@@ -362,6 +413,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 				$attempts_count,
 				$statusFromServer,
 				$messageFromServer,
+				$validationErrorsFromServer,
 				false // clear resync flag because we will sync data in the next execution
 			);
 
@@ -376,6 +428,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 				$attempts_count,
 				$statusFromServer,
 				$messageFromServer,
+				$validationErrorsFromServer,
 				false // clear resync flag because we will sync data in the next execution
 			);
 
@@ -384,7 +437,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 	}
 
 	/**
-	 * @return array - [ status => string, message => string ]
+	 * @return array{status: string, message: string, validationErrors: string[]}
 	 * @throws \Exception if something goes wrong
 	 */
 	private function syncGoogleHotelsData(): array {
@@ -403,16 +456,18 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 					$propertyErrors = GetGoogleHotelsData::getPropertyDataErrors( $originalRoomType );
 					if ( ! empty( $propertyErrors ) ) {
 						return array(
-							'status'  => self::SERVER_STATUS_ERROR,
-							'message' => __( 'Cannot send the Google Hotels submission because it contains errors.', 'motopress-hotel-booking' ),
+							'status'           => self::SERVER_STATUS_FAILED,
+							'message'          => __( 'Cannot send the Google Hotels submission because it contains errors.', 'motopress-hotel-booking' ),
+							'validationErrors' => array(),
 						);
 					}
 
 					$roomTypeErrors = GetGoogleHotelsData::getRoomTypeDataErrors( $originalRoomType );
 					if ( ! empty( $roomTypeErrors ) ) {
 						return array(
-							'status'  => self::SERVER_STATUS_ERROR,
-							'message' => __( 'Cannot send the Google Hotels submission because it contains errors.', 'motopress-hotel-booking' ),
+							'status'           => self::SERVER_STATUS_FAILED,
+							'message'          => __( 'Cannot send the Google Hotels submission because it contains errors.', 'motopress-hotel-booking' ),
+							'validationErrors' => array(),
 						);
 					}
 
@@ -427,8 +482,9 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 			empty( $googleHotelsServerId['site_id'] ) // do nothing if we did not send any data to the server
 		) {
 			return array(
-				'status'  => self::SERVER_STATUS_NOTHING_TO_SEND,
-				'message' => '',
+				'status'           => self::SERVER_STATUS_NOTHING_TO_SEND,
+				'message'          => '',
+				'validationErrors' => array(),
 			);
 		}
 
@@ -504,48 +560,54 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 			throw new \Exception( $response->get_error_message() );
 		}
 
+		$responseCode = wp_remote_retrieve_response_code( $response );
 		$responseBody = wp_remote_retrieve_body( $response );
 		$responseData = json_decode( $responseBody, true );
 
-		$responseStatus  = self::SERVER_STATUS_ERROR;
-		$responseMessage = '';
+		$serverStatus = is_array( $responseData ) ? ( $responseData['status'] ?? '' ) : '';
 
-		if ( 200 !== wp_remote_retrieve_response_code( $response ) ||
-			JSON_ERROR_NONE !== json_last_error()
-		) {
+		// stale (site_id, secret): erase secret and retry to re-register on the next run
+		if ( self::SERVER_STATUS_UNREGISTERED === $serverStatus ) {
 
-			$responseMessage = (
-				is_array( $responseData ) &&
-				! empty( $responseData['message'] )
-			) ?
-				$responseData['message'] :
-				'Google Hotels submission update failed.';
+			self::updateGoogleHotelsServerId(
+				$googleHotelsServerId['site_id'],
+				'' // erase secret to start site registration again
+			);
 
-			if (
-				isset( $responseData['data']['action'] ) &&
-				'register' === $responseData['data']['action']
-			) {
-				self::updateGoogleHotelsServerId(
-					$googleHotelsServerId['site_id'],
-					'' // erase secret to start site registration again
-				);
-			}
-
-			// phpcs:ignore
-			throw new \Exception( $responseMessage );
-		} else {
-			$responseStatus  = $responseData['status'];
-			$responseMessage = $responseData['message'] ?? '';
+			return array(
+				'status'           => self::SERVER_STATUS_UNREGISTERED,
+				'message'          => $responseData['message'] ?? '',
+				'validationErrors' => array(),
+			);
 		}
 
-		return array(
-			'status'  => $responseStatus,
-			'message' => $responseMessage,
+		// definitive answer from the server: show it (no retries).
+		// updated is final only with 200; failed is final only with 422 (validation
+		// or moderation). other codes (5xx/503/403/400) are transient server/auth
+		// failures and fall through to the exception below so the cron retries.
+		$isDefinitiveUpdated = self::SERVER_STATUS_UPDATED === $serverStatus && 200 === $responseCode;
+		$isDefinitiveFailed  = self::SERVER_STATUS_FAILED === $serverStatus && 422 === $responseCode;
+
+		if ( $isDefinitiveUpdated || $isDefinitiveFailed ) {
+
+			return array(
+				'status'           => $serverStatus,
+				'message'          => $responseData['message'] ?? '',
+				'validationErrors' => $responseData['validationErrors'] ?? array(),
+			);
+		}
+
+		// no usable structured response: throw so the cron retries and shows its own message
+		throw new \Exception(
+			( is_array( $responseData ) && ! empty( $responseData['message'] ) ) ?
+				// phpcs:ignore
+				$responseData['message'] :
+				'Google Hotels submission update failed.'
 		);
 	}
 
 	/**
-	 * @param \MPHB\Entities\RoomType[]
+	 * @param \MPHB\Entities\RoomType[] $roomTypes
 	 * @throws \Exception if something goes wrong
 	 */
 	private function getPropertiesData( array $roomTypes ): array {
@@ -615,7 +677,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 	}
 
 	/**
-	 * @param \MPHB\Entities\RoomType[]
+	 * @param \MPHB\Entities\RoomType[] $roomTypes
 	 * @throws \Exception if something goes wrong
 	 */
 	private function getRoomTypesData( array $roomTypes ): array {
@@ -697,7 +759,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 
 		// get verification token from the server
 		$client_proof_bin  = \random_bytes( 32 );
-		$client_proof      = base64_encode( $client_proof_bin );
+		$client_proof      = base64_encode( $client_proof_bin ); // phpcs:ignore
 		$client_proof_hash = hash( 'sha256', $client_proof_bin, false ); // hex
 
 		$registerResponse = wp_remote_post(
