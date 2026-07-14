@@ -2,7 +2,7 @@
 
 namespace MPHB\Shortcodes\CheckoutShortcode;
 
-use MPHB\Utils\DateUtils;
+use MPHB\Utils\{ DateUtils, ParseUtils };
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -77,9 +77,10 @@ abstract class Step {
 	 * @since 3.7.0 added new filter - "mphb_sc_checkout_parse_check_out_date".
 	 */
 	protected function parseCheckOutDate() {
-
 		$this->checkOutDate = null;
-		$dateString         = filter_input( INPUT_POST, 'mphb_check_out_date' );
+
+		/** @var string|false|null $dateString */
+		$dateString = filter_input( INPUT_POST, 'mphb_check_out_date' );
 
 		if ( empty( $dateString ) ) {
 			$dateString = filter_input( INPUT_COOKIE, 'mphb_check_out_date' );
@@ -87,29 +88,36 @@ abstract class Step {
 
 		mphb_set_cookie( 'mphb_check_out_date', $dateString );
 
-		$checkOutDate = DateUtils::createCheckOutDate( MPHB()->settings()->dateTime()->getDateTransferFormat(), $dateString );
+		/** @var ?\DateTime $checkOutDate */
+		$checkOutDate = null;
 
+		if ( ! empty( $dateString ) ) {
+			try {
+				$checkOutDate = ParseUtils::parseCheckOutDate( $dateString, $this->checkInDate );
+			} catch ( \Exception $e ) {
+				$this->errors[] = $e->getMessage();
+
+				return false;
+			}
+		}
+
+		/**
+		 * @param ?\DateTime $checkOutDate
+		 * @param string|false|null $dateString
+		 * @param ?\DateTime $checkInDate
+		 */
 		$checkOutDate = apply_filters( 'mphb_sc_checkout_parse_check_out_date', $checkOutDate, $dateString, $this->checkInDate );
 
 		if ( ! $checkOutDate ) {
-
 			$this->errors[] = __( 'Check-out date is not valid.', 'motopress-hotel-booking' );
+
 			return false;
 
-		} elseif ( isset( $this->checkInDate ) &&
-			mphb_availability_facade()->isBookingRulesViolated(
-				0,
-				$this->checkInDate,
-				$checkOutDate,
-				MPHB()->settings()->main()->isBookingRulesForAdminDisabled()
-			)
-		) {
-			$this->errors[] = __( 'Nothing found. Please try again with different search parameters.', 'motopress-hotel-booking' );
-			return false;
+		} else {
+			$this->checkOutDate = $checkOutDate;
+
+			return true;
 		}
-
-		$this->checkOutDate = $checkOutDate;
-		return true;
 	}
 
 	protected function showAlreadyBookedMessage() {

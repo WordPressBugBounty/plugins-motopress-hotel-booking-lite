@@ -117,8 +117,8 @@ class ParseUtils {
 
 	/**
 	 * @since 3.8
-	 * @since 6.0.0 Added <code>$checkInDate</code>, <code>$dateFormat</code>
-	 *     and <code>$allowPastDate</code> parameters.
+	 * @since 6.0.0 Added <code>$checkInDate</code> and <code>$dateFormat</code>
+	 *     parameters.
 	 *
 	 * @param string|null $dateFormat Custom date format. "Y-m-d" by default.
 	 *
@@ -127,8 +127,7 @@ class ParseUtils {
 	public static function parseCheckOutDate(
 		string $checkOutDateStr,
 		?DateTime $checkInDate = null,
-		?string $dateFormat = null,
-		bool $ignoreBookingRules = false
+		?string $dateFormat = null
 	): DateTime {
 		if ( $dateFormat === null ) {
 			$dateFormat = MPHB()->settings()->dateTime()->getDateTransferFormat(); // "Y-m-d"
@@ -136,7 +135,7 @@ class ParseUtils {
 
 		$checkOutDate = DateUtils::createCheckOutDate( $dateFormat, $checkOutDateStr );
 
-		if ( $checkOutDate === null ) {
+		if ( ! $checkOutDate ) {
 			throw new \RuntimeException( esc_html__( 'Check-out date is not valid.', 'motopress-hotel-booking' ) );
 		}
 
@@ -145,18 +144,11 @@ class ParseUtils {
 				throw new \RuntimeException( esc_html__( 'Check-out date cannot be earlier than check-in date.', 'motopress-hotel-booking' ) );
 			}
 
-			if ( ! $ignoreBookingRules ) {
-				$bookingRulesViolated = mphb_availability_facade()->isBookingRulesViolated(
-					$roomTypeId = 0,
-					$checkInDate,
-					$checkOutDate,
-					$ignoreBookingRules
-				);
-
-				if ( $bookingRulesViolated ) {
-					throw new \RuntimeException( esc_html__( 'Nothing found. Please try again with different search parameters.', 'motopress-hotel-booking' ) );
-				}
-			}
+			// Better not check booking rules here (as it was before). The rules
+			// for $roomTypeId = 0 may be more restrictive than the rules for
+			// specific room types. It's better to check isBookingRulesViolated()
+			// later, knowing the specific room types.
+			// mphb_availability_facade()->isBookingRulesViolated( $roomTypeId = 0, ... )
 		}
 
 		return $checkOutDate;

@@ -2,6 +2,12 @@
 
 namespace MPHB\Shortcodes;
 
+use MPHB\Utils\ParseUtils;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class SearchResultsShortcode extends AbstractShortcode {
 
 	protected $name = 'mphb_search_results';
@@ -680,27 +686,14 @@ class SearchResultsShortcode extends AbstractShortcode {
 	 * @return boolean
 	 */
 	private function parseCheckOutDate( $date ) {
+		try {
+			$this->checkOutDate = ParseUtils::parseCheckOutDate( $date, $this->checkInDate );
+		} catch ( \Exception $e ) {
+			$this->errors[] = $e->getMessage();
 
-		$checkOutDateObj = \MPHB\Utils\DateUtils::createCheckOutDate( MPHB()->settings()->dateTime()->getDateTransferFormat(), $date );
-
-		if ( ! $checkOutDateObj ) {
-			$this->errors[] = __( 'Check-out date is not valid.', 'motopress-hotel-booking' );
 			return false;
 		}
 
-		if ( isset( $this->checkInDate ) &&
-			mphb_availability_facade()->isBookingRulesViolated(
-				0,
-				$this->checkInDate,
-				$checkOutDateObj,
-				MPHB()->settings()->main()->isBookingRulesForAdminDisabled()
-			)
-		) {
-			$this->errors[] = __( 'Nothing found. Please try again with different search parameters.', 'motopress-hotel-booking' );
-			return false;
-		}
-
-		$this->checkOutDate = $checkOutDateObj;
 		return true;
 	}
 

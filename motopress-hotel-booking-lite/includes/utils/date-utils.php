@@ -114,10 +114,10 @@ class DateUtils {
 	 * @param string $format See http://php.net/manual/ru/datetime.formats.php
 	 * @param string $date
 	 * @param bool   $needSetTime
-	 * @return \DateTime|bool - DateTIme in UTC time zone
+	 * @return \DateTime|bool DateTime in UTC time zone or false.
 	 */
 	public static function createCheckOutDate( $format, $date, $needSetTime = true ) {
-
+		/** @var \DateTime|false $dateObj */
 		$dateObj = \DateTime::createFromFormat( $format, $date, self::getSiteTimeZone() );
 
 		if ( $dateObj && $needSetTime ) {
