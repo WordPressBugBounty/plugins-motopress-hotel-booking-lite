@@ -76,6 +76,20 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           isEarlierThanMinAdvanceDate = roomTypeData.hasOwnProperty('isEarlierThanMinAdvanceDate') && roomTypeData.isEarlierThanMinAdvanceDate,
           isLaterThanMaxAdvanceDate = roomTypeData.hasOwnProperty('isLaterThanMaxAdvanceDate') && roomTypeData.isLaterThanMaxAdvanceDate,
           isDateOutOfSeasons = isDateNotAvailable && !isStayInNotAllowed && roomTypeData.hasOwnProperty('availableRoomsCount') && 0 < roomTypeData.availableRoomsCount;
+        var isCheckOutCalendar = 3 === calendarMode,
+          isCheckOutAllowed = !isCheckOutNotAllowed,
+          hasAvailabilityCount = roomTypeData.hasOwnProperty('availableRoomsCount'),
+          isFullyBookedByAvailabilityCount = hasAvailabilityCount && 0 === roomTypeData.availableRoomsCount;
+
+        // Checkout can be valid on another booking's check-in date: the previous guest leaves
+        // before the next guest arrives. Keep the explicit API marker path first.
+        var isMarkedBookingBoundaryAvailableAsCheckOut = isCheckOutCalendar && isCheckInDate && isCheckOutAllowed;
+
+        // Some API responses omit isCheckInDate for the same boundary and only report a fully
+        // booked "not-available" date. Limit this fallback to fully booked, in-season dates so
+        // rule-blocked or out-of-season dates do not become selectable as checkout.
+        var isFullyBookedUnavailableDateAvailableAsCheckOut = isCheckOutCalendar && isDateNotAvailable && isCheckOutAllowed && isFullyBookedByAvailabilityCount && !isStayInNotAllowed && !isDateOutOfSeasons;
+        var isDateAvailableAsCheckOut = isMarkedBookingBoundaryAvailableAsCheckOut || isFullyBookedUnavailableDateAvailableAsCheckOut;
         if (MPHB.calendarHelper.ROOM_STATUS_PAST === roomTypeData.roomTypeStatus) {
           calendarDateAttributes.dateClass += ' mphb-past-date';
           // custom attribute for later processing
@@ -138,7 +152,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             calendarDateAttributes.dateClass += ' mphb-mark-as-unavailable';
           } else if (2 === calendarMode) {
             calendarDateAttributes.dateClass += ' mphb-not-check-in-date';
-          } else if (3 === calendarMode) {
+          } else if (3 === calendarMode && !isDateAvailableAsCheckOut) {
             calendarDateAttributes.dateClass += ' mphb-not-check-out-date';
           }
 
@@ -242,7 +256,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               calendarDateAttributes.dateClass += ' mphb-later-max-date';
             }
           }
-          if ((null === minCheckOutDateForSelection || minCheckOutDateForSelection.getTime() <= date.getTime()) && (null === maxCheckOutDateForSelection || maxCheckOutDateForSelection.getTime() >= date.getTime()) && !calendarDateAttributes.isUnavailableCheckOut && !calendarDateAttributes.isUnavailable) {
+          if ((null === minCheckOutDateForSelection || minCheckOutDateForSelection.getTime() <= date.getTime()) && (null === maxCheckOutDateForSelection || maxCheckOutDateForSelection.getTime() >= date.getTime()) && (!calendarDateAttributes.isUnavailableCheckOut || isDateAvailableAsCheckOut) && (!calendarDateAttributes.isUnavailable || isDateAvailableAsCheckOut)) {
             calendarDateAttributes.selectable = true;
             calendarDateAttributes.dateClass += ' mphb-selectable-date';
           } else {
