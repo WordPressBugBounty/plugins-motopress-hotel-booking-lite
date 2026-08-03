@@ -15,7 +15,7 @@ if ( $customer ) {
 		<input type="hidden" name="mphb_action" value="update_customer" />
 		<input type="hidden" name="customer_id" value="<?php echo (int) $customer->getId(); ?>" />
 		<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect ); ?>" />
-		<?php wp_nonce_field(); ?>
+		<?php wp_nonce_field( 'mphb_update_customer' ); ?>
 
 		<div class="mphb-account-details">
 			<p class="mphb-customer-first-name">

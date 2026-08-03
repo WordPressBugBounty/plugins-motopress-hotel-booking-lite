@@ -20,8 +20,9 @@ do_action( 'mphb_cb_checkout_form_before_start' );
 
 	<?php
 		/**
-		 * @hooked \MPHB\Admin\MenuPages\CreateBooking\CheckoutStep::printNonceFields - 10
-		 * @hooked \MPHB\Admin\MenuPages\CreateBooking\Step::printDateHiddenFields - 20
+		 * @hooked \MPHB\Admin\MenuPages\CreateBooking\CheckoutStep::printNonceFields       - 10
+		 * @hooked \MPHB\Admin\MenuPages\CreateBooking\Step::printDateHiddenFields          - 20
+		 * @hooked \MPHB\Admin\MenuPages\CreateBooking\CheckoutStep::printOtherHiddenFields - 30
 		 */
 		do_action( 'mphb_cb_checkout_form_after_start' );
 	?>

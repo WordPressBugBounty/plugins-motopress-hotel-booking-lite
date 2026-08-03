@@ -31,7 +31,7 @@ class AccountShortcode extends AbstractShortcode {
 
 		if ( isset( $post['mphb_action'] ) && $post['mphb_action'] == 'update_customer' ) {
 
-			if ( wp_verify_nonce( $post['_wpnonce'] ) ) {
+			if ( wp_verify_nonce( $post['_wpnonce'], 'mphb_update_customer' ) ) {
 				$customerId = isset( $post['customer_id'] ) ? (int) $post['customer_id'] : null;
 				$redirectTo = isset( $post['redirect_to'] ) ? esc_url( $post['redirect_to'] ) : '';
 
@@ -47,7 +47,14 @@ class AccountShortcode extends AbstractShortcode {
 					exit;
 				}
 
-				$customer = MPHB()->customers()->customer( $post );
+				$customer = MPHB()->customers()->findByUserId( $userId );
+
+				if ( is_null( $customer ) || $customer->getId() !== $customerId ) {
+					$this->errors[] = new \WP_Error( 'customer_not_found', __( 'Customer not found.', 'motopress-hotel-booking' ) );
+					return;
+				}
+
+				MPHB()->customers()->updateCustomerInfo( $customer, $post );
 
 				$updatedUser = MPHB()->customers()->updateLinkedUser( $userId, $customer );
 
@@ -55,8 +62,6 @@ class AccountShortcode extends AbstractShortcode {
 					$this->errors[] = $updatedUser;
 					return;
 				}
-
-				$customer->setUserId( $userId );
 
 				$updatedCustomer = MPHB()->customers()->updateData( $customer );
 

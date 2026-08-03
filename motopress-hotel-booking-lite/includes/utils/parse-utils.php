@@ -492,7 +492,9 @@ class ParseUtils {
 		$gatewayId = sanitize_text_field( wp_unslash( $gatewayId ) );
 		$activeGateways = array_keys( MPHB()->gatewayManager()->getListActive() );
 
-		if ( empty( $activeGateways ) || ( $booking !== null && $booking->calcDepositAmount() == 0 ) ) {
+		$isFreeBooking = $booking !== null && $booking->calcDepositAmount() == 0;
+
+		if ( empty( $activeGateways ) || $isFreeBooking ) {
 			return 'manual';
 		} elseif ( ! in_array( $gatewayId, $activeGateways ) ) {
 			throw new \RuntimeException( esc_html__( 'Payment method is not valid.', 'motopress-hotel-booking' ) );

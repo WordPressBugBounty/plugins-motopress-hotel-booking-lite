@@ -1570,6 +1570,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 
             // Need custom fields for Payment Request: request_type, request_amount
             paymentDetails['custom_fields'] = bookingDetails['custom_fields'];
+
+            // Add nonce
+            if (bookingDetails['nonce']) {
+              paymentDetails['nonce'] = bookingDetails['nonce'];
+            }
             return MPHB.restApiHelper.submitPayment(paymentDetails);
           }
         }).then(function (response) {
@@ -1687,7 +1692,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               }
             }
           } else {
-            // check_in_date, note etc.
+            // check_in_date, nonce, note etc.
             formData.append(key, data);
           }
         }
@@ -1752,6 +1757,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           room_details: roomDetails
         };
 
+        // Add nonce
+        if ('mphb_nonce' in formData) {
+          bookingDetails['nonce'] = formData['mphb_nonce'];
+        }
+
         // Add payment details
         if (MPHB._data.settings.useBilling && !this.freeBooking) {
           bookingDetails['payment_details'] = this.billingSection.getPaymentDetails();
@@ -1772,7 +1782,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         }
 
         // Parse custom fields
-        var knownFields = ['mphb_applied_coupon_code', 'mphb_check_in_date', 'mphb_check_out_date', 'mphb-checkout-id', 'mphb-checkout-nonce', 'mphb_coupon_code', 'mphb_gateway_id', 'mphb_new_booking_status', 'mphb_note', 'mphb_room_details'];
+        var knownFields = ['mphb_applied_coupon_code', 'mphb_check_in_date', 'mphb_check_out_date', 'mphb-checkout-id', 'mphb-checkout-nonce', 'mphb_coupon_code', 'mphb_gateway_id', 'mphb_new_booking_status', 'mphb_nonce', 'mphb_note', 'mphb_room_details'];
         for (var fieldName in formData) {
           var unprefixedName = fieldName.replace('mphb_', '');
           if (knownFields.includes(fieldName) || fieldName.indexOf('mphb') !== 0 || unprefixedName in bookingDetails['customer']) {

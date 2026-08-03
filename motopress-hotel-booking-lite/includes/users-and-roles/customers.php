@@ -183,6 +183,44 @@ class Customers {
 		return new Customer( $customerAtts );
 	}
 
+	public function updateCustomerInfo( Customer $customer, array $atts ): void {
+		if ( isset( $atts['first_name'] ) ) {
+			$customer->setFirstName( $atts['first_name'] );
+		}
+
+		if ( isset( $atts['last_name'] ) ) {
+			$customer->setLastName( $atts['last_name'] );
+		}
+
+		if ( isset( $atts['email'] ) ) {
+			$customer->setEmail( $atts['email'] );
+		}
+
+		if ( isset( $atts['phone'] ) ) {
+			$customer->setPhone( $atts['phone'] );
+		}
+
+		if ( isset( $atts['country'] ) ) {
+			$customer->setCountry( $atts['country'] );
+		}
+
+		if ( isset( $atts['state'] ) ) {
+			$customer->setState( $atts['state'] );
+		}
+
+		if ( isset( $atts['city'] ) ) {
+			$customer->setCity( $atts['city'] );
+		}
+
+		if ( isset( $atts['address1'] ) ) {
+			$customer->setAddress1( $atts['address1'] );
+		}
+
+		if ( isset( $atts['zip'] ) ) {
+			$customer->setZip( $atts['zip'] );
+		}
+	}
+
 	public static function countCustomers( $atts = array() ) {
 		global $wpdb;
 

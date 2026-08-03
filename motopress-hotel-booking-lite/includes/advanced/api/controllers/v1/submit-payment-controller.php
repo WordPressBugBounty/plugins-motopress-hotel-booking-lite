@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Separate controller only for payments for checkouts such as Payment Request.
  *
- * Route: /checkout/pyaments (POST)
+ * Route: /checkout/payments (POST)
  */
 class SubmitPaymentController extends AbstractRestCommandController {
 	private static string $gatewayRedirect = '';
@@ -46,7 +46,7 @@ class SubmitPaymentController extends AbstractRestCommandController {
 	 * @return \WP_Error|bool
 	 */
 	public static function is_request_allowed( \WP_REST_Request $request ) {
-		return true; // Public request
+		return true; // Public request, but requires a nonce check (in the body)
 	}
 
 	protected static function get_request_schema(): array {
@@ -63,11 +63,6 @@ class SubmitPaymentController extends AbstractRestCommandController {
 				'required'          => true,
 				'sanitize_callback' => 'rest_sanitize_request_arg',
 			),
-			'currency'       => array(
-				'type'              => 'string',
-				'pattern'           => '^[A-Z]{3}$',
-				'sanitize_callback' => 'rest_sanitize_request_arg',
-			),
 			'custom_fields'  => array(
 				'type'                 => 'object',
 				'additionalProperties' => true,
@@ -82,6 +77,10 @@ class SubmitPaymentController extends AbstractRestCommandController {
 //					array_keys( MPHB()->gatewayManager()->getListActive() )
 //				),
 				'required'          => true,
+				'sanitize_callback' => 'rest_sanitize_request_arg',
+			),
+			'nonce'          => array(
+				'type'              => 'string',
 				'sanitize_callback' => 'rest_sanitize_request_arg',
 			),
 			'payment_fields' => array(
@@ -138,13 +137,41 @@ class SubmitPaymentController extends AbstractRestCommandController {
 			throw new \RuntimeException( esc_html__( 'The booking not found.', 'motopress-hotel-booking' ) );
 		}
 
+		// Check the nonce
+		if ( ! isset( $requestArgs['nonce'] ) ) {
+			// Update the Payment Request plugin so that it starts adding the nonce
+			throw new \RuntimeException( esc_html__( 'The site needs a security update.', 'motopress-hotel-booking' ) );
+		}
+
+		$isNonceOk = wp_verify_nonce(
+			$requestArgs['nonce'],
+			$booking->getKey() . $booking->getCheckoutId()
+		);
+
+		/**
+		 * @param bool $isNonceOk
+		 * @param Booking $booking
+		 * @param array $requestArgs
+		 */
+		$isNonceOk = apply_filters( 'mphb_payment_checkout_verify_nonce', $isNonceOk, $booking, $requestArgs );
+
+		if ( ! $isNonceOk ) {
+			throw new \RuntimeException( esc_html__( 'Request does not pass security verification. Please refresh the page and try one more time.', 'motopress-hotel-booking' ) );
+		}
+
 		/**
 		 * @param Booking $booking
 		 */
 		do_action( 'mphb_focus_on_booking', $booking ); // For Accommodation-Based Payments
 
 		$gatewayId = ParseUtils::parseGatewayId( $requestArgs['gateway_id'], $booking );
-		$gateway   = MPHB()->gatewayManager()->getGateway( $gatewayId );
+
+		// "manual" fallback method is OK only for /checkout
+		if ( $gatewayId === 'manual' ) {
+			throw new \RuntimeException( esc_html__( 'Payment method is not valid.', 'motopress-hotel-booking' ) );
+		}
+
+		$gateway = MPHB()->gatewayManager()->getGateway( $gatewayId );
 
 		// Parse payment fields
 		$paymentFields = $requestArgs['payment_fields'] ?? array();
@@ -163,7 +190,7 @@ class SubmitPaymentController extends AbstractRestCommandController {
 		$paymentDetails = array(
 			'amount'      => $paymentAmount,
 			'bookingId'   => $booking->getId(),
-			'currency'    => $requestArgs['currency'] ?? MPHB()->settings()->currency()->getCurrencyCode(),
+			'currency'    => MPHB()->settings()->currency()->getCurrencyCode(),
 			'gatewayId'   => $gateway->getId(),
 			'gatewayMode' => $gateway->getMode(),
 			'paymentFee'  => $paymentFee,
@@ -173,8 +200,15 @@ class SubmitPaymentController extends AbstractRestCommandController {
 		 * @param array $paymentDetails
 		 */
 		$paymentDetails = apply_filters( 'mphb_checkout_payment_details', $paymentDetails );
-
 		$payment = Payment::create( $paymentDetails );
+
+		/**
+		 * @param Payment $payment
+		 * @param Booking $booking
+		 * @param array $requestArgs
+		 */
+		do_action( 'mphb_submit_payment', $payment, $booking, $requestArgs );
+
 		$isSaved = MPHB()->getPaymentRepository()->save( $payment );
 
 		if ( ! $isSaved ) {
