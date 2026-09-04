@@ -288,7 +288,7 @@ table.wp-list-table.posts tbody td.column-handle {
   width: 90%;
 }
 .mphb-preloader {
-  background-image: url("../../images/loading.gif?ver=6.2.3");
+  background-image: url("../../images/loading.gif?ver=6.2.4");
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -1518,6 +1518,47 @@ body.mphb_booking_menu_page_mphb_booking_rules .tablenav.top .actions.add-rule {
     width: 33%;
     float: left;
   }
+}
+.mphb-dashboard-notice-reset-styles {
+  padding: 0 !important;
+  border-left: 0 !important;
+  background: transparent !important;
+}
+.mphb-dashboard-widget-news__post {
+  margin-bottom: 15px;
+}
+.mphb-dashboard-widget-news__post-title {
+  margin: 0 0 5px;
+  font-weight: 600;
+}
+.mphb-dashboard-widget-news__post-title span {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 5px 6px;
+  margin-right: 5px;
+  font-size: 0.875em;
+  font-weight: 400;
+  color: #ffffff;
+  background: #4381b3;
+  line-height: 1;
+}
+.mphb-dashboard-widget-news__post-title a {
+  text-decoration: none;
+}
+.mphb-dashboard-widget-news__post-title a:hover {
+  text-decoration: underline;
+}
+.mphb-dashboard-widget-news__post-description {
+  margin: 0;
+}
+.mphb-dashboard-widget-actions {
+  border-top: 1px solid #eee;
+  margin: 0 -12px;
+  padding: 12px 12px 0;
+}
+.mphb-dashboard-widget-actions__divider {
+  display: inline-block;
+  margin: 0 5px;
 }
 .mphb-deprecated {
   opacity: 0.5;

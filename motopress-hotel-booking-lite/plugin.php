@@ -448,6 +448,8 @@ private $upgradeToPremiumMenuPage;
 		$this->initRepositories();
 		$this->menus = new MPHB\Admin\Menus();
 
+		new \MPHB\Admin\DashboardWidget();
+
 		$this->createPages();
 
 		$this->shortcodes = new \MPHB\Shortcodes();
