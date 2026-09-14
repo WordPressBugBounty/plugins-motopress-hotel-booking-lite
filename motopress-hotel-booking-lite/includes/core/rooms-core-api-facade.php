@@ -199,4 +199,11 @@ class RoomsCoreAPIFacade extends AbstractCoreAPIFacade {
 			)
 		);
 	}
+
+	/**
+	 * @return int Room type ID or 0 if nothing found.
+	 */
+	public function getRoomTypeIdByRoomId( int $roomId ): int {
+		return MPHB()->getRoomRepository()->getRoomTypeId( $roomId );
+	}
 }

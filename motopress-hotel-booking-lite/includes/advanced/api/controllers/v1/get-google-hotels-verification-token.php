@@ -4,6 +4,7 @@ namespace MPHB\Advanced\Api\Controllers\V1;
 
 use MPHB\Advanced\Api\Controllers\AbstractRestCommandController,
 	MPHB\Crons\SyncGoogleHotelsDataCron;
+use MPHB\GoogleHotels\GoogleHotelsHelper;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -61,7 +62,7 @@ class GetGoogleHotelsVerificationToken extends AbstractRestCommandController {
 	 */
 	protected static function process_and_get_data_by_response_schema( \WP_REST_Request $request ) {
 
-		$token = SyncGoogleHotelsDataCron::getVerificationToken();
+		$token = GoogleHotelsHelper::getSiteVerificationToken();
 
 		return null !== $token ? $token : '';
 	}

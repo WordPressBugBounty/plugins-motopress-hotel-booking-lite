@@ -54,7 +54,6 @@ class ReportsMenuPage extends AbstractMenuPage {
 		if ( current_user_can( \MPHB\UsersAndRoles\CapabilitiesAndRoles::EXPORT_REPORTS ) ) {
 			$this->tabs['export'] = __( 'Export', 'motopress-hotel-booking' );
 		}
-
 	}
 
 	protected function getCurrentTab() {
@@ -76,6 +75,13 @@ class ReportsMenuPage extends AbstractMenuPage {
 		$currentTab = $this->getCurrentTab();
 
 		echo '<div class="wrap">';
+
+			/*
+			 * Anchor for WordPress admin notices. wp-admin/js/common.js moves every notice after
+			 * `.wp-header-end`, and without it after the first h1/h2 inside `.wrap` - which here is
+			 * the tabs wrapper, so notices landed below the tabs. Hidden by core CSS.
+			 */
+			echo '<hr class="wp-header-end">';
 
 			// Render tabs
 			echo '<h1 class="nav-tab-wrapper">';

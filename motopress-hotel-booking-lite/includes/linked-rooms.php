@@ -231,6 +231,23 @@ class LinkedRooms {
 		return self::getLinkedRoomsForRoomType( $roomTypeId )['all'];
 	}
 
+	/**
+	 * @return int[]
+	 */
+	public static function getRoomTypeIdsLinkedToRoomType( int $roomTypeId ): array {
+		$linkedRoomIds = MPHB()->getRoomRepository()->findIds( array( 'room_type_id' => $roomTypeId ) );
+		$roomIds = MPHB()->getRoomRepository()->getRoomIdsLinkedTo( $linkedRoomIds );
+
+		$roomTypeIds = array_map(
+			fn( $roomId ) => mphb_rooms_facade()->getRoomTypeIdByRoomId( $roomId ),
+			$roomIds
+		);
+
+		$roomTypeIds = array_unique( array_filter( $roomTypeIds ) );
+
+		return $roomTypeIds;
+	}
+
 	private static function getLinkedRoomsForRoomType( int $roomTypeId ): array {
 		if ( ! isset( self::$cachedLinkedRooms[ $roomTypeId ] ) ) {
 			$roomIds = MPHB()->getRoomRepository()->findIds( array( 'room_type_id' => $roomTypeId ) );

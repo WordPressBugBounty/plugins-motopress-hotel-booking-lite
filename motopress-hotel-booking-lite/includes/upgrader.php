@@ -139,6 +139,9 @@ class Upgrader {
 		'6.1.0' => array(
 			'resetGoogleHotelsAttentionOption'
 		),
+		'6.3.0' => array(
+			'prepareGoogleHotelsCalendarSyncForV6_3_0'
+		),
 	);
 
 	public function __construct() {
@@ -1256,5 +1259,13 @@ class Upgrader {
 
 	public function resetGoogleHotelsAttentionOption() {
 		update_option( 'mphb_gh_attention_required', 1 );
+	}
+
+	public function prepareGoogleHotelsCalendarSyncForV6_3_0(): void {
+		GoogleHotels\RoomTypeSnapshotHelper::createTable();
+
+		foreach ( GoogleHotels\GoogleHotelsHelper::getSyncedRoomTypeIds() as $roomTypeId ) {
+			GoogleHotels\RoomTypeSnapshotHelper::createSnapshotsForRoomType( $roomTypeId );
+		}
 	}
 }

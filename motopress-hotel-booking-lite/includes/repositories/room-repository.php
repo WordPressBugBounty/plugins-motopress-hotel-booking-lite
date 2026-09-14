@@ -286,6 +286,37 @@ class RoomRepository extends AbstractPostRepository {
 		}
 	}
 
+	/**
+	 * @param int[] $linkedRoomIds
+	 * @return int[]
+	 */
+	public function getRoomIdsLinkedTo( array $linkedRoomIds ): array {
+		global $wpdb;
+
+		if ( empty( $linkedRoomIds ) ) {
+			return array();
+		}
+
+		$roomsPlaceholder = implode(
+			', ',
+			array_fill( 0, count( $linkedRoomIds ), '%s' )
+		);
+
+		$roomIds = $wpdb->get_col(
+			$wpdb->prepare(
+				"SELECT post_id FROM {$wpdb->postmeta}"
+					. ' WHERE meta_key = "mphb_linked_room"'
+					. " AND meta_value IN ({$roomsPlaceholder})",
+				$linkedRoomIds
+			)
+		);
+
+		$roomIds = array_map( 'absint', $roomIds );
+		$roomIds = array_unique( $roomIds );
+
+		return array_values( $roomIds );
+	}
+
 	public function getRoomTypeId( int $roomId ): int {
 		$roomTypeIdStr = get_post_meta( $roomId, 'mphb_room_type_id', $single = true );
 

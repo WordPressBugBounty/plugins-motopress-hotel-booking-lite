@@ -448,6 +448,17 @@ class SubmitCheckoutController extends AbstractRestCommandController {
 			}
 		} // if $isDoingPayment
 
+		if ( ! $booking->isFailed() ) {
+			$isAdmin = apply_filters( 'mphb_is_current_request_for_admin_ui', false );
+
+			/**
+			 * @param Booking $booking
+			 * @param Payment|null $payment
+			 * @param bool $isAdmin Is request for admin UI?
+			 */
+			do_action( 'mphb_booking_submitted', $booking, $payment, $isAdmin );
+		}
+
 		return $responseData;
 	}
 

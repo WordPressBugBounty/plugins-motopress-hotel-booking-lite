@@ -664,12 +664,6 @@ class MainSettings {
 	}
 
 	public function isGoogleHotelsIntegrationOn(): bool {
-		return apply_filters( 'mphb_use_google_hotels', true )
-			&& (bool) get_option( 'mphb_google_hotels_integration_on', false );
+		return \MPHB\GoogleHotels\GoogleHotelsHelper::isIntegrationOn();
 	}
-
-	public function updateGoogleHotelsIntegrationOn( bool $isGoogleHotelsIntegrationOn ) {
-		return update_option( 'mphb_google_hotels_integration_on', $isGoogleHotelsIntegrationOn, true );
-	}
-
 }

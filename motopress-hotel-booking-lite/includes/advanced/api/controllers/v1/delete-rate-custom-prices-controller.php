@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MPHB\Advanced\Api\Controllers\V1;
 
 use MPHB\Advanced\Api\Controllers\AbstractRestCommandController;
+use MPHB\Utils\DateUtils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -116,13 +117,25 @@ class DeleteRateCustomPricesController extends AbstractRestCommandController {
 	protected static function process_and_get_data_by_response_schema( \WP_REST_Request $request ) {
 		list(
 			'id'         => $rateId,
-			'start_date' => $startDate,
-			'end_date'   => $endDate,
+			'start_date' => $startDateStr,
+			'end_date'   => $endDateStr,
 		) = $request->get_params();
 
-		$prices = MPHB()->getCustomPricesRepository()->getPricesForPeriod( $rateId, $startDate, $endDate );
+		$prices = MPHB()->getCustomPricesRepository()->getPricesForPeriod( $rateId, $startDateStr, $endDateStr );
 
-		MPHB()->getCustomPricesRepository()->deletePricesInPeriod( $rateId, $startDate, $endDate );
+		MPHB()->getCustomPricesRepository()->deletePricesInPeriod( $rateId, $startDateStr, $endDateStr );
+
+		$startDate = DateUtils::createDate( $startDateStr );
+		$endDate   = DateUtils::createDate( $endDateStr );
+
+		if ( $startDate !== null && $endDate !== null ) {
+			/**
+			 * @param int $rateId
+			 * @param \DateTime $startDate
+			 * @param \DateTime $endDate
+			 */
+			do_action( 'mphb_delete_rate_custom_price', $rateId, $startDate, $endDate );
+		}
 
 		return $prices;
 	}

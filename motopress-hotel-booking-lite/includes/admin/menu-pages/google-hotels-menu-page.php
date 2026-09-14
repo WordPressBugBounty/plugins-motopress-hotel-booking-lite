@@ -3,6 +3,7 @@
 namespace MPHB\Admin\MenuPages;
 
 use MPHB\Crons\SyncGoogleHotelsDataCron;
+use MPHB\GoogleHotels\GoogleHotelsHelper;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -101,7 +102,7 @@ class GoogleHotelsMenuPage extends AbstractMenuPage {
 	private function showServerFailedNotice(): void {
 
 		if ( ! $this->isGoogleHotelsAvailable()
-			|| ! MPHB()->settings()->main()->isGoogleHotelsIntegrationOn()
+			|| ! GoogleHotelsHelper::isIntegrationOn()
 			|| ! current_user_can( $this->capability )
 			|| ! SyncGoogleHotelsDataCron::isServerStatusFailed()
 		) {
@@ -129,8 +130,8 @@ class GoogleHotelsMenuPage extends AbstractMenuPage {
 		printf(
 			'<div class="notice notice-warning is-dismissible"><p>%s</p></div>',
 			sprintf(
-				// translators: %1$s opening link tag to the Google Hotels page, %2$s closing link tag.
 				wp_kses_post(
+					// translators: %1$s opening link tag to the Google Hotels page, %2$s closing link tag.
 					__( '<strong>Hotel Booking:</strong> The Google Hotels information is incomplete. Please complete all required fields and %1$s submit the form again %2$s.', 'motopress-hotel-booking' )
 				),
 				'<a href="' . esc_url( $this->getUrl() ) . '">',
@@ -142,7 +143,7 @@ class GoogleHotelsMenuPage extends AbstractMenuPage {
 	private function showStatusIndicator( \WP_Admin_Bar $adminBar ): void {
 
 		if ( ! $this->isGoogleHotelsAvailable()
-			|| ! MPHB()->settings()->main()->isGoogleHotelsIntegrationOn()
+			|| ! GoogleHotelsHelper::isIntegrationOn()
 			|| ! current_user_can( $this->capability )
 		) {
 			return;

@@ -3,16 +3,11 @@
 namespace MPHB\Crons;
 
 use MPHB\Advanced\Api\Controllers\V1\GetGoogleHotelsData;
-
+use MPHB\GoogleHotels\GoogleHotelsHelper;
 
 class SyncGoogleHotelsDataCron extends AbstractCron {
 
-	private const MOTOPRESS_SERVER_REST_URL = 'https://api.getmotopress.com/hotels/wp-json';
-
 	private const OPTION_NAME_SYNC_GOOGLE_HOTELS_STATE = 'mphb_sync_google_hotels_state';
-	private const OPTION_NAME_GOOGLE_HOTELS_SERVER_ID  = 'mphb_google_hotels_server_id';
-
-	private const TRANSIENT_SYNC_GOOGLE_HOTELS_VERIFICATION_TOKEN = 'mphb_sync_google_hotels_verification_token';
 
 	private const TRANSIENT_SYNC_GOOGLE_HOTELS_DATA_LOCK = 'mpghp_syncGoogleHotelsData_lock';
 	private const SYNC_ATTEMPTS_DELAY_IN_SECONDS         = 300; // 5 minutes
@@ -265,50 +260,6 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 		delete_transient( self::TRANSIENT_SYNC_GOOGLE_HOTELS_DATA_LOCK );
 	}
 
-	/**
-	 * @return array [ 'site_id' => int, 'secret' => string ]
-	 */
-	private static function getGoogleHotelsServerId(): array {
-		return get_option(
-			self::OPTION_NAME_GOOGLE_HOTELS_SERVER_ID,
-			array(
-				'site_id' => 0,
-				'secret'  => '',
-			)
-		);
-	}
-
-	/**
-	 * @return array [ 'site_id' => int, 'secret' => string ]
-	 */
-	private static function updateGoogleHotelsServerId( int $site_id, string $secret ): array {
-
-		$googleHotelsServerId = array(
-			'site_id' => $site_id,
-			'secret'  => $secret,
-		);
-
-		update_option(
-			self::OPTION_NAME_GOOGLE_HOTELS_SERVER_ID,
-			$googleHotelsServerId
-		);
-
-		return $googleHotelsServerId;
-	}
-
-	public static function getVerificationToken(): ?string {
-		$token = get_transient( self::TRANSIENT_SYNC_GOOGLE_HOTELS_VERIFICATION_TOKEN );
-		return false !== $token ? $token : null;
-	}
-
-	private static function updateVerificationToken( string $verificationToken ): void {
-		set_transient(
-			self::TRANSIENT_SYNC_GOOGLE_HOTELS_VERIFICATION_TOKEN,
-			$verificationToken,
-			600 // 10 min as well as in Motopress\Google_Hotel_Prices_Server\REST_API\Site_Register
-		);
-	}
-
 	public function doCronJob() {
 		if ( ! apply_filters( 'mphb_use_google_hotels', true ) ) {
 			$this->unschedule();
@@ -351,6 +302,17 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 		$messageFromServer          = '';
 		$validationErrorsFromServer = array();
 
+		// Google Hotels must always receive the site's default-language content.
+		// Build and send the submission with WPML switched to the default language
+		// (a no-op without WPML): getAllRoomTypes() then returns the full default set
+		// even when startNow() runs from a non-default admin language. The language key
+		// of names and descriptions does not come from here — see getDefaultLocale().
+		$isActiveWPML = MPHB()->translation()->isActiveWPML();
+
+		if ( $isActiveWPML ) {
+			MPHB()->translation()->setupDefaultLanguage();
+		}
+
 		try {
 
 			$result = self::syncGoogleHotelsData();
@@ -369,6 +331,10 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 			error_log( $e );
 
 		} finally {
+
+			if ( $isActiveWPML ) {
+				MPHB()->translation()->restoreLanguage();
+			}
 
 			self::stopExecution();
 		}
@@ -445,7 +411,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 		$allRoomTypes             = mphb_rooms_facade()->getAllRoomTypes();
 		$roomTypesForGoogleHotels = array();
 
-		if ( MPHB()->settings()->main()->isGoogleHotelsIntegrationOn() ) {
+		if ( GoogleHotelsHelper::isIntegrationOn() ) {
 
 			foreach ( $allRoomTypes as $roomType ) {
 
@@ -476,7 +442,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 			}
 		}
 
-		$googleHotelsServerId = self::getGoogleHotelsServerId();
+		$googleHotelsServerId = GoogleHotelsHelper::getSiteServerCredentials();
 
 		if ( empty( $roomTypesForGoogleHotels ) &&
 			empty( $googleHotelsServerId['site_id'] ) // do nothing if we did not send any data to the server
@@ -492,7 +458,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 			empty( $googleHotelsServerId['secret'] )
 		) {
 
-			$googleHotelsServerId = $this->registerSite();
+			$googleHotelsServerId = GoogleHotelsHelper::registerSite();
 		}
 
 		// this route must start with /mpghp/v1 to match server route for signature generation
@@ -502,12 +468,12 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 
 		$requestBody = wp_json_encode(
 			array(
-				'site_url'              => home_url(),
+				'site_url'              => MPHB()->translation()->getDefaultHomeUrl(),
 				'rest_url'              => get_rest_url(),
 				'is_plugin_pro_version' => ! defined( 'MPHB_IS_LITE' ) || ! MPHB_IS_LITE,
 				'plugin_version'        => MPHB()->getVersion(),
 				'admin_email'           => get_option( 'admin_email' ),
-				'data_schema_version'   => '1.0.1',
+				'data_schema_version'   => GoogleHotelsHelper::SCHEMA_VERSION,
 				'properties'            => $this->getPropertiesData( $roomTypesForGoogleHotels ),
 				'room_types'            => $this->getRoomTypesData( $roomTypesForGoogleHotels ),
 			),
@@ -540,7 +506,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 		);
 
 		$response = wp_remote_post(
-			self::MOTOPRESS_SERVER_REST_URL . $requestRoute,
+			GoogleHotelsHelper::SERVER_REST_URL . $requestRoute,
 			array(
 				'timeout'   => 20,
 				'headers'   => array(
@@ -569,10 +535,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 		// stale (site_id, secret): erase secret and retry to re-register on the next run
 		if ( self::SERVER_STATUS_UNREGISTERED === $serverStatus ) {
 
-			self::updateGoogleHotelsServerId(
-				$googleHotelsServerId['site_id'],
-				'' // erase secret to start site registration again
-			);
+			GoogleHotelsHelper::revokeSiteServerSecret();
 
 			return array(
 				'status'           => self::SERVER_STATUS_UNREGISTERED,
@@ -612,7 +575,7 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 	 */
 	private function getPropertiesData( array $roomTypes ): array {
 
-		$language       = get_locale();
+		$language       = MPHB()->translation()->getDefaultLocale();
 		$propertiesData = array();
 
 		foreach ( $roomTypes as $roomType ) {
@@ -682,8 +645,14 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 	 */
 	private function getRoomTypesData( array $roomTypes ): array {
 
-		$language      = get_locale();
+		$language      = MPHB()->translation()->getDefaultLocale();
 		$roomTypesData = array();
+
+		// Search-form guest limits: a room can not be sold for more guests than the search lets a
+		// visitor pick, even when its physical capacity is higher.
+		$searchMaxAdults    = MPHB()->settings()->main()->getSearchMaxAdults();
+		$searchMaxChildren  = MPHB()->settings()->main()->getSearchMaxChildren();
+		$areChildrenAllowed = MPHB()->settings()->main()->isChildrenAllowed();
 
 		foreach ( $roomTypes as $roomType ) {
 
@@ -693,14 +662,22 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 				$title = $roomType->getTitle();
 			}
 
+			// Cap by the search-form limits, and drop children entirely when the site disables the
+			// children option, so the server only offers occupancies the site can actually sell.
+			// Adults never go below 1 — the schema requires it, and a room always holds one guest.
+			$maxAdultsCount   = max( 1, min( $roomType->getAdultsCapacity(), $searchMaxAdults ) );
+			$maxChildrenCount = $areChildrenAllowed ? min( $roomType->getChildrenCapacity(), $searchMaxChildren ) : 0;
+
 			$roomTypeData = array(
-				'id'          => $roomType->getId(),
-				'property_id' => $roomType->getPropertyId(),
-				'name'        => array(
+				'id'                 => $roomType->getId(),
+				'property_id'        => $roomType->getPropertyId(),
+				'name'               => array(
 					$language => trim( wp_strip_all_tags( $title ) ),
 				),
-				'url'         => $roomType->getLink(),
-				'capacity'    => $roomType->calcTotalCapacity(),
+				'url'                => $roomType->getLink(),
+				'capacity'           => min( $roomType->calcTotalCapacity(), $maxAdultsCount + $maxChildrenCount ),
+				'max_adults_count'   => $maxAdultsCount,
+				'max_children_count' => $maxChildrenCount,
 			);
 
 			$description = $roomType->getGHDescription();
@@ -749,115 +726,5 @@ class SyncGoogleHotelsDataCron extends AbstractCron {
 		// we need to send an array of properties in JSON
 		// so we need to remove property ids from array keys
 		return array_values( $roomTypesData );
-	}
-
-	/**
-	 * @return array [ 'site_id' => int, 'secret' => string ]
-	 * @throws \Exception if something goes wrong
-	 */
-	private function registerSite(): array {
-
-		// get verification token from the server
-		$client_proof_bin  = \random_bytes( 32 );
-		$client_proof      = base64_encode( $client_proof_bin ); // phpcs:ignore
-		$client_proof_hash = hash( 'sha256', $client_proof_bin, false ); // hex
-
-		$registerResponse = wp_remote_post(
-			self::MOTOPRESS_SERVER_REST_URL . '/mpghp/v1/sites/register',
-			array(
-				'timeout'   => 20,
-				'headers'   => array(
-					'Content-Type' => 'application/json',
-					// add user agent because Cloudflare can forbif request otherwise
-					'User-Agent'   => 'Motopress-Hotel-Booking/' . MPHB()->getVersion(),
-				),
-				'body'      => wp_json_encode(
-					array(
-						'site_url'          => home_url(),
-						'rest_url'          => get_rest_url(),
-						'client_proof_hash' => $client_proof_hash,
-					)
-				),
-				'sslverify' => false,
-			)
-		);
-
-		if ( is_wp_error( $registerResponse ) ) {
-			// phpcs:ignore
-			throw new \Exception( $registerResponse->get_error_message() );
-		}
-
-		$registerResponseBody = wp_remote_retrieve_body( $registerResponse );
-		$registerResponseData = json_decode( $registerResponseBody, true );
-
-		if ( 200 !== wp_remote_retrieve_response_code( $registerResponse ) ||
-			JSON_ERROR_NONE !== json_last_error() ||
-			empty( $registerResponseData['verify_token'] )
-		) {
-			throw new \Exception(
-				(
-					is_array( $registerResponseData ) &&
-					! empty( $registerResponseData['message'] )
-				) ?
-				// phpcs:ignore
-				$registerResponseData['message'] :
-				'Server did not return verification token.'
-			);
-		}
-
-		self::updateVerificationToken( $registerResponseData['verify_token'] );
-
-		// verify site and get sync secret
-		$verifyResponse = wp_remote_post(
-			self::MOTOPRESS_SERVER_REST_URL . '/mpghp/v1/sites/verify',
-			array(
-				'timeout'   => 20,
-				'headers'   => array(
-					'Content-Type' => 'application/json',
-					// add user agent because Cloudflare can forbif request otherwise
-					'User-Agent'   => 'Motopress-Hotel-Booking/' . MPHB()->getVersion(),
-				),
-				'body'      => wp_json_encode(
-					array(
-						'verification_token' => $registerResponseData['verify_token'],
-						'client_proof'       => $client_proof,
-					)
-				),
-				'sslverify' => false,
-			)
-		);
-
-		if ( is_wp_error( $verifyResponse ) ) {
-			// phpcs:ignore
-			throw new \Exception( $verifyResponse->get_error_message() );
-		}
-
-		$verifyResponseBody = wp_remote_retrieve_body( $verifyResponse );
-		$verifyResponseData = json_decode( $verifyResponseBody, true );
-
-		if ( 200 !== wp_remote_retrieve_response_code( $verifyResponse ) ||
-			JSON_ERROR_NONE !== json_last_error() ||
-			(
-				empty( $verifyResponseData['site_id'] ) ||
-				empty( $verifyResponseData['secret'] )
-			)
-		) {
-			throw new \Exception(
-				(
-					is_array( $verifyResponseData ) &&
-					! empty( $verifyResponseData['message'] )
-				) ?
-				// phpcs:ignore
-				$verifyResponseData['message'] :
-				'Server did not return site_id and secret.'
-			);
-		}
-
-		$googleHotelsServerId = self::updateGoogleHotelsServerId(
-			(int) $verifyResponseData['site_id'],
-			$verifyResponseData['secret']
-		);
-
-		return $googleHotelsServerId;
 	}
 }

@@ -141,6 +141,14 @@ class SetRateCustomPricesController extends AbstractRestCommandController {
 		$dates  = DateUtils::createDatesInRange( $startDate, $endDate );
 		$prices = MPHB()->getCustomPricesRepository()->addPrices( $rateId, array_keys( $dates ), $price );
 
+		/**
+		 * @param int $rateId
+		 * @param \DateTime $startDate
+		 * @param \DateTime $endDate
+		 * @param float $price
+		 */
+		do_action( 'mphb_set_rate_custom_price', $rateId, $startDate, $endDate, $price );
+
 		return $prices;
 	}
 }

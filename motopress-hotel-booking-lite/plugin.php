@@ -5,6 +5,7 @@
  * Alternatively, you can copy template files from './templates/' folder to '/your-theme/hotel-booking/' to override them.
  */
 
+use MPHB\GoogleHotels;
 use MPHB\Repositories;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -341,6 +342,8 @@ private $upgradeToPremiumMenuPage;
 
 	private $roomTypeMicrodata = null;
 
+	private ?GoogleHotels\RoomTypeSnapshotTransitionHandler $roomTypeSnapshotTransitionHandler = null;
+
 	public static function getInstance() {
 
 		if ( ! isset( self::$instance ) ) {
@@ -385,6 +388,7 @@ private $upgradeToPremiumMenuPage;
 		add_action( 'plugins_loaded', array( $this, 'loadTextDomain' ) );
 		add_action( 'init', array( $this, 'rewriteRules' ) );
 		add_action( 'init', array( $this, 'patchAddons' ) );
+		add_action( 'init', fn() => $this->roomTypeSnapshotTransitionHandler = new GoogleHotels\RoomTypeSnapshotTransitionHandler() );
 		add_action( 'admin_init', array( $this, 'initAutoUpdater' ), 9 );
 		// add_action( 'wp', array( $this, 'setupRoomTypeMicrodata' ) );
 		// add_action( 'wp_head', array( $this, 'pushRoomTypeMicrodata' ) );
@@ -1377,7 +1381,9 @@ private $upgradeToPremiumMenuPage;
 	 */
 	public static function afterInstall() {
 		// This method will be called only once with first activated plugin - Premium or Lite
+		MPHB()->cronManager()->do_on_plugin_activation();
 		MPHB()->postTypes()->flushRewriteRules();
+
 		mphb_create_uploads_dir();
 
 		/**
@@ -1483,6 +1489,8 @@ private $upgradeToPremiumMenuPage;
 		$mphb->getBlocksRepository()->createTable();
 		$mphb->getCustomBookingRulesRepository()->createTable();
 		$mphb->getCustomPricesRepository()->createTable();
+
+		MPHB\GoogleHotels\RoomTypeSnapshotHelper::createTable();
 	}
 
 

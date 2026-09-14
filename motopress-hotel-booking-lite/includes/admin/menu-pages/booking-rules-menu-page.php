@@ -615,6 +615,8 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 			'mphb_buffer_days',
 		);
 
+		$newRules = array();
+
 		foreach ( $fields as $fieldName ) {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 			$rules = ! empty( $_POST[ $fieldName ] ) ? $_POST[ $fieldName ] : array();
@@ -628,6 +630,14 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 			} );
 
 			$this->saveField( $fieldName, $rules );
+
+			$newRules[ $fieldName ] = $rules;
 		}
+
+		/**
+		 * @param array<string, array> $newRules Keys are prefixed, like
+		 *     "mphb_min_stay_length".
+		 */
+		do_action( 'mphb_reservation_rules_updated', $newRules );
 	}
 }

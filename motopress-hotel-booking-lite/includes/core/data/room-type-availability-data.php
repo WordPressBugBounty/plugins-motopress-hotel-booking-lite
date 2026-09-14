@@ -25,6 +25,8 @@ class RoomTypeAvailabilityData {
 	private $isLaterThanMaxAdvanceDate;
 	private $minStayNights;
 	private $maxStayNights = null;
+	private $minAdvanceDays;
+	private $maxAdvanceDays = null;
 
 	public function __construct(
 
@@ -38,7 +40,9 @@ class RoomTypeAvailabilityData {
 		$isEarlierThanMinAdvanceDate = false,
 		$isLaterThanMaxAdvanceDate = false,
 		$minStayNights = 1,
-		$maxStayNights = null
+		$maxStayNights = null,
+		$minAdvanceDays = 0,
+		$maxAdvanceDays = null
 	) {
 		$this->roomTypeStatus              = $roomTypeStatus;
 		$this->availableRoomsCount         = $availableRoomsCount;
@@ -50,12 +54,22 @@ class RoomTypeAvailabilityData {
 		$this->isEarlierThanMinAdvanceDate = $isEarlierThanMinAdvanceDate;
 		$this->isLaterThanMaxAdvanceDate   = $isLaterThanMaxAdvanceDate;
 		$this->minStayNights               = $minStayNights;
+		$this->minAdvanceDays              = $minAdvanceDays;
 
 		if ( is_int( $maxStayNights ) && 0 < $maxStayNights ) {
 			$this->maxStayNights = $maxStayNights;
 		}
+
+		if ( is_int( $maxAdvanceDays ) && 0 < $maxAdvanceDays ) {
+			$this->maxAdvanceDays = $maxAdvanceDays;
+		}
 	}
 
+	/**
+	 * @see RoomTypeAvailabilityStatus
+	 *
+	 * @return string
+	 */
 	public function getRoomTypeStatus() {
 		return $this->roomTypeStatus;
 	}
@@ -96,8 +110,22 @@ class RoomTypeAvailabilityData {
 		return $this->minStayNights;
 	}
 
+	/**
+	 * @return int|null
+	 */
 	public function getMaxStayNights() {
 		return $this->maxStayNights;
+	}
+
+	public function getMinAdvanceDays() {
+		return $this->minAdvanceDays;
+	}
+
+	/**
+	 * @return int|null;
+	 */
+	public function getMaxAdvanceDays() {
+		return $this->maxAdvanceDays;
 	}
 
 	public function toArray() {
@@ -112,12 +140,17 @@ class RoomTypeAvailabilityData {
 			'isCheckOutNotAllowed' => $this->isCheckOutNotAllowed,
 			'isEarlierThanMinAdvanceDate' => $this->isEarlierThanMinAdvanceDate,
 			'isLaterThanMaxAdvanceDate' => $this->isLaterThanMaxAdvanceDate,
-			'minStayNights' => $this->minStayNights
+			'minStayNights' => $this->minStayNights,
+			'minAdvanceDays' => $this->minAdvanceDays,
 		);
 
 		if ( 0 < $this->maxStayNights ) {
 
 			$result['maxStayNights'] = $this->maxStayNights;
+		}
+
+		if ( 0 < $this->maxAdvanceDays ) {
+			$result['maxAdvanceDays'] = $this->maxAdvanceDays;
 		}
 
 		return $result;

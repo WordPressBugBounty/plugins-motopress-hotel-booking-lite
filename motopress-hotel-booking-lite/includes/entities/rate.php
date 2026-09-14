@@ -44,7 +44,7 @@ class Rate {
 	 *
 	 * @var SeasonPrice[]
 	 */
-	private $seasonPrices;
+	private $seasonPrices = array();
 
 	/**
 	 *
@@ -121,6 +121,20 @@ class Rate {
 		return $this->seasonPrices;
 	}
 
+	public function getSeasonPriceForDate( \DateTime $date ): ?SeasonPrice {
+		// Note: $seasonPrices are in reverse order (see array_reverse()), so
+		// get the last object
+		$maxPrioritySeasonPrice = null;
+
+		foreach ( $this->seasonPrices as $seasonPrice ) {
+			if ( $seasonPrice->isForDate( $date ) ) {
+				$maxPrioritySeasonPrice = $seasonPrice;
+			}
+		}
+
+		return $maxPrioritySeasonPrice;
+	}
+
 	/**
 	 * @return int original room type id
 	 */
@@ -192,6 +206,12 @@ class Rate {
 		}
 
 		return $this->datePrices;
+	}
+
+	public function getDatePrice( $date ): ?float {
+		$dateStr = is_string( $date ) ? $date : $date->format( 'Y-m-d' );
+
+		return $this->getDatePrices()[ $dateStr ] ?? null;
 	}
 
 	/**
@@ -333,4 +353,13 @@ class Rate {
 		return $prices;
 	}
 
+	public function isForSeason( int $seasonId ): bool {
+		foreach ( $this->seasonPrices as $seasonPrice ) {
+			if ( $seasonPrice->getSeasonId() === $seasonId ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

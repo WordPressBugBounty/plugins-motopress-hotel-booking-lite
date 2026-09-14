@@ -244,6 +244,15 @@ class SetCustomBookingRulesController extends AbstractRestCommandController {
 
 			ksort( $bookingRules );
 
+			/**
+			 * @param array<string, array|null> $bookingRules The keys are dates
+			 *     in the format "Y-m-d".
+			 * @param int $roomTypeId 1+, no 0.
+			 * @param \DateTime $startDate
+			 * @param \DateTime $endDate
+			 */
+			do_action( 'mphb_set_custom_booking_rules', $bookingRules, $roomTypeId, $startDate, $endDate );
+
 			return $bookingRules;
 		}
 	}

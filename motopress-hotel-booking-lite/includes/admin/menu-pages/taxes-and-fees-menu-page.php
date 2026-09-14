@@ -86,6 +86,7 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 			isset( $_POST[ static::TAXES_FEES_PAGE_NONCE_NAME ] ) &&
 			wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST[ static::TAXES_FEES_PAGE_NONCE_NAME ] ) ), static::TAXES_FEES_PAGE_NONCE_NAME )
 		) {
+			$newFeesAndTaxes = array();
 
 			foreach ( array_keys( $this->fields ) as $option ) {
 
@@ -93,7 +94,15 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 				$value = isset( $_POST[ $option ] ) ? $_POST[ $option ] : array();
 				$value = $this->sanitizeOption( $option, $value );
 				$this->saveOption( $option, $value );
+
+				$newFeesAndTaxes[ $option ] = $value;
 			}
+
+			/**
+			 * @param array<string, array> $taxesAndFees Keys are prefixed, like
+			 *     "mphb_accommodation_taxes".
+			 */
+			do_action( 'mphb_taxes_and_fees_updated', $newFeesAndTaxes );
 		}
 	}
 

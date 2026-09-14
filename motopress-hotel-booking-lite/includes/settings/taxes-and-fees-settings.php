@@ -3,29 +3,10 @@
 namespace MPHB\Settings;
 
 class TaxesAndFeesSettings {
-
-	private $taxes = array();
-	private $fees  = null;
-
-	/**
-	 * @param string $name
-	 * @param int    $typeId
-	 *
-	 * @return array
-	 */
-	private function getTaxes( $name, $typeId ) {
-		if ( ! isset( $this->taxes[ $name ] ) ) {
-			$this->taxes[ $name ] = get_option( $name, array() );
-		}
-
-		if ( $typeId != 0 ) {
-			$taxes = $this->filterByTypeId( $this->taxes[ $name ], $typeId );
-		} else {
-			$taxes = $this->taxes[ $name ];
-		}
-
-		return $this->structurize( $taxes );
-	}
+	private ?array $fees = null;
+	private ?array $accommodationTaxes = null;
+	private ?array $serviceTaxes = null;
+	private ?array $feeTaxes = null;
 
 	public function getFees( $typeId = 0 ) {
 		if ( is_null( $this->fees ) ) {
@@ -57,15 +38,53 @@ class TaxesAndFeesSettings {
 	 * @return array
 	 */
 	public function getAccommodationTaxes( $typeId = 0 ) {
-		return $this->getTaxes( 'mphb_accommodation_taxes', $typeId );
+		if ( is_null( $this->accommodationTaxes ) ) {
+			$this->accommodationTaxes = get_option( 'mphb_accommodation_taxes', array() );
+		}
+
+		if ( $typeId != 0 ) {
+			$taxes = $this->filterByTypeId( $this->accommodationTaxes, $typeId );
+		} else {
+			$taxes = $this->accommodationTaxes;
+		}
+
+		return $this->structurize( $taxes );
 	}
 
-	public function getServiceTaxes( $typeId = 0 ) {
-		return $this->getTaxes( 'mphb_service_taxes', $typeId );
+	/**
+	 * Service taxes are not directly linked to accommodation type IDs ("rooms"
+	 * value is "-").
+	 */
+	public function getServiceTaxes() {
+		if ( is_null( $this->serviceTaxes ) ) {
+			$this->serviceTaxes = get_option( 'mphb_service_taxes', array() );
+
+			// Structurize immediately, as there will be no filters by room type
+			// ID in the future
+			if ( ! empty( $this->serviceTaxes ) ) {
+				$this->serviceTaxes = $this->structurize( $this->serviceTaxes );
+			}
+		}
+
+		return $this->serviceTaxes;
 	}
 
-	public function getFeeTaxes( $typeId = 0 ) {
-		return $this->getTaxes( 'mphb_fee_taxes', $typeId );
+	/**
+	 * Fee taxes are based only on the fee list and are not filtered by
+	 * accommodation type ID ("rooms" value is "-").
+	 */
+	public function getFeeTaxes() {
+		if ( is_null( $this->feeTaxes ) ) {
+			$this->feeTaxes = get_option( 'mphb_fee_taxes', array() );
+
+			// Structurize immediately, as there will be no filters by room type
+			// ID in the future
+			if ( ! empty( $this->feeTaxes ) ) {
+				$this->feeTaxes = $this->structurize( $this->feeTaxes );
+			}
+		}
+
+		return $this->feeTaxes;
 	}
 
 	private function filterByTypeId( $rules, $filterId ) {

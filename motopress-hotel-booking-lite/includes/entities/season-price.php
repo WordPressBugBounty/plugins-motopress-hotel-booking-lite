@@ -247,6 +247,91 @@ class SeasonPrice {
 		return array_fill_keys( $dates, $price );
 	}
 
+	public function isForDate( \DateTime $date ): bool {
+		$season = $this->getSeason();
+
+		return ! is_null( $season ) && $season->isDateInSeason( $date );
+	}
+
+	/**
+	 * @param bool $forceAddVariations Add price variations to the array even if
+	 *     the "enable_variations" parameter is false. False by default.
+	 * @return array <code>[
+	 *     "base"        => [
+	 *         "adults"   => integer,
+	 *         "children" => integer,
+	 *         "prices"   => [ Period days (integer) => Price (float) ]
+	 *     ],
+	 *     "extra_adult" => [ Period days (integer) => Price (float) ],
+	 *     "extra_child" => [ Period days (integer) => Price (float) ],
+	 *     "variations"  => [
+	 *         [
+	 *             "adults"   => integer,
+	 *             "children" => integer,
+	 *             "prices"   => [ Period days (integer) => Price (float) ]
+	 *         ]
+	 *     ]
+	 * ]</code>
+	 */
+	public function toArray( bool $forceAddVariations = false ): array {
+		$array = array(
+			'base'        => array(
+				'adults'   => (int) $this->baseAdults,
+				'children' => (int) $this->baseChildren,
+				'prices'   => array(),
+			),
+			'extra_adult' => array(),
+			'extra_child' => array(),
+			'variations'  => array(),
+		);
+
+		$periods = $this->stockPrices['periods']; // [1, 7, 30...]
+
+		foreach ( $this->stockPrices['prices'] as $i => $price ) {
+			if ( $price !== '' ) {
+				$periodDays = $periods[ $i ];
+				$array['base']['prices'][ $periodDays ] = (float) $price;
+			}
+		}
+
+		foreach ( $this->stockPrices['extra_adult_prices'] as $i => $price ) {
+			if ( $price !== '' ) {
+				$periodDays = $periods[ $i ];
+				$array['extra_adult'][ $periodDays ] = (float) $price;
+			}
+		}
+
+		foreach ( $this->stockPrices['extra_child_prices'] as $i => $price ) {
+			if ( $price !== '' ) {
+				$periodDays = $periods[ $i ];
+				$array['extra_child'][ $periodDays ] = (float) $price;
+			}
+		}
+
+		if ( $this->stockPrices['enable_variations'] || $forceAddVariations ) {
+			foreach ( $this->stockPrices['variations'] as $variation ) {
+				$prices = array();
+
+				foreach ( $variation['prices'] as $i => $price ) {
+					if ( $price !== '' ) {
+						$periodDays = $periods[ $i ];
+						$prices[ $periodDays ] = (float) $price;
+					}
+				}
+
+				if ( ! empty( $prices ) || $forceAddVariations ) {
+					$array['variations'][] = array(
+						'adults'   => (int) $variation['adults'],
+						'children' => (int) $variation['children'],
+						'prices'   => $prices,
+					);
+				}
+			}
+		}
+
+		return $array;
+	}
+
 	/**
 	 * @param array $atts
 	 * @param int   $atts['id']

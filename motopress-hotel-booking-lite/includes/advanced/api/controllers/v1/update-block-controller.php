@@ -90,7 +90,7 @@ class UpdateBlockController extends AbstractRestCommandController {
 	protected static function process_and_get_data_by_response_schema( \WP_REST_Request $request ) {
 		$requestArgs = $request->get_params();
 
-		$block = MPHB()->getBlocksRepository()->getItem( $requestArgs['block_id'] );
+		$block = $oldBlock = MPHB()->getBlocksRepository()->getItem( $requestArgs['block_id'] );
 
 		if ( is_null( $block ) ) {
 			throw new \Exception( esc_html__( 'Block not found.', 'motopress-hotel-booking' ) );
@@ -124,6 +124,12 @@ class UpdateBlockController extends AbstractRestCommandController {
 		if ( ! $isUpdated ) {
 			throw new \Exception( esc_html__( 'A database error.', 'motopress-hotel-booking' ) );
 		}
+
+		/**
+		 * @param array $newBlock
+		 * @param array $oldBlock
+		 */
+		do_action( 'mphb_block_updated', $block, $oldBlock );
 
 		return $block;
 	}

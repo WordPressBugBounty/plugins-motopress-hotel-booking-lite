@@ -160,6 +160,29 @@ class Booking {
 		return new self( $atts );
 	}
 
+	public function __clone() {
+		if ( isset( $this->dateTime ) ) {
+			$this->dateTime = clone $this->dateTime;
+		}
+
+		if ( isset( $this->checkInDate ) ) {
+			$this->checkInDate = clone $this->checkInDate;
+		}
+
+		if ( isset( $this->checkOutDate ) ) {
+			$this->checkOutDate = clone $this->checkOutDate;
+		}
+
+		$this->reservedRooms = array_map(
+			fn( ReservedRoom $room ) => clone $room,
+			$this->reservedRooms
+		);
+
+		if ( isset( $this->customer ) ) {
+			$this->customer = clone $this->customer;
+		}
+	}
+
 	/**
 	 *
 	 * @param array          $atts
@@ -771,5 +794,9 @@ class Booking {
 	 */
 	public function isPending() {
 		return in_array( $this->getStatus(), MPHB()->postTypes()->booking()->statuses()->getPendingRoomStatuses() );
+	}
+
+	public function isFailed(): bool {
+		return in_array( $this->getStatus(), MPHB()->postTypes()->booking()->statuses()->getFailedStatuses() );
 	}
 }

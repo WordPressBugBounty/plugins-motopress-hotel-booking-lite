@@ -63,7 +63,6 @@ class Translation {
 	 * @param string $name
 	 * @param string $value
 	 * @param string $context
-	 * @param string $language Optional.
 	 */
 	public function registerWPMLString( $name, $value, $context = null ) {
 		if ( is_null( $context ) ) {
@@ -104,11 +103,6 @@ class Translation {
 	public function changeLanguageForAdminEmail( $booking ) {
 
 		$adminLanguage = $this->getDefaultLanguage();
-
-		// now admin language is default language
-		// if ( !$this->isActiveLanguage( $adminLanguage ) ) {
-		// $adminLanguage = $this->getDefaultLanguage();
-		// }
 
 		if ( $adminLanguage !== $this->getCurrentLanguage() ) {
 			$this->restoreAfterEmail = true;
@@ -152,6 +146,9 @@ class Translation {
 		load_default_textdomain( $this->locale );
 
 		global $wp_locale;
+		// Rebuilding $wp_locale is the point of this method: the textdomains above were just
+		// reloaded for another locale, and core caches month and weekday names in this global.
+		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		$wp_locale = new \WP_Locale();
 	}
 
@@ -162,9 +159,9 @@ class Translation {
 	 * @param string $domain
 	 * @return string
 	 */
-	function setLocaleForEmails( $locale, $domain ) {
+	public function setLocaleForEmails( $locale, $domain ) {
 
-		if ( $domain == 'motopress-hotel-booking' && $this->locale ) {
+		if ( 'motopress-hotel-booking' === $domain && $this->locale ) {
 			$locale = $this->locale;
 		}
 
@@ -209,8 +206,15 @@ class Translation {
 	/**
 	 * Fill data for copy original content button
 	 *
-	 * @param type $data
-	 * @return string
+	 * Filters `wpml_copy_from_original_custom_fields`: the fields WPML's "Copy from
+	 * original" button fills in, keyed by field name. A field is a descriptor
+	 * `[ editor_name, editor_type, value ]`; WPML also puts a plain `post_type` string
+	 * into the same array.
+	 *
+	 * @see \WPML_Post_Edit_Ajax::copy_from_original_custom_fields() for what arrives here.
+	 *
+	 * @param array<string, string|array<string, string>> $data
+	 * @return array<string, string|array<string, string>>
 	 */
 	public function wpmlCopyPostMeta( $data ) {
 
@@ -245,9 +249,17 @@ class Translation {
 	}
 
 	/**
+	 * Switch to the language a persistence query asks for, before it runs get_posts()
 	 *
-	 * @param type $atts
-	 * @return type
+	 * Runs on `_mphb_persistence_before_get_posts`, which passes the WP_Query arguments.
+	 * MPHB's own `mphb_language` key among them says which language to query in:
+	 * `original` for the site's default language, or a WPML language code like `uk`.
+	 * Without that key nothing is switched. `resetWPMLStoredLanguage()` switches back.
+	 *
+	 * @see \MPHB\Persistences\CPTPersistence::getPosts()
+	 *
+	 * @param array<string, mixed> $atts WP_Query arguments, optionally with `mphb_language`.
+	 * @return void
 	 */
 	public function setWPMLDefaultLanguage( $atts ) {
 
@@ -269,6 +281,19 @@ class Translation {
 		$this->switchLanguage( $toLanguage );
 	}
 
+	/**
+	 * Switch back to the language stored before the persistence query
+	 *
+	 * Runs on `_mphb_persistence_after_get_posts`, the counterpart of
+	 * setWPMLDefaultLanguage(). The `mphb_language` check mirrors it: without that key
+	 * nothing was switched, so there is nothing to restore. The action also passes the
+	 * posts it found, but this callback is registered for one argument only.
+	 *
+	 * @see \MPHB\Persistences\CPTPersistence::getPosts()
+	 *
+	 * @param array<string, mixed> $atts WP_Query arguments, optionally with `mphb_language`.
+	 * @return void
+	 */
 	public function resetWPMLStoredLanguage( $atts ) {
 
 		if ( ! isset( $atts['mphb_language'] ) ) {
@@ -320,7 +345,7 @@ class Translation {
 			if ( empty( $locale ) ) {
 				return $this->getDefaultLanguage();
 			} else {
-				$language = explode( '_', $locale ); // "en" => ["en"], "ru_RU" -> ["ru", "RU"]
+				$language = explode( '_', $locale ); // phpcs:ignore parse locale: "en" => ["en"], "ru_RU" -> ["ru", "RU"]
 				return $language[0];
 			}
 		} else {
@@ -354,6 +379,47 @@ class Translation {
 	}
 
 	/**
+	 * Locale of the default language, like "en_US".
+	 *
+	 * Not get_locale(): under WPML in the admin that returns the locale of the language
+	 * taken from the auth cookie and caches it for the whole request, so switching the
+	 * current language does not change it.
+	 *
+	 * @return string
+	 */
+	public function getDefaultLocale() {
+
+		if ( ! $this->isActiveWPML() ) {
+			return get_locale();
+		}
+
+		$languages = apply_filters( 'wpml_active_languages', null );
+
+		return $languages[ $this->getDefaultLanguage() ]['default_locale'] ?? get_locale();
+	}
+
+	/**
+	 * Home URL of the site in its default language, without a language prefix.
+	 *
+	 * Not home_url(): under WPML in the admin that returns the URL of the language taken
+	 * from the auth cookie, and switching the current language does not change it - the
+	 * same trap as get_locale(). Everything else home_url() applies (SSL, domain mapping)
+	 * is kept, only the language is undone.
+	 *
+	 * @see https://wpml.org/wpml-hook/wpml_permalink/  Converts a URL to the given language.
+	 *
+	 * @return string
+	 */
+	public function getDefaultHomeUrl() {
+
+		if ( ! $this->isActiveWPML() ) {
+			return home_url();
+		}
+
+		return apply_filters( 'wpml_permalink', home_url(), $this->getDefaultLanguage() );
+	}
+
+	/**
 	 * @param int    $id
 	 * @param string $type
 	 * @param bool   $returnOriginal Optional. true by default.
@@ -361,7 +427,7 @@ class Translation {
 	 * @return int|null
 	 */
 	public function getOriginalId( $id, $type, $returnOriginal = true ) {
-		// return apply_filters( 'wpml_master_post_from_duplicate', $id );
+		// phpcs:ignore old code: return apply_filters( 'wpml_master_post_from_duplicate', $id );
 		return $this->translateId( $id, $type, $this->getDefaultLanguage(), $returnOriginal );
 	}
 
@@ -394,7 +460,7 @@ class Translation {
 		global $sitepress;
 
 		if ( ! isset( $sitepress ) ) {
-			$languageCode = substr( get_locale(), 0, 2 ); // "en", "uk" etc.
+			$languageCode = substr( get_locale(), 0, 2 ); // phpcs:ignore get language code from locale "en", "uk" etc.
 			return array( $languageCode => $id );
 		}
 
@@ -481,6 +547,9 @@ class Translation {
 	 */
 	public function isOriginalId( $id, $type ) {
 		$originalId = $this->getOriginalId( $id, $type, false );
+		// Loose on purpose: callers pass the id straight from WordPress (e.g. $postarr['ID'],
+		// a numeric string), while WPML returns an int. Strict comparison would never match.
+		// phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
 		return ( ! is_null( $originalId ) && $id == $originalId );
 	}
 
@@ -553,5 +622,4 @@ class Translation {
 
 		return $translatedIds;
 	}
-
 }

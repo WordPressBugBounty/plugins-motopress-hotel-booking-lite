@@ -110,6 +110,11 @@ class CreateBlockController extends AbstractRestCommandController {
 			throw new \Exception( esc_html__( 'A database error.', 'motopress-hotel-booking' ) );
 		}
 
+		/**
+		 * @param array $block
+		 */
+		do_action( 'mphb_block_created', $block );
+
 		return $block;
 	}
 }

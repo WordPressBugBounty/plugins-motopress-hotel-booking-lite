@@ -355,6 +355,12 @@ class BookingRulesController extends AbstractRestOptionsController {
 			}
 		}
 
+		/**
+		 * @param array<string, array> $newRules Keys are prefixed, like
+		 *     "mphb_min_stay_length".
+		 */
+		do_action( 'mphb_booking_rules_updated', $preparedRequest );
+
 		return $this->get_item( $request );
 	}
 

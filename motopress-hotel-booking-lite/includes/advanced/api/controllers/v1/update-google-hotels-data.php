@@ -4,6 +4,7 @@ namespace MPHB\Advanced\Api\Controllers\V1;
 
 use MPHB\Advanced\Api\Controllers\AbstractRestCommandController,
 	MPHB\Crons\SyncGoogleHotelsDataCron;
+use MPHB\GoogleHotels\GoogleHotelsHelper;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -121,6 +122,8 @@ class UpdateGoogleHotelsData extends AbstractRestCommandController {
 
 			$originalRoomType = $roomType->getOriginalRoomType();
 
+			$wasIncludedToGoogleHotels = $originalRoomType->isIncludeToGoogleHotels();
+
 			$originalRoomType->setIncludeToGoogleHotels(
 				$roomTypeData['isIncludeToGoogleHotels'] ?? false
 			);
@@ -156,9 +159,17 @@ class UpdateGoogleHotelsData extends AbstractRestCommandController {
 			$originalRoomType->setGHDescription( $roomTypeData['ghDescription'] ?? '' );
 
 			mphb_rooms_facade()->updateRoomType( $originalRoomType );
+
+			if ( $originalRoomType->isIncludeToGoogleHotels() !== $wasIncludedToGoogleHotels ) {
+				if ( ! $wasIncludedToGoogleHotels ) {
+					do_action( 'mphb_gh_include_room_type', $originalRoomType );
+				} else {
+					do_action( 'mphb_gh_exclude_room_type', $originalRoomType );
+				}
+			}
 		}
 
-		MPHB()->settings()->main()->updateGoogleHotelsIntegrationOn(
+		GoogleHotelsHelper::toggleIntegration(
 			$isMinimumOneRoomTypeIncludeToGoogleHotels && $requestData['isGoogleHotelsIntegrationOn']
 		);
 

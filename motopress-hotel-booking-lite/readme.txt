@@ -3,8 +3,8 @@ Contributors: MotoPress
 Donate link: https://motopress.com/
 Requires at least: 5.2
 Tags: hotel booking, reservation, hotel, booking engine, booking, booking calendar, booking system, calendar, online booking, airbnb, booking.com, homeaway, vrbo, tripadvisor, booking form, availability calendar, channel manager, property management system, vacation, travel
-Tested up to: 6.9
-Stable tag: 6.2.4
+Tested up to: 7.1
+Stable tag: 6.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -176,6 +176,9 @@ MotoPress Hotel Booking plugin is distributed under the terms of the GNU GPL.
 
 == Changelog ==
 
+= 6.3.0, Sep 14 2026
+* Improvement: Updated the Google Hotel Prices integration to support property prices and availability.
+
 = 6.2.4, Sep 4 2026
 * New: Added a dashboard widget with the latest news.
 
@@ -190,29 +193,6 @@ MotoPress Hotel Booking plugin is distributed under the terms of the GNU GPL.
 
 = 6.2.0, Jul 6 2026
 * Improvement: Google Hotel Prices integration now displays validation issues for properties and room types.
-
-= 6.1.0, Jun 15 2026
-* Improvement: Updated the Google Hotel Prices integration to support property image requirements. Please review your properties to ensure they meet the latest Google Hotels requirements.
-
-= 6.0.4, Jun 15 2026
-* Security: enhanced permission validation for the admin calendar and booking rule management.
-
-= 6.0.3, Jun 9 2026
-* Bug fix: Fixed an issue where administrators could not add bookings when the "Hide reservation forms and buttons" option was enabled.
-* Bug fix: Fixed an issue with adding and editing accommodation blocking rules on mobile devices.
-
-= 6.0.2, May 18 2026
-* Bug fix: Fixed several issues related to search, checkout, and payments after the 6.0.0 update.
-
-= 6.0.0, Apr 22 2026
-* New: Added a new admin calendar to create bookings and manage dates, rates, and availability in a single interface.
-* New: Added the ability to set daily pricing and availability in the new admin calendar.
-* New: Updated Stripe integration with support for managing payment methods via the Stripe dashboard, including local payment methods, Apple Pay, and Google Pay.
-* New: Added support for payment authorization in Stripe, allowing you to capture or release funds later.
-* Improvement: Fixed rare cases where payments were completed without creating a booking.
-* Improvement: Minor improvements and fixes to enhance overall usability and stability.
-* Notice: This update requires a database upgrade. Please back up your site before updating the plugin. New REST API routes have also been added.
-* Notice: Update the Accommodation-Based Payments, Payment Request, and WooCommerce Payments add-ons to the latest versions for proper compatibility with the core plugin.
 
 --------
 

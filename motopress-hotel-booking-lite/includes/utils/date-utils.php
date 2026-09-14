@@ -710,4 +710,25 @@ class DateUtils {
 
 		return $postDateTime;
 	}
+
+	/**
+	 * @return array<string, \DateTime> Every date is the first day of the month.
+	 */
+	public static function getMonthsInPeriod( \DateTime $dateFrom, \DateTime $dateTo ): array {
+		$months = array();
+		$date = clone $dateFrom;
+
+		while ( $date <= $dateTo ) {
+			$firstDayOfMonth = self::cloneModify( $date, 'first day of this month' );
+			$monthStr = $firstDayOfMonth->format( 'Y-m-01' );
+
+			$months[ $monthStr ] = $firstDayOfMonth;
+
+			$date->modify( 'first day of next month' );
+		}
+
+		ksort( $months );
+
+		return $months;
+	}
 }

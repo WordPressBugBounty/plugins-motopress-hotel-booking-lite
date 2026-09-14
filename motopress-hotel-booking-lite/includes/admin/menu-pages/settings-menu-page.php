@@ -1296,6 +1296,13 @@ class SettingsMenuPage extends AbstractMenuPage {
 	public function render() {
 		echo '<div class="wrap">';
 
+		/*
+		 * Anchor for WordPress admin notices. wp-admin/js/common.js moves every notice after
+		 * `.wp-header-end`, and without it after the first h1/h2 inside `.wrap` - which here is
+		 * the tabs wrapper, so notices landed below the tabs. Hidden by core CSS.
+		 */
+		echo '<hr class="wp-header-end">';
+
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		if ( isset( $_GET['settings-updated'] ) && rest_sanitize_boolean( wp_unslash( $_GET['settings-updated'] ) ) ) {
 			add_settings_error( 'mphbSettings', esc_attr( 'settings_updated' ), __( 'Settings saved.', 'motopress-hotel-booking' ), 'updated' );

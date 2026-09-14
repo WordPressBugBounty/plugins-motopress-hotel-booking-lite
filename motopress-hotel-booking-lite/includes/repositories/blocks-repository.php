@@ -191,6 +191,18 @@ class BlocksRepository {
 	}
 
 	/**
+	 * @return array<int, array> <code>[ Block ID => Block data ]</code>.
+	 */
+	public function getItems( array $blockIds ): array {
+		return $this->queryItems(
+			array(
+				'include'  => $blockIds,
+				'per_page' => -1,
+			)
+		);
+	}
+
+	/**
 	 * @param int $roomTypeId Room type ID or 0 (all room types).
 	 * @param string|\DateTime $dateFrom
 	 * @param string|\DateTime $dateTo
@@ -404,7 +416,7 @@ class BlocksRepository {
 	 *     @type string[] $restrictions "check-in"|"check-out"|"stay-in"
 	 *     @type int      $room_type_id
 	 * }
-	 * @return array <code>[ Block ID => Block data ]</code>.
+	 * @return array<int, array> <code>[ Block ID => Block data ]</code>.
 	 *
 	 * @global \wpdb $wpdb
 	 */

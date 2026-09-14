@@ -301,4 +301,22 @@ class TaxesAndFeesController extends AbstractRestOptionsController {
 	protected function prepareRequestFeeTaxes( $option ) {
 		return $this->addDefaultLimitAndRooms( $option );
 	}
+
+	/**
+	 * @param WP_REST_Request $request Full details about the request.
+	 * @return array|WP_Error Array on success, or error object on failure.
+	 */
+	public function update_item( $request ) {
+		$response = parent::update_item( $request );
+
+		if ( ! is_wp_error( $response ) ) {
+			/**
+			 * @param array<string, array> $taxesAndFees Keys are prefixed, like
+			 *     "mphb_accommodation_taxes".
+			 */
+			do_action( 'mphb_taxes_and_fees_updated', $response );
+		}
+
+		return $response;
+	}
 }

@@ -2,6 +2,8 @@
 
 namespace MPHB\Crons;
 
+use MPHB\GoogleHotels\GoogleHotelsHelper;
+
 class CronManager {
 
 	const INTERVAL_PENDING_USER_APPROVAL = 'mphb_pending_user_approval';
@@ -10,6 +12,10 @@ class CronManager {
 
 	const INTERVAL_QUARTER_AN_HOUR = 'mphb_15m';
 	const INTERVAL_HALF_AN_HOUR    = 'mphb_30m';
+	const INTERVAL_EVERY_10_MINS   = 'mphb_10m';
+	const INTERVAL_EVERY_5_MINS    = 'mphb_5m';
+	const INTERVAL_EVERY_3_MINS    = 'mphb_3m';
+
 	/** @since 5.0.0 */
 	const INTERVAL_WEEKLY          = 'mphb_weekly';
 
@@ -33,6 +39,8 @@ class CronManager {
 		// MPHB\Libraries\WP_SessionManager starts its own cron
 
 		$this->getCron( 'check_license_status' )->schedule();
+
+		add_action( 'init', array( $this, 'rescheduleGoogleHotelsCalendarSync' ) );
 
 	}
 
@@ -60,6 +68,11 @@ class CronManager {
 				self::INTERVAL_WEEKLY
 			),
 			new SyncGoogleHotelsDataCron(),
+			new SyncGoogleHotelsCalendarCron(),
+			new StartGoogleHotelsCalendarSyncCron(
+				'start_gh_calendar_sync',
+				self::INTERVAL_QUARTER_AN_HOUR
+			),
 		);
 
 		foreach ( $crons as $cron ) {
@@ -84,10 +97,24 @@ class CronManager {
 	 * @since 3.6.1 added new interval - "Half an Hour".
 	 */
 	public function createCronIntervals( $schedules ) {
+		$schedules[ self::INTERVAL_EVERY_3_MINS ] = array(
+			'interval' => 3 * MINUTE_IN_SECONDS,
+			'display'  => 'Every 3 minutes',
+		);
+
+		$schedules[ self::INTERVAL_EVERY_5_MINS ] = array(
+			'interval' => 5 * MINUTE_IN_SECONDS,
+			'display'  => 'Every 5 minutes',
+		);
+
+		$schedules[ self::INTERVAL_EVERY_10_MINS ] = array(
+			'interval' => 10 * MINUTE_IN_SECONDS,
+			'display'  => 'Every 10 minutes',
+		);
 
 		$schedules[ self::INTERVAL_QUARTER_AN_HOUR ] = array(
 			'interval' => 15 * MINUTE_IN_SECONDS,
-			'display'  => 'Quarter an Hour',
+			'display'  => 'Every 15 minutes',
 		);
 
 		$schedules[ self::INTERVAL_HALF_AN_HOUR ] = array(
@@ -118,6 +145,15 @@ class CronManager {
 		return $schedules;
 	}
 
+
+	public function rescheduleGoogleHotelsCalendarSync(): void {
+		if ( GoogleHotelsHelper::isIntegrationOn() ) {
+			$this->getCron( 'start_gh_calendar_sync' )->schedule();
+		}
+	}
+
+	public function do_on_plugin_activation(): void {
+	}
 
 	public function do_on_plugin_deactivation() {
 

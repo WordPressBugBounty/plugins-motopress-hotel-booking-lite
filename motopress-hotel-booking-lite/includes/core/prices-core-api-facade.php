@@ -49,7 +49,7 @@ class PricesCoreAPIFacade extends AbstractCoreAPIFacade {
 	 *                               If empty then returns rate without translation.
 	 * @return \MPHB\Entities\Rate|null
 	 */
-	public function getRateById( int $rateId, string $languageCode = '' ) {
+	public function getRateById( int $rateId, string $languageCode = '', bool $forceReload = false ) {
 
 		if ( ! empty( $languageCode ) ) {
 
@@ -61,9 +61,9 @@ class PricesCoreAPIFacade extends AbstractCoreAPIFacade {
 			$rateId = apply_filters( '_mphb_translate_post_id', $rateId );
 		}
 
-		$rate = MPHB()->getRateRepository()->findById( $rateId );
+		$rate = MPHB()->getRateRepository()->findById( $rateId, $forceReload );
 
-		return apply_filters( 'mphb_get_rate_by_id', $rate, $rateId, $languageCode );
+		return apply_filters( 'mphb_get_rate_by_id', $rate, $rateId, $languageCode, $forceReload );
 	}
 
 	/**
@@ -106,6 +106,38 @@ class PricesCoreAPIFacade extends AbstractCoreAPIFacade {
 			$result = MPHB()->getRateRepository()->findAllActiveByRoomType( $roomTypeOriginalId );
 
 			$result = apply_filters( 'mphb_get_room_type_active_rates', $result, $roomTypeOriginalId );
+
+			$this->setCachedData( $cacheDataId, '', $result );
+		}
+
+		return $result;
+	}
+
+	/**
+	 * @param string|null $language Pass null to use the current language.
+	 * @return Rate[]
+	 */
+	public function getActiveRatesBySeasonId( int $seasonId, ?string $language = 'original' ): array {
+		$cacheDataId = 'getActiveRatesBySeasonId' . $seasonId;
+		$result      = $this->getCachedData( $cacheDataId );
+
+		if ( $result === static::CACHED_DATA_NOT_FOUND ) {
+			$searchParams = array( 'active' => true );
+
+			if ( $language !== null ) {
+				$searchParams['mphb_language'] = $language;
+			}
+
+			$activeRates = MPHB()->getRateRepository()->findAll( $searchParams );
+
+			$result = array_filter( $activeRates, fn( $rate ) => $rate->isForSeason( $seasonId ) );
+
+			/**
+			 * @param Rate[] $rates
+			 * @param int $seasonId
+			 * @param string|null $language
+			 */
+			$result = apply_filters( 'mphb_get_active_rates_by_season', $result, $seasonId, $language );
 
 			$this->setCachedData( $cacheDataId, '', $result );
 		}
@@ -211,6 +243,15 @@ class PricesCoreAPIFacade extends AbstractCoreAPIFacade {
 	 */
 	public function formatPrice( float $price, array $atts = array() ) {
 		return PriceHelper::formatPrice( $price, $atts );
+	}
+
+	/**
+	 * @return array<string, float> <code>[ Date string ("Y-m-d") => Price (float) ]</code>
+	 */
+	public function getCustomPricesForPeriod( int $rateId, \DateTime $dateFrom, \DateTime $dateTo ): array {
+		$customPrices = MPHB()->getCustomPricesRepository()->getPricesForPeriod( $rateId, $dateFrom, $dateTo );
+
+		return $customPrices;
 	}
 
 	/**

@@ -577,6 +577,10 @@ class RoomAvailabilityHelper {
 
 			$maxStayNights = mphb_availability_facade()->getMaxStayNightsCount( $roomTypeOriginalId, $date, $isIgnoreBookingRules );
 
+			$minAdvanceDays = mphb_availability_facade()->getMinAdvanceReservationDaysCount( $roomTypeOriginalId, $date, $isIgnoreBookingRules );
+
+			$maxAdvanceDays = mphb_availability_facade()->getMaxAdvanceReservationDaysCount( $roomTypeOriginalId, $date, $isIgnoreBookingRules );
+
 			$result = new RoomTypeAvailabilityData(
 				$availabilityStatus,
 				$availableRoomsCount,
@@ -588,7 +592,9 @@ class RoomAvailabilityHelper {
 				$isEarlierThanMinAdvanceDate,
 				$isLaterThanMaxAdvanceDate,
 				$minStayNights,
-				$maxStayNights
+				$maxStayNights,
+				$minAdvanceDays,
+				$maxAdvanceDays,
 			);
 		}
 

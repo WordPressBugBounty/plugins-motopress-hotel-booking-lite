@@ -4,6 +4,7 @@ namespace MPHB\Advanced\Api\Controllers\V1;
 
 use MPHB\Advanced\Api\Controllers\AbstractRestCommandController,
 	MPHB\Crons\SyncGoogleHotelsDataCron;
+use MPHB\GoogleHotels\GoogleHotelsHelper;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -63,7 +64,7 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 	public static function getGoogleHotelsData( array $roomTypes ): array {
 
 		$result = array(
-			'isGoogleHotelsIntegrationOn' => MPHB()->settings()->main()->isGoogleHotelsIntegrationOn(),
+			'isGoogleHotelsIntegrationOn' => GoogleHotelsHelper::isIntegrationOn(),
 			'isDataSentToRemoteServer'    => SyncGoogleHotelsDataCron::isDataSentToRemoteServer(),
 			'properties'                  => array(),
 			'roomTypes'                   => array(),
@@ -100,6 +101,8 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 				'featuredImage'           => $featuredImageUrl,
 				'gallery'                 => $originalRoomType->getGalleryIds(),
 				'capacity'                => $originalRoomType->calcTotalCapacity(),
+				'maxAdults'               => $originalRoomType->getAdultsCapacity(),
+				'maxChildren'             => $originalRoomType->getChildrenCapacity(),
 				'isIncludeToGoogleHotels' => $originalRoomType->isIncludeToGoogleHotels(),
 				'propertyId'              => $originalRoomType->getPropertyId(),
 				'ghImages'                => $originalRoomType->getImages(),

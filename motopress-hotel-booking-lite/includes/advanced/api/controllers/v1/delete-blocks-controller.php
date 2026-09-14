@@ -62,12 +62,7 @@ class DeleteBlocksController extends AbstractRestCommandController {
 	 * @return array Array of deleted blocks.
 	 */
 	protected static function process_and_get_data_by_response_schema( \WP_REST_Request $request ) {
-		$blocks = MPHB()->getBlocksRepository()->queryItems(
-			array(
-				'include'  => $request->get_param( 'block_ids' ),
-				'per_page' => -1,
-			)
-		);
+		$blocks = MPHB()->getBlocksRepository()->getItems( $request->get_param( 'block_ids' ) );
 
 		if ( ! empty( $blocks ) ) {
 			$blockIds  = array_keys( $blocks );
@@ -76,6 +71,11 @@ class DeleteBlocksController extends AbstractRestCommandController {
 			if ( ! $isDeleted ) {
 				throw new \Exception( esc_html__( 'A database error.', 'motopress-hotel-booking' ) );
 			}
+
+			/**
+			 * @param array $blocks
+			 */
+			do_action( 'mphb_blocks_deleted', $blocks );
 		}
 
 		// Get rid of keys

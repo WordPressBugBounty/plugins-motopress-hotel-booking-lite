@@ -96,8 +96,7 @@ class PaymentEditCPTPage extends EditCPTPage {
 			<div class="mphb-log-wrapper">
 				<div class="mphb-log-message">
 				<?php
-					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					echo $log['message'];
+					echo esc_html( $log['message'] );
 				?>
 				</div>
 				<span class="mphb-log-meta">

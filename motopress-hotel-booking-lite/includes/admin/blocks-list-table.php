@@ -425,9 +425,19 @@ class BlocksListTable extends \WP_List_Table {
 		$deleted = false;
 
 		if ( $id !== 0 ) {
+			$block = MPHB()->getBlocksRepository()->getItem( $id );
+
 			switch( $action ) {
 				case 'delete':
-					$deleted = (int) MPHB()->getBlocksRepository()->deleteItem( $id );
+					$isDeleted = MPHB()->getBlocksRepository()->deleteItem( $id );
+					$deleted   = $isDeleted ? 1 : 0;
+
+					if ( $isDeleted && ! is_null( $block ) ) {
+						/**
+						 * @param array $block
+						 */
+						do_action( 'mphb_block_deleted', $block );
+					}
 					break;
 			}
 		}
@@ -464,10 +474,19 @@ class BlocksListTable extends \WP_List_Table {
 		$deleted = false;
 
 		if ( ! empty( $ids ) ) {
+			$blocks = MPHB()->getBlocksRepository()->getItems( $ids );
+
 			switch( $action ) {
 				case 'delete':
 					$isDeleted = MPHB()->getBlocksRepository()->deleteItems( $ids );
 					$deleted   = ( $isDeleted ) ? count( $ids ) : 0;
+
+					if ( $isDeleted && ! empty( $blocks ) ) {
+						/**
+						 * @param array $blocks
+						 */
+						do_action( 'mphb_blocks_deleted', $blocks );
+					}
 					break;
 			}
 		}

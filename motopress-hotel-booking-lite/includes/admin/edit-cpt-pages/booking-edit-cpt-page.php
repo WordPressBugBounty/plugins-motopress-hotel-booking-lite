@@ -169,20 +169,19 @@ class BookingEditCPTPage extends EditCPTPage {
 				$restApiKeyId = get_comment_meta( $log->comment_ID, 'api_key_id', true );
 				if ( $restApiKeyId ) {
 					$url        = admin_url( 'admin.php?page=mphb_settings&tab=advanced&edit-key=' . $restApiKeyId );
-					$authorName = sprintf( '<a target="_blank" href="%s">%s</a> by REST API', esc_url( $url ), $userName );
+					$authorName = sprintf( '<a target="_blank" href="%s">%s</a> by REST API', esc_url( $url ), esc_html( $userName ) );
 				} else {
 					$url        = get_edit_user_link( $log->user_id );
-					$authorName = sprintf( '<a target="_blank" href="%s">%s</a>', esc_url( $url ), $userName );
+					$authorName = sprintf( '<a target="_blank" href="%s">%s</a>', esc_url( $url ), esc_html( $userName ) );
 				}
 			} else {
-				$authorName = '<i>' . __( 'Auto', 'motopress-hotel-booking' ) . '</i>';
+				$authorName = '<i>' . esc_html__( 'Auto', 'motopress-hotel-booking' ) . '</i>';
 			}
 			?>
 			<div class="mphb-log-wrapper">
 				<div class="mphb-log-message">
 				<?php
-					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					echo $log->comment_content;
+					echo wp_kses_post( $log->comment_content );
 				?>
 				</div>
 				<span class="mphb-log-meta">

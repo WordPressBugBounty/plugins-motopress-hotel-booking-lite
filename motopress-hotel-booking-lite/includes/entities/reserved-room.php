@@ -113,6 +113,13 @@ class ReservedRoom {
 		}
 	}
 
+	public function __clone() {
+		$this->reservedServices = array_map(
+			fn( ReservedService $service ) => clone $service,
+			$this->reservedServices
+		);
+	}
+
 	/**
 	 *
 	 * @param array              $atts Array of atts
