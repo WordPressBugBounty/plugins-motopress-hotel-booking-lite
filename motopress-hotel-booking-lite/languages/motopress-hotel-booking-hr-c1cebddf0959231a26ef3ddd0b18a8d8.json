@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 "Dugme za rezervaciju"
             ],
             "Preset date. Formatted as %s": [
-                "Ponu\u0111eni datum. Oblikovano kao %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,19 +191,19 @@
                 ""
             ],
             "Gallery": [
-                "Galerija"
+                ""
             ],
             "View Button": [
-                "Dugme prikaza"
+                ""
             ],
             "Order": [
-                "Poredak"
+                ""
             ],
             "Order By": [
-                "Poredano po"
+                ""
             ],
             "No order": [
-                "Nema narud\u017ebi"
+                ""
             ],
             "Post ID": [
                 ""
@@ -218,37 +218,37 @@
                 ""
             ],
             "Post date": [
-                "Datum upisa"
+                ""
             ],
             "Last modified date": [
-                "Datum zadnje izmjene"
+                ""
             ],
             "Parent ID": [
-                "Glavni ID"
+                ""
             ],
             "Random order": [
-                "Nasumi\u010dni redoslijed"
+                ""
             ],
             "Number of comments": [
-                "Broj komentara"
+                ""
             ],
             "Relevance": [
-                "Va\u017enost"
+                ""
             ],
             "Page order": [
-                "Poredak stranica"
+                ""
             ],
             "Meta value": [
-                "Vrijednost"
+                ""
             ],
             "Numeric meta value": [
-                "Broj\u010dana vrijednost"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Uzlazno (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Silazno  (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
                 ""
@@ -260,25 +260,25 @@
                 ""
             ],
             "Any": [
-                "Bilo koji"
+                ""
             ],
             "Numeric": [
-                "Broj\u010dano"
+                ""
             ],
             "Binary": [
-                "Binarno"
+                ""
             ],
             "String": [
-                "Niz"
+                ""
             ],
             "Time": [
-                "Vrijeme"
+                ""
             ],
             "Date and time": [
-                "Datum i vrijeme"
+                ""
             ],
             "Decimal number": [
-                "Decimalni broj"
+                ""
             ],
             "Signed number": [
                 ""

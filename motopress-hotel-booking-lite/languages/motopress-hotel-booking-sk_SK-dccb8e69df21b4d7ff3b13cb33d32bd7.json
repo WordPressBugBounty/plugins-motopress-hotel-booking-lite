@@ -1,0 +1,474 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/calendar\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "sk_SK",
+                "plural-forms": "nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;"
+            },
+            "Delete": [
+                "Vymaza\u0165"
+            ],
+            "Email": [
+                "Email"
+            ],
+            "Create Booking": [
+                "Vytvori\u0165 rezerv\u00e1ciu"
+            ],
+            "Adults:": [
+                "Dospel\u00ed:"
+            ],
+            "Children:": [
+                "Deti:"
+            ],
+            "Accommodations": [
+                "Ubytovania"
+            ],
+            "Move up": [
+                "Posun\u00fa\u0165 nahor"
+            ],
+            "Move down": [
+                "Posun\u00fa\u0165 nadol"
+            ],
+            "Move to top": [
+                "Posun\u00fa\u0165 celkom hore"
+            ],
+            "Move to bottom": [
+                "Posun\u00fa\u0165 celkom dole"
+            ],
+            "Select all": [
+                "Vybra\u0165 v\u0161etko"
+            ],
+            "Unselect all": [
+                "Odzna\u010di\u0165 v\u0161etko"
+            ],
+            "Edit": [
+                "Upravi\u0165"
+            ],
+            "All": [
+                "V\u0161etko"
+            ],
+            "Nights": [
+                "Noc\u00ed"
+            ],
+            "Remove": [
+                "Odstr\u00e1ni\u0165"
+            ],
+            "Price per extra adult": [
+                "Cena za extra dospel\u00e9ho"
+            ],
+            "Price per extra child": [
+                "Cena za extra die\u0165a"
+            ],
+            "Status": [
+                "Status"
+            ],
+            "Price": [
+                "Cena"
+            ],
+            "Accommodation": [
+                "Ubytovanie"
+            ],
+            "Paid: %s": [
+                "Zaplaten\u00e9: %s"
+            ],
+            "Accommodation Type": [
+                "Typ ubytovania"
+            ],
+            "Add New Season Price": [
+                "Prida\u0165 nov\u00fa sez\u00f3nnu cenu"
+            ],
+            "Days": [
+                "Dni"
+            ],
+            "Repeat": [
+                "Opakova\u0165"
+            ],
+            "Booking Rules": [
+                "Rezerva\u010dn\u00e9 pravidl\u00e1"
+            ],
+            "Check-in days": [
+                "Dni pr\u00edchodov"
+            ],
+            "Seasons": [
+                "Sez\u00f3ny"
+            ],
+            "Check-out days": [
+                "Dni odchodov"
+            ],
+            "Minimum stay": [
+                "Minim\u00e1lna doba pobytu"
+            ],
+            "Maximum stay": [
+                "Maxim\u00e1lna d\u013a\u017eka pobytu"
+            ],
+            "Restriction": [
+                "Obmedzenie"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                "Pravidlo Not check-in ozna\u010duje d\u00e1tum ako nedostupn\u00fd pre registr\u00e1ciu pr\u00edchodu."
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                "Pravidlo Not check-in ozna\u010duje d\u00e1tum ako nedostupn\u00fd pre odchod z ubytovania."
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                "Pravidlo Not stay-in zobrazuje d\u00e1tum ako zablokovan\u00fd. Tento d\u00e1tum nie je k dispoz\u00edcii na registr\u00e1ciu pr\u00edchodu a odhl\u00e1senie z ubytovania v nasleduj\u00faci de\u0148."
+            ],
+            "Not check-in": [
+                "Not check-in"
+            ],
+            "Not check-out": [
+                "Not check-out"
+            ],
+            "Not stay-in": [
+                "Not stay-in"
+            ],
+            "Comment": [
+                "Koment\u00e1r"
+            ],
+            "Minimum advance reservation": [
+                "Minim\u00e1lny \u010das rezerv\u00e1cie vopred"
+            ],
+            "Maximum advance reservation": [
+                "Maxim\u00e1lny \u010das rezerv\u00e1cie vopred"
+            ],
+            "Booking buffer": [
+                "Rezerva\u010dn\u00fd buffer (zamknutie dn\u00ed okolo rezerv\u00e1cie)"
+            ],
+            "Calendar": [
+                "Kalend\u00e1r"
+            ],
+            "First Name": [
+                "Meno"
+            ],
+            "Last Name": [
+                "Priezvisko"
+            ],
+            "Phone": [
+                "Telef\u00f3n"
+            ],
+            "Address": [
+                "Adresa"
+            ],
+            "State \/ County": [
+                "\u0160t\u00e1t \/ krajina"
+            ],
+            "Country": [
+                "Krajina"
+            ],
+            "City": [
+                "Mesto"
+            ],
+            "Postcode": [
+                "PS\u010c"
+            ],
+            "Cancel": [
+                "Zru\u0161i\u0165"
+            ],
+            "Title": [
+                "Titul"
+            ],
+            "Accommodation Types": [
+                "Typy ubytovania"
+            ],
+            "Description": [
+                "Popis"
+            ],
+            "Summary": [
+                "Zhrnutie"
+            ],
+            "Source": [
+                "Zdroj"
+            ],
+            "Customer Note": [
+                "Pozn\u00e1mka z\u00e1kazn\u00edka"
+            ],
+            "Coupon": [
+                "Kup\u00f3n"
+            ],
+            "Notes": [
+                "Pozn\u00e1mky"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Potvrden\u00e9"
+            ],
+            "Booked": [
+                "Rezervovan\u00e9"
+            ],
+            "Pending": [
+                "\u010cakaj\u00face"
+            ],
+            "External": [
+                "Extern\u00fd"
+            ],
+            "Blocked": [
+                "Zablokovn\u00e9"
+            ],
+            "Check-in": [
+                "Check-in"
+            ],
+            "Check-out": [
+                "Check-out"
+            ],
+            "Blocked because the linked accommodation is booked": [
+                "Blokovan\u00e9, preto\u017ee prepojen\u00e9 ubytovanie je rezervovan\u00e9"
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "\u010cak\u00e1 na potvrdenie u\u017e\u00edvate\u013eom"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "\u010cakaj\u00faca platba"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "\u010cak\u00e1 na schv\u00e1lenie administr\u00e1torom"
+            ],
+            "Booking status\u0004Abandoned": [
+                "Opusten\u00e9"
+            ],
+            "Booking status\u0004Cancelled": [
+                "Zru\u0161en\u00e9"
+            ],
+            "No payments found": [
+                "Nena\u0161li sa \u017eiadne platby"
+            ],
+            "Season": [
+                "Sez\u00f3na"
+            ],
+            "Rates": [
+                "Sadzby"
+            ],
+            "Add New Rate": [
+                "Prida\u0165 nov\u00fa sadzbu"
+            ],
+            "Base Adults Occupancy": [
+                "Z\u00e1kladn\u00e1 obsadenos\u0165 dospel\u00fdmi"
+            ],
+            "Base Children Occupancy": [
+                "Z\u00e1kladn\u00e1 obsadenos\u0165 de\u0165mi"
+            ],
+            "Applied for days": [
+                "Aplikovan\u00fd na dni"
+            ],
+            "Annual repeats begin on the Start date of the season, for one year from the current date.": [
+                "Ka\u017edoro\u010dn\u00e9 opakovania sa za\u010d\u00ednaj\u00fa v de\u0148 za\u010diatku sez\u00f3ny, po dobu jedn\u00e9ho roka od aktu\u00e1lneho d\u00e1tumu."
+            ],
+            "Repeat until date": [
+                "Opakova\u0165 do d\u00e1tumu"
+            ],
+            "Add New Season": [
+                "Prida\u0165 nov\u00fa sez\u00f3nu"
+            ],
+            "Edit Season": [
+                "Upravi\u0165 sez\u00f3nu"
+            ],
+            "Apply": [
+                "Pou\u017ei\u0165"
+            ],
+            "Today": [
+                "Dnes"
+            ],
+            "This week": [
+                "Tento t\u00fd\u017ede\u0148"
+            ],
+            "This month": [
+                "Tento mesiac"
+            ],
+            "This quarter": [
+                "Tento \u0161tvr\u0165rok"
+            ],
+            "This year": [
+                "Tento rok"
+            ],
+            "Book": [
+                "Objedna\u0165"
+            ],
+            "x %d guest": [
+                "x %d hos\u0165",
+                "x %d hostia",
+                "x %d host\u00ed",
+                "x %d hostia"
+            ],
+            "x %d time": [
+                "X %d kr\u00e1t",
+                "x %d kr\u00e1t",
+                "x %d kr\u00e1t",
+                "x %d kr\u00e1t"
+            ],
+            "Accommodation Type:": [
+                "Typ ubytovania:"
+            ],
+            "Rate:": [
+                "Sadzba:"
+            ],
+            "Services:": [
+                "Slu\u017eby:"
+            ],
+            "Guest:": [
+                "Hos\u0165:"
+            ],
+            "Total Paid": [
+                "Celkom zaplaten\u00e9"
+            ],
+            "To Pay": [
+                "K \u00fahrade"
+            ],
+            "Add Payment Manually": [
+                "Prida\u0165 manu\u00e1lnu platbu"
+            ],
+            "No bookings found.": [
+                "Neboli n\u00e1jden\u00e9 \u017eiadne rezerv\u00e1cie."
+            ],
+            "Base price": [
+                "Z\u00e1kladn\u00e1 cena"
+            ],
+            "Save": [
+                "Ulo\u017ei\u0165"
+            ],
+            "Nothing found.": [
+                "Ni\u010d sa nena\u0161lo."
+            ],
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
+            ],
+            "Block Accommodations": [
+                ""
+            ],
+            "Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Block": [
+                ""
+            ],
+            "Daily price": [
+                ""
+            ],
+            "Select an action": [
+                ""
+            ],
+            "Daily": [
+                ""
+            ],
+            "Rule #%1$d": [
+                ""
+            ],
+            "Min. stay": [
+                ""
+            ],
+            "Max. stay": [
+                ""
+            ],
+            "Min. adv. res.": [
+                ""
+            ],
+            "Max. adv. res.": [
+                ""
+            ],
+            "Allow": [
+                ""
+            ],
+            "Disallow": [
+                ""
+            ],
+            "Max. advance reservation": [
+                ""
+            ],
+            "Min. advance reservation": [
+                ""
+            ],
+            "Please select at least one accommodation type.": [
+                ""
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                ""
+            ],
+            "Create your first accommodation type.": [
+                ""
+            ],
+            "Next 7 days": [
+                ""
+            ],
+            "Next 14 days": [
+                ""
+            ],
+            "Next 30 days": [
+                ""
+            ],
+            "Previous": [
+                ""
+            ],
+            "Next": [
+                ""
+            ],
+            "Reload": [
+                ""
+            ],
+            "Filter items\u2026": [
+                ""
+            ],
+            "Compact Calendar": [
+                ""
+            ],
+            "List": [
+                ""
+            ],
+            "Booking #%1$d": [
+                ""
+            ],
+            "Total Price": [
+                ""
+            ],
+            "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Repeat annually": [
+                ""
+            ],
+            "Repeat annually, until %1$s": [
+                ""
+            ],
+            "Priority": [
+                ""
+            ],
+            "First": [
+                ""
+            ],
+            "Last": [
+                ""
+            ],
+            "From\/Till": [
+                ""
+            ],
+            "Edit Block": [
+                ""
+            ],
+            "Select\u2026": [
+                ""
+            ],
+            "Update %1$s rate for %2$s": [
+                ""
+            ],
+            "Edit Season Price": [
+                ""
+            ],
+            "Quick booking rules": [
+                ""
+            ],
+            "Check-in today": [
+                ""
+            ],
+            "Check-out today": [
+                ""
+            ],
+            "In-House": [
+                ""
+            ]
+        }
+    }
+}

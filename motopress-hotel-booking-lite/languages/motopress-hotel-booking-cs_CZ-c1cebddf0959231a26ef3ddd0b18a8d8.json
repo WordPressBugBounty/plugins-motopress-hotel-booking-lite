@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 "Tla\u010d\u00edtko rezervace"
             ],
             "Preset date. Formatted as %s": [
-                "P\u0159ednastaven\u00e9 datum. Form\u00e1tov\u00e1no jako %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,109 +191,109 @@
                 ""
             ],
             "Gallery": [
-                "Galerie"
+                ""
             ],
             "View Button": [
-                "Zobrazit tla\u010d\u00edtko"
+                ""
             ],
             "Order": [
-                "Po\u0159ad\u00ed"
+                ""
             ],
             "Order By": [
-                "Se\u0159adit podle"
+                ""
             ],
             "No order": [
-                "Bez po\u0159ad\u00ed"
+                ""
             ],
             "Post ID": [
-                "ID p\u0159\u00edsp\u011bvku"
+                ""
             ],
             "Post author": [
-                "Autor p\u0159\u00edsp\u011bvku"
+                ""
             ],
             "Post title": [
-                "N\u00e1zev p\u0159\u00edsp\u011bvku"
+                ""
             ],
             "Post name (post slug)": [
-                "Jm\u00e9no p\u0159\u00edsp\u011bvku (post slug)"
+                ""
             ],
             "Post date": [
-                "Datum p\u0159\u00edsp\u011bvku"
+                ""
             ],
             "Last modified date": [
-                "Datum posledn\u00ed \u00fapravy"
+                ""
             ],
             "Parent ID": [
-                "Mate\u0159sk\u00e9 ID"
+                ""
             ],
             "Random order": [
-                "N\u00e1hodn\u00e9 po\u0159ad\u00ed"
+                ""
             ],
             "Number of comments": [
-                "Po\u010det koment\u00e1\u0159\u016f"
+                ""
             ],
             "Relevance": [
-                "Relevance"
+                ""
             ],
             "Page order": [
-                "Po\u0159ad\u00ed str\u00e1nky"
+                ""
             ],
             "Meta value": [
-                "Meta hodnota"
+                ""
             ],
             "Numeric meta value": [
-                "\u010c\u00edseln\u00e1 met hodnota"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Vzestupn\u011b (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Sestupn\u011b (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "Meta jm\u00e9no"
+                ""
             ],
             "Meta Type": [
-                "Meta typ"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Specifikovan\u00fd typ vlastn\u00edho pole. Lze pou\u017e\u00edt ve spojen\u00ed s \"orderby\" = \"meta_value\"."
+                ""
             ],
             "Any": [
-                "Jak\u00fdkoliv"
+                ""
             ],
             "Numeric": [
-                "Numerick\u00fd"
+                ""
             ],
             "Binary": [
-                "Bin\u00e1rn\u00ed"
+                ""
             ],
             "String": [
-                "V\u00fdraz"
+                ""
             ],
             "Time": [
-                "\u010cas"
+                ""
             ],
             "Date and time": [
-                "Datum a \u010das"
+                ""
             ],
             "Decimal number": [
-                "Desetinn\u00e9 \u010d\u00edslo"
+                ""
             ],
             "Signed number": [
-                "P\u0159i\u0159azen\u00e9 \u010d\u00edslo"
+                ""
             ],
             "Unsigned number": [
-                "Nep\u0159i\u0159azen\u00e9 \u010d\u00edslo"
+                ""
             ],
             "Query Settings": [
-                "Nastaven\u00ed dotazu"
+                ""
             ],
             "Relation": [
-                "Vztah"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "Hodnoty: cel\u00e9 \u010d\u00edslo, -1 pro zobrazen\u00ed v\u0161ech, v\u00fdchoz\u00ed: \u201eBlogov\u00e9 str\u00e1nky se zobrazuj\u00ed nejv\u00fd\u0161\u201c"
+                ""
             ],
             "Select an accommodation type.": [
                 ""

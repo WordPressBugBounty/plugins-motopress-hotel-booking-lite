@@ -342,6 +342,6 @@ class RoomsAvailabilityCoreAPIFacade extends AbstractCoreAPIFacade {
 	 * @return array [ room_type_original_id (int) => rooms_count (int), ... ]
 	 */
 	public function getRecommendedRoomsCombination( array $availableRooms, int $requestedAdultsCount, int $requestedChildrenCount = 0 ): array {
-		return RoomsRecommendationsHelper::getRecommendedRoomsCombination( $availableRooms, $requestedAdultsCount, $requestedChildrenCount );
+		return Helpers\RoomsRecommendationHelper::getRecommendedRoomsCombination( $availableRooms, $requestedAdultsCount, $requestedChildrenCount );
 	}
 }

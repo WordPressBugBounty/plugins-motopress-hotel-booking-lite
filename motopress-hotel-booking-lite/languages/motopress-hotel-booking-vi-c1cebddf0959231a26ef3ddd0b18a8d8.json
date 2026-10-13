@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 ""
             ],
             "Preset date. Formatted as %s": [
-                "Ng\u00e0y \u0111\u1eb7t tr\u01b0\u1edbc. \u0110\u01b0\u1ee3c \u0111\u1ecbnh d\u1ea1ng l\u00e0 %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,22 +191,22 @@
                 ""
             ],
             "Gallery": [
-                "H\u00ecnh \u1ea3nh"
+                ""
             ],
             "View Button": [
                 ""
             ],
             "Order": [
-                "\u0110\u1eb7t h\u00e0ng"
+                ""
             ],
             "Order By": [
-                "\u0110\u1eb7t b\u1edfi"
+                ""
             ],
             "No order": [
                 ""
             ],
             "Post ID": [
-                "ID b\u00e0i"
+                ""
             ],
             "Post author": [
                 ""
@@ -272,7 +272,7 @@
                 ""
             ],
             "Time": [
-                "Th\u1eddi gian"
+                ""
             ],
             "Date and time": [
                 ""

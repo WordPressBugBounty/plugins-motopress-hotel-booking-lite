@@ -1,0 +1,474 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/calendar\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "ru_RU",
+                "plural-forms": "nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));"
+            },
+            "Delete": [
+                "\u0423\u0434\u0430\u043b\u0438\u0442\u044c"
+            ],
+            "Email": [
+                "\u042d\u043b. \u043f\u043e\u0447\u0442\u0430"
+            ],
+            "Create Booking": [
+                "\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u0431\u0440\u043e\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435"
+            ],
+            "Adults:": [
+                "\u0412\u0437\u0440\u043e\u0441\u043b\u044b\u0445:"
+            ],
+            "Children:": [
+                "\u0414\u0435\u0442\u0435\u0439:"
+            ],
+            "Accommodations": [
+                "\u0412\u0430\u0440\u0438\u0430\u043d\u0442\u044b \u0440\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u0438\u044f"
+            ],
+            "Move up": [
+                ""
+            ],
+            "Move down": [
+                ""
+            ],
+            "Move to top": [
+                ""
+            ],
+            "Move to bottom": [
+                ""
+            ],
+            "Select all": [
+                "\u0412\u044b\u0431\u0440\u0430\u0442\u044c \u0432\u0441\u0435"
+            ],
+            "Unselect all": [
+                "\u0421\u043d\u044f\u0442\u044c \u0432\u0441\u0435"
+            ],
+            "Edit": [
+                "\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c"
+            ],
+            "All": [
+                "\u0412\u0441\u0435"
+            ],
+            "Nights": [
+                "\u0421\u0443\u0442\u043a\u0438"
+            ],
+            "Remove": [
+                "\u0423\u0434\u0430\u043b\u0438\u0442\u044c"
+            ],
+            "Price per extra adult": [
+                ""
+            ],
+            "Price per extra child": [
+                ""
+            ],
+            "Status": [
+                "\u0421\u0442\u0430\u0442\u0443\u0441"
+            ],
+            "Price": [
+                "\u0426\u0435\u043d\u0430"
+            ],
+            "Accommodation": [
+                "\u0420\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u0438\u0435"
+            ],
+            "Paid: %s": [
+                "\u041e\u043f\u043b\u0430\u0447\u0435\u043d\u043e: %s"
+            ],
+            "Accommodation Type": [
+                "\u0422\u0438\u043f \u0440\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u0438\u044f"
+            ],
+            "Add New Season Price": [
+                "\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043d\u043e\u0432\u0443\u044e \u0446\u0435\u043d\u0443 \u0441\u0435\u0437\u043e\u043d\u0430"
+            ],
+            "Days": [
+                "\u0414\u043d\u0438"
+            ],
+            "Repeat": [
+                "\u041f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u044c"
+            ],
+            "Booking Rules": [
+                "\u041f\u0440\u0430\u0432\u0438\u043b\u0430 \u0431\u0440\u043e\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f"
+            ],
+            "Check-in days": [
+                "\u0414\u043d\u0438 \u0437\u0430\u0441\u0435\u043b\u0435\u043d\u0438\u044f"
+            ],
+            "Seasons": [
+                "\u0421\u0435\u0437\u043e\u043d\u044b"
+            ],
+            "Check-out days": [
+                "\u0414\u043d\u0438 \u0432\u044b\u0441\u0435\u043b\u0435\u043d\u0438\u044f"
+            ],
+            "Minimum stay": [
+                "\u041c\u0438\u043d\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0431\u044b\u0432\u0430\u043d\u0438\u0435"
+            ],
+            "Maximum stay": [
+                "\u041c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0431\u044b\u0432\u0430\u043d\u0438\u0435"
+            ],
+            "Restriction": [
+                "\u041e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Not check-in": [
+                "\u0417\u0430\u0441\u0435\u043b\u0435\u043d\u0438\u0435 \u0437\u0430\u043f\u0440\u0435\u0449\u0435\u043d\u043e"
+            ],
+            "Not check-out": [
+                "\u0412\u044b\u0441\u0435\u043b\u0435\u043d\u0438\u0435 \u0437\u0430\u043f\u0440\u0435\u0449\u0435\u043d\u043e"
+            ],
+            "Not stay-in": [
+                "\u041f\u0440\u0435\u0431\u044b\u0432\u0430\u043d\u0438\u0435 \u0437\u0430\u043f\u0440\u0435\u0449\u0435\u043d\u043e"
+            ],
+            "Comment": [
+                "\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439"
+            ],
+            "Minimum advance reservation": [
+                "\u041c\u0438\u043d\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u0432\u0430\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0431\u0440\u043e\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435"
+            ],
+            "Maximum advance reservation": [
+                "\u041c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u0432\u0430\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0431\u0440\u043e\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435"
+            ],
+            "Booking buffer": [
+                "\u0411\u0443\u0444\u0435\u0440 \u0431\u0440\u043e\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f"
+            ],
+            "Calendar": [
+                "\u041a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u044c"
+            ],
+            "First Name": [
+                "\u0418\u043c\u044f"
+            ],
+            "Last Name": [
+                "\u0424\u0430\u043c\u0438\u043b\u0438\u044f"
+            ],
+            "Phone": [
+                "\u0422\u0435\u043b\u0435\u0444\u043e\u043d"
+            ],
+            "Address": [
+                "\u0410\u0434\u0440\u0435\u0441"
+            ],
+            "State \/ County": [
+                "\u041e\u0431\u043b\u0430\u0441\u0442\u044c\/\u0440\u0435\u0433\u0438\u043e\u043d"
+            ],
+            "Country": [
+                "\u0421\u0442\u0440\u0430\u043d\u0430"
+            ],
+            "City": [
+                "\u0413\u043e\u0440\u043e\u0434"
+            ],
+            "Postcode": [
+                "\u0418\u043d\u0434\u0435\u043a\u0441"
+            ],
+            "Cancel": [
+                "\u041e\u0442\u043c\u0435\u043d\u0438\u0442\u044c"
+            ],
+            "Title": [
+                "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435"
+            ],
+            "Accommodation Types": [
+                "\u0422\u0438\u043f\u044b \u0440\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u0438\u044f"
+            ],
+            "Description": [
+                "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435"
+            ],
+            "Summary": [
+                ""
+            ],
+            "Source": [
+                ""
+            ],
+            "Customer Note": [
+                "\u041f\u043e\u0436\u0435\u043b\u0430\u043d\u0438\u0435 \u043a\u043b\u0438\u0435\u043d\u0442\u0430"
+            ],
+            "Coupon": [
+                "\u041a\u0443\u043f\u043e\u043d"
+            ],
+            "Notes": [
+                "\u041f\u0440\u0438\u043c\u0435\u0447\u0430\u043d\u0438\u044f"
+            ],
+            "Booking status\u0004Confirmed": [
+                "\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u043e"
+            ],
+            "Booked": [
+                "\u0417\u0430\u0431\u0440\u043e\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u043e"
+            ],
+            "Pending": [
+                "\u0412 \u043e\u0436\u0438\u0434\u0430\u043d\u0438\u0438"
+            ],
+            "External": [
+                "\u0412\u043d\u0435\u0448\u043d\u0438\u0439"
+            ],
+            "Blocked": [
+                "\u0417\u0430\u0431\u043b\u043e\u043a\u0438\u0440\u043e\u0432\u0430\u043d\u043e "
+            ],
+            "Check-in": [
+                "\u0417\u0430\u0435\u0437\u0434"
+            ],
+            "Check-out": [
+                "\u041e\u0442\u044a\u0435\u0437\u0434"
+            ],
+            "Blocked because the linked accommodation is booked": [
+                ""
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "\u041e\u0436\u0438\u0434\u0430\u0435\u0442 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u044f \u043a\u043b\u0438\u0435\u043d\u0442\u0430"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "\u041e\u0436\u0438\u0434\u0430\u0435\u0442 \u043e\u043f\u043b\u0430\u0442\u044b"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "\u041e\u0436\u0438\u0434\u0430\u0435\u0442 \u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u0430"
+            ],
+            "Booking status\u0004Abandoned": [
+                "\u0417\u0430\u0431\u0440\u043e\u0448\u0435\u043d"
+            ],
+            "Booking status\u0004Cancelled": [
+                "\u041e\u0442\u043c\u0435\u043d\u0435\u043d"
+            ],
+            "No payments found": [
+                "\u041d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e \u043d\u0438 \u043e\u0434\u043d\u043e\u0433\u043e \u043f\u043b\u0430\u0442\u0435\u0436\u0430"
+            ],
+            "Season": [
+                "\u0421\u0435\u0437\u043e\u043d"
+            ],
+            "Rates": [
+                "\u0422\u0430\u0440\u0438\u0444\u044b"
+            ],
+            "Add New Rate": [
+                "\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0442\u0430\u0440\u0438\u0444"
+            ],
+            "Base Adults Occupancy": [
+                ""
+            ],
+            "Base Children Occupancy": [
+                ""
+            ],
+            "Applied for days": [
+                "\u041f\u0440\u0438\u043c\u0435\u043d\u044f\u0435\u0442\u0441\u044f \u043a \u0434\u043d\u044f\u043c"
+            ],
+            "Annual repeats begin on the Start date of the season, for one year from the current date.": [
+                ""
+            ],
+            "Repeat until date": [
+                ""
+            ],
+            "Add New Season": [
+                "\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0441\u0435\u0437\u043e\u043d"
+            ],
+            "Edit Season": [
+                "\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0441\u0435\u0437\u043e\u043d"
+            ],
+            "Apply": [
+                "\u041f\u0440\u0438\u043c\u0435\u043d\u0438\u0442\u044c"
+            ],
+            "Today": [
+                "C\u0435\u0433\u043e\u0434\u043d\u044f"
+            ],
+            "This week": [
+                "\u042d\u0442\u0430 \u043d\u0435\u0434\u0435\u043b\u044f"
+            ],
+            "This month": [
+                "\u042d\u0442\u043e\u0442 \u043c\u0435\u0441\u044f\u0446"
+            ],
+            "This quarter": [
+                "\u042d\u0442\u043e\u0442 \u043a\u0432\u0430\u0440\u0442\u0430\u043b"
+            ],
+            "This year": [
+                "\u042d\u0442\u043e\u0442 \u0433\u043e\u0434"
+            ],
+            "Book": [
+                "\u0417\u0430\u0431\u0440\u043e\u043d\u0438\u0440\u043e\u0432\u0430\u0442\u044c"
+            ],
+            "x %d guest": [
+                "x %d \u0433\u043e\u0441\u0442\u044c",
+                "x %d \u0433\u043e\u0441\u0442\u044f",
+                "x %d \u0433\u043e\u0441\u0442\u0435\u0439",
+                ""
+            ],
+            "x %d time": [
+                "x %d \u0440\u0430\u0437",
+                "x %d \u0440\u0430\u0437\u0430",
+                "x %d \u0440\u0430\u0437",
+                ""
+            ],
+            "Accommodation Type:": [
+                "\u0422\u0438\u043f \u0440\u0430\u0437\u043c\u0435\u0449\u0435\u043d\u0438\u044f:"
+            ],
+            "Rate:": [
+                "\u0422\u0430\u0440\u0438\u0444:"
+            ],
+            "Services:": [
+                "\u0423\u0441\u043b\u0443\u0433\u0438:"
+            ],
+            "Guest:": [
+                "\u0413\u043e\u0441\u0442\u0438:"
+            ],
+            "Total Paid": [
+                "\u0412\u0441\u0435\u0433\u043e \u043e\u043f\u043b\u0430\u0447\u0435\u043d\u043e"
+            ],
+            "To Pay": [
+                "\u041e\u0441\u0442\u0430\u043b\u043e\u0441\u044c \u043e\u043f\u043b\u0430\u0442\u0438\u0442\u044c"
+            ],
+            "Add Payment Manually": [
+                "\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043b\u0430\u0442\u0451\u0436 \u0432\u0440\u0443\u0447\u043d\u0443\u044e"
+            ],
+            "No bookings found.": [
+                "\u041d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e \u043d\u0438 \u043e\u0434\u043d\u043e\u0433\u043e \u0431\u0440\u043e\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f."
+            ],
+            "Base price": [
+                "\u041d\u0430\u0447\u0430\u043b\u044c\u043d\u0430\u044f \u0446\u0435\u043d\u0430"
+            ],
+            "Save": [
+                "\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c"
+            ],
+            "Nothing found.": [
+                "\u041d\u0438\u0447\u0435\u0433\u043e \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e."
+            ],
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
+            ],
+            "Block Accommodations": [
+                ""
+            ],
+            "Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Block": [
+                ""
+            ],
+            "Daily price": [
+                ""
+            ],
+            "Select an action": [
+                ""
+            ],
+            "Daily": [
+                ""
+            ],
+            "Rule #%1$d": [
+                ""
+            ],
+            "Min. stay": [
+                ""
+            ],
+            "Max. stay": [
+                ""
+            ],
+            "Min. adv. res.": [
+                ""
+            ],
+            "Max. adv. res.": [
+                ""
+            ],
+            "Allow": [
+                ""
+            ],
+            "Disallow": [
+                ""
+            ],
+            "Max. advance reservation": [
+                ""
+            ],
+            "Min. advance reservation": [
+                ""
+            ],
+            "Please select at least one accommodation type.": [
+                ""
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                ""
+            ],
+            "Create your first accommodation type.": [
+                ""
+            ],
+            "Next 7 days": [
+                ""
+            ],
+            "Next 14 days": [
+                ""
+            ],
+            "Next 30 days": [
+                ""
+            ],
+            "Previous": [
+                ""
+            ],
+            "Next": [
+                ""
+            ],
+            "Reload": [
+                ""
+            ],
+            "Filter items\u2026": [
+                ""
+            ],
+            "Compact Calendar": [
+                ""
+            ],
+            "List": [
+                ""
+            ],
+            "Booking #%1$d": [
+                ""
+            ],
+            "Total Price": [
+                ""
+            ],
+            "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Repeat annually": [
+                ""
+            ],
+            "Repeat annually, until %1$s": [
+                ""
+            ],
+            "Priority": [
+                ""
+            ],
+            "First": [
+                ""
+            ],
+            "Last": [
+                ""
+            ],
+            "From\/Till": [
+                ""
+            ],
+            "Edit Block": [
+                ""
+            ],
+            "Select\u2026": [
+                ""
+            ],
+            "Update %1$s rate for %2$s": [
+                ""
+            ],
+            "Edit Season Price": [
+                ""
+            ],
+            "Quick booking rules": [
+                ""
+            ],
+            "Check-in today": [
+                ""
+            ],
+            "Check-out today": [
+                ""
+            ],
+            "In-House": [
+                ""
+            ]
+        }
+    }
+}

@@ -4,7 +4,7 @@ Donate link: https://motopress.com/
 Requires at least: 5.2
 Tags: hotel booking, reservation, hotel, booking engine, booking, booking calendar, booking system, calendar, online booking, airbnb, booking.com, homeaway, vrbo, tripadvisor, booking form, availability calendar, channel manager, property management system, vacation, travel
 Tested up to: 7.1
-Stable tag: 6.3.0
+Stable tag: 6.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -176,23 +176,24 @@ MotoPress Hotel Booking plugin is distributed under the terms of the GNU GPL.
 
 == Changelog ==
 
-= 6.3.0, Sep 14 2026
+= 6.4.0, Oct 13 2026 =
+* New: Added a compact view to the new admin Calendar.
+* New: Added an option to hide the full guest name field on the checkout page. The field remains available when creating or editing bookings in the dashboard.
+* New: Added an option to reset external calendar synchronization from the sync status page. Use it to restart the iCal synchronization process if it gets stuck or stops updating.
+* Improvement: Improved the admin Calendar for faster initial loading and a smoother experience.
+* Improvement: Prevented outdated availability data from being cached when exporting availability calendars.
+* Improvement: Improved the user experience when creating new bookings in the dashboard.
+* Bug fix: Corrected availability results displayed when accommodations are blocked by bookings or blocking rules.
+* Bug fix: Fixed the outstanding balance calculation for bookings. The balance now correctly shows the amount remaining after completed payments.
+* Bug fix: Fixed an issue that prevented user accounts from being created.
+* Bug fix: Restored a missing function required by the Checkout Fields add-on to prevent a PHP fatal error.
+* Minor bug fixes and improvements of the new admin Calendar.
+
+= 6.3.0, Sep 14 2026 =
 * Improvement: Updated the Google Hotel Prices integration to support property prices and availability.
 
-= 6.2.4, Sep 4 2026
+= 6.2.4, Sep 4 2026 =
 * New: Added a dashboard widget with the latest news.
-
-= 6.2.3, Jul 24 2026
-* Security: Improved checkout payment validation and customer account data ownership checks. Reported by Haitam Lazaar.
-
-= 6.2.2, Jul 20 2026
-* Bug fix: Fixed an issue where checkout dates could be unavailable when they coincided with another booking's check-in date.
-
-= 6.2.1, Jul 14 2026
-* Bug fix: Fixed an issue where valid booking dates could incorrectly show no availability when minimum stay rules differed by accommodation type.
-
-= 6.2.0, Jul 6 2026
-* Improvement: Google Hotel Prices integration now displays validation issues for properties and room types.
 
 --------
 

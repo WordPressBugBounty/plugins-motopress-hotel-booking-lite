@@ -1,0 +1,474 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/calendar\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "lt_LT",
+                "plural-forms": "nplurals=4; plural=(n%10==1 && (n%100>19 || n%100<11) ? 0 : (n%10>=2 && n%10<=9) && (n%100>19 || n%100<11) ? 1 : n%1!=0 ? 2: 3);"
+            },
+            "Delete": [
+                "I\u0161trinti"
+            ],
+            "Email": [
+                "El. pa\u0161tas"
+            ],
+            "Create Booking": [
+                "Sukurti Rezervacij\u0105"
+            ],
+            "Adults:": [
+                "Suaug\u0119:"
+            ],
+            "Children:": [
+                "Vaikai:"
+            ],
+            "Accommodations": [
+                "Apgyvendinimo vietos"
+            ],
+            "Move up": [
+                ""
+            ],
+            "Move down": [
+                ""
+            ],
+            "Move to top": [
+                ""
+            ],
+            "Move to bottom": [
+                ""
+            ],
+            "Select all": [
+                "Pa\u017eym\u0117ti visk\u0105"
+            ],
+            "Unselect all": [
+                "At\u0161aukti vis\u0173 pasirinkim\u0105"
+            ],
+            "Edit": [
+                "Redaguoti"
+            ],
+            "All": [
+                "Visi"
+            ],
+            "Nights": [
+                "Naktys"
+            ],
+            "Remove": [
+                "Pa\u0161alinti"
+            ],
+            "Price per extra adult": [
+                ""
+            ],
+            "Price per extra child": [
+                ""
+            ],
+            "Status": [
+                "B\u016bsena"
+            ],
+            "Price": [
+                "Kaina"
+            ],
+            "Accommodation": [
+                "Apgyvendinimo vieta"
+            ],
+            "Paid: %s": [
+                "Sumok\u0117ta: %s"
+            ],
+            "Accommodation Type": [
+                "Apgyvendinimo tipas"
+            ],
+            "Add New Season Price": [
+                "Prid\u0117ti naujo sezono kain\u0105"
+            ],
+            "Days": [
+                "Dienos"
+            ],
+            "Repeat": [
+                ""
+            ],
+            "Booking Rules": [
+                "Rezervavimo taisykl\u0117s"
+            ],
+            "Check-in days": [
+                "Atvykimo dienos"
+            ],
+            "Seasons": [
+                "Sezonai"
+            ],
+            "Check-out days": [
+                "I\u0161vykimo dienos"
+            ],
+            "Minimum stay": [
+                "Minimalus apsistojimas"
+            ],
+            "Maximum stay": [
+                "Maksimalus apsistojimas"
+            ],
+            "Restriction": [
+                "Apribojimai"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Not check-in": [
+                "Ne atvykimas"
+            ],
+            "Not check-out": [
+                "Ne i\u0161vykimas"
+            ],
+            "Not stay-in": [
+                "Ne pasilikti"
+            ],
+            "Comment": [
+                "Komentuoti"
+            ],
+            "Minimum advance reservation": [
+                "Minimali i\u0161ankstin\u0117 rezervacija"
+            ],
+            "Maximum advance reservation": [
+                "Maksimali i\u0161ankstin\u0117 rezervacija"
+            ],
+            "Booking buffer": [
+                "Rezervacijos buferis"
+            ],
+            "Calendar": [
+                "Kalendorius"
+            ],
+            "First Name": [
+                "Vardas"
+            ],
+            "Last Name": [
+                "Pavard\u0117"
+            ],
+            "Phone": [
+                "Telefonas"
+            ],
+            "Address": [
+                "Adresas"
+            ],
+            "State \/ County": [
+                "Apskritis"
+            ],
+            "Country": [
+                "\u0160alis"
+            ],
+            "City": [
+                "Miestas"
+            ],
+            "Postcode": [
+                "Pa\u0161to kodas"
+            ],
+            "Cancel": [
+                "At\u0161aukti"
+            ],
+            "Title": [
+                "Pavadinimas"
+            ],
+            "Accommodation Types": [
+                "Apgyvendinimo tipai"
+            ],
+            "Description": [
+                "Apra\u0161ymas"
+            ],
+            "Summary": [
+                ""
+            ],
+            "Source": [
+                ""
+            ],
+            "Customer Note": [
+                "Pirk\u0117jo pastaba"
+            ],
+            "Coupon": [
+                "Kuponas"
+            ],
+            "Notes": [
+                "Patabos"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Patvirtintas"
+            ],
+            "Booked": [
+                "Rezervuota"
+            ],
+            "Pending": [
+                "Vykdomas"
+            ],
+            "External": [
+                "I\u0161orinis"
+            ],
+            "Blocked": [
+                "U\u017eblokuota"
+            ],
+            "Check-in": [
+                "Atvykimas"
+            ],
+            "Check-out": [
+                "I\u0161vykimas"
+            ],
+            "Blocked because the linked accommodation is booked": [
+                ""
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "Laukiama vartotojo patvirtinimo"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "Laukiama apmok\u0117jimo"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "Laukiama administratoriaus"
+            ],
+            "Booking status\u0004Abandoned": [
+                "At\u0161auktas"
+            ],
+            "Booking status\u0004Cancelled": [
+                "At\u0161auktas"
+            ],
+            "No payments found": [
+                "Mok\u0117jim\u0173 nerasta"
+            ],
+            "Season": [
+                "Sezonas"
+            ],
+            "Rates": [
+                "Kainos"
+            ],
+            "Add New Rate": [
+                "Prid\u0117ti nauj\u0105 \u012fkain\u012f"
+            ],
+            "Base Adults Occupancy": [
+                ""
+            ],
+            "Base Children Occupancy": [
+                ""
+            ],
+            "Applied for days": [
+                "Taikoma dienoms"
+            ],
+            "Annual repeats begin on the Start date of the season, for one year from the current date.": [
+                ""
+            ],
+            "Repeat until date": [
+                ""
+            ],
+            "Add New Season": [
+                "Prid\u0117ti nauj\u0105 sezon\u0105"
+            ],
+            "Edit Season": [
+                "Redaguoti sezon\u0105"
+            ],
+            "Apply": [
+                "Pritaikyti"
+            ],
+            "Today": [
+                "\u0160iandien"
+            ],
+            "This week": [
+                "\u0160i\u0105 savait\u0119"
+            ],
+            "This month": [
+                "\u0160is m\u0117nuo"
+            ],
+            "This quarter": [
+                "\u0160is ketvirtis"
+            ],
+            "This year": [
+                "\u0160ie metai"
+            ],
+            "Book": [
+                "Rezervuoti"
+            ],
+            "x %d guest": [
+                "x %d sve\u010dias",
+                "x %d sve\u010diai",
+                "x %d sve\u010diai",
+                "x %d sve\u010diai"
+            ],
+            "x %d time": [
+                "x %d kartas",
+                "x %d kartai",
+                "x %d kart\u0173",
+                "x %d kart\u0173"
+            ],
+            "Accommodation Type:": [
+                "Apgyvendinimo tipas:"
+            ],
+            "Rate:": [
+                "\u012ekainis:"
+            ],
+            "Services:": [
+                "Paslaugos:"
+            ],
+            "Guest:": [
+                "Sve\u010dias:"
+            ],
+            "Total Paid": [
+                "Viso apmok\u0117ta"
+            ],
+            "To Pay": [
+                "Mok\u0117ti"
+            ],
+            "Add Payment Manually": [
+                "Prid\u0117ti mok\u0117jim\u0105 rankiniu b\u016bdu"
+            ],
+            "No bookings found.": [
+                "Nerasta joki\u0173 rezervacij\u0173."
+            ],
+            "Base price": [
+                "Bazin\u0117 kaina"
+            ],
+            "Save": [
+                "I\u0161saugoti"
+            ],
+            "Nothing found.": [
+                "Nieko nerasta."
+            ],
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
+            ],
+            "Block Accommodations": [
+                ""
+            ],
+            "Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Block": [
+                ""
+            ],
+            "Daily price": [
+                ""
+            ],
+            "Select an action": [
+                ""
+            ],
+            "Daily": [
+                ""
+            ],
+            "Rule #%1$d": [
+                ""
+            ],
+            "Min. stay": [
+                ""
+            ],
+            "Max. stay": [
+                ""
+            ],
+            "Min. adv. res.": [
+                ""
+            ],
+            "Max. adv. res.": [
+                ""
+            ],
+            "Allow": [
+                ""
+            ],
+            "Disallow": [
+                ""
+            ],
+            "Max. advance reservation": [
+                ""
+            ],
+            "Min. advance reservation": [
+                ""
+            ],
+            "Please select at least one accommodation type.": [
+                ""
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                ""
+            ],
+            "Create your first accommodation type.": [
+                ""
+            ],
+            "Next 7 days": [
+                ""
+            ],
+            "Next 14 days": [
+                ""
+            ],
+            "Next 30 days": [
+                ""
+            ],
+            "Previous": [
+                ""
+            ],
+            "Next": [
+                ""
+            ],
+            "Reload": [
+                ""
+            ],
+            "Filter items\u2026": [
+                ""
+            ],
+            "Compact Calendar": [
+                ""
+            ],
+            "List": [
+                ""
+            ],
+            "Booking #%1$d": [
+                ""
+            ],
+            "Total Price": [
+                ""
+            ],
+            "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Repeat annually": [
+                ""
+            ],
+            "Repeat annually, until %1$s": [
+                ""
+            ],
+            "Priority": [
+                ""
+            ],
+            "First": [
+                ""
+            ],
+            "Last": [
+                ""
+            ],
+            "From\/Till": [
+                ""
+            ],
+            "Edit Block": [
+                ""
+            ],
+            "Select\u2026": [
+                ""
+            ],
+            "Update %1$s rate for %2$s": [
+                ""
+            ],
+            "Edit Season Price": [
+                ""
+            ],
+            "Quick booking rules": [
+                ""
+            ],
+            "Check-in today": [
+                ""
+            ],
+            "Check-out today": [
+                ""
+            ],
+            "In-House": [
+                ""
+            ]
+        }
+    }
+}

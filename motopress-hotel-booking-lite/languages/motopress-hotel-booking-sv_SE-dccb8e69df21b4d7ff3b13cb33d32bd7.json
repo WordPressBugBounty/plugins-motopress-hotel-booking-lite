@@ -1,0 +1,470 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/calendar\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "sv_SE",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Delete": [
+                "Radera"
+            ],
+            "Email": [
+                "E-post"
+            ],
+            "Create Booking": [
+                "Skapa bokning"
+            ],
+            "Adults:": [
+                "Vuxna:"
+            ],
+            "Children:": [
+                "Barn:"
+            ],
+            "Accommodations": [
+                "Rum"
+            ],
+            "Move up": [
+                ""
+            ],
+            "Move down": [
+                ""
+            ],
+            "Move to top": [
+                ""
+            ],
+            "Move to bottom": [
+                ""
+            ],
+            "Select all": [
+                "V\u00e4lj alla"
+            ],
+            "Unselect all": [
+                "Avmarkera alla"
+            ],
+            "Edit": [
+                "Redigera"
+            ],
+            "All": [
+                "Alla"
+            ],
+            "Nights": [
+                "N\u00e4tter"
+            ],
+            "Remove": [
+                "Ta bort"
+            ],
+            "Price per extra adult": [
+                ""
+            ],
+            "Price per extra child": [
+                ""
+            ],
+            "Status": [
+                "Status"
+            ],
+            "Price": [
+                "Pris"
+            ],
+            "Accommodation": [
+                "Rum"
+            ],
+            "Paid: %s": [
+                "Betalad: %s"
+            ],
+            "Accommodation Type": [
+                "Rumstyp"
+            ],
+            "Add New Season Price": [
+                "L\u00e4gg till ett nytt s\u00e4songpris"
+            ],
+            "Days": [
+                "Dagar"
+            ],
+            "Repeat": [
+                ""
+            ],
+            "Booking Rules": [
+                "Bokningsregler"
+            ],
+            "Check-in days": [
+                "Incheckningsdagar"
+            ],
+            "Seasons": [
+                "S\u00e4songer"
+            ],
+            "Check-out days": [
+                "Utcheckningsdagar"
+            ],
+            "Minimum stay": [
+                "Kortast vistelse"
+            ],
+            "Maximum stay": [
+                "Maximal vistelse"
+            ],
+            "Restriction": [
+                "F\u00f6rbeh\u00e5ll"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                "Regeln om inte incheckning markerar datumet som otillg\u00e4ngligt f\u00f6r incheckning."
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                "Regeln om inte utcheckning markerar datumet som otillg\u00e4ngligt f\u00f6r utcheckning."
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Not check-in": [
+                "Inte incheckning"
+            ],
+            "Not check-out": [
+                "Inte utcheckning"
+            ],
+            "Not stay-in": [
+                "Inte stay-in"
+            ],
+            "Comment": [
+                "Kommentera"
+            ],
+            "Minimum advance reservation": [
+                "Minimal f\u00f6rbokning"
+            ],
+            "Maximum advance reservation": [
+                "Maximal f\u00f6rbokning"
+            ],
+            "Booking buffer": [
+                "Bokningsbuffert"
+            ],
+            "Calendar": [
+                "Kalender"
+            ],
+            "First Name": [
+                "F\u00f6rnamn"
+            ],
+            "Last Name": [
+                "Efternamn"
+            ],
+            "Phone": [
+                "Telefon"
+            ],
+            "Address": [
+                "Adress"
+            ],
+            "State \/ County": [
+                "Stat \/ County"
+            ],
+            "Country": [
+                "Land"
+            ],
+            "City": [
+                "Stad"
+            ],
+            "Postcode": [
+                "Postnummer"
+            ],
+            "Cancel": [
+                "Annulera"
+            ],
+            "Title": [
+                "Rubrik"
+            ],
+            "Accommodation Types": [
+                "Rumstyper"
+            ],
+            "Description": [
+                "Beskrivning"
+            ],
+            "Summary": [
+                ""
+            ],
+            "Source": [
+                ""
+            ],
+            "Customer Note": [
+                "Kundens anteckningar"
+            ],
+            "Coupon": [
+                "Kupong"
+            ],
+            "Notes": [
+                "Anteckningar"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Bekr\u00e4ftad"
+            ],
+            "Booked": [
+                "Bokad"
+            ],
+            "Pending": [
+                "V\u00e4ntar p\u00e5"
+            ],
+            "External": [
+                "Extern"
+            ],
+            "Blocked": [
+                "Blockerad"
+            ],
+            "Check-in": [
+                "Incheckning"
+            ],
+            "Check-out": [
+                "Utcheckning"
+            ],
+            "Blocked because the linked accommodation is booked": [
+                ""
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "Anh\u00e4ngande kundbekr\u00e4ftelse"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "Anh\u00e4ngande betalning"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "Anh\u00e4ngande admin"
+            ],
+            "Booking status\u0004Abandoned": [
+                "\u00d6vergiven"
+            ],
+            "Booking status\u0004Cancelled": [
+                "Inst\u00e4lld"
+            ],
+            "No payments found": [
+                "Inga betalningar hittades"
+            ],
+            "Season": [
+                "S\u00e4song"
+            ],
+            "Rates": [
+                "Tariffer"
+            ],
+            "Add New Rate": [
+                "L\u00e4gg till en ny tariff"
+            ],
+            "Base Adults Occupancy": [
+                ""
+            ],
+            "Base Children Occupancy": [
+                ""
+            ],
+            "Applied for days": [
+                "Till\u00e4mpas p\u00e5"
+            ],
+            "Annual repeats begin on the Start date of the season, for one year from the current date.": [
+                ""
+            ],
+            "Repeat until date": [
+                ""
+            ],
+            "Add New Season": [
+                "L\u00e4gg till en ny s\u00e4song"
+            ],
+            "Edit Season": [
+                "Redigera s\u00e4song"
+            ],
+            "Apply": [
+                "Anv\u00e4nd"
+            ],
+            "Today": [
+                "Idag"
+            ],
+            "This week": [
+                "Denna vecka"
+            ],
+            "This month": [
+                "Denna m\u00e5nad"
+            ],
+            "This quarter": [
+                "Detta kvartal"
+            ],
+            "This year": [
+                "Detta \u00e5r"
+            ],
+            "Book": [
+                "Boka"
+            ],
+            "x %d guest": [
+                "x %d g\u00e4st",
+                "x %d g\u00e4ster"
+            ],
+            "x %d time": [
+                "x %d g\u00e5ng",
+                "x %d g\u00e5nger"
+            ],
+            "Accommodation Type:": [
+                "Rumstyp:"
+            ],
+            "Rate:": [
+                "Tariff:"
+            ],
+            "Services:": [
+                "Tj\u00e4nster:"
+            ],
+            "Guest:": [
+                "G\u00e4ster:"
+            ],
+            "Total Paid": [
+                "Betalat totalt"
+            ],
+            "To Pay": [
+                "Att betala"
+            ],
+            "Add Payment Manually": [
+                "L\u00e4gg till betalningen manuellt"
+            ],
+            "No bookings found.": [
+                "Inga bokningar hittade."
+            ],
+            "Base price": [
+                "Baspris"
+            ],
+            "Save": [
+                "Spara"
+            ],
+            "Nothing found.": [
+                "Inga resultat."
+            ],
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
+            ],
+            "Block Accommodations": [
+                ""
+            ],
+            "Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Block": [
+                ""
+            ],
+            "Daily price": [
+                ""
+            ],
+            "Select an action": [
+                ""
+            ],
+            "Daily": [
+                ""
+            ],
+            "Rule #%1$d": [
+                ""
+            ],
+            "Min. stay": [
+                ""
+            ],
+            "Max. stay": [
+                ""
+            ],
+            "Min. adv. res.": [
+                ""
+            ],
+            "Max. adv. res.": [
+                ""
+            ],
+            "Allow": [
+                ""
+            ],
+            "Disallow": [
+                ""
+            ],
+            "Max. advance reservation": [
+                ""
+            ],
+            "Min. advance reservation": [
+                ""
+            ],
+            "Please select at least one accommodation type.": [
+                ""
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                ""
+            ],
+            "Create your first accommodation type.": [
+                ""
+            ],
+            "Next 7 days": [
+                ""
+            ],
+            "Next 14 days": [
+                ""
+            ],
+            "Next 30 days": [
+                ""
+            ],
+            "Previous": [
+                ""
+            ],
+            "Next": [
+                ""
+            ],
+            "Reload": [
+                ""
+            ],
+            "Filter items\u2026": [
+                ""
+            ],
+            "Compact Calendar": [
+                ""
+            ],
+            "List": [
+                ""
+            ],
+            "Booking #%1$d": [
+                ""
+            ],
+            "Total Price": [
+                ""
+            ],
+            "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Repeat annually": [
+                ""
+            ],
+            "Repeat annually, until %1$s": [
+                ""
+            ],
+            "Priority": [
+                ""
+            ],
+            "First": [
+                ""
+            ],
+            "Last": [
+                ""
+            ],
+            "From\/Till": [
+                ""
+            ],
+            "Edit Block": [
+                ""
+            ],
+            "Select\u2026": [
+                ""
+            ],
+            "Update %1$s rate for %2$s": [
+                ""
+            ],
+            "Edit Season Price": [
+                ""
+            ],
+            "Quick booking rules": [
+                ""
+            ],
+            "Check-in today": [
+                ""
+            ],
+            "Check-out today": [
+                ""
+            ],
+            "In-House": [
+                ""
+            ]
+        }
+    }
+}

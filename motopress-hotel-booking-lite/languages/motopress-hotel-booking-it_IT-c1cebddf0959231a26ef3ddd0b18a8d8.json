@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 "Pulsante prenota"
             ],
             "Preset date. Formatted as %s": [
-                "Data di default. Formato %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,109 +191,109 @@
                 ""
             ],
             "Gallery": [
-                "Galleria"
+                ""
             ],
             "View Button": [
-                "Pulsante mostra"
+                ""
             ],
             "Order": [
-                "Ordine"
+                ""
             ],
             "Order By": [
-                "Ordina per"
+                ""
             ],
             "No order": [
-                "Nessun ordine"
+                ""
             ],
             "Post ID": [
-                "ID articolo"
+                ""
             ],
             "Post author": [
-                "Autore"
+                ""
             ],
             "Post title": [
-                "Titolo"
+                ""
             ],
             "Post name (post slug)": [
-                "Nome del post ( slug del post)"
+                ""
             ],
             "Post date": [
-                "Data del post"
+                ""
             ],
             "Last modified date": [
-                "Data dell'ultima modifica"
+                ""
             ],
             "Parent ID": [
-                "ID superiore"
+                ""
             ],
             "Random order": [
-                "Ordine casuale"
+                ""
             ],
             "Number of comments": [
-                "Numero di commenti"
+                ""
             ],
             "Relevance": [
-                "Pertinenza"
+                ""
             ],
             "Page order": [
-                "Ordine pagine"
+                ""
             ],
             "Meta value": [
-                "Meta Valore"
+                ""
             ],
             "Numeric meta value": [
-                "Meta Valore numerico"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Ascendente (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Discendente (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "Meta Nome"
+                ""
             ],
             "Meta Type": [
-                "Meta Tipo"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Tipo specificato del campo personalizzato. Pu\u00f2 essere usato in combinazione con \"orderby\" = \"meta_value\"."
+                ""
             ],
             "Any": [
-                "Qualsiasi"
+                ""
             ],
             "Numeric": [
-                "Numerico"
+                ""
             ],
             "Binary": [
-                "Binario"
+                ""
             ],
             "String": [
-                "Stringa"
+                ""
             ],
             "Time": [
-                "Ora"
+                ""
             ],
             "Date and time": [
-                "Data e ora"
+                ""
             ],
             "Decimal number": [
-                "Numero decimale"
+                ""
             ],
             "Signed number": [
-                "Numero segnato"
+                ""
             ],
             "Unsigned number": [
-                "Numero non segnato"
+                ""
             ],
             "Query Settings": [
-                "Impostazioni query"
+                ""
             ],
             "Relation": [
-                "Relazione"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "Valori: numero intero, -1 per visualizzare tutto, predefinito: \"Le pagine del blog mostrano al massimo\""
+                ""
             ],
             "Select an accommodation type.": [
                 ""

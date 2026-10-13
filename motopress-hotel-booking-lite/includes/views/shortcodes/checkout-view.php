@@ -232,7 +232,13 @@ class CheckoutView {
 
 		$childrenAllowed = $childrenCapacity > 0 && MPHB()->settings()->main()->isChildrenAllowed();
 
-		$presetGuestName = apply_filters( 'mphb_sc_checkout_preset_guest_name', '', $reservedRoom, $booking );
+		/**
+		 * @param bool $allowGuestName
+		 */
+		$allowGuestName = apply_filters(
+			'mphb_sc_checkout_allow_guest_name',
+			MPHB()->settings()->main()->isGuestNameOnCheckoutAllowed()
+		);
 
 		?>
 		<?php if ( MPHB()->settings()->main()->isAdultsAllowed() ) { ?>
@@ -287,13 +293,16 @@ class CheckoutView {
 			<input type="hidden" id="<?php echo esc_attr( $idPrefix ); ?>-children" name="<?php echo esc_attr( $namePrefix ); ?>[children]" value="<?php echo esc_attr( mphb_get_min_children() ); ?>">
 		<?php } ?>
 
-		<p class="mphb-guest-name-wrapper">
-			<label for="<?php echo esc_attr( $idPrefix ); ?>-guest-name">
-				<?php esc_html_e( 'Full Guest Name', 'motopress-hotel-booking' ); ?>
-			</label>
-			<input type="text" name="<?php echo esc_attr( $namePrefix ); ?>[guest_name]" id="<?php echo esc_attr( $idPrefix ); ?>-guest-name" value="<?php echo esc_attr( $presetGuestName ); ?>">
-		</p>
-		<?php
+		<?php if ( $allowGuestName ) {
+			$presetGuestName = apply_filters( 'mphb_sc_checkout_preset_guest_name', '', $reservedRoom, $booking );
+			?>
+			<p class="mphb-guest-name-wrapper">
+				<label for="<?php echo esc_attr( $idPrefix ); ?>-guest-name">
+					<?php esc_html_e( 'Full Guest Name', 'motopress-hotel-booking' ); ?>
+				</label>
+				<input type="text" name="<?php echo esc_attr( $namePrefix ); ?>[guest_name]" id="<?php echo esc_attr( $idPrefix ); ?>-guest-name" value="<?php echo esc_attr( $presetGuestName ); ?>">
+			</p>
+		<?php }
 	}
 
 	/**

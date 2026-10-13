@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 "Rezervasyon Butonu"
             ],
             "Preset date. Formatted as %s": [
-                "\u00d6n ayar tarihi. %s \u015feklinde"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,106 +191,106 @@
                 ""
             ],
             "Gallery": [
-                "Galeri"
+                ""
             ],
             "View Button": [
-                "\u00d6nizleme Butonu"
+                ""
             ],
             "Order": [
-                "S\u0131ralama"
+                ""
             ],
             "Order By": [
-                "S\u0131ralama T\u00fcr\u00fc"
+                ""
             ],
             "No order": [
-                "S\u0131ralama Yok"
+                ""
             ],
             "Post ID": [
-                "\u0130\u00e7erik ID"
+                ""
             ],
             "Post author": [
-                "\u0130\u00e7erik Yazar\u0131"
+                ""
             ],
             "Post title": [
-                "\u0130\u00e7erik Ba\u015fl\u0131\u011f\u0131"
+                ""
             ],
             "Post name (post slug)": [
-                "\u0130\u00e7erik Ad\u0131 (\u0130\u00e7erik URL)"
+                ""
             ],
             "Post date": [
-                "\u0130\u00e7erik tarihi"
+                ""
             ],
             "Last modified date": [
-                "Son d\u00fczenlenme tarihi"
+                ""
             ],
             "Parent ID": [
-                "Ana ID"
+                ""
             ],
             "Random order": [
-                "Rasgele s\u0131rala"
+                ""
             ],
             "Number of comments": [
-                "Yorum Say\u0131s\u0131"
+                ""
             ],
             "Relevance": [
-                "Uygunluk"
+                ""
             ],
             "Page order": [
-                "Sayfa S\u0131ralamas\u0131"
+                ""
             ],
             "Meta value": [
-                "Meta De\u011feri"
+                ""
             ],
             "Numeric meta value": [
-                "N\u00fcmerik Meta de\u011feri"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Artan (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Azalan (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "Meta ad\u0131"
+                ""
             ],
             "Meta Type": [
-                "Meta T\u00fcr\u00fc"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "\u00d6zel alan\u0131n belirtilen t\u00fcr\u00fc. \"orderby\" = \"meta_value\" ile kullan\u0131labilir."
+                ""
             ],
             "Any": [
-                "Herhangi"
+                ""
             ],
             "Numeric": [
-                "N\u00fcmerik"
+                ""
             ],
             "Binary": [
-                "\u0130kili"
+                ""
             ],
             "String": [
                 ""
             ],
             "Time": [
-                "Zaman"
+                ""
             ],
             "Date and time": [
-                "Tarih ve Saat"
+                ""
             ],
             "Decimal number": [
-                "Ondal\u0131k Say\u0131"
+                ""
             ],
             "Signed number": [
-                "Onayl\u0131 Numara"
+                ""
             ],
             "Unsigned number": [
-                "Onays\u0131z Numara"
+                ""
             ],
             "Query Settings": [
-                "Sorgu Ayarlar\u0131"
+                ""
             ],
             "Relation": [
-                "\u0130li\u015fki"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
                 ""

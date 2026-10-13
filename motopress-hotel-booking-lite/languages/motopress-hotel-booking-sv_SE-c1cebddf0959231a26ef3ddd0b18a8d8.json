@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 "Bokningsknapp"
             ],
             "Preset date. Formatted as %s": [
-                "Det valda datumet. Visas som %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,109 +191,109 @@
                 ""
             ],
             "Gallery": [
-                "Galleri"
+                ""
             ],
             "View Button": [
-                "Visa knapp"
+                ""
             ],
             "Order": [
-                "Sortera"
+                ""
             ],
             "Order By": [
-                "Sortera efter"
+                ""
             ],
             "No order": [
-                "Ingen order"
+                ""
             ],
             "Post ID": [
-                "Inl\u00e4ggs-ID"
+                ""
             ],
             "Post author": [
-                "Inl\u00e4ggsf\u00f6rfattare"
+                ""
             ],
             "Post title": [
-                "Inl\u00e4ggstitel"
+                ""
             ],
             "Post name (post slug)": [
-                "Inl\u00e4ggsnamn (post slug)"
+                ""
             ],
             "Post date": [
-                "Inl\u00e4ggsdatum"
+                ""
             ],
             "Last modified date": [
-                "Senast \u00e4ndrad datum"
+                ""
             ],
             "Parent ID": [
                 ""
             ],
             "Random order": [
-                "Slumpm\u00e4ssig ordning"
+                ""
             ],
             "Number of comments": [
-                "Antal kommentarer"
+                ""
             ],
             "Relevance": [
-                "Relevans"
+                ""
             ],
             "Page order": [
-                "Sidordning"
+                ""
             ],
             "Meta value": [
-                "Metav\u00e4rde"
+                ""
             ],
             "Numeric meta value": [
-                "Numeriskt meta v\u00e4rde"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Stigande (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Nedstigande (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "Metanamn"
+                ""
             ],
             "Meta Type": [
-                "Metatyp"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Angiven typ av anpassat f\u00e4lt. Kan anv\u00e4ndas tillsammans med \"orderby\" = \"meta_value\"."
+                ""
             ],
             "Any": [
-                "N\u00e5gon"
+                ""
             ],
             "Numeric": [
-                "Numerisk"
+                ""
             ],
             "Binary": [
-                "Bin\u00e4rt"
+                ""
             ],
             "String": [
-                "Str\u00e4ng"
+                ""
             ],
             "Time": [
-                "Tid"
+                ""
             ],
             "Date and time": [
-                "Datum och tid"
+                ""
             ],
             "Decimal number": [
-                "Decimalnummer"
+                ""
             ],
             "Signed number": [
-                "Signerat nummer"
+                ""
             ],
             "Unsigned number": [
-                "Osignerat nummer"
+                ""
             ],
             "Query Settings": [
-                "Inst\u00e4llningar f\u00f6r f\u00f6rfr\u00e5gningar"
+                ""
             ],
             "Relation": [
                 ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "V\u00e4rden: heltal, -1 f\u00f6r att visa alla, standard: \"Bloggsidor visas som mest\""
+                ""
             ],
             "Select an accommodation type.": [
                 ""

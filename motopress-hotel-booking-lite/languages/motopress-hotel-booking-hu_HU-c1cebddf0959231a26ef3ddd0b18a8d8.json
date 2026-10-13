@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 ""
             ],
             "Preset date. Formatted as %s": [
-                "El\u00f5re be\u00e1ll\u00edtott d\u00e1tum. Form\u00e1zott %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,52 +191,52 @@
                 ""
             ],
             "Gallery": [
-                "Gal\u00e9ria"
+                ""
             ],
             "View Button": [
-                "Megtekint\u00e9s gomb"
+                ""
             ],
             "Order": [
-                "Sorrend"
+                ""
             ],
             "Order By": [
-                "Rendez\u00e9s a k\u00f6vetkez\u0151 szerint"
+                ""
             ],
             "No order": [
-                "Nincs rendez\u00e9s"
+                ""
             ],
             "Post ID": [
-                "Bejegyz\u00e9sazonos\u00edt\u00f3"
+                ""
             ],
             "Post author": [
-                "Bejegyz\u00e9s Szerz\u0151je"
+                ""
             ],
             "Post title": [
-                "Bejegyz\u00e9s c\u00edme"
+                ""
             ],
             "Post name (post slug)": [
                 ""
             ],
             "Post date": [
-                "Bejegyz\u00e9s id\u0151pontja"
+                ""
             ],
             "Last modified date": [
-                "Utols\u00f3 m\u00f3dos\u00edt\u00e1s d\u00e1tuma"
+                ""
             ],
             "Parent ID": [
-                "Sz\u00fcl\u0151 ID"
+                ""
             ],
             "Random order": [
-                "V\u00e9letlen sorrend"
+                ""
             ],
             "Number of comments": [
-                "Kommentek sz\u00e1ma"
+                ""
             ],
             "Relevance": [
-                "Fontoss\u00e1gi"
+                ""
             ],
             "Page order": [
-                "Oldalsorrend"
+                ""
             ],
             "Meta value": [
                 ""
@@ -245,10 +245,10 @@
                 ""
             ],
             "Ascending (1, 2, 3)": [
-                "N\u00f6vekv\u0151 (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Cs\u00f6kken\u0151 (1, 2, 3)"
+                ""
             ],
             "Meta Name": [
                 ""
@@ -257,46 +257,46 @@
                 ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Az egy\u00e9ni mez\u0151 meghat\u00e1rozott t\u00edpusa. Az \"orderby\" = \"meta_value\" param\u00e9terrel egy\u00fctt haszn\u00e1lhat\u00f3."
+                ""
             ],
             "Any": [
-                "B\u00e1rmely"
+                ""
             ],
             "Numeric": [
-                "Sz\u00e1m"
+                ""
             ],
             "Binary": [
-                "Bin\u00e1ris"
+                ""
             ],
             "String": [
-                "Karakterl\u00e1nc"
+                ""
             ],
             "Time": [
-                "Id\u0151"
+                ""
             ],
             "Date and time": [
-                "D\u00e1tum \u00e9s id\u0151"
+                ""
             ],
             "Decimal number": [
-                "Decim\u00e1lis sz\u00e1m"
+                ""
             ],
             "Signed number": [
-                "El\u0151jeles sz\u00e1m"
+                ""
             ],
             "Unsigned number": [
-                "El\u0151jeles sz\u00e1m"
+                ""
             ],
             "Query Settings": [
                 ""
             ],
             "Relation": [
-                "Kapcsolat"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
                 ""
             ],
             "Select an accommodation type.": [
-                "V\u00e1lasszon sz\u00e1ll\u00e1st\u00edpust."
+                ""
             ]
         }
     }

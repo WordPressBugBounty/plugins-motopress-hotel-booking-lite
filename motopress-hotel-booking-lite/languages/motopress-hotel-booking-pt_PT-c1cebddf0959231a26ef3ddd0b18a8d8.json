@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 "Bot\u00e3o de Reserva"
             ],
             "Preset date. Formatted as %s": [
-                "Data pr\u00e9-definida. Formatada como $s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,109 +191,109 @@
                 ""
             ],
             "Gallery": [
-                "Galeria"
+                ""
             ],
             "View Button": [
-                "Ver bot\u00e3o"
+                ""
             ],
             "Order": [
-                "Ordenar"
+                ""
             ],
             "Order By": [
-                "Ordenar por"
+                ""
             ],
             "No order": [
-                "N\u00ba ordem"
+                ""
             ],
             "Post ID": [
-                "ID da publica\u00e7\u00e3o"
+                ""
             ],
             "Post author": [
-                "Autor da publica\u00e7\u00e3o"
+                ""
             ],
             "Post title": [
-                "Titulo de publica\u00e7\u00e3o"
+                ""
             ],
             "Post name (post slug)": [
-                "Nome da publica\u00e7\u00e3o (slug publica\u00e7\u00e3o)"
+                ""
             ],
             "Post date": [
-                "Data de publica\u00e7\u00e3o"
+                ""
             ],
             "Last modified date": [
-                "Ultima data de modifica\u00e7\u00e3o"
+                ""
             ],
             "Parent ID": [
-                "ID do pai"
+                ""
             ],
             "Random order": [
-                "Ordem aleat\u00f3ria"
+                ""
             ],
             "Number of comments": [
-                "N\u00famero de coment\u00e1rios"
+                ""
             ],
             "Relevance": [
-                "Relev\u00e2ncia"
+                ""
             ],
             "Page order": [
-                "Ordena\u00e7\u00e3o da p\u00e1gina"
+                ""
             ],
             "Meta value": [
-                "Valor meta"
+                ""
             ],
             "Numeric meta value": [
-                "Valor meta num\u00e9rico"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Ascendente (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Descendente (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "Nome Meta"
+                ""
             ],
             "Meta Type": [
-                "Tipo Meta"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Tipo especificado do campo personalizado. Pode ser usado em conjunto com \"orderby\" = \"meta_value\"."
+                ""
             ],
             "Any": [
-                "Qualquer"
+                ""
             ],
             "Numeric": [
-                "Num\u00e9rico"
+                ""
             ],
             "Binary": [
-                "Bin\u00e1rio"
+                ""
             ],
             "String": [
-                "Cadeia de caracteres"
+                ""
             ],
             "Time": [
-                "Hora"
+                ""
             ],
             "Date and time": [
-                "Data e hora"
+                ""
             ],
             "Decimal number": [
-                "N\u00famero decimal"
+                ""
             ],
             "Signed number": [
-                "N\u00famero com sinal"
+                ""
             ],
             "Unsigned number": [
-                "N\u00famero sem sinal"
+                ""
             ],
             "Query Settings": [
-                "Configura\u00e7\u00f5es de Consulta"
+                ""
             ],
             "Relation": [
-                "Rela\u00e7\u00e3o"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "Valores: inteiro, -1 para exibir todos, por defeito: \"As p\u00e1ginas do blog mostram no m\u00e1ximo\""
+                ""
             ],
             "Select an accommodation type.": [
                 ""

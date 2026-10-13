@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 "Bestillingsknapp"
             ],
             "Preset date. Formatted as %s": [
-                "Forh\u00e5ndssatt dato. Formatert som %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,109 +191,109 @@
                 ""
             ],
             "Gallery": [
-                "Galleri"
+                ""
             ],
             "View Button": [
-                "Visningsknapp"
+                ""
             ],
             "Order": [
-                "Bestilling"
+                ""
             ],
             "Order By": [
-                "Bestilt av"
+                ""
             ],
             "No order": [
-                "Ingen rekkef\u00f8lge"
+                ""
             ],
             "Post ID": [
                 ""
             ],
             "Post author": [
-                "Forfatter"
+                ""
             ],
             "Post title": [
-                "Post tittel"
+                ""
             ],
             "Post name (post slug)": [
-                "Post navn (post slug)"
+                ""
             ],
             "Post date": [
-                "Publisert"
+                ""
             ],
             "Last modified date": [
-                "Sist endret"
+                ""
             ],
             "Parent ID": [
-                "Foreldre ID"
+                ""
             ],
             "Random order": [
-                "Tilfeldig rekkef\u00f8lge"
+                ""
             ],
             "Number of comments": [
-                "Antall kommentarer"
+                ""
             ],
             "Relevance": [
-                "Relevans"
+                ""
             ],
             "Page order": [
-                "Sideordning"
+                ""
             ],
             "Meta value": [
-                "Meta verdi"
+                ""
             ],
             "Numeric meta value": [
-                "Nummerisk meta verdi"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Stigende (1,2,3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Synkende (3,2,1)"
+                ""
             ],
             "Meta Name": [
-                "Metanavn"
+                ""
             ],
             "Meta Type": [
-                "Meta type"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Spesifisert type av tilpasset felt. Kan brukes i forbindelse med \"orderby\" = \"meta_value\"."
+                ""
             ],
             "Any": [
-                "Noen"
+                ""
             ],
             "Numeric": [
-                "Nummerisk"
+                ""
             ],
             "Binary": [
-                "Bin\u00e6rt"
+                ""
             ],
             "String": [
-                "Streng"
+                ""
             ],
             "Time": [
-                "Tid"
+                ""
             ],
             "Date and time": [
-                "Dato og tid"
+                ""
             ],
             "Decimal number": [
-                "Desimaltall"
+                ""
             ],
             "Signed number": [
-                "Tegnet nummer"
+                ""
             ],
             "Unsigned number": [
-                "Utegnet nummer"
+                ""
             ],
             "Query Settings": [
-                "Sp\u00f8rringsinnstillinger"
+                ""
             ],
             "Relation": [
-                "Relasjon"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "Verdier: heltall, -1 for \u00e5 vise alle, standard: \"Bloggsider vises p\u00e5 det meste\""
+                ""
             ],
             "Select an accommodation type.": [
                 ""

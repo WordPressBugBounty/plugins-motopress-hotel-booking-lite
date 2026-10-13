@@ -196,10 +196,11 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 
 		if ( empty( $roomType->getPropertyId() ) ) {
 
+			$fieldName = __( 'Location', 'motopress-hotel-booking' );
 			$roomTypeDataErrors['propertyId'] = sprintf(
 				// translators: %s is data field name
 				__( 'Required field "%s" is not set.', 'motopress-hotel-booking' ),
-				__( 'Location', 'motopress-hotel-booking' ),
+				$fieldName,
 			);
 		}
 
@@ -211,18 +212,20 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 
 		if ( empty( $title ) ) {
 
+			$fieldName = __( 'Title', 'motopress-hotel-booking' );
 			$roomTypeDataErrors['ghTitle'] = sprintf(
 				// translators: %s is data field name
 				__( 'Required field "%s" is not set.', 'motopress-hotel-booking' ),
-				__( 'Title', 'motopress-hotel-booking' ),
+				$fieldName,
 			);
 
 		} elseif ( 300 < mb_strlen( $title, 'UTF-8' ) ) {
 
+			$fieldName = __( 'Title', 'motopress-hotel-booking' );
 			$roomTypeDataErrors['ghTitle'] = sprintf(
 				// translators: %1$s is field name, %2$d is max length
 				__( 'Field "%1$s" must not exceed %2$d characters.', 'motopress-hotel-booking' ),
-				__( 'Title', 'motopress-hotel-booking' ),
+				$fieldName,
 				300
 			);
 		}
@@ -237,20 +240,22 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 			900 < mb_strlen( $description, 'UTF-8' )
 		) {
 
+			$fieldName = __( 'Description', 'motopress-hotel-booking' );
 			$roomTypeDataErrors['ghDescription'] = sprintf(
 				// translators: %1$s is field name, %2$d is max length
 				__( 'Field "%1$s" must not exceed %2$d characters.', 'motopress-hotel-booking' ),
-				__( 'Description', 'motopress-hotel-booking' ),
+				$fieldName,
 				900
 			);
 		}
 
 		if ( 1 > $roomType->calcTotalCapacity() ) {
 
+			$fieldName = __( 'Capacity', 'motopress-hotel-booking' );
 			$roomTypeDataErrors['capacity'] = sprintf(
 				// translators: %1$s is field name, %2$d is min value
 				__( 'Field "%1$s" must be greater than %2$d.', 'motopress-hotel-booking' ),
-				__( 'Capacity', 'motopress-hotel-booking' ),
+				$fieldName,
 				1
 			);
 		}
@@ -283,18 +288,20 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 
 		if ( empty( $roomType->getPropertyTitle() ) ) {
 
+			$fieldName = __( 'Name of Hotel or Vacation Rental', 'motopress-hotel-booking' );
 			$propertyDataErrors['title'] = sprintf(
 				// translators: %s is data field name
 				__( 'Required field "%s" is not set.', 'motopress-hotel-booking' ),
-				__( 'Name of Hotel or Vacation Rental', 'motopress-hotel-booking' ),
+				$fieldName,
 			);
 
 		} elseif ( 300 < mb_strlen( $roomType->getPropertyTitle(), 'UTF-8' ) ) {
 
+			$fieldName = __( 'Name of Hotel or Vacation Rental', 'motopress-hotel-booking' );
 			$propertyDataErrors['title'] = sprintf(
 				// translators: %1$s is field name, %2$d is max length
 				__( 'Field "%1$s" must not exceed %2$d characters.', 'motopress-hotel-booking' ),
-				__( 'Name of Hotel or Vacation Rental', 'motopress-hotel-booking' ),
+				$fieldName,
 				300
 			);
 		}
@@ -308,10 +315,11 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 			)
 		) ) {
 
+			$fieldName = __( 'Lodging category', 'motopress-hotel-booking' );
 			$propertyDataErrors['propertyType'] = sprintf(
 				// translators: %s is data field name
 				__( 'Required field "%s" is not set.', 'motopress-hotel-booking' ),
-				__( 'Lodging category', 'motopress-hotel-booking' ),
+				$fieldName,
 			);
 		}
 
@@ -450,29 +458,32 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 		// 0 is default not valid coordinate
 		if ( 0 === $roomType->getLatitude() || empty( $roomType->getLatitude() ) ) {
 
+			$fieldName = __( 'Latitude', 'motopress-hotel-booking' );
 			$propertyDataErrors['latitude'] = sprintf(
 				// translators: %s is data field name
 				__( 'Required field "%s" is not set.', 'motopress-hotel-booking' ),
-				__( 'Latitude', 'motopress-hotel-booking' ),
+				$fieldName,
 			);
 		}
 
 		// 0 is default not valid coordinate
 		if ( 0 === $roomType->getLongitude() || empty( $roomType->getLongitude() ) ) {
 
+			$fieldName = __( 'Longitude', 'motopress-hotel-booking' );
 			$propertyDataErrors['longitude'] = sprintf(
 				// translators: %s is data field name
 				__( 'Required field "%s" is not set.', 'motopress-hotel-booking' ),
-				__( 'Longitude', 'motopress-hotel-booking' ),
+				$fieldName,
 			);
 		}
 
 		if ( empty( $roomType->getContactsMainPhone() ) ) {
 
+			$fieldName = __( 'Primary Phone Number', 'motopress-hotel-booking' );
 			$propertyDataErrors['contacts.mainPhone'] = sprintf(
 				// translators: %s is data field name
 				__( 'Required field "%s" is not set.', 'motopress-hotel-booking' ),
-				__( 'Primary Phone Number', 'motopress-hotel-booking' ),
+				$fieldName,
 			);
 
 		} elseif (
@@ -480,10 +491,11 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 			32 < strlen( $roomType->getContactsMainPhone() )
 		) {
 
+			$fieldName = __( 'Primary Phone Number', 'motopress-hotel-booking' );
 			$propertyDataErrors['contacts.mainPhone'] = sprintf(
 				// translators: %1$s is field name, %2$d and %3$d are min and max length
 				__( 'Field "%1$s" must contain between %2$d and %3$d characters.', 'motopress-hotel-booking' ),
-				__( 'Primary Phone Number', 'motopress-hotel-booking' ),
+				$fieldName,
 				5,
 				32
 			);
@@ -491,17 +503,19 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 
 		if ( empty( $roomType->getAddressLine1() ) ) {
 
+			$fieldName = __( 'Address Line 1', 'motopress-hotel-booking' );
 			$propertyDataErrors['address.line1'] = sprintf(
 				// translators: %s is data field name
 				__( 'Required field "%s" is not set.', 'motopress-hotel-booking' ),
-				__( 'Address Line 1', 'motopress-hotel-booking' ),
+				$fieldName,
 			);
 		} elseif ( 128 < mb_strlen( $roomType->getAddressLine1(), 'UTF-8' ) ) {
 
+			$fieldName = __( 'Address Line 1', 'motopress-hotel-booking' );
 			$propertyDataErrors['address.line1'] = sprintf(
 				// translators: %1$s is field name, %2$d is max length
 				__( 'Field "%1$s" must not exceed %2$d characters.', 'motopress-hotel-booking' ),
-				__( 'Address Line 1', 'motopress-hotel-booking' ),
+				$fieldName,
 				128
 			);
 		}
@@ -510,28 +524,31 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 			128 < mb_strlen( $roomType->getAddressLine2(), 'UTF-8' )
 		) {
 
+			$fieldName = __( 'Address Line 2', 'motopress-hotel-booking' );
 			$propertyDataErrors['address.line2'] = sprintf(
 				// translators: %1$s is field name, %2$d is max length
 				__( 'Field "%1$s" must not exceed %2$d characters.', 'motopress-hotel-booking' ),
-				__( 'Address Line 2', 'motopress-hotel-booking' ),
+				$fieldName,
 				128
 			);
 		}
 
 		if ( empty( $roomType->getAddressCity() ) ) {
 
+			$fieldName = __( 'City', 'motopress-hotel-booking' );
 			$propertyDataErrors['address.city'] = sprintf(
 				// translators: %s is data field name
 				__( 'Required field "%s" is not set.', 'motopress-hotel-booking' ),
-				__( 'City', 'motopress-hotel-booking' ),
+				$fieldName,
 			);
 
 		} elseif ( 128 < mb_strlen( $roomType->getAddressCity(), 'UTF-8' ) ) {
 
+			$fieldName = __( 'City', 'motopress-hotel-booking' );
 			$propertyDataErrors['address.city'] = sprintf(
 				// translators: %1$s is field name, %2$d is max length
 				__( 'Field "%1$s" must not exceed %2$d characters.', 'motopress-hotel-booking' ),
-				__( 'City', 'motopress-hotel-booking' ),
+				$fieldName,
 				128
 			);
 		}
@@ -540,28 +557,31 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 			128 < mb_strlen( $roomType->getAddressProvince(), 'UTF-8' )
 		) {
 
+			$fieldName = __( 'Province', 'motopress-hotel-booking' );
 			$propertyDataErrors['address.province'] = sprintf(
 				// translators: %1$s is field name, %2$d is max length
 				__( 'Field "%1$s" must not exceed %2$d characters.', 'motopress-hotel-booking' ),
-				__( 'Province', 'motopress-hotel-booking' ),
+				$fieldName,
 				128
 			);
 		}
 
 		if ( empty( $roomType->getAddressPostalCode() ) ) {
 
+			$fieldName = __( 'Postal Code', 'motopress-hotel-booking' );
 			$propertyDataErrors['address.postalCode'] = sprintf(
 				// translators: %s is data field name
 				__( 'Required field "%s" is not set.', 'motopress-hotel-booking' ),
-				__( 'Postal Code', 'motopress-hotel-booking' ),
+				$fieldName,
 			);
 
 		} elseif ( 20 < strlen( $roomType->getAddressPostalCode() ) ) {
 
+			$fieldName = __( 'Postal Code', 'motopress-hotel-booking' );
 			$propertyDataErrors['address.postalCode'] = sprintf(
 				// translators: %1$s is field name, %2$d is max length
 				__( 'Field "%1$s" must not exceed %2$d characters.', 'motopress-hotel-booking' ),
-				__( 'Postal Code', 'motopress-hotel-booking' ),
+				$fieldName,
 				20
 			);
 		}
@@ -570,19 +590,21 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 			empty( MPHB()->settings()->main()->getCountriesBundle()->getCountriesList()[ $roomType->getAddressCountryCode() ] )
 		) {
 
+			$fieldName = __( 'Country', 'motopress-hotel-booking' );
 			$propertyDataErrors['address.countryCode'] = sprintf(
 				// translators: %s is data field name
 				__( 'Required field "%s" is not set.', 'motopress-hotel-booking' ),
-				__( 'Country', 'motopress-hotel-booking' ),
+				$fieldName,
 			);
 		}
 
 		if ( 'hotel' === $roomType->getPropertyType() && 1 > count( $roomType->getPropertyImages() ) ) {
 
+			$fieldName = __( 'Hotel Image', 'motopress-hotel-booking' );
 			$propertyDataErrors['propertyImages'] = sprintf(
 				// translators: %s is data field name
 				__( 'Required field "%s" is not set.', 'motopress-hotel-booking' ),
-				__( 'Hotel Image', 'motopress-hotel-booking' ),
+				$fieldName,
 			);
 		}
 

@@ -423,6 +423,15 @@ class SettingsMenuPage extends AbstractMenuPage {
 				)
 			),
 			Fields\FieldFactory::create(
+				'mphb_allow_guest_name_on_checkout',
+				array(
+					'default'     => true,
+					'description' => __( 'Useful when bookings are made for someone else. This ensures you collect the actual guest’s name for check-in and communication.', 'motopress-hotel-booking' ),
+					'inner_label' => __( 'Collect full guest name during checkout.', 'motopress-hotel-booking' ),
+					'type'        => 'checkbox',
+				),
+			),
+			Fields\FieldFactory::create(
 				'mphb_unfold_price_breakdown',
 				array(
 					'type'        => 'checkbox',

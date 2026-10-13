@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,121 +182,121 @@
                 "\u9884\u5b9a\u6309\u94ae"
             ],
             "Preset date. Formatted as %s": [
-                "\u9884\u8ba2\u5165\u4f4f\u65e5\u671f\u3002\u683c\u5f0f\u4e3a%s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
-                "\u9009\u62e9\u623f\u95f4\u7c7b\u578b\u3002\u7559\u7a7a\u5219\u4f7f\u7528\u5f53\u524d\u7c7b\u578b\u3002"
+                ""
             ],
             "ID of an accommodation type. Leave blank to use current.": [
-                "\u623f\u95f4\u7c7b\u578b\u7684 ID\u3002\u7559\u7a7a\u5219\u4f7f\u7528\u5f53\u524d\u7c7b\u578b\u3002"
+                ""
             ],
             "Gallery": [
-                "\u56fe\u5e93"
+                ""
             ],
             "View Button": [
-                "\u67e5\u770b\u6309\u94ae"
+                ""
             ],
             "Order": [
-                "\u987a\u5e8f"
+                ""
             ],
             "Order By": [
-                "\u6392\u5e8f\u6309"
+                ""
             ],
             "No order": [
-                "\u65e0\u6392\u5e8f"
+                ""
             ],
             "Post ID": [
-                "\u6587\u7ae0 ID"
+                ""
             ],
             "Post author": [
-                "\u6587\u7ae0\u4f5c\u8005"
+                ""
             ],
             "Post title": [
-                "\u6587\u7ae0\u6807\u9898"
+                ""
             ],
             "Post name (post slug)": [
-                "\u6587\u7ae0\u540d\u79f0 (\u6587\u7ae0\u522b\u540d)"
+                ""
             ],
             "Post date": [
-                "\u53d1\u5e03\u65e5\u671f"
+                ""
             ],
             "Last modified date": [
-                "\u4e0a\u6b21\u4fee\u6539\u65e5\u671f"
+                ""
             ],
             "Parent ID": [
-                "\u7236\u7ea7 ID"
+                ""
             ],
             "Random order": [
-                "\u968f\u673a\u987a\u5e8f"
+                ""
             ],
             "Number of comments": [
-                "\u8bc4\u8bba\u6570"
+                ""
             ],
             "Relevance": [
-                "\u5173\u8054"
+                ""
             ],
             "Page order": [
-                "\u9875\u9762\u987a\u5e8f"
+                ""
             ],
             "Meta value": [
-                "\u5143\u503c"
+                ""
             ],
             "Numeric meta value": [
-                "\u6570\u5b57\u5143\u503c"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "\u5347\u5e8f (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "\u964d\u5e8f (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "\u5143\u540d\u79f0"
+                ""
             ],
             "Meta Type": [
-                "\u5143\u7c7b\u578b"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "\u6307\u5b9a\u81ea\u5b9a\u4e49\u5b57\u6bb5\u7684\u7c7b\u578b\u3002\u53ef\u4e0e \"orderby\" = \"meta_value\" \u7ed3\u5408\u4f7f\u7528\u3002"
+                ""
             ],
             "Any": [
-                "\u4efb\u4f55"
+                ""
             ],
             "Numeric": [
-                "\u6570\u5b57"
+                ""
             ],
             "Binary": [
-                "\u4e8c\u8fdb\u5236"
+                ""
             ],
             "String": [
-                "\u5b57\u7b26\u4e32"
+                ""
             ],
             "Time": [
-                "\u65f6\u95f4"
+                ""
             ],
             "Date and time": [
-                "\u65e5\u671f\u548c\u65f6\u95f4"
+                ""
             ],
             "Decimal number": [
-                "\u5341\u8fdb\u5236\u6570"
+                ""
             ],
             "Signed number": [
-                "\u6709\u7b26\u53f7\u6570"
+                ""
             ],
             "Unsigned number": [
-                "\u65e0\u7b26\u53f7\u6570"
+                ""
             ],
             "Query Settings": [
-                "\u67e5\u8be2\u8bbe\u7f6e"
+                ""
             ],
             "Relation": [
-                "\u5173\u7cfb"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "\u503c\uff1a\u6574\u6570\uff0c-1 \u8868\u793a\u663e\u793a\u5168\u90e8\uff0c\u9ed8\u8ba4\u503c\uff1a\"\u6700\u591a\u663e\u793a\u535a\u5ba2\u9875\u9762\""
+                ""
             ],
             "Select an accommodation type.": [
-                "\u9009\u62e9\u623f\u95f4\u7c7b\u578b\u3002"
+                ""
             ]
         }
     }

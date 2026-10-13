@@ -1,0 +1,470 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/calendar\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "tr_TR",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Delete": [
+                "Sil"
+            ],
+            "Email": [
+                "E-Posta"
+            ],
+            "Create Booking": [
+                "Rezervasyon Olu\u015ftur"
+            ],
+            "Adults:": [
+                "Yeti\u015fkin:"
+            ],
+            "Children:": [
+                "\u00c7ocuklar:"
+            ],
+            "Accommodations": [
+                "Konaklamalar"
+            ],
+            "Move up": [
+                "Yukar\u0131 \u00e7\u0131k"
+            ],
+            "Move down": [
+                "A\u015fa\u011f\u0131 in"
+            ],
+            "Move to top": [
+                "En \u00fcste ta\u015f\u0131"
+            ],
+            "Move to bottom": [
+                ""
+            ],
+            "Select all": [
+                "T\u00fcm\u00fcn\u00fc se\u00e7"
+            ],
+            "Unselect all": [
+                "T\u00fcm\u00fcn\u00fc B\u0131rak"
+            ],
+            "Edit": [
+                "D\u00fczenle"
+            ],
+            "All": [
+                "T\u00fcm\u00fc"
+            ],
+            "Nights": [
+                "Gece"
+            ],
+            "Remove": [
+                "Kald\u0131r"
+            ],
+            "Price per extra adult": [
+                ""
+            ],
+            "Price per extra child": [
+                ""
+            ],
+            "Status": [
+                "Durum"
+            ],
+            "Price": [
+                "Fiyat"
+            ],
+            "Accommodation": [
+                "Konaklama"
+            ],
+            "Paid: %s": [
+                "\u00d6dendi: %s"
+            ],
+            "Accommodation Type": [
+                "Konaklama Tipi"
+            ],
+            "Add New Season Price": [
+                "Yeni Sezon F\u0131yat\u0131n\u0131 Ekle"
+            ],
+            "Days": [
+                "G\u00fcnler"
+            ],
+            "Repeat": [
+                "Tekrar"
+            ],
+            "Booking Rules": [
+                "Rezervasyon Kurallar\u0131"
+            ],
+            "Check-in days": [
+                "Giri\u015f G\u00fcnleri"
+            ],
+            "Seasons": [
+                "Sezonlar"
+            ],
+            "Check-out days": [
+                "\u00c7\u0131k\u0131\u015f G\u00fcnleri"
+            ],
+            "Minimum stay": [
+                "En az konaklama s\u00fcresi"
+            ],
+            "Maximum stay": [
+                "En fazla konaklama s\u00fcresi"
+            ],
+            "Restriction": [
+                "K\u0131s\u0131tlama"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Not check-in": [
+                "Giri\u015f yap\u0131lm\u0131yor"
+            ],
+            "Not check-out": [
+                "\u00c7\u0131k\u0131\u015f yap\u0131lm\u0131yor"
+            ],
+            "Not stay-in": [
+                "Kal\u0131nm\u0131yor"
+            ],
+            "Comment": [
+                "Yorum"
+            ],
+            "Minimum advance reservation": [
+                "Minimum \u00f6n rezervasyon"
+            ],
+            "Maximum advance reservation": [
+                "Maksimum \u00f6n rezervasyon"
+            ],
+            "Booking buffer": [
+                ""
+            ],
+            "Calendar": [
+                "Takvim"
+            ],
+            "First Name": [
+                "\u0130sim"
+            ],
+            "Last Name": [
+                "Soy isim"
+            ],
+            "Phone": [
+                "Telefon"
+            ],
+            "Address": [
+                "Adres"
+            ],
+            "State \/ County": [
+                "B\u00f6lge \/ \u00dclke"
+            ],
+            "Country": [
+                "\u00dclke"
+            ],
+            "City": [
+                "\u015eehir"
+            ],
+            "Postcode": [
+                "Posta Kodu"
+            ],
+            "Cancel": [
+                "\u0130ptal"
+            ],
+            "Title": [
+                "Ba\u015fl\u0131k"
+            ],
+            "Accommodation Types": [
+                "Konaklama T\u00fcrleri"
+            ],
+            "Description": [
+                "A\u00e7\u0131klama"
+            ],
+            "Summary": [
+                "\u00d6zet"
+            ],
+            "Source": [
+                "Kaynak"
+            ],
+            "Customer Note": [
+                "M\u00fc\u015fteri Notu"
+            ],
+            "Coupon": [
+                "Kupon"
+            ],
+            "Notes": [
+                "Notlar"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Onayland\u0131"
+            ],
+            "Booked": [
+                "Rezerve edildi"
+            ],
+            "Pending": [
+                "Beklemede"
+            ],
+            "External": [
+                "D\u0131\u015f"
+            ],
+            "Blocked": [
+                "bloke edilmi\u015f"
+            ],
+            "Check-in": [
+                "Giri\u015f"
+            ],
+            "Check-out": [
+                "\u00c7\u0131k\u0131\u015f"
+            ],
+            "Blocked because the linked accommodation is booked": [
+                ""
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "Kullan\u0131c\u0131 Onay\u0131 Bekleniyor"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "\u00d6deme bekleniyor"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "Y\u00f6neticiyi beklemede"
+            ],
+            "Booking status\u0004Abandoned": [
+                "Terk edildi"
+            ],
+            "Booking status\u0004Cancelled": [
+                "\u0130ptal edildi"
+            ],
+            "No payments found": [
+                "Hi\u00e7 bir \u00f6deme bulunamad\u0131"
+            ],
+            "Season": [
+                "Sezon"
+            ],
+            "Rates": [
+                "Puan"
+            ],
+            "Add New Rate": [
+                "Yeni Puan Ekle"
+            ],
+            "Base Adults Occupancy": [
+                ""
+            ],
+            "Base Children Occupancy": [
+                ""
+            ],
+            "Applied for days": [
+                "G\u00fcnler i\u00e7in uygulan\u0131r"
+            ],
+            "Annual repeats begin on the Start date of the season, for one year from the current date.": [
+                ""
+            ],
+            "Repeat until date": [
+                ""
+            ],
+            "Add New Season": [
+                "Yeni Sezon Ekle"
+            ],
+            "Edit Season": [
+                "Sezon D\u00fczenle"
+            ],
+            "Apply": [
+                "Uygula"
+            ],
+            "Today": [
+                "Bug\u00fcn"
+            ],
+            "This week": [
+                "Bu hafta"
+            ],
+            "This month": [
+                "Bu ay"
+            ],
+            "This quarter": [
+                ""
+            ],
+            "This year": [
+                "Bu y\u0131l"
+            ],
+            "Book": [
+                "Rezerve Edin"
+            ],
+            "x %d guest": [
+                "x %d konuk",
+                "x %d konuklar"
+            ],
+            "x %d time": [
+                "x %d zaman",
+                "x %d zamanlar"
+            ],
+            "Accommodation Type:": [
+                "Konaklama Tipi:"
+            ],
+            "Rate:": [
+                "Oran:"
+            ],
+            "Services:": [
+                "Servisler:"
+            ],
+            "Guest:": [
+                "Misafirler:"
+            ],
+            "Total Paid": [
+                "Toplam \u00d6denen"
+            ],
+            "To Pay": [
+                "\u00d6demek"
+            ],
+            "Add Payment Manually": [
+                "Manuel Olarak \u00d6deme Ekle"
+            ],
+            "No bookings found.": [
+                "Hi\u00e7bir rezervasyon bulunamad\u0131."
+            ],
+            "Base price": [
+                "Taban fiyat"
+            ],
+            "Save": [
+                "Kaydet"
+            ],
+            "Nothing found.": [
+                "Hi\u00e7bir\u015fey Bulunamad\u0131."
+            ],
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
+            ],
+            "Block Accommodations": [
+                ""
+            ],
+            "Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Block": [
+                ""
+            ],
+            "Daily price": [
+                ""
+            ],
+            "Select an action": [
+                ""
+            ],
+            "Daily": [
+                ""
+            ],
+            "Rule #%1$d": [
+                ""
+            ],
+            "Min. stay": [
+                ""
+            ],
+            "Max. stay": [
+                ""
+            ],
+            "Min. adv. res.": [
+                ""
+            ],
+            "Max. adv. res.": [
+                ""
+            ],
+            "Allow": [
+                ""
+            ],
+            "Disallow": [
+                ""
+            ],
+            "Max. advance reservation": [
+                ""
+            ],
+            "Min. advance reservation": [
+                ""
+            ],
+            "Please select at least one accommodation type.": [
+                ""
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                ""
+            ],
+            "Create your first accommodation type.": [
+                ""
+            ],
+            "Next 7 days": [
+                ""
+            ],
+            "Next 14 days": [
+                ""
+            ],
+            "Next 30 days": [
+                ""
+            ],
+            "Previous": [
+                ""
+            ],
+            "Next": [
+                ""
+            ],
+            "Reload": [
+                ""
+            ],
+            "Filter items\u2026": [
+                ""
+            ],
+            "Compact Calendar": [
+                ""
+            ],
+            "List": [
+                ""
+            ],
+            "Booking #%1$d": [
+                ""
+            ],
+            "Total Price": [
+                ""
+            ],
+            "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Repeat annually": [
+                ""
+            ],
+            "Repeat annually, until %1$s": [
+                ""
+            ],
+            "Priority": [
+                ""
+            ],
+            "First": [
+                ""
+            ],
+            "Last": [
+                ""
+            ],
+            "From\/Till": [
+                ""
+            ],
+            "Edit Block": [
+                ""
+            ],
+            "Select\u2026": [
+                ""
+            ],
+            "Update %1$s rate for %2$s": [
+                ""
+            ],
+            "Edit Season Price": [
+                ""
+            ],
+            "Quick booking rules": [
+                ""
+            ],
+            "Check-in today": [
+                ""
+            ],
+            "Check-out today": [
+                ""
+            ],
+            "In-House": [
+                ""
+            ]
+        }
+    }
+}

@@ -1,0 +1,468 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/calendar\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "hu_HU",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Delete": [
+                "T\u00f6rl\u00e9s"
+            ],
+            "Email": [
+                "E-mail"
+            ],
+            "Create Booking": [
+                "Sz\u00e1ll\u00e1sfoglal\u00e1s"
+            ],
+            "Adults:": [
+                "Feln\u0151tt:"
+            ],
+            "Children:": [
+                "Gyermek:"
+            ],
+            "Accommodations": [
+                "Sz\u00e1ll\u00e1shelyek"
+            ],
+            "Move up": [
+                "Mozgat\u00e1s felfel\u00e9"
+            ],
+            "Move down": [
+                "Mozgat\u00e1s lefel\u00e9"
+            ],
+            "Move to top": [
+                "Mozgat\u00e1s legfel\u00fclre"
+            ],
+            "Move to bottom": [
+                "Mozgat\u00e1s legalulra"
+            ],
+            "Select all": [
+                "\u00d6sszes kijel\u00f6l\u00e9se"
+            ],
+            "Unselect all": [
+                "Kijel\u00f6l\u00e9s megsz\u00fcntet\u00e9se"
+            ],
+            "Edit": [
+                "M\u00f3dos\u00edt\u00e1s"
+            ],
+            "All": [
+                "\u00d6sszes"
+            ],
+            "Nights": [
+                "\u00c9jszak\u00e1k"
+            ],
+            "Remove": [
+                "T\u00f6rl\u00e9s"
+            ],
+            "Price per extra adult": [
+                "\u00c1r extra feln\u0151ttenk\u00e9nt"
+            ],
+            "Price per extra child": [
+                "\u00c1r extra gyermekenk\u00e9nt"
+            ],
+            "Status": [
+                "\u00c1llapot"
+            ],
+            "Price": [
+                "\u00c1r"
+            ],
+            "Accommodation": [
+                "Sz\u00e1ll\u00e1shely"
+            ],
+            "Paid: %s": [
+                "Befizetett: %s"
+            ],
+            "Accommodation Type": [
+                "Sz\u00e1ll\u00e1shely t\u00edpus"
+            ],
+            "Add New Season Price": [
+                "\u00daj \u00e9vszak \u00e1r hozz\u00e1ad\u00e1sa"
+            ],
+            "Days": [
+                "Nap"
+            ],
+            "Repeat": [
+                "Ism\u00e9telje"
+            ],
+            "Booking Rules": [
+                "Foglal\u00e1si szab\u00e1lyok"
+            ],
+            "Check-in days": [
+                "Bejelentkez\u00e9si napok"
+            ],
+            "Seasons": [
+                "\u00c9vszakok"
+            ],
+            "Check-out days": [
+                "Kijelentkez\u00e9si napok"
+            ],
+            "Minimum stay": [
+                "Minim\u00e1lis tart\u00f3zkod\u00e1s"
+            ],
+            "Maximum stay": [
+                "Maxim\u00e1lis tart\u00f3zkod\u00e1s"
+            ],
+            "Restriction": [
+                "Korl\u00e1toz\u00e1sok"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                "A \"No check-in\" szab\u00e1ly azt jelzi, hogy a d\u00e1tum nem el\u00e9rhet\u0151 a bejelentkez\u00e9shez."
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                "A \"No check-out\" szab\u00e1ly azt jelzi, hogy a d\u00e1tum nem el\u00e9rhet\u0151 a kijelentkez\u00e9shez."
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                "A Nem marad\u00e1s szab\u00e1ly a d\u00e1tumot blokkolva jelen\u00edti meg. Ez a d\u00e1tum nem \u00e1ll rendelkez\u00e9sre a k\u00f6vetkez\u0151 napon t\u00f6rt\u00e9n\u0151 be- \u00e9s kijelentkez\u00e9shez."
+            ],
+            "Not check-in": [
+                "Nem bejelentkez\u00e9s"
+            ],
+            "Not check-out": [
+                "Nem kijelentkez\u00e9s"
+            ],
+            "Not stay-in": [
+                "Nem tart\u00f3zkod\u00e1s"
+            ],
+            "Comment": [
+                "Hozz\u00e1sz\u00f3l\u00e1s"
+            ],
+            "Minimum advance reservation": [
+                ""
+            ],
+            "Maximum advance reservation": [
+                ""
+            ],
+            "Booking buffer": [
+                "Foglal\u00e1si puffer"
+            ],
+            "Calendar": [
+                "Napt\u00e1r"
+            ],
+            "First Name": [
+                "Keresztn\u00e9v"
+            ],
+            "Last Name": [
+                "Vezet\u00e9kn\u00e9v"
+            ],
+            "Phone": [
+                "Telefonsz\u00e1m"
+            ],
+            "Address": [
+                "C\u00edm"
+            ],
+            "State \/ County": [
+                "Megye"
+            ],
+            "Country": [
+                "Orsz\u00e1g"
+            ],
+            "City": [
+                "V\u00e1ros"
+            ],
+            "Postcode": [
+                "Ir\u00e1ny\u00edt\u00f3sz\u00e1m"
+            ],
+            "Cancel": [
+                "M\u00e9gse"
+            ],
+            "Title": [
+                "C\u00edm"
+            ],
+            "Accommodation Types": [
+                "Sz\u00e1ll\u00e1st\u00edpusok"
+            ],
+            "Description": [
+                "Le\u00edr\u00e1s"
+            ],
+            "Summary": [
+                "\u00d6sszesen"
+            ],
+            "Source": [
+                "Forr\u00e1s"
+            ],
+            "Customer Note": [
+                "\u00dcgyf\u00e9l megjegyz\u00e9se"
+            ],
+            "Coupon": [
+                "Kupon"
+            ],
+            "Notes": [
+                "Megjegyz\u00e9sek"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Meger\u0151s\u00edtett"
+            ],
+            "Booked": [
+                "Foglalt"
+            ],
+            "Pending": [
+                "F\u00fcgg\u0151"
+            ],
+            "External": [
+                "K\u00fcls\u0151"
+            ],
+            "Blocked": [
+                "Letiltva"
+            ],
+            "Check-in": [
+                "Bejelentkez\u00e9s"
+            ],
+            "Check-out": [
+                "Kijelentkez\u00e9s"
+            ],
+            "Blocked because the linked accommodation is booked": [
+                ""
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "F\u00fcgg\u0151 felhaszn\u00e1l\u00f3 meger\u0151s\u00edt\u00e9s"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "F\u00fcgg\u0151 fizet\u00e9s"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "F\u00fcgg\u0151 admin"
+            ],
+            "Booking status\u0004Abandoned": [
+                "Nincs befejezve"
+            ],
+            "Booking status\u0004Cancelled": [
+                "T\u00f6r\u00f6lt"
+            ],
+            "No payments found": [
+                "Nincsenek fizet\u00e9sek"
+            ],
+            "Season": [
+                "\u00c9vszak"
+            ],
+            "Rates": [
+                "D\u00edjak"
+            ],
+            "Add New Rate": [
+                "\u00daj d\u00edj hozz\u00e1ad\u00e1sa"
+            ],
+            "Base Adults Occupancy": [
+                ""
+            ],
+            "Base Children Occupancy": [
+                ""
+            ],
+            "Applied for days": [
+                "A napokra \u00e9rv\u00e9nyes"
+            ],
+            "Annual repeats begin on the Start date of the season, for one year from the current date.": [
+                ""
+            ],
+            "Repeat until date": [
+                "Ism\u00e9tl\u00e9s egy id\u0151pontig"
+            ],
+            "Add New Season": [
+                "\u00daj \u00e9vszak hozz\u00e1ad\u00e1sa"
+            ],
+            "Edit Season": [
+                "\u00c9vszak m\u00f3dos\u00edt\u00e1sa"
+            ],
+            "Apply": [
+                "Alkalmaz"
+            ],
+            "Today": [
+                "Ma"
+            ],
+            "This week": [
+                "Ezen a h\u00e9ten"
+            ],
+            "This month": [
+                "Ez a h\u00f3nap"
+            ],
+            "This quarter": [
+                "Ez a negyed\u00e9v"
+            ],
+            "This year": [
+                "Ez az \u00e9v"
+            ],
+            "Book": [
+                "Foglal\u00e1s"
+            ],
+            "x %d guest": [
+                ""
+            ],
+            "x %d time": [
+                ""
+            ],
+            "Accommodation Type:": [
+                "Sz\u00e1ll\u00e1st\u00edpus:"
+            ],
+            "Rate:": [
+                "D\u00edj:"
+            ],
+            "Services:": [
+                "Szolg\u00e1ltat\u00e1sok:"
+            ],
+            "Guest:": [
+                "Vend\u00e9g:"
+            ],
+            "Total Paid": [
+                "\u00d6sszesen fizetett"
+            ],
+            "To Pay": [
+                "Fizetni"
+            ],
+            "Add Payment Manually": [
+                "Fizet\u00e9s manu\u00e1lis hozz\u00e1ad\u00e1sa"
+            ],
+            "No bookings found.": [
+                "Nincsenek foglal\u00e1sok."
+            ],
+            "Base price": [
+                "Alap \u00e1r"
+            ],
+            "Save": [
+                "Ment\u00e9s"
+            ],
+            "Nothing found.": [
+                "Nincs tal\u00e1lat."
+            ],
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
+            ],
+            "Block Accommodations": [
+                ""
+            ],
+            "Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Block": [
+                ""
+            ],
+            "Daily price": [
+                ""
+            ],
+            "Select an action": [
+                ""
+            ],
+            "Daily": [
+                ""
+            ],
+            "Rule #%1$d": [
+                ""
+            ],
+            "Min. stay": [
+                ""
+            ],
+            "Max. stay": [
+                ""
+            ],
+            "Min. adv. res.": [
+                ""
+            ],
+            "Max. adv. res.": [
+                ""
+            ],
+            "Allow": [
+                ""
+            ],
+            "Disallow": [
+                ""
+            ],
+            "Max. advance reservation": [
+                ""
+            ],
+            "Min. advance reservation": [
+                ""
+            ],
+            "Please select at least one accommodation type.": [
+                ""
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                ""
+            ],
+            "Create your first accommodation type.": [
+                ""
+            ],
+            "Next 7 days": [
+                ""
+            ],
+            "Next 14 days": [
+                ""
+            ],
+            "Next 30 days": [
+                ""
+            ],
+            "Previous": [
+                ""
+            ],
+            "Next": [
+                ""
+            ],
+            "Reload": [
+                ""
+            ],
+            "Filter items\u2026": [
+                ""
+            ],
+            "Compact Calendar": [
+                ""
+            ],
+            "List": [
+                ""
+            ],
+            "Booking #%1$d": [
+                ""
+            ],
+            "Total Price": [
+                ""
+            ],
+            "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Repeat annually": [
+                ""
+            ],
+            "Repeat annually, until %1$s": [
+                ""
+            ],
+            "Priority": [
+                ""
+            ],
+            "First": [
+                ""
+            ],
+            "Last": [
+                ""
+            ],
+            "From\/Till": [
+                ""
+            ],
+            "Edit Block": [
+                ""
+            ],
+            "Select\u2026": [
+                ""
+            ],
+            "Update %1$s rate for %2$s": [
+                ""
+            ],
+            "Edit Season Price": [
+                ""
+            ],
+            "Quick booking rules": [
+                ""
+            ],
+            "Check-in today": [
+                ""
+            ],
+            "Check-out today": [
+                ""
+            ],
+            "In-House": [
+                ""
+            ]
+        }
+    }
+}

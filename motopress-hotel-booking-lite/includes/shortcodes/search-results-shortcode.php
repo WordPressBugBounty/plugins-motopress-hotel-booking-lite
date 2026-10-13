@@ -482,16 +482,28 @@ class SearchResultsShortcode extends AbstractShortcode {
 					MPHB()->postTypes()->roomType()->getPostType()
 				);
 
-				$unavailableRoomsCount = count(
-					mphb_availability_facade()->getUnavailableRoomIds(
-						$roomTypeId,
-						$checkInDate,
-						$checkOutDate,
-						$isIgnoreBookingRules
+				$unavailableRoomIds = mphb_availability_facade()->getUnavailableRoomIds(
+					$roomTypeId,
+					$checkInDate,
+					$checkOutDate,
+					$isIgnoreBookingRules
+				);
+
+				$searchArgs = apply_filters(
+					'mphb_search_available_rooms',
+					array(
+						'availability'      => 'free',
+						'from_date'         => $checkInDate,
+						'to_date'           => $checkOutDate,
+						'room_type_id'      => $roomTypeId,
+						'exclude_rooms'     => $unavailableRoomIds,
+						'skip_buffer_rules' => false,
 					)
 				);
 
-				$roomTypeDetails['count'] -= $unavailableRoomsCount;
+				$roomTypeDetails['count'] = count(
+					MPHB()->getRoomPersistence()->searchRooms( $searchArgs )
+				);
 			}
 		);
 

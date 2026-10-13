@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,121 +182,121 @@
                 "Bot\u00f3n de libro"
             ],
             "Preset date. Formatted as %s": [
-                "Fecha preestablecida. Formateado como %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
-                "Seleccione un tipo de alojamiento. D\u00e9jelo en blanco para utilizar el actual."
+                ""
             ],
             "ID of an accommodation type. Leave blank to use current.": [
-                "ID de un tipo de alojamiento. D\u00e9jelo en blanco para utilizar el actual."
+                ""
             ],
             "Gallery": [
-                "Galer\u00eda"
+                ""
             ],
             "View Button": [
-                "Bot\u00f3n Ver"
+                ""
             ],
             "Order": [
-                "Pedido"
+                ""
             ],
             "Order By": [
-                "Ordenar por"
+                ""
             ],
             "No order": [
-                "Sin orden"
+                ""
             ],
             "Post ID": [
-                "ID del mensaje"
+                ""
             ],
             "Post author": [
-                "Autor de la publicaci\u00f3n"
+                ""
             ],
             "Post title": [
-                "T\u00edtulo de la entrada"
+                ""
             ],
             "Post name (post slug)": [
-                "Nombre de la publicaci\u00f3n (publicaci\u00f3n slug)"
+                ""
             ],
             "Post date": [
-                "Fecha de publicaci\u00f3n"
+                ""
             ],
             "Last modified date": [
-                "Fecha de \u00faltima modificaci\u00f3n"
+                ""
             ],
             "Parent ID": [
-                "Identificaci\u00f3n de los padres"
+                ""
             ],
             "Random order": [
-                "Orden aleatorio"
+                ""
             ],
             "Number of comments": [
-                "Numero de comentarios"
+                ""
             ],
             "Relevance": [
-                "Relevancia"
+                ""
             ],
             "Page order": [
-                "Orden de las p\u00e1ginas"
+                ""
             ],
             "Meta value": [
-                "Meta valor"
+                ""
             ],
             "Numeric meta value": [
-                "Meta valor num\u00e9rico"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Ascendente (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Descendente (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "Meta nombre"
+                ""
             ],
             "Meta Type": [
-                "Tipo de meta"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Tipo especificado de campo personalizado. Se puede utilizar junto con \"orderby\" = \"meta_value\"."
+                ""
             ],
             "Any": [
-                "Alguna"
+                ""
             ],
             "Numeric": [
-                "Num\u00e9rico"
+                ""
             ],
             "Binary": [
-                "Binario"
+                ""
             ],
             "String": [
-                "Cuerda"
+                ""
             ],
             "Time": [
-                "Hora"
+                ""
             ],
             "Date and time": [
-                "Fecha y hora"
+                ""
             ],
             "Decimal number": [
-                "N\u00famero decimal"
+                ""
             ],
             "Signed number": [
-                "Numero firmado"
+                ""
             ],
             "Unsigned number": [
-                "N\u00famero sin firmar"
+                ""
             ],
             "Query Settings": [
-                "Configuraci\u00f3n de la consulta"
+                ""
             ],
             "Relation": [
-                "Relaci\u00f3n"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "Valores: entero, -1 para mostrar todo, predeterminado: \"Las p\u00e1ginas del blog se muestran como m\u00e1ximo\""
+                ""
             ],
             "Select an accommodation type.": [
-                "Seleccione un tipo de alojamiento."
+                ""
             ]
         }
     }

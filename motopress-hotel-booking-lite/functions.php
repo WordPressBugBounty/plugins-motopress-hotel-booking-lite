@@ -901,6 +901,15 @@ function mphb_get_polyfill_for( $function ) {
 }
 
 /**
+ * @return int
+ *
+ * @since 3.7.2
+ */
+function mphb_current_year() {
+	return (int) current_time( 'Y' );
+}
+
+/**
  * @param int $month
  * @param int $year
  * @return int

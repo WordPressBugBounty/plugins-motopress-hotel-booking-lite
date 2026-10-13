@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 "Przycisk ksi\u0105\u017cki"
             ],
             "Preset date. Formatted as %s": [
-                "Ustawiona data. Sformatowano jako %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,64 +191,64 @@
                 ""
             ],
             "Gallery": [
-                "Galeria"
+                ""
             ],
             "View Button": [
-                "Przycisk Wy\u015bwietl"
+                ""
             ],
             "Order": [
-                "Zam\u00f3wienie"
+                ""
             ],
             "Order By": [
-                "Zam\u00f3w wed\u0142ug"
+                ""
             ],
             "No order": [
-                "Brak zam\u00f3wienia"
+                ""
             ],
             "Post ID": [
-                "ID posta"
+                ""
             ],
             "Post author": [
-                "Autor posta"
+                ""
             ],
             "Post title": [
-                "Tytu\u0142 posta"
+                ""
             ],
             "Post name (post slug)": [
-                "Nazwa posta (post slug)"
+                ""
             ],
             "Post date": [
-                "Data wys\u0142ania"
+                ""
             ],
             "Last modified date": [
-                "Data ostatniej modyfikacji"
+                ""
             ],
             "Parent ID": [
                 ""
             ],
             "Random order": [
-                "Losowe zam\u00f3wienie"
+                ""
             ],
             "Number of comments": [
-                "Liczba komentarzy"
+                ""
             ],
             "Relevance": [
-                "Trafno\u015b\u0107"
+                ""
             ],
             "Page order": [
-                "Kolejno\u015b\u0107 stron"
+                ""
             ],
             "Meta value": [
-                "Warto\u015b\u0107 meta"
+                ""
             ],
             "Numeric meta value": [
-                "Numeryczna warto\u015b\u0107 meta"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Rosn\u0105co (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Malej\u0105co (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
                 ""
@@ -257,43 +257,43 @@
                 ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Okre\u015blony typ pola niestandardowego. Mo\u017ce by\u0107 u\u017cywane w po\u0142\u0105czeniu z \" orderby \\ \"= \" meta_value \\ \"."
+                ""
             ],
             "Any": [
-                "Ka\u017cdy"
+                ""
             ],
             "Numeric": [
-                "Numeryczny"
+                ""
             ],
             "Binary": [
-                "Binarny"
+                ""
             ],
             "String": [
                 ""
             ],
             "Time": [
-                "Czas"
+                ""
             ],
             "Date and time": [
-                "Data i godzina"
+                ""
             ],
             "Decimal number": [
-                "Liczba dziesi\u0119tna"
+                ""
             ],
             "Signed number": [
-                "Podpisany numer"
+                ""
             ],
             "Unsigned number": [
-                "Numer bez znaku"
+                ""
             ],
             "Query Settings": [
-                "Ustawienia zapytania"
+                ""
             ],
             "Relation": [
-                "Relacja"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "Warto\u015bci: integer, -1 aby wy\u015bwietli\u0107 wszystko, domy\u015blnie: \"Strony blog\u00f3w pokazuj\u0105 co najwy\u017cej\""
+                ""
             ],
             "Select an accommodation type.": [
                 ""

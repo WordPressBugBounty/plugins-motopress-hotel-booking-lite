@@ -288,7 +288,7 @@ table.wp-list-table.posts tbody td.column-handle {
   width: 90%;
 }
 .mphb-preloader {
-  background-image: url("../../images/loading.gif?ver=6.3.0");
+  background-image: url("../../images/loading.gif?ver=6.4.0");
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -1534,7 +1534,7 @@ body.mphb_booking_menu_page_mphb_booking_rules .tablenav.top .actions.add-rule {
 .mphb-dashboard-widget-news__post-title span {
   display: inline-block;
   border-radius: 5px;
-  padding: 5px 6px;
+  padding: 4px 6px;
   margin-right: 5px;
   font-size: 0.875em;
   font-weight: 400;

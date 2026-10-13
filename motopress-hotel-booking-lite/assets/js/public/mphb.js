@@ -730,6 +730,1094 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         return arr.indexOf(value) !== -1;
       }
     }, {});
+
+    /**
+     *
+     * @requires ./../datepicker.js
+     */
+    MPHB.SearchCheckInDatepicker = MPHB.Datepicker.extend({}, {
+      getDatepickSettings: function getDatepickSettings() {
+        var self = this;
+        return {
+          defaultDate: this.firstAvailableCheckInDate,
+          onShow: function onShow(element, instance) {
+            MPHB.restApiHelper.getAvailabilityData({
+              // We load a day before and day after for availability calculations later
+              start_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth(), 0),
+              end_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth() + MPHB._data.settings.numberOfMonthDatepicker, 1)
+            }, function () {
+              self.lock();
+            }, function () {
+              self.form.updateCheckOutLimitations();
+              self.refresh();
+              self.unlock();
+            });
+
+            // 	remove highlight right after calendar was shown
+            // 	to avoide of date highlighting when date is not selected yet
+            element.find('.datepick-highlight').removeClass('datepick-highlight');
+          },
+          onChangeMonthYear: function onChangeMonthYear(year, month) {
+            MPHB.restApiHelper.getAvailabilityData({
+              // We load a day before and day after for availability calculations later
+              start_date: new Date(year, month - 1, 0),
+              end_date: new Date(year, month - 1 + MPHB._data.settings.numberOfMonthDatepicker, 1)
+            }, function () {
+              self.lock();
+            }, function () {
+              self.refresh();
+              self.unlock();
+            });
+          },
+          onSelect: function onSelect(dates) {
+            self.form.updateCheckOutLimitations();
+          },
+          onDate: function onDate(date, isCurrentMonth) {
+            var _roomTypeCalendarData;
+            var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData();
+            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(2, date, isCurrentMonth, (_roomTypeCalendarData = roomTypeCalendarData[0]) !== null && _roomTypeCalendarData !== void 0 ? _roomTypeCalendarData : {});
+            return calendarDateAttributes;
+          },
+          pickerClass: 'mphb-datepick-popup mphb-check-in-datepick ' + MPHB._data.settings.datepickerClass
+        };
+      }
+    });
+
+    /**
+     *
+     * @requires ./../datepicker.js
+     */
+    MPHB.SearchCheckOutDatepicker = MPHB.Datepicker.extend({}, {
+      minCheckOutDateForSelection: null,
+      maxCheckOutDateForSelection: null,
+      minStayDateAfterCheckIn: null,
+      maxStayDateAfterCheckIn: null,
+      /**
+       * @param {Date} checkInDate
+       */
+      updateCheckOutLimitations: function updateCheckOutLimitations(checkInDate) {
+        var _roomTypeCalendarData2;
+        if (!checkInDate) {
+          this.minCheckOutDateForSelection = null;
+          this.maxCheckOutDateForSelection = null;
+          this.minStayDateAfterCheckIn = null;
+          this.maxStayDateAfterCheckIn = null;
+          return;
+        }
+        var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData();
+        var result = MPHB.calendarHelper.calculateMinMaxCheckOutDateForSelection(checkInDate, (_roomTypeCalendarData2 = roomTypeCalendarData[0]) !== null && _roomTypeCalendarData2 !== void 0 ? _roomTypeCalendarData2 : {});
+        this.minCheckOutDateForSelection = result.minCheckOutDateForSelection;
+        this.maxCheckOutDateForSelection = result.maxCheckOutDateForSelection;
+        this.minStayDateAfterCheckIn = result.minStayDateAfterCheckIn;
+        this.maxStayDateAfterCheckIn = result.maxStayDateAfterCheckIn;
+        if (!this.getDate() || this.getDate() <= checkInDate) {
+          this.setDate(this.minCheckOutDateForSelection);
+        }
+      },
+      getDatepickSettings: function getDatepickSettings() {
+        var self = this;
+        return {
+          defaultDate: this.firstAvailableCheckInDate,
+          onShow: function onShow(element, instance) {
+            MPHB.restApiHelper.getAvailabilityData({
+              // We load a day before and day after for availability calculations later
+              start_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth(), 0),
+              end_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth() + MPHB._data.settings.numberOfMonthDatepicker, 1)
+            }, function () {
+              self.lock();
+            }, function () {
+              self.form.updateCheckOutLimitations();
+              self.refresh();
+              self.unlock();
+            });
+
+            // 	remove highlight right after calendar was shown
+            // 	to avoide of date highlighting when date is not selected yet
+            element.find('.datepick-highlight').removeClass('datepick-highlight');
+          },
+          onChangeMonthYear: function onChangeMonthYear(year, month) {
+            var _self$form$getCheckIn;
+            var instance = $.datepick._getInst(self.element[0]);
+            var calendarDrawDate = new Date(instance.drawDate.getTime());
+            var selectedCheckInDateorToday = (_self$form$getCheckIn = self.form.getCheckInDate()) !== null && _self$form$getCheckIn !== void 0 ? _self$form$getCheckIn : new Date();
+            MPHB.restApiHelper.getAvailabilityData({
+              // We load data from selected check-in date because we need it for updateCheckOutLimitations()
+              start_date: new Date(selectedCheckInDateorToday.getFullYear(), selectedCheckInDateorToday.getMonth(), 0),
+              end_date: new Date(year, month - 1 + MPHB._data.settings.numberOfMonthDatepicker, 1)
+            }, function () {
+              self.lock();
+            }, function () {
+              self.form.updateCheckOutLimitations();
+              var instance = $.datepick._getInst(self.element[0]);
+              // we need to set draw date because it could be changed
+              // after updateCheckOutLimitations() when we set calendar date
+              instance.drawDate = calendarDrawDate;
+              self.refresh();
+              self.unlock();
+            });
+          },
+          onDate: function onDate(date, isCurrentMonth) {
+            var _roomTypeCalendarData3;
+            var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData();
+            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(3, date, isCurrentMonth, (_roomTypeCalendarData3 = roomTypeCalendarData[0]) !== null && _roomTypeCalendarData3 !== void 0 ? _roomTypeCalendarData3 : {}, false, self.form.checkInDatepicker.getDate(), self.minStayDateAfterCheckIn, self.maxStayDateAfterCheckIn, self.minCheckOutDateForSelection, self.maxCheckOutDateForSelection);
+            return calendarDateAttributes;
+          },
+          pickerClass: 'mphb-datepick-popup mphb-check-out-datepick ' + MPHB._data.settings.datepickerClass
+        };
+      }
+    });
+    MPHB.SearchForm = can.Control.extend({}, {
+      checkInDatepicker: null,
+      checkOutDatepicker: null,
+      init: function init($formElement) {
+        var firstAvailableCheckInDateYmd = $formElement.attr('data-first_available_check_in_date');
+        if (!firstAvailableCheckInDateYmd) {
+          firstAvailableCheckInDateYmd = $.datepick.formatDate('yyyy-mm-dd', new Date());
+        }
+        this.checkInDatepicker = new MPHB.SearchCheckInDatepicker($formElement.find('.mphb-datepick[id^="mphb_check_in_date"]'), {
+          form: this,
+          roomTypeId: 0,
+          firstAvailableCheckInDateYmd: firstAvailableCheckInDateYmd
+        });
+        this.checkOutDatepicker = new MPHB.SearchCheckOutDatepicker($formElement.find('.mphb-datepick[id^="mphb_check_out_date"]'), {
+          form: this,
+          roomTypeId: 0,
+          firstAvailableCheckInDateYmd: firstAvailableCheckInDateYmd
+        });
+      },
+      getCheckInDate: function getCheckInDate() {
+        return this.checkInDatepicker.getDate() ? MPHB.Utils.cloneDate(this.checkInDatepicker.getDate()) : null;
+      },
+      updateCheckOutLimitations: function updateCheckOutLimitations() {
+        this.checkOutDatepicker.updateCheckOutLimitations(this.checkInDatepicker.getDate());
+      }
+    });
+    MPHB.DirectBooking = can.Control.extend({}, {
+      reservationForm: null,
+      // form.mphb-booking-form
+      elementsToHide: null,
+      // Quantity wrappers, price block and reservation section
+      quantitySection: null,
+      // div.mphb-reserve-room-section
+      wrapperWithSelect: null,
+      // .mphb-rooms-quantity-wrapper.mphb-rooms-quantity-multiple
+      wrapperWithoutSelect: null,
+      // .mphb-rooms-quantity-wrapper.mphb-rooms-quantity-single
+      priceWrapper: null,
+      // .mphb-period-price
+      quantitySelect: null,
+      // select.mphb-rooms-quantity
+      availableLabel: null,
+      // span.mphb-available-rooms-count
+      typeId: 0,
+      init: function init(el, args) {
+        this.reservationForm = args.reservationForm;
+        this.elementsToHide = el.find('.mphb-reserve-room-section, .mphb-rooms-quantity-wrapper, .mphb-regular-price');
+        this.quantitySection = el.find('.mphb-reserve-room-section');
+        this.wrapperWithSelect = this.quantitySection.find('.mphb-rooms-quantity-wrapper.mphb-rooms-quantity-multiple');
+        this.wrapperWithoutSelect = this.quantitySection.find('.mphb-rooms-quantity-wrapper.mphb-rooms-quantity-single');
+        this.priceWrapper = this.quantitySection.find('.mphb-period-price');
+        this.quantitySelect = this.quantitySection.find('.mphb-rooms-quantity');
+        this.availableLabel = this.quantitySection.find('.mphb-available-rooms-count');
+
+        // TODO: get this from reservation form? and remove input?
+        this.typeId = el.find('input[name="mphb_room_type_id"]').val();
+        this.typeId = parseInt(this.typeId);
+      },
+      hideSections: function hideSections() {
+        this.elementsToHide.addClass('mphb-hide');
+        this.reservationForm.reserveBtnWrapper.removeClass('mphb-hide');
+      },
+      showSections: function showSections(showPrice) {
+        this.reservationForm.reserveBtnWrapper.addClass('mphb-hide');
+        this.quantitySection.removeClass('mphb-hide');
+        if (showPrice) {
+          this.priceWrapper.removeClass('mphb-hide');
+        }
+      },
+      resetQuantityOptions: function resetQuantityOptions(count) {
+        this.quantitySelect.empty();
+        for (var i = 1; i <= count; i++) {
+          var option = '<option value="' + i + '">' + i + '</option>';
+          this.quantitySelect.append(option);
+        }
+        this.quantitySelect.val(1); // Otherwise the last option will be active
+
+        // Also update text "of %d accommodation(-s) available."
+        this.availableLabel.text(count);
+        if (count > 1) {
+          this.wrapperWithSelect.removeClass('mphb-hide');
+        } else {
+          this.wrapperWithoutSelect.removeClass('mphb-hide');
+        }
+      },
+      setupPrice: function setupPrice(price, priceHtml) {
+        this.priceWrapper.children('.mphb-price, .mphb-price-period, .mphb-tax-information').remove();
+        if (price > 0 && priceHtml != '') {
+          this.priceWrapper.append(priceHtml);
+        }
+      },
+      showError: function showError(errorMessage) {
+        this.hideSections();
+        this.reservationForm.showError(errorMessage);
+      },
+      loadAvailabilityAndPriceData: function loadAvailabilityAndPriceData() {
+        var checkIn = this.reservationForm.checkInDatepicker.getDate();
+        var checkOut = this.reservationForm.checkOutDatepicker.getDate();
+        if (!checkIn || !checkOut) return;
+        this.reservationForm.clearErrors();
+        this.reservationForm.lock();
+        var self = this;
+        $.ajax({
+          url: MPHB._data.ajaxUrl,
+          type: 'GET',
+          dataType: 'json',
+          data: {
+            action: 'mphb_get_room_type_availability_data',
+            mphb_nonce: MPHB._data.nonces.mphb_get_room_type_availability_data,
+            room_type_id: this.typeId,
+            check_in_date: $.datepick.formatDate(MPHB._data.settings.dateTransferFormat, checkIn),
+            check_out_date: $.datepick.formatDate(MPHB._data.settings.dateTransferFormat, checkOut),
+            adults_count: this.reservationForm.getAdults(),
+            children_count: this.reservationForm.getChildren(),
+            lang: MPHB._data.settings.currentLanguage
+          },
+          success: function success(response) {
+            if (response.success) {
+              self.resetQuantityOptions(response.data.freeCount);
+              self.setupPrice(response.data.price, response.data.priceHtml);
+              self.showSections(response.data.price > 0);
+            } else {
+              self.showError(response.data.message);
+            }
+          },
+          error: function error(jqXHR) {
+            self.showError(MPHB._data.translations.errorHasOccured);
+          },
+          complete: function complete(jqXHR) {
+            self.reservationForm.unlock();
+          }
+        });
+      },
+      /**
+       * See also MPHB.ReservationForm.onDatepickChange().
+       */
+      'input.mphb-datepick change': function inputMphbDatepick_change(element, event) {
+        this.hideSections();
+      },
+      '.mphb-reserve-btn click': function mphbReserveBtn_click(element, event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var checkIn = this.reservationForm.checkInDatepicker.getDate();
+        var checkOut = this.reservationForm.checkOutDatepicker.getDate();
+        if (!checkIn || !checkOut) {
+          if (!checkIn) {
+            this.showError(MPHB._data.translations.checkInNotValid);
+          } else {
+            this.showError(MPHB._data.translations.checkOutNotValid);
+          }
+          this.reservationForm.unlock();
+        } else {
+          this.loadAvailabilityAndPriceData();
+        }
+      },
+      'input.mphb-datepick, select[name="mphb_children"] change': function inputMphbDatepick_selectNameMphb_children_change(element, event) {
+        this.loadAvailabilityAndPriceData();
+      },
+      'select[name="mphb_adults"] change': function selectNameMphb_adults_change(element, event) {
+        // restrict children count according to max capacity and selected adult count
+        var childrenSelect = jQuery('select[name="mphb_children"]');
+        if (childrenSelect.length && undefined !== childrenSelect.data('max-total')) {
+          var minAllowedChildren = parseInt(childrenSelect.data('min-allowed'));
+          var maxAllowedChildren = parseInt(childrenSelect.data('max-allowed'));
+          var totalCapacity = parseInt(childrenSelect.data('max-total'));
+          var selectedAdultsCount = parseInt(element.val());
+          var maxChildrenCount = Math.min(Math.max(minAllowedChildren, totalCapacity - selectedAdultsCount), maxAllowedChildren);
+          var childrenSelectedCount = parseInt(childrenSelect.val());
+          childrenSelect.empty();
+          for (var i = minAllowedChildren; i <= maxChildrenCount; i++) {
+            var $option = jQuery('<option value="' + i + '"' + (i === childrenSelectedCount ? 'selected="selected"' : '') + '>' + i + '</option>');
+            childrenSelect.append($option);
+          }
+        }
+        this.loadAvailabilityAndPriceData();
+      }
+    });
+    MPHB.ReservationForm = can.Control.extend({}, {
+      /**
+       * @var jQuery
+       */
+      $formElement: null,
+      /**
+       * @var MPHB.RoomTypeCheckInDatepicker
+       */
+      checkInDatepicker: null,
+      /**
+       * @var MPHB.RoomTypeCheckOutDatepicker
+       */
+      checkOutDatepicker: null,
+      /**
+       * @var jQuery
+       */
+      reserveBtnWrapper: null,
+      /**
+       * @var jQuery
+       */
+      errorsWrapper: null,
+      /**
+       * @var {MPHB.DirectBooking|null}
+       */
+      directBooking: null,
+      /**
+       * @var int
+       */
+      roomTypeId: null,
+      init: function init($formElement) {
+        this.$formElement = $formElement;
+        this.roomTypeId = parseInt(this.$formElement.attr('id').replace(/^booking-form-/, ''));
+        this.errorsWrapper = this.$formElement.find('.mphb-errors-wrapper');
+        var firstAvailableCheckInDateYmd = this.$formElement.attr('data-first_available_check_in_date');
+        if (!firstAvailableCheckInDateYmd) {
+          firstAvailableCheckInDateYmd = $.datepick.formatDate('yyyy-mm-dd', new Date());
+        }
+
+        // init Check-In Datepicker
+        this.checkInDatepicker = new MPHB.RoomTypeCheckInDatepicker(this.$formElement.find('input[type="text"][id^=mphb_check_in_date]'), {
+          form: this,
+          roomTypeId: '1' == MPHB._data.settings.isDirectBooking ? this.roomTypeId : 0,
+          firstAvailableCheckInDateYmd: firstAvailableCheckInDateYmd
+        });
+
+        // init Check-Out Datepicker
+        this.checkOutDatepicker = new MPHB.RoomTypeCheckOutDatepicker(this.$formElement.find('input[type="text"][id^=mphb_check_out_date]'), {
+          form: this,
+          roomTypeId: '1' == MPHB._data.settings.isDirectBooking ? this.roomTypeId : 0,
+          firstAvailableCheckInDateYmd: firstAvailableCheckInDateYmd
+        });
+        this.reserveBtnWrapper = this.$formElement.find('.mphb-reserve-btn-wrapper');
+
+        // Init direct booking
+        if ('1' == MPHB._data.settings.isDirectBooking) {
+          this.directBooking = new MPHB.DirectBooking(this.$formElement, {
+            reservationForm: this
+          });
+        }
+        $(window).on('mphb-update-date-room-type-' + this.roomTypeId, this.proxy(function () {
+          this.checkInDatepicker.refresh();
+          this.checkOutDatepicker.refresh();
+        }));
+        this.unlock();
+      },
+      updateCheckOutLimitations: function updateCheckOutLimitations() {
+        this.checkOutDatepicker.updateCheckOutLimitations(this.checkInDatepicker.getDate());
+      },
+      /**
+       * @returns {Number|String}
+       * @since 3.8.3
+       */
+      getAdults: function getAdults() {
+        var input = this.$formElement.find('[name="mphb_adults"]');
+        return input.length > 0 ? parseInt(input.val()) : '';
+      },
+      /**
+       * @returns {Number|String}
+       * @since 3.8.3
+       */
+      getChildren: function getChildren() {
+        var input = this.$formElement.find('[name="mphb_children"]');
+        return input.length > 0 ? parseInt(input.val()) : '';
+      },
+      showError: function showError(message) {
+        this.clearErrors();
+        var errorMessage = $('<p>', {
+          'class': 'mphb-error',
+          'html': message
+        });
+        this.errorsWrapper.append(errorMessage).removeClass('mphb-hide');
+      },
+      clearErrors: function clearErrors() {
+        this.errorsWrapper.empty().addClass('mphb-hide');
+      },
+      lock: function lock() {
+        this.element.addClass('mphb-loading');
+      },
+      unlock: function unlock() {
+        this.element.removeClass('mphb-loading');
+      },
+      /**
+       * See also MPHB.DirectBooking["input.mphb-datepick change"].
+       */
+      onDatepickChange: function onDatepickChange() {
+        if (null !== this.directBooking) {
+          this.directBooking.hideSections();
+        }
+      }
+    });
+    MPHB.RoomTypeCalendar = can.Control.extend({}, {
+      roomTypeId: null,
+      $calendarElement: null,
+      isShowPrices: false,
+      isTruncatePrices: true,
+      isShowPricesCurrency: false,
+      allShownMonthsCount: 1,
+      // for clickable calendar
+      isClickable: false,
+      reservationFormElement: null,
+      $reservationFormCheckInElement: null,
+      $reservationFormCheckOutElement: null,
+      isSyncWithReservationFormInitialised: false,
+      isSyncWithReservationFormOn: true,
+      lastDrawDate: null,
+      isCheckInSelected: false,
+      isCheckOutSelected: false,
+      minCheckOutDateForSelection: null,
+      maxCheckOutDateForSelection: null,
+      minStayDateAfterCheckIn: null,
+      maxStayDateAfterCheckIn: null,
+      init: function init($calendarElement, args) {
+        var self = this;
+        this.$calendarElement = $calendarElement;
+        this.roomTypeId = parseInt(this.$calendarElement.data('roomTypeId'));
+        if (undefined !== this.$calendarElement.data('is_show_prices')) {
+          this.isShowPrices = Boolean(this.$calendarElement.data('is_show_prices'));
+        }
+        if (undefined !== this.$calendarElement.data('is_truncate_prices')) {
+          this.isTruncatePrices = Boolean(this.$calendarElement.data('is_truncate_prices'));
+        }
+        if (undefined !== this.$calendarElement.data('is_show_prices_currency')) {
+          this.isShowPricesCurrency = Boolean(this.$calendarElement.data('is_show_prices_currency'));
+        }
+        var monthsToShow = MPHB._data.settings.numberOfMonthCalendar;
+        var customMonths = this.$calendarElement.attr('data-monthstoshow');
+        if (customMonths) {
+          var customArray = customMonths.split(',');
+          monthsToShow = customArray.length == 1 ? parseInt(customMonths) : customArray;
+        }
+        if (Array.isArray(monthsToShow)) {
+          this.allShownMonthsCount = parseInt(monthsToShow[0]) * parseInt(monthsToShow[1]);
+        } else {
+          this.allShownMonthsCount = monthsToShow;
+        }
+
+        // check is calendar clickable
+        if ('1' == MPHB._data.settings.isDirectBooking) {
+          this.reservationFormElement = $('#booking-form-' + this.roomTypeId);
+          this.isClickable = 0 < this.reservationFormElement.length;
+          if (this.isClickable) {
+            this.$reservationFormCheckInElement = this.reservationFormElement.find('input[type="text"][id^=mphb_check_in_date]');
+            this.$reservationFormCheckOutElement = this.reservationFormElement.find('input[type="text"][id^=mphb_check_out_date]');
+          }
+        }
+        var firstAvailableCheckInDateYmd = this.$calendarElement.attr('data-first_available_check_in_date');
+        if (!firstAvailableCheckInDateYmd) {
+          firstAvailableCheckInDateYmd = $.datepick.formatDate('yyyy-mm-dd', new Date());
+        }
+        var firstAvailableCheckInDate = new Date(firstAvailableCheckInDateYmd);
+        MPHB.restApiHelper.getAvailabilityData({
+          // We load a day before and day after for availability calculations later
+          start_date: new Date(firstAvailableCheckInDate.getFullYear(), firstAvailableCheckInDate.getMonth(), 0),
+          end_date: new Date(firstAvailableCheckInDate.getFullYear(), firstAvailableCheckInDate.getMonth() + this.allShownMonthsCount, 1),
+          room_type_ids: [this.roomTypeId],
+          is_add_prices: this.isShowPrices,
+          is_truncate_prices: this.isTruncatePrices,
+          is_add_prices_currency: this.isShowPricesCurrency
+        }, function () {
+          self.$calendarElement.addClass('mphb-loading');
+        }, function () {
+          self.doAfterNewCalendarDataLoaded(self);
+          self.$calendarElement.removeClass('mphb-loading');
+        });
+        this.$calendarElement.hide().datepick({
+          minDate: MPHB.get_today_date(),
+          defaultDate: firstAvailableCheckInDate,
+          monthsToShow: monthsToShow,
+          firstDay: MPHB._data.settings.firstDay,
+          pickerClass: MPHB._data.settings.datepickerClass,
+          useMouseWheel: false,
+          rangeSelect: self.isClickable,
+          showSpeed: 0,
+          onChangeMonthYear: function onChangeMonthYear(year, month) {
+            if (self.isClickable) {
+              self.lastDrawDate = $.datepick._getInst(self.$calendarElement).drawDate;
+            }
+            MPHB.restApiHelper.getAvailabilityData({
+              // We load a day before and day after for availability calculations later
+              start_date: new Date(year, month - 1, 0),
+              end_date: new Date(year, month - 1 + self.allShownMonthsCount, 1),
+              room_type_ids: [self.roomTypeId],
+              is_add_prices: self.isShowPrices,
+              is_truncate_prices: self.isTruncatePrices,
+              is_add_prices_currency: self.isShowPricesCurrency
+            }, function () {
+              self.$calendarElement.addClass('mphb-loading');
+            }, function () {
+              self.doAfterNewCalendarDataLoaded(self);
+              self.$calendarElement.removeClass('mphb-loading');
+            });
+          },
+          onDate: function onDate(date, isCurrentMonth) {
+            var _roomTypeCalendarData4;
+            var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([self.roomTypeId], self.isShowPrices, self.isTruncatePrices, self.isShowPricesCurrency);
+            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(1, date, isCurrentMonth, (_roomTypeCalendarData4 = roomTypeCalendarData[self.roomTypeId]) !== null && _roomTypeCalendarData4 !== void 0 ? _roomTypeCalendarData4 : {}, self.isShowPrices);
+            if (isCurrentMonth) {
+              calendarDateAttributes = self.fillClickableCalendarDateData(calendarDateAttributes, date);
+            }
+            return calendarDateAttributes;
+          },
+          onSelect: function onSelect(selectedDates) {
+            // do nothing if it is not clickable calendar or
+            // if it was click to remove checkin selection
+            // because checkout selection is not possible
+            if (!self.isClickable || 0 === selectedDates.length) return;
+            if (!self.isCheckInSelected || self.isCheckInSelected && self.isCheckOutSelected) {
+              var _roomTypeCalendarData5;
+              self.isCheckInSelected = true;
+              self.isCheckOutSelected = false;
+
+              //self.calculateMinMaxCheckOutDateForSelection(selectedDates[0]);
+
+              var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([self.roomTypeId], self.isShowPrices, self.isTruncatePrices, self.isShowPricesCurrency);
+              var result = MPHB.calendarHelper.calculateMinMaxCheckOutDateForSelection(selectedDates[0], (_roomTypeCalendarData5 = roomTypeCalendarData[self.roomTypeId]) !== null && _roomTypeCalendarData5 !== void 0 ? _roomTypeCalendarData5 : {});
+              self.minCheckOutDateForSelection = result.minCheckOutDateForSelection;
+              self.maxCheckOutDateForSelection = result.maxCheckOutDateForSelection;
+              self.minStayDateAfterCheckIn = result.minStayDateAfterCheckIn;
+              self.maxStayDateAfterCheckIn = result.maxStayDateAfterCheckIn;
+            } else {
+              self.isCheckOutSelected = true;
+            }
+
+            // do not change first drawing month after selection
+            var instance = $.datepick._getInst(self.$calendarElement);
+            instance.drawDate = self.lastDrawDate;
+            instance.options.setSelectedDatesToStatusBar(instance, selectedDates);
+            self.fillReservationFormWithSelectedDates(selectedDates);
+          },
+          onShow: function onShow(element, instance) {
+            // 	remove highlight right after calendar was shown
+            // 	to avoide of date highlighting even when mouse pointer not over calendar
+            element.find('.datepick-highlight').removeClass('datepick-highlight');
+            if (self.isClickable) {
+              // save draw date to make sure it will not be change on selection
+              self.lastDrawDate = instance.drawDate;
+              instance.options.initStatusBar(element, instance);
+              instance.options.initSelectionOnHover(element, instance);
+            }
+          },
+          setSelectedDatesToStatusBar: function setSelectedDatesToStatusBar(instance, selectedDates) {
+            var selectedDatesText = MPHB._data.translations.selectDates;
+            if (self.isCheckInSelected) {
+              selectedDatesText = $.datepick.formatDate(MPHB._data.settings.dateFormat, selectedDates[0]);
+              if (self.isCheckOutSelected) {
+                selectedDatesText += ' - ' + $.datepick.formatDate(MPHB._data.settings.dateFormat, selectedDates[1]);
+              }
+            }
+            instance.options.renderer.picker = '<div class="datepick">' + '<div class="datepick-nav">{link:prev}{link:today}{link:next}</div>{months}' + '<div class="datepick-ctrl"><div class="mphb-calendar__selected-dates">' + selectedDatesText + '</div>{link:clear}</div>' + '<div class="datepick-clear-fix"></div></div>';
+          },
+          initStatusBar: function initStatusBar(element, instance) {
+            // clone object to avoide of other calendars changing
+            instance.options.renderer = Object.assign({}, instance.options.renderer);
+            instance.options.setSelectedDatesToStatusBar(instance, self.$calendarElement.datepick('getDate'));
+            instance.options.commands = Object.assign({}, instance.options.commands);
+            instance.options.commands.close.keystroke = {};
+            instance.options.commands.clear.keystroke = {
+              keyCode: 27,
+              altKey: false
+            };
+            instance.options.commands.clear.action = function (instance) {
+              // all commands have common functions for all instances!
+              // so we need to take it into account in command action function
+              if (instance === $.datepick._getInst(self.$calendarElement) || instance === $.datepick._getInst(self.$reservationFormCheckInElement) || instance === $.datepick._getInst(self.$reservationFormCheckOutElement)) {
+                if (self.isCheckInSelected) {
+                  // we need to save and set draw date again before refresh
+                  // to make sure calendar does not change current first drawn month
+                  var currentDrawDate = MPHB.Utils.cloneDate(self.lastDrawDate);
+                  self.isCheckInSelected = false;
+                  self.isCheckOutSelected = false;
+                  self.$calendarElement.datepick('setDate', null);
+                  self.$reservationFormCheckInElement.datepick('setDate', null);
+                  self.$reservationFormCheckOutElement.datepick('setDate', null);
+                  instance.drawDate = currentDrawDate;
+                  self.lastDrawDate = currentDrawDate;
+                  self.refresh();
+                }
+              } else {
+                instance.elem.datepick('clear');
+              }
+            };
+          },
+          initSelectionOnHover: function initSelectionOnHover(element, instance) {
+            // mark dates as selected between check-in and potensial check-out on hover
+            element.find(instance.get('renderer').daySelector + ' a').hover(function () {
+              if (self.isCheckInSelected && !self.isCheckOutSelected) {
+                var currentHoverDate = $.datepick.retrieveDate(self.$calendarElement, this),
+                  selectedDates = self.$calendarElement.datepick('getDate'),
+                  processingDate = MPHB.Utils.cloneDate(selectedDates[0]);
+                processingDate.setDate(processingDate.getDate() + 1);
+                if (selectedDates[0].getTime() < currentHoverDate.getTime() && self.$calendarElement.datepick('isSelectable', currentHoverDate)) {
+                  while (currentHoverDate.getTime() > processingDate.getTime()) {
+                    self.$calendarElement.find('.dp' + processingDate.getTime()).not('.mphb-extra-date').addClass('mphb-selected-date');
+                    processingDate.setDate(processingDate.getDate() + 1);
+                  }
+                }
+              }
+            }, function () {
+              if (self.isCheckInSelected && !self.isCheckOutSelected) {
+                self.$calendarElement.find('.mphb-selected-date').removeClass('mphb-selected-date');
+              }
+            });
+          }
+        }).show();
+      },
+      doAfterNewCalendarDataLoaded: function doAfterNewCalendarDataLoaded(self) {
+        if (self.isCheckInSelected && !self.isCheckOutSelected) {
+          var _roomTypeCalendarData6;
+          var dates = self.$calendarElement.datepick('getDate');
+          var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([self.roomTypeId], self.isShowPrices, self.isTruncatePrices, self.isShowPricesCurrency);
+          var result = MPHB.calendarHelper.calculateMinMaxCheckOutDateForSelection(dates[0], (_roomTypeCalendarData6 = roomTypeCalendarData[self.roomTypeId]) !== null && _roomTypeCalendarData6 !== void 0 ? _roomTypeCalendarData6 : {});
+          self.minCheckOutDateForSelection = result.minCheckOutDateForSelection;
+          self.maxCheckOutDateForSelection = result.maxCheckOutDateForSelection;
+          self.minStayDateAfterCheckIn = result.minStayDateAfterCheckIn;
+          self.maxStayDateAfterCheckIn = result.maxStayDateAfterCheckIn;
+        }
+        self.refresh();
+        if (self.isClickable && !self.isSyncWithReservationFormInitialised) {
+          self.isSyncWithReservationFormInitialised = true;
+          self.initSyncWithReservationForm();
+        }
+      },
+      fillClickableCalendarDateData: function fillClickableCalendarDateData(calendarDateData, date) {
+        var _formattedDate, _roomTypeCalendarData7;
+        if (!this.isClickable) {
+          calendarDateData.selectable = false;
+          return calendarDateData;
+        }
+        var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([this.roomTypeId], this.isShowPrices, this.isTruncatePrices, this.isShowPricesCurrency);
+        var formattedDate = $.datepick.formatDate('yyyy-mm-dd', date);
+        var roomTypeData = (_formattedDate = ((_roomTypeCalendarData7 = roomTypeCalendarData[this.roomTypeId]) !== null && _roomTypeCalendarData7 !== void 0 ? _roomTypeCalendarData7 : {})[formattedDate]) !== null && _formattedDate !== void 0 ? _formattedDate : {};
+        if (undefined === roomTypeData || 0 === Object.keys(roomTypeData).length || !roomTypeData.hasOwnProperty('roomTypeStatus')) {
+          return calendarDateData;
+        }
+
+        // checkIn is not selected yet or both dates are selected already
+        // and user can select checkIn date again
+        if (!this.isCheckInSelected || this.isCheckInSelected && this.isCheckOutSelected) {
+          if (MPHB.calendarHelper.ROOM_STATUS_AVAILABLE === roomTypeData.roomTypeStatus && (!roomTypeData.hasOwnProperty('isCheckInNotAllowed') || !roomTypeData.isCheckInNotAllowed)) {
+            calendarDateData.selectable = true;
+            calendarDateData.dateClass += ' mphb-selectable-date--check-in';
+          } else {
+            calendarDateData.selectable = false;
+            calendarDateData.dateClass += ' mphb-unselectable-date--check-in';
+          }
+        } else {
+          // checkIn selected but checkOut is not
+          if (null !== this.minCheckOutDateForSelection && this.minCheckOutDateForSelection.getTime() <= date.getTime() && (null === this.maxCheckOutDateForSelection || this.maxCheckOutDateForSelection.getTime() >= date.getTime()) && (!roomTypeData.hasOwnProperty('isCheckOutNotAllowed') || !roomTypeData.isCheckOutNotAllowed)) {
+            calendarDateData.selectable = true;
+            calendarDateData.dateClass += ' mphb-selectable-date--check-out';
+          } else {
+            calendarDateData.selectable = false;
+            calendarDateData.dateClass += ' mphb-unselectable-date--check-out';
+          }
+          if (null !== this.minStayDateAfterCheckIn && this.minStayDateAfterCheckIn.getTime() > date.getTime()) {
+            calendarDateData.title += '\n' + MPHB._data.translations.lessThanMinDaysStay;
+          }
+          if (null !== this.maxStayDateAfterCheckIn && this.maxStayDateAfterCheckIn.getTime() < date.getTime()) {
+            calendarDateData.title += '\n' + MPHB._data.translations.moreThanMaxDaysStay;
+          }
+        }
+        if (this.isCheckInSelected || this.isCheckOutSelected) {
+          var dates = this.$calendarElement.datepick('getDate'),
+            checkInSelectedDate = MPHB.Utils.cloneDate(dates[0]),
+            checkInFormattedDate = $.datepick.formatDate('yyyy-mm-dd', checkInSelectedDate),
+            checkOutSelectedDate = MPHB.Utils.cloneDate(dates[1]),
+            checkOutFormattedDate = $.datepick.formatDate('yyyy-mm-dd', checkOutSelectedDate),
+            currentProcessingFormattedDate = $.datepick.formatDate('yyyy-mm-dd', date);
+
+          // normalise date to avoide days border fluctuations
+          checkInSelectedDate.setHours(0, 0, 0, 0);
+          checkOutSelectedDate.setHours(23, 59, 59, 999);
+          if (checkInFormattedDate === currentProcessingFormattedDate) {
+            calendarDateData.dateClass += ' mphb-selected-date--check-in';
+          } else if (this.isCheckOutSelected && checkOutFormattedDate === currentProcessingFormattedDate) {
+            calendarDateData.dateClass += ' mphb-selected-date--check-out';
+          } else if (this.isCheckInSelected && this.isCheckOutSelected && checkInSelectedDate.getTime() <= date.getTime() && checkOutSelectedDate.getTime() >= date.getTime()) {
+            calendarDateData.dateClass += ' mphb-selected-date';
+          }
+        }
+        return calendarDateData;
+      },
+      selectCheckInDateInCalendar: function selectCheckInDateInCalendar($newCheckInDate) {
+        var selectedDates = this.$calendarElement.datepick('getDate');
+        if ($.datepick.formatDate('yyyy-mm-dd', selectedDates[0]) !== $.datepick.formatDate('yyyy-mm-dd', $newCheckInDate)) {
+          if (this.isCheckInSelected && !this.isCheckOutSelected) {
+            // switch to Check-In selection mode
+            this.isCheckInSelected = false;
+          }
+          this.$calendarElement.datepick('setDate', $newCheckInDate);
+          var instance = $.datepick._getInst(this.$calendarElement);
+          instance.pickingRange = true;
+          this.refresh();
+        }
+      },
+      selectCheckOutDateInCalendar: function selectCheckOutDateInCalendar($newCheckOutDate) {
+        if (!this.isCheckInSelected) return;
+        var selectedDates = this.$calendarElement.datepick('getDate');
+        if ($.datepick.formatDate('yyyy-mm-dd', selectedDates[1]) !== $.datepick.formatDate('yyyy-mm-dd', $newCheckOutDate)) {
+          if (this.isCheckOutSelected) {
+            // switch to Check-Out selection mode
+            this.isCheckOutSelected = false;
+          }
+          this.$calendarElement.datepick('setDate', selectedDates[0], $newCheckOutDate);
+          this.refresh();
+        }
+      },
+      initSyncWithReservationForm: function initSyncWithReservationForm() {
+        var _this = this;
+        // get selected dates from booking form if it has them from session
+        var reservationFormCheckInDate = this.$reservationFormCheckInElement.datepick('getDate')[0],
+          reservationFormCheckOutDate = this.$reservationFormCheckOutElement.datepick('getDate')[0];
+        if (reservationFormCheckInDate) {
+          this.isSyncWithReservationFormOn = false;
+          this.selectCheckInDateInCalendar(reservationFormCheckInDate);
+          if (reservationFormCheckOutDate) {
+            this.selectCheckOutDateInCalendar(reservationFormCheckOutDate);
+          }
+          this.isSyncWithReservationFormOn = true;
+        }
+        this.$reservationFormCheckInElement.change(function (event) {
+          var reservationFormCheckInDate = _this.$reservationFormCheckInElement.datepick('getDate')[0];
+          _this.isSyncWithReservationFormOn = false;
+          _this.selectCheckInDateInCalendar(reservationFormCheckInDate);
+          _this.isSyncWithReservationFormOn = true;
+        });
+        this.$reservationFormCheckOutElement.change(function (event) {
+          var reservationFormCheckOutDate = _this.$reservationFormCheckOutElement.datepick('getDate')[0];
+
+          // we do not clear check-out in calendar because it clears after check-in selected
+          if (undefined === reservationFormCheckOutDate) return;
+          _this.isSyncWithReservationFormOn = false;
+          _this.selectCheckOutDateInCalendar(reservationFormCheckOutDate);
+          _this.isSyncWithReservationFormOn = true;
+        });
+      },
+      fillReservationFormWithSelectedDates: function fillReservationFormWithSelectedDates(selectedDates) {
+        if (!this.isSyncWithReservationFormOn) return;
+        if (this.isCheckInSelected) {
+          var reservationFormCheckInDate = this.$reservationFormCheckInElement.datepick('getDate')[0];
+          if ($.datepick.formatDate('yyyy-mm-dd', selectedDates[0]) !== $.datepick.formatDate('yyyy-mm-dd', reservationFormCheckInDate)) {
+            this.$reservationFormCheckInElement.datepick('setDate', selectedDates[0]);
+          }
+        }
+        if (this.isCheckOutSelected) {
+          var reservationFormCheckOutDate = this.$reservationFormCheckOutElement.datepick('getDate')[0];
+          if ($.datepick.formatDate('yyyy-mm-dd', selectedDates[1]) !== $.datepick.formatDate('yyyy-mm-dd', reservationFormCheckOutDate)) {
+            this.$reservationFormCheckOutElement.datepick('setDate', selectedDates[1]);
+          }
+        } else {
+          // clear check-out date if it was set before
+          this.$reservationFormCheckOutElement.datepick('setDate', null);
+        }
+      },
+      refresh: function refresh() {
+        this.$calendarElement.hide();
+        $.datepick._update(this.$calendarElement, true);
+        this.$calendarElement.show();
+      }
+    });
+
+    /**
+     *
+     * @requires ./../datepicker.js
+     */
+    MPHB.Datepicker('MPHB.RoomTypeCheckInDatepicker', {}, {
+      getDatepickSettings: function getDatepickSettings() {
+        var self = this;
+        return {
+          defaultDate: this.firstAvailableCheckInDate,
+          onShow: function onShow(element, instance) {
+            MPHB.restApiHelper.getAvailabilityData({
+              // We load a day before and day after for availability calculations later
+              start_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth(), 0),
+              end_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth() + MPHB._data.settings.numberOfMonthDatepicker, 1),
+              room_type_ids: [self.roomTypeId]
+            }, function () {
+              self.lock();
+            }, function () {
+              self.form.updateCheckOutLimitations();
+              self.refresh();
+              self.unlock();
+            });
+
+            // 	remove highlight right after calendar was shown
+            // 	to avoide of date highlighting when date is not selected yet
+            element.find('.datepick-highlight').removeClass('datepick-highlight');
+          },
+          onChangeMonthYear: function onChangeMonthYear(year, month) {
+            MPHB.restApiHelper.getAvailabilityData({
+              // We load a day before and day after for availability calculations later
+              start_date: new Date(year, month - 1, 0),
+              end_date: new Date(year, month - 1 + MPHB._data.settings.numberOfMonthDatepicker, 1),
+              room_type_ids: [self.roomTypeId]
+            }, function () {
+              self.lock();
+            }, function () {
+              self.refresh();
+              self.unlock();
+            });
+          },
+          onSelect: function onSelect(dates) {
+            self.form.updateCheckOutLimitations();
+            self.form.onDatepickChange();
+
+            // we clear check-out date if a new check-in date was selected
+            self.form.checkOutDatepicker.clear();
+            self.element.trigger('change');
+          },
+          onDate: function onDate(date, isCurrentMonth) {
+            var _roomTypeCalendarData8;
+            var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([self.roomTypeId]);
+            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(2, date, isCurrentMonth, (_roomTypeCalendarData8 = roomTypeCalendarData[self.roomTypeId]) !== null && _roomTypeCalendarData8 !== void 0 ? _roomTypeCalendarData8 : {});
+            return calendarDateAttributes;
+          },
+          pickerClass: 'mphb-datepick-popup mphb-check-in-datepick ' + MPHB._data.settings.datepickerClass
+        };
+      }
+    });
+
+    /**
+     *
+     * @requires ./../datepicker.js
+     */
+    MPHB.RoomTypeCheckOutDatepicker = MPHB.Datepicker.extend({}, {
+      minCheckOutDateForSelection: null,
+      maxCheckOutDateForSelection: null,
+      minStayDateAfterCheckIn: null,
+      maxStayDateAfterCheckIn: null,
+      /**
+       * @param {Date} checkInDate
+       */
+      updateCheckOutLimitations: function updateCheckOutLimitations(checkInDate) {
+        var _roomTypeCalendarData9;
+        if (!checkInDate) {
+          this.minCheckOutDateForSelection = null;
+          this.maxCheckOutDateForSelection = null;
+          this.minStayDateAfterCheckIn = null;
+          this.maxStayDateAfterCheckIn = null;
+          this.element.datepick('option', 'defaultDate', this.firstAvailableCheckInDate);
+          return;
+        }
+        var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([this.roomTypeId]);
+        var result = MPHB.calendarHelper.calculateMinMaxCheckOutDateForSelection(checkInDate, (_roomTypeCalendarData9 = roomTypeCalendarData[this.roomTypeId]) !== null && _roomTypeCalendarData9 !== void 0 ? _roomTypeCalendarData9 : {});
+        this.minCheckOutDateForSelection = result.minCheckOutDateForSelection;
+        this.maxCheckOutDateForSelection = result.maxCheckOutDateForSelection;
+        this.minStayDateAfterCheckIn = result.minStayDateAfterCheckIn;
+        this.maxStayDateAfterCheckIn = result.maxStayDateAfterCheckIn;
+        this.element.datepick('option', 'defaultDate', this.minCheckOutDateForSelection ? this.minCheckOutDateForSelection : checkInDate);
+      },
+      getDatepickSettings: function getDatepickSettings() {
+        var self = this;
+        return {
+          defaultDate: this.minCheckOutDateForSelection ? this.minCheckOutDateForSelection : this.firstAvailableCheckInDate,
+          onShow: function onShow(element, instance) {
+            MPHB.restApiHelper.getAvailabilityData({
+              // We load a day before and day after for availability calculations later
+              start_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth(), 0),
+              end_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth() + MPHB._data.settings.numberOfMonthDatepicker, 1),
+              room_type_ids: [self.roomTypeId]
+            }, function () {
+              self.lock();
+            }, function () {
+              self.form.updateCheckOutLimitations();
+              self.refresh();
+              self.unlock();
+            });
+
+            // 	remove highlight right after calendar was shown
+            // 	to avoide of date highlighting when date is not selected yet
+            element.find('.datepick-highlight').removeClass('datepick-highlight');
+          },
+          onChangeMonthYear: function onChangeMonthYear(year, month) {
+            MPHB.restApiHelper.getAvailabilityData({
+              // We load a day before and day after for availability calculations later
+              start_date: new Date(year, month - 1, 0),
+              end_date: new Date(year, month - 1 + MPHB._data.settings.numberOfMonthDatepicker, 1),
+              room_type_ids: [self.roomTypeId]
+            }, function () {
+              self.lock();
+            }, function () {
+              self.form.updateCheckOutLimitations();
+              self.refresh();
+              self.unlock();
+            });
+          },
+          onSelect: function onSelect(dates) {
+            self.form.onDatepickChange();
+            self.element.trigger('change');
+          },
+          onDate: function onDate(date, isCurrentMonth) {
+            var _roomTypeCalendarData0;
+            var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([self.roomTypeId]);
+            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(3, date, isCurrentMonth, (_roomTypeCalendarData0 = roomTypeCalendarData[self.roomTypeId]) !== null && _roomTypeCalendarData0 !== void 0 ? _roomTypeCalendarData0 : {}, false, self.form.checkInDatepicker.getDate(), self.minStayDateAfterCheckIn, self.maxStayDateAfterCheckIn, self.minCheckOutDateForSelection, self.maxCheckOutDateForSelection);
+            return calendarDateAttributes;
+          },
+          pickerClass: 'mphb-datepick-popup mphb-check-out-datepick ' + MPHB._data.settings.datepickerClass
+        };
+      }
+    });
+    MPHB.RoomBookSection = can.Control.extend({}, {
+      roomTypeId: null,
+      roomTitle: '',
+      roomPrice: 0,
+      quantitySelect: null,
+      bookButton: null,
+      confirmButton: null,
+      removeButton: null,
+      messageHolder: null,
+      messageWrapper: null,
+      form: null,
+      init: function init(el, args) {
+        this.reservationCart = args.reservationCart;
+        this.roomTypeId = parseInt(el.attr('data-room-type-id'));
+        this.roomTitle = el.attr('data-room-type-title');
+        this.roomPrice = parseFloat(el.attr('data-room-price'));
+        this.confirmButton = el.find('.mphb-confirm-reservation');
+        this.quantitySelect = el.find('.mphb-rooms-quantity');
+        this.messageWrapper = el.find('.mphb-rooms-reservation-message-wrapper');
+        this.messageHolder = el.find('.mphb-rooms-reservation-message');
+      },
+      /**
+       *
+       * @returns {int}
+       */
+      getRoomTypeId: function getRoomTypeId() {
+        return this.roomTypeId;
+      },
+      /**
+       *
+       * @returns {Number}
+       */
+      getPrice: function getPrice() {
+        return this.roomPrice;
+      },
+      '.mphb-book-button click': function mphbBookButton_click(button, e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var quantity = this.quantitySelect.length ? parseInt(this.quantitySelect.val()) : 1;
+        this.reservationCart.addToCart(this.roomTypeId, quantity);
+        if (!MPHB._data.settings.isDirectBooking) {
+          // Add message "N x ... has/have been added to your reservation."
+          var messagePattern = 1 == quantity ? MPHB._data.translations.roomsAddedToReservation_singular : MPHB._data.translations.roomsAddedToReservation_plural;
+          var message = messagePattern.replace('%1$d', quantity).replace('%2$s', this.roomTitle);
+          this.messageHolder.html(message);
+
+          // Show "N x ... has/have been added to your reservation." message
+          // Show "Remove" button
+          // Show "Confirm Reservation" button
+          this.element.addClass('mphb-rooms-added');
+        } else {
+          button.prop('disabled', true);
+
+          // Go to the Checkout immediately
+          this.reservationCart.confirmReservation();
+        }
+      },
+      '.mphb-remove-from-reservation click': function mphbRemoveFromReservation_click(el, e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.reservationCart.removeFromCart(this.roomTypeId);
+        this.messageHolder.empty();
+        this.element.removeClass('mphb-rooms-added');
+      },
+      '.mphb-confirm-reservation click': function mphbConfirmReservation_click(el, e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.reservationCart.confirmReservation();
+      }
+    });
+
+    /**
+     *
+     * @requires ./room-book-section.js
+     */
+    MPHB.ReservationCart = can.Control.extend({}, {
+      cartForm: null,
+      cartDetails: null,
+      roomBookSections: {},
+      cartContents: {},
+      init: function init(el, args) {
+        this.cartForm = el.find('#mphb-reservation-cart');
+        this.cartDetails = el.find('.mphb-reservation-details');
+        this.initRoomBookSections(el.find('.mphb-reserve-room-section'));
+      },
+      initRoomBookSections: function initRoomBookSections(sections) {
+        var self = this;
+        var bookSection;
+        $.each(sections, function (index, roomSection) {
+          bookSection = new MPHB.RoomBookSection($(roomSection), {
+            reservationCart: self
+          });
+          self.roomBookSections[bookSection.getRoomTypeId()] = bookSection;
+        });
+      },
+      addToCart: function addToCart(roomTypeId, quantity) {
+        this.cartContents[roomTypeId] = quantity;
+        this.updateCartView();
+        this.updateCartInputs();
+      },
+      removeFromCart: function removeFromCart(roomTypeId) {
+        delete this.cartContents[roomTypeId];
+        this.updateCartView();
+        this.updateCartInputs();
+      },
+      calcRoomsInCart: function calcRoomsInCart() {
+        var count = 0;
+        $.each(this.cartContents, function (roomTypeId, quantity) {
+          count += quantity;
+        });
+        return count;
+      },
+      calcTotalPrice: function calcTotalPrice() {
+        var total = 0;
+        var price = 0;
+        var self = this;
+        $.each(this.cartContents, function (roomTypeId, quantity) {
+          price = self.roomBookSections[roomTypeId].getPrice();
+          total += price * quantity;
+        });
+        return total;
+      },
+      updateCartView: function updateCartView() {
+        if (!$.isEmptyObject(this.cartContents)) {
+          var roomsCount = this.calcRoomsInCart();
+          var messageTemplate = 1 == roomsCount ? MPHB._data.translations.countRoomsSelected_singular : MPHB._data.translations.countRoomsSelected_plural;
+          var cartMessage = messageTemplate.replace('%s', roomsCount);
+          this.cartDetails.find('.mphb-cart-message').html(cartMessage);
+          var total = this.calcTotalPrice();
+          var totalMessage = MPHB.format_price(total, {
+            'trim_zeros': true
+          });
+          this.cartDetails.find('.mphb-cart-total-price>.mphb-cart-total-price-value').html(totalMessage);
+          this.cartForm.removeClass('mphb-empty-cart');
+        } else {
+          this.cartForm.addClass('mphb-empty-cart');
+        }
+      },
+      updateCartInputs: function updateCartInputs() {
+        // empty inputs
+        this.cartForm.find('[name^="mphb_rooms_details"]').remove();
+        var self = this;
+        $.each(this.cartContents, function (roomTypeId, quantity) {
+          var input = $('<input />', {
+            name: 'mphb_rooms_details[' + roomTypeId + ']',
+            type: 'hidden',
+            value: quantity
+          });
+          self.cartForm.prepend(input);
+        });
+      },
+      confirmReservation: function confirmReservation() {
+        this.cartForm.submit();
+      }
+    });
     MPHB.Gateway = can.Construct.extend({}, {
       amount: 0,
       paymentFee: 0,
@@ -1762,6 +2850,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           bookingDetails['nonce'] = formData['mphb_nonce'];
         }
 
+        // Add "create_new_account"
+        if ('mphb_create_new_account' in formData) {
+          bookingDetails['create_new_account'] = formData['mphb_create_new_account'] == 1;
+        }
+
         // Add payment details
         if (MPHB._data.settings.useBilling && !this.freeBooking) {
           bookingDetails['payment_details'] = this.billingSection.getPaymentDetails();
@@ -1782,7 +2875,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         }
 
         // Parse custom fields
-        var knownFields = ['mphb_applied_coupon_code', 'mphb_check_in_date', 'mphb_check_out_date', 'mphb-checkout-id', 'mphb-checkout-nonce', 'mphb_coupon_code', 'mphb_gateway_id', 'mphb_new_booking_status', 'mphb_nonce', 'mphb_note', 'mphb_room_details'];
+        var knownFields = ['mphb_applied_coupon_code', 'mphb_check_in_date', 'mphb_check_out_date', 'mphb-checkout-id', 'mphb-checkout-nonce', 'mphb_coupon_code', 'mphb_create_new_account', 'mphb_gateway_id', 'mphb_new_booking_status', 'mphb_nonce', 'mphb_note', 'mphb_room_details'];
         for (var fieldName in formData) {
           var unprefixedName = fieldName.replace('mphb_', '');
           if (knownFields.includes(fieldName) || fieldName.indexOf('mphb') !== 0 || unprefixedName in bookingDetails['customer']) {
@@ -2750,1094 +3843,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       },
       hideErrors: function hideErrors() {
         this.errorsWrapper.addClass('mphb-hide').text('');
-      }
-    });
-    MPHB.DirectBooking = can.Control.extend({}, {
-      reservationForm: null,
-      // form.mphb-booking-form
-      elementsToHide: null,
-      // Quantity wrappers, price block and reservation section
-      quantitySection: null,
-      // div.mphb-reserve-room-section
-      wrapperWithSelect: null,
-      // .mphb-rooms-quantity-wrapper.mphb-rooms-quantity-multiple
-      wrapperWithoutSelect: null,
-      // .mphb-rooms-quantity-wrapper.mphb-rooms-quantity-single
-      priceWrapper: null,
-      // .mphb-period-price
-      quantitySelect: null,
-      // select.mphb-rooms-quantity
-      availableLabel: null,
-      // span.mphb-available-rooms-count
-      typeId: 0,
-      init: function init(el, args) {
-        this.reservationForm = args.reservationForm;
-        this.elementsToHide = el.find('.mphb-reserve-room-section, .mphb-rooms-quantity-wrapper, .mphb-regular-price');
-        this.quantitySection = el.find('.mphb-reserve-room-section');
-        this.wrapperWithSelect = this.quantitySection.find('.mphb-rooms-quantity-wrapper.mphb-rooms-quantity-multiple');
-        this.wrapperWithoutSelect = this.quantitySection.find('.mphb-rooms-quantity-wrapper.mphb-rooms-quantity-single');
-        this.priceWrapper = this.quantitySection.find('.mphb-period-price');
-        this.quantitySelect = this.quantitySection.find('.mphb-rooms-quantity');
-        this.availableLabel = this.quantitySection.find('.mphb-available-rooms-count');
-
-        // TODO: get this from reservation form? and remove input?
-        this.typeId = el.find('input[name="mphb_room_type_id"]').val();
-        this.typeId = parseInt(this.typeId);
-      },
-      hideSections: function hideSections() {
-        this.elementsToHide.addClass('mphb-hide');
-        this.reservationForm.reserveBtnWrapper.removeClass('mphb-hide');
-      },
-      showSections: function showSections(showPrice) {
-        this.reservationForm.reserveBtnWrapper.addClass('mphb-hide');
-        this.quantitySection.removeClass('mphb-hide');
-        if (showPrice) {
-          this.priceWrapper.removeClass('mphb-hide');
-        }
-      },
-      resetQuantityOptions: function resetQuantityOptions(count) {
-        this.quantitySelect.empty();
-        for (var i = 1; i <= count; i++) {
-          var option = '<option value="' + i + '">' + i + '</option>';
-          this.quantitySelect.append(option);
-        }
-        this.quantitySelect.val(1); // Otherwise the last option will be active
-
-        // Also update text "of %d accommodation(-s) available."
-        this.availableLabel.text(count);
-        if (count > 1) {
-          this.wrapperWithSelect.removeClass('mphb-hide');
-        } else {
-          this.wrapperWithoutSelect.removeClass('mphb-hide');
-        }
-      },
-      setupPrice: function setupPrice(price, priceHtml) {
-        this.priceWrapper.children('.mphb-price, .mphb-price-period, .mphb-tax-information').remove();
-        if (price > 0 && priceHtml != '') {
-          this.priceWrapper.append(priceHtml);
-        }
-      },
-      showError: function showError(errorMessage) {
-        this.hideSections();
-        this.reservationForm.showError(errorMessage);
-      },
-      loadAvailabilityAndPriceData: function loadAvailabilityAndPriceData() {
-        var checkIn = this.reservationForm.checkInDatepicker.getDate();
-        var checkOut = this.reservationForm.checkOutDatepicker.getDate();
-        if (!checkIn || !checkOut) return;
-        this.reservationForm.clearErrors();
-        this.reservationForm.lock();
-        var self = this;
-        $.ajax({
-          url: MPHB._data.ajaxUrl,
-          type: 'GET',
-          dataType: 'json',
-          data: {
-            action: 'mphb_get_room_type_availability_data',
-            mphb_nonce: MPHB._data.nonces.mphb_get_room_type_availability_data,
-            room_type_id: this.typeId,
-            check_in_date: $.datepick.formatDate(MPHB._data.settings.dateTransferFormat, checkIn),
-            check_out_date: $.datepick.formatDate(MPHB._data.settings.dateTransferFormat, checkOut),
-            adults_count: this.reservationForm.getAdults(),
-            children_count: this.reservationForm.getChildren(),
-            lang: MPHB._data.settings.currentLanguage
-          },
-          success: function success(response) {
-            if (response.success) {
-              self.resetQuantityOptions(response.data.freeCount);
-              self.setupPrice(response.data.price, response.data.priceHtml);
-              self.showSections(response.data.price > 0);
-            } else {
-              self.showError(response.data.message);
-            }
-          },
-          error: function error(jqXHR) {
-            self.showError(MPHB._data.translations.errorHasOccured);
-          },
-          complete: function complete(jqXHR) {
-            self.reservationForm.unlock();
-          }
-        });
-      },
-      /**
-       * See also MPHB.ReservationForm.onDatepickChange().
-       */
-      'input.mphb-datepick change': function inputMphbDatepick_change(element, event) {
-        this.hideSections();
-      },
-      '.mphb-reserve-btn click': function mphbReserveBtn_click(element, event) {
-        event.preventDefault();
-        event.stopPropagation();
-        var checkIn = this.reservationForm.checkInDatepicker.getDate();
-        var checkOut = this.reservationForm.checkOutDatepicker.getDate();
-        if (!checkIn || !checkOut) {
-          if (!checkIn) {
-            this.showError(MPHB._data.translations.checkInNotValid);
-          } else {
-            this.showError(MPHB._data.translations.checkOutNotValid);
-          }
-          this.reservationForm.unlock();
-        } else {
-          this.loadAvailabilityAndPriceData();
-        }
-      },
-      'input.mphb-datepick, select[name="mphb_children"] change': function inputMphbDatepick_selectNameMphb_children_change(element, event) {
-        this.loadAvailabilityAndPriceData();
-      },
-      'select[name="mphb_adults"] change': function selectNameMphb_adults_change(element, event) {
-        // restrict children count according to max capacity and selected adult count
-        var childrenSelect = jQuery('select[name="mphb_children"]');
-        if (childrenSelect.length && undefined !== childrenSelect.data('max-total')) {
-          var minAllowedChildren = parseInt(childrenSelect.data('min-allowed'));
-          var maxAllowedChildren = parseInt(childrenSelect.data('max-allowed'));
-          var totalCapacity = parseInt(childrenSelect.data('max-total'));
-          var selectedAdultsCount = parseInt(element.val());
-          var maxChildrenCount = Math.min(Math.max(minAllowedChildren, totalCapacity - selectedAdultsCount), maxAllowedChildren);
-          var childrenSelectedCount = parseInt(childrenSelect.val());
-          childrenSelect.empty();
-          for (var i = minAllowedChildren; i <= maxChildrenCount; i++) {
-            var $option = jQuery('<option value="' + i + '"' + (i === childrenSelectedCount ? 'selected="selected"' : '') + '>' + i + '</option>');
-            childrenSelect.append($option);
-          }
-        }
-        this.loadAvailabilityAndPriceData();
-      }
-    });
-    MPHB.ReservationForm = can.Control.extend({}, {
-      /**
-       * @var jQuery
-       */
-      $formElement: null,
-      /**
-       * @var MPHB.RoomTypeCheckInDatepicker
-       */
-      checkInDatepicker: null,
-      /**
-       * @var MPHB.RoomTypeCheckOutDatepicker
-       */
-      checkOutDatepicker: null,
-      /**
-       * @var jQuery
-       */
-      reserveBtnWrapper: null,
-      /**
-       * @var jQuery
-       */
-      errorsWrapper: null,
-      /**
-       * @var {MPHB.DirectBooking|null}
-       */
-      directBooking: null,
-      /**
-       * @var int
-       */
-      roomTypeId: null,
-      init: function init($formElement) {
-        this.$formElement = $formElement;
-        this.roomTypeId = parseInt(this.$formElement.attr('id').replace(/^booking-form-/, ''));
-        this.errorsWrapper = this.$formElement.find('.mphb-errors-wrapper');
-        var firstAvailableCheckInDateYmd = this.$formElement.attr('data-first_available_check_in_date');
-        if (!firstAvailableCheckInDateYmd) {
-          firstAvailableCheckInDateYmd = $.datepick.formatDate('yyyy-mm-dd', new Date());
-        }
-
-        // init Check-In Datepicker
-        this.checkInDatepicker = new MPHB.RoomTypeCheckInDatepicker(this.$formElement.find('input[type="text"][id^=mphb_check_in_date]'), {
-          form: this,
-          roomTypeId: '1' == MPHB._data.settings.isDirectBooking ? this.roomTypeId : 0,
-          firstAvailableCheckInDateYmd: firstAvailableCheckInDateYmd
-        });
-
-        // init Check-Out Datepicker
-        this.checkOutDatepicker = new MPHB.RoomTypeCheckOutDatepicker(this.$formElement.find('input[type="text"][id^=mphb_check_out_date]'), {
-          form: this,
-          roomTypeId: '1' == MPHB._data.settings.isDirectBooking ? this.roomTypeId : 0,
-          firstAvailableCheckInDateYmd: firstAvailableCheckInDateYmd
-        });
-        this.reserveBtnWrapper = this.$formElement.find('.mphb-reserve-btn-wrapper');
-
-        // Init direct booking
-        if ('1' == MPHB._data.settings.isDirectBooking) {
-          this.directBooking = new MPHB.DirectBooking(this.$formElement, {
-            reservationForm: this
-          });
-        }
-        $(window).on('mphb-update-date-room-type-' + this.roomTypeId, this.proxy(function () {
-          this.checkInDatepicker.refresh();
-          this.checkOutDatepicker.refresh();
-        }));
-        this.unlock();
-      },
-      updateCheckOutLimitations: function updateCheckOutLimitations() {
-        this.checkOutDatepicker.updateCheckOutLimitations(this.checkInDatepicker.getDate());
-      },
-      /**
-       * @returns {Number|String}
-       * @since 3.8.3
-       */
-      getAdults: function getAdults() {
-        var input = this.$formElement.find('[name="mphb_adults"]');
-        return input.length > 0 ? parseInt(input.val()) : '';
-      },
-      /**
-       * @returns {Number|String}
-       * @since 3.8.3
-       */
-      getChildren: function getChildren() {
-        var input = this.$formElement.find('[name="mphb_children"]');
-        return input.length > 0 ? parseInt(input.val()) : '';
-      },
-      showError: function showError(message) {
-        this.clearErrors();
-        var errorMessage = $('<p>', {
-          'class': 'mphb-error',
-          'html': message
-        });
-        this.errorsWrapper.append(errorMessage).removeClass('mphb-hide');
-      },
-      clearErrors: function clearErrors() {
-        this.errorsWrapper.empty().addClass('mphb-hide');
-      },
-      lock: function lock() {
-        this.element.addClass('mphb-loading');
-      },
-      unlock: function unlock() {
-        this.element.removeClass('mphb-loading');
-      },
-      /**
-       * See also MPHB.DirectBooking["input.mphb-datepick change"].
-       */
-      onDatepickChange: function onDatepickChange() {
-        if (null !== this.directBooking) {
-          this.directBooking.hideSections();
-        }
-      }
-    });
-    MPHB.RoomTypeCalendar = can.Control.extend({}, {
-      roomTypeId: null,
-      $calendarElement: null,
-      isShowPrices: false,
-      isTruncatePrices: true,
-      isShowPricesCurrency: false,
-      allShownMonthsCount: 1,
-      // for clickable calendar
-      isClickable: false,
-      reservationFormElement: null,
-      $reservationFormCheckInElement: null,
-      $reservationFormCheckOutElement: null,
-      isSyncWithReservationFormInitialised: false,
-      isSyncWithReservationFormOn: true,
-      lastDrawDate: null,
-      isCheckInSelected: false,
-      isCheckOutSelected: false,
-      minCheckOutDateForSelection: null,
-      maxCheckOutDateForSelection: null,
-      minStayDateAfterCheckIn: null,
-      maxStayDateAfterCheckIn: null,
-      init: function init($calendarElement, args) {
-        var self = this;
-        this.$calendarElement = $calendarElement;
-        this.roomTypeId = parseInt(this.$calendarElement.data('roomTypeId'));
-        if (undefined !== this.$calendarElement.data('is_show_prices')) {
-          this.isShowPrices = Boolean(this.$calendarElement.data('is_show_prices'));
-        }
-        if (undefined !== this.$calendarElement.data('is_truncate_prices')) {
-          this.isTruncatePrices = Boolean(this.$calendarElement.data('is_truncate_prices'));
-        }
-        if (undefined !== this.$calendarElement.data('is_show_prices_currency')) {
-          this.isShowPricesCurrency = Boolean(this.$calendarElement.data('is_show_prices_currency'));
-        }
-        var monthsToShow = MPHB._data.settings.numberOfMonthCalendar;
-        var customMonths = this.$calendarElement.attr('data-monthstoshow');
-        if (customMonths) {
-          var customArray = customMonths.split(',');
-          monthsToShow = customArray.length == 1 ? parseInt(customMonths) : customArray;
-        }
-        if (Array.isArray(monthsToShow)) {
-          this.allShownMonthsCount = parseInt(monthsToShow[0]) * parseInt(monthsToShow[1]);
-        } else {
-          this.allShownMonthsCount = monthsToShow;
-        }
-
-        // check is calendar clickable
-        if ('1' == MPHB._data.settings.isDirectBooking) {
-          this.reservationFormElement = $('#booking-form-' + this.roomTypeId);
-          this.isClickable = 0 < this.reservationFormElement.length;
-          if (this.isClickable) {
-            this.$reservationFormCheckInElement = this.reservationFormElement.find('input[type="text"][id^=mphb_check_in_date]');
-            this.$reservationFormCheckOutElement = this.reservationFormElement.find('input[type="text"][id^=mphb_check_out_date]');
-          }
-        }
-        var firstAvailableCheckInDateYmd = this.$calendarElement.attr('data-first_available_check_in_date');
-        if (!firstAvailableCheckInDateYmd) {
-          firstAvailableCheckInDateYmd = $.datepick.formatDate('yyyy-mm-dd', new Date());
-        }
-        var firstAvailableCheckInDate = new Date(firstAvailableCheckInDateYmd);
-        MPHB.restApiHelper.getAvailabilityData({
-          // We load a day before and day after for availability calculations later
-          start_date: new Date(firstAvailableCheckInDate.getFullYear(), firstAvailableCheckInDate.getMonth(), 0),
-          end_date: new Date(firstAvailableCheckInDate.getFullYear(), firstAvailableCheckInDate.getMonth() + this.allShownMonthsCount, 1),
-          room_type_ids: [this.roomTypeId],
-          is_add_prices: this.isShowPrices,
-          is_truncate_prices: this.isTruncatePrices,
-          is_add_prices_currency: this.isShowPricesCurrency
-        }, function () {
-          self.$calendarElement.addClass('mphb-loading');
-        }, function () {
-          self.doAfterNewCalendarDataLoaded(self);
-          self.$calendarElement.removeClass('mphb-loading');
-        });
-        this.$calendarElement.hide().datepick({
-          minDate: MPHB.get_today_date(),
-          defaultDate: firstAvailableCheckInDate,
-          monthsToShow: monthsToShow,
-          firstDay: MPHB._data.settings.firstDay,
-          pickerClass: MPHB._data.settings.datepickerClass,
-          useMouseWheel: false,
-          rangeSelect: self.isClickable,
-          showSpeed: 0,
-          onChangeMonthYear: function onChangeMonthYear(year, month) {
-            if (self.isClickable) {
-              self.lastDrawDate = $.datepick._getInst(self.$calendarElement).drawDate;
-            }
-            MPHB.restApiHelper.getAvailabilityData({
-              // We load a day before and day after for availability calculations later
-              start_date: new Date(year, month - 1, 0),
-              end_date: new Date(year, month - 1 + self.allShownMonthsCount, 1),
-              room_type_ids: [self.roomTypeId],
-              is_add_prices: self.isShowPrices,
-              is_truncate_prices: self.isTruncatePrices,
-              is_add_prices_currency: self.isShowPricesCurrency
-            }, function () {
-              self.$calendarElement.addClass('mphb-loading');
-            }, function () {
-              self.doAfterNewCalendarDataLoaded(self);
-              self.$calendarElement.removeClass('mphb-loading');
-            });
-          },
-          onDate: function onDate(date, isCurrentMonth) {
-            var _roomTypeCalendarData;
-            var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([self.roomTypeId], self.isShowPrices, self.isTruncatePrices, self.isShowPricesCurrency);
-            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(1, date, isCurrentMonth, (_roomTypeCalendarData = roomTypeCalendarData[self.roomTypeId]) !== null && _roomTypeCalendarData !== void 0 ? _roomTypeCalendarData : {}, self.isShowPrices);
-            if (isCurrentMonth) {
-              calendarDateAttributes = self.fillClickableCalendarDateData(calendarDateAttributes, date);
-            }
-            return calendarDateAttributes;
-          },
-          onSelect: function onSelect(selectedDates) {
-            // do nothing if it is not clickable calendar or
-            // if it was click to remove checkin selection
-            // because checkout selection is not possible
-            if (!self.isClickable || 0 === selectedDates.length) return;
-            if (!self.isCheckInSelected || self.isCheckInSelected && self.isCheckOutSelected) {
-              var _roomTypeCalendarData2;
-              self.isCheckInSelected = true;
-              self.isCheckOutSelected = false;
-
-              //self.calculateMinMaxCheckOutDateForSelection(selectedDates[0]);
-
-              var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([self.roomTypeId], self.isShowPrices, self.isTruncatePrices, self.isShowPricesCurrency);
-              var result = MPHB.calendarHelper.calculateMinMaxCheckOutDateForSelection(selectedDates[0], (_roomTypeCalendarData2 = roomTypeCalendarData[self.roomTypeId]) !== null && _roomTypeCalendarData2 !== void 0 ? _roomTypeCalendarData2 : {});
-              self.minCheckOutDateForSelection = result.minCheckOutDateForSelection;
-              self.maxCheckOutDateForSelection = result.maxCheckOutDateForSelection;
-              self.minStayDateAfterCheckIn = result.minStayDateAfterCheckIn;
-              self.maxStayDateAfterCheckIn = result.maxStayDateAfterCheckIn;
-            } else {
-              self.isCheckOutSelected = true;
-            }
-
-            // do not change first drawing month after selection
-            var instance = $.datepick._getInst(self.$calendarElement);
-            instance.drawDate = self.lastDrawDate;
-            instance.options.setSelectedDatesToStatusBar(instance, selectedDates);
-            self.fillReservationFormWithSelectedDates(selectedDates);
-          },
-          onShow: function onShow(element, instance) {
-            // 	remove highlight right after calendar was shown
-            // 	to avoide of date highlighting even when mouse pointer not over calendar
-            element.find('.datepick-highlight').removeClass('datepick-highlight');
-            if (self.isClickable) {
-              // save draw date to make sure it will not be change on selection
-              self.lastDrawDate = instance.drawDate;
-              instance.options.initStatusBar(element, instance);
-              instance.options.initSelectionOnHover(element, instance);
-            }
-          },
-          setSelectedDatesToStatusBar: function setSelectedDatesToStatusBar(instance, selectedDates) {
-            var selectedDatesText = MPHB._data.translations.selectDates;
-            if (self.isCheckInSelected) {
-              selectedDatesText = $.datepick.formatDate(MPHB._data.settings.dateFormat, selectedDates[0]);
-              if (self.isCheckOutSelected) {
-                selectedDatesText += ' - ' + $.datepick.formatDate(MPHB._data.settings.dateFormat, selectedDates[1]);
-              }
-            }
-            instance.options.renderer.picker = '<div class="datepick">' + '<div class="datepick-nav">{link:prev}{link:today}{link:next}</div>{months}' + '<div class="datepick-ctrl"><div class="mphb-calendar__selected-dates">' + selectedDatesText + '</div>{link:clear}</div>' + '<div class="datepick-clear-fix"></div></div>';
-          },
-          initStatusBar: function initStatusBar(element, instance) {
-            // clone object to avoide of other calendars changing
-            instance.options.renderer = Object.assign({}, instance.options.renderer);
-            instance.options.setSelectedDatesToStatusBar(instance, self.$calendarElement.datepick('getDate'));
-            instance.options.commands = Object.assign({}, instance.options.commands);
-            instance.options.commands.close.keystroke = {};
-            instance.options.commands.clear.keystroke = {
-              keyCode: 27,
-              altKey: false
-            };
-            instance.options.commands.clear.action = function (instance) {
-              // all commands have common functions for all instances!
-              // so we need to take it into account in command action function
-              if (instance === $.datepick._getInst(self.$calendarElement) || instance === $.datepick._getInst(self.$reservationFormCheckInElement) || instance === $.datepick._getInst(self.$reservationFormCheckOutElement)) {
-                if (self.isCheckInSelected) {
-                  // we need to save and set draw date again before refresh
-                  // to make sure calendar does not change current first drawn month
-                  var currentDrawDate = MPHB.Utils.cloneDate(self.lastDrawDate);
-                  self.isCheckInSelected = false;
-                  self.isCheckOutSelected = false;
-                  self.$calendarElement.datepick('setDate', null);
-                  self.$reservationFormCheckInElement.datepick('setDate', null);
-                  self.$reservationFormCheckOutElement.datepick('setDate', null);
-                  instance.drawDate = currentDrawDate;
-                  self.lastDrawDate = currentDrawDate;
-                  self.refresh();
-                }
-              } else {
-                instance.elem.datepick('clear');
-              }
-            };
-          },
-          initSelectionOnHover: function initSelectionOnHover(element, instance) {
-            // mark dates as selected between check-in and potensial check-out on hover
-            element.find(instance.get('renderer').daySelector + ' a').hover(function () {
-              if (self.isCheckInSelected && !self.isCheckOutSelected) {
-                var currentHoverDate = $.datepick.retrieveDate(self.$calendarElement, this),
-                  selectedDates = self.$calendarElement.datepick('getDate'),
-                  processingDate = MPHB.Utils.cloneDate(selectedDates[0]);
-                processingDate.setDate(processingDate.getDate() + 1);
-                if (selectedDates[0].getTime() < currentHoverDate.getTime() && self.$calendarElement.datepick('isSelectable', currentHoverDate)) {
-                  while (currentHoverDate.getTime() > processingDate.getTime()) {
-                    self.$calendarElement.find('.dp' + processingDate.getTime()).not('.mphb-extra-date').addClass('mphb-selected-date');
-                    processingDate.setDate(processingDate.getDate() + 1);
-                  }
-                }
-              }
-            }, function () {
-              if (self.isCheckInSelected && !self.isCheckOutSelected) {
-                self.$calendarElement.find('.mphb-selected-date').removeClass('mphb-selected-date');
-              }
-            });
-          }
-        }).show();
-      },
-      doAfterNewCalendarDataLoaded: function doAfterNewCalendarDataLoaded(self) {
-        if (self.isCheckInSelected && !self.isCheckOutSelected) {
-          var _roomTypeCalendarData3;
-          var dates = self.$calendarElement.datepick('getDate');
-          var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([self.roomTypeId], self.isShowPrices, self.isTruncatePrices, self.isShowPricesCurrency);
-          var result = MPHB.calendarHelper.calculateMinMaxCheckOutDateForSelection(dates[0], (_roomTypeCalendarData3 = roomTypeCalendarData[self.roomTypeId]) !== null && _roomTypeCalendarData3 !== void 0 ? _roomTypeCalendarData3 : {});
-          self.minCheckOutDateForSelection = result.minCheckOutDateForSelection;
-          self.maxCheckOutDateForSelection = result.maxCheckOutDateForSelection;
-          self.minStayDateAfterCheckIn = result.minStayDateAfterCheckIn;
-          self.maxStayDateAfterCheckIn = result.maxStayDateAfterCheckIn;
-        }
-        self.refresh();
-        if (self.isClickable && !self.isSyncWithReservationFormInitialised) {
-          self.isSyncWithReservationFormInitialised = true;
-          self.initSyncWithReservationForm();
-        }
-      },
-      fillClickableCalendarDateData: function fillClickableCalendarDateData(calendarDateData, date) {
-        var _formattedDate, _roomTypeCalendarData4;
-        if (!this.isClickable) {
-          calendarDateData.selectable = false;
-          return calendarDateData;
-        }
-        var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([this.roomTypeId], this.isShowPrices, this.isTruncatePrices, this.isShowPricesCurrency);
-        var formattedDate = $.datepick.formatDate('yyyy-mm-dd', date);
-        var roomTypeData = (_formattedDate = ((_roomTypeCalendarData4 = roomTypeCalendarData[this.roomTypeId]) !== null && _roomTypeCalendarData4 !== void 0 ? _roomTypeCalendarData4 : {})[formattedDate]) !== null && _formattedDate !== void 0 ? _formattedDate : {};
-        if (undefined === roomTypeData || 0 === Object.keys(roomTypeData).length || !roomTypeData.hasOwnProperty('roomTypeStatus')) {
-          return calendarDateData;
-        }
-
-        // checkIn is not selected yet or both dates are selected already
-        // and user can select checkIn date again
-        if (!this.isCheckInSelected || this.isCheckInSelected && this.isCheckOutSelected) {
-          if (MPHB.calendarHelper.ROOM_STATUS_AVAILABLE === roomTypeData.roomTypeStatus && (!roomTypeData.hasOwnProperty('isCheckInNotAllowed') || !roomTypeData.isCheckInNotAllowed)) {
-            calendarDateData.selectable = true;
-            calendarDateData.dateClass += ' mphb-selectable-date--check-in';
-          } else {
-            calendarDateData.selectable = false;
-            calendarDateData.dateClass += ' mphb-unselectable-date--check-in';
-          }
-        } else {
-          // checkIn selected but checkOut is not
-          if (null !== this.minCheckOutDateForSelection && this.minCheckOutDateForSelection.getTime() <= date.getTime() && (null === this.maxCheckOutDateForSelection || this.maxCheckOutDateForSelection.getTime() >= date.getTime()) && (!roomTypeData.hasOwnProperty('isCheckOutNotAllowed') || !roomTypeData.isCheckOutNotAllowed)) {
-            calendarDateData.selectable = true;
-            calendarDateData.dateClass += ' mphb-selectable-date--check-out';
-          } else {
-            calendarDateData.selectable = false;
-            calendarDateData.dateClass += ' mphb-unselectable-date--check-out';
-          }
-          if (null !== this.minStayDateAfterCheckIn && this.minStayDateAfterCheckIn.getTime() > date.getTime()) {
-            calendarDateData.title += '\n' + MPHB._data.translations.lessThanMinDaysStay;
-          }
-          if (null !== this.maxStayDateAfterCheckIn && this.maxStayDateAfterCheckIn.getTime() < date.getTime()) {
-            calendarDateData.title += '\n' + MPHB._data.translations.moreThanMaxDaysStay;
-          }
-        }
-        if (this.isCheckInSelected || this.isCheckOutSelected) {
-          var dates = this.$calendarElement.datepick('getDate'),
-            checkInSelectedDate = MPHB.Utils.cloneDate(dates[0]),
-            checkInFormattedDate = $.datepick.formatDate('yyyy-mm-dd', checkInSelectedDate),
-            checkOutSelectedDate = MPHB.Utils.cloneDate(dates[1]),
-            checkOutFormattedDate = $.datepick.formatDate('yyyy-mm-dd', checkOutSelectedDate),
-            currentProcessingFormattedDate = $.datepick.formatDate('yyyy-mm-dd', date);
-
-          // normalise date to avoide days border fluctuations
-          checkInSelectedDate.setHours(0, 0, 0, 0);
-          checkOutSelectedDate.setHours(23, 59, 59, 999);
-          if (checkInFormattedDate === currentProcessingFormattedDate) {
-            calendarDateData.dateClass += ' mphb-selected-date--check-in';
-          } else if (this.isCheckOutSelected && checkOutFormattedDate === currentProcessingFormattedDate) {
-            calendarDateData.dateClass += ' mphb-selected-date--check-out';
-          } else if (this.isCheckInSelected && this.isCheckOutSelected && checkInSelectedDate.getTime() <= date.getTime() && checkOutSelectedDate.getTime() >= date.getTime()) {
-            calendarDateData.dateClass += ' mphb-selected-date';
-          }
-        }
-        return calendarDateData;
-      },
-      selectCheckInDateInCalendar: function selectCheckInDateInCalendar($newCheckInDate) {
-        var selectedDates = this.$calendarElement.datepick('getDate');
-        if ($.datepick.formatDate('yyyy-mm-dd', selectedDates[0]) !== $.datepick.formatDate('yyyy-mm-dd', $newCheckInDate)) {
-          if (this.isCheckInSelected && !this.isCheckOutSelected) {
-            // switch to Check-In selection mode
-            this.isCheckInSelected = false;
-          }
-          this.$calendarElement.datepick('setDate', $newCheckInDate);
-          var instance = $.datepick._getInst(this.$calendarElement);
-          instance.pickingRange = true;
-          this.refresh();
-        }
-      },
-      selectCheckOutDateInCalendar: function selectCheckOutDateInCalendar($newCheckOutDate) {
-        if (!this.isCheckInSelected) return;
-        var selectedDates = this.$calendarElement.datepick('getDate');
-        if ($.datepick.formatDate('yyyy-mm-dd', selectedDates[1]) !== $.datepick.formatDate('yyyy-mm-dd', $newCheckOutDate)) {
-          if (this.isCheckOutSelected) {
-            // switch to Check-Out selection mode
-            this.isCheckOutSelected = false;
-          }
-          this.$calendarElement.datepick('setDate', selectedDates[0], $newCheckOutDate);
-          this.refresh();
-        }
-      },
-      initSyncWithReservationForm: function initSyncWithReservationForm() {
-        var _this = this;
-        // get selected dates from booking form if it has them from session
-        var reservationFormCheckInDate = this.$reservationFormCheckInElement.datepick('getDate')[0],
-          reservationFormCheckOutDate = this.$reservationFormCheckOutElement.datepick('getDate')[0];
-        if (reservationFormCheckInDate) {
-          this.isSyncWithReservationFormOn = false;
-          this.selectCheckInDateInCalendar(reservationFormCheckInDate);
-          if (reservationFormCheckOutDate) {
-            this.selectCheckOutDateInCalendar(reservationFormCheckOutDate);
-          }
-          this.isSyncWithReservationFormOn = true;
-        }
-        this.$reservationFormCheckInElement.change(function (event) {
-          var reservationFormCheckInDate = _this.$reservationFormCheckInElement.datepick('getDate')[0];
-          _this.isSyncWithReservationFormOn = false;
-          _this.selectCheckInDateInCalendar(reservationFormCheckInDate);
-          _this.isSyncWithReservationFormOn = true;
-        });
-        this.$reservationFormCheckOutElement.change(function (event) {
-          var reservationFormCheckOutDate = _this.$reservationFormCheckOutElement.datepick('getDate')[0];
-
-          // we do not clear check-out in calendar because it clears after check-in selected
-          if (undefined === reservationFormCheckOutDate) return;
-          _this.isSyncWithReservationFormOn = false;
-          _this.selectCheckOutDateInCalendar(reservationFormCheckOutDate);
-          _this.isSyncWithReservationFormOn = true;
-        });
-      },
-      fillReservationFormWithSelectedDates: function fillReservationFormWithSelectedDates(selectedDates) {
-        if (!this.isSyncWithReservationFormOn) return;
-        if (this.isCheckInSelected) {
-          var reservationFormCheckInDate = this.$reservationFormCheckInElement.datepick('getDate')[0];
-          if ($.datepick.formatDate('yyyy-mm-dd', selectedDates[0]) !== $.datepick.formatDate('yyyy-mm-dd', reservationFormCheckInDate)) {
-            this.$reservationFormCheckInElement.datepick('setDate', selectedDates[0]);
-          }
-        }
-        if (this.isCheckOutSelected) {
-          var reservationFormCheckOutDate = this.$reservationFormCheckOutElement.datepick('getDate')[0];
-          if ($.datepick.formatDate('yyyy-mm-dd', selectedDates[1]) !== $.datepick.formatDate('yyyy-mm-dd', reservationFormCheckOutDate)) {
-            this.$reservationFormCheckOutElement.datepick('setDate', selectedDates[1]);
-          }
-        } else {
-          // clear check-out date if it was set before
-          this.$reservationFormCheckOutElement.datepick('setDate', null);
-        }
-      },
-      refresh: function refresh() {
-        this.$calendarElement.hide();
-        $.datepick._update(this.$calendarElement, true);
-        this.$calendarElement.show();
-      }
-    });
-
-    /**
-     *
-     * @requires ./../datepicker.js
-     */
-    MPHB.Datepicker('MPHB.RoomTypeCheckInDatepicker', {}, {
-      getDatepickSettings: function getDatepickSettings() {
-        var self = this;
-        return {
-          defaultDate: this.firstAvailableCheckInDate,
-          onShow: function onShow(element, instance) {
-            MPHB.restApiHelper.getAvailabilityData({
-              // We load a day before and day after for availability calculations later
-              start_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth(), 0),
-              end_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth() + MPHB._data.settings.numberOfMonthDatepicker, 1),
-              room_type_ids: [self.roomTypeId]
-            }, function () {
-              self.lock();
-            }, function () {
-              self.form.updateCheckOutLimitations();
-              self.refresh();
-              self.unlock();
-            });
-
-            // 	remove highlight right after calendar was shown
-            // 	to avoide of date highlighting when date is not selected yet
-            element.find('.datepick-highlight').removeClass('datepick-highlight');
-          },
-          onChangeMonthYear: function onChangeMonthYear(year, month) {
-            MPHB.restApiHelper.getAvailabilityData({
-              // We load a day before and day after for availability calculations later
-              start_date: new Date(year, month - 1, 0),
-              end_date: new Date(year, month - 1 + MPHB._data.settings.numberOfMonthDatepicker, 1),
-              room_type_ids: [self.roomTypeId]
-            }, function () {
-              self.lock();
-            }, function () {
-              self.refresh();
-              self.unlock();
-            });
-          },
-          onSelect: function onSelect(dates) {
-            self.form.updateCheckOutLimitations();
-            self.form.onDatepickChange();
-
-            // we clear check-out date if a new check-in date was selected
-            self.form.checkOutDatepicker.clear();
-            self.element.trigger('change');
-          },
-          onDate: function onDate(date, isCurrentMonth) {
-            var _roomTypeCalendarData5;
-            var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([self.roomTypeId]);
-            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(2, date, isCurrentMonth, (_roomTypeCalendarData5 = roomTypeCalendarData[self.roomTypeId]) !== null && _roomTypeCalendarData5 !== void 0 ? _roomTypeCalendarData5 : {});
-            return calendarDateAttributes;
-          },
-          pickerClass: 'mphb-datepick-popup mphb-check-in-datepick ' + MPHB._data.settings.datepickerClass
-        };
-      }
-    });
-
-    /**
-     *
-     * @requires ./../datepicker.js
-     */
-    MPHB.RoomTypeCheckOutDatepicker = MPHB.Datepicker.extend({}, {
-      minCheckOutDateForSelection: null,
-      maxCheckOutDateForSelection: null,
-      minStayDateAfterCheckIn: null,
-      maxStayDateAfterCheckIn: null,
-      /**
-       * @param {Date} checkInDate
-       */
-      updateCheckOutLimitations: function updateCheckOutLimitations(checkInDate) {
-        var _roomTypeCalendarData6;
-        if (!checkInDate) {
-          this.minCheckOutDateForSelection = null;
-          this.maxCheckOutDateForSelection = null;
-          this.minStayDateAfterCheckIn = null;
-          this.maxStayDateAfterCheckIn = null;
-          this.element.datepick('option', 'defaultDate', this.firstAvailableCheckInDate);
-          return;
-        }
-        var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([this.roomTypeId]);
-        var result = MPHB.calendarHelper.calculateMinMaxCheckOutDateForSelection(checkInDate, (_roomTypeCalendarData6 = roomTypeCalendarData[this.roomTypeId]) !== null && _roomTypeCalendarData6 !== void 0 ? _roomTypeCalendarData6 : {});
-        this.minCheckOutDateForSelection = result.minCheckOutDateForSelection;
-        this.maxCheckOutDateForSelection = result.maxCheckOutDateForSelection;
-        this.minStayDateAfterCheckIn = result.minStayDateAfterCheckIn;
-        this.maxStayDateAfterCheckIn = result.maxStayDateAfterCheckIn;
-        this.element.datepick('option', 'defaultDate', this.minCheckOutDateForSelection ? this.minCheckOutDateForSelection : checkInDate);
-      },
-      getDatepickSettings: function getDatepickSettings() {
-        var self = this;
-        return {
-          defaultDate: this.minCheckOutDateForSelection ? this.minCheckOutDateForSelection : this.firstAvailableCheckInDate,
-          onShow: function onShow(element, instance) {
-            MPHB.restApiHelper.getAvailabilityData({
-              // We load a day before and day after for availability calculations later
-              start_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth(), 0),
-              end_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth() + MPHB._data.settings.numberOfMonthDatepicker, 1),
-              room_type_ids: [self.roomTypeId]
-            }, function () {
-              self.lock();
-            }, function () {
-              self.form.updateCheckOutLimitations();
-              self.refresh();
-              self.unlock();
-            });
-
-            // 	remove highlight right after calendar was shown
-            // 	to avoide of date highlighting when date is not selected yet
-            element.find('.datepick-highlight').removeClass('datepick-highlight');
-          },
-          onChangeMonthYear: function onChangeMonthYear(year, month) {
-            MPHB.restApiHelper.getAvailabilityData({
-              // We load a day before and day after for availability calculations later
-              start_date: new Date(year, month - 1, 0),
-              end_date: new Date(year, month - 1 + MPHB._data.settings.numberOfMonthDatepicker, 1),
-              room_type_ids: [self.roomTypeId]
-            }, function () {
-              self.lock();
-            }, function () {
-              self.form.updateCheckOutLimitations();
-              self.refresh();
-              self.unlock();
-            });
-          },
-          onSelect: function onSelect(dates) {
-            self.form.onDatepickChange();
-            self.element.trigger('change');
-          },
-          onDate: function onDate(date, isCurrentMonth) {
-            var _roomTypeCalendarData7;
-            var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData([self.roomTypeId]);
-            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(3, date, isCurrentMonth, (_roomTypeCalendarData7 = roomTypeCalendarData[self.roomTypeId]) !== null && _roomTypeCalendarData7 !== void 0 ? _roomTypeCalendarData7 : {}, false, self.form.checkInDatepicker.getDate(), self.minStayDateAfterCheckIn, self.maxStayDateAfterCheckIn, self.minCheckOutDateForSelection, self.maxCheckOutDateForSelection);
-            return calendarDateAttributes;
-          },
-          pickerClass: 'mphb-datepick-popup mphb-check-out-datepick ' + MPHB._data.settings.datepickerClass
-        };
-      }
-    });
-
-    /**
-     *
-     * @requires ./../datepicker.js
-     */
-    MPHB.SearchCheckInDatepicker = MPHB.Datepicker.extend({}, {
-      getDatepickSettings: function getDatepickSettings() {
-        var self = this;
-        return {
-          defaultDate: this.firstAvailableCheckInDate,
-          onShow: function onShow(element, instance) {
-            MPHB.restApiHelper.getAvailabilityData({
-              // We load a day before and day after for availability calculations later
-              start_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth(), 0),
-              end_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth() + MPHB._data.settings.numberOfMonthDatepicker, 1)
-            }, function () {
-              self.lock();
-            }, function () {
-              self.form.updateCheckOutLimitations();
-              self.refresh();
-              self.unlock();
-            });
-
-            // 	remove highlight right after calendar was shown
-            // 	to avoide of date highlighting when date is not selected yet
-            element.find('.datepick-highlight').removeClass('datepick-highlight');
-          },
-          onChangeMonthYear: function onChangeMonthYear(year, month) {
-            MPHB.restApiHelper.getAvailabilityData({
-              // We load a day before and day after for availability calculations later
-              start_date: new Date(year, month - 1, 0),
-              end_date: new Date(year, month - 1 + MPHB._data.settings.numberOfMonthDatepicker, 1)
-            }, function () {
-              self.lock();
-            }, function () {
-              self.refresh();
-              self.unlock();
-            });
-          },
-          onSelect: function onSelect(dates) {
-            self.form.updateCheckOutLimitations();
-          },
-          onDate: function onDate(date, isCurrentMonth) {
-            var _roomTypeCalendarData8;
-            var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData();
-            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(2, date, isCurrentMonth, (_roomTypeCalendarData8 = roomTypeCalendarData[0]) !== null && _roomTypeCalendarData8 !== void 0 ? _roomTypeCalendarData8 : {});
-            return calendarDateAttributes;
-          },
-          pickerClass: 'mphb-datepick-popup mphb-check-in-datepick ' + MPHB._data.settings.datepickerClass
-        };
-      }
-    });
-
-    /**
-     *
-     * @requires ./../datepicker.js
-     */
-    MPHB.SearchCheckOutDatepicker = MPHB.Datepicker.extend({}, {
-      minCheckOutDateForSelection: null,
-      maxCheckOutDateForSelection: null,
-      minStayDateAfterCheckIn: null,
-      maxStayDateAfterCheckIn: null,
-      /**
-       * @param {Date} checkInDate
-       */
-      updateCheckOutLimitations: function updateCheckOutLimitations(checkInDate) {
-        var _roomTypeCalendarData9;
-        if (!checkInDate) {
-          this.minCheckOutDateForSelection = null;
-          this.maxCheckOutDateForSelection = null;
-          this.minStayDateAfterCheckIn = null;
-          this.maxStayDateAfterCheckIn = null;
-          return;
-        }
-        var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData();
-        var result = MPHB.calendarHelper.calculateMinMaxCheckOutDateForSelection(checkInDate, (_roomTypeCalendarData9 = roomTypeCalendarData[0]) !== null && _roomTypeCalendarData9 !== void 0 ? _roomTypeCalendarData9 : {});
-        this.minCheckOutDateForSelection = result.minCheckOutDateForSelection;
-        this.maxCheckOutDateForSelection = result.maxCheckOutDateForSelection;
-        this.minStayDateAfterCheckIn = result.minStayDateAfterCheckIn;
-        this.maxStayDateAfterCheckIn = result.maxStayDateAfterCheckIn;
-        if (!this.getDate() || this.getDate() <= checkInDate) {
-          this.setDate(this.minCheckOutDateForSelection);
-        }
-      },
-      getDatepickSettings: function getDatepickSettings() {
-        var self = this;
-        return {
-          defaultDate: this.firstAvailableCheckInDate,
-          onShow: function onShow(element, instance) {
-            MPHB.restApiHelper.getAvailabilityData({
-              // We load a day before and day after for availability calculations later
-              start_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth(), 0),
-              end_date: new Date(instance.drawDate.getFullYear(), instance.drawDate.getMonth() + MPHB._data.settings.numberOfMonthDatepicker, 1)
-            }, function () {
-              self.lock();
-            }, function () {
-              self.form.updateCheckOutLimitations();
-              self.refresh();
-              self.unlock();
-            });
-
-            // 	remove highlight right after calendar was shown
-            // 	to avoide of date highlighting when date is not selected yet
-            element.find('.datepick-highlight').removeClass('datepick-highlight');
-          },
-          onChangeMonthYear: function onChangeMonthYear(year, month) {
-            var _self$form$getCheckIn;
-            var instance = $.datepick._getInst(self.element[0]);
-            var calendarDrawDate = new Date(instance.drawDate.getTime());
-            var selectedCheckInDateorToday = (_self$form$getCheckIn = self.form.getCheckInDate()) !== null && _self$form$getCheckIn !== void 0 ? _self$form$getCheckIn : new Date();
-            MPHB.restApiHelper.getAvailabilityData({
-              // We load data from selected check-in date because we need it for updateCheckOutLimitations()
-              start_date: new Date(selectedCheckInDateorToday.getFullYear(), selectedCheckInDateorToday.getMonth(), 0),
-              end_date: new Date(year, month - 1 + MPHB._data.settings.numberOfMonthDatepicker, 1)
-            }, function () {
-              self.lock();
-            }, function () {
-              self.form.updateCheckOutLimitations();
-              var instance = $.datepick._getInst(self.element[0]);
-              // we need to set draw date because it could be changed
-              // after updateCheckOutLimitations() when we set calendar date
-              instance.drawDate = calendarDrawDate;
-              self.refresh();
-              self.unlock();
-            });
-          },
-          onDate: function onDate(date, isCurrentMonth) {
-            var _roomTypeCalendarData0;
-            var roomTypeCalendarData = MPHB.restApiHelper.getCachedAvailabilityData();
-            var calendarDateAttributes = MPHB.calendarHelper.getCalendarDateAttributesFromAvailability(3, date, isCurrentMonth, (_roomTypeCalendarData0 = roomTypeCalendarData[0]) !== null && _roomTypeCalendarData0 !== void 0 ? _roomTypeCalendarData0 : {}, false, self.form.checkInDatepicker.getDate(), self.minStayDateAfterCheckIn, self.maxStayDateAfterCheckIn, self.minCheckOutDateForSelection, self.maxCheckOutDateForSelection);
-            return calendarDateAttributes;
-          },
-          pickerClass: 'mphb-datepick-popup mphb-check-out-datepick ' + MPHB._data.settings.datepickerClass
-        };
-      }
-    });
-    MPHB.SearchForm = can.Control.extend({}, {
-      checkInDatepicker: null,
-      checkOutDatepicker: null,
-      init: function init($formElement) {
-        var firstAvailableCheckInDateYmd = $formElement.attr('data-first_available_check_in_date');
-        if (!firstAvailableCheckInDateYmd) {
-          firstAvailableCheckInDateYmd = $.datepick.formatDate('yyyy-mm-dd', new Date());
-        }
-        this.checkInDatepicker = new MPHB.SearchCheckInDatepicker($formElement.find('.mphb-datepick[id^="mphb_check_in_date"]'), {
-          form: this,
-          roomTypeId: 0,
-          firstAvailableCheckInDateYmd: firstAvailableCheckInDateYmd
-        });
-        this.checkOutDatepicker = new MPHB.SearchCheckOutDatepicker($formElement.find('.mphb-datepick[id^="mphb_check_out_date"]'), {
-          form: this,
-          roomTypeId: 0,
-          firstAvailableCheckInDateYmd: firstAvailableCheckInDateYmd
-        });
-      },
-      getCheckInDate: function getCheckInDate() {
-        return this.checkInDatepicker.getDate() ? MPHB.Utils.cloneDate(this.checkInDatepicker.getDate()) : null;
-      },
-      updateCheckOutLimitations: function updateCheckOutLimitations() {
-        this.checkOutDatepicker.updateCheckOutLimitations(this.checkInDatepicker.getDate());
-      }
-    });
-    MPHB.RoomBookSection = can.Control.extend({}, {
-      roomTypeId: null,
-      roomTitle: '',
-      roomPrice: 0,
-      quantitySelect: null,
-      bookButton: null,
-      confirmButton: null,
-      removeButton: null,
-      messageHolder: null,
-      messageWrapper: null,
-      form: null,
-      init: function init(el, args) {
-        this.reservationCart = args.reservationCart;
-        this.roomTypeId = parseInt(el.attr('data-room-type-id'));
-        this.roomTitle = el.attr('data-room-type-title');
-        this.roomPrice = parseFloat(el.attr('data-room-price'));
-        this.confirmButton = el.find('.mphb-confirm-reservation');
-        this.quantitySelect = el.find('.mphb-rooms-quantity');
-        this.messageWrapper = el.find('.mphb-rooms-reservation-message-wrapper');
-        this.messageHolder = el.find('.mphb-rooms-reservation-message');
-      },
-      /**
-       *
-       * @returns {int}
-       */
-      getRoomTypeId: function getRoomTypeId() {
-        return this.roomTypeId;
-      },
-      /**
-       *
-       * @returns {Number}
-       */
-      getPrice: function getPrice() {
-        return this.roomPrice;
-      },
-      '.mphb-book-button click': function mphbBookButton_click(button, e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var quantity = this.quantitySelect.length ? parseInt(this.quantitySelect.val()) : 1;
-        this.reservationCart.addToCart(this.roomTypeId, quantity);
-        if (!MPHB._data.settings.isDirectBooking) {
-          // Add message "N x ... has/have been added to your reservation."
-          var messagePattern = 1 == quantity ? MPHB._data.translations.roomsAddedToReservation_singular : MPHB._data.translations.roomsAddedToReservation_plural;
-          var message = messagePattern.replace('%1$d', quantity).replace('%2$s', this.roomTitle);
-          this.messageHolder.html(message);
-
-          // Show "N x ... has/have been added to your reservation." message
-          // Show "Remove" button
-          // Show "Confirm Reservation" button
-          this.element.addClass('mphb-rooms-added');
-        } else {
-          button.prop('disabled', true);
-
-          // Go to the Checkout immediately
-          this.reservationCart.confirmReservation();
-        }
-      },
-      '.mphb-remove-from-reservation click': function mphbRemoveFromReservation_click(el, e) {
-        e.preventDefault();
-        e.stopPropagation();
-        this.reservationCart.removeFromCart(this.roomTypeId);
-        this.messageHolder.empty();
-        this.element.removeClass('mphb-rooms-added');
-      },
-      '.mphb-confirm-reservation click': function mphbConfirmReservation_click(el, e) {
-        e.preventDefault();
-        e.stopPropagation();
-        this.reservationCart.confirmReservation();
-      }
-    });
-
-    /**
-     *
-     * @requires ./room-book-section.js
-     */
-    MPHB.ReservationCart = can.Control.extend({}, {
-      cartForm: null,
-      cartDetails: null,
-      roomBookSections: {},
-      cartContents: {},
-      init: function init(el, args) {
-        this.cartForm = el.find('#mphb-reservation-cart');
-        this.cartDetails = el.find('.mphb-reservation-details');
-        this.initRoomBookSections(el.find('.mphb-reserve-room-section'));
-      },
-      initRoomBookSections: function initRoomBookSections(sections) {
-        var self = this;
-        var bookSection;
-        $.each(sections, function (index, roomSection) {
-          bookSection = new MPHB.RoomBookSection($(roomSection), {
-            reservationCart: self
-          });
-          self.roomBookSections[bookSection.getRoomTypeId()] = bookSection;
-        });
-      },
-      addToCart: function addToCart(roomTypeId, quantity) {
-        this.cartContents[roomTypeId] = quantity;
-        this.updateCartView();
-        this.updateCartInputs();
-      },
-      removeFromCart: function removeFromCart(roomTypeId) {
-        delete this.cartContents[roomTypeId];
-        this.updateCartView();
-        this.updateCartInputs();
-      },
-      calcRoomsInCart: function calcRoomsInCart() {
-        var count = 0;
-        $.each(this.cartContents, function (roomTypeId, quantity) {
-          count += quantity;
-        });
-        return count;
-      },
-      calcTotalPrice: function calcTotalPrice() {
-        var total = 0;
-        var price = 0;
-        var self = this;
-        $.each(this.cartContents, function (roomTypeId, quantity) {
-          price = self.roomBookSections[roomTypeId].getPrice();
-          total += price * quantity;
-        });
-        return total;
-      },
-      updateCartView: function updateCartView() {
-        if (!$.isEmptyObject(this.cartContents)) {
-          var roomsCount = this.calcRoomsInCart();
-          var messageTemplate = 1 == roomsCount ? MPHB._data.translations.countRoomsSelected_singular : MPHB._data.translations.countRoomsSelected_plural;
-          var cartMessage = messageTemplate.replace('%s', roomsCount);
-          this.cartDetails.find('.mphb-cart-message').html(cartMessage);
-          var total = this.calcTotalPrice();
-          var totalMessage = MPHB.format_price(total, {
-            'trim_zeros': true
-          });
-          this.cartDetails.find('.mphb-cart-total-price>.mphb-cart-total-price-value').html(totalMessage);
-          this.cartForm.removeClass('mphb-empty-cart');
-        } else {
-          this.cartForm.addClass('mphb-empty-cart');
-        }
-      },
-      updateCartInputs: function updateCartInputs() {
-        // empty inputs
-        this.cartForm.find('[name^="mphb_rooms_details"]').remove();
-        var self = this;
-        $.each(this.cartContents, function (roomTypeId, quantity) {
-          var input = $('<input />', {
-            name: 'mphb_rooms_details[' + roomTypeId + ']',
-            type: 'hidden',
-            value: quantity
-          });
-          self.cartForm.prepend(input);
-        });
-      },
-      confirmReservation: function confirmReservation() {
-        this.cartForm.submit();
       }
     });
 

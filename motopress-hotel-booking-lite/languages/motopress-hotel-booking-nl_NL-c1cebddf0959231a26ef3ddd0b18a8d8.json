@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 "Boeking knop"
             ],
             "Preset date. Formatted as %s": [
-                "Vooraf ingestelde datum. Opgemaakt als %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,112 +191,112 @@
                 ""
             ],
             "Gallery": [
-                "Galerij"
+                ""
             ],
             "View Button": [
-                "Toon knop"
+                ""
             ],
             "Order": [
-                "Sorteer"
+                ""
             ],
             "Order By": [
-                "Sorteer volgens"
+                ""
             ],
             "No order": [
-                "Geen sortering"
+                ""
             ],
             "Post ID": [
-                "Publicatie ID"
+                ""
             ],
             "Post author": [
-                "Publicatieschrijver"
+                ""
             ],
             "Post title": [
-                "Publicatietitel"
+                ""
             ],
             "Post name (post slug)": [
-                "Publicatienaam (post slug)"
+                ""
             ],
             "Post date": [
-                "Publicatiedatum"
+                ""
             ],
             "Last modified date": [
-                "Datum laatste wijziging"
+                ""
             ],
             "Parent ID": [
-                "Hoofd ID"
+                ""
             ],
             "Random order": [
-                "Willekeurige volgorde"
+                ""
             ],
             "Number of comments": [
-                "Aantal reacties"
+                ""
             ],
             "Relevance": [
-                "Relevantie"
+                ""
             ],
             "Page order": [
-                "Paginavolgorde"
+                ""
             ],
             "Meta value": [
-                "Meta waarde"
+                ""
             ],
             "Numeric meta value": [
-                "Numerieke meta waarde"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Oplopend (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Aflopend (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "Meta naam"
+                ""
             ],
             "Meta Type": [
-                "Meta type"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Opgegeven type van het aangepaste veld. Kan worden gebruikt in combinatie met \"orderby\" = \"meta_value\"."
+                ""
             ],
             "Any": [
-                "Elk"
+                ""
             ],
             "Numeric": [
-                "Numeriek"
+                ""
             ],
             "Binary": [
-                "Binair"
+                ""
             ],
             "String": [
-                "Reeks"
+                ""
             ],
             "Time": [
-                "Tijd"
+                ""
             ],
             "Date and time": [
-                "Datum en tijd"
+                ""
             ],
             "Decimal number": [
-                "Decimaal getal"
+                ""
             ],
             "Signed number": [
-                "Ondertekend nummer"
+                ""
             ],
             "Unsigned number": [
-                "Niet-ondertekend nummer"
+                ""
             ],
             "Query Settings": [
-                "Zoekopdrachtinstellingen"
+                ""
             ],
             "Relation": [
-                "Relatie"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "Waarden: geheel getal, -1 om alles weer te geven, standaard: \"Blogpagina's worden maximaal weergegeven\""
+                ""
             ],
             "Select an accommodation type.": [
-                "Selecteer een accommodatietype."
+                ""
             ]
         }
     }

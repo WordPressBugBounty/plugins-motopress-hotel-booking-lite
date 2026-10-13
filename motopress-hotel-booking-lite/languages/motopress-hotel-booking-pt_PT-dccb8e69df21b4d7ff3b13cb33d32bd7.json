@@ -1,0 +1,470 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/calendar\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "pt_PT",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Delete": [
+                "Excluir"
+            ],
+            "Email": [
+                "Endere\u00e7o eletr\u00f3nico"
+            ],
+            "Create Booking": [
+                "Criar Reserva"
+            ],
+            "Adults:": [
+                "Adultos:"
+            ],
+            "Children:": [
+                "Crian\u00e7as:"
+            ],
+            "Accommodations": [
+                "Alojamentos"
+            ],
+            "Move up": [
+                ""
+            ],
+            "Move down": [
+                ""
+            ],
+            "Move to top": [
+                ""
+            ],
+            "Move to bottom": [
+                ""
+            ],
+            "Select all": [
+                "Marcar todos"
+            ],
+            "Unselect all": [
+                "Desmarcar todos"
+            ],
+            "Edit": [
+                "Editar"
+            ],
+            "All": [
+                "Todos"
+            ],
+            "Nights": [
+                "Noites"
+            ],
+            "Remove": [
+                "Remover"
+            ],
+            "Price per extra adult": [
+                ""
+            ],
+            "Price per extra child": [
+                ""
+            ],
+            "Status": [
+                "Estado"
+            ],
+            "Price": [
+                "Pre\u00e7o"
+            ],
+            "Accommodation": [
+                "Alojamentos"
+            ],
+            "Paid: %s": [
+                "Pago: %s"
+            ],
+            "Accommodation Type": [
+                "Tipo de Alojamento"
+            ],
+            "Add New Season Price": [
+                "Adicionar Novo Pre\u00e7o de Temporada"
+            ],
+            "Days": [
+                "Dias"
+            ],
+            "Repeat": [
+                ""
+            ],
+            "Booking Rules": [
+                "Regras de Reservas"
+            ],
+            "Check-in days": [
+                "Dias de Check-in"
+            ],
+            "Seasons": [
+                "Temporadas"
+            ],
+            "Check-out days": [
+                "Dias de Check-out"
+            ],
+            "Minimum stay": [
+                "Estadia m\u00ednima"
+            ],
+            "Maximum stay": [
+                "Estadia m\u00e1xima"
+            ],
+            "Restriction": [
+                "Restri\u00e7\u00e3o"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Not check-in": [
+                "N\u00e3o fazer check-in"
+            ],
+            "Not check-out": [
+                "N\u00e3o fazer check-out"
+            ],
+            "Not stay-in": [
+                "N\u00e3o ficar"
+            ],
+            "Comment": [
+                "Coment\u00e1rio"
+            ],
+            "Minimum advance reservation": [
+                "Reserva m\u00ednima antecipada"
+            ],
+            "Maximum advance reservation": [
+                "Reserva antecipada m\u00e1xima"
+            ],
+            "Booking buffer": [
+                "Buffer de reservas"
+            ],
+            "Calendar": [
+                "Calend\u00e1rio"
+            ],
+            "First Name": [
+                "Nome"
+            ],
+            "Last Name": [
+                "Sobrenome"
+            ],
+            "Phone": [
+                "Telefone"
+            ],
+            "Address": [
+                "Endere\u00e7o"
+            ],
+            "State \/ County": [
+                "Estado \/ Pa\u00eds"
+            ],
+            "Country": [
+                "Pa\u00eds"
+            ],
+            "City": [
+                "Cidade"
+            ],
+            "Postcode": [
+                "C\u00f3digo Postal"
+            ],
+            "Cancel": [
+                "Cancelar"
+            ],
+            "Title": [
+                "Titulo"
+            ],
+            "Accommodation Types": [
+                "Tipos de Alojamento"
+            ],
+            "Description": [
+                "Descri\u00e7\u00e3o"
+            ],
+            "Summary": [
+                ""
+            ],
+            "Source": [
+                ""
+            ],
+            "Customer Note": [
+                "Nota do Cliente"
+            ],
+            "Coupon": [
+                "Cup\u00e3o"
+            ],
+            "Notes": [
+                "Notas"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Confirmada"
+            ],
+            "Booked": [
+                "Reservado"
+            ],
+            "Pending": [
+                "Pendente"
+            ],
+            "External": [
+                "Externo"
+            ],
+            "Blocked": [
+                "Bloqueado"
+            ],
+            "Check-in": [
+                "Registo de entrada"
+            ],
+            "Check-out": [
+                "Registo de sa\u00edda"
+            ],
+            "Blocked because the linked accommodation is booked": [
+                ""
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "Confirma\u00e7\u00e3o Pendente pelo Utilizador"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "Pagamento Pendente"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "Pendente pelo Administrador"
+            ],
+            "Booking status\u0004Abandoned": [
+                "Abandonada"
+            ],
+            "Booking status\u0004Cancelled": [
+                "Cancelada"
+            ],
+            "No payments found": [
+                "Nenhum pagamento encontrado"
+            ],
+            "Season": [
+                "Temporada"
+            ],
+            "Rates": [
+                "Tarifas"
+            ],
+            "Add New Rate": [
+                "Adicionar Nova Tarifa"
+            ],
+            "Base Adults Occupancy": [
+                ""
+            ],
+            "Base Children Occupancy": [
+                ""
+            ],
+            "Applied for days": [
+                "Aplicado por dias"
+            ],
+            "Annual repeats begin on the Start date of the season, for one year from the current date.": [
+                ""
+            ],
+            "Repeat until date": [
+                ""
+            ],
+            "Add New Season": [
+                "Adicionar Nova Temporada"
+            ],
+            "Edit Season": [
+                "Editar Temporada"
+            ],
+            "Apply": [
+                "Aplicar"
+            ],
+            "Today": [
+                "Hoje"
+            ],
+            "This week": [
+                "Esta semana"
+            ],
+            "This month": [
+                "Este m\u00eas"
+            ],
+            "This quarter": [
+                "Este trimestre"
+            ],
+            "This year": [
+                "Este ano"
+            ],
+            "Book": [
+                "Reservar"
+            ],
+            "x %d guest": [
+                "x %d h\u00f3spede",
+                "x %d h\u00f3spedes"
+            ],
+            "x %d time": [
+                "x %d vez",
+                "x %d vezes"
+            ],
+            "Accommodation Type:": [
+                "Tipo de alojamento:"
+            ],
+            "Rate:": [
+                "Tarifa:"
+            ],
+            "Services:": [
+                "Servi\u00e7os:"
+            ],
+            "Guest:": [
+                "H\u00f3spedes:"
+            ],
+            "Total Paid": [
+                "Total Pago"
+            ],
+            "To Pay": [
+                "A Pagar"
+            ],
+            "Add Payment Manually": [
+                "Adicionar Pagamento Manualmente"
+            ],
+            "No bookings found.": [
+                "Nenhuma reserva encontrada."
+            ],
+            "Base price": [
+                "Pre\u00e7o base"
+            ],
+            "Save": [
+                "Guardar"
+            ],
+            "Nothing found.": [
+                "Nada encontrado."
+            ],
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
+            ],
+            "Block Accommodations": [
+                ""
+            ],
+            "Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Block": [
+                ""
+            ],
+            "Daily price": [
+                ""
+            ],
+            "Select an action": [
+                ""
+            ],
+            "Daily": [
+                ""
+            ],
+            "Rule #%1$d": [
+                ""
+            ],
+            "Min. stay": [
+                ""
+            ],
+            "Max. stay": [
+                ""
+            ],
+            "Min. adv. res.": [
+                ""
+            ],
+            "Max. adv. res.": [
+                ""
+            ],
+            "Allow": [
+                ""
+            ],
+            "Disallow": [
+                ""
+            ],
+            "Max. advance reservation": [
+                ""
+            ],
+            "Min. advance reservation": [
+                ""
+            ],
+            "Please select at least one accommodation type.": [
+                ""
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                ""
+            ],
+            "Create your first accommodation type.": [
+                ""
+            ],
+            "Next 7 days": [
+                ""
+            ],
+            "Next 14 days": [
+                ""
+            ],
+            "Next 30 days": [
+                ""
+            ],
+            "Previous": [
+                ""
+            ],
+            "Next": [
+                ""
+            ],
+            "Reload": [
+                ""
+            ],
+            "Filter items\u2026": [
+                ""
+            ],
+            "Compact Calendar": [
+                ""
+            ],
+            "List": [
+                ""
+            ],
+            "Booking #%1$d": [
+                ""
+            ],
+            "Total Price": [
+                ""
+            ],
+            "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Repeat annually": [
+                ""
+            ],
+            "Repeat annually, until %1$s": [
+                ""
+            ],
+            "Priority": [
+                ""
+            ],
+            "First": [
+                ""
+            ],
+            "Last": [
+                ""
+            ],
+            "From\/Till": [
+                ""
+            ],
+            "Edit Block": [
+                ""
+            ],
+            "Select\u2026": [
+                ""
+            ],
+            "Update %1$s rate for %2$s": [
+                ""
+            ],
+            "Edit Season Price": [
+                ""
+            ],
+            "Quick booking rules": [
+                ""
+            ],
+            "Check-in today": [
+                ""
+            ],
+            "Check-out today": [
+                ""
+            ],
+            "In-House": [
+                ""
+            ]
+        }
+    }
+}

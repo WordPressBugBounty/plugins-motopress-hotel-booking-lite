@@ -75,6 +75,11 @@ class SubmitCheckoutController extends AbstractRestCommandController {
 				'default'           => '',
 				'sanitize_callback' => 'rest_sanitize_request_arg',
 			),
+			'create_new_account' => array(
+				'type'              => 'boolean',
+				'default'           => false,
+				'sanitize_callback' => 'rest_sanitize_request_arg'
+			),
 			'customer_fields' => array(
 				'type'                 => 'object',
 				'properties'           => array(
@@ -233,13 +238,15 @@ class SubmitCheckoutController extends AbstractRestCommandController {
 	 * @throws \RuntimeException in case of any error.
 	 */
 	protected static function process_and_get_data_by_response_schema( \WP_REST_Request $request ) {
+		$requestArgs = $request->get_params();
+
 		add_filter( 'mphb_checkout_step', fn() => CheckoutShortcode::STEP_CHECKOUT );
+		add_filter( 'mphb_create_new_account', fn() => $requestArgs['create_new_account'] );
 
 		if ( MPHB()->settings()->main()->isBookingDisabled() ) {
 			throw new \RuntimeException( esc_html__( 'Booking is blocked due to maintenance reason. Please try again later.', 'motopress-hotel-booking' ) );
 		}
 
-		$requestArgs = $request->get_params();
 		$language = MPHB()->translation()->getCurrentLanguage();
 
 		if ( isset( $requestArgs['lang'] ) ) {
@@ -342,7 +349,8 @@ class SubmitCheckoutController extends AbstractRestCommandController {
 		$booking->getPriceBreakdown();
 
 		// Save customer
-		$customerId = MPHB()->customers()->createCustomerOnBooking( $booking );
+		$isAdmin = apply_filters( 'mphb_is_current_request_for_admin_ui', false );
+		$customerId = MPHB()->customers()->createCustomerOnBooking( $booking, $isAdmin );
 
 		if ( ! is_wp_error( $customerId ) ) {
 			$booking->getCustomer()->setCustomerId( $customerId );
@@ -449,8 +457,6 @@ class SubmitCheckoutController extends AbstractRestCommandController {
 		} // if $isDoingPayment
 
 		if ( ! $booking->isFailed() ) {
-			$isAdmin = apply_filters( 'mphb_is_current_request_for_admin_ui', false );
-
 			/**
 			 * @param Booking $booking
 			 * @param Payment|null $payment

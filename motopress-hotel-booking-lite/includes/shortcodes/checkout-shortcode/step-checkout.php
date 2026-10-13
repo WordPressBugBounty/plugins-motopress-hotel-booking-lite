@@ -5,9 +5,8 @@ namespace MPHB\Shortcodes\CheckoutShortcode;
 use MPHB\Entities\{ Booking, ReservedRoom, RoomType };
 use MPHB\Views\Shortcodes\CheckoutView;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
+
 
 class StepCheckout extends Step {
 	/**
@@ -30,9 +29,26 @@ class StepCheckout extends Step {
 	 */
 	protected $roomDetails = array();
 
+	/**
+	 * @var \MPHB\UsersAndRoles\Customer|null
+	 */
 	protected $customer = null;
 
 	private $isCorrectBookingData = true;
+
+	/**
+	 * Guests of every room from the checkout link (?mphb_action=checkout).
+	 *
+	 * @var array [ room_type_id => [ [ adults, children ], ... ] ]
+	 */
+	private $linkOccupancies = array();
+
+	/**
+	 * Rate of every room from the checkout link, 0 when the link gives none.
+	 *
+	 * @var array [ room_type_id => [ rate_id, ... ] ]
+	 */
+	private $linkRateIds = array();
 
 	public function __construct() {
 		add_action( 'mphb_before_register_public_scripts', array( $this, 'addScriptDependencies' ) );
@@ -68,7 +84,7 @@ class StepCheckout extends Step {
 			$gateways = MPHB()->gatewayManager()->getListActive();
 
 			// Filter used in mphb-woocommerce to hide WooCommerce gateway, if it is the only one
-			if ( count( $gateways ) == 1 && apply_filters( 'mphb_sc_checkout_single_gateway_hide_billing_details', false, reset( $gateways ) ) ) {
+			if ( 1 === count( $gateways ) && apply_filters( 'mphb_sc_checkout_single_gateway_hide_billing_details', false, reset( $gateways ) ) ) {
 				add_action( 'mphb_sc_checkout_form', array( '\MPHB\Views\Shortcodes\CheckoutView', 'renderBillingDetailsHidden' ), 5 );
 			} else {
 				add_action( 'mphb_sc_checkout_form', array( '\MPHB\Views\Shortcodes\CheckoutView', 'renderBillingDetails' ), 45 );
@@ -131,9 +147,9 @@ class StepCheckout extends Step {
 	protected function getDefaultOccupancyForSingleRoom( RoomType $roomType ): array {
 		list( $adultsPreset, $childrenPreset ) = mphb_rooms_facade()->getRoomTypeOccupancyPresetsFromSearch( $roomType );
 
-		if ( $adultsPreset === '' || $childrenPreset === '' ) {
+		if ( '' === $adultsPreset || '' === $childrenPreset ) {
 			// Default old logic with rates: base price = price for max capacity
-			$adultsPreset = $roomType->getAdultsCapacity();
+			$adultsPreset   = $roomType->getAdultsCapacity();
 			$childrenPreset = $roomType->getChildrenCapacity();
 		}
 
@@ -155,14 +171,23 @@ class StepCheckout extends Step {
 		}
 
 		$roomDetails = null;
+		$isLinkRooms = false;
 
-		if ( ! empty( $_POST['mphb_rooms_details'] ) && is_array( $_POST['mphb_rooms_details'] ) ) {
-			$roomDetails = (array) wp_unslash( $_POST['mphb_rooms_details'] );
+		if ( ! empty( $_POST['mphb_rooms_details'] ) && is_array( $_POST['mphb_rooms_details'] ) ) { // phpcs:ignore
+
+			$roomDetails = (array) wp_unslash( $_POST['mphb_rooms_details'] ); // phpcs:ignore
+
+		} elseif ( $this->isCheckoutLinkRequest() ) {
+
+			$roomDetails = $this->parseLinkRooms( (array) wp_unslash( $_GET['mphb_room_details'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$isLinkRooms = true;
+
 		} elseif ( ! empty( mphb_get_cookie( 'mphb_rooms_details' ) ) ) {
+
 			$roomDetails = json_decode( mphb_get_cookie( 'mphb_rooms_details' ), true );
 		}
 
-		mphb_set_cookie( 'mphb_rooms_details', json_encode( $roomDetails ) );
+		mphb_set_cookie( 'mphb_rooms_details', wp_json_encode( $roomDetails ) );
 
 		if ( empty( $roomDetails ) || ! is_array( $roomDetails ) ) {
 			$this->errors[] = __( 'There are no accommodations selected for reservation.', 'motopress-hotel-booking' );
@@ -179,8 +204,11 @@ class StepCheckout extends Step {
 			return false;
 		}
 
-		$this->reservedRooms = $reservedRooms = array();
-		$this->roomDetails   = $roomDetails = array();
+		$this->reservedRooms = array();
+		$this->roomDetails   = array();
+
+		$reservedRooms = array();
+		$roomDetails   = array();
 
 		$isIgnoreBookingRules = MPHB()->settings()->main()->isBookingRulesForAdminDisabled();
 
@@ -199,7 +227,8 @@ class StepCheckout extends Step {
 			}
 
 			$roomType = MPHB()->getRoomTypeRepository()->findById( $roomTypeId );
-			if ( ! $roomType ) {
+			// A trashed or draft type keeps its published accommodations bookable otherwise.
+			if ( ! $roomType || 'publish' !== $roomType->getStatus() ) {
 				$this->errors[] = __( 'Accommodation Type is not valid.', 'motopress-hotel-booking' );
 				continue;
 			}
@@ -240,20 +269,29 @@ class StepCheckout extends Step {
 			}
 
 			if ( mphb_availability_facade()->isBookingRulesViolated(
-					$roomType->getOriginalId(),
-					$this->checkInDate,
-					$this->checkOutDate,
-					$isIgnoreBookingRules
-				)
+				$roomType->getOriginalId(),
+				$this->checkInDate,
+				$this->checkOutDate,
+				$isIgnoreBookingRules
+			)
 			) {
+				/* translators: %s: accommodation type title */
 				$this->errors[] = sprintf( __( 'Selected dates do not meet booking rules for type %s', 'motopress-hotel-booking' ), $roomType->getTitle() );
+				continue;
+			}
+
+			$linkOccupancies = $this->linkOccupancies[ $roomTypeId ] ?? array();
+
+			if ( ! $this->isLinkOccupancyFit( $linkOccupancies, $roomType ) ) {
+				/* translators: %s: accommodation type title */
+				$this->errors[] = sprintf( __( 'Accommodation type %s cannot host the requested number of guests.', 'motopress-hotel-booking' ), $roomType->getTitle() );
 				continue;
 			}
 
 			$defaultRate = reset( $allowedRates );
 
-			if ( $roomsCount == 1
-				&& count( $selectedRooms ) == 1
+			if ( 1 === $roomsCount
+				&& 1 === count( $selectedRooms )
 				&& MPHB()->settings()->main()->isUseOccupancyPresetsOnCheckout()
 			) {
 				list( $adultsToBook, $childrenToBook ) = $this->getDefaultOccupancyForSingleRoom( $roomType );
@@ -271,15 +309,40 @@ class StepCheckout extends Step {
 			$reservedRoomAtts = apply_filters( 'mphb_sc_checkout_step_checkout_room_to_reserve', $reservedRoomAtts, $roomTypeId );
 
 			for ( $i = 1; $i <= $roomsCount; $i++ ) {
-				$reservedRooms[] = ReservedRoom::create( $reservedRoomAtts );
+				$roomAtts     = $reservedRoomAtts;
+				$roomAdults   = $adultsToBook;
+				$roomChildren = $childrenToBook;
+
+				if ( isset( $linkOccupancies[ $i - 1 ] ) ) {
+					list( $roomAdults, $roomChildren ) = $linkOccupancies[ $i - 1 ];
+
+					$roomAtts['adults']   = $roomAdults;
+					$roomAtts['children'] = $roomChildren;
+				}
+
+				$roomRateId = $defaultRate->getOriginalId();
+				$linkRateId = $this->linkRateIds[ $roomTypeId ][ $i - 1 ] ?? 0;
+
+				// A rate not allowed for the stay leaves the default one.
+				if ( $this->isRateAllowed( $linkRateId, $allowedRates ) ) {
+					$roomRateId          = $linkRateId;
+					$roomAtts['rate_id'] = $linkRateId;
+				}
+
+				$reservedRooms[] = ReservedRoom::create( $roomAtts );
 				$roomDetails[]   = array(
 					'room_type_id'  => $roomTypeId,
-					'rate_id'       => $defaultRate->getOriginalId(),
+					'rate_id'       => $roomRateId,
 					'allowed_rates' => $allowedRates,
-					'adults'        => $adultsToBook,
-					'children'      => $childrenToBook,
+					'adults'        => $roomAdults,
+					'children'      => $roomChildren,
 				);
 			}
+		}
+
+		// A link asks for all its rooms at once: dropping the invalid ones would book less than asked.
+		if ( $isLinkRooms && ! empty( $this->errors ) ) {
+			return false;
 		}
 
 		$this->roomDetails   = apply_filters( 'mphb_sc_checkout_step_checkout_rooms_details', $roomDetails, $selectedRooms );
@@ -292,6 +355,124 @@ class StepCheckout extends Step {
 		return true;
 	}
 
+	/**
+	 * The checkout link (?mphb_action=checkout) gives one entry per room:
+	 * mphb_room_details[i][room_type_id|adults|children|rate_id].
+	 *
+	 * @return int[] [ room_type_id => rooms count ]
+	 */
+	protected function parseLinkRooms( array $linkRooms ): array {
+		$roomsCount = array();
+
+		$mainSettings = MPHB()->settings()->main();
+
+		foreach ( $linkRooms as $linkRoom ) {
+			if ( ! is_array( $linkRoom ) ) {
+				$linkRoom = array();
+			}
+
+			// An invalid ID becomes 0 and fails the regular validation.
+			$roomTypeId = absint( $linkRoom['room_type_id'] ?? 0 );
+
+			$roomsCount[ $roomTypeId ] = ( $roomsCount[ $roomTypeId ] ?? 0 ) + 1;
+
+			// An invalid ID becomes 0 and matches no rate.
+			$this->linkRateIds[ $roomTypeId ][] = absint( $linkRoom['rate_id'] ?? 0 );
+
+			// Without guest management the room keeps its default occupancy.
+			if ( ! $mainSettings->isGuestsAllowed() ) {
+				continue;
+			}
+
+			// Not absint(): it turns -1 into 1, and a broken value must fall to the minimum.
+			$adults   = max( mphb_get_min_adults(), (int) ( $linkRoom['adults'] ?? 0 ) );
+			$children = max( mphb_get_min_children(), (int) ( $linkRoom['children'] ?? 0 ) );
+
+			// With children disabled the site asks only for "Guests", so children count as adults.
+			if ( ! $mainSettings->isChildrenAllowed() ) {
+				$adults  += $children;
+				$children = mphb_get_min_children();
+			}
+
+			$this->linkOccupancies[ $roomTypeId ][] = array( $adults, $children );
+		}
+
+		if ( ! empty( $this->linkOccupancies ) ) {
+			add_filter( 'mphb_sc_checkout_preset_adults', array( $this, 'presetLinkAdults' ), 10, 3 );
+			add_filter( 'mphb_sc_checkout_preset_children', array( $this, 'presetLinkChildren' ), 10, 3 );
+		}
+
+		add_filter( 'mphb_sc_checkout_preset_rate_id', array( $this, 'presetLinkRateId' ), 10, 2 );
+
+		return $roomsCount;
+	}
+
+	/**
+	 * @param int                   $rateId
+	 * @param \MPHB\Entities\Rate[] $allowedRates
+	 */
+	protected function isRateAllowed( int $rateId, array $allowedRates ): bool {
+		foreach ( $allowedRates as $allowedRate ) {
+			if ( (int) $allowedRate->getOriginalId() === $rateId ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param int[][] $linkOccupancies [ [ adults, children ], ... ]
+	 */
+	protected function isLinkOccupancyFit( array $linkOccupancies, RoomType $roomType ): bool {
+		foreach ( $linkOccupancies as list( $adults, $children ) ) {
+			if ( $adults > $roomType->getAdultsCapacity()
+				|| $children > $roomType->getChildrenCapacity()
+				|| $adults + $children > $roomType->calcTotalCapacity()
+			) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * Selects the guests from the checkout link in the room's adults dropdown.
+	 *
+	 * @param int|string   $preset
+	 * @param RoomType     $roomType
+	 * @param ReservedRoom $reservedRoom
+	 * @return int
+	 */
+	public function presetLinkAdults( $preset, $roomType, $reservedRoom ) {
+		return $reservedRoom->getAdults();
+	}
+
+	/**
+	 * Selects the guests from the checkout link in the room's children dropdown.
+	 *
+	 * @param int|string   $preset
+	 * @param RoomType     $roomType
+	 * @param ReservedRoom $reservedRoom
+	 * @return int
+	 */
+	public function presetLinkChildren( $preset, $roomType, $reservedRoom ) {
+		return $reservedRoom->getChildren();
+	}
+
+	/**
+	 * Selects the room's rate in the rate chooser: the one from the checkout link
+	 * when it is allowed for the stay, the default one otherwise.
+	 *
+	 * @param int          $preset
+	 * @param ReservedRoom $reservedRoom
+	 * @return int
+	 */
+	public function presetLinkRateId( $preset, $reservedRoom ) {
+		return $reservedRoom->getRateId();
+	}
+
 	protected function parseCustomerData() {
 		$userId = get_current_user_id();
 
@@ -302,7 +483,7 @@ class StepCheckout extends Step {
 
 		$customer = MPHB()->customers()->findBy( 'user_id', $userId );
 
-		if ( null == $customer ) {
+		if ( null === $customer ) {
 			// TODO case if user is not a customer
 			return;
 		}
@@ -314,14 +495,15 @@ class StepCheckout extends Step {
 	 * @since 3.7.0 added new action - "mphb_sc_checkout_before_errors".
 	 */
 	public function render() {
-		if ( ! $this->isCorrectBookingData ) {
-			do_action( 'mphb_sc_checkout_before_errors' );
+		// Goes first: a fully booked stay also fails the booking data, but has no error text.
+		if ( $this->alreadyBooked ) {
+			$this->showAlreadyBookedMessage();
 
 			return;
 		}
 
-		if ( $this->alreadyBooked ) {
-			$this->showAlreadyBookedMessage();
+		if ( ! $this->isCorrectBookingData ) {
+			do_action( 'mphb_sc_checkout_before_errors' );
 
 			return;
 		}

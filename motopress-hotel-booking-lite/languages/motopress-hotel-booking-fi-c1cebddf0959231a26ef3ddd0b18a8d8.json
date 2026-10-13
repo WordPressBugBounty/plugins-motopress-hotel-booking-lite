@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 "Kirja-painike"
             ],
             "Preset date. Formatted as %s": [
-                "Esiasetettu p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4. Muotoiltu nimell\u00e4 %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,109 +191,109 @@
                 ""
             ],
             "Gallery": [
-                "Galleria"
+                ""
             ],
             "View Button": [
-                "N\u00e4yt\u00e4-painike"
+                ""
             ],
             "Order": [
-                "J\u00e4rjestys"
+                ""
             ],
             "Order By": [
-                "J\u00e4rjest\u00e4"
+                ""
             ],
             "No order": [
-                "Ei lajittelua"
+                ""
             ],
             "Post ID": [
-                "Artikkelin ID"
+                ""
             ],
             "Post author": [
-                "Artikkelin kirjoittaja"
+                ""
             ],
             "Post title": [
-                "Post otsikko"
+                ""
             ],
             "Post name (post slug)": [
-                "Post nimi (post etana)"
+                ""
             ],
             "Post date": [
-                "Julkaisup\u00e4iv\u00e4"
+                ""
             ],
             "Last modified date": [
-                "Viimeksi muokattu p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4"
+                ""
             ],
             "Parent ID": [
-                "Parent tunnus"
+                ""
             ],
             "Random order": [
-                "Satunnainen j\u00e4rjestys"
+                ""
             ],
             "Number of comments": [
-                "Kommenttien m\u00e4\u00e4r\u00e4"
+                ""
             ],
             "Relevance": [
-                "Merkitys"
+                ""
             ],
             "Page order": [
-                "Sivun j\u00e4rjestys"
+                ""
             ],
             "Meta value": [
-                "Meta-arvo"
+                ""
             ],
             "Numeric meta value": [
-                "Numeerinen meta-arvo"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Nouseva (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Laskeva (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "Meta-nimi"
+                ""
             ],
             "Meta Type": [
-                "Meta-tyyppi"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Mukautetun kent\u00e4n m\u00e4\u00e4ritetty tyyppi. Voidaan k\u00e4ytt\u00e4\u00e4 yhdess\u00e4 \"orderby\" = \"meta_value\"."
+                ""
             ],
             "Any": [
-                "Kaikki"
+                ""
             ],
             "Numeric": [
-                "Numeerinen"
+                ""
             ],
             "Binary": [
                 ""
             ],
             "String": [
-                "Merkkijono"
+                ""
             ],
             "Time": [
-                "Aika"
+                ""
             ],
             "Date and time": [
-                "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 ja kellonaika"
+                ""
             ],
             "Decimal number": [
-                "Desimaaliluku"
+                ""
             ],
             "Signed number": [
-                "Allekirjoitettu numero"
+                ""
             ],
             "Unsigned number": [
-                "Allekirjoittamaton numero"
+                ""
             ],
             "Query Settings": [
-                "Kyselyn asetukset"
+                ""
             ],
             "Relation": [
-                "Suhde"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "Arvot: kokonaisluku, -1 n\u00e4ytt\u00e4\u00e4 kaikki, oletus: \"Blogi sivut n\u00e4kyv\u00e4t enint\u00e4\u00e4n\""
+                ""
             ],
             "Select an accommodation type.": [
                 ""

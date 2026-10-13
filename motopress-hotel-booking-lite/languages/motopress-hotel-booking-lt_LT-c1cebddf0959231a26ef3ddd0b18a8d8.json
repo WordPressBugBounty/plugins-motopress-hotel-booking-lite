@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 "Rezervacijos mygtukas"
             ],
             "Preset date. Formatted as %s": [
-                "I\u0161 anksto nustatyta data. Suformatuota kaip %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,109 +191,109 @@
                 ""
             ],
             "Gallery": [
-                "Galerija"
+                ""
             ],
             "View Button": [
-                "Per\u017ei\u016bros mygtukas"
+                ""
             ],
             "Order": [
-                "Rikiavimas"
+                ""
             ],
             "Order By": [
-                "Rikiuoti pagal"
+                ""
             ],
             "No order": [
-                "N\u0117ra rikiavimo"
+                ""
             ],
             "Post ID": [
-                "Prane\u0161imo ID"
+                ""
             ],
             "Post author": [
-                "Prane\u0161imo autorius"
+                ""
             ],
             "Post title": [
-                "\u012era\u0161o pavadinimas"
+                ""
             ],
             "Post name (post slug)": [
-                "\u012era\u0161o pavadinimas (post slug)"
+                ""
             ],
             "Post date": [
-                "\u012era\u0161o data"
+                ""
             ],
             "Last modified date": [
-                "Paskutinio pakeitimo data"
+                ""
             ],
             "Parent ID": [
-                "T\u0117vinio ID"
+                ""
             ],
             "Random order": [
-                "Atsitiktin\u0117 tvarka"
+                ""
             ],
             "Number of comments": [
-                "Komentaru kiekis"
+                ""
             ],
             "Relevance": [
-                "Aktualumas"
+                ""
             ],
             "Page order": [
-                "Puslapio rikiavimas"
+                ""
             ],
             "Meta value": [
-                "Meta reik\u0161m\u0117"
+                ""
             ],
             "Numeric meta value": [
-                "Skaitin\u0117 meta reik\u0161m\u0117"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Did\u0117jan\u010dia tvarka (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Ma\u017e\u0117janti (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "Meta pavadinimas"
+                ""
             ],
             "Meta Type": [
-                "Meta tipas"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Nurodytas tinkinto lauko tipas. Gali b\u016bti naudojamas kartu su \"orderby\" = \"meta_value\"."
+                ""
             ],
             "Any": [
-                "Bet kas"
+                ""
             ],
             "Numeric": [
-                "Skaitinis"
+                ""
             ],
             "Binary": [
-                "Dvejetainis"
+                ""
             ],
             "String": [
-                "Eilut\u0117"
+                ""
             ],
             "Time": [
-                "Laikas"
+                ""
             ],
             "Date and time": [
-                "Data ir laikas"
+                ""
             ],
             "Decimal number": [
-                "De\u0161imtainis skai\u010dius"
+                ""
             ],
             "Signed number": [
-                "Pasira\u0161ytas numeris"
+                ""
             ],
             "Unsigned number": [
-                "Nepasira\u0161ytas numeris"
+                ""
             ],
             "Query Settings": [
-                "U\u017eklausos (query) nustatymai"
+                ""
             ],
             "Relation": [
-                "Ry\u0161ys"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "Reik\u0161m\u0117s: sveikasis skai\u010dius, -1, kad b\u016bt\u0173 rodoma viskas, numatytoji: \"Tinklara\u0161\u010dio puslapiai rodomi daugiausia\""
+                ""
             ],
             "Select an accommodation type.": [
                 ""

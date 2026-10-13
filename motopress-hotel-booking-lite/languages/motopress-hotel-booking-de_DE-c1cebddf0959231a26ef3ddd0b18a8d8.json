@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,121 +182,121 @@
                 "Buchungsbutton"
             ],
             "Preset date. Formatted as %s": [
-                "Datumsvoreinstellung. Formatiert als %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
-                "W\u00e4hlen Sie einen Unterkunftstyp. Leer lassen, um aktuelle zu verwenden."
+                ""
             ],
             "ID of an accommodation type. Leave blank to use current.": [
-                "ID eines Unterkunftstyps. Leer lassen, um aktuell zu verwenden."
+                ""
             ],
             "Gallery": [
-                "Galerie"
+                ""
             ],
             "View Button": [
-                "\"Ansehen\"-Button"
+                ""
             ],
             "Order": [
-                "Reihenfolge"
+                ""
             ],
             "Order By": [
-                "Sortieren nach"
+                ""
             ],
             "No order": [
-                "Keine Reihenfolge"
+                ""
             ],
             "Post ID": [
-                "Beitrags-ID"
+                ""
             ],
             "Post author": [
-                "Beitragsautor"
+                ""
             ],
             "Post title": [
-                "Beitragstitel"
+                ""
             ],
             "Post name (post slug)": [
-                "Beitragsname (Beitrag-Slug)"
+                ""
             ],
             "Post date": [
-                "Ver\u00f6ffentlicht"
+                ""
             ],
             "Last modified date": [
-                "Zuletzt ge\u00e4ndert"
+                ""
             ],
             "Parent ID": [
-                "ID der Oberkategorie"
+                ""
             ],
             "Random order": [
-                "Zuf\u00e4llige Reihenfolge"
+                ""
             ],
             "Number of comments": [
-                "Anzahl der Kommentare"
+                ""
             ],
             "Relevance": [
-                "Relevanz"
+                ""
             ],
             "Page order": [
-                "Seitenreihenfolge"
+                ""
             ],
             "Meta value": [
-                "Meta-Wert"
+                ""
             ],
             "Numeric meta value": [
-                "Numerischer Meta-Wert"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Aufsteigend (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Absteigend (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "Meta-Name"
+                ""
             ],
             "Meta Type": [
-                "Meta-Typ"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Angegebener Typ des benutzerdefinierten Felds. Kann in Verbindung mit \"orderby\" = \"meta_value\" verwendet werden."
+                ""
             ],
             "Any": [
-                "Beliebig"
+                ""
             ],
             "Numeric": [
-                "Numerisch"
+                ""
             ],
             "Binary": [
-                "Bin\u00e4r"
+                ""
             ],
             "String": [
-                "Zeichenkette"
+                ""
             ],
             "Time": [
-                "Uhrzeit"
+                ""
             ],
             "Date and time": [
-                "Datum und Uhrzeit"
+                ""
             ],
             "Decimal number": [
-                "Dezimalzahl"
+                ""
             ],
             "Signed number": [
-                "Zahl mit Vorzeichen"
+                ""
             ],
             "Unsigned number": [
-                "Vorzeichenlose Zahl"
+                ""
             ],
             "Query Settings": [
-                "Abfrageeinstellungen"
+                ""
             ],
             "Relation": [
-                "Beziehung"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "Werte: Ganzzahl; -1 um alle anzuzeigen; Standard: 'Blogseiten zeigen maximal' (Einstellungen\\Lesen)"
+                ""
             ],
             "Select an accommodation type.": [
-                "W\u00e4hlen Sie einen Unterkunftstyp aus."
+                ""
             ]
         }
     }

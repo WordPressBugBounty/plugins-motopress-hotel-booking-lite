@@ -1,0 +1,69 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/guide\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "sv_SE",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Accommodation": [
+                "Rum"
+            ],
+            "Booking Rules": [
+                "Bokningsregler"
+            ],
+            "Seasons": [
+                "S\u00e4songer"
+            ],
+            "Rates": [
+                "Tariffer"
+            ],
+            "Period": [
+                ""
+            ],
+            "Quick Start Guide": [
+                ""
+            ],
+            "Get familiar with the main interface and key features of the calendar.": [
+                ""
+            ],
+            "Select a period to display. Use the arrows to navigate and the refresh button to update data.": [
+                ""
+            ],
+            "View Options": [
+                ""
+            ],
+            "Display bookings in the Calendar or List view. Use filters to show all accommodations or specific ones.": [
+                ""
+            ],
+            "Timeline": [
+                ""
+            ],
+            "The timeline shows the selected period and can be scrolled to view additional dates.": [
+                ""
+            ],
+            "Create seasons to set prices or booking rules for specific periods.": [
+                ""
+            ],
+            "View your accommodations, prices, bookings, and booking rules.": [
+                ""
+            ],
+            "Working Area": [
+                ""
+            ],
+            "View your bookings and blocked availability. Choose a date range to create a new booking or block.": [
+                ""
+            ],
+            "Use rates to set prices for seasons or individual days.": [
+                ""
+            ],
+            "Set rules for specific periods or individual days, such as allowed check-in days and min or max length of stay.": [
+                ""
+            ]
+        }
+    }
+}

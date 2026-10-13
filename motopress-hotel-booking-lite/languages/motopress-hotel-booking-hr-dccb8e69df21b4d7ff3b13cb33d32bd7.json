@@ -1,0 +1,470 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/calendar\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "hr_HR",
+                "plural-forms": "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
+            },
+            "Delete": [
+                "Obri\u0161i"
+            ],
+            "Email": [
+                ""
+            ],
+            "Create Booking": [
+                "Izradite Rezervaciju"
+            ],
+            "Adults:": [
+                "Odrasli:"
+            ],
+            "Children:": [
+                "Djeca:"
+            ],
+            "Accommodations": [
+                "Smje\u0161tajne Jedinice"
+            ],
+            "Move up": [
+                ""
+            ],
+            "Move down": [
+                ""
+            ],
+            "Move to top": [
+                ""
+            ],
+            "Move to bottom": [
+                ""
+            ],
+            "Select all": [
+                "Odaberi Sve"
+            ],
+            "Unselect all": [
+                "Poni\u0161ti sve"
+            ],
+            "Edit": [
+                "Uredi"
+            ],
+            "All": [
+                "Sve"
+            ],
+            "Nights": [
+                "No\u0107i"
+            ],
+            "Remove": [
+                "Ukloni"
+            ],
+            "Price per extra adult": [
+                ""
+            ],
+            "Price per extra child": [
+                ""
+            ],
+            "Status": [
+                "Stanje"
+            ],
+            "Price": [
+                "Cijena"
+            ],
+            "Accommodation": [
+                "Smje\u0161taj"
+            ],
+            "Paid: %s": [
+                "Pla\u0107eno: %s"
+            ],
+            "Accommodation Type": [
+                "Vrsta Smje\u0161taja"
+            ],
+            "Add New Season Price": [
+                "Dodaj novu cijenu za sezonu"
+            ],
+            "Days": [
+                "Dana"
+            ],
+            "Repeat": [
+                "Ponovi"
+            ],
+            "Booking Rules": [
+                "Pravila Rezervacija"
+            ],
+            "Check-in days": [
+                "Dan Dolaska"
+            ],
+            "Seasons": [
+                "Sezone"
+            ],
+            "Check-out days": [
+                "Dani odlaska"
+            ],
+            "Minimum stay": [
+                "Minimalni boravak"
+            ],
+            "Maximum stay": [
+                "Maksimalni boravak"
+            ],
+            "Restriction": [
+                "Ograni\u010denje"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Not check-in": [
+                "Bez Check in-a"
+            ],
+            "Not check-out": [
+                "Bez chek-out-a"
+            ],
+            "Not stay-in": [
+                "Bes Ostanka"
+            ],
+            "Comment": [
+                "Komentar"
+            ],
+            "Minimum advance reservation": [
+                ""
+            ],
+            "Maximum advance reservation": [
+                ""
+            ],
+            "Booking buffer": [
+                ""
+            ],
+            "Calendar": [
+                "Kalendar"
+            ],
+            "First Name": [
+                "Ime"
+            ],
+            "Last Name": [
+                "Prezime"
+            ],
+            "Phone": [
+                "Telefon"
+            ],
+            "Address": [
+                "Adresa"
+            ],
+            "State \/ County": [
+                "Dr\u017eava \/ \u017dupanija"
+            ],
+            "Country": [
+                "De\u017eava"
+            ],
+            "City": [
+                "Grad"
+            ],
+            "Postcode": [
+                "Po\u0161tanski Broj"
+            ],
+            "Cancel": [
+                ""
+            ],
+            "Title": [
+                "Naslov"
+            ],
+            "Accommodation Types": [
+                "Vrste Smje\u0161taja"
+            ],
+            "Description": [
+                "Opis"
+            ],
+            "Summary": [
+                ""
+            ],
+            "Source": [
+                ""
+            ],
+            "Customer Note": [
+                "Bilje\u0161ka Klijenta"
+            ],
+            "Coupon": [
+                "Kupon"
+            ],
+            "Notes": [
+                "Bilje\u0161ke"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Potvr\u0111eno"
+            ],
+            "Booked": [
+                "Rezervirano"
+            ],
+            "Pending": [
+                "Na \u010cekanju"
+            ],
+            "External": [
+                ""
+            ],
+            "Blocked": [
+                "Blokirano"
+            ],
+            "Check-in": [
+                "Dolazak"
+            ],
+            "Check-out": [
+                "Odlazak"
+            ],
+            "Blocked because the linked accommodation is booked": [
+                ""
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "Na \u010cekanju Potvrde Korisnika"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "Na \u010cekanju Pla\u0107anja"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "Na \u010cekanju - Administrator"
+            ],
+            "Booking status\u0004Abandoned": [
+                "Napu\u0161teno"
+            ],
+            "Booking status\u0004Cancelled": [
+                "Poni\u0161teno"
+            ],
+            "No payments found": [
+                "Nije prona\u0111eno nijedno pla\u0107anje"
+            ],
+            "Season": [
+                "Sezona"
+            ],
+            "Rates": [
+                "Periodi\u010dne Cijene"
+            ],
+            "Add New Rate": [
+                "Dodaj Novu Periodi\u010dnu Cijenu"
+            ],
+            "Base Adults Occupancy": [
+                ""
+            ],
+            "Base Children Occupancy": [
+                ""
+            ],
+            "Applied for days": [
+                "Primjenjuje se danima"
+            ],
+            "Annual repeats begin on the Start date of the season, for one year from the current date.": [
+                ""
+            ],
+            "Repeat until date": [
+                ""
+            ],
+            "Add New Season": [
+                "Dodaj Novu Sezonu"
+            ],
+            "Edit Season": [
+                "Uredi Sezonu"
+            ],
+            "Apply": [
+                "Primjeni"
+            ],
+            "Today": [
+                ""
+            ],
+            "This week": [
+                ""
+            ],
+            "This month": [
+                ""
+            ],
+            "This quarter": [
+                ""
+            ],
+            "This year": [
+                ""
+            ],
+            "Book": [
+                "Rezerviraj"
+            ],
+            "x %d guest": [
+                "po %d gostu",
+                "po %d gostima",
+                "po %d gostu"
+            ],
+            "x %d time": [
+                ""
+            ],
+            "Accommodation Type:": [
+                "Vrsta Smje\u0161taja:"
+            ],
+            "Rate:": [
+                "Periodi\u010dna Cijena:"
+            ],
+            "Services:": [
+                "Usluge:"
+            ],
+            "Guest:": [
+                "Gost:"
+            ],
+            "Total Paid": [
+                "Ukupno Pla\u010deno"
+            ],
+            "To Pay": [
+                "Za Platiti"
+            ],
+            "Add Payment Manually": [
+                "Dodaj Pla\u0107anje Ru\u010dno"
+            ],
+            "No bookings found.": [
+                "Nije prona\u0111ena nijedna rezervacija."
+            ],
+            "Base price": [
+                ""
+            ],
+            "Save": [
+                "Spremi"
+            ],
+            "Nothing found.": [
+                "Ni\u0161ta nije prona\u0111eno."
+            ],
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
+            ],
+            "Block Accommodations": [
+                ""
+            ],
+            "Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Block": [
+                ""
+            ],
+            "Daily price": [
+                ""
+            ],
+            "Select an action": [
+                ""
+            ],
+            "Daily": [
+                ""
+            ],
+            "Rule #%1$d": [
+                ""
+            ],
+            "Min. stay": [
+                ""
+            ],
+            "Max. stay": [
+                ""
+            ],
+            "Min. adv. res.": [
+                ""
+            ],
+            "Max. adv. res.": [
+                ""
+            ],
+            "Allow": [
+                ""
+            ],
+            "Disallow": [
+                ""
+            ],
+            "Max. advance reservation": [
+                ""
+            ],
+            "Min. advance reservation": [
+                ""
+            ],
+            "Please select at least one accommodation type.": [
+                ""
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                ""
+            ],
+            "Create your first accommodation type.": [
+                ""
+            ],
+            "Next 7 days": [
+                ""
+            ],
+            "Next 14 days": [
+                ""
+            ],
+            "Next 30 days": [
+                ""
+            ],
+            "Previous": [
+                ""
+            ],
+            "Next": [
+                ""
+            ],
+            "Reload": [
+                ""
+            ],
+            "Filter items\u2026": [
+                ""
+            ],
+            "Compact Calendar": [
+                ""
+            ],
+            "List": [
+                ""
+            ],
+            "Booking #%1$d": [
+                ""
+            ],
+            "Total Price": [
+                ""
+            ],
+            "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Repeat annually": [
+                ""
+            ],
+            "Repeat annually, until %1$s": [
+                ""
+            ],
+            "Priority": [
+                ""
+            ],
+            "First": [
+                ""
+            ],
+            "Last": [
+                ""
+            ],
+            "From\/Till": [
+                ""
+            ],
+            "Edit Block": [
+                ""
+            ],
+            "Select\u2026": [
+                ""
+            ],
+            "Update %1$s rate for %2$s": [
+                ""
+            ],
+            "Edit Season Price": [
+                ""
+            ],
+            "Quick booking rules": [
+                ""
+            ],
+            "Check-in today": [
+                ""
+            ],
+            "Check-out today": [
+                ""
+            ],
+            "In-House": [
+                ""
+            ]
+        }
+    }
+}

@@ -273,13 +273,13 @@ abstract class WP_Background_Process extends WP_Async_Request {
 
 		$key = $this->identifier . '_batch_%';
 
-		$query = $wpdb->get_row( $wpdb->prepare( "
-		SELECT *
-		FROM {$table}
-		WHERE {$column} LIKE %s
-		ORDER BY {$key_column} ASC
-		LIMIT 1
-	", $key ) );
+		$query = $wpdb->get_row(
+			$wpdb->prepare(
+				"SELECT * FROM {$table} WHERE {$column} LIKE %s"
+					. " ORDER BY {$key_column} ASC LIMIT 1",
+				$key
+			)
+		);
 
 		$batch       = new \stdClass();
 		$batch->key  = $query->$column;
@@ -318,7 +318,7 @@ abstract class WP_Background_Process extends WP_Async_Request {
 			}
 
 			// Update or delete current batch. Fork notice: added filter {identifier}_aborting.
-			$isAborting = apply_filters( $this->identifier . '_aborting', false );
+			$isAborting = apply_filters( "{$this->identifier}_aborting", false );
 
 			if ( ! empty( $batch->data ) && ! $isAborting ) {
 				$this->update( $batch->key, $batch->data );

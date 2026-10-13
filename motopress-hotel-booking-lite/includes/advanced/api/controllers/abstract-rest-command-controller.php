@@ -119,11 +119,14 @@ abstract class AbstractRestCommandController {
 				header( 'Cache-Control: no-store' );
 			}
 
-			header( 'Content-Type: ' . static::get_successful_response_content_type() );
+			// explicitly setting the header breaks possible data preload
+			// move header set only for non standard content types
+			// header( 'Content-Type: ' . static::get_successful_response_content_type() );
 
 			if ( 'text/plain' === static::get_successful_response_content_type() ||
 				'text/html' === static::get_successful_response_content_type()
 			) {
+				header( 'Content-Type: ' . static::get_successful_response_content_type() );
 				// phpcs:ignore
 				echo $response_data;
 				exit();

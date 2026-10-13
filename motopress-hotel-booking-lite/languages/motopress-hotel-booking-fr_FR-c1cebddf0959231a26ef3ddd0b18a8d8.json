@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,7 +182,7 @@
                 "bouton Livre"
             ],
             "Preset date. Formatted as %s": [
-                "Date pr\u00e9d\u00e9finie. Format\u00e9 en %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,109 +191,109 @@
                 ""
             ],
             "Gallery": [
-                "galerie"
+                ""
             ],
             "View Button": [
-                "bouton de visualisation"
+                ""
             ],
             "Order": [
-                "commande"
+                ""
             ],
             "Order By": [
-                "commander par"
+                ""
             ],
             "No order": [
-                "pas de commande"
+                ""
             ],
             "Post ID": [
-                "Num\u00e9ro de poste"
+                ""
             ],
             "Post author": [
-                "Auteur du message"
+                ""
             ],
             "Post title": [
-                "Titre du poste"
+                ""
             ],
             "Post name (post slug)": [
-                "Nom du message (poste slug)"
+                ""
             ],
             "Post date": [
-                "Date de publication"
+                ""
             ],
             "Last modified date": [
-                "Date de la derni\u00e8re modification"
+                ""
             ],
             "Parent ID": [
-                "num\u00e9ro du parent"
+                ""
             ],
             "Random order": [
-                "Ordre al\u00e9atoire"
+                ""
             ],
             "Number of comments": [
-                "Nombre de commentaires"
+                ""
             ],
             "Relevance": [
-                "Pertinence"
+                ""
             ],
             "Page order": [
-                "Ordre des pages"
+                ""
             ],
             "Meta value": [
-                "Valeur Meta"
+                ""
             ],
             "Numeric meta value": [
-                "Meta value num\u00e9rique "
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Croissant (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "D\u00e9croissant (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "Meta Name"
+                ""
             ],
             "Meta Type": [
-                "Type M\u00e9ta"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Type sp\u00e9cifi\u00e9 du champ personnalis\u00e9. Peut \u00eatre utilis\u00e9 avec \"orderby\" = \"meta_value\"."
+                ""
             ],
             "Any": [
-                "n'importe quel"
+                ""
             ],
             "Numeric": [
-                "num\u00e9rique"
+                ""
             ],
             "Binary": [
-                "Binaire"
+                ""
             ],
             "String": [
-                "Cha\u00eene"
+                ""
             ],
             "Time": [
-                "dur\u00e9e"
+                ""
             ],
             "Date and time": [
-                "Date et heure"
+                ""
             ],
             "Decimal number": [
-                "Nombre d\u00e9cimal"
+                ""
             ],
             "Signed number": [
-                "Nombre sign\u00e9"
+                ""
             ],
             "Unsigned number": [
-                "Nombre non sign\u00e9"
+                ""
             ],
             "Query Settings": [
-                "Param\u00e8tres de Query"
+                ""
             ],
             "Relation": [
-                "relation"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "Mettre: -1 pour tout afficher, par d\u00e9faut : \"Les pages des blogs s'affichent tout au plus.\"."
+                ""
             ],
             "Select an accommodation type.": [
                 ""

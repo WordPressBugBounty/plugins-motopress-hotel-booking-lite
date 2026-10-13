@@ -1,0 +1,472 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/calendar\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "ro_RO",
+                "plural-forms": "nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);"
+            },
+            "Delete": [
+                "\u0218terge"
+            ],
+            "Email": [
+                "Email"
+            ],
+            "Create Booking": [
+                "Creare rezervare"
+            ],
+            "Adults:": [
+                "Adul\u021bi:"
+            ],
+            "Children:": [
+                "Copii:"
+            ],
+            "Accommodations": [
+                "Caz\u0103ri"
+            ],
+            "Move up": [
+                "Mut\u0103 sus"
+            ],
+            "Move down": [
+                "Mut\u0103 \u00een jos"
+            ],
+            "Move to top": [
+                "Mut\u0103 \u00een v\u00e2rf"
+            ],
+            "Move to bottom": [
+                "Mutare la fund"
+            ],
+            "Select all": [
+                "Selecteaz\u0103 tot"
+            ],
+            "Unselect all": [
+                "Deselecta\u021bi tot"
+            ],
+            "Edit": [
+                "Editeaz\u0103"
+            ],
+            "All": [
+                "Tot"
+            ],
+            "Nights": [
+                "Nop\u021bi"
+            ],
+            "Remove": [
+                "\u015eterge\u0163i"
+            ],
+            "Price per extra adult": [
+                "Pre\u021b pe adult suplimentar"
+            ],
+            "Price per extra child": [
+                "Pre\u021b per copil \u00een plus"
+            ],
+            "Status": [
+                "Stare"
+            ],
+            "Price": [
+                "Pre\u021b"
+            ],
+            "Accommodation": [
+                "Cazare"
+            ],
+            "Paid: %s": [
+                "Pl\u0103tit: %s"
+            ],
+            "Accommodation Type": [
+                "Tipul de cazare"
+            ],
+            "Add New Season Price": [
+                "Adaug\u0103 pre\u021b sezon nou"
+            ],
+            "Days": [
+                "Zile"
+            ],
+            "Repeat": [
+                "Repet\u0103"
+            ],
+            "Booking Rules": [
+                "Reguli de rezervare"
+            ],
+            "Check-in days": [
+                "Zilele de check-in"
+            ],
+            "Seasons": [
+                "Sezoane"
+            ],
+            "Check-out days": [
+                "Zilele de check-out"
+            ],
+            "Minimum stay": [
+                "Sejur minim"
+            ],
+            "Maximum stay": [
+                "Sejur maxim"
+            ],
+            "Restriction": [
+                "Restric\u021bie"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                "Regula de check-in marcheaz\u0103 data ca fiind nevalabil\u0103 pentru check-in."
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                "Regula de check-out marcheaz\u0103 data ca nevalabil\u0103 pentru check-out."
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                "Regula \u201dnu r\u0103m\u00e2ne\u201d afi\u0219eaz\u0103 data ca blocat\u0103. Aceast\u0103 dat\u0103 nu este disponibil\u0103 pentru check-in \u0219i check-out la data urm\u0103toare."
+            ],
+            "Not check-in": [
+                "Check-in"
+            ],
+            "Not check-out": [
+                "Check-out"
+            ],
+            "Not stay-in": [
+                "Stat"
+            ],
+            "Comment": [
+                "Comentariu"
+            ],
+            "Minimum advance reservation": [
+                "Rezervare \u00een avans minim\u0103"
+            ],
+            "Maximum advance reservation": [
+                "Rezervare maxim\u0103 \u00een avans"
+            ],
+            "Booking buffer": [
+                "Tampon rezervare"
+            ],
+            "Calendar": [
+                "Calendar"
+            ],
+            "First Name": [
+                "Prenume"
+            ],
+            "Last Name": [
+                "Nume de familie"
+            ],
+            "Phone": [
+                "Telefon"
+            ],
+            "Address": [
+                "Adres\u0103"
+            ],
+            "State \/ County": [
+                "Stat\/jude\u021b"
+            ],
+            "Country": [
+                "\u021aar\u0103"
+            ],
+            "City": [
+                "Ora\u0219"
+            ],
+            "Postcode": [
+                "Cod po\u0219tal"
+            ],
+            "Cancel": [
+                "Anula\u021bi"
+            ],
+            "Title": [
+                "Titlu"
+            ],
+            "Accommodation Types": [
+                "Tipuri de cazare"
+            ],
+            "Description": [
+                "Descriere"
+            ],
+            "Summary": [
+                "Sumar"
+            ],
+            "Source": [
+                "Sursa"
+            ],
+            "Customer Note": [
+                "Not\u0103 client"
+            ],
+            "Coupon": [
+                "Cupon"
+            ],
+            "Notes": [
+                "Note"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Confirmare"
+            ],
+            "Booked": [
+                "Rezervat"
+            ],
+            "Pending": [
+                "\u00cen a\u0219teptare"
+            ],
+            "External": [
+                "Extern"
+            ],
+            "Blocked": [
+                "Blocat"
+            ],
+            "Check-in": [
+                "Check-in"
+            ],
+            "Check-out": [
+                "Check-out"
+            ],
+            "Blocked because the linked accommodation is booked": [
+                "Blocat deoarece cazarea asociat\u0103 este rezervat\u0103"
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "Confirmarea utilizatorului \u00een a\u0219teptare"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "Plata in asteptare"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "Admin \u00een a\u0219teptare"
+            ],
+            "Booking status\u0004Abandoned": [
+                "Abandonat"
+            ],
+            "Booking status\u0004Cancelled": [
+                "Anulat"
+            ],
+            "No payments found": [
+                "Nicio plat\u0103 g\u0103sit\u0103"
+            ],
+            "Season": [
+                "Sezon"
+            ],
+            "Rates": [
+                "Tarife"
+            ],
+            "Add New Rate": [
+                "Adaug\u0103 Rat\u0103 Nou\u0103"
+            ],
+            "Base Adults Occupancy": [
+                "Ocupare de baz\u0103 adul\u021bi"
+            ],
+            "Base Children Occupancy": [
+                "Ocupare de baz\u0103 copii"
+            ],
+            "Applied for days": [
+                "Aplicat pentru zile"
+            ],
+            "Annual repeats begin on the Start date of the season, for one year from the current date.": [
+                "Repet\u0103rile anuale \u00eencep la data \u00eenceperii sezonului, pentru o perioad\u0103 de un an de la data actual\u0103."
+            ],
+            "Repeat until date": [
+                "Repet\u0103 p\u00e2n\u0103 la data"
+            ],
+            "Add New Season": [
+                "Adaug\u0103 sezon nou"
+            ],
+            "Edit Season": [
+                "Editare sezon"
+            ],
+            "Apply": [
+                "Aplic\u0103"
+            ],
+            "Today": [
+                "Ast\u0103zi"
+            ],
+            "This week": [
+                "S\u0103pt\u0103m\u00e2na aceasta"
+            ],
+            "This month": [
+                "Luna aceasta"
+            ],
+            "This quarter": [
+                "Acest trimestru"
+            ],
+            "This year": [
+                "Anul acesta"
+            ],
+            "Book": [
+                "Rezerv\u0103"
+            ],
+            "x %d guest": [
+                "x %d vizitator",
+                "x %d vizitatori",
+                "x %d vizitatori"
+            ],
+            "x %d time": [
+                "x %d dat\u0103",
+                "de %d ori",
+                "de %d ori"
+            ],
+            "Accommodation Type:": [
+                "Tipul de cazare:"
+            ],
+            "Rate:": [
+                "Pre\u021b:"
+            ],
+            "Services:": [
+                "Servicii:"
+            ],
+            "Guest:": [
+                "Vizitator:"
+            ],
+            "Total Paid": [
+                "Total pl\u0103tit"
+            ],
+            "To Pay": [
+                "Pentru a pl\u0103ti"
+            ],
+            "Add Payment Manually": [
+                "Adaug\u0103 Plata Manual"
+            ],
+            "No bookings found.": [
+                "Nu s-au g\u0103sit rezerv\u0103ri."
+            ],
+            "Base price": [
+                "Pre\u021b de baz\u0103"
+            ],
+            "Save": [
+                "Salveaz\u0103"
+            ],
+            "Nothing found.": [
+                "Nimic g\u0103sit."
+            ],
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
+            ],
+            "Block Accommodations": [
+                ""
+            ],
+            "Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Block": [
+                ""
+            ],
+            "Daily price": [
+                ""
+            ],
+            "Select an action": [
+                ""
+            ],
+            "Daily": [
+                ""
+            ],
+            "Rule #%1$d": [
+                ""
+            ],
+            "Min. stay": [
+                ""
+            ],
+            "Max. stay": [
+                ""
+            ],
+            "Min. adv. res.": [
+                ""
+            ],
+            "Max. adv. res.": [
+                ""
+            ],
+            "Allow": [
+                ""
+            ],
+            "Disallow": [
+                ""
+            ],
+            "Max. advance reservation": [
+                ""
+            ],
+            "Min. advance reservation": [
+                ""
+            ],
+            "Please select at least one accommodation type.": [
+                ""
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                ""
+            ],
+            "Create your first accommodation type.": [
+                ""
+            ],
+            "Next 7 days": [
+                ""
+            ],
+            "Next 14 days": [
+                ""
+            ],
+            "Next 30 days": [
+                ""
+            ],
+            "Previous": [
+                ""
+            ],
+            "Next": [
+                ""
+            ],
+            "Reload": [
+                ""
+            ],
+            "Filter items\u2026": [
+                ""
+            ],
+            "Compact Calendar": [
+                ""
+            ],
+            "List": [
+                ""
+            ],
+            "Booking #%1$d": [
+                ""
+            ],
+            "Total Price": [
+                ""
+            ],
+            "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Repeat annually": [
+                ""
+            ],
+            "Repeat annually, until %1$s": [
+                ""
+            ],
+            "Priority": [
+                ""
+            ],
+            "First": [
+                ""
+            ],
+            "Last": [
+                ""
+            ],
+            "From\/Till": [
+                ""
+            ],
+            "Edit Block": [
+                ""
+            ],
+            "Select\u2026": [
+                ""
+            ],
+            "Update %1$s rate for %2$s": [
+                ""
+            ],
+            "Edit Season Price": [
+                ""
+            ],
+            "Quick booking rules": [
+                ""
+            ],
+            "Check-in today": [
+                ""
+            ],
+            "Check-out today": [
+                ""
+            ],
+            "In-House": [
+                ""
+            ]
+        }
+    }
+}

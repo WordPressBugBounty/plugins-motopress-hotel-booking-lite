@@ -2,12 +2,15 @@
 
 namespace MPHB\UserActions;
 
+defined( 'ABSPATH' ) || exit;
+
 class UserActions {
 
-	private $actionLinkHelper;
-	private $bookingCancellationAction;
-	private $bookingConfirmationAction;
-	private $bookingViewAction;
+	private ActionLinkHelper $actionLinkHelper;
+	private BookingCancellationAction $bookingCancellationAction;
+	private BookingConfirmationAction $bookingConfirmationAction;
+	private BookingViewAction $bookingViewAction;
+	private CheckoutLinkAction $checkoutLinkAction;
 
 	public function __construct() {
 
@@ -15,39 +18,25 @@ class UserActions {
 		$this->bookingCancellationAction = new BookingCancellationAction();
 		$this->bookingConfirmationAction = new BookingConfirmationAction();
 		$this->bookingViewAction         = new BookingViewAction();
+		$this->checkoutLinkAction        = new CheckoutLinkAction();
 	}
 
-	/**
-	 *
-	 * @return ActionLinkHelper
-	 */
-	public function getActionLinkHelper() {
+	public function getActionLinkHelper(): ActionLinkHelper {
 		return $this->actionLinkHelper;
 	}
 
-	/**
-	 *
-	 * @return BookingCancellationAction
-	 */
-	public function getBookingCancellationAction() {
+	public function getBookingCancellationAction(): BookingCancellationAction {
 		return $this->bookingCancellationAction;
 	}
 
-	/**
-	 *
-	 * @return BookingConfirmationAction
-	 */
-	public function getBookingConfirmationAction() {
+	public function getBookingConfirmationAction(): BookingConfirmationAction {
 		return $this->bookingConfirmationAction;
 	}
 
 	/**
-	 * @return \MPHB\UserActions\BookingViewAction
-	 *
 	 * @since 3.7.0
 	 */
-	public function getBookingViewAction() {
+	public function getBookingViewAction(): BookingViewAction {
 		return $this->bookingViewAction;
 	}
-
 }

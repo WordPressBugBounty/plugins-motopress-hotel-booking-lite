@@ -473,8 +473,9 @@ class Customers {
 
 		$customerUserId       = null;
 		$autoCreateNewAccount = MPHB()->settings()->main()->automaticallyCreateUser(); // Create new \WP_User
+		$requestedNewAccount  = apply_filters( 'mphb_create_new_account', false ); // See checkout REST API
 		$allowToCreateAccount = ! $autoCreateNewAccount && MPHB()->settings()->main()->allowCustomersCreateAccount();
-		$createAccount        = $allowToCreateAccount && isset( $_POST['mphb_create_new_account'] ) && $_POST['mphb_create_new_account'] == 1;
+		$createAccount        = $allowToCreateAccount && $requestedNewAccount;
 
 		$customer = MPHB()->customers()->findBy( 'email', $email );
 

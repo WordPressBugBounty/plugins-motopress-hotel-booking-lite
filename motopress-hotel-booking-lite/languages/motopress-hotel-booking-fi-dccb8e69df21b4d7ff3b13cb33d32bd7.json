@@ -1,0 +1,470 @@
+{
+    "translation-revision-date": "2026-01-14 08:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/calendar\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "fi_FI",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Delete": [
+                "Poista"
+            ],
+            "Email": [
+                "S\u00e4hk\u00f6posti"
+            ],
+            "Create Booking": [
+                "Luo varaus"
+            ],
+            "Adults:": [
+                "Aikuiset:"
+            ],
+            "Children:": [
+                "Lapset:"
+            ],
+            "Accommodations": [
+                "Majoituskohteet"
+            ],
+            "Move up": [
+                ""
+            ],
+            "Move down": [
+                ""
+            ],
+            "Move to top": [
+                ""
+            ],
+            "Move to bottom": [
+                ""
+            ],
+            "Select all": [
+                "Valitse kaikki"
+            ],
+            "Unselect all": [
+                ""
+            ],
+            "Edit": [
+                "Muokkaa"
+            ],
+            "All": [
+                "Kaikki"
+            ],
+            "Nights": [
+                "Y\u00f6t"
+            ],
+            "Remove": [
+                "Poista"
+            ],
+            "Price per extra adult": [
+                ""
+            ],
+            "Price per extra child": [
+                ""
+            ],
+            "Status": [
+                "Tila"
+            ],
+            "Price": [
+                "Hinta"
+            ],
+            "Accommodation": [
+                "Majoitus"
+            ],
+            "Paid: %s": [
+                "Maksettu: %s"
+            ],
+            "Accommodation Type": [
+                "Majoitustyyppi"
+            ],
+            "Add New Season Price": [
+                "Lis\u00e4\u00e4 uusi kausihinta"
+            ],
+            "Days": [
+                "P\u00e4iv\u00e4\u00e4"
+            ],
+            "Repeat": [
+                "Toista"
+            ],
+            "Booking Rules": [
+                "Varauksen s\u00e4\u00e4nn\u00f6t"
+            ],
+            "Check-in days": [
+                "Check-in p\u00e4iv\u00e4t"
+            ],
+            "Seasons": [
+                "Sarjakaudet"
+            ],
+            "Check-out days": [
+                "Check-out p\u00e4iv\u00e4t"
+            ],
+            "Minimum stay": [
+                "Minimi y\u00f6pymisen pituus"
+            ],
+            "Maximum stay": [
+                "Maksimi y\u00f6pymisen pituus"
+            ],
+            "Restriction": [
+                "Rajoitus"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Not check-in": [
+                "Ei check-in"
+            ],
+            "Not check-out": [
+                "Ei check-out"
+            ],
+            "Not stay-in": [
+                ""
+            ],
+            "Comment": [
+                "Kommentti"
+            ],
+            "Minimum advance reservation": [
+                ""
+            ],
+            "Maximum advance reservation": [
+                ""
+            ],
+            "Booking buffer": [
+                ""
+            ],
+            "Calendar": [
+                "Kalenteri"
+            ],
+            "First Name": [
+                "Etunimi"
+            ],
+            "Last Name": [
+                "Sukunimi"
+            ],
+            "Phone": [
+                "Puhelin"
+            ],
+            "Address": [
+                "Osoite"
+            ],
+            "State \/ County": [
+                "L\u00e4\u00e4ni \/ alue"
+            ],
+            "Country": [
+                "Maa"
+            ],
+            "City": [
+                "Kaupunki"
+            ],
+            "Postcode": [
+                "Postinumero"
+            ],
+            "Cancel": [
+                "Peruuta"
+            ],
+            "Title": [
+                "Otsikko"
+            ],
+            "Accommodation Types": [
+                "Majoitustyypit"
+            ],
+            "Description": [
+                "Kuvaus"
+            ],
+            "Summary": [
+                ""
+            ],
+            "Source": [
+                ""
+            ],
+            "Customer Note": [
+                "Asiakkaan viesti"
+            ],
+            "Coupon": [
+                "Kuponki"
+            ],
+            "Notes": [
+                "Muistiinpanot"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Vahvistettu"
+            ],
+            "Booked": [
+                "Varattu"
+            ],
+            "Pending": [
+                "Odottaa"
+            ],
+            "External": [
+                ""
+            ],
+            "Blocked": [
+                "Estetty"
+            ],
+            "Check-in": [
+                "Saapumisp\u00e4iv\u00e4"
+            ],
+            "Check-out": [
+                "L\u00e4ht\u00f6p\u00e4iv\u00e4"
+            ],
+            "Blocked because the linked accommodation is booked": [
+                ""
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "Odottavan k\u00e4ytt\u00e4j\u00e4n vahvistus"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "Odottaa maksua"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "Odottaa j\u00e4rjestelm\u00e4nvalvojaa"
+            ],
+            "Booking status\u0004Abandoned": [
+                "Hyl\u00e4tty"
+            ],
+            "Booking status\u0004Cancelled": [
+                "Peruutettu"
+            ],
+            "No payments found": [
+                "Maksuja ei l\u00f6ytynyt"
+            ],
+            "Season": [
+                "Kausi"
+            ],
+            "Rates": [
+                "M\u00e4\u00e4r\u00e4t"
+            ],
+            "Add New Rate": [
+                "Lis\u00e4\u00e4 uusi hinta"
+            ],
+            "Base Adults Occupancy": [
+                ""
+            ],
+            "Base Children Occupancy": [
+                ""
+            ],
+            "Applied for days": [
+                "Haetun p\u00e4ivi\u00e4"
+            ],
+            "Annual repeats begin on the Start date of the season, for one year from the current date.": [
+                ""
+            ],
+            "Repeat until date": [
+                ""
+            ],
+            "Add New Season": [
+                "Lis\u00e4\u00e4 uusi kausi"
+            ],
+            "Edit Season": [
+                "Muokkaa kausi"
+            ],
+            "Apply": [
+                "K\u00e4yt\u00e4"
+            ],
+            "Today": [
+                "T\u00e4n\u00e4\u00e4n"
+            ],
+            "This week": [
+                ""
+            ],
+            "This month": [
+                ""
+            ],
+            "This quarter": [
+                ""
+            ],
+            "This year": [
+                ""
+            ],
+            "Book": [
+                "Varaa"
+            ],
+            "x %d guest": [
+                "x %d vieras",
+                "x %d vierasta"
+            ],
+            "x %d time": [
+                "x %d aika",
+                "x %d kertaa"
+            ],
+            "Accommodation Type:": [
+                "Majoitus Tyyppi:"
+            ],
+            "Rate:": [
+                "Arvostele:"
+            ],
+            "Services:": [
+                "Palvelut:"
+            ],
+            "Guest:": [
+                "Vierasta:"
+            ],
+            "Total Paid": [
+                "Maksetut yhteens\u00e4"
+            ],
+            "To Pay": [
+                "Maksaa"
+            ],
+            "Add Payment Manually": [
+                "Lis\u00e4\u00e4 maksu manuaalisesti"
+            ],
+            "No bookings found.": [
+                "Varauksia ei l\u00f6ytynyt."
+            ],
+            "Base price": [
+                "Perushinta"
+            ],
+            "Save": [
+                "Tallenna"
+            ],
+            "Nothing found.": [
+                "Ei hakutuloksia."
+            ],
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
+            ],
+            "Block Accommodations": [
+                ""
+            ],
+            "Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Block": [
+                ""
+            ],
+            "Daily price": [
+                ""
+            ],
+            "Select an action": [
+                ""
+            ],
+            "Daily": [
+                ""
+            ],
+            "Rule #%1$d": [
+                ""
+            ],
+            "Min. stay": [
+                ""
+            ],
+            "Max. stay": [
+                ""
+            ],
+            "Min. adv. res.": [
+                ""
+            ],
+            "Max. adv. res.": [
+                ""
+            ],
+            "Allow": [
+                ""
+            ],
+            "Disallow": [
+                ""
+            ],
+            "Max. advance reservation": [
+                ""
+            ],
+            "Min. advance reservation": [
+                ""
+            ],
+            "Please select at least one accommodation type.": [
+                ""
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                ""
+            ],
+            "Create your first accommodation type.": [
+                ""
+            ],
+            "Next 7 days": [
+                ""
+            ],
+            "Next 14 days": [
+                ""
+            ],
+            "Next 30 days": [
+                ""
+            ],
+            "Previous": [
+                ""
+            ],
+            "Next": [
+                ""
+            ],
+            "Reload": [
+                ""
+            ],
+            "Filter items\u2026": [
+                ""
+            ],
+            "Compact Calendar": [
+                ""
+            ],
+            "List": [
+                ""
+            ],
+            "Booking #%1$d": [
+                ""
+            ],
+            "Total Price": [
+                ""
+            ],
+            "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
+                ""
+            ],
+            "Repeat annually": [
+                ""
+            ],
+            "Repeat annually, until %1$s": [
+                ""
+            ],
+            "Priority": [
+                ""
+            ],
+            "First": [
+                ""
+            ],
+            "Last": [
+                ""
+            ],
+            "From\/Till": [
+                ""
+            ],
+            "Edit Block": [
+                ""
+            ],
+            "Select\u2026": [
+                ""
+            ],
+            "Update %1$s rate for %2$s": [
+                ""
+            ],
+            "Edit Season Price": [
+                ""
+            ],
+            "Quick booking rules": [
+                ""
+            ],
+            "Check-in today": [
+                ""
+            ],
+            "Check-out today": [
+                ""
+            ],
+            "In-House": [
+                ""
+            ]
+        }
+    }
+}

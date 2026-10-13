@@ -1,6 +1,6 @@
 {
     "translation-revision-date": "2026-01-14 08:48",
-    "generator": "WP-CLI\/2.11.0",
+    "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
     "locale_data": {
@@ -182,121 +182,121 @@
                 "Butonul Rezervare"
             ],
             "Preset date. Formatted as %s": [
-                "Data preset\u0103rii. Formatat\u0103 ca %s"
+                ""
             ],
             "Select an accommodation type. Leave blank to use current.": [
-                "Selecta\u021bi un tip de cazare. L\u0103sa\u021bi necompletat pentru a utiliza curentul."
+                ""
             ],
             "ID of an accommodation type. Leave blank to use current.": [
-                "ID-ul unui tip de cazare. L\u0103sa\u021bi necompletat pentru a utiliza curent."
+                ""
             ],
             "Gallery": [
-                "Galerie"
+                ""
             ],
             "View Button": [
-                "Butonul de afi\u0219are"
+                ""
             ],
             "Order": [
-                "Ordine"
+                ""
             ],
             "Order By": [
-                "Ordonare dup\u0103"
+                ""
             ],
             "No order": [
-                "Nicio ordine"
+                ""
             ],
             "Post ID": [
-                "ID Postare"
+                ""
             ],
             "Post author": [
-                "Autor postare"
+                ""
             ],
             "Post title": [
-                "Titlul mesajului"
+                ""
             ],
             "Post name (post slug)": [
-                "Nume postare (postare slug)"
+                ""
             ],
             "Post date": [
-                "Data post\u0103rii"
+                ""
             ],
             "Last modified date": [
-                "Data ultimei modific\u0103ri"
+                ""
             ],
             "Parent ID": [
-                "ID p\u0103rinte"
+                ""
             ],
             "Random order": [
-                "Ordine aleatorie"
+                ""
             ],
             "Number of comments": [
-                "Num\u0103rul de comentarii"
+                ""
             ],
             "Relevance": [
-                "Relevan\u021b\u0103"
+                ""
             ],
             "Page order": [
-                "Ordinea paginii"
+                ""
             ],
             "Meta value": [
-                "Valoare Meta"
+                ""
             ],
             "Numeric meta value": [
-                "Valoare meta numeric\u0103"
+                ""
             ],
             "Ascending (1, 2, 3)": [
-                "Cresc\u0103tor (1, 2, 3)"
+                ""
             ],
             "Descending (3, 2, 1)": [
-                "Descendent (3, 2, 1)"
+                ""
             ],
             "Meta Name": [
-                "Valoare Meta"
+                ""
             ],
             "Meta Type": [
-                "Meta Tip"
+                ""
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                "Tipul specificat de c\u00e2mp personalizat. Poate fi folosit \u00eempreun\u0103 cu \"orderby\" = \"meta_value\"."
+                ""
             ],
             "Any": [
-                "Oricare"
+                ""
             ],
             "Numeric": [
-                "Numeric"
+                ""
             ],
             "Binary": [
-                "Binar"
+                ""
             ],
             "String": [
-                "\u015eir"
+                ""
             ],
             "Time": [
-                "Timp"
+                ""
             ],
             "Date and time": [
-                "Data \u0219i ora"
+                ""
             ],
             "Decimal number": [
-                "Num\u0103r zecimal"
+                ""
             ],
             "Signed number": [
-                "Num\u0103r cu semn"
+                ""
             ],
             "Unsigned number": [
-                "Num\u0103r f\u0103r\u0103 semn"
+                ""
             ],
             "Query Settings": [
-                "Set\u0103ri interogare"
+                ""
             ],
             "Relation": [
-                "Rela\u0163ie"
+                ""
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "Valori: integer, -1 pentru a afi\u015fa toate, implicit: \"Paginile blog arat\u0103 cel mult \""
+                ""
             ],
             "Select an accommodation type.": [
-                "Selecta\u021bi un tip de cazare."
+                ""
             ]
         }
     }

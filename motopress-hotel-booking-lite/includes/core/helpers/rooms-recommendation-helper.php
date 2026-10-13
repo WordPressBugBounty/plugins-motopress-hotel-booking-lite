@@ -1,23 +1,24 @@
 <?php
 
-namespace MPHB\Core;
+namespace MPHB\Core\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
-class RoomsRecommendationsHelper {
-
-
+class RoomsRecommendationHelper {
 	/**
 	 * @param array $availableRooms [ room_type_original_id (int) => available_rooms_count (int) ]
 	 * @return array [ room_type_original_id (int) => rooms_count (int), ... ]
 	 */
-	public static function getRecommendedRoomsCombination( array $availableRooms, int $requestedAdultsCount, int $requestedChildrenCount = 0 ): array {
+	public static function getRecommendedRoomsCombination(
+		array $availableRooms,
+		int $requestedAdultsCount,
+		int $requestedChildrenCount = 0
+	): array {
 
 		if ( empty( $availableRooms ) ||
-			( 0 >= $requestedAdultsCount && 0 >= $requestedChildrenCount )
+			( $requestedAdultsCount <= 0 && $requestedChildrenCount <= 0 )
 		) {
 			return array();
 		}
@@ -25,14 +26,13 @@ class RoomsRecommendationsHelper {
 		$availableRoomsData = array();
 
 		foreach ( $availableRooms as $roomTypeOriginalId => $availableRoomsCount ) {
+			$roomType = mphb_rooms_facade()->getRoomTypeById( $roomTypeOriginalId );
 
-			$roomType          = MPHB()->getRoomTypeRepository()->findById( $roomTypeOriginalId );
-			$roomTotalCapacity = $roomType->getTotalCapacity();
-				
-				if ( '' === $roomType->getTotalCapacity() ) {
+			if ( ! $roomType ) {
+				continue;
+			}
 
-					$roomTotalCapacity = $roomType->getAdultsCapacity() + $roomType->getChildrenCapacity();
-				}
+			$roomTotalCapacity = $roomType->calcTotalCapacity();
 
 			if ( 0 < $roomTotalCapacity &&
 				( 0 < $roomType->getAdultsCapacity() || 0 < $roomType->getChildrenCapacity() )
@@ -40,7 +40,7 @@ class RoomsRecommendationsHelper {
 
 				$roomMaxAdultsCount      = min( $roomType->getAdultsCapacity(), $roomTotalCapacity );
 				$roomMaxChildrenCount    = min( $roomType->getChildrenCapacity(), $roomTotalCapacity );
-				$roomMaxTotalGuestsCount = min( $roomTotalCapacity, $roomType->getAdultsCapacity() + $roomType->getChildrenCapacity() );
+				$roomMaxTotalGuestsCount = min( $roomTotalCapacity, $roomType->getAdultsCapacity() + $roomType->getChildrenCapacity() ); // Fix absurd big number for total capacity
 
 				$roomMinAdultsCount = max(
 					0,
@@ -69,8 +69,8 @@ class RoomsRecommendationsHelper {
 				);
 
 				$availableRoomsData[ $roomTypeOriginalId ] = array(
-					'min_adults_count'       => $roomMinAdultsCount,
-					'min_children_count'     => $roomMinChildrenCount,
+					'min_adults_count'       => $roomMinAdultsCount,   // Equal to max_* couterparts, when
+					'min_children_count'     => $roomMinChildrenCount, // total capacity = adults + children
 					'max_adults_count'       => $roomMaxAdultsCount,
 					'max_children_count'     => $roomMaxChildrenCount,
 					'max_total_guests_count' => $roomMaxTotalGuestsCount,
@@ -79,7 +79,7 @@ class RoomsRecommendationsHelper {
 			}
 		}
 
-		// Sort $availableRoomsData with index preserving
+		// Sort $availableRoomsData from biggest to lowest capacity (preserving indexes)
 		uasort(
 			$availableRoomsData,
 			function ( $a, $b ) {
@@ -105,9 +105,9 @@ class RoomsRecommendationsHelper {
 
 			for ( $roomsCount = 1; $roomsCount <= $roomsData['available_rooms_count']; $roomsCount++ ) {
 
-				$roomMinAdultsCount   = 0 < $roomsData['max_adults_count'] ? $roomsData['min_adults_count'] : 0;
+				$roomMinAdultsCount   = $roomsData['min_adults_count'];
 				$roomMaxAdultsCount   = $roomsData['max_adults_count'];
-				$roomMinChildrenCount = 0 < $roomsData['max_children_count'] ? $roomsData['min_children_count'] : 0;
+				$roomMinChildrenCount = $roomsData['min_children_count'];
 				$roomMaxChildrenCount = $roomsData['max_children_count'];
 
 				for ( $roomAdultsCount = $roomMinAdultsCount; $roomAdultsCount <= $roomMaxAdultsCount; $roomAdultsCount++ ) {
@@ -118,7 +118,7 @@ class RoomsRecommendationsHelper {
 							continue;
 						}
 
-						$combinationKeys = empty( $foundCombinations ) ? array( 0 ) : array_keys( $foundCombinations );
+						$combinationKeys = array_keys( $foundCombinations );
 
 						foreach ( $combinationKeys as $combinationKey ) {
 
@@ -147,6 +147,7 @@ class RoomsRecommendationsHelper {
 								} else {
 									$newCombinationRoomsCountsByRoomTypeIds[ $roomTypeOriginalId ] = 1;
 								}
+
 								// make sure combination does not have more rooms than available
 								if ( $availableRoomsData[ $roomTypeOriginalId ]['available_rooms_count'] < $newCombinationRoomsCountsByRoomTypeIds[ $roomTypeOriginalId ] ) {
 									continue;
@@ -155,26 +156,25 @@ class RoomsRecommendationsHelper {
 								$newCombinationAdultsCount = $combinationAdultsCount + $roomAdultsCount;
 								$newCombinationChildrenCount = $combinationChildrenCount + $roomChildrenCount;
 								$newCombinationMaxTotalGuestsCount = $combinationMaxTotalGuestsCount + $roomsData['max_total_guests_count'];
-									$newCombinationNotFilledGuestsCount = max(
-										0,
-										$newCombinationMaxTotalGuestsCount -
-										min( $newCombinationAdultsCount, $requestedAdultsCount ) -
-										min( $newCombinationChildrenCount, $requestedChildrenCount)
-									);
+								$newCombinationNotFilledGuestsCount = max(
+									0,
+									$newCombinationMaxTotalGuestsCount
+										- min( $newCombinationAdultsCount, $requestedAdultsCount )
+										- min( $newCombinationChildrenCount, $requestedChildrenCount)
+								);
 
 								// generate combination key
 								$newCombinationRoomsForKey = $newCombinationRoomsCountsByRoomTypeIds;
-
 								ksort( $newCombinationRoomsForKey );
-								$newCombinationKeyString = '';
+
+								$newCombinationKey = '';
 
 								foreach ( $newCombinationRoomsForKey as $roomTypeId => $combinationRoomsCount ) {
-									$newCombinationKeyString .= $roomTypeId . 'x' . $combinationRoomsCount . ',';
+									$newCombinationKey .= $roomTypeId . 'x' . $combinationRoomsCount . ',';
 								}
 
-								$newCombinationKeyString = rtrim( $newCombinationKeyString, ',' ) .
-									'-' . $newCombinationAdultsCount . '-' . $newCombinationChildrenCount;
-								$newCombinationKey = md5( $newCombinationKeyString );
+								$newCombinationKey = rtrim( $newCombinationKey, ',' )
+									. '-' . $newCombinationAdultsCount . '-' . $newCombinationChildrenCount;
 
 								if ( ! isset( $foundCombinations[ $newCombinationKey ] ) ) {
 
@@ -208,40 +208,39 @@ class RoomsRecommendationsHelper {
 
 			if (
 				(
-					1 === count( $combination['rooms_counts_by_room_type_ids'] ) ||
-					! MPHB()->settings()->main()->isRecommendAndSearchSingleRoomTypeForRequestedGuestsCount()
-				) &&
-				(
+					1 === count( $combination['rooms_counts_by_room_type_ids'] )
+					|| ! MPHB()->settings()->main()->isRecommendAndSearchSingleRoomTypeForRequestedGuestsCount()
+				)
+				&& (
 					// get anything
-					empty( $recommendedCombination ) ||
+					empty( $recommendedCombination )
 
 					// get best combination
-					(
-						$requestedAdultsCount <= $combination['adults_count'] &&
-						$requestedChildrenCount <= $combination['children_count'] &&
-						(
+					|| (
+						$combination['adults_count'] >= $requestedAdultsCount
+						&& $combination['children_count'] >= $requestedChildrenCount
+						&& (
 							(
 								// less not_filled_guests_count
-								$recommendedCombinationNotFilledGuestsCount > $combination['not_filled_guests_count'] &&
-								$recommendedCombinationRoomsCount >= $combinationRoomsCount
+								$combination['not_filled_guests_count'] < $recommendedCombinationNotFilledGuestsCount
 							)
 							||
 							(
 								// less rooms count with max 30% not filled guests count
-								$combination['not_filled_guests_count'] <= 0.3 * $combination['max_total_guests_count'] &&
-								$recommendedCombinationRoomsCount > $combinationRoomsCount
+								$combinationRoomsCount < $recommendedCombinationRoomsCount
+								&& $combination['not_filled_guests_count'] <= 0.3 * $combination['max_total_guests_count']
 							)
-
 						)
-					) ||
+					)
+
 					// approximate result if we have no suited one
-					(
+					|| (
 						(
-							$requestedAdultsCount > $recommendedCombinationAdultsCount ||
-							$requestedChildrenCount > $recommendedCombinationChildrenCount
-						) &&
-						$recommendedCombinationAdultsCount <= $combination['adults_count'] &&
-						$recommendedCombinationChildrenCount <= $combination['children_count']
+							$recommendedCombinationAdultsCount < $requestedAdultsCount
+							|| $recommendedCombinationChildrenCount < $requestedChildrenCount
+						)
+						&& $combination['adults_count'] >= $recommendedCombinationAdultsCount
+						&& $combination['children_count'] >= $recommendedCombinationChildrenCount
 					)
 				)
 			) {
@@ -252,7 +251,7 @@ class RoomsRecommendationsHelper {
 				$recommendedCombinationRoomsCount           = $combinationRoomsCount;
 			}
 		}
-	
+
 		return $recommendedCombination;
 	}
 }

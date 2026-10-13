@@ -4,9 +4,8 @@ namespace MPHB\Shortcodes\CheckoutShortcode;
 
 use MPHB\Utils\{ DateUtils, ParseUtils };
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
+
 
 abstract class Step {
 
@@ -42,7 +41,13 @@ abstract class Step {
 
 		$dateString = filter_input( INPUT_POST, 'mphb_check_in_date' );
 
+		// The checkout link (?mphb_action=checkout) brings the dates in the address.
 		if ( empty( $dateString ) ) {
+			$dateString = filter_input( INPUT_GET, 'mphb_check_in_date' );
+		}
+
+		// A date the link left out must not come from an earlier visit.
+		if ( empty( $dateString ) && ! $this->isCheckoutLinkRequest() ) {
 			$dateString = filter_input( INPUT_COOKIE, 'mphb_check_in_date' );
 		}
 
@@ -82,7 +87,13 @@ abstract class Step {
 		/** @var string|false|null $dateString */
 		$dateString = filter_input( INPUT_POST, 'mphb_check_out_date' );
 
+		// The checkout link (?mphb_action=checkout) brings the dates in the address.
 		if ( empty( $dateString ) ) {
+			$dateString = filter_input( INPUT_GET, 'mphb_check_out_date' );
+		}
+
+		// A date the link left out must not come from an earlier visit.
+		if ( empty( $dateString ) && ! $this->isCheckoutLinkRequest() ) {
 			$dateString = filter_input( INPUT_COOKIE, 'mphb_check_out_date' );
 		}
 
@@ -118,6 +129,14 @@ abstract class Step {
 
 			return true;
 		}
+	}
+
+	/**
+	 * The checkout link (?mphb_action=checkout) carries the whole reservation in the address.
+	 */
+	protected function isCheckoutLinkRequest(): bool {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return ! empty( $_GET['mphb_room_details'] ) && is_array( $_GET['mphb_room_details'] );
 	}
 
 	protected function showAlreadyBookedMessage() {
@@ -169,5 +188,4 @@ abstract class Step {
 	protected function stepValid() {
 		$this->isValidStep = true;
 	}
-
 }

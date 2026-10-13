@@ -666,4 +666,8 @@ class MainSettings {
 	public function isGoogleHotelsIntegrationOn(): bool {
 		return \MPHB\GoogleHotels\GoogleHotelsHelper::isIntegrationOn();
 	}
+
+	public function isGuestNameOnCheckoutAllowed(): bool {
+		return get_option( 'mphb_allow_guest_name_on_checkout', true );
+	}
 }
