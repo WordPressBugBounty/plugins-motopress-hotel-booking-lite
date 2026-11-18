@@ -114,6 +114,7 @@ class BookingManageCPTPage extends ManageCPTPage {
 						echo '<small>';
 						if ( $expireTime > $currentTime ) {
 							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							// translators: %s: Remaining time until the booking or payment expires, such as 10 minutes. Not an expiration date.
 							printf( esc_html__( 'Expire %s', 'motopress-hotel-booking' ), human_time_diff( $currentTime, $expireTime ) );
 						} else {
 							esc_html_e( 'Expired', 'motopress-hotel-booking' );
@@ -177,7 +178,7 @@ class BookingManageCPTPage extends ManageCPTPage {
 					// (Found on Windows 7, PHP 5.3.5)
 					$nights = \MPHB\Utils\DateUtils::calcNights( $checkInDate, $checkOutDate );
 					?>
-					<span class="mphb-booking-nights"><?php echo esc_html( sprintf( _n( '%s night', '%s nights', $nights, 'motopress-hotel-booking' ), $nights ) ); ?></span>
+					<span class="mphb-booking-nights"><?php echo esc_html( sprintf( /* translators: %s: Formatted number of nights in the stay. */ _n( '%s night', '%s nights', $nights, 'motopress-hotel-booking' ), $nights ) ); ?></span>
 					<?php
 				}
 
@@ -190,6 +191,7 @@ class BookingManageCPTPage extends ManageCPTPage {
 					$info = '';
 
 					if ( ! empty( $summary ) ) {
+						// translators: %s: Summary of an imported iCalendar event, not a price subtotal.
 						$info = sprintf( __( 'Summary: %s.', 'motopress-hotel-booking' ), $summary );
 					}
 
@@ -338,6 +340,7 @@ class BookingManageCPTPage extends ManageCPTPage {
 	 */
 	public function bulkAdminScript() {
 		if ( $this->isCurrentPage() ) {
+			// translators: %s: Booking status name. Action to change the selected bookings to that status.
 			$optionText = __( 'Set to %s', 'motopress-hotel-booking' );
 			?>
 			<script type="text/javascript">
@@ -453,6 +456,7 @@ class BookingManageCPTPage extends ManageCPTPage {
 				if ( isset( $_REQUEST[ 'setted-status-' . $slug ] ) ) {
 
 					$number  = isset( $_REQUEST['changed'] ) ? absint( $_REQUEST['changed'] ) : 0;
+					// translators: %s: Number of bookings whose statuses changed. The singular source omits the count.
 					$message = sprintf( _n( 'Booking status changed.', '%s booking statuses changed.', $number, 'motopress-hotel-booking' ), number_format_i18n( $number ) );
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo '<div class="updated"><p>' . $message . '</p></div>';

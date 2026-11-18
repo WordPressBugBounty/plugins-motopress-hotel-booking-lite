@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/guide\/index.js",
     "domain": "messages",
@@ -23,46 +23,46 @@
                 "Tarieven"
             ],
             "Period": [
-                ""
+                "Periode"
             ],
             "Quick Start Guide": [
-                ""
+                "Snelstartgids"
             ],
             "Get familiar with the main interface and key features of the calendar.": [
-                ""
+                "Maak kennis met de hoofdinterface en de belangrijkste functies van de kalender."
             ],
             "Select a period to display. Use the arrows to navigate and the refresh button to update data.": [
-                ""
+                "Selecteer een periode om weer te geven. Gebruik de pijlen om te navigeren en de vernieuwknop om gegevens bij te werken."
             ],
             "View Options": [
-                ""
+                "Weergaveopties"
             ],
             "Display bookings in the Calendar or List view. Use filters to show all accommodations or specific ones.": [
-                ""
+                "Bekijk boekingen in de kalender- of lijstweergave. Gebruik filters om alle accommodaties of specifieke accommodaties te tonen."
             ],
             "Timeline": [
-                ""
+                "Tijdlijn"
             ],
             "The timeline shows the selected period and can be scrolled to view additional dates.": [
-                ""
+                "De tijdlijn toont de geselecteerde periode. U kunt scrollen om extra datums te bekijken."
             ],
             "Create seasons to set prices or booking rules for specific periods.": [
-                ""
+                "Maak seizoenen aan om prijzen of boekingsregels voor specifieke perioden in te stellen."
             ],
             "View your accommodations, prices, bookings, and booking rules.": [
-                ""
+                "Bekijk uw accommodaties, prijzen, boekingen en boekingsregels."
             ],
             "Working Area": [
-                ""
+                "Werkgebied"
             ],
             "View your bookings and blocked availability. Choose a date range to create a new booking or block.": [
-                ""
+                "Bekijk uw boekingen en geblokkeerde beschikbaarheid. Kies een datumbereik om een nieuwe boeking of blokkering aan te maken."
             ],
             "Use rates to set prices for seasons or individual days.": [
-                ""
+                "Gebruik tarieven om prijzen voor seizoenen of afzonderlijke dagen in te stellen."
             ],
             "Set rules for specific periods or individual days, such as allowed check-in days and min or max length of stay.": [
-                ""
+                "Stel regels in voor specifieke perioden of afzonderlijke dagen, zoals toegestane incheckdagen en een minimale of maximale verblijfsduur."
             ]
         }
     }

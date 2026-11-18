@@ -357,7 +357,7 @@ class CustomersMenuPage extends AbstractMenuPage {
 				}
 				?>
 				<p>
-					<input type="submit" class="button button-primary" name="save" value="<?php echo esc_html__( 'Update', 'motopress-hotel-booking' ); ?>" />
+					<input type="submit" class="button button-primary" name="save" value="<?php echo /* translators: Submit button to save edits to customer details or external calendar settings. Not a software update heading. */ esc_html__( 'Update', 'motopress-hotel-booking' ); ?>" />
 				</p>
 			</form>
 			<?php

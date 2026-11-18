@@ -88,7 +88,7 @@ class BookingView {
 									// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 									echo $title;
 									?>
-									<div class="mphb-price-breakdown-rate <?php echo esc_attr( $foldedClass ); ?>"><?php echo esc_html( sprintf( __( 'Rate: %s', 'motopress-hotel-booking' ), $roomBreakdown['room']['rate'] ) ); ?></div>
+									<div class="mphb-price-breakdown-rate <?php echo esc_attr( $foldedClass ); ?>"><?php echo esc_html( sprintf( /* translators: %s: Accommodation rate title, not a numeric price. */ __( 'Rate: %s', 'motopress-hotel-booking' ), $roomBreakdown['room']['rate'] ) ); ?></div>
 								</td>
 								<td class="mphb-table-price-column">
 								<?php
@@ -118,7 +118,7 @@ class BookingView {
 								</tr>
 							<?php } ?>
 							<tr class="<?php echo esc_attr( "{$foldedClass} mphb-price-breakdown-nights" ); ?>">
-								<td colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php esc_html_e( 'Nights', 'motopress-hotel-booking' ); ?></td>
+								<td colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php /* translators: Number of overnight stays, not number of days or guests. */ esc_html_e( 'Nights', 'motopress-hotel-booking' ); ?></td>
 								<td><?php echo count( $roomBreakdown['room']['list'] ); ?></td>
 							</tr>
 							<tr class="<?php echo esc_attr( "{$foldedClass} mphb-price-breakdown-dates" ); ?>">
@@ -147,7 +147,7 @@ class BookingView {
 									</th>
 								</tr>
 								<tr class="<?php echo esc_attr( "{$foldedClass} mphb-price-breakdown-accommodation-discount" ); ?>">
-									<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php esc_html_e( 'Accommodation Discount', 'motopress-hotel-booking' ); ?></th>
+									<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php /* translators: Discount amount applied to the accommodation portion of the booking price. */ esc_html_e( 'Accommodation Discount', 'motopress-hotel-booking' ); ?></th>
 									<th class="mphb-table-price-column">
 										<?php
 										// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -157,7 +157,7 @@ class BookingView {
 								</tr>
 							<?php } ?>
 							<tr class="<?php echo esc_attr( "{$foldedClass} mphb-price-breakdown-accommodation-total" ); ?>">
-								<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php esc_html_e( 'Accommodation Total', 'motopress-hotel-booking' ); ?></th>
+								<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php /* translators: Total monetary accommodation price, not a count of accommodation units. */ esc_html_e( 'Accommodation Total', 'motopress-hotel-booking' ); ?></th>
 								<th class="mphb-table-price-column">
 									<?php
 									// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -183,7 +183,7 @@ class BookingView {
 									</tr>
 								<?php } ?>
 								<tr class="<?php echo esc_attr( "{$foldedClass} mphb-price-breakdown-accommodation-taxes-total" ); ?>">
-									<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php esc_html_e( 'Accommodation Taxes Total', 'motopress-hotel-booking' ); ?></th>
+									<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php /* translators: Total monetary taxes on accommodation, not the number of tax rules. */ esc_html_e( 'Accommodation Taxes Total', 'motopress-hotel-booking' ); ?></th>
 									<th class="mphb-table-price-column">
 										<?php
 										// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -233,7 +233,7 @@ class BookingView {
 									</tr>
 									<tr class="<?php echo esc_attr( "{$foldedClass} mphb-price-breakdown-services-discount" ); ?>">
 										<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>">
-											<?php esc_html_e( 'Services Discount', 'motopress-hotel-booking' ); ?>
+											<?php /* translators: Discount amount applied to extra services. */ esc_html_e( 'Services Discount', 'motopress-hotel-booking' ); ?>
 										</th>
 										<th class="mphb-table-price-column">
 											<?php
@@ -245,7 +245,7 @@ class BookingView {
 								<?php } ?>
 								<tr class="<?php echo esc_attr( "{$foldedClass} mphb-price-breakdown-services-total" ); ?>">
 									<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>">
-										<?php esc_html_e( 'Services Total', 'motopress-hotel-booking' ); ?>
+										<?php /* translators: Total monetary price of extra services, not a count of service items. */ esc_html_e( 'Services Total', 'motopress-hotel-booking' ); ?>
 									</th>
 									<th class="mphb-table-price-column">
 										<?php
@@ -277,7 +277,7 @@ class BookingView {
 										</tr>
 									<?php } ?>
 									<tr class="<?php echo esc_attr( "{$foldedClass} mphb-price-breakdown-service-taxes-total" ); ?>">
-										<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php esc_html_e( 'Service Taxes Total', 'motopress-hotel-booking' ); ?></th>
+										<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php /* translators: Total monetary taxes on extra services. */ esc_html_e( 'Service Taxes Total', 'motopress-hotel-booking' ); ?></th>
 										<th class="mphb-table-price-column">
 											<?php
 											// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -318,7 +318,7 @@ class BookingView {
 										</th>
 									</tr>
 									<tr class="<?php echo esc_attr( "{$foldedClass} mphb-price-breakdown-fees-discount" ); ?>">
-										<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php esc_html_e( 'Fees Discount', 'motopress-hotel-booking' ); ?></th>
+										<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php /* translators: Discount amount applied to booking fees. */ esc_html_e( 'Fees Discount', 'motopress-hotel-booking' ); ?></th>
 										<th class="mphb-table-price-column">
 											<?php
 											// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -328,7 +328,7 @@ class BookingView {
 									</tr>
 								<?php } ?>
 								<tr class="<?php echo esc_attr( "{$foldedClass} mphb-price-breakdown-fees-total" ); ?>">
-									<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php esc_html_e( 'Fees Total', 'motopress-hotel-booking' ); ?></th>
+									<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php /* translators: Total monetary booking fees. */ esc_html_e( 'Fees Total', 'motopress-hotel-booking' ); ?></th>
 									<th class="mphb-table-price-column">
 										<?php
 										if ( isset( $roomBreakdown['fees']['discount_total'] ) ) {
@@ -361,7 +361,7 @@ class BookingView {
 										</tr>
 									<?php } ?>
 									<tr class="<?php echo esc_attr( "{$foldedClass} mphb-price-breakdown-fee-taxes-total" ); ?>">
-										<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php esc_html_e( 'Fee Taxes Total', 'motopress-hotel-booking' ); ?></th>
+										<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php /* translators: Total monetary taxes on booking fees. */ esc_html_e( 'Fee Taxes Total', 'motopress-hotel-booking' ); ?></th>
 										<th class="mphb-table-price-column">
 											<?php
 											// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -390,7 +390,7 @@ class BookingView {
 				<tfoot>
 					<?php if ( ! empty( $priceBreakdown['coupon'] ) ) : ?>
 						<tr class="mphb-price-breakdown-coupon">
-							<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php echo esc_html( sprintf( __( 'Coupon: %s', 'motopress-hotel-booking' ), $priceBreakdown['coupon']['code'] ) ); ?></th>
+							<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>"><?php echo esc_html( sprintf( /* translators: %s: Coupon code; keep the code unchanged. */ __( 'Coupon: %s', 'motopress-hotel-booking' ), $priceBreakdown['coupon']['code'] ) ); ?></th>
 							<td class="mphb-table-price-column">
 								<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								echo mphb_format_price( -1 * $priceBreakdown['coupon']['discount'] );
@@ -409,7 +409,7 @@ class BookingView {
 						?>
 					<tr class="mphb-price-breakdown-subtotal">
 						<td colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>">
-							<?php esc_html_e( 'Subtotal (excl. taxes)', 'motopress-hotel-booking' ); ?>
+							<?php /* translators: Monetary subtotal before taxes, not the final booking total. */ esc_html_e( 'Subtotal (excl. taxes)', 'motopress-hotel-booking' ); ?>
 						</td>
 						<td>
 							<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -460,7 +460,7 @@ class BookingView {
 					<?php if ( ! empty( $priceBreakdown['deposit'] ) ) : ?>
 						<tr class="mphb-price-breakdown-deposit">
 							<th colspan="<?php echo ( $useThreeColumns ? 2 : 1 ); ?>">
-								<?php esc_html_e( 'Deposit', 'motopress-hotel-booking' ); ?>
+								<?php /* translators: Advance payment toward the booking total, not a refundable security or damage deposit. */ esc_html_e( 'Deposit', 'motopress-hotel-booking' ); ?>
 							</th>
 							<th class="mphb-table-price-column">
 								<?php

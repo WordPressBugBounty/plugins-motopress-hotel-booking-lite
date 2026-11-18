@@ -95,7 +95,7 @@ class GetAdminCalendarBookingInfo extends AbstractAjaxApiAction {
 						<td><?php echo esc_html( $reservedRoomsUID ); ?></td>
 					</tr>
 					<tr>
-						<th><?php esc_html_e( 'Summary', 'motopress-hotel-booking' ); ?></th>
+						<th><?php /* translators: Summary text from an imported iCalendar event. */ esc_html_e( 'Summary', 'motopress-hotel-booking' ); ?></th>
 						<td><?php echo esc_html( $booking->getICalSummary() ); ?></td>
 					</tr>
 					<tr>
@@ -103,7 +103,7 @@ class GetAdminCalendarBookingInfo extends AbstractAjaxApiAction {
 						<td><?php echo esc_html( $booking->getICalDescription() ); ?></td>
 					</tr>
 					<tr>
-						<th><?php esc_html_e( 'Source', 'motopress-hotel-booking' ); ?></th>
+						<th><?php /* translators: Producer identifier from an imported iCalendar event; not PHP source code or a booking data-copy source. */ esc_html_e( 'Source', 'motopress-hotel-booking' ); ?></th>
 						<td><?php echo esc_html( $booking->getICalProdid() ); ?></td>
 					</tr>
 
@@ -196,6 +196,7 @@ class GetAdminCalendarBookingInfo extends AbstractAjaxApiAction {
 									/* translators: %1$s: note author, %1$s: note date */
 									echo esc_html(
 										sprintf(
+											// translators: %1$s: Author of a booking note. %2$s: Date and time when that note was added.
 											__( '%1$s on %2$s', 'motopress-hotel-booking' ),
 											$displayName,
 											$noteDate

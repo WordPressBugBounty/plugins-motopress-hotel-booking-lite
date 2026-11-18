@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "lt_LT",
                 "plural-forms": "nplurals=4; plural=(n%10==1 && (n%100>19 || n%100<11) ? 0 : (n%10>=2 && n%10<=9) && (n%100>19 || n%100<11) ? 1 : n%1!=0 ? 2: 3);"
             },
+            "Accommodation Type": [
+                "Apgyvendinimo tipas"
+            ],
+            "Accommodation": [
+                "Apgyvendinimo vieta"
+            ],
+            "Restriction": [
+                "Apribojimai"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Comment": [
+                "Komentuoti"
+            ],
+            "All": [
+                "Visi"
+            ],
             "Delete": [
                 "I\u0161trinti"
+            ],
+            "Not check-in": [
+                "Ne atvykimas"
+            ],
+            "Not check-out": [
+                "Ne i\u0161vykimas"
+            ],
+            "Not stay-in": [
+                "Ne pasilikti"
             ],
             "Email": [
                 "El. pa\u0161tas"
@@ -49,9 +82,6 @@
             "Edit": [
                 "Redaguoti"
             ],
-            "All": [
-                "Visi"
-            ],
             "Nights": [
                 "Naktys"
             ],
@@ -70,14 +100,14 @@
             "Price": [
                 "Kaina"
             ],
-            "Accommodation": [
-                "Apgyvendinimo vieta"
-            ],
             "Paid: %s": [
                 "Sumok\u0117ta: %s"
             ],
-            "Accommodation Type": [
-                "Apgyvendinimo tipas"
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
             ],
             "Add New Season Price": [
                 "Prid\u0117ti naujo sezono kain\u0105"
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "Rezervavimo taisykl\u0117s"
+            ],
+            "Block Accommodations": [
+                ""
             ],
             "Check-in days": [
                 "Atvykimo dienos"
@@ -105,30 +138,6 @@
             ],
             "Maximum stay": [
                 "Maksimalus apsistojimas"
-            ],
-            "Restriction": [
-                "Apribojimai"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                ""
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                ""
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                ""
-            ],
-            "Not check-in": [
-                "Ne atvykimas"
-            ],
-            "Not check-out": [
-                "Ne i\u0161vykimas"
-            ],
-            "Not stay-in": [
-                "Ne pasilikti"
-            ],
-            "Comment": [
-                "Komentuoti"
             ],
             "Minimum advance reservation": [
                 "Minimali i\u0161ankstin\u0117 rezervacija"
@@ -193,8 +202,8 @@
             "Notes": [
                 "Patabos"
             ],
-            "Booking status\u0004Confirmed": [
-                "Patvirtintas"
+            "An error has occurred": [
+                "\u012evyko klaida"
             ],
             "Booked": [
                 "Rezervuota"
@@ -207,6 +216,9 @@
             ],
             "Blocked": [
                 "U\u017eblokuota"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Patvirtintas"
             ],
             "Check-in": [
                 "Atvykimas"
@@ -331,15 +343,6 @@
             "Nothing found.": [
                 "Nieko nerasta."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
                 ""
             ],
@@ -382,6 +385,9 @@
             "Min. advance reservation": [
                 ""
             ],
+            "Reload": [
+                ""
+            ],
             "Please select at least one accommodation type.": [
                 ""
             ],
@@ -406,9 +412,6 @@
             "Next": [
                 ""
             ],
-            "Reload": [
-                ""
-            ],
             "Filter items\u2026": [
                 ""
             ],
@@ -418,7 +421,19 @@
             "List": [
                 ""
             ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
             "Booking #%1$d": [
+                ""
+            ],
+            "Unable to load rate.": [
+                ""
+            ],
+            "Retry": [
+                ""
+            ],
+            "Loading\u2026": [
                 ""
             ],
             "Total Price": [
@@ -457,6 +472,9 @@
             "Edit Season Price": [
                 ""
             ],
+            "Unable to load rates.": [
+                ""
+            ],
             "Quick booking rules": [
                 ""
             ],
@@ -464,6 +482,9 @@
                 ""
             ],
             "Check-out today": [
+                ""
+            ],
+            "Unable to load bookings.": [
                 ""
             ],
             "In-House": [

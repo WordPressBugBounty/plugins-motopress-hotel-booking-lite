@@ -1,0 +1,434 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/dashboard\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "de_DE",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Accommodation": [
+                "Unterkunft"
+            ],
+            "View": [
+                "Ansicht"
+            ],
+            "Bookings": [
+                "Buchungen"
+            ],
+            "No news available.": [
+                "Keine Neuigkeiten verf\u00fcgbar."
+            ],
+            "Create Booking": [
+                "Buchung anlegen"
+            ],
+            "Date": [
+                "Datum"
+            ],
+            "Status": [
+                "Status"
+            ],
+            "ID": [
+                "ID"
+            ],
+            "Paid: %s": [
+                "Bezahlt: %s"
+            ],
+            "Amount": [
+                "Betrag"
+            ],
+            "Customer": [
+                "Kunde"
+            ],
+            "Booking": [
+                "Buchung"
+            ],
+            "Gateway": [
+                "Gateway"
+            ],
+            "Payments": [
+                "Zahlungen"
+            ],
+            "Available": [
+                "Verf\u00fcgbar"
+            ],
+            "Google Hotels": [
+                "Google Hotels"
+            ],
+            "Sync your bookings across all online channels like Booking.com, TripAdvisor, Airbnb etc. via iCalendar file format.": [
+                "Synchronisieren Sie Ihre Buchungen \u00fcber alle Online-Kan\u00e4le wie Booking.com, TripAdvisor, Airbnb usw. \u00fcber das iCalendar-Dateiformat."
+            ],
+            "Services": [
+                "Dienstleistungen"
+            ],
+            "License": [
+                "Lizenz"
+            ],
+            "Booked": [
+                "Gebucht"
+            ],
+            "Blocked": [
+                "Blockiert"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Best\u00e4tigt"
+            ],
+            "Check-in": [
+                "Anreise"
+            ],
+            "Check-out": [
+                "Abreise"
+            ],
+            "Total": [
+                "Gesamt"
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "Ausstehende Benutzerbest\u00e4tigung"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "Ausstehende Zahlung"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "Wartet auf Administratorbest\u00e4tigung"
+            ],
+            "Booking status\u0004Abandoned": [
+                "Aufgegeben"
+            ],
+            "Booking status\u0004Cancelled": [
+                "Storniert"
+            ],
+            "Payment status\u0004Pending": [
+                "Ausstehend"
+            ],
+            "Payment status\u0004Completed": [
+                "Abgeschlossen"
+            ],
+            "Payment status\u0004Failed": [
+                "Fehlgeschlagen"
+            ],
+            "Payment status\u0004Abandoned": [
+                "Aufgegeben"
+            ],
+            "Payment status\u0004On Hold": [
+                "In der Warteschleife"
+            ],
+            "Payment status\u0004Refunded": [
+                "Zur\u00fcckerstattet"
+            ],
+            "Payment status\u0004Cancelled": [
+                "Storniert"
+            ],
+            "Revenue": [
+                "Einnahmen"
+            ],
+            "Period": [
+                "Zeitraum"
+            ],
+            "Today": [
+                "Heute"
+            ],
+            "This week": [
+                "Diese Woche"
+            ],
+            "This month": [
+                "Dieser Monat"
+            ],
+            "This quarter": [
+                "Dieses Quartal"
+            ],
+            "This year": [
+                "Dieses Jahr"
+            ],
+            "x %d guest": [
+                "x %d Gast",
+                "x %d G\u00e4ste"
+            ],
+            "x %d time": [
+                "x %d Mal",
+                "x %d Mal"
+            ],
+            "Availability": [
+                "Verf\u00fcgbarkeit"
+            ],
+            "Previous": [
+                "Zur\u00fcck"
+            ],
+            "Next": [
+                "Weiter"
+            ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                "<a>Wechseln Sie zu Premium<\/a>, um diese Funktion zu aktivieren."
+            ],
+            "Active widgets": [
+                "Aktive Widgets"
+            ],
+            "Booking source\u0004External": [
+                "Extern"
+            ],
+            "View All": [
+                "Alle anzeigen"
+            ],
+            "Bookings filter\u0004Recent": [
+                "Zuletzt erstellt"
+            ],
+            "Bookings filter\u0004Upcoming": [
+                "Bevorstehend"
+            ],
+            "Your 5 most recent bookings": [
+                "Ihre 5 zuletzt erstellten Buchungen"
+            ],
+            "Upcoming stays in the next 7 days": [
+                "Bevorstehende Aufenthalte in den n\u00e4chsten 7 Tagen"
+            ],
+            "%1$d of %2$d": [
+                "%1$d von %2$d"
+            ],
+            "Calendar synchronization status\u0004Waiting": [
+                "Wartet"
+            ],
+            "Calendar synchronization status\u0004Processing": [
+                "In Bearbeitung"
+            ],
+            "Calendar synchronization status\u0004Done": [
+                "Abgeschlossen"
+            ],
+            "No synchronization data available.": [
+                "Keine Synchronisierungsdaten verf\u00fcgbar."
+            ],
+            "Calendar synchronization is not configured.": [
+                "Die Kalendersynchronisierung ist nicht eingerichtet."
+            ],
+            "Configure": [
+                "Einrichten"
+            ],
+            "Calendar synchronization statistics label\u0004Succeeded": [
+                "Erfolgreich"
+            ],
+            "Calendar synchronization statistics label\u0004Failed": [
+                "Fehlgeschlagen"
+            ],
+            "Calendar synchronization statistics label\u0004Removed": [
+                "Entfernt"
+            ],
+            "Calendar synchronization statistics label\u0004Skipped": [
+                "\u00dcbersprungen"
+            ],
+            "Last sync": [
+                "Letzte Synchronisierung"
+            ],
+            "Google Hotels submission status\u0004Submitted": [
+                "\u00dcbermittelt"
+            ],
+            "Google Hotels submission status\u0004Failed": [
+                "Fehlgeschlagen"
+            ],
+            "Google Hotels submission status\u0004Unknown": [
+                "Unbekannt"
+            ],
+            "Google Hotels integration is not enabled.": [
+                "Die Google Hotels Integration ist nicht aktiviert."
+            ],
+            "Last submission": [
+                "Letzte \u00dcbermittlung"
+            ],
+            "Server message": [
+                "Servermeldung"
+            ],
+            "Occupancy": [
+                "Auslastung"
+            ],
+            "Booked Nights": [
+                "Gebuchte N\u00e4chte"
+            ],
+            "Average daily accommodation rate\u0004Average Rate": [
+                "Durchschnittlicher Nachtpreis"
+            ],
+            "Total booking revenue, including accommodation, services, taxes, and fees.": [
+                "Gesamte Buchungseinnahmen einschlie\u00dflich Unterkunft, Dienstleistungen, Steuern und Geb\u00fchren."
+            ],
+            "The percentage of available nights that guests have booked, excluding nights blocked by your settings or linked-booking restrictions.": [
+                "Der prozentuale Anteil der verf\u00fcgbaren N\u00e4chte, die von G\u00e4sten gebucht wurden. N\u00e4chte, die durch Ihre Einstellungen oder Einschr\u00e4nkungen verkn\u00fcpfter Buchungen gesperrt sind, werden ausgeschlossen."
+            ],
+            "Total booked nights across all accommodations. Each accommodation is counted separately.": [
+                "Gesamtzahl der gebuchten N\u00e4chte \u00fcber alle Unterk\u00fcnfte hinweg. Jede Unterkunft wird separat gez\u00e4hlt."
+            ],
+            "Average accommodation revenue per booked night, excluding services, taxes, and fees.": [
+                "Durchschnittliche Unterkunftseinnahmen pro gebuchter Nacht, ohne Dienstleistungen, Steuern und Geb\u00fchren."
+            ],
+            "Reservation creation date\u0004Booking date": [
+                "Buchungsdatum"
+            ],
+            "Accommodation stay dates\u0004Stay date": [
+                "Aufenthaltsdatum"
+            ],
+            "Last %d days": [
+                "Letzte %d Tage"
+            ],
+            "Compare with": [
+                "Vergleichen mit"
+            ],
+            "No comparison": [
+                "Kein Vergleich"
+            ],
+            "Previous period": [
+                "Vorheriger Zeitraum"
+            ],
+            "Previous year": [
+                "Vorjahr"
+            ],
+            "Services in your 5 most recent bookings": [
+                "Dienstleistungen in Ihren 5 zuletzt erstellten Buchungen"
+            ],
+            "Services in your upcoming bookings": [
+                "Dienstleistungen in Ihren bevorstehenden Buchungen"
+            ],
+            "last 30 days": [
+                "letzte 30 Tage"
+            ],
+            "New Bookings": [
+                "Neue Buchungen"
+            ],
+            "Create a booking button\u0004New": [
+                "Neu"
+            ],
+            "Guests currently staying\u0004In-House": [
+                "Derzeit anwesend"
+            ],
+            "today": [
+                "heute"
+            ],
+            "Arrivals": [
+                "Anreisen"
+            ],
+            "Departures": [
+                "Abreisen"
+            ],
+            "Unable to load upcoming bookings. Please try again.": [
+                "Die bevorstehenden Buchungen k\u00f6nnen nicht geladen werden. Bitte versuchen Sie es erneut."
+            ],
+            "No recent bookings to display.": [
+                "Keine zuletzt erstellten Buchungen vorhanden."
+            ],
+            "No upcoming stays in the next 7 days.": [
+                "Keine bevorstehenden Aufenthalte in den n\u00e4chsten 7 Tagen."
+            ],
+            "Your 5 most recent payments": [
+                "Ihre 5 letzten Zahlungen"
+            ],
+            "No recent payments found.": [
+                "Keine k\u00fcrzlich erfolgten Zahlungen gefunden."
+            ],
+            "No services were ordered with your 5 most recent bookings.": [
+                "F\u00fcr Ihre 5 zuletzt erstellten Buchungen wurden keine Dienstleistungen bestellt."
+            ],
+            "No services were ordered with your upcoming bookings.": [
+                "F\u00fcr Ihre bevorstehenden Buchungen wurden keine Dienstleistungen bestellt."
+            ],
+            "Calendars Sync": [
+                "Kalendersynchronisierung"
+            ],
+            "Booking distribution channels\u0004Channels": [
+                "Buchungskan\u00e4le"
+            ],
+            "Booking source\u0004Direct (your website)": [
+                "Direkt (Ihre Website)"
+            ],
+            "Bookings distribution by platform": [
+                "Verteilung der Buchungen nach Plattform"
+            ],
+            "No bookings received in the last 30 days.": [
+                "In den letzten 30 Tagen sind keine Buchungen eingegangen."
+            ],
+            "Performance": [
+                "Kennzahlen"
+            ],
+            "Current period": [
+                "Aktueller Zeitraum"
+            ],
+            "Unable to load performance data.": [
+                "Die Kennzahlen k\u00f6nnen nicht geladen werden."
+            ],
+            "Percentage points abbreviation\u0004pp": [
+                "Prozentpunkte"
+            ],
+            "License status\u0004Active": [
+                "Aktiv"
+            ],
+            "License status\u0004Inactive": [
+                "Inaktiv"
+            ],
+            "Activate": [
+                "Aktivieren"
+            ],
+            "License status\u0004Expired": [
+                "Abgelaufen"
+            ],
+            "Renew": [
+                "Verl\u00e4ngern"
+            ],
+            "License status\u0004Disabled": [
+                "Deaktiviert"
+            ],
+            "Purchase": [
+                "Kaufen"
+            ],
+            "License status\u0004Invalid": [
+                "Ung\u00fcltig"
+            ],
+            "Change key": [
+                "Schl\u00fcssel \u00e4ndern"
+            ],
+            "License status\u0004Unknown": [
+                "Unbekannt"
+            ],
+            "Check license": [
+                "Lizenz pr\u00fcfen"
+            ],
+            "License status\u0004Not set": [
+                "Nicht festgelegt"
+            ],
+            "Plugin upgrade card heading\u0004Go Premium": [
+                "Zu Premium wechseln"
+            ],
+            "Upgrade": [
+                "Auf Premium upgraden"
+            ],
+            "Take full advantage of Hotel Booking with the premium plugin version.": [
+                "Nutzen Sie Hotel Booking in vollem Umfang mit der Premiumversion des Plugins."
+            ],
+            "Support": [
+                "Support"
+            ],
+            "Support availability\u0004Available": [
+                "Verf\u00fcgbar"
+            ],
+            "Support availability\u0004Limited": [
+                "Eingeschr\u00e4nkt"
+            ],
+            "Contact support": [
+                "Support kontaktieren"
+            ],
+            "Update now": [
+                "Jetzt aktualisieren"
+            ],
+            "Plugin update card heading\u0004Update": [
+                "Update"
+            ],
+            "Update available": [
+                "Update verf\u00fcgbar"
+            ],
+            "Up to date": [
+                "Auf dem neuesten Stand"
+            ],
+            "Quick Links": [
+                "Schnellzugriffe"
+            ],
+            "Latest News": [
+                "Neueste Nachrichten"
+            ]
+        }
+    }
+}

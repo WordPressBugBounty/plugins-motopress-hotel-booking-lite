@@ -1,0 +1,434 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/dashboard\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "es_MX",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Accommodation": [
+                "Alojamiento"
+            ],
+            "View": [
+                "Ver"
+            ],
+            "Bookings": [
+                "Reservaciones"
+            ],
+            "No news available.": [
+                ""
+            ],
+            "Create Booking": [
+                "Registrar Reservaci\u00f3n"
+            ],
+            "Date": [
+                "Fecha"
+            ],
+            "Status": [
+                "Estado"
+            ],
+            "ID": [
+                ""
+            ],
+            "Paid: %s": [
+                "Pagado: %s"
+            ],
+            "Amount": [
+                "Monto"
+            ],
+            "Customer": [
+                "Cliente"
+            ],
+            "Booking": [
+                "Reserva"
+            ],
+            "Gateway": [
+                "M\u00e9todo de Pago"
+            ],
+            "Payments": [
+                "Pagos"
+            ],
+            "Available": [
+                "Disponible"
+            ],
+            "Google Hotels": [
+                ""
+            ],
+            "Sync your bookings across all online channels like Booking.com, TripAdvisor, Airbnb etc. via iCalendar file format.": [
+                "Sincronice sus reservas en todos los canales en l\u00ednea como Booking.com, TripAdvisor, Airbnb, etc. a trav\u00e9s del formato de archivo iCalendar."
+            ],
+            "Services": [
+                "Servicios"
+            ],
+            "License": [
+                "Licencia"
+            ],
+            "Booked": [
+                "Reservado"
+            ],
+            "Blocked": [
+                "Bloqueado"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Confirmado"
+            ],
+            "Check-in": [
+                "D\u00eda de llegada"
+            ],
+            "Check-out": [
+                "D\u00eda de salida"
+            ],
+            "Total": [
+                "Total"
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "Pendiente de Confirmaci\u00f3n por Usuario"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "Pago Pendiente"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "Pendiente"
+            ],
+            "Booking status\u0004Abandoned": [
+                "Abandonado"
+            ],
+            "Booking status\u0004Cancelled": [
+                "Cancelado"
+            ],
+            "Payment status\u0004Pending": [
+                "Pendiente"
+            ],
+            "Payment status\u0004Completed": [
+                "Completado"
+            ],
+            "Payment status\u0004Failed": [
+                "Fall\u00f3"
+            ],
+            "Payment status\u0004Abandoned": [
+                "Abandonado"
+            ],
+            "Payment status\u0004On Hold": [
+                "En espera"
+            ],
+            "Payment status\u0004Refunded": [
+                "Dinero devuelto"
+            ],
+            "Payment status\u0004Cancelled": [
+                "Cancelado"
+            ],
+            "Revenue": [
+                "Ingreso"
+            ],
+            "Period": [
+                ""
+            ],
+            "Today": [
+                "Hoy"
+            ],
+            "This week": [
+                "Esta semana"
+            ],
+            "This month": [
+                "Este Mes"
+            ],
+            "This quarter": [
+                "Este trimestre"
+            ],
+            "This year": [
+                "Este a\u00f1o"
+            ],
+            "x %d guest": [
+                "x %d hu\u00e9sped",
+                "x %d hu\u00e9spedes"
+            ],
+            "x %d time": [
+                "x%d tiempo",
+                "x%d veces"
+            ],
+            "Availability": [
+                "Disponibilidad"
+            ],
+            "Previous": [
+                ""
+            ],
+            "Next": [
+                ""
+            ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
+            "Active widgets": [
+                ""
+            ],
+            "Booking source\u0004External": [
+                ""
+            ],
+            "View All": [
+                ""
+            ],
+            "Bookings filter\u0004Recent": [
+                ""
+            ],
+            "Bookings filter\u0004Upcoming": [
+                ""
+            ],
+            "Your 5 most recent bookings": [
+                ""
+            ],
+            "Upcoming stays in the next 7 days": [
+                ""
+            ],
+            "%1$d of %2$d": [
+                ""
+            ],
+            "Calendar synchronization status\u0004Waiting": [
+                ""
+            ],
+            "Calendar synchronization status\u0004Processing": [
+                ""
+            ],
+            "Calendar synchronization status\u0004Done": [
+                ""
+            ],
+            "No synchronization data available.": [
+                ""
+            ],
+            "Calendar synchronization is not configured.": [
+                ""
+            ],
+            "Configure": [
+                ""
+            ],
+            "Calendar synchronization statistics label\u0004Succeeded": [
+                ""
+            ],
+            "Calendar synchronization statistics label\u0004Failed": [
+                ""
+            ],
+            "Calendar synchronization statistics label\u0004Removed": [
+                ""
+            ],
+            "Calendar synchronization statistics label\u0004Skipped": [
+                ""
+            ],
+            "Last sync": [
+                ""
+            ],
+            "Google Hotels submission status\u0004Submitted": [
+                ""
+            ],
+            "Google Hotels submission status\u0004Failed": [
+                ""
+            ],
+            "Google Hotels submission status\u0004Unknown": [
+                ""
+            ],
+            "Google Hotels integration is not enabled.": [
+                ""
+            ],
+            "Last submission": [
+                ""
+            ],
+            "Server message": [
+                ""
+            ],
+            "Occupancy": [
+                ""
+            ],
+            "Booked Nights": [
+                ""
+            ],
+            "Average daily accommodation rate\u0004Average Rate": [
+                ""
+            ],
+            "Total booking revenue, including accommodation, services, taxes, and fees.": [
+                ""
+            ],
+            "The percentage of available nights that guests have booked, excluding nights blocked by your settings or linked-booking restrictions.": [
+                ""
+            ],
+            "Total booked nights across all accommodations. Each accommodation is counted separately.": [
+                ""
+            ],
+            "Average accommodation revenue per booked night, excluding services, taxes, and fees.": [
+                ""
+            ],
+            "Reservation creation date\u0004Booking date": [
+                ""
+            ],
+            "Accommodation stay dates\u0004Stay date": [
+                ""
+            ],
+            "Last %d days": [
+                ""
+            ],
+            "Compare with": [
+                ""
+            ],
+            "No comparison": [
+                ""
+            ],
+            "Previous period": [
+                ""
+            ],
+            "Previous year": [
+                ""
+            ],
+            "Services in your 5 most recent bookings": [
+                ""
+            ],
+            "Services in your upcoming bookings": [
+                ""
+            ],
+            "last 30 days": [
+                ""
+            ],
+            "New Bookings": [
+                ""
+            ],
+            "Create a booking button\u0004New": [
+                ""
+            ],
+            "Guests currently staying\u0004In-House": [
+                ""
+            ],
+            "today": [
+                ""
+            ],
+            "Arrivals": [
+                ""
+            ],
+            "Departures": [
+                ""
+            ],
+            "Unable to load upcoming bookings. Please try again.": [
+                ""
+            ],
+            "No recent bookings to display.": [
+                ""
+            ],
+            "No upcoming stays in the next 7 days.": [
+                ""
+            ],
+            "Your 5 most recent payments": [
+                ""
+            ],
+            "No recent payments found.": [
+                ""
+            ],
+            "No services were ordered with your 5 most recent bookings.": [
+                ""
+            ],
+            "No services were ordered with your upcoming bookings.": [
+                ""
+            ],
+            "Calendars Sync": [
+                ""
+            ],
+            "Booking distribution channels\u0004Channels": [
+                ""
+            ],
+            "Booking source\u0004Direct (your website)": [
+                ""
+            ],
+            "Bookings distribution by platform": [
+                ""
+            ],
+            "No bookings received in the last 30 days.": [
+                ""
+            ],
+            "Performance": [
+                ""
+            ],
+            "Current period": [
+                ""
+            ],
+            "Unable to load performance data.": [
+                ""
+            ],
+            "Percentage points abbreviation\u0004pp": [
+                ""
+            ],
+            "License status\u0004Active": [
+                ""
+            ],
+            "License status\u0004Inactive": [
+                ""
+            ],
+            "Activate": [
+                ""
+            ],
+            "License status\u0004Expired": [
+                ""
+            ],
+            "Renew": [
+                ""
+            ],
+            "License status\u0004Disabled": [
+                ""
+            ],
+            "Purchase": [
+                ""
+            ],
+            "License status\u0004Invalid": [
+                ""
+            ],
+            "Change key": [
+                ""
+            ],
+            "License status\u0004Unknown": [
+                ""
+            ],
+            "Check license": [
+                ""
+            ],
+            "License status\u0004Not set": [
+                ""
+            ],
+            "Plugin upgrade card heading\u0004Go Premium": [
+                ""
+            ],
+            "Upgrade": [
+                ""
+            ],
+            "Take full advantage of Hotel Booking with the premium plugin version.": [
+                ""
+            ],
+            "Support": [
+                ""
+            ],
+            "Support availability\u0004Available": [
+                ""
+            ],
+            "Support availability\u0004Limited": [
+                ""
+            ],
+            "Contact support": [
+                ""
+            ],
+            "Update now": [
+                ""
+            ],
+            "Plugin update card heading\u0004Update": [
+                ""
+            ],
+            "Update available": [
+                ""
+            ],
+            "Up to date": [
+                ""
+            ],
+            "Quick Links": [
+                ""
+            ],
+            "Latest News": [
+                ""
+            ]
+        }
+    }
+}

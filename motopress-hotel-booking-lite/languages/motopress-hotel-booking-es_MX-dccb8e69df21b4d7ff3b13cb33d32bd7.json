@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "es_MX",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "Accommodation Type": [
+                "Tipo de Alojamiento"
+            ],
+            "Accommodation": [
+                "Alojamiento"
+            ],
+            "Restriction": [
+                "Restricci\u00f3n"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                "La regla de no entrada marca la fecha como no disponible para facturaci\u00f3n."
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                "La regla de no check-out marca la fecha como no disponible para check-out."
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                "La regla de no permanencia muestra la fecha como bloqueada. Esta fecha no est\u00e1 disponible para check-in y check-out en la pr\u00f3xima fecha."
+            ],
+            "Comment": [
+                "Comentario"
+            ],
+            "All": [
+                "Todo"
+            ],
             "Delete": [
                 "Borrar"
+            ],
+            "Not check-in": [
+                "No Entrada no (check-in)"
+            ],
+            "Not check-out": [
+                "No salida (no check-out)"
+            ],
+            "Not stay-in": [
+                "NO stay-in"
             ],
             "Email": [
                 "Correo electr\u00f3nico"
@@ -49,9 +82,6 @@
             "Edit": [
                 "Editar"
             ],
-            "All": [
-                "Todo"
-            ],
             "Nights": [
                 "Noches"
             ],
@@ -70,14 +100,14 @@
             "Price": [
                 "Precio"
             ],
-            "Accommodation": [
-                "Alojamiento"
-            ],
             "Paid: %s": [
                 "Pagado: %s"
             ],
-            "Accommodation Type": [
-                "Tipo de Alojamiento"
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
             ],
             "Add New Season Price": [
                 "A\u00f1adir nuevo precio de temporada"
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "Reglas para reservaciones"
+            ],
+            "Block Accommodations": [
+                ""
             ],
             "Check-in days": [
                 "D\u00edas de llegada"
@@ -105,30 +138,6 @@
             ],
             "Maximum stay": [
                 "Estad\u00eda m\u00e1xima"
-            ],
-            "Restriction": [
-                "Restricci\u00f3n"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                "La regla de no entrada marca la fecha como no disponible para facturaci\u00f3n."
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                "La regla de no check-out marca la fecha como no disponible para check-out."
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                "La regla de no permanencia muestra la fecha como bloqueada. Esta fecha no est\u00e1 disponible para check-in y check-out en la pr\u00f3xima fecha."
-            ],
-            "Not check-in": [
-                "No Entrada no (check-in)"
-            ],
-            "Not check-out": [
-                "No salida (no check-out)"
-            ],
-            "Not stay-in": [
-                "NO stay-in"
-            ],
-            "Comment": [
-                "Comentario"
             ],
             "Minimum advance reservation": [
                 "Reserva m\u00ednima anticipada"
@@ -193,8 +202,8 @@
             "Notes": [
                 "Notas"
             ],
-            "Booking status\u0004Confirmed": [
-                "Confirmado"
+            "An error has occurred": [
+                "Se ha producido un error"
             ],
             "Booked": [
                 "Reservado"
@@ -207,6 +216,9 @@
             ],
             "Blocked": [
                 "Bloqueado"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Confirmado"
             ],
             "Check-in": [
                 "D\u00eda de llegada"
@@ -284,7 +296,7 @@
                 "Este a\u00f1o"
             ],
             "Book": [
-                "Libro"
+                "Reservar"
             ],
             "x %d guest": [
                 "x %d hu\u00e9sped",
@@ -326,15 +338,6 @@
             ],
             "Nothing found.": [
                 "Nada encontrado."
-            ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
             ],
             "Season is a period used to set different property prices.": [
                 ""
@@ -378,6 +381,9 @@
             "Min. advance reservation": [
                 ""
             ],
+            "Reload": [
+                ""
+            ],
             "Please select at least one accommodation type.": [
                 ""
             ],
@@ -402,9 +408,6 @@
             "Next": [
                 ""
             ],
-            "Reload": [
-                ""
-            ],
             "Filter items\u2026": [
                 ""
             ],
@@ -414,7 +417,19 @@
             "List": [
                 ""
             ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
             "Booking #%1$d": [
+                ""
+            ],
+            "Unable to load rate.": [
+                ""
+            ],
+            "Retry": [
+                ""
+            ],
+            "Loading\u2026": [
                 ""
             ],
             "Total Price": [
@@ -453,6 +468,9 @@
             "Edit Season Price": [
                 ""
             ],
+            "Unable to load rates.": [
+                ""
+            ],
             "Quick booking rules": [
                 ""
             ],
@@ -460,6 +478,9 @@
                 ""
             ],
             "Check-out today": [
+                ""
+            ],
+            "Unable to load bookings.": [
                 ""
             ],
             "In-House": [

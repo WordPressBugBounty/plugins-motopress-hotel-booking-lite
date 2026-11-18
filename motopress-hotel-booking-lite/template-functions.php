@@ -594,6 +594,7 @@ function mphb_tmpl_the_room_type_calendar( $roomTypeId = 0, $monthsToShow = '',
 	if ( null == $roomType || 'publish' != $roomType->getStatus() ) {
 
 		$errorMessage = sprintf(
+			// translators: %s: Accommodation type record ID, not a physical accommodation unit ID.
 			__( 'Accommodation %s not found.', 'motopress-hotel-booking' ),
 			$roomTypeId
 		);
@@ -649,6 +650,7 @@ function mphb_tmpl_the_room_reservation_form( $roomTypeId = 0 ) {
 
 	if ( null == $roomType || 'publish' != $roomType->getStatus() ) {
 		$errorMessage = sprintf(
+			// translators: %s: Accommodation type record ID, not a physical accommodation unit ID.
 			__( 'Accommodation %s not found.', 'motopress-hotel-booking' ),
 			$roomTypeId
 		);
@@ -692,7 +694,7 @@ function mphb_tmpl_the_room_reservation_form( $roomTypeId = 0 ) {
 	?>
 	<form method="<?php echo esc_attr( $formMethod ); ?>" action="<?php echo esc_url( $actionUrl ); ?>" class="mphb-booking-form <?php echo esc_attr( $formDirectBookingClass ); ?>" id="<?php echo esc_attr( 'booking-form-' . $roomType->getId() ); ?>" data-first_available_check_in_date="<?php echo esc_attr( $firstAvailableCheckInDate ); ?>">
 
-		<p class="mphb-required-fields-tip"><small><?php printf( esc_html__( 'Required fields are followed by %s', 'motopress-hotel-booking' ), '<abbr title="required">*</abbr>' ); ?></small></p>
+		<p class="mphb-required-fields-tip"><small><?php printf( /* translators: %s: Required-field marker, usually an asterisk, possibly wrapped in HTML. */ esc_html__( 'Required fields are followed by %s', 'motopress-hotel-booking' ), '<abbr title="required">*</abbr>' ); ?></small></p>
 		<?php
 		foreach ( mphb_get_query_args( $actionUrl ) as $paramName => $paramValue ) {
 			printf( '<input type="hidden" name="%s" value="%s" />', esc_attr( $paramName ), esc_attr( $paramValue ) );
@@ -789,7 +791,7 @@ function mphb_tmpl_the_room_reservation_form( $roomTypeId = 0 ) {
 
 				<p class="mphb-children-wrapper mphb-capacity-wrapper">
 					<label for="<?php echo esc_attr( 'mphb_children-' . $uniqueSuffix ); ?>">
-						<?php echo esc_html( sprintf( __( 'Children %s', 'motopress-hotel-booking' ), MPHB()->settings()->main()->getChildrenAgeText() ) ); ?>
+						<?php echo esc_html( sprintf( /* translators: %s: Optional child-age description configured by the property, not the number of children. */ __( 'Children %s', 'motopress-hotel-booking' ), MPHB()->settings()->main()->getChildrenAgeText() ) ); ?>
 					</label>
 					<br />
 
@@ -826,11 +828,12 @@ function mphb_tmpl_the_room_reservation_form( $roomTypeId = 0 ) {
 					$select .= '</select>';
 
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					// translators: %1$s: HTML quantity selector. %2$s: Total available accommodation count. Keep both placeholders.
 					printf( esc_html__( 'Reserve %1$s of %2$s available accommodations.', 'motopress-hotel-booking' ), $select, '<span class="mphb-available-rooms-count">1</span>' );
 				?>
 				</p>
 				<p class="mphb-rooms-quantity-wrapper mphb-rooms-quantity-single mphb-hide">
-					<?php printf( esc_html__( '%s is available for selected dates.', 'motopress-hotel-booking' ), esc_html( $roomType->getTitle() ) ); ?>
+					<?php printf( /* translators: %s: Accommodation type title. */ esc_html__( '%s is available for selected dates.', 'motopress-hotel-booking' ), esc_html( $roomType->getTitle() ) ); ?>
 				</p>
 				<?php if ( $directBookingPricing != 'disabled' ) { ?>
 					<p class="mphb-period-price mphb-regular-price mphb-hide">

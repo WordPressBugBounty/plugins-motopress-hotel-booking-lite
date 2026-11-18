@@ -209,7 +209,8 @@ class CustomersListTable extends \WP_List_Table {
 	public function get_columns() {
 		return array(
 			'cb'              => '<input type="checkbox" />',
-			'full_name'       => esc_html__( 'Name', 'motopress-hotel-booking' ),
+			// translators: Column heading for a customer's personal name, not the name of an attribute or item.
+			'full_name'       => esc_html_x( 'Name', 'Customer name', 'motopress-hotel-booking' ),
 			'email'           => esc_html__( 'Email', 'motopress-hotel-booking' ),
 			'bookings'        => esc_html__( 'Bookings', 'motopress-hotel-booking' ),
 			'date_registered' => esc_html__( 'Date Registered', 'motopress-hotel-booking' ),

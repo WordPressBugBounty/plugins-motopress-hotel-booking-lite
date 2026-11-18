@@ -175,6 +175,7 @@ class BookingEditCPTPage extends EditCPTPage {
 					$authorName = sprintf( '<a target="_blank" href="%s">%s</a>', esc_url( $url ), esc_html( $userName ) );
 				}
 			} else {
+				// translators: Automatic mode: an automatically generated log entry author, or automatic checkout language selection.
 				$authorName = '<i>' . esc_html__( 'Auto', 'motopress-hotel-booking' ) . '</i>';
 			}
 			?>

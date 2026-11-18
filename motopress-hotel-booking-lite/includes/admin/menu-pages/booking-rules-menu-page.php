@@ -202,6 +202,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 						'check_in_days',
 						array(
 							'type'    => 'multiple-checkbox',
+							// translators: Days of the week to which a season or booking rule applies, not a duration.
 							'label'   => __( 'Days', 'motopress-hotel-booking' ),
 							'default' => range( 0, 6 ),
 							'list'    => $daysOfWeek,
@@ -247,6 +248,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 						'check_out_days',
 						array(
 							'type'    => 'multiple-checkbox',
+							// translators: Days of the week to which a season or booking rule applies, not a duration.
 							'label'   => __( 'Days', 'motopress-hotel-booking' ),
 							'default' => range( 0, 6 ),
 							'list'    => $daysOfWeek,
@@ -293,6 +295,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 						array(
 							'type'        => 'number',
 							'label'       => __( 'Minimum stay', 'motopress-hotel-booking' ),
+							// translators: Unit following a numeric booking-rule input. Refers to nights, not the time of day.
 							'inner_label' => __( 'nights', 'motopress-hotel-booking' ),
 							'default'     => 1,
 							'min'         => 1,
@@ -339,6 +342,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 						array(
 							'type'        => 'number',
 							'label'       => __( 'Maximum stay', 'motopress-hotel-booking' ),
+							// translators: Unit following a numeric booking-rule input. Refers to nights, not the time of day.
 							'inner_label' => __( 'nights', 'motopress-hotel-booking' ),
 							'default'     => 15,
 							'min'         => 1,
@@ -373,6 +377,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 			'mphb_min_advance_reservation',
 			array(
 				'type'        => 'rules-list',
+				// translators: Minimum lead time between making a reservation and checking in, measured in nights.
 				'label'       => __( 'Minimum advance reservation', 'motopress-hotel-booking' ),
 				'empty_label' => __( 'There are no minimum advance reservation rules.', 'motopress-hotel-booking' ),
 				'add_label'   => __( 'Add rule', 'motopress-hotel-booking' ),
@@ -384,7 +389,9 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 						'min_advance_reservation',
 						array(
 							'type'        => 'number',
+							// translators: Minimum lead time between making a reservation and checking in, measured in nights.
 							'label'       => __( 'Minimum advance reservation', 'motopress-hotel-booking' ),
+							// translators: Unit following a numeric booking-rule input. Refers to nights, not the time of day.
 							'inner_label' => __( 'nights', 'motopress-hotel-booking' ),
 							'default'     => 0,
 							'min'         => 0,
@@ -419,6 +426,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 			'mphb_max_advance_reservation',
 			array(
 				'type'        => 'rules-list',
+				// translators: Maximum lead time between making a reservation and checking in, measured in nights.
 				'label'       => __( 'Maximum advance reservation', 'motopress-hotel-booking' ),
 				'empty_label' => __( 'There are no maximum advance reservation rules.', 'motopress-hotel-booking' ),
 				'add_label'   => __( 'Add rule', 'motopress-hotel-booking' ),
@@ -430,7 +438,9 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 						'max_advance_reservation',
 						array(
 							'type'        => 'number',
+							// translators: Maximum lead time between making a reservation and checking in, measured in nights.
 							'label'       => __( 'Maximum advance reservation', 'motopress-hotel-booking' ),
+							// translators: Unit following a numeric booking-rule input. Refers to nights, not the time of day.
 							'inner_label' => __( 'nights', 'motopress-hotel-booking' ),
 							'default'     => 0,
 							'min'         => 0,
@@ -465,6 +475,7 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 			'mphb_buffer_days',
 			array(
 				'type'        => 'rules-list',
+				// translators: Unavailable nights before and after a stay, used to separate consecutive bookings.
 				'label'       => __( 'Booking buffer', 'motopress-hotel-booking' ),
 				'empty_label' => __( 'There are no booking buffer rules.', 'motopress-hotel-booking' ),
 				'add_label'   => __( 'Add rule', 'motopress-hotel-booking' ),
@@ -476,7 +487,9 @@ class BookingRulesMenuPage extends AbstractMenuPage {
 						'buffer_days',
 						array(
 							'type'        => 'number',
+							// translators: Unavailable nights before and after a stay, used to separate consecutive bookings.
 							'label'       => __( 'Booking buffer', 'motopress-hotel-booking' ),
+							// translators: Unit following a numeric booking-rule input. Refers to nights, not the time of day.
 							'inner_label' => __( 'nights', 'motopress-hotel-booking' ),
 							'default'     => 0,
 							'min'         => 0,

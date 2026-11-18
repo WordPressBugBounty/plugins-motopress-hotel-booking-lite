@@ -50,9 +50,11 @@ class GlobalView {
 
 			switch ( $wp_query->get( 'post_type' ) ) {
 				case MPHB()->postTypes()->roomType()->getPostType():
+					// translators: Screen-reader label for navigation between pages of accommodation results, not the number of results per page.
 					$screenReaderText = __( 'Accommodation pagination', 'motopress-hotel-booking' );
 					break;
 				case MPHB()->postTypes()->service()->getPostType():
+					// translators: Screen-reader label for navigation between pages of service results, not the number of results per page.
 					$screenReaderText = __( 'Services pagination', 'motopress-hotel-booking' );
 					break;
 			}

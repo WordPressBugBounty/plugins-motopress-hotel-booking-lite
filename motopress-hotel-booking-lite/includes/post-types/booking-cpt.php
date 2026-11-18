@@ -191,6 +191,7 @@ class BookingCPT extends EditableCPT {
 				'_mphb_booking_price_breakdown',
 				array(
 					'type'  => 'price-breakdown',
+					// translators: Itemized booking cost table, including accommodation, services, taxes, fees, and discounts.
 					'label' => __( 'Price Breakdown', 'motopress-hotel-booking' ),
 				)
 			),

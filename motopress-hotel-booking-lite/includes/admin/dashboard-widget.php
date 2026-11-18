@@ -14,7 +14,7 @@ class DashboardWidget {
 	/**
 	 * @var array|false|null
 	 */
-	private $feed = null;
+	private static $feed = null;
 
 	public function __construct() {
 		add_action( 'wp_dashboard_setup', array( $this, 'register_widget' ) );
@@ -115,7 +115,7 @@ class DashboardWidget {
 			$typeClass        = ! empty( $banner['type'] ) ? ' notice-' . $banner['type'] : '';
 			?>
 			<div class="mphb-dashboard-notice notice <?php echo esc_attr( $dismissibleClass . $resetStylesClass . $typeClass ); ?>">
-				<?php echo $this->sanitize_content( $banner['content'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo self::sanitize_content( $banner['content'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
 			<?php
 		}
@@ -179,16 +179,16 @@ class DashboardWidget {
 	/**
 	 * @return array|false
 	 */
-	private function getFeed() {
-		if ( $this->feed ) {
-			return $this->feed;
+	public static function getFeed() {
+		if ( self::$feed ) {
+			return self::$feed;
 		}
 
 		$feed = get_transient( self::TRANSIENT_KEY );
 
 		if ( $feed ) {
-			$this->feed = $feed;
-			return $this->feed;
+			self::$feed = $feed;
+			return self::$feed;
 		}
 
 		$response = wp_remote_get(
@@ -199,16 +199,16 @@ class DashboardWidget {
 		);
 
 		if ( ! is_wp_error( $response ) && 200 === wp_remote_retrieve_response_code( $response ) ) {
-			$feed = $this->sanitize_data( json_decode( wp_remote_retrieve_body( $response ), true ) );
+			$feed = self::sanitize_data( json_decode( wp_remote_retrieve_body( $response ), true ) );
 
 			if ( $feed ) {
 				set_transient( self::TRANSIENT_KEY, $feed, DAY_IN_SECONDS );
-				$this->feed = $feed;
-				return $this->feed;
+				self::$feed = $feed;
+				return self::$feed;
 			}
 		}
 
-		return $this->feed;
+		return self::$feed;
 	}
 
 	/**
@@ -247,7 +247,7 @@ class DashboardWidget {
 	 * @param mixed $data
 	 * @return array|null
 	 */
-	private function sanitize_data( $data ) {
+	private static function sanitize_data( $data ) {
 		if ( ! is_array( $data ) ) {
 			return null;
 		}
@@ -292,7 +292,7 @@ class DashboardWidget {
 						'start_date'         => sanitize_text_field( $item['start_date'] ?? '' ),
 						'end_date'           => sanitize_text_field( $item['end_date'] ?? '' ),
 						'is_dismissible'     => rest_sanitize_boolean( $item['is_dismissible'] ?? false ),
-						'content'            => $this->sanitize_content( $item['content'] ?? '', true ),
+						'content'            => self::sanitize_content( $item['content'] ?? '', true ),
 						'plugin_min_version' => sanitize_text_field( $item['plugin_min_version'] ?? '' ),
 						'plugin_max_version' => sanitize_text_field( $item['plugin_max_version'] ?? '' ),
 						'is_lite'            => rest_sanitize_boolean( $item['is_lite'] ?? false ),
@@ -311,14 +311,14 @@ class DashboardWidget {
 	 * @param bool $process_urls
 	 * @return string
 	 */
-	private function sanitize_content( $content, $process_urls = false ) {
+	private static function sanitize_content( $content, $process_urls = false ) {
 		global $allowedposttags;
 
 		$tags          = $allowedposttags;
 		$tags['style'] = array();
 
 		if ( $process_urls ) {
-			$content = $this->replace_content_placeholders( $content );
+			$content = self::replace_content_placeholders( $content );
 		}
 
 		return wp_kses( $content, $tags );
@@ -328,7 +328,7 @@ class DashboardWidget {
 	 * @param string $content HTML content.
 	 * @return string
 	 */
-	private function replace_content_placeholders( $content ) {
+	private static function replace_content_placeholders( $content ) {
 		$placeholders = array(
 			'%admin_url%' => admin_url(),
 		);

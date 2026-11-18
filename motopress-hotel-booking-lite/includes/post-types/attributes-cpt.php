@@ -152,19 +152,19 @@ class AttributesCPT extends EditableCPT {
 			'labels'            => array(
 				'name'          => $attributeTitle,
 				'singular_name' => $attributeTitle,
-				/* translators: %s: attribute name */
+				/* translators: %s: User-defined accommodation attribute title (e.g. View), already localized when available and inserted unchanged. Searches the attribute values. Use wording that does not require changing the title's grammatical form; keep %s. */
 				'search_items'  => sprintf( __( 'Search %s', 'motopress-hotel-booking' ), $attributeTitle ),
-				/* translators: %s: attribute name */
+				/* translators: %s: User-defined accommodation attribute title (e.g. View), already localized when available and inserted unchanged. Lists all attribute values. Use wording that does not require changing the title's grammatical form; keep %s. */
 				'all_items'     => sprintf( __( 'All %s', 'motopress-hotel-booking' ), $attributeTitle ),
-				/* translators: %s: attribute name */
+				/* translators: %s: User-defined accommodation attribute title (e.g. View), already localized when available and inserted unchanged. Edits an attribute value, not the attribute itself. Use wording that does not require changing the title's grammatical form; keep %s. */
 				'edit_item'     => sprintf( __( 'Edit %s', 'motopress-hotel-booking' ), $attributeTitle ),
-				/* translators: %s: attribute name */
+				/* translators: %s: User-defined accommodation attribute title (e.g. View), already localized when available and inserted unchanged. Saves changes to an attribute value, not the attribute itself. Use wording that does not require changing the title's grammatical form; keep %s. */
 				'update_item'   => sprintf( __( 'Update %s', 'motopress-hotel-booking' ), $attributeTitle ),
-				/* translators: %s: attribute name */
+				/* translators: %s: User-defined accommodation attribute title (e.g. View), already localized when available and inserted unchanged. Adds an attribute value (e.g. Sea view), not a new attribute. Use wording that does not require changing the title's grammatical form; keep %s. */
 				'add_new_item'  => sprintf( __( 'Add new %s', 'motopress-hotel-booking' ), $attributeTitle ),
-				/* translators: %s: attribute name */
+				/* translators: %s: User-defined accommodation attribute title (e.g. View), already localized when available and inserted unchanged. Label for the name of a new attribute value, not a new attribute. Use wording that does not require changing the title's grammatical form; keep %s. */
 				'new_item_name' => sprintf( __( 'New %s', 'motopress-hotel-booking' ), $attributeTitle ),
-				/* translators: %s: attribute name */
+				/* translators: %s: User-defined accommodation attribute title (e.g. View), already localized when available and inserted unchanged. Shown when no attribute values are found. Preserve the quote entities. Use wording that does not require changing the title's grammatical form; keep %s. */
 				'not_found'     => sprintf( __( 'No &quot;%s&quot; found', 'motopress-hotel-booking' ), $attributeTitle ),
 			),
 			'public'            => $public,
@@ -297,8 +297,11 @@ class AttributesCPT extends EditableCPT {
 			$orders['custom'] = __( 'Custom', 'motopress-hotel-booking' );
 		}
 
-		$orders['name']    = __( 'Name', 'motopress-hotel-booking' );
+		// translators: Sort accommodation attribute values alphabetically by their names, not by a person's name.
+		$orders['name']    = _x( 'Name', 'Attribute term name', 'motopress-hotel-booking' );
+		// translators: Sort attribute terms by the numeric value of their names rather than alphabetically.
 		$orders['numeric'] = __( 'Name (numeric)', 'motopress-hotel-booking' );
+		// translators: WordPress taxonomy term identifier for an accommodation attribute value.
 		$orders['id']      = __( 'Term ID', 'motopress-hotel-booking' );
 
 		$defaultOrder = $this->getDefaultOrderby();

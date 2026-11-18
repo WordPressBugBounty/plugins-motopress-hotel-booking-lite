@@ -1,0 +1,69 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/js\/admin\/admin.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "it_IT",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Accommodation Type": [
+                "Tipo di struttura"
+            ],
+            "Accommodation": [
+                "Alloggio"
+            ],
+            "From": [
+                "Da"
+            ],
+            "Till": [
+                "Fino a"
+            ],
+            "Restriction": [
+                "Restrizioni"
+            ],
+            "Comment": [
+                "Commento"
+            ],
+            "All": [
+                "Tutti"
+            ],
+            "Quick edit block #%s inline": [
+                "Modifica rapida in linea del blocco #%s"
+            ],
+            "Quick Edit": [
+                "Modifica rapida"
+            ],
+            "Delete": [
+                "Elimina"
+            ],
+            "Not check-in": [
+                "Check-in non \u00e8 disponibile"
+            ],
+            "Not check-out": [
+                "Check-out non \u00e8 disponibile"
+            ],
+            "Not stay-in": [
+                "Soggiorno non \u00e8 disponibile"
+            ],
+            "None": [
+                "Nessuno"
+            ],
+            "Cancel": [
+                "Annulla"
+            ],
+            "Save": [
+                "Salva"
+            ],
+            "Unable to save the object. %s": [
+                "Impossibile salvare il blocco di disponibilit\u00e0. %s"
+            ],
+            "The start and end dates of the block are required.": [
+                "Le date di inizio e fine del blocco sono obbligatorie."
+            ]
+        }
+    }
+}

@@ -33,8 +33,8 @@ do_action( 'mphb_cb_reserve_rooms_form_before_start' );
 				<tr>
 					<th class="check-column">&nbsp;</th>
 					<th class="row-title"><?php esc_html_e( 'Title', 'motopress-hotel-booking' ); ?></th>
-					<th class="row-title"><?php esc_html_e( 'Capacity', 'motopress-hotel-booking' ); ?></th>
-					<th class="row-title"><?php esc_html_e( 'Base price', 'motopress-hotel-booking' ); ?></th>
+					<th class="row-title"><?php /* translators: Maximum total number of guests an accommodation can host, including adults and children. */ esc_html_e( 'Capacity', 'motopress-hotel-booking' ); ?></th>
+					<th class="row-title"><?php /* translators: Accommodation price for the selected stay shown before the administrator chooses a rate and extras. Not a nightly price in this table. */ esc_html_e( 'Base price', 'motopress-hotel-booking' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>

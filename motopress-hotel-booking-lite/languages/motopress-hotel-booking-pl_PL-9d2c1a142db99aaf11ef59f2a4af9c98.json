@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/guide\/index.js",
     "domain": "messages",
@@ -20,49 +20,49 @@
                 "Sezony"
             ],
             "Rates": [
-                "Oceny"
+                "Stawki"
             ],
             "Period": [
-                ""
+                "Okres"
             ],
             "Quick Start Guide": [
-                ""
+                "Skr\u00f3cona instrukcja obs\u0142ugi"
             ],
             "Get familiar with the main interface and key features of the calendar.": [
-                ""
+                "Poznaj g\u0142\u00f3wny interfejs i najwa\u017cniejsze funkcje kalendarza."
             ],
             "Select a period to display. Use the arrows to navigate and the refresh button to update data.": [
-                ""
+                "Wybierz okres do wy\u015bwietlenia. U\u017cyj strza\u0142ek do nawigacji i przycisku od\u015bwie\u017cania do aktualizacji danych."
             ],
             "View Options": [
-                ""
+                "Opcje widoku"
             ],
             "Display bookings in the Calendar or List view. Use filters to show all accommodations or specific ones.": [
-                ""
+                "Wy\u015bwietlaj rezerwacje w widoku kalendarza lub listy. U\u017cyj filtr\u00f3w, aby pokaza\u0107 wszystkie lub wybrane obiekty."
             ],
             "Timeline": [
-                ""
+                "O\u015b czasu"
             ],
             "The timeline shows the selected period and can be scrolled to view additional dates.": [
-                ""
+                "O\u015b czasu pokazuje wybrany okres i mo\u017cna j\u0105 przewija\u0107, aby zobaczy\u0107 dodatkowe daty."
             ],
             "Create seasons to set prices or booking rules for specific periods.": [
-                ""
+                "Tw\u00f3rz sezony, aby ustala\u0107 ceny lub regu\u0142y rezerwacji dla okre\u015blonych okres\u00f3w."
             ],
             "View your accommodations, prices, bookings, and booking rules.": [
-                ""
+                "Przegl\u0105daj swoje obiekty, ceny, rezerwacje i regu\u0142y rezerwacji."
             ],
             "Working Area": [
-                ""
+                "Obszar roboczy"
             ],
             "View your bookings and blocked availability. Choose a date range to create a new booking or block.": [
-                ""
+                "Przegl\u0105daj rezerwacje i blokady dost\u0119pno\u015bci. Wybierz zakres dat, aby utworzy\u0107 now\u0105 rezerwacj\u0119 lub blokad\u0119."
             ],
             "Use rates to set prices for seasons or individual days.": [
-                ""
+                "U\u017cywaj stawek do ustalania cen dla sezon\u00f3w lub poszczeg\u00f3lnych dni."
             ],
             "Set rules for specific periods or individual days, such as allowed check-in days and min or max length of stay.": [
-                ""
+                "Ustawiaj regu\u0142y dla okre\u015blonych okres\u00f3w lub poszczeg\u00f3lnych dni, np. dozwolone dni zameldowania oraz minimaln\u0105 lub maksymaln\u0105 d\u0142ugo\u015b\u0107 pobytu."
             ]
         }
     }

@@ -45,7 +45,7 @@ class BookingsController extends AbstractRestObjectController {
 	 * @return WP_Error|WP_REST_Response
 	 */
 	public function get_items( $request ) {
-		if ( isset( $request['search'] ) ) {
+		if ( isset( $request['search'] ) || ! empty( $request['mphb_room_type_id'] ) ) {
 			add_filter( 'posts_join', array( $this, 'extendSearchPostsJoin' ), 10, 2 );
 			add_filter( 'posts_search', array( $this, 'extendPostsSearch' ), 10, 2 );
 			add_filter( 'posts_distinct', array( $this, 'searchDistinct' ), 10 );
@@ -191,7 +191,7 @@ class BookingsController extends AbstractRestObjectController {
 	 *
 	 * @return string
 	 */
-	function searchDistinct() {
+	public function searchDistinct() {
 		return 'DISTINCT';
 	}
 

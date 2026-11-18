@@ -36,6 +36,7 @@ class DirectBankTransferEmail extends BaseEmail {
 	}
 
 	public function getDefaultSubject() {
+		// translators: Email subject. Keep %site_title% and %booking_id% replacement tags unchanged.
 		return __( '%site_title% - Pay for your booking #%booking_id%', 'motopress-hotel-booking' );
 	}
 

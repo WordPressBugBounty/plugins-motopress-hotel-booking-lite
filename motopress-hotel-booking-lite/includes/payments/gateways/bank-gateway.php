@@ -100,12 +100,14 @@ class BankGateway extends Gateway {
 		$fields += array(
 			'is_auto_abandon_bookings' => array(
 				'type'        => 'checkbox',
+				// translators: Automatically mark unpaid bank-transfer bookings as Abandoned after the payment deadline.
 				'inner_label' => __( 'Enable Auto-Abandonment', 'motopress-hotel-booking' ),
 				'description' => __( 'Automatically abandon bookings and release reserved slots if payment is not received within a specified time period. You need to manually set the status of paid payments to Completed to avoid automatic abandonment.', 'motopress-hotel-booking' ),
 				'default'     => $this->getDefaultOption( 'is_auto_abandon_bookings' ),
 			),
 			'payment_and_booking_pending_time' => array(
 				'type'        => 'number',
+				// translators: Hours allowed to pay by bank transfer. The general online-payment setting uses the same label with minutes instead.
 				'label'       => __( 'Pending Payment Time', 'motopress-hotel-booking' ),
 				'description' => __( 'Period of time in hours a user has to pay for a booking. Unpaid bookings become abandoned, and accommodations become available for others.', 'motopress-hotel-booking' ),
 				'min'         => 1,

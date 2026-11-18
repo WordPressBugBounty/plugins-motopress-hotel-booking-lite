@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "nl_NL",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "Accommodation Type": [
+                "Type Kamer"
+            ],
+            "Accommodation": [
+                "Accommodatie"
+            ],
+            "Restriction": [
+                "Beperking"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                "Niet inchecken regel markeert de datum als niet beschikbaar voor inchecken."
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                "Niet uitchecken regel markeert de datum als niet beschikbaar voor uitchecken."
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                "De regel Niet verblijven toont de datum als geblokkeerd. Op deze datum kan niet worden ingecheckt en op de volgende datum kan niet worden uitgecheckt."
+            ],
+            "Comment": [
+                "Commentaar"
+            ],
+            "All": [
+                "Alle"
+            ],
             "Delete": [
                 "Wis"
+            ],
+            "Not check-in": [
+                "Niet inchecken"
+            ],
+            "Not check-out": [
+                "Niet uitchecken"
+            ],
+            "Not stay-in": [
+                "Niet verblijven"
             ],
             "Email": [
                 "E-mail"
@@ -49,9 +82,6 @@
             "Edit": [
                 "Bewerk"
             ],
-            "All": [
-                "Alle"
-            ],
             "Nights": [
                 "Nachten"
             ],
@@ -65,19 +95,19 @@
                 "Prijs per extra kind"
             ],
             "Status": [
-                "Gepubliceerd"
+                "Status"
             ],
             "Price": [
                 "Prijs"
             ],
-            "Accommodation": [
-                "Accommodatie"
-            ],
             "Paid: %s": [
                 "Betaald: %s"
             ],
-            "Accommodation Type": [
-                "Type Kamer"
+            "Awaiting charge": [
+                "Wacht op inning"
+            ],
+            "+%s txn fee": [
+                "+%s transactiekosten"
             ],
             "Add New Season Price": [
                 "Nieuwe seizoensprijs toevoegen"
@@ -86,10 +116,13 @@
                 "Dagen"
             ],
             "Repeat": [
-                "Repeat"
+                "Herhalen"
             ],
             "Booking Rules": [
                 "Boekingsregels"
+            ],
+            "Block Accommodations": [
+                "Accommodaties blokkeren"
             ],
             "Check-in days": [
                 "Inchecken dagen"
@@ -106,30 +139,6 @@
             "Maximum stay": [
                 "Maximum verblijf"
             ],
-            "Restriction": [
-                "Beperking"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                "Niet inchecken regel markeert de datum als niet beschikbaar voor inchecken."
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                "Niet uitchecken regel markeert de datum als niet beschikbaar voor uitchecken."
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                ""
-            ],
-            "Not check-in": [
-                "Niet inchecken"
-            ],
-            "Not check-out": [
-                "Niet uitchecken"
-            ],
-            "Not stay-in": [
-                "Niet verblijven"
-            ],
-            "Comment": [
-                "Commentaar"
-            ],
             "Minimum advance reservation": [
                 "Minimale reservering vooraf"
             ],
@@ -137,7 +146,7 @@
                 "Maximale reservering vooraf"
             ],
             "Booking buffer": [
-                "Boeking buffer"
+                "Boekingsbuffer"
             ],
             "Calendar": [
                 "Kalender"
@@ -179,10 +188,10 @@
                 "Omschrijving"
             ],
             "Summary": [
-                ""
+                "Samenvatting"
             ],
             "Source": [
-                ""
+                "Bron"
             ],
             "Customer Note": [
                 "Opmerking van de klant"
@@ -193,8 +202,8 @@
             "Notes": [
                 "Opmerkingen"
             ],
-            "Booking status\u0004Confirmed": [
-                "Bevestigd"
+            "An error has occurred": [
+                "Er heeft zich een fout voorgedaan"
             ],
             "Booked": [
                 "Gereserveerd"
@@ -208,6 +217,9 @@
             "Blocked": [
                 "Geblokkeerd"
             ],
+            "Booking status\u0004Confirmed": [
+                "Bevestigd"
+            ],
             "Check-in": [
                 "Inchecken"
             ],
@@ -215,7 +227,7 @@
                 "Uitchecken"
             ],
             "Blocked because the linked accommodation is booked": [
-                ""
+                "Geblokkeerd omdat de gekoppelde accommodatie is geboekt"
             ],
             "Booking status\u0004Pending User Confirmation": [
                 "In afwachting van de bevestiging van een gebruiker"
@@ -245,19 +257,19 @@
                 "Nieuw tarief toevoegen"
             ],
             "Base Adults Occupancy": [
-                ""
+                "Basisbezetting volwassenen"
             ],
             "Base Children Occupancy": [
-                ""
+                "Basisbezetting kinderen"
             ],
             "Applied for days": [
                 "Geldig voor dagen"
             ],
             "Annual repeats begin on the Start date of the season, for one year from the current date.": [
-                ""
+                "Jaarlijkse herhalingen beginnen op de startdatum van het seizoen en lopen \u00e9\u00e9n jaar vanaf de huidige datum."
             ],
             "Repeat until date": [
-                ""
+                "Herhalen tot datum"
             ],
             "Add New Season": [
                 "Nieuw seizoen toevoegen"
@@ -275,13 +287,13 @@
                 "Deze week"
             ],
             "This month": [
-                ""
+                "Deze maand"
             ],
             "This quarter": [
-                ""
+                "Dit kwartaal"
             ],
             "This year": [
-                ""
+                "Dit jaar"
             ],
             "Book": [
                 "Reserveren"
@@ -307,10 +319,10 @@
                 "Gast:"
             ],
             "Total Paid": [
-                "Total betaalde"
+                "Totaal betaald"
             ],
             "To Pay": [
-                "Betaling"
+                "Te betalen"
             ],
             "Add Payment Manually": [
                 "Handmatige betaling toevoegen"
@@ -327,143 +339,152 @@
             "Nothing found.": [
                 "Niets gevonden."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
-                ""
+                "Een seizoen is een periode waarvoor verschillende accommodatieprijzen worden ingesteld."
             ],
             "Block": [
-                ""
+                "Blokkeren"
             ],
             "Daily price": [
-                ""
+                "Prijs per nacht"
             ],
             "Select an action": [
-                ""
+                "Selecteer een actie"
             ],
             "Daily": [
-                ""
+                "Dagelijks"
             ],
             "Rule #%1$d": [
-                ""
+                "Regel #%1$d"
             ],
             "Min. stay": [
-                ""
+                "Min. verblijf"
             ],
             "Max. stay": [
-                ""
+                "Max. verblijf"
             ],
             "Min. adv. res.": [
-                ""
+                "Min. vooraf reserveren"
             ],
             "Max. adv. res.": [
-                ""
+                "Max. vooraf reserveren"
             ],
             "Allow": [
-                ""
+                "Toestaan"
             ],
             "Disallow": [
-                ""
+                "Niet toestaan"
             ],
             "Max. advance reservation": [
-                ""
+                "Max. termijn vooraf reserveren"
             ],
             "Min. advance reservation": [
-                ""
-            ],
-            "Please select at least one accommodation type.": [
-                ""
-            ],
-            "It looks like you haven`t created any accommodation types yet.": [
-                ""
-            ],
-            "Create your first accommodation type.": [
-                ""
-            ],
-            "Next 7 days": [
-                ""
-            ],
-            "Next 14 days": [
-                ""
-            ],
-            "Next 30 days": [
-                ""
-            ],
-            "Previous": [
-                ""
-            ],
-            "Next": [
-                ""
+                "Min. termijn vooraf reserveren"
             ],
             "Reload": [
-                ""
+                "Opnieuw laden"
+            ],
+            "Please select at least one accommodation type.": [
+                "Selecteer ten minste \u00e9\u00e9n accommodatietype."
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                "Het lijkt erop dat u nog geen accommodatietypen heeft aangemaakt."
+            ],
+            "Create your first accommodation type.": [
+                "Maak uw eerste accommodatietype aan."
+            ],
+            "Next 7 days": [
+                "Komende 7 dagen"
+            ],
+            "Next 14 days": [
+                "Komende 14 dagen"
+            ],
+            "Next 30 days": [
+                "Komende 30 dagen"
+            ],
+            "Previous": [
+                "Vorige"
+            ],
+            "Next": [
+                "Volgende"
             ],
             "Filter items\u2026": [
-                ""
+                "Items filteren\u2026"
             ],
             "Compact Calendar": [
-                ""
+                "Compacte kalender"
             ],
             "List": [
-                ""
+                "Lijst"
+            ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                "<a>Upgrade naar Premium<\/a> om deze functie te gebruiken."
             ],
             "Booking #%1$d": [
-                ""
+                "Boeking #%1$d"
+            ],
+            "Unable to load rate.": [
+                "Kan het tarief niet laden."
+            ],
+            "Retry": [
+                "Opnieuw proberen"
+            ],
+            "Loading\u2026": [
+                "Laden\u2026"
             ],
             "Total Price": [
-                ""
+                "Totaalprijs"
             ],
             "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
-                ""
+                "U heeft nog geen seizoenen aangemaakt. Een seizoen is een periode waarvoor verschillende accommodatieprijzen worden ingesteld."
             ],
             "Repeat annually": [
-                ""
+                "Jaarlijks herhalen"
             ],
             "Repeat annually, until %1$s": [
-                ""
+                "Jaarlijks herhalen, tot %1$s"
             ],
             "Priority": [
-                ""
+                "Prioriteit"
             ],
             "First": [
-                ""
+                "Eerste"
             ],
             "Last": [
-                ""
+                "Laatste"
             ],
             "From\/Till": [
-                ""
+                "Van\/tot"
             ],
             "Edit Block": [
-                ""
+                "Blokkering bewerken"
             ],
             "Select\u2026": [
-                ""
+                "Selecteer\u2026"
             ],
             "Update %1$s rate for %2$s": [
-                ""
+                "Tarief %1$s bijwerken voor %2$s"
             ],
             "Edit Season Price": [
-                ""
+                "Seizoensprijs bewerken"
+            ],
+            "Unable to load rates.": [
+                "Kan de tarieven niet laden."
             ],
             "Quick booking rules": [
-                ""
+                "Snelle boekingsregels"
             ],
             "Check-in today": [
-                ""
+                "Vandaag inchecken"
             ],
             "Check-out today": [
-                ""
+                "Vandaag uitchecken"
+            ],
+            "Unable to load bookings.": [
+                "Kan de boekingen niet laden."
             ],
             "In-House": [
-                ""
+                "Momenteel aanwezige gasten"
             ]
         }
     }

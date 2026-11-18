@@ -29,6 +29,7 @@ class RoomTypeManageCPTPage extends ManageCPTPage {
 	public function filterColumns( $columns ) {
 
 		$customColumns = array(
+			// translators: Maximum total number of guests an accommodation can host, including adults and children.
 			'capacity' => __( 'Capacity', 'motopress-hotel-booking' ),
 			'bed'      => __( 'Bed Type', 'motopress-hotel-booking' ),
 			'rooms'    => __( 'Accommodations', 'motopress-hotel-booking' ),

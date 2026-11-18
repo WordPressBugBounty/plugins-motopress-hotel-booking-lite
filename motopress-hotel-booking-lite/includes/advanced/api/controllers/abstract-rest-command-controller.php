@@ -115,7 +115,7 @@ abstract class AbstractRestCommandController {
 				return $response_data;
 			}
 
-			if ( !static::is_responce_cachable() ) {
+			if ( ! static::is_responce_cachable() ) {
 				header( 'Cache-Control: no-store' );
 			}
 
@@ -124,7 +124,7 @@ abstract class AbstractRestCommandController {
 			// header( 'Content-Type: ' . static::get_successful_response_content_type() );
 
 			if ( 'text/plain' === static::get_successful_response_content_type() ||
-				'text/html' === static::get_successful_response_content_type()
+			'text/html' === static::get_successful_response_content_type()
 			) {
 				header( 'Content-Type: ' . static::get_successful_response_content_type() );
 				// phpcs:ignore

@@ -337,23 +337,22 @@ class AccommodationTypeData extends AbstractPostData {
 			return $this->services;
 		}
 
-		$services = $this->entity->getServices();
+		$services = array();
 
-		if ( ! count( $services ) ) {
-			return $services;
+		foreach ( $this->entity->getServices() as $service_id ) {
+			$service = get_post( $service_id );
+
+			if ( ! $service ) {
+				continue;
+			}
+
+			$services[] = array(
+				'id'    => $service->ID,
+				'title' => $service->post_title,
+			);
 		}
 
-		return array_map(
-			function ( $service ) {
-				$service = get_post( $service );
-
-				return array(
-					'id'    => $service->ID,
-					'title' => $service->post_title,
-				);
-			},
-			$services
-		);
+		return $services;
 	}
 
 
@@ -367,8 +366,8 @@ class AccommodationTypeData extends AbstractPostData {
 			$categoryTerms = $this->categories;
 		}
 
-		if ( ! count( $categoryTerms ) ) {
-			return $categoryTerms;
+		if ( is_wp_error( $categoryTerms ) || ! count( $categoryTerms ) ) {
+			return array();
 		}
 
 		$categoriesTermData = wp_list_pluck( $categoryTerms, 'name', 'term_id' );
@@ -386,8 +385,8 @@ class AccommodationTypeData extends AbstractPostData {
 			$tagTerms = $this->tags;
 		}
 
-		if ( ! count( $tagTerms ) ) {
-			return $tagTerms;
+		if ( is_wp_error( $tagTerms ) || ! count( $tagTerms ) ) {
+			return array();
 		}
 
 		$tagsTermData = wp_list_pluck( $tagTerms, 'name', 'term_id' );
@@ -405,8 +404,8 @@ class AccommodationTypeData extends AbstractPostData {
 			$amenityTerms = $this->amenities;
 		}
 
-		if ( ! count( $amenityTerms ) ) {
-			return $amenityTerms;
+		if ( is_wp_error( $amenityTerms ) || ! count( $amenityTerms ) ) {
+			return array();
 		}
 
 		$amenitiesTermData = wp_list_pluck( $amenityTerms, 'name', 'term_id' );

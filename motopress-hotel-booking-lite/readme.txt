@@ -1,10 +1,10 @@
 === MotoPress Hotel Booking ===
 Contributors: MotoPress
 Donate link: https://motopress.com/
-Requires at least: 5.2
+Requires at least: 6.6
 Tags: hotel booking, reservation, hotel, booking engine, booking, booking calendar, booking system, calendar, online booking, airbnb, booking.com, homeaway, vrbo, tripadvisor, booking form, availability calendar, channel manager, property management system, vacation, travel
 Tested up to: 7.1
-Stable tag: 6.4.0
+Stable tag: 6.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -175,6 +175,15 @@ MotoPress Hotel Booking plugin, Copyright (C) 2016, MotoPress https://motopress.
 MotoPress Hotel Booking plugin is distributed under the terms of the GNU GPL.
 
 == Changelog ==
+
+= 6.5.0, Nov 18 2026 =
+* New: Added Dashboard (beta) to monitor bookings, arrivals, departures, availability, payments, and property performance in one place.
+* Improvement: The check-out date picker now opens automatically after selecting a check-in date. The same behavior now applies to supported admin date fields.
+* Improvement: Improved admin calendar loading by avoiding unnecessary data requests for bookings, rates, and booking rules.
+* Improvement: Updated Dutch, French, German, Italian, Polish, Spanish, and Ukrainian translations.
+* Bug fix: Fixed PHP warnings when a deleted service was still assigned to an accommodation type.
+* Bug fix: Fixed bookings being incorrectly canceled after partial refunds via Stripe.
+* Increased the minimum required WordPress version to 6.6.
 
 = 6.4.0, Oct 13 2026 =
 * New: Added a compact view to the new admin Calendar.

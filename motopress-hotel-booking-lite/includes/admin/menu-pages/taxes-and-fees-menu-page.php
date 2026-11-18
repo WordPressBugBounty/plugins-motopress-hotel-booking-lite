@@ -188,9 +188,11 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 						'limit',
 						array(
 							'type'        => 'number',
+							// translators: Maximum number of stay days on which a fee or tax is charged; 0 means every day, 1 means once.
 							'label'       => __( 'Limit', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
 								__( 'How often this fee is charged. Set 0 to charge each day of the stay period. Set 1 to charge once.', 'motopress-hotel-booking' )
 							),
+							// translators: Unit following a numeric setting: a number of days. Preserve a form that works with the separate input.
 							'inner_label' => __( 'days', 'motopress-hotel-booking' ),
 							'min'         => 0,
 							'dependency'  => array(
@@ -203,9 +205,11 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 						'included',
 						array(
 							'type'        => 'single-checkbox',
+							// translators: Checkbox to include the fee or tax in the displayed accommodation rate.
 							'label'       => __( 'Include', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
 								__( 'Show accommodation rate with this charge included', 'motopress-hotel-booking' )
 							),
+							// translators: Checkbox to include the fee or tax in the displayed accommodation rate.
 							'inner_label' => __( 'Include', 'motopress-hotel-booking' ),
 							'default'     => 0,
 						)
@@ -284,9 +288,11 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 						'limit',
 						array(
 							'type'        => 'number',
+							// translators: Maximum number of stay days on which a fee or tax is charged; 0 means every day, 1 means once.
 							'label'       => __( 'Limit', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
 								__( 'Limit of days the fee is charged. Set 0 to charge each day of stay period. Set 1 to charge once.', 'motopress-hotel-booking' )
 							),
+							// translators: Unit following a numeric setting: a number of days. Preserve a form that works with the separate input.
 							'inner_label' => __( 'days', 'motopress-hotel-booking' ),
 							'min'         => 0,
 							'dependency'  => array(
@@ -299,9 +305,11 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 						'included',
 						array(
 							'type'        => 'single-checkbox',
+							// translators: Checkbox to include the fee or tax in the displayed accommodation rate.
 							'label'       => __( 'Include', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
 								__( 'Show accommodation rate with this charge included', 'motopress-hotel-booking' )
 							),
+							// translators: Checkbox to include the fee or tax in the displayed accommodation rate.
 							'inner_label' => __( 'Include', 'motopress-hotel-booking' ),
 							'default'     => 0,
 						)
@@ -370,9 +378,11 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 						'limit',
 						array(
 							'type'        => 'number',
+							// translators: Maximum number of stay days on which a fee or tax is charged; 0 means every day, 1 means once.
 							'label'       => __( 'Limit', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
 								__( 'Limit of days the fee is charged. Set 0 to charge each day of stay period. Set 1 to charge once.', 'motopress-hotel-booking' )
 							),
+							// translators: Unit following a numeric setting: a number of days. Preserve a form that works with the separate input.
 							'inner_label' => __( 'days', 'motopress-hotel-booking' ),
 							'min'         => 0,
 							'disabled'    => true,
@@ -441,9 +451,11 @@ class TaxesAndFeesMenuPage extends AbstractMenuPage {
 						'limit',
 						array(
 							'type'        => 'number',
+							// translators: Maximum number of stay days on which a fee or tax is charged; 0 means every day, 1 means once.
 							'label'       => __( 'Limit', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip(
 								__( 'Limit of days the fee is charged. Set 0 to charge each day of stay period. Set 1 to charge once.', 'motopress-hotel-booking' )
 							),
+							// translators: Unit following a numeric setting: a number of days. Preserve a form that works with the separate input.
 							'inner_label' => __( 'days', 'motopress-hotel-booking' ),
 							'min'         => 0,
 							'disabled'    => true,

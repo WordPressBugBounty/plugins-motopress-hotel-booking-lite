@@ -77,22 +77,26 @@ class Statuses extends AbstractCPT\Statuses {
 
 			case self::STATUS_PENDING:
 				$args = array(
+					// translators: Booking awaiting manual approval by the property administrator.
 					'label'                     => _x( 'Pending Admin', 'Booking status', 'motopress-hotel-booking' ),
 					'public'                    => true,
 					'exclude_from_search'       => false,
 					'show_in_admin_all_list'    => true,
 					'show_in_admin_status_list' => true,
+					// translators: %s: Number of bookings awaiting manual approval by the property administrator.
 					'label_count'               => _n_noop( 'Pending Admin <span class="count">(%s)</span>', 'Pending Admin <span class="count">(%s)</span>', 'motopress-hotel-booking' ),
 				);
 				break;
 
 			case self::STATUS_ABANDONED:
 				$args = array(
+					// translators: Incomplete booking whose confirmation or payment deadline has expired; the accommodation is released for other bookings.
 					'label'                     => _x( 'Abandoned', 'Booking status', 'motopress-hotel-booking' ),
 					'public'                    => true,
 					'exclude_from_search'       => false,
 					'show_in_admin_all_list'    => true,
 					'show_in_admin_status_list' => true,
+					// translators: %s: Number of incomplete bookings or payments, such as those whose deadline expired. Shared booking/payment status label; not neglected property.
 					'label_count'               => _n_noop( 'Abandoned <span class="count">(%s)</span>', 'Abandoned <span class="count">(%s)</span>', 'motopress-hotel-booking' ),
 				);
 				break;
@@ -177,6 +181,7 @@ class Statuses extends AbstractCPT\Statuses {
 			$booking->deleteExpiration( 'payment' );
 		}
 
+		// translators: Unnumbered placeholders in order: previous status label, new status label. Use numbered placeholders if reordering.
 		$booking->addLog( sprintf( __( 'Status changed from %s to %s.', 'motopress-hotel-booking' ), mphb_get_status_label( $oldStatus ), mphb_get_status_label( $newStatus ) ) );
 
 		do_action( 'mphb_booking_status_changed', $booking, $oldStatus );

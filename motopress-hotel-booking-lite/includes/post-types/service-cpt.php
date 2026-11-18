@@ -147,10 +147,14 @@ class ServiceCPT extends EditableCPT {
 			'mphb_price_periodicity',
 			array(
 				'type'        => 'select',
+				// translators: Service pricing frequency: once per stay, per night, or a quantity chosen by the guest.
 				'label'       => __( 'Periodicity', 'motopress-hotel-booking' ),
 				'list'        => array(
+					// translators: Service is charged once for the stay rather than for every night.
 					'once'      => __( 'Once', 'motopress-hotel-booking' ),
+					// translators: Service charge for each night of the stay; the underlying pricing period is per night.
 					'per_night' => __( 'Per Day', 'motopress-hotel-booking' ),
+					// translators: Service pricing option in which the guest chooses the quantity to purchase.
 					'flexible'  => __( 'Guest Choice', 'motopress-hotel-booking' ),
 				),
 				'description' => __( 'How many times the customer will be charged.', 'motopress-hotel-booking' ),
@@ -164,6 +168,7 @@ class ServiceCPT extends EditableCPT {
 				'mphb_min_quantity',
 				array(
 					'type'    => 'number',
+					// translators: Minimum quantity of a flexible-price service that the guest can purchase.
 					'label'   => __( 'Minimum', 'motopress-hotel-booking' ),
 					'default' => 1,
 					'min'     => 1,
@@ -178,8 +183,9 @@ class ServiceCPT extends EditableCPT {
 				'mphb_is_auto_limit',
 				array(
 					'type'        => 'checkbox',
+					// translators: Maximum quantity of a flexible-price service that the guest can purchase.
 					'label'       => __( 'Maximum', 'motopress-hotel-booking' ),
-					'inner_label' => __( 'Use the length of stay as the maximum value.' ),
+					'inner_label' => __( 'Use the length of stay as the maximum value.', 'motopress-hotel-booking' ),
 					'default'     => false,
 				)
 			)
@@ -203,9 +209,12 @@ class ServiceCPT extends EditableCPT {
 			'mphb_price_quantity',
 			array(
 				'type'    => 'select',
+				// translators: Service pricing basis: per guest or per accommodation. Not a button to capture a payment.
 				'label'   => __( 'Charge', 'motopress-hotel-booking' ),
 				'list'    => array(
+					// translators: Service price applies separately to each booked accommodation, regardless of guest count.
 					'once'      => __( 'Per Accommodation', 'motopress-hotel-booking' ),
+					// translators: Service price applies separately to each guest.
 					'per_adult' => __( 'Per Guest', 'motopress-hotel-booking' ),
 				),
 				'default' => 'once',

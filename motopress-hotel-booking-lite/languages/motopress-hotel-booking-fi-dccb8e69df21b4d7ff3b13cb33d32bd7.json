@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "fi_FI",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "Accommodation Type": [
+                "Majoitustyyppi"
+            ],
+            "Accommodation": [
+                "Majoitus"
+            ],
+            "Restriction": [
+                "Rajoitus"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Comment": [
+                "Kommentti"
+            ],
+            "All": [
+                "Kaikki"
+            ],
             "Delete": [
                 "Poista"
+            ],
+            "Not check-in": [
+                "Ei check-in"
+            ],
+            "Not check-out": [
+                "Ei check-out"
+            ],
+            "Not stay-in": [
+                ""
             ],
             "Email": [
                 "S\u00e4hk\u00f6posti"
@@ -49,9 +82,6 @@
             "Edit": [
                 "Muokkaa"
             ],
-            "All": [
-                "Kaikki"
-            ],
             "Nights": [
                 "Y\u00f6t"
             ],
@@ -70,14 +100,14 @@
             "Price": [
                 "Hinta"
             ],
-            "Accommodation": [
-                "Majoitus"
-            ],
             "Paid: %s": [
                 "Maksettu: %s"
             ],
-            "Accommodation Type": [
-                "Majoitustyyppi"
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
             ],
             "Add New Season Price": [
                 "Lis\u00e4\u00e4 uusi kausihinta"
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "Varauksen s\u00e4\u00e4nn\u00f6t"
+            ],
+            "Block Accommodations": [
+                ""
             ],
             "Check-in days": [
                 "Check-in p\u00e4iv\u00e4t"
@@ -105,30 +138,6 @@
             ],
             "Maximum stay": [
                 "Maksimi y\u00f6pymisen pituus"
-            ],
-            "Restriction": [
-                "Rajoitus"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                ""
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                ""
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                ""
-            ],
-            "Not check-in": [
-                "Ei check-in"
-            ],
-            "Not check-out": [
-                "Ei check-out"
-            ],
-            "Not stay-in": [
-                ""
-            ],
-            "Comment": [
-                "Kommentti"
             ],
             "Minimum advance reservation": [
                 ""
@@ -193,8 +202,8 @@
             "Notes": [
                 "Muistiinpanot"
             ],
-            "Booking status\u0004Confirmed": [
-                "Vahvistettu"
+            "An error has occurred": [
+                "Virhe on tapahtunut"
             ],
             "Booked": [
                 "Varattu"
@@ -207,6 +216,9 @@
             ],
             "Blocked": [
                 "Estetty"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Vahvistettu"
             ],
             "Check-in": [
                 "Saapumisp\u00e4iv\u00e4"
@@ -327,15 +339,6 @@
             "Nothing found.": [
                 "Ei hakutuloksia."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
                 ""
             ],
@@ -378,6 +381,9 @@
             "Min. advance reservation": [
                 ""
             ],
+            "Reload": [
+                ""
+            ],
             "Please select at least one accommodation type.": [
                 ""
             ],
@@ -402,9 +408,6 @@
             "Next": [
                 ""
             ],
-            "Reload": [
-                ""
-            ],
             "Filter items\u2026": [
                 ""
             ],
@@ -414,7 +417,19 @@
             "List": [
                 ""
             ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
             "Booking #%1$d": [
+                ""
+            ],
+            "Unable to load rate.": [
+                ""
+            ],
+            "Retry": [
+                ""
+            ],
+            "Loading\u2026": [
                 ""
             ],
             "Total Price": [
@@ -453,6 +468,9 @@
             "Edit Season Price": [
                 ""
             ],
+            "Unable to load rates.": [
+                ""
+            ],
             "Quick booking rules": [
                 ""
             ],
@@ -460,6 +478,9 @@
                 ""
             ],
             "Check-out today": [
+                ""
+            ],
+            "Unable to load bookings.": [
                 ""
             ],
             "In-House": [

@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "fr_FR",
                 "plural-forms": "nplurals=2; plural=(n > 1);"
             },
+            "Accommodation Type": [
+                "Type de chambre"
+            ],
+            "Accommodation": [
+                "Chambre"
+            ],
+            "Restriction": [
+                "Restriction"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                "La r\u00e8gle interdisant les arriv\u00e9es indique que la date est indisponible pour l\u2019arriv\u00e9e."
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                "La r\u00e8gle interdisant les d\u00e9parts indique que la date est indisponible pour le d\u00e9part."
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                "La r\u00e8gle interdisant le s\u00e9jour affiche la date comme bloqu\u00e9e. Cette date est indisponible pour l\u2019arriv\u00e9e, et le d\u00e9part est impossible le lendemain."
+            ],
+            "Comment": [
+                "Commentaire"
+            ],
+            "All": [
+                "Tout"
+            ],
             "Delete": [
                 "Supprimer"
+            ],
+            "Not check-in": [
+                "Pas de check-in"
+            ],
+            "Not check-out": [
+                "Pas de check-out"
+            ],
+            "Not stay-in": [
+                "Aucun s\u00e9jour"
             ],
             "Email": [
                 "Courriel"
@@ -41,16 +74,13 @@
                 "D\u00e9placer compl\u00e8tement en bas"
             ],
             "Select all": [
-                "s\u00e9l\u00e9ctionner tout"
+                "Tout s\u00e9lectionner"
             ],
             "Unselect all": [
                 "tout d\u00e9s\u00e9lectionner"
             ],
             "Edit": [
                 "Modifier"
-            ],
-            "All": [
-                "Tout"
             ],
             "Nights": [
                 "Nuits"
@@ -70,14 +100,14 @@
             "Price": [
                 "Prix"
             ],
-            "Accommodation": [
-                "Chambre"
-            ],
             "Paid: %s": [
                 "Pay\u00e9: %s"
             ],
-            "Accommodation Type": [
-                "Type de chambre"
+            "Awaiting charge": [
+                "En attente de d\u00e9bit"
+            ],
+            "+%s txn fee": [
+                "+%s de frais de transaction"
             ],
             "Add New Season Price": [
                 "Ajouter Nouveau prix de saison"
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "R\u00e8gles de r\u00e9servation"
+            ],
+            "Block Accommodations": [
+                "Bloquer des h\u00e9bergements"
             ],
             "Check-in days": [
                 "Jours d'arriv\u00e9e"
@@ -106,30 +139,6 @@
             "Maximum stay": [
                 "Dur\u00e9e de s\u00e9jour maximum."
             ],
-            "Restriction": [
-                "Restriction"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                ""
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                ""
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                ""
-            ],
-            "Not check-in": [
-                "Pas de check-in"
-            ],
-            "Not check-out": [
-                "Pas de check-out"
-            ],
-            "Not stay-in": [
-                "Aucun s\u00e9jour"
-            ],
-            "Comment": [
-                "Commentaire"
-            ],
             "Minimum advance reservation": [
                 "R\u00e9servation \u00e0 l'avance minimum"
             ],
@@ -137,7 +146,7 @@
                 "R\u00e9servation \u00e0 l'avance maximum"
             ],
             "Booking buffer": [
-                "R\u00e9servation tampon"
+                "P\u00e9riode tampon entre les r\u00e9servations"
             ],
             "Calendar": [
                 "Calendrier"
@@ -193,8 +202,8 @@
             "Notes": [
                 "Remarques"
             ],
-            "Booking status\u0004Confirmed": [
-                "Confirm\u00e9e"
+            "An error has occurred": [
+                "Une erreur est survenue"
             ],
             "Booked": [
                 "R\u00e9serv\u00e9"
@@ -208,6 +217,9 @@
             "Blocked": [
                 "Bloqu\u00e9"
             ],
+            "Booking status\u0004Confirmed": [
+                "Confirm\u00e9e"
+            ],
             "Check-in": [
                 "Arriv\u00e9e"
             ],
@@ -215,7 +227,7 @@
                 "D\u00e9part"
             ],
             "Blocked because the linked accommodation is booked": [
-                ""
+                "Bloqu\u00e9 car l\u2019h\u00e9bergement li\u00e9 est r\u00e9serv\u00e9"
             ],
             "Booking status\u0004Pending User Confirmation": [
                 "Confirmation d'utilisateur en attente"
@@ -224,7 +236,7 @@
                 "Paiement en attente"
             ],
             "Booking status\u0004Pending Admin": [
-                "En attente d'administration"
+                "En attente de confirmation de l\u2019administrateur"
             ],
             "Booking status\u0004Abandoned": [
                 "Abandonn\u00e9e"
@@ -245,19 +257,19 @@
                 "Ajouter un nouveau tarif"
             ],
             "Base Adults Occupancy": [
-                ""
+                "Nombre d\u2019adultes inclus par d\u00e9faut dans le prix de base"
             ],
             "Base Children Occupancy": [
-                ""
+                "Nombre d\u2019enfants inclus par d\u00e9faut dans le prix de base"
             ],
             "Applied for days": [
-                "Appliqu\u00e9 pendant des jours"
+                "Jours d\u2019application"
             ],
             "Annual repeats begin on the Start date of the season, for one year from the current date.": [
-                ""
+                "Les r\u00e9p\u00e9titions annuelles commencent \u00e0 la date de d\u00e9but de la saison, pour une dur\u00e9e d\u2019un an \u00e0 compter de la date actuelle."
             ],
             "Repeat until date": [
-                ""
+                "R\u00e9p\u00e9ter jusqu\u2019\u00e0 la date"
             ],
             "Add New Season": [
                 "Ajouter une nouvelle saison"
@@ -327,143 +339,152 @@
             "Nothing found.": [
                 "Rien n'a \u00e9t\u00e9 trouv\u00e9."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
-                ""
+                "Une saison est une p\u00e9riode permettant de d\u00e9finir des prix diff\u00e9rents pour les h\u00e9bergements."
             ],
             "Block": [
-                ""
+                "Bloquer"
             ],
             "Daily price": [
-                ""
+                "Prix par nuit"
             ],
             "Select an action": [
-                ""
+                "S\u00e9lectionner une action"
             ],
             "Daily": [
-                ""
+                "Par jour"
             ],
             "Rule #%1$d": [
-                ""
+                "R\u00e8gle #%1$d"
             ],
             "Min. stay": [
-                ""
+                "S\u00e9jour min."
             ],
             "Max. stay": [
-                ""
+                "S\u00e9jour max."
             ],
             "Min. adv. res.": [
-                ""
+                "D\u00e9lai min. avant arriv\u00e9e"
             ],
             "Max. adv. res.": [
-                ""
+                "D\u00e9lai max. avant arriv\u00e9e"
             ],
             "Allow": [
-                ""
+                "Autoriser"
             ],
             "Disallow": [
-                ""
+                "Interdire"
             ],
             "Max. advance reservation": [
-                ""
+                "D\u00e9lai maximal avant l\u2019arriv\u00e9e"
             ],
             "Min. advance reservation": [
-                ""
-            ],
-            "Please select at least one accommodation type.": [
-                ""
-            ],
-            "It looks like you haven`t created any accommodation types yet.": [
-                ""
-            ],
-            "Create your first accommodation type.": [
-                ""
-            ],
-            "Next 7 days": [
-                ""
-            ],
-            "Next 14 days": [
-                ""
-            ],
-            "Next 30 days": [
-                ""
-            ],
-            "Previous": [
-                ""
-            ],
-            "Next": [
-                ""
+                "D\u00e9lai minimal avant l\u2019arriv\u00e9e"
             ],
             "Reload": [
-                ""
+                "Recharger"
+            ],
+            "Please select at least one accommodation type.": [
+                "Veuillez s\u00e9lectionner au moins un type d\u2019h\u00e9bergement."
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                "Il semble que vous n\u2019ayez encore cr\u00e9\u00e9 aucun type d\u2019h\u00e9bergement."
+            ],
+            "Create your first accommodation type.": [
+                "Cr\u00e9ez votre premier type d\u2019h\u00e9bergement."
+            ],
+            "Next 7 days": [
+                "7 prochains jours"
+            ],
+            "Next 14 days": [
+                "14 prochains jours"
+            ],
+            "Next 30 days": [
+                "30 prochains jours"
+            ],
+            "Previous": [
+                "Pr\u00e9c\u00e9dent"
+            ],
+            "Next": [
+                "Suivant"
             ],
             "Filter items\u2026": [
-                ""
+                "Filtrer les \u00e9l\u00e9ments\u2026"
             ],
             "Compact Calendar": [
-                ""
+                "Calendrier compact"
             ],
             "List": [
-                ""
+                "Liste"
+            ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                "<a>Passez en Premium<\/a> pour activer cette fonctionnalit\u00e9."
             ],
             "Booking #%1$d": [
-                ""
+                "R\u00e9servation #%1$d"
+            ],
+            "Unable to load rate.": [
+                "Impossible de charger le tarif."
+            ],
+            "Retry": [
+                "R\u00e9essayer"
+            ],
+            "Loading\u2026": [
+                "Chargement\u2026"
             ],
             "Total Price": [
-                ""
+                "Prix total"
             ],
             "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
-                ""
+                "Vous n\u2019avez encore cr\u00e9\u00e9 aucune saison. Une saison est une p\u00e9riode permettant de d\u00e9finir des prix diff\u00e9rents pour les h\u00e9bergements."
             ],
             "Repeat annually": [
-                ""
+                "R\u00e9p\u00e9ter chaque ann\u00e9e"
             ],
             "Repeat annually, until %1$s": [
-                ""
+                "R\u00e9p\u00e9ter chaque ann\u00e9e jusqu\u2019au %1$s"
             ],
             "Priority": [
-                ""
+                "Priorit\u00e9"
             ],
             "First": [
-                ""
+                "En premier"
             ],
             "Last": [
-                ""
+                "En dernier"
             ],
             "From\/Till": [
-                ""
+                "Du \/ Au"
             ],
             "Edit Block": [
-                ""
+                "Modifier le blocage"
             ],
             "Select\u2026": [
-                ""
+                "S\u00e9lectionner\u2026"
             ],
             "Update %1$s rate for %2$s": [
-                ""
+                "Mettre \u00e0 jour le tarif %1$s pour %2$s"
             ],
             "Edit Season Price": [
-                ""
+                "Modifier le prix saisonnier"
+            ],
+            "Unable to load rates.": [
+                "Impossible de charger les tarifs."
             ],
             "Quick booking rules": [
-                ""
+                "R\u00e8gles de r\u00e9servation rapides"
             ],
             "Check-in today": [
-                ""
+                "Arriv\u00e9e aujourd\u2019hui"
             ],
             "Check-out today": [
-                ""
+                "D\u00e9part aujourd\u2019hui"
+            ],
+            "Unable to load bookings.": [
+                "Impossible de charger les r\u00e9servations."
             ],
             "In-House": [
-                ""
+                "En s\u00e9jour"
             ]
         }
     }

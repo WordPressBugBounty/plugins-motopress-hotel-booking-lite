@@ -197,6 +197,12 @@ class Upgrader {
 			}
 		}
 
+		// Version-only updates do not need a background job or an upgrade notice.
+		if ( $newBatchesCount === 0 && ! $this->bgUpgrader->isInProgress() ) {
+			$this->complete();
+			return;
+		}
+
 		$this->bgUpgrader->push_to_queue( 'complete' )->save();
 		$this->setScheduledVersion( MPHB()->getVersion() );
 		$newBatchesCount++;

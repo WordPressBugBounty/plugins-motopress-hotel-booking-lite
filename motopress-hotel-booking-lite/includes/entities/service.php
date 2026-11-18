@@ -190,18 +190,23 @@ class Service {
 			if ( $periodicity ) {
 				$price .= ' / ';
 				if ( $this->isPayPerNight() ) {
+					// translators: Service charge for each night of the stay; the underlying pricing period is per night.
 					$price .= __( 'Per Day', 'motopress-hotel-booking' );
 				} elseif ( $this->isFlexiblePay() ) {
+					// translators: Service price per purchased occurrence; the guest chooses how many occurrences to buy.
 					$price .= __( 'Per Instance', 'motopress-hotel-booking' );
 				} else {
+					// translators: Service is charged once for the stay rather than for every night.
 					$price .= __( 'Once', 'motopress-hotel-booking' );
 				}
 			}
 			if ( $repeatability ) {
 				$price .= ' / ';
 				if ( $this->isPayPerAdult() ) {
+					// translators: Service price applies separately to each guest.
 					$price .= __( 'Per Guest', 'motopress-hotel-booking' );
 				} else {
+					// translators: Service price applies separately to each booked accommodation, regardless of guest count.
 					$price .= __( 'Per Accommodation', 'motopress-hotel-booking' );
 				}
 			}

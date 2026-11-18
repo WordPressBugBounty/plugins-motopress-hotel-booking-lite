@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "hr_HR",
                 "plural-forms": "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
             },
+            "Accommodation Type": [
+                "Vrsta Smje\u0161taja"
+            ],
+            "Accommodation": [
+                "Smje\u0161taj"
+            ],
+            "Restriction": [
+                "Ograni\u010denje"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Comment": [
+                "Komentar"
+            ],
+            "All": [
+                "Sve"
+            ],
             "Delete": [
                 "Obri\u0161i"
+            ],
+            "Not check-in": [
+                "Bez Check in-a"
+            ],
+            "Not check-out": [
+                "Bez chek-out-a"
+            ],
+            "Not stay-in": [
+                "Bes Ostanka"
             ],
             "Email": [
                 ""
@@ -49,9 +82,6 @@
             "Edit": [
                 "Uredi"
             ],
-            "All": [
-                "Sve"
-            ],
             "Nights": [
                 "No\u0107i"
             ],
@@ -70,14 +100,14 @@
             "Price": [
                 "Cijena"
             ],
-            "Accommodation": [
-                "Smje\u0161taj"
-            ],
             "Paid: %s": [
                 "Pla\u0107eno: %s"
             ],
-            "Accommodation Type": [
-                "Vrsta Smje\u0161taja"
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
             ],
             "Add New Season Price": [
                 "Dodaj novu cijenu za sezonu"
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "Pravila Rezervacija"
+            ],
+            "Block Accommodations": [
+                ""
             ],
             "Check-in days": [
                 "Dan Dolaska"
@@ -105,30 +138,6 @@
             ],
             "Maximum stay": [
                 "Maksimalni boravak"
-            ],
-            "Restriction": [
-                "Ograni\u010denje"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                ""
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                ""
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                ""
-            ],
-            "Not check-in": [
-                "Bez Check in-a"
-            ],
-            "Not check-out": [
-                "Bez chek-out-a"
-            ],
-            "Not stay-in": [
-                "Bes Ostanka"
-            ],
-            "Comment": [
-                "Komentar"
             ],
             "Minimum advance reservation": [
                 ""
@@ -193,8 +202,8 @@
             "Notes": [
                 "Bilje\u0161ke"
             ],
-            "Booking status\u0004Confirmed": [
-                "Potvr\u0111eno"
+            "An error has occurred": [
+                "Dogodila se gre\u0161ka"
             ],
             "Booked": [
                 "Rezervirano"
@@ -207,6 +216,9 @@
             ],
             "Blocked": [
                 "Blokirano"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Potvr\u0111eno"
             ],
             "Check-in": [
                 "Dolazak"
@@ -327,15 +339,6 @@
             "Nothing found.": [
                 "Ni\u0161ta nije prona\u0111eno."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
                 ""
             ],
@@ -378,6 +381,9 @@
             "Min. advance reservation": [
                 ""
             ],
+            "Reload": [
+                ""
+            ],
             "Please select at least one accommodation type.": [
                 ""
             ],
@@ -402,9 +408,6 @@
             "Next": [
                 ""
             ],
-            "Reload": [
-                ""
-            ],
             "Filter items\u2026": [
                 ""
             ],
@@ -414,7 +417,19 @@
             "List": [
                 ""
             ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
             "Booking #%1$d": [
+                ""
+            ],
+            "Unable to load rate.": [
+                ""
+            ],
+            "Retry": [
+                ""
+            ],
+            "Loading\u2026": [
                 ""
             ],
             "Total Price": [
@@ -453,6 +468,9 @@
             "Edit Season Price": [
                 ""
             ],
+            "Unable to load rates.": [
+                ""
+            ],
             "Quick booking rules": [
                 ""
             ],
@@ -460,6 +478,9 @@
                 ""
             ],
             "Check-out today": [
+                ""
+            ],
+            "Unable to load bookings.": [
                 ""
             ],
             "In-House": [

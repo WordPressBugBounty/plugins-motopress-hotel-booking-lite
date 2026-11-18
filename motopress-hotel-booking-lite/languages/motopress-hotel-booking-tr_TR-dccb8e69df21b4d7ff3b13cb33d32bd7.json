@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "tr_TR",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "Accommodation Type": [
+                "Konaklama Tipi"
+            ],
+            "Accommodation": [
+                "Konaklama"
+            ],
+            "Restriction": [
+                "K\u0131s\u0131tlama"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Comment": [
+                "Yorum"
+            ],
+            "All": [
+                "T\u00fcm\u00fc"
+            ],
             "Delete": [
                 "Sil"
+            ],
+            "Not check-in": [
+                "Giri\u015f yap\u0131lm\u0131yor"
+            ],
+            "Not check-out": [
+                "\u00c7\u0131k\u0131\u015f yap\u0131lm\u0131yor"
+            ],
+            "Not stay-in": [
+                "Kal\u0131nm\u0131yor"
             ],
             "Email": [
                 "E-Posta"
@@ -49,9 +82,6 @@
             "Edit": [
                 "D\u00fczenle"
             ],
-            "All": [
-                "T\u00fcm\u00fc"
-            ],
             "Nights": [
                 "Gece"
             ],
@@ -70,14 +100,14 @@
             "Price": [
                 "Fiyat"
             ],
-            "Accommodation": [
-                "Konaklama"
-            ],
             "Paid: %s": [
                 "\u00d6dendi: %s"
             ],
-            "Accommodation Type": [
-                "Konaklama Tipi"
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
             ],
             "Add New Season Price": [
                 "Yeni Sezon F\u0131yat\u0131n\u0131 Ekle"
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "Rezervasyon Kurallar\u0131"
+            ],
+            "Block Accommodations": [
+                ""
             ],
             "Check-in days": [
                 "Giri\u015f G\u00fcnleri"
@@ -105,30 +138,6 @@
             ],
             "Maximum stay": [
                 "En fazla konaklama s\u00fcresi"
-            ],
-            "Restriction": [
-                "K\u0131s\u0131tlama"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                ""
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                ""
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                ""
-            ],
-            "Not check-in": [
-                "Giri\u015f yap\u0131lm\u0131yor"
-            ],
-            "Not check-out": [
-                "\u00c7\u0131k\u0131\u015f yap\u0131lm\u0131yor"
-            ],
-            "Not stay-in": [
-                "Kal\u0131nm\u0131yor"
-            ],
-            "Comment": [
-                "Yorum"
             ],
             "Minimum advance reservation": [
                 "Minimum \u00f6n rezervasyon"
@@ -193,8 +202,8 @@
             "Notes": [
                 "Notlar"
             ],
-            "Booking status\u0004Confirmed": [
-                "Onayland\u0131"
+            "An error has occurred": [
+                "Bir hata olu\u015ftu"
             ],
             "Booked": [
                 "Rezerve edildi"
@@ -207,6 +216,9 @@
             ],
             "Blocked": [
                 "bloke edilmi\u015f"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Onayland\u0131"
             ],
             "Check-in": [
                 "Giri\u015f"
@@ -327,15 +339,6 @@
             "Nothing found.": [
                 "Hi\u00e7bir\u015fey Bulunamad\u0131."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
                 ""
             ],
@@ -378,6 +381,9 @@
             "Min. advance reservation": [
                 ""
             ],
+            "Reload": [
+                ""
+            ],
             "Please select at least one accommodation type.": [
                 ""
             ],
@@ -402,9 +408,6 @@
             "Next": [
                 ""
             ],
-            "Reload": [
-                ""
-            ],
             "Filter items\u2026": [
                 ""
             ],
@@ -414,7 +417,19 @@
             "List": [
                 ""
             ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
             "Booking #%1$d": [
+                ""
+            ],
+            "Unable to load rate.": [
+                ""
+            ],
+            "Retry": [
+                ""
+            ],
+            "Loading\u2026": [
                 ""
             ],
             "Total Price": [
@@ -453,6 +468,9 @@
             "Edit Season Price": [
                 ""
             ],
+            "Unable to load rates.": [
+                ""
+            ],
             "Quick booking rules": [
                 ""
             ],
@@ -460,6 +478,9 @@
                 ""
             ],
             "Check-out today": [
+                ""
+            ],
+            "Unable to load bookings.": [
                 ""
             ],
             "In-House": [

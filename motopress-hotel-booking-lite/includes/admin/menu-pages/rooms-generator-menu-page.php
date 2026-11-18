@@ -72,6 +72,7 @@ class RoomsGeneratorMenuPage extends AbstractMenuPage {
 	public function showNotices() {
 		if ( isset( $_GET['mphb-rooms-generated'] ) ) {
 			$number   = isset( $_GET['mphb-rooms-count'] ) ? absint( $_GET['mphb-rooms-count'] ) : 0;
+			// translators: %s: Number of physical accommodations created. The singular source omits the number; plural forms may include it.
 			$message  = sprintf( _n( 'Accommodation generated.', '%s accommodations generated.', $number, 'motopress-hotel-booking' ), number_format_i18n( $number ) );
 			$linkArgs = array(
 				'orderby' => 'date',

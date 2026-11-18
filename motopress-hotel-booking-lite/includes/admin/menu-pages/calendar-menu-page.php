@@ -42,8 +42,7 @@ class CalendarMenuPage extends AbstractMenuPage {
 		}
 
 
-		// #lite
-		//      $this->addTitleAction( __( 'New Booking', 'motopress-hotel-booking' ), '#', array( 'class' => 'button-disabled', 'after' => mphb_upgrade_to_premium_message() ) );
+		$this->addTitleAction( __( 'New Booking', 'motopress-hotel-booking' ), '#', array( 'class' => 'button-disabled', 'after' => mphb_upgrade_to_premium_message() ) );
 
 		$this->setupCalendar();
 		?>
@@ -204,6 +203,8 @@ class CalendarMenuPage extends AbstractMenuPage {
 				);
 			}
 		}
+
+		$initial_config['settings']['is_lite'] = defined( 'MPHB_IS_LITE' );
 
 		return $initial_config;
 	}

@@ -102,6 +102,7 @@ $firstAvailableCheckInDate = mphb_availability_facade()->getFirstAvailableCheckI
 				if ( empty( $childrenAge ) ) {
 					esc_html_e( 'Children', 'motopress-hotel-booking' );
 				} else {
+					// translators: %s: Optional child-age description configured by the property, not the number of children.
 					echo esc_html( sprintf( __( 'Children %s', 'motopress-hotel-booking' ), $childrenAge ) );
 				}
 				?>

@@ -94,7 +94,9 @@ class RateEditCPTPage extends EditCPTPage {
 		}
 
 		$availableStatuses = array(
+			// translators: Status adjective for an enabled rate or a currently usable coupon.
 			'publish' => __( 'Active', 'motopress-hotel-booking' ),
+			// translators: Status adjective for a disabled rate or license. This is a state, not an action button.
 			'draft'   => __( 'Disabled', 'motopress-hotel-booking' ),
 		);
 		?>

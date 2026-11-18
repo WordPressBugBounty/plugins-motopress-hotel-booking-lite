@@ -31,7 +31,8 @@ class SeasonCPT extends EditableCPT {
 				'type'       => 'datepicker',
 				'label'      => __( 'Start date', 'motopress-hotel-booking' ),
 				'dependency' => array(
-					'as_min' => 'mphb_end_date',
+					'as_min'         => 'mphb_end_date',
+					'open_on_select' => $this->isCurrentAddNewPage() ? 'mphb_end_date' : '',
 				),
 				'required'   => true,
 				'readonly'   => false,
@@ -64,6 +65,7 @@ class SeasonCPT extends EditableCPT {
 			'mphb_repeat_period',
 			array(
 				'type'        => 'radio',
+				// translators: Whether a pricing season recurs annually.
 				'label'       => esc_html__( 'Repeat', 'motopress-hotel-booking' ),
 				'description' => esc_html__( 'Annual repeats begin on the Start date of the season, for one year from the current date.', 'motopress-hotel-booking' ),
 				'list'        => array(

@@ -180,7 +180,7 @@ class CheckoutView {
 	public static function renderRoomTypeTitle( $reservedRoom, $roomIndex, $roomType ) {
 		?>
 		<h3 class="mphb-room-number">
-			<?php echo esc_html( sprintf( __( 'Accommodation #%d', 'motopress-hotel-booking' ), $roomIndex + 1 ) ); ?>
+			<?php echo esc_html( sprintf( /* translators: %d: Sequential accommodation position within the booking, not a physical accommodation ID. */ __( 'Accommodation #%d', 'motopress-hotel-booking' ), $roomIndex + 1 ) ); ?>
 		</h3>
 		<p class="mphb-room-type-title">
 			<span>
@@ -273,7 +273,7 @@ class CheckoutView {
 		<?php if ( $childrenAllowed ) { ?>
 			<p class="mphb-children-chooser">
 				<label for="<?php echo esc_attr( $idPrefix ); ?>-children">
-					<?php echo esc_html( sprintf( __( 'Children %s', 'motopress-hotel-booking' ), MPHB()->settings()->main()->getChildrenAgeText() ) ); ?>
+					<?php echo esc_html( sprintf( /* translators: %s: Optional child-age description configured by the property, not the number of children. */ __( 'Children %s', 'motopress-hotel-booking' ), MPHB()->settings()->main()->getChildrenAgeText() ) ); ?>
 					<abbr title="<?php esc_html_e( 'Required', 'motopress-hotel-booking' ); ?>">*</abbr>
 				</label>
 				<select name="<?php echo esc_attr( $namePrefix ); ?>[children]" id="<?php echo esc_attr( $idPrefix ); ?>-children" class="mphb_sc_checkout-guests-chooser mphb_checkout-guests-chooser" required="required" data-max-allowed="<?php echo esc_attr( $childrenCapacity ); ?>" data-max-total="<?php echo esc_attr( $totalCapacity ); ?>">
@@ -436,6 +436,7 @@ class CheckoutView {
 							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>
 							<label for="<?php echo $idPrefix; ?>-adults">
 								<?php
+								// translators: Service quantity phrase: service name + for + guest-count selector + guest(s). Preserve trailing spacing.
 								esc_html_e( 'for ', 'motopress-hotel-booking' );
 								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>
 								<select name="<?php echo $namePrefix; ?>[adults]" id="<?php echo $idPrefix; ?>-adults" class="mphb_sc_checkout-service-adults mphb_checkout-service-adults">
@@ -449,7 +450,7 @@ class CheckoutView {
 										</option>
 									<?php } ?>
 								</select>
-								<?php echo esc_html_x( ' guest(s)', 'Example: Breakfast for X guest(s)', 'motopress-hotel-booking' ); ?>
+								<?php echo /* translators: Noun after a guest-count selector in a service quantity phrase. Preserve the leading space. */ esc_html_x( ' guest(s)', 'Example: Breakfast for X guest(s)', 'motopress-hotel-booking' ); ?>
 							</label>
 							<?php
 						} else {
@@ -471,7 +472,7 @@ class CheckoutView {
 							$presetQuantity = apply_filters( 'mphb_sc_checkout_preset_service_quantity', $minQuantity, $service, $reservedRoom, $roomType );
 							$presetQuantity = mphb_limit( $presetQuantity, $minQuantity, $maxQuantity );
 							?>
-							&#215; <input type="number" name="<?php echo esc_attr( $namePrefix ); ?>[quantity]" class="mphb_sc_checkout-service-quantity mphb_checkout-service-quantity" value="<?php echo esc_attr( $presetQuantity ); ?>" min="<?php echo esc_attr( $minQuantity ); ?>" <?php echo ! $service->isUnlimited() ? 'max="' . esc_attr( $maxQuantity ) . '"' : ''; ?> step="1"> <?php esc_html_e( 'time(s)', 'motopress-hotel-booking' ); ?>
+							&#215; <input type="number" name="<?php echo esc_attr( $namePrefix ); ?>[quantity]" class="mphb_sc_checkout-service-quantity mphb_checkout-service-quantity" value="<?php echo esc_attr( $presetQuantity ); ?>" min="<?php echo esc_attr( $minQuantity ); ?>" <?php echo ! $service->isUnlimited() ? 'max="' . esc_attr( $maxQuantity ) . '"' : ''; ?> step="1"> <?php /* translators: Service purchase quantity unit after a numeric input. Means occurrences, not a time of day. */ esc_html_e( 'time(s)', 'motopress-hotel-booking' ); ?>
 						<?php } // Is flexible pay? ?>
 					</li>
 				<?php } ?>
@@ -484,7 +485,7 @@ class CheckoutView {
 		?>
 		<section id="mphb-price-details" class="mphb-room-price-breakdown-wrapper mphb-checkout-section">
 			<h4 class="mphb-price-breakdown-title">
-				<?php esc_html_e( 'Price Breakdown', 'motopress-hotel-booking' ); ?>
+				<?php /* translators: Itemized booking cost table, including accommodation, services, taxes, fees, and discounts. */ esc_html_e( 'Price Breakdown', 'motopress-hotel-booking' ); ?>
 			</h4>
 			<?php \MPHB\Views\BookingView::renderPriceBreakdown( $booking ); ?>
 		</section>
@@ -589,7 +590,7 @@ class CheckoutView {
 			<h3 class="mphb-customer-details-title"><?php esc_html_e( 'Your Information', 'motopress-hotel-booking' ); ?></h3>
 			<p class="mphb-required-fields-tip">
 				<small>
-					<?php printf( esc_html__( 'Required fields are followed by %s', 'motopress-hotel-booking' ), '<abbr title="required">*</abbr>' ); ?>
+					<?php printf( /* translators: %s: Required-field marker, usually an asterisk, possibly wrapped in HTML. */ esc_html__( 'Required fields are followed by %s', 'motopress-hotel-booking' ), '<abbr title="required">*</abbr>' ); ?>
 				</small>
 			</p>
 			<?php do_action( 'mphb_sc_checkout_form_customer_details' ); ?>

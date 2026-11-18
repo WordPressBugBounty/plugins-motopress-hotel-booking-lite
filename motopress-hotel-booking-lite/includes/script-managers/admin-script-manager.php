@@ -31,6 +31,7 @@ class AdminScriptManager extends ScriptManager {
 		$this->addDependency( 'wp-url' );
 
 		wp_register_script( 'mphb-admin', $this->scriptUrl( 'assets/js/admin/admin.min.js' ), $this->scriptDependencies, MPHB()->getVersion(), true );
+		wp_set_script_translations( 'mphb-admin', 'motopress-hotel-booking', MPHB()->getPluginPath( 'languages/' ) );
 	}
 
 	protected function registerStyles() {
@@ -112,6 +113,7 @@ class AdminScriptManager extends ScriptManager {
 					'children'             => __( 'Children: ', 'motopress-hotel-booking' ),
 					'removePeriod'         => __( 'Remove', 'motopress-hotel-booking' ),
 					'periodDescription'    => __( 'and more', 'motopress-hotel-booking' ),
+					// translators: %s: Booking record ID, not an accommodation number.
 					'bookingId'            => __( 'Booking #%s', 'motopress-hotel-booking' ),
 					'bookingStatuses'      => MPHB()->postTypes()->booking()->statuses()->getLabels(),
 					'displayImport'        => __( 'Display imported bookings.', 'motopress-hotel-booking' ),

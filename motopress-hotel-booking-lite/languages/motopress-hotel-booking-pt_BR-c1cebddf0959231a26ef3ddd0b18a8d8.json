@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
@@ -10,6 +10,9 @@
                 "lang": "pt_BR",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "Accommodation Type": [
+                "Tipo de Acomoda\u00e7\u00e3o"
+            ],
             "Date": [
                 "Data"
             ],
@@ -22,8 +25,8 @@
             "Price": [
                 "Pre\u00e7o"
             ],
-            "Accommodation Type": [
-                "Tipo de Acomoda\u00e7\u00e3o"
+            "Settings": [
+                "Configura\u00e7\u00f5es"
             ],
             "Title": [
                 "Titulo"
@@ -42,9 +45,6 @@
             ],
             "Display the currency sign in the availability calendar.": [
                 "Exibir o s\u00edmbolo da moeda no calend\u00e1rio de disponibilidade."
-            ],
-            "Settings": [
-                "Configura\u00e7\u00f5es"
             ],
             "Availability Search Form": [
                 "Formul\u00e1rio de Busca de Disponibilidade"
@@ -182,7 +182,7 @@
                 "Bot\u00e3o de Reserva"
             ],
             "Preset date. Formatted as %s": [
-                ""
+                "Data predefinida. Formatada como %s"
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -212,7 +212,7 @@
                 ""
             ],
             "Post title": [
-                ""
+                "T\u00edtulo da publica\u00e7\u00e3o"
             ],
             "Post name (post slug)": [
                 ""
@@ -236,7 +236,7 @@
                 ""
             ],
             "Page order": [
-                ""
+                "Ordem das p\u00e1ginas"
             ],
             "Meta value": [
                 ""
@@ -272,7 +272,7 @@
                 ""
             ],
             "Time": [
-                ""
+                "Hora"
             ],
             "Date and time": [
                 ""

@@ -141,10 +141,13 @@ class ReportsMenuPage extends AbstractMenuPage {
 		$searchBy = apply_filters(
 			'mphb_export_bookings_methods',
 			array(
+				// translators: Report filter for accommodation stay dates, not the date when the reservation was created.
 				'reserved-rooms' => __( 'Booking dates between', 'motopress-hotel-booking' ),
 				'check-in'       => __( 'Check-in date between', 'motopress-hotel-booking' ),
 				'check-out'      => __( 'Check-out date between', 'motopress-hotel-booking' ),
+				// translators: Report filter for guests staying during the selected date interval.
 				'in-house'       => __( 'In-house between', 'motopress-hotel-booking' ),
+				// translators: Report filter for when the reservation was created, not its check-in or check-out dates.
 				'booking-date'   => __( 'Date of reservation between', 'motopress-hotel-booking' ),
 			)
 		);

@@ -1,0 +1,432 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/dashboard\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "vi_VN",
+                "plural-forms": "nplurals=1; plural=0;"
+            },
+            "Accommodation": [
+                "Ch\u1ed7 \u1edf"
+            ],
+            "View": [
+                "Xem"
+            ],
+            "Bookings": [
+                "Booking"
+            ],
+            "No news available.": [
+                ""
+            ],
+            "Create Booking": [
+                "T\u1ea1o \u0110\u1eb7t ch\u1ed7"
+            ],
+            "Date": [
+                "Ng\u00e0y"
+            ],
+            "Status": [
+                "T\u00ecnh tr\u1ea1ng \u0111\u01a1n h\u00e0ng"
+            ],
+            "ID": [
+                ""
+            ],
+            "Paid: %s": [
+                "\u0110\u00e3 thanh to\u00e1n: %s"
+            ],
+            "Amount": [
+                "S\u1ed1 ti\u1ec1n"
+            ],
+            "Customer": [
+                "Kh\u00e1ch h\u00e0ng"
+            ],
+            "Booking": [
+                "\u0110\u1eb7t ph\u00f2ng"
+            ],
+            "Gateway": [
+                "C\u1ed5ng v\u00e0o"
+            ],
+            "Payments": [
+                "Thanh to\u00e1n"
+            ],
+            "Available": [
+                "C\u00f2n tr\u1ed1ng ( xem m\u00e0u tr\u1eafng)"
+            ],
+            "Google Hotels": [
+                ""
+            ],
+            "Sync your bookings across all online channels like Booking.com, TripAdvisor, Airbnb etc. via iCalendar file format.": [
+                "\u0110\u1ed3ng b\u1ed9 h\u00f3a c\u00e1c l\u01b0\u1ee3t \u0111\u1eb7t ph\u00f2ng c\u1ee7a b\u1ea1n tr\u00ean t\u1ea5t c\u1ea3 c\u00e1c k\u00eanh tr\u1ef1c tuy\u1ebfn nh\u01b0 Booking.com, TripAdvisor, Airbnb, v.v. qua \u0111\u1ecbnh d\u1ea1ng t\u1ec7p iCalendar."
+            ],
+            "Services": [
+                "D\u1ecbch v\u1ee5"
+            ],
+            "License": [
+                ""
+            ],
+            "Booked": [
+                "\u0110\u00e3 \u0111\u1eb7t"
+            ],
+            "Blocked": [
+                ""
+            ],
+            "Booking status\u0004Confirmed": [
+                "\u0110\u00e3 x\u00e1c nh\u1eadn"
+            ],
+            "Check-in": [
+                "Nh\u1eadn ph\u00f2ng"
+            ],
+            "Check-out": [
+                "Tr\u1ea3 ph\u00f2ng"
+            ],
+            "Total": [
+                "T\u1ed5ng c\u1ed9ng"
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "X\u00e1c nh\u1eadn ng\u01b0\u1eddi d\u00f9ng \u0111ang ch\u1edd x\u1eed l\u00fd"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "Trong khi ch\u1edd thanh to\u00e1n"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "Qu\u1ea3n tr\u1ecb vi\u00ean \u0111ang ch\u1edd x\u1eed l\u00fd"
+            ],
+            "Booking status\u0004Abandoned": [
+                "B\u1ecb b\u1ecf r\u01a1i"
+            ],
+            "Booking status\u0004Cancelled": [
+                "\u0110\u00e3 h\u1ee7y"
+            ],
+            "Payment status\u0004Pending": [
+                "\u0110ang ch\u1edd"
+            ],
+            "Payment status\u0004Completed": [
+                "\u0110\u00e3 ho\u00e0n th\u00e0nh"
+            ],
+            "Payment status\u0004Failed": [
+                "Th\u1ea5t b\u1ea1i"
+            ],
+            "Payment status\u0004Abandoned": [
+                "B\u1ecb b\u1ecf r\u01a1i"
+            ],
+            "Payment status\u0004On Hold": [
+                "\u0110ang ch\u1edd"
+            ],
+            "Payment status\u0004Refunded": [
+                "\u0110\u00e3 ho\u00e0n l\u1ea1i"
+            ],
+            "Payment status\u0004Cancelled": [
+                "\u0110\u00e3 h\u1ee7y"
+            ],
+            "Revenue": [
+                ""
+            ],
+            "Period": [
+                ""
+            ],
+            "Today": [
+                "H\u00f4m nay"
+            ],
+            "This week": [
+                "Tu\u1ea7n n\u00e0y"
+            ],
+            "This month": [
+                "Th\u00e1ng n\u00e0y"
+            ],
+            "This quarter": [
+                ""
+            ],
+            "This year": [
+                "N\u0103m nay"
+            ],
+            "x %d guest": [
+                ""
+            ],
+            "x %d time": [
+                ""
+            ],
+            "Availability": [
+                "L\u1ecbch c\u00f2n tr\u1ed1ng"
+            ],
+            "Previous": [
+                ""
+            ],
+            "Next": [
+                ""
+            ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
+            "Active widgets": [
+                ""
+            ],
+            "Booking source\u0004External": [
+                ""
+            ],
+            "View All": [
+                ""
+            ],
+            "Bookings filter\u0004Recent": [
+                ""
+            ],
+            "Bookings filter\u0004Upcoming": [
+                ""
+            ],
+            "Your 5 most recent bookings": [
+                ""
+            ],
+            "Upcoming stays in the next 7 days": [
+                ""
+            ],
+            "%1$d of %2$d": [
+                ""
+            ],
+            "Calendar synchronization status\u0004Waiting": [
+                ""
+            ],
+            "Calendar synchronization status\u0004Processing": [
+                ""
+            ],
+            "Calendar synchronization status\u0004Done": [
+                ""
+            ],
+            "No synchronization data available.": [
+                ""
+            ],
+            "Calendar synchronization is not configured.": [
+                ""
+            ],
+            "Configure": [
+                ""
+            ],
+            "Calendar synchronization statistics label\u0004Succeeded": [
+                ""
+            ],
+            "Calendar synchronization statistics label\u0004Failed": [
+                ""
+            ],
+            "Calendar synchronization statistics label\u0004Removed": [
+                ""
+            ],
+            "Calendar synchronization statistics label\u0004Skipped": [
+                ""
+            ],
+            "Last sync": [
+                ""
+            ],
+            "Google Hotels submission status\u0004Submitted": [
+                ""
+            ],
+            "Google Hotels submission status\u0004Failed": [
+                ""
+            ],
+            "Google Hotels submission status\u0004Unknown": [
+                ""
+            ],
+            "Google Hotels integration is not enabled.": [
+                ""
+            ],
+            "Last submission": [
+                ""
+            ],
+            "Server message": [
+                ""
+            ],
+            "Occupancy": [
+                ""
+            ],
+            "Booked Nights": [
+                ""
+            ],
+            "Average daily accommodation rate\u0004Average Rate": [
+                ""
+            ],
+            "Total booking revenue, including accommodation, services, taxes, and fees.": [
+                ""
+            ],
+            "The percentage of available nights that guests have booked, excluding nights blocked by your settings or linked-booking restrictions.": [
+                ""
+            ],
+            "Total booked nights across all accommodations. Each accommodation is counted separately.": [
+                ""
+            ],
+            "Average accommodation revenue per booked night, excluding services, taxes, and fees.": [
+                ""
+            ],
+            "Reservation creation date\u0004Booking date": [
+                ""
+            ],
+            "Accommodation stay dates\u0004Stay date": [
+                ""
+            ],
+            "Last %d days": [
+                ""
+            ],
+            "Compare with": [
+                ""
+            ],
+            "No comparison": [
+                ""
+            ],
+            "Previous period": [
+                ""
+            ],
+            "Previous year": [
+                ""
+            ],
+            "Services in your 5 most recent bookings": [
+                ""
+            ],
+            "Services in your upcoming bookings": [
+                ""
+            ],
+            "last 30 days": [
+                ""
+            ],
+            "New Bookings": [
+                ""
+            ],
+            "Create a booking button\u0004New": [
+                ""
+            ],
+            "Guests currently staying\u0004In-House": [
+                ""
+            ],
+            "today": [
+                ""
+            ],
+            "Arrivals": [
+                ""
+            ],
+            "Departures": [
+                ""
+            ],
+            "Unable to load upcoming bookings. Please try again.": [
+                ""
+            ],
+            "No recent bookings to display.": [
+                ""
+            ],
+            "No upcoming stays in the next 7 days.": [
+                ""
+            ],
+            "Your 5 most recent payments": [
+                ""
+            ],
+            "No recent payments found.": [
+                ""
+            ],
+            "No services were ordered with your 5 most recent bookings.": [
+                ""
+            ],
+            "No services were ordered with your upcoming bookings.": [
+                ""
+            ],
+            "Calendars Sync": [
+                ""
+            ],
+            "Booking distribution channels\u0004Channels": [
+                ""
+            ],
+            "Booking source\u0004Direct (your website)": [
+                ""
+            ],
+            "Bookings distribution by platform": [
+                ""
+            ],
+            "No bookings received in the last 30 days.": [
+                ""
+            ],
+            "Performance": [
+                ""
+            ],
+            "Current period": [
+                ""
+            ],
+            "Unable to load performance data.": [
+                ""
+            ],
+            "Percentage points abbreviation\u0004pp": [
+                ""
+            ],
+            "License status\u0004Active": [
+                ""
+            ],
+            "License status\u0004Inactive": [
+                ""
+            ],
+            "Activate": [
+                ""
+            ],
+            "License status\u0004Expired": [
+                ""
+            ],
+            "Renew": [
+                ""
+            ],
+            "License status\u0004Disabled": [
+                ""
+            ],
+            "Purchase": [
+                ""
+            ],
+            "License status\u0004Invalid": [
+                ""
+            ],
+            "Change key": [
+                ""
+            ],
+            "License status\u0004Unknown": [
+                ""
+            ],
+            "Check license": [
+                ""
+            ],
+            "License status\u0004Not set": [
+                ""
+            ],
+            "Plugin upgrade card heading\u0004Go Premium": [
+                ""
+            ],
+            "Upgrade": [
+                ""
+            ],
+            "Take full advantage of Hotel Booking with the premium plugin version.": [
+                ""
+            ],
+            "Support": [
+                ""
+            ],
+            "Support availability\u0004Available": [
+                ""
+            ],
+            "Support availability\u0004Limited": [
+                ""
+            ],
+            "Contact support": [
+                ""
+            ],
+            "Update now": [
+                ""
+            ],
+            "Plugin update card heading\u0004Update": [
+                ""
+            ],
+            "Update available": [
+                ""
+            ],
+            "Up to date": [
+                ""
+            ],
+            "Quick Links": [
+                ""
+            ],
+            "Latest News": [
+                ""
+            ]
+        }
+    }
+}

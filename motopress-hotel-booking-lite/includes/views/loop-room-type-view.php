@@ -161,6 +161,7 @@ class LoopRoomTypeView extends RoomTypeView {
 	}
 
 	public static function _renderViewTitle() {
+		// translators: Scenic view from the accommodation, such as sea or city view. Noun, not a View action.
 		echo '<span class="mphb-attribute-title mphb-view-title">' . esc_html__( 'View:', 'motopress-hotel-booking' ) . '</span>';
 	}
 

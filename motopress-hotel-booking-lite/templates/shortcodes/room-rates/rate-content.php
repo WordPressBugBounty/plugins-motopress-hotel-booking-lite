@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 echo $title;
 ?>
-, <?php echo wp_kses_post( sprintf( __( 'from %s', 'motopress-hotel-booking' ), $minPrice ) ); ?>
+, <?php echo wp_kses_post( sprintf( /* translators: %s: Minimum formatted monetary price for this rate, not a date or time. */ __( 'from %s', 'motopress-hotel-booking' ), $minPrice ) ); ?>
 <br/>
 <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 echo $description;

@@ -56,6 +56,7 @@ abstract class BaseEmail extends \MPHB\Emails\AbstractEmail {
 
 			} else {
 				// Translators: %1: Email label. %2: The cause of the error.
+				// translators: %1$s: Email notification name. %2$s: Error details returned while sending that email.
 				$this->booking->addLog( sprintf( __( '"%1$s" mail sending is failed. %2$s', 'motopress-hotel-booking' ), $this->label, $isSended->get_error_message() ), $author );
 			}
 

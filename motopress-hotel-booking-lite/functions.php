@@ -56,6 +56,7 @@ function mphb_current_time( $type, $gmt = 0 ) {
 function mphb_get_status_label( $status ) {
 	switch ( $status ) {
 		case 'new':
+			// translators: Post status adjective for a newly created record, not an action to add a record.
 			$label = _x( 'New', 'Post Status', 'motopress-hotel-booking' );
 			break;
 		case 'auto-draft':
@@ -514,6 +515,7 @@ function mphb_show_multiple_instances_notice() {
  * @since 3.5.1 parameters $before and $after was replaced with $wrapper and $wrapperClass.
  */
 function mphb_upgrade_to_premium_message( $wrapper = 'span', $wrapperClass = 'description' ) {
+	// translators: %s: URL of the premium plugin purchase page.
 	$message = __( '<a href="%s">Upgrade to Premium</a> to enable this feature.', 'motopress-hotel-booking' );
 	$message = sprintf( $message, esc_url( admin_url( 'admin.php?page=mphb_premium' ) ) );
 

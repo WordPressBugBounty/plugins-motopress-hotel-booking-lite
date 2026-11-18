@@ -79,6 +79,7 @@ class DatePickerField extends TextField {
 		$attrs .= ! empty( $this->pattern ) ? ' pattern="' . esc_attr( $this->pattern ) . '"' : '';
 		$attrs .= isset( $this->fieldDependent['as_min'] ) ? ' data-dependent-as-min="' . esc_attr( $this->fieldDependent['as_min'] ) . '"' : '';
 		$attrs .= isset( $this->fieldDependent['as_max'] ) ? ' data-dependent-as-max="' . esc_attr( $this->fieldDependent['as_max'] ) . '"' : '';
+		$attrs .= ! empty( $this->fieldDependent['open_on_select'] ) ? ' data-open-on-select="' . esc_attr( $this->fieldDependent['open_on_select'] ) . '"' : '';
 		return $attrs;
 	}
 

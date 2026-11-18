@@ -1,0 +1,69 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/js\/admin\/admin.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "vi_VN",
+                "plural-forms": "nplurals=1; plural=0;"
+            },
+            "Accommodation Type": [
+                "Lo\u1ea1i ch\u1ed7 \u1edf"
+            ],
+            "Accommodation": [
+                "Ch\u1ed7 \u1edf"
+            ],
+            "From": [
+                "T\u1eeb"
+            ],
+            "Till": [
+                "Cho \u0111\u1ebfn khi"
+            ],
+            "Restriction": [
+                "S\u1ef1 h\u1ea1n ch\u1ebf"
+            ],
+            "Comment": [
+                "B\u00ecnh lu\u1eadn"
+            ],
+            "All": [
+                "T\u1ea5t c\u1ea3"
+            ],
+            "Quick edit block #%s inline": [
+                ""
+            ],
+            "Quick Edit": [
+                ""
+            ],
+            "Delete": [
+                "X\u00f3a"
+            ],
+            "Not check-in": [
+                "Kh\u00f4ng Nh\u1eadn ph\u00f2ng"
+            ],
+            "Not check-out": [
+                "Kh\u00f4ng tr\u1ea3 ph\u00f2ng"
+            ],
+            "Not stay-in": [
+                "Kh\u00f4ng \u1edf l\u1ea1i"
+            ],
+            "None": [
+                "Kh\u00f4ng"
+            ],
+            "Cancel": [
+                "H\u1ee7y"
+            ],
+            "Save": [
+                "L\u01b0u l\u1ea1i"
+            ],
+            "Unable to save the object. %s": [
+                ""
+            ],
+            "The start and end dates of the block are required.": [
+                ""
+            ]
+        }
+    }
+}

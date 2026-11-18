@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
@@ -10,6 +10,9 @@
                 "lang": "nl_NL",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "Accommodation Type": [
+                "Type Kamer"
+            ],
             "Date": [
                 "Datum"
             ],
@@ -22,8 +25,8 @@
             "Price": [
                 "Prijs"
             ],
-            "Accommodation Type": [
-                "Type Kamer"
+            "Settings": [
+                "Instellingen"
             ],
             "Title": [
                 "Titel"
@@ -43,9 +46,6 @@
             "Display the currency sign in the availability calendar.": [
                 "Geef het valutateken weer in de beschikbaarheidskalender."
             ],
-            "Settings": [
-                "Instellingen"
-            ],
             "Availability Search Form": [
                 "Beschikbaarheid zoekformulier"
             ],
@@ -59,7 +59,7 @@
                 "Aangepaste kenmerken voor geavanceerd zoeken."
             ],
             "Comma-separated slugs of attributes.": [
-                "Door komma's gescheiden kenmerken van attributen."
+                "Door komma\u2019s gescheiden slugs van kenmerken."
             ],
             "How many months to show.": [
                 "Hoeveel maanden tonen."
@@ -98,7 +98,7 @@
                 "Moet knop \"Details bekijken\" getoond worden met een link naar type accommodatie."
             ],
             "Custom field name. Required if \"orderby\" is one of the \"meta_value\", \"meta_value_num\" or \"meta_value_*\".": [
-                "Aangepaste veldnaam. Vereist als \"orderby\" een van de \"meta_value\", \"meta_value_num\" of \"meta_value_ *\" is."
+                "Naam van het aangepaste veld. Vereist als \"orderby\" een van de waarden \"meta_value\", \"meta_value_num\" of \"meta_value_*\" heeft."
             ],
             "Whether to display Book button.": [
                 "Moet \"Reserveren\" knop getoond worden."
@@ -107,7 +107,7 @@
                 "Lijst van kamertypes"
             ],
             "Count per page": [
-                "Bereken per pagina"
+                "Aantal per pagina"
             ],
             "integer, -1 to display all, default: \"Blog pages show at most\"": [
                 "geheel getal, -1 om alles weer te geven, standaard: \"Blogpagina's worden maximaal weergegeven\""
@@ -137,13 +137,13 @@
                 "IDs van diensten die getoond worden. "
             ],
             "Single Accommodation Type": [
-                "Type enkele accommodatie"
+                "E\u00e9n accommodatietype"
             ],
             "Checkout Form": [
                 "Check-out formulier"
             ],
             "Display checkout form.": [
-                "Uitcheckformulier tonen."
+                "Afrekenformulier tonen."
             ],
             "Booking Form": [
                 "Boekingsformulier"
@@ -182,121 +182,121 @@
                 "Boeking knop"
             ],
             "Preset date. Formatted as %s": [
-                ""
+                "Vooraf ingestelde datum. Opgemaakt als %s"
             ],
             "Select an accommodation type. Leave blank to use current.": [
-                ""
+                "Selecteer een accommodatietype. Laat dit leeg om het huidige type te gebruiken."
             ],
             "ID of an accommodation type. Leave blank to use current.": [
-                ""
+                "ID van een accommodatietype. Laat dit leeg om het huidige type te gebruiken."
             ],
             "Gallery": [
-                ""
+                "Galerij"
             ],
             "View Button": [
-                ""
+                "Toon knop"
             ],
             "Order": [
-                ""
+                "Sorteer"
             ],
             "Order By": [
-                ""
+                "Sorteer volgens"
             ],
             "No order": [
-                ""
+                "Geen sortering"
             ],
             "Post ID": [
-                ""
+                "Publicatie ID"
             ],
             "Post author": [
-                ""
+                "Publicatieschrijver"
             ],
             "Post title": [
-                ""
+                "Publicatietitel"
             ],
             "Post name (post slug)": [
-                ""
+                "Publicatienaam (post slug)"
             ],
             "Post date": [
-                ""
+                "Publicatiedatum"
             ],
             "Last modified date": [
-                ""
+                "Datum laatste wijziging"
             ],
             "Parent ID": [
-                ""
+                "Hoofd ID"
             ],
             "Random order": [
-                ""
+                "Willekeurige volgorde"
             ],
             "Number of comments": [
-                ""
+                "Aantal reacties"
             ],
             "Relevance": [
-                ""
+                "Relevantie"
             ],
             "Page order": [
-                ""
+                "Paginavolgorde"
             ],
             "Meta value": [
-                ""
+                "Meta waarde"
             ],
             "Numeric meta value": [
-                ""
+                "Numerieke meta waarde"
             ],
             "Ascending (1, 2, 3)": [
-                ""
+                "Oplopend (1, 2, 3)"
             ],
             "Descending (3, 2, 1)": [
-                ""
+                "Aflopend (3, 2, 1)"
             ],
             "Meta Name": [
-                ""
+                "Meta naam"
             ],
             "Meta Type": [
-                ""
+                "Meta type"
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                ""
+                "Opgegeven type van het aangepaste veld. Kan worden gebruikt in combinatie met \"orderby\" = \"meta_value\"."
             ],
             "Any": [
-                ""
+                "Elk"
             ],
             "Numeric": [
-                ""
+                "Numeriek"
             ],
             "Binary": [
-                ""
+                "Binair"
             ],
             "String": [
-                ""
+                "Reeks"
             ],
             "Time": [
-                ""
+                "Tijd"
             ],
             "Date and time": [
-                ""
+                "Datum en tijd"
             ],
             "Decimal number": [
-                ""
+                "Decimaal getal"
             ],
             "Signed number": [
-                ""
+                "Getal met teken"
             ],
             "Unsigned number": [
-                ""
+                "Getal zonder teken"
             ],
             "Query Settings": [
-                ""
+                "Zoekopdrachtinstellingen"
             ],
             "Relation": [
-                ""
+                "Relatie"
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                ""
+                "Waarden: geheel getal, -1 om alles weer te geven, standaard: \"Blogpagina's worden maximaal weergegeven\""
             ],
             "Select an accommodation type.": [
-                ""
+                "Selecteer een accommodatietype."
             ]
         }
     }

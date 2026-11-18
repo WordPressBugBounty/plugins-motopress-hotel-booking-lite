@@ -119,6 +119,7 @@ class PaymentAuthedFundsMetabox extends AbstractFieldsMetabox {
 	}
 
 	protected function getTitle(): string {
+		// translators: Payment funds authorized on the card but not yet captured; not money already paid or a booking deposit.
 		return __( 'Reserved Funds', 'motopress-hotel-booking' );
 	}
 

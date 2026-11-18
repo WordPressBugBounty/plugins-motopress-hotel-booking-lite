@@ -21,7 +21,7 @@ $firstAvailableCheckInDate = mphb_availability_facade()->getFirstAvailableCheckI
 ?>
 
 <form method="GET" class="<?php echo esc_attr( apply_filters( 'mphb_widget_search_form_class', 'mphb_widget_search-form', $args ) ); ?>" action="<?php echo esc_attr( $action ); ?>" data-first_available_check_in_date="<?php echo esc_attr( $firstAvailableCheckInDate ); ?>">
-	<p class="mphb-required-fields-tip"><small><?php printf( esc_html__( 'Required fields are followed by %s', 'motopress-hotel-booking' ), '<abbr title="required">*</abbr>' ); ?></small></p>
+	<p class="mphb-required-fields-tip"><small><?php printf( /* translators: %s: Required-field marker, usually an asterisk, possibly wrapped in HTML. */ esc_html__( 'Required fields are followed by %s', 'motopress-hotel-booking' ), '<abbr title="required">*</abbr>' ); ?></small></p>
 
 	<?php
 	/**
@@ -102,6 +102,7 @@ $firstAvailableCheckInDate = mphb_availability_facade()->getFirstAvailableCheckI
 				if ( empty( $childrenAge ) ) {
 					esc_html_e( 'Children:', 'motopress-hotel-booking' );
 				} else {
+					// translators: %s: Optional child-age description configured by the property, not the number of children.
 					echo esc_html( sprintf( __( 'Children %s:', 'motopress-hotel-booking' ), $childrenAge ) );
 				}
 				?>

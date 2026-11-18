@@ -33,9 +33,13 @@ class CurrencyBundle {
 		$this->symbols = $symbols;
 
 		$positions       = array(
+			// translators: Currency symbol appears before the numeric amount, for example $99.
 			'before'       => __( 'Before', 'motopress-hotel-booking' ),
+			// translators: Currency symbol appears after the numeric amount, for example 99$.
 			'after'        => __( 'After', 'motopress-hotel-booking' ),
+			// translators: Currency symbol appears before the numeric amount with a separating space, for example $ 99.
 			'before_space' => __( 'Before with space', 'motopress-hotel-booking' ),
+			// translators: Currency symbol appears after the numeric amount with a separating space, for example 99 $.
 			'after_space'  => __( 'After with space', 'motopress-hotel-booking' ),
 		);
 		$this->positions = $positions;

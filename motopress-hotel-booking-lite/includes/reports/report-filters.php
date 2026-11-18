@@ -35,6 +35,7 @@ class ReportFilters {
 		foreach ( self::REPORT_TYPES as $reportType ) {
 			switch ( $reportType ) {
 				case 'earnings':
+					// translators: Booking revenue, not profit. The dashboard includes accommodation, services, taxes, and fees.
 					$description = __( 'Revenue', 'motopress-hotel-booking' );
 					break;
 			}

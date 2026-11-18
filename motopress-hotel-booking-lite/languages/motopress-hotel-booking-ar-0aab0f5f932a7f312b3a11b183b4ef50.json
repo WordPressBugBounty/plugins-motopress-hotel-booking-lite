@@ -1,0 +1,69 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/js\/admin\/admin.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "ar_SA",
+                "plural-forms": "nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);"
+            },
+            "Accommodation Type": [
+                "\u0646\u0648\u0639 \u0627\u0644\u0633\u0643\u0646"
+            ],
+            "Accommodation": [
+                "\u0627\u0644\u0625\u0642\u0627\u0645\u0629"
+            ],
+            "From": [
+                "\u0645\u0646"
+            ],
+            "Till": [
+                "\u062d\u062a\u0649"
+            ],
+            "Restriction": [
+                "\u0627\u0644\u0642\u064a\u0648\u062f"
+            ],
+            "Comment": [
+                "\u0627\u0644\u062a\u0639\u0644\u064a\u0642\u0627\u062a"
+            ],
+            "All": [
+                "\u0627\u0644\u0643\u0644"
+            ],
+            "Quick edit block #%s inline": [
+                ""
+            ],
+            "Quick Edit": [
+                ""
+            ],
+            "Delete": [
+                "\u062d\u0630\u0641"
+            ],
+            "Not check-in": [
+                "\u0644\u0627 \u064a\u062a\u0645 \u062a\u0633\u062c\u064a\u0644 \u0627\u0644\u0648\u0635\u0648\u0644"
+            ],
+            "Not check-out": [
+                "\u0639\u062f\u0645 \u0627\u0644\u0645\u063a\u0627\u062f\u0631\u0629"
+            ],
+            "Not stay-in": [
+                "\u0639\u062f\u0645 \u0627\u0644\u0628\u0642\u0627\u0621"
+            ],
+            "None": [
+                "\u0644\u0627 \u0634\u064a\u0621"
+            ],
+            "Cancel": [
+                "\u0625\u0644\u063a\u0627\u0621"
+            ],
+            "Save": [
+                "\u062d\u0641\u0638"
+            ],
+            "Unable to save the object. %s": [
+                ""
+            ],
+            "The start and end dates of the block are required.": [
+                ""
+            ]
+        }
+    }
+}

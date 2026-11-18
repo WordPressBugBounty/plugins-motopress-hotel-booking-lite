@@ -69,6 +69,7 @@ class AttributesManageCPTPage extends ManageCPTPage {
 
 						echo '<p class="notice notice-warning">' .
 							sprintf(
+								// translators: %1$s: WordPress taxonomy slug. %2$s: Existing attribute title. Keep the slug unchanged.
 								esc_html__( 'This attribute refers to non-unique taxonomy - %1$s - which was already registered with attribute %2$s.', 'motopress-hotel-booking' ),
 								'<i>"' . esc_html( $duplicateTaxonomy ) . '"</i>',
 								'<strong>' . esc_html( $duplicatesAttribute ) . '</strong>'

@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
@@ -10,6 +10,9 @@
                 "lang": "ca_ES",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "Accommodation Type": [
+                ""
+            ],
             "Date": [
                 "Data"
             ],
@@ -22,8 +25,8 @@
             "Price": [
                 ""
             ],
-            "Accommodation Type": [
-                ""
+            "Settings": [
+                "Configuraci\u00f3"
             ],
             "Title": [
                 "T\u00edtol"
@@ -42,9 +45,6 @@
             ],
             "Display the currency sign in the availability calendar.": [
                 ""
-            ],
-            "Settings": [
-                "Configuraci\u00f3"
             ],
             "Availability Search Form": [
                 ""
@@ -272,7 +272,7 @@
                 ""
             ],
             "Time": [
-                ""
+                "Hora"
             ],
             "Date and time": [
                 ""

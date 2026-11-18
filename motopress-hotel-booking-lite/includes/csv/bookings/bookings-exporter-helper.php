@@ -90,19 +90,28 @@ final class BookingsExporterHelper {
 				static::EXPORT_COLUMN_CUSTOMER_NOTE             => esc_html__( 'Customer Note', 'motopress-hotel-booking' ),
 				static::EXPORT_COLUMN_GUEST_NAME                => esc_html__( 'Full Guest Name', 'motopress-hotel-booking' ),
 				static::EXPORT_COLUMN_ACCOMMODATION_SUBTOTAL    => esc_html__( 'Accommodation Subtotal', 'motopress-hotel-booking' ),
+				// translators: Discount amount applied to the accommodation portion of the booking price.
 				static::EXPORT_COLUMN_ACCOMMODATION_DISCOUNT    => esc_html__( 'Accommodation Discount', 'motopress-hotel-booking' ),
+				// translators: Total monetary accommodation price, not a count of accommodation units.
 				static::EXPORT_COLUMN_ACCOMMODATION_TOTAL       => esc_html__( 'Accommodation Total', 'motopress-hotel-booking' ),
 				static::EXPORT_COLUMN_ACCOMMODATION_TAXES       => esc_html__( 'Accommodation Taxes', 'motopress-hotel-booking' ),
+				// translators: Total monetary taxes on accommodation, not the number of tax rules.
 				static::EXPORT_COLUMN_ACCOMMODATION_TAXES_TOTAL => esc_html__( 'Accommodation Taxes Total', 'motopress-hotel-booking' ),
 				static::EXPORT_COLUMN_SERVICES                  => esc_html__( 'Services', 'motopress-hotel-booking' ),
 				static::EXPORT_COLUMN_SERVICES_SUBTOTAL         => esc_html__( 'Services Subtotal', 'motopress-hotel-booking' ),
+				// translators: Discount amount applied to extra services.
 				static::EXPORT_COLUMN_SERVICES_DISCOUNT         => esc_html__( 'Services Discount', 'motopress-hotel-booking' ),
+				// translators: Total monetary price of extra services, not a count of service items.
 				static::EXPORT_COLUMN_SERVICES_TOTAL            => esc_html__( 'Services Total', 'motopress-hotel-booking' ),
+				// translators: Total monetary taxes on extra services.
 				static::EXPORT_COLUMN_SERVICE_TAXES_TOTAL       => esc_html__( 'Service Taxes Total', 'motopress-hotel-booking' ),
 				static::EXPORT_COLUMN_FEES                      => esc_html__( 'Fees', 'motopress-hotel-booking' ),
 				static::EXPORT_COLUMN_FEES_SUBTOTAL             => esc_html__( 'Fees Subtotal', 'motopress-hotel-booking' ),
+				// translators: Discount amount applied to booking fees.
 				static::EXPORT_COLUMN_FEES_DISCOUNT             => esc_html__( 'Fees Discount', 'motopress-hotel-booking' ),
+				// translators: Total monetary booking fees.
 				static::EXPORT_COLUMN_FEES_TOTAL                => esc_html__( 'Fees Total', 'motopress-hotel-booking' ),
+				// translators: Total monetary taxes on booking fees.
 				static::EXPORT_COLUMN_FEE_TAXES_TOTAL           => esc_html__( 'Fee Taxes Total', 'motopress-hotel-booking' ),
 				static::EXPORT_COLUMN_COUPON                    => esc_html__( 'Coupon', 'motopress-hotel-booking' ),
 				static::EXPORT_COLUMN_DISCOUNT                  => esc_html__( 'Discount', 'motopress-hotel-booking' ),

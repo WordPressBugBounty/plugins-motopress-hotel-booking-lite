@@ -24,6 +24,7 @@ class RoomTypeEditCPTPage extends EditCPTPage {
 		<p>
 		<?php
 			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			// translators: %s: URL of the accommodation reviews addon product page.
 			printf( __( 'Allow guests to <a href="%s" target="_blank">submit star ratings and reviews</a> evaluating your accommodations.', 'motopress-hotel-booking' ), 'https://motopress.com/products/hotel-booking-reviews/?utm_source=customer_website&utm_medium=hb_reviews_addon' );
 		?>
 		</p>
@@ -165,7 +166,7 @@ class RoomTypeEditCPTPage extends EditCPTPage {
 					</tr>
 					<tr>
 						<th>
-							<label><?php esc_html_e( 'Linked Accommodations', 'motopress-hotel-booking' ); ?></label>
+							<label><?php /* translators: Physical accommodations linked by availability: booking one can make another unavailable for the same dates. */ esc_html_e( 'Linked Accommodations', 'motopress-hotel-booking' ); ?></label>
 						</th>
 						<td>
 							<div>

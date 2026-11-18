@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "ro_RO",
                 "plural-forms": "nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);"
             },
+            "Accommodation Type": [
+                "Tipul de cazare"
+            ],
+            "Accommodation": [
+                "Cazare"
+            ],
+            "Restriction": [
+                "Restric\u021bie"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                "Regula de check-in marcheaz\u0103 data ca fiind nevalabil\u0103 pentru check-in."
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                "Regula de check-out marcheaz\u0103 data ca nevalabil\u0103 pentru check-out."
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                "Regula \u201dnu r\u0103m\u00e2ne\u201d afi\u0219eaz\u0103 data ca blocat\u0103. Aceast\u0103 dat\u0103 nu este disponibil\u0103 pentru check-in \u0219i check-out la data urm\u0103toare."
+            ],
+            "Comment": [
+                "Comentariu"
+            ],
+            "All": [
+                "Tot"
+            ],
             "Delete": [
                 "\u0218terge"
+            ],
+            "Not check-in": [
+                "Check-in"
+            ],
+            "Not check-out": [
+                "Check-out"
+            ],
+            "Not stay-in": [
+                "Stat"
             ],
             "Email": [
                 "Email"
@@ -49,9 +82,6 @@
             "Edit": [
                 "Editeaz\u0103"
             ],
-            "All": [
-                "Tot"
-            ],
             "Nights": [
                 "Nop\u021bi"
             ],
@@ -70,14 +100,14 @@
             "Price": [
                 "Pre\u021b"
             ],
-            "Accommodation": [
-                "Cazare"
-            ],
             "Paid: %s": [
                 "Pl\u0103tit: %s"
             ],
-            "Accommodation Type": [
-                "Tipul de cazare"
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
             ],
             "Add New Season Price": [
                 "Adaug\u0103 pre\u021b sezon nou"
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "Reguli de rezervare"
+            ],
+            "Block Accommodations": [
+                ""
             ],
             "Check-in days": [
                 "Zilele de check-in"
@@ -105,30 +138,6 @@
             ],
             "Maximum stay": [
                 "Sejur maxim"
-            ],
-            "Restriction": [
-                "Restric\u021bie"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                "Regula de check-in marcheaz\u0103 data ca fiind nevalabil\u0103 pentru check-in."
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                "Regula de check-out marcheaz\u0103 data ca nevalabil\u0103 pentru check-out."
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                "Regula \u201dnu r\u0103m\u00e2ne\u201d afi\u0219eaz\u0103 data ca blocat\u0103. Aceast\u0103 dat\u0103 nu este disponibil\u0103 pentru check-in \u0219i check-out la data urm\u0103toare."
-            ],
-            "Not check-in": [
-                "Check-in"
-            ],
-            "Not check-out": [
-                "Check-out"
-            ],
-            "Not stay-in": [
-                "Stat"
-            ],
-            "Comment": [
-                "Comentariu"
             ],
             "Minimum advance reservation": [
                 "Rezervare \u00een avans minim\u0103"
@@ -193,8 +202,8 @@
             "Notes": [
                 "Note"
             ],
-            "Booking status\u0004Confirmed": [
-                "Confirmare"
+            "An error has occurred": [
+                "A ap\u0103rut o eroare"
             ],
             "Booked": [
                 "Rezervat"
@@ -207,6 +216,9 @@
             ],
             "Blocked": [
                 "Blocat"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Confirmare"
             ],
             "Check-in": [
                 "Check-in"
@@ -329,15 +341,6 @@
             "Nothing found.": [
                 "Nimic g\u0103sit."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
                 ""
             ],
@@ -380,6 +383,9 @@
             "Min. advance reservation": [
                 ""
             ],
+            "Reload": [
+                ""
+            ],
             "Please select at least one accommodation type.": [
                 ""
             ],
@@ -404,9 +410,6 @@
             "Next": [
                 ""
             ],
-            "Reload": [
-                ""
-            ],
             "Filter items\u2026": [
                 ""
             ],
@@ -416,7 +419,19 @@
             "List": [
                 ""
             ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
             "Booking #%1$d": [
+                ""
+            ],
+            "Unable to load rate.": [
+                ""
+            ],
+            "Retry": [
+                ""
+            ],
+            "Loading\u2026": [
                 ""
             ],
             "Total Price": [
@@ -455,6 +470,9 @@
             "Edit Season Price": [
                 ""
             ],
+            "Unable to load rates.": [
+                ""
+            ],
             "Quick booking rules": [
                 ""
             ],
@@ -462,6 +480,9 @@
                 ""
             ],
             "Check-out today": [
+                ""
+            ],
+            "Unable to load bookings.": [
                 ""
             ],
             "In-House": [

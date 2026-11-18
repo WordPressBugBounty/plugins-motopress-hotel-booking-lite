@@ -196,6 +196,7 @@ class ReservedRoomsTemplater extends AbstractTemplater {
 			),
 			array(
 				'name'        => 'room_title',
+				// translators: Title of a physical accommodation unit, distinct from the accommodation type title.
 				'description' => __( 'Accommodation Title', 'motopress-hotel-booking' ),
 			),
 			array(

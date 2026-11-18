@@ -95,18 +95,22 @@ class ReservedService extends Service {
 		}
 
 		if ( $this->isPayPerNight() && $nights >= 1 ) {
+			// translators: %d: Number of nights used as a price multiplier. Preserve the leading space and multiplication entity.
 			$string .= sprintf( _n( ' &#215; %d night', ' &#215; %d nights', $nights, 'motopress-hotel-booking' ), $nights );
 		}
 
 		if ( $this->isPayPerAdult() ) {
 			if ( MPHB()->settings()->main()->isChildrenAllowed() ) {
+				// translators: %d: Number of adults used in the accommodation or service price calculation.
 				$string .= ' &#215; ' . sprintf( _n( '%d adult', '%d adults', $this->adults, 'motopress-hotel-booking' ), $this->adults );
 			} else {
+				// translators: %d: Number of guests used in the accommodation or service price calculation.
 				$string .= ' &#215; ' . sprintf( _n( '%d guest', '%d guests', $this->adults, 'motopress-hotel-booking' ), $this->adults );
 			}
 		}
 
 		if ( $this->isFlexiblePay() ) {
+			// translators: %d: Number of purchased service occurrences, not a time of day. Preserve the leading space and multiplication entity.
 			$string .= sprintf( _n( ' &#215; %d time', ' &#215; %d times', $this->quantity, 'motopress-hotel-booking' ), $this->quantity );
 		}
 

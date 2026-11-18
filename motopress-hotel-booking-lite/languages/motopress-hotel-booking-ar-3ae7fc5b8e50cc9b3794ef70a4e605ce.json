@@ -1,0 +1,31 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/js\/public\/mphb.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "ar_SA",
+                "plural-forms": "nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);"
+            },
+            "%1$d &times; &ldquo;%2$s&rdquo; has been added to your reservation.": [
+                "\u202b%1$d &times; &ldquo;%2$s&rdquo; \u062a\u0645\u062a \u0625\u0636\u0627\u0641\u062a\u0647 \u0625\u0644\u0649 \u0627\u0644\u062d\u062c\u0632.",
+                "\u200f\u202b%1$d &times; &ldquo;%2$s&rdquo; \u062a\u0645\u062a \u0625\u0636\u0627\u0641\u062a\u0647 \u0625\u0644\u0649 \u0627\u0644\u062d\u062c\u0632.",
+                "\u200f\u202b%1$d &times; &ldquo;%2$s&rdquo; \u062a\u0645\u062a \u0625\u0636\u0627\u0641\u062a\u0647 \u0625\u0644\u0649 \u0627\u0644\u062d\u062c\u0632.",
+                "\u200f\u202b%1$d &times; &ldquo;%2$s&rdquo; \u062a\u0645\u062a \u0625\u0636\u0627\u0641\u062a\u0647 \u0625\u0644\u0649 \u0627\u0644\u062d\u062c\u0632.",
+                "\u200f\u202b%1$d &times; &ldquo;%2$s&rdquo; \u062a\u0645\u062a \u0625\u0636\u0627\u0641\u062a\u0647 \u0625\u0644\u0649 \u0627\u0644\u062d\u062c\u0632.",
+                "\u200f\u202b%1$d &times; &ldquo;%2$s&rdquo; \u062a\u0645\u062a \u0625\u0636\u0627\u0641\u062a\u0647 \u0625\u0644\u0649 \u0627\u0644\u062d\u062c\u0632."
+            ],
+            "%s accommodation selected.": [
+                "\u202b%s \u0627\u0644\u0625\u0642\u0627\u0645\u0629 \u0627\u0644\u0645\u062d\u062f\u062f\u0629.",
+                "\u200f\u202b%s \u0627\u0644\u0625\u0642\u0627\u0645\u0629 \u0627\u0644\u0645\u062d\u062f\u062f.",
+                "\u200f\u202b%s \u0627\u0644\u0625\u0642\u0627\u0645\u0629 \u0627\u0644\u0645\u062d\u062f\u062f.",
+                "\u200f\u202b%s \u0627\u0644\u0625\u0642\u0627\u0645\u0629 \u0627\u0644\u0645\u062d\u062f\u062f.",
+                "\u200f\u202b%s \u0627\u0644\u0625\u0642\u0627\u0645\u0629 \u0627\u0644\u0645\u062d\u062f\u062f.",
+                "\u200f\u202b%s \u0627\u0644\u0625\u0642\u0627\u0645\u0629 \u0627\u0644\u0645\u062d\u062f\u062f."
+            ]
+        }
+    }
+}

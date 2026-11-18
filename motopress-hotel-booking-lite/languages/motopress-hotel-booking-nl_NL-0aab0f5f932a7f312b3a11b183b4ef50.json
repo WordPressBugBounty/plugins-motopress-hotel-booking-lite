@@ -1,0 +1,69 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/js\/admin\/admin.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "nl_NL",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Accommodation Type": [
+                "Type Kamer"
+            ],
+            "Accommodation": [
+                "Accommodatie"
+            ],
+            "From": [
+                "Van"
+            ],
+            "Till": [
+                "Tot"
+            ],
+            "Restriction": [
+                "Beperking"
+            ],
+            "Comment": [
+                "Commentaar"
+            ],
+            "All": [
+                "Alle"
+            ],
+            "Quick edit block #%s inline": [
+                "Blokkering #%s snel op deze pagina bewerken"
+            ],
+            "Quick Edit": [
+                "Snel bewerken"
+            ],
+            "Delete": [
+                "Wis"
+            ],
+            "Not check-in": [
+                "Niet inchecken"
+            ],
+            "Not check-out": [
+                "Niet uitchecken"
+            ],
+            "Not stay-in": [
+                "Niet verblijven"
+            ],
+            "None": [
+                "Geen"
+            ],
+            "Cancel": [
+                "Annuleer"
+            ],
+            "Save": [
+                "Opslaan"
+            ],
+            "Unable to save the object. %s": [
+                "De beschikbaarheidsblokkering kon niet worden opgeslagen. %s"
+            ],
+            "The start and end dates of the block are required.": [
+                "De begin- en einddatum van de blokkering zijn verplicht."
+            ]
+        }
+    }
+}

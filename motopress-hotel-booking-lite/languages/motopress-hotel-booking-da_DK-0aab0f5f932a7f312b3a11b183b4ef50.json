@@ -1,0 +1,69 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/js\/admin\/admin.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "da_DK",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Accommodation Type": [
+                "Indkvarterings Type"
+            ],
+            "Accommodation": [
+                "Indkvartering"
+            ],
+            "From": [
+                "Fra"
+            ],
+            "Till": [
+                "Til"
+            ],
+            "Restriction": [
+                "Begr\u00e6nsninger"
+            ],
+            "Comment": [
+                "Kommentar"
+            ],
+            "All": [
+                "Alle"
+            ],
+            "Quick edit block #%s inline": [
+                ""
+            ],
+            "Quick Edit": [
+                ""
+            ],
+            "Delete": [
+                "Slet"
+            ],
+            "Not check-in": [
+                "Ikke check-in"
+            ],
+            "Not check-out": [
+                "Ikke check-ud"
+            ],
+            "Not stay-in": [
+                "Ikke opholdt sig"
+            ],
+            "None": [
+                "Ingen"
+            ],
+            "Cancel": [
+                "Annuller"
+            ],
+            "Save": [
+                "Gem"
+            ],
+            "Unable to save the object. %s": [
+                ""
+            ],
+            "The start and end dates of the block are required.": [
+                ""
+            ]
+        }
+    }
+}

@@ -128,6 +128,11 @@ class HotelBookingPlugin {
 	private $calendarMenuPage;
 
 	/**
+	 * @var \MPHB\Admin\MenuPages\DashboardMenuPage
+	 */
+	private $dashboardMenuPage;
+
+	/**
 	 * @var \MPHB\Admin\MenuPages\BookingRulesMenuPage
 	 */
 	private $bookingRulesPage;
@@ -614,6 +619,14 @@ private $upgradeToPremiumMenuPage;
 			)
 		);
 
+		$this->dashboardMenuPage = new \MPHB\Admin\MenuPages\DashboardMenuPage(
+			'mphb_dashboard',
+			array(
+				'capability' => 'manage_options',
+				'order'      => 10,
+			)
+		);
+
 		$attributesSettings = array('order' => 9, 'parent_menu' => $this->postTypes()->roomType()->getMenuSlug());
 
 		$this->attributesMenuPage = new \MPHB\Admin\MenuPages\AttributesMenuPage('mphb_room_attribute', $attributesSettings);
@@ -1094,6 +1107,7 @@ private $upgradeToPremiumMenuPage;
 				)
 			);
 
+			// translators: %s: Formatted minimum monetary price for the accommodation type.
 			$microdata['priceRange'] = sprintf( __( 'Prices start at: %s', 'motopress-hotel-booking' ), $formattedPrice );
 		}
 

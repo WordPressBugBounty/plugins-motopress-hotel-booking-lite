@@ -891,6 +891,7 @@ abstract class AbstractRestObjectController extends AbstractRestController {
 				'title',
 				'slug',
 				'modified',
+				'meta_value',
 			),
 			'validate_callback' => 'rest_validate_request_arg',
 		);

@@ -17,6 +17,7 @@ class CouponManageCPTPage extends ManageCPTPage {
 
 		$customColumns = array(
 			'amount'          => esc_html__( 'Amount', 'motopress-hotel-booking' ),
+			// translators: Column showing how many times a coupon has been redeemed.
 			'usage_count'     => esc_html__( 'Uses', 'motopress-hotel-booking' ),
 			'expiration_date' => esc_html__( 'Expiration Date', 'motopress-hotel-booking' ),
 			'status'          => esc_html__( 'Status', 'motopress-hotel-booking' ),
@@ -143,7 +144,7 @@ class CouponManageCPTPage extends ManageCPTPage {
 				break;
 
 			case 'status':
-				echo $coupon->isExpired() ? esc_html__( 'Expired', 'motopress-hotel-booking' ) : esc_html__( 'Active', 'motopress-hotel-booking' );
+				echo $coupon->isExpired() ? esc_html__( 'Expired', 'motopress-hotel-booking' ) : /* translators: Status adjective for an enabled rate or a currently usable coupon. */ esc_html__( 'Active', 'motopress-hotel-booking' );
 				break;
 		}
 	}

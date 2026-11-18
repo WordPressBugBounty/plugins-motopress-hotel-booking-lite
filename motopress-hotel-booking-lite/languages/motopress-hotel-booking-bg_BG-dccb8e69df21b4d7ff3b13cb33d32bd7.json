@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "bg_BG",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "Accommodation Type": [
+                "\u0412\u0438\u0434 \u043d\u0430\u0441\u0442\u0430\u043d\u044f\u0432\u0430\u043d\u0435"
+            ],
+            "Accommodation": [
+                "\u041d\u0430\u0441\u0442\u0430\u043d\u044f\u0432\u0430\u043d\u0435"
+            ],
+            "Restriction": [
+                "\u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Comment": [
+                "\u041a\u043e\u043c\u0435\u043d\u0442\u0430\u0440"
+            ],
+            "All": [
+                "\u0412\u0441\u0438\u0447\u043a\u0438"
+            ],
             "Delete": [
                 "\u0418\u0437\u0442\u0440\u0438\u0432\u0430\u043d\u0435"
+            ],
+            "Not check-in": [
+                "\u041d\u0435 \u0441\u0435 \u0432\u043f\u0438\u0441\u0430\u0439\u0442\u0435"
+            ],
+            "Not check-out": [
+                "\u041d\u0435 \u0441\u0435 \u043e\u0442\u043f\u0438\u0441\u0432\u0430\u0439\u0442\u0435"
+            ],
+            "Not stay-in": [
+                "\u041d\u0435 \u043f\u0440\u0435\u0431\u0438\u0432\u0430\u0432\u0430\u0439\u0442\u0435"
             ],
             "Email": [
                 "\u0418\u043c\u0435\u0439\u043b"
@@ -49,9 +82,6 @@
             "Edit": [
                 "\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u0430\u0439"
             ],
-            "All": [
-                "\u0412\u0441\u0438\u0447\u043a\u0438"
-            ],
             "Nights": [
                 "\u041d\u043e\u0449\u0438"
             ],
@@ -70,14 +100,14 @@
             "Price": [
                 "\u0426\u0435\u043d\u0430"
             ],
-            "Accommodation": [
-                "\u041d\u0430\u0441\u0442\u0430\u043d\u044f\u0432\u0430\u043d\u0435"
-            ],
             "Paid: %s": [
                 "\u041f\u043b\u0430\u0442\u0435\u043d\u0438: %s"
             ],
-            "Accommodation Type": [
-                "\u0412\u0438\u0434 \u043d\u0430\u0441\u0442\u0430\u043d\u044f\u0432\u0430\u043d\u0435"
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
             ],
             "Add New Season Price": [
                 "\u0414\u043e\u0431\u0430\u0432\u0438 \u043d\u043e\u0432\u0430 \u0446\u0435\u043d\u0430 \u043d\u0430 \u0441\u0435\u0437\u043e\u043d\u0430"
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "\u041f\u0440\u0430\u0432\u0438\u043b\u0430 \u0437\u0430 \u0440\u0435\u0437\u0435\u0440\u0432\u0430\u0446\u0438\u044f"
+            ],
+            "Block Accommodations": [
+                ""
             ],
             "Check-in days": [
                 "\u0414\u043d\u0438 \u0437\u0430 \u043d\u0430\u0441\u0442\u0430\u043d\u044f\u0432\u0430\u043d\u0435"
@@ -105,30 +138,6 @@
             ],
             "Maximum stay": [
                 "\u041c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u0435\u043d \u043f\u0440\u0435\u0441\u0442\u043e\u0439"
-            ],
-            "Restriction": [
-                "\u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0435"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                ""
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                ""
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                ""
-            ],
-            "Not check-in": [
-                "\u041d\u0435 \u0441\u0435 \u0432\u043f\u0438\u0441\u0430\u0439\u0442\u0435"
-            ],
-            "Not check-out": [
-                "\u041d\u0435 \u0441\u0435 \u043e\u0442\u043f\u0438\u0441\u0432\u0430\u0439\u0442\u0435"
-            ],
-            "Not stay-in": [
-                "\u041d\u0435 \u043f\u0440\u0435\u0431\u0438\u0432\u0430\u0432\u0430\u0439\u0442\u0435"
-            ],
-            "Comment": [
-                "\u041a\u043e\u043c\u0435\u043d\u0442\u0430\u0440"
             ],
             "Minimum advance reservation": [
                 ""
@@ -193,8 +202,8 @@
             "Notes": [
                 "\u0411\u0435\u043b\u0435\u0436\u043a\u0438"
             ],
-            "Booking status\u0004Confirmed": [
-                "\u041f\u043e\u0442\u0432\u044a\u0440\u0434\u0435\u043d\u0438"
+            "An error has occurred": [
+                "\u0412\u044a\u0437\u043d\u0438\u043a\u043d\u0430 \u0433\u0440\u0435\u0448\u043a\u0430"
             ],
             "Booked": [
                 "\u0420\u0435\u0437\u0435\u0440\u0432\u0438\u0440\u0430\u043d\u0430"
@@ -207,6 +216,9 @@
             ],
             "Blocked": [
                 "\u0411\u043b\u043e\u043a\u0438\u0440\u0430\u043d\u0430"
+            ],
+            "Booking status\u0004Confirmed": [
+                "\u041f\u043e\u0442\u0432\u044a\u0440\u0434\u0435\u043d\u0438"
             ],
             "Check-in": [
                 "\u041d\u0430\u0441\u0442\u0430\u043d\u044f\u0432\u0430\u043d\u0435"
@@ -327,15 +339,6 @@
             "Nothing found.": [
                 "\u041d\u044f\u043c\u0430 \u043d\u0438\u0449\u043e \u043d\u0430\u043c\u0435\u0440\u0435\u043d\u043e."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
                 ""
             ],
@@ -378,6 +381,9 @@
             "Min. advance reservation": [
                 ""
             ],
+            "Reload": [
+                ""
+            ],
             "Please select at least one accommodation type.": [
                 ""
             ],
@@ -402,9 +408,6 @@
             "Next": [
                 ""
             ],
-            "Reload": [
-                ""
-            ],
             "Filter items\u2026": [
                 ""
             ],
@@ -414,7 +417,19 @@
             "List": [
                 ""
             ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
             "Booking #%1$d": [
+                ""
+            ],
+            "Unable to load rate.": [
+                ""
+            ],
+            "Retry": [
+                ""
+            ],
+            "Loading\u2026": [
                 ""
             ],
             "Total Price": [
@@ -453,6 +468,9 @@
             "Edit Season Price": [
                 ""
             ],
+            "Unable to load rates.": [
+                ""
+            ],
             "Quick booking rules": [
                 ""
             ],
@@ -460,6 +478,9 @@
                 ""
             ],
             "Check-out today": [
+                ""
+            ],
+            "Unable to load bookings.": [
                 ""
             ],
             "In-House": [

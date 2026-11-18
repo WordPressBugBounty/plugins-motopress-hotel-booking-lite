@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "cs_CZ",
                 "plural-forms": "nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;"
             },
+            "Accommodation Type": [
+                "Typ ubytov\u00e1n\u00ed"
+            ],
+            "Accommodation": [
+                "Ubytov\u00e1n\u00ed"
+            ],
+            "Restriction": [
+                "Omezen\u00ed"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Comment": [
+                "Koment\u00e1\u0159"
+            ],
+            "All": [
+                "V\u0161echny"
+            ],
             "Delete": [
                 "Sm\u00e1zat"
+            ],
+            "Not check-in": [
+                "Neprob\u011bhl p\u0159\u00edjezd"
+            ],
+            "Not check-out": [
+                "Neprob\u011bhl odjezd"
+            ],
+            "Not stay-in": [
+                "Nez\u016fstal"
             ],
             "Email": [
                 ""
@@ -49,9 +82,6 @@
             "Edit": [
                 "Upravit"
             ],
-            "All": [
-                "V\u0161echny"
-            ],
             "Nights": [
                 "Noci"
             ],
@@ -70,14 +100,14 @@
             "Price": [
                 "Cena"
             ],
-            "Accommodation": [
-                "Ubytov\u00e1n\u00ed"
-            ],
             "Paid: %s": [
                 "Zaplaceno: %s"
             ],
-            "Accommodation Type": [
-                "Typ ubytov\u00e1n\u00ed"
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
             ],
             "Add New Season Price": [
                 "P\u0159idat novou cenu"
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "Pravidla pro rezervaci"
+            ],
+            "Block Accommodations": [
+                ""
             ],
             "Check-in days": [
                 "Dny pro p\u0159\u00edjezd"
@@ -105,30 +138,6 @@
             ],
             "Maximum stay": [
                 "Maxim\u00e1ln\u00ed d\u00e9lka pobytu"
-            ],
-            "Restriction": [
-                "Omezen\u00ed"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                ""
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                ""
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                ""
-            ],
-            "Not check-in": [
-                "Neprob\u011bhl p\u0159\u00edjezd"
-            ],
-            "Not check-out": [
-                "Neprob\u011bhl odjezd"
-            ],
-            "Not stay-in": [
-                "Nez\u016fstal"
-            ],
-            "Comment": [
-                "Koment\u00e1\u0159"
             ],
             "Minimum advance reservation": [
                 ""
@@ -193,8 +202,8 @@
             "Notes": [
                 "Pozn\u00e1mky"
             ],
-            "Booking status\u0004Confirmed": [
-                "Potvrzeno"
+            "An error has occurred": [
+                "Do\u0161lo k chyb\u011b"
             ],
             "Booked": [
                 "Rezervov\u00e1no"
@@ -207,6 +216,9 @@
             ],
             "Blocked": [
                 "Blokov\u00e1no"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Potvrzeno"
             ],
             "Check-in": [
                 "P\u0159\u00edjezd"
@@ -331,15 +343,6 @@
             "Nothing found.": [
                 "Nebylo nic nalezeno."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
                 ""
             ],
@@ -382,6 +385,9 @@
             "Min. advance reservation": [
                 ""
             ],
+            "Reload": [
+                ""
+            ],
             "Please select at least one accommodation type.": [
                 ""
             ],
@@ -406,9 +412,6 @@
             "Next": [
                 ""
             ],
-            "Reload": [
-                ""
-            ],
             "Filter items\u2026": [
                 ""
             ],
@@ -418,7 +421,19 @@
             "List": [
                 ""
             ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
             "Booking #%1$d": [
+                ""
+            ],
+            "Unable to load rate.": [
+                ""
+            ],
+            "Retry": [
+                ""
+            ],
+            "Loading\u2026": [
                 ""
             ],
             "Total Price": [
@@ -457,6 +472,9 @@
             "Edit Season Price": [
                 ""
             ],
+            "Unable to load rates.": [
+                ""
+            ],
             "Quick booking rules": [
                 ""
             ],
@@ -464,6 +482,9 @@
                 ""
             ],
             "Check-out today": [
+                ""
+            ],
+            "Unable to load bookings.": [
                 ""
             ],
             "In-House": [

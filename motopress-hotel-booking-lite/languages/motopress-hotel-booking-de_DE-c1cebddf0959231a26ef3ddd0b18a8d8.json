@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
@@ -10,6 +10,9 @@
                 "lang": "de_DE",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "Accommodation Type": [
+                "Unterkunftsart"
+            ],
             "Date": [
                 "Datum"
             ],
@@ -22,8 +25,8 @@
             "Price": [
                 "Preis"
             ],
-            "Accommodation Type": [
-                "Unterkunftsart"
+            "Settings": [
+                "Einstellungen"
             ],
             "Title": [
                 "Titel"
@@ -43,11 +46,8 @@
             "Display the currency sign in the availability calendar.": [
                 "Zeigt das W\u00e4hrungszeichen im Verf\u00fcgbarkeitskalender an."
             ],
-            "Settings": [
-                "Einstellungen"
-            ],
             "Availability Search Form": [
-                "Verf\u00fcgbarkeitsformularsuche"
+                "Suchformular f\u00fcr die Verf\u00fcgbarkeit"
             ],
             "The number of adults presetted in the search form.": [
                 "Die Anzahl der Erwachsenen, die im Suchformular vorgegeben sind."
@@ -62,10 +62,10 @@
                 "Durch Komma getrennte Slugs von Attributen."
             ],
             "How many months to show.": [
-                "Wie viel Monate angezeigt werden sollen."
+                "Wie viele Monate angezeigt werden sollen."
             ],
             "Set the number of columns or the number of rows and columns separated by comma. Example: \"3\" or \"2,3\"": [
-                "Stellen Sie die Spaltenanzahl oder die Komma-getrennte Spalten- und Zielenanzahl ein. Zum Beispiel \u201e3\u201c oder \u201e2,3\u201c"
+                "Legen Sie die Anzahl der Spalten oder die durch Komma getrennte Anzahl der Zeilen und Spalten fest. Beispiel: \u201e3\u201c oder \u201e2,3\u201c"
             ],
             "Display availability calendar of the current accommodation type or by ID.": [
                 "Den Verf\u00fcgbarkeitskalender der aktuellen Unterkunftsart oder nach ID anzeigen."
@@ -101,7 +101,7 @@
                 "Benutzerdefinierter Feldname. Erforderlich, wenn \"orderby\" ist einer der \"meta_value\", \"meta_value_num\" oder \"meta_value_*\"."
             ],
             "Whether to display Book button.": [
-                "Ob die Buchungsbutton angezeigt werden soll."
+                "Ob der Buchungsbutton angezeigt werden soll."
             ],
             "Accommodation Types Listing": [
                 "Unterkunftsarten-Liste"
@@ -131,7 +131,7 @@
                 "Auflistung der Dienstleistungen"
             ],
             "IDs": [
-                "ID\u00b4s"
+                "IDs"
             ],
             "IDs of services that will be shown. ": [
                 "IDs von Dienstleistungen, die angezeigt werden. "
@@ -182,121 +182,121 @@
                 "Buchungsbutton"
             ],
             "Preset date. Formatted as %s": [
-                ""
+                "Datumsvoreinstellung. Formatiert als %s"
             ],
             "Select an accommodation type. Leave blank to use current.": [
-                ""
+                "W\u00e4hlen Sie einen Unterkunftstyp. Leer lassen, um aktuelle zu verwenden."
             ],
             "ID of an accommodation type. Leave blank to use current.": [
-                ""
+                "ID eines Unterkunftstyps. Leer lassen, um aktuell zu verwenden."
             ],
             "Gallery": [
-                ""
+                "Galerie"
             ],
             "View Button": [
-                ""
+                "\"Ansehen\"-Button"
             ],
             "Order": [
-                ""
+                "Reihenfolge"
             ],
             "Order By": [
-                ""
+                "Sortieren nach"
             ],
             "No order": [
-                ""
+                "Keine Reihenfolge"
             ],
             "Post ID": [
-                ""
+                "Beitrags-ID"
             ],
             "Post author": [
-                ""
+                "Beitragsautor"
             ],
             "Post title": [
-                ""
+                "Beitragstitel"
             ],
             "Post name (post slug)": [
-                ""
+                "Beitragsname (Beitrag-Slug)"
             ],
             "Post date": [
-                ""
+                "Ver\u00f6ffentlicht"
             ],
             "Last modified date": [
-                ""
+                "Zuletzt ge\u00e4ndert"
             ],
             "Parent ID": [
-                ""
+                "ID des \u00fcbergeordneten Beitrags"
             ],
             "Random order": [
-                ""
+                "Zuf\u00e4llige Reihenfolge"
             ],
             "Number of comments": [
-                ""
+                "Anzahl der Kommentare"
             ],
             "Relevance": [
-                ""
+                "Relevanz"
             ],
             "Page order": [
-                ""
+                "Seitenreihenfolge"
             ],
             "Meta value": [
-                ""
+                "Meta-Wert"
             ],
             "Numeric meta value": [
-                ""
+                "Numerischer Meta-Wert"
             ],
             "Ascending (1, 2, 3)": [
-                ""
+                "Aufsteigend (1, 2, 3)"
             ],
             "Descending (3, 2, 1)": [
-                ""
+                "Absteigend (3, 2, 1)"
             ],
             "Meta Name": [
-                ""
+                "Meta-Name"
             ],
             "Meta Type": [
-                ""
+                "Meta-Typ"
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                ""
+                "Angegebener Typ des benutzerdefinierten Felds. Kann in Verbindung mit \"orderby\" = \"meta_value\" verwendet werden."
             ],
             "Any": [
-                ""
+                "Beliebig"
             ],
             "Numeric": [
-                ""
+                "Numerisch"
             ],
             "Binary": [
-                ""
+                "Bin\u00e4r"
             ],
             "String": [
-                ""
+                "Zeichenkette"
             ],
             "Time": [
-                ""
+                "Uhrzeit"
             ],
             "Date and time": [
-                ""
+                "Datum und Uhrzeit"
             ],
             "Decimal number": [
-                ""
+                "Dezimalzahl"
             ],
             "Signed number": [
-                ""
+                "Zahl mit Vorzeichen"
             ],
             "Unsigned number": [
-                ""
+                "Vorzeichenlose Zahl"
             ],
             "Query Settings": [
-                ""
+                "Abfrageeinstellungen"
             ],
             "Relation": [
-                ""
+                "Beziehung"
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                ""
+                "Werte: Ganzzahl; -1 um alle anzuzeigen; Standard: 'Blogseiten zeigen maximal' (Einstellungen\\Lesen)"
             ],
             "Select an accommodation type.": [
-                ""
+                "W\u00e4hlen Sie einen Unterkunftstyp aus."
             ]
         }
     }

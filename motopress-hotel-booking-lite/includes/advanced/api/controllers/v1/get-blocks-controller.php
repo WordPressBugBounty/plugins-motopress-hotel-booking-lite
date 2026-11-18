@@ -45,6 +45,12 @@ class GetBlocksController extends AbstractRestCommandController {
 
 	protected static function get_request_schema(): array {
 		return array(
+			'room_type_id' => array(
+				'type'              => 'integer',
+				'description'       => 'Accommodation type ID. Includes blocks that apply to all accommodation types.',
+				'minimum'           => 0,
+				'sanitize_callback' => 'rest_sanitize_request_arg',
+			),
 			'date_from'    => array(
 				'type'              => 'string',
 				'description'       => 'Date in WordPress timezone (YYYY-MM-DD) (inclusive)',
@@ -109,7 +115,7 @@ class GetBlocksController extends AbstractRestCommandController {
 		$requestArgs = $request->get_params();
 
 		$queryArgs   = array();
-		$queryParams = array( 'date_from', 'date_to', 'page', 'per_page', 'restrictions' );
+		$queryParams = array( 'date_from', 'date_to', 'page', 'per_page', 'restrictions', 'room_type_id' );
 
 		foreach ( $queryParams as $param ) {
 			if ( isset( $requestArgs[ $param ] ) ) {

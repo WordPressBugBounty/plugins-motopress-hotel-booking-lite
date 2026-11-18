@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "es_ES",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "Accommodation Type": [
+                "Tipo de alojamiento"
+            ],
+            "Accommodation": [
+                "Alojamiento"
+            ],
+            "Restriction": [
+                "Restricci\u00f3n"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                "La regla de no permitir llegadas marca la fecha como no disponible para la llegada."
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                "La regla de no permitir salidas marca la fecha como no disponible para la salida."
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                "La regla de no permitir estancias muestra la fecha como bloqueada. No se permite la llegada en esa fecha ni la salida al d\u00eda siguiente."
+            ],
+            "Comment": [
+                "Comentario"
+            ],
+            "All": [
+                "Todo"
+            ],
             "Delete": [
                 "Eliminar"
+            ],
+            "Not check-in": [
+                "No se permiten llegadas"
+            ],
+            "Not check-out": [
+                "No se permiten salidas"
+            ],
+            "Not stay-in": [
+                "No se permiten estancias"
             ],
             "Email": [
                 "Email"
@@ -26,7 +59,7 @@
                 "Ni\u00f1os:"
             ],
             "Accommodations": [
-                "Comodidades"
+                "Alojamientos"
             ],
             "Move up": [
                 "Mover arriba"
@@ -49,9 +82,6 @@
             "Edit": [
                 "Editar"
             ],
-            "All": [
-                "Todo"
-            ],
             "Nights": [
                 "Noches"
             ],
@@ -70,14 +100,14 @@
             "Price": [
                 "Precio"
             ],
-            "Accommodation": [
-                "Alojamiento"
-            ],
             "Paid: %s": [
                 "Pagado: %s"
             ],
-            "Accommodation Type": [
-                "Tipo de alojamiento"
+            "Awaiting charge": [
+                "Pendiente de cobro"
+            ],
+            "+%s txn fee": [
+                "+%s de cargo por transacci\u00f3n"
             ],
             "Add New Season Price": [
                 "A\u00f1adir nuevo precio de temporada"
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "Reglas de reserva"
+            ],
+            "Block Accommodations": [
+                "Bloquear alojamientos"
             ],
             "Check-in days": [
                 "D\u00edas de llegada"
@@ -105,30 +138,6 @@
             ],
             "Maximum stay": [
                 "Estancia m\u00e1xima"
-            ],
-            "Restriction": [
-                "Restriccion"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                "Regla de no facturaci\u00f3n\/check-in marca la fecha como no disponible para el check-in."
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                "Regla de no facturaci\u00f3n\/check-in marca la fecha como no disponible para el check-in."
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                "La \"regla de no estancia\" muestra la fecha como bloqueada. Esta fecha no est\u00e1 disponible para la salida y el check-in en la pr\u00f3xima fecha."
-            ],
-            "Not check-in": [
-                "L\u00edmite de llegada"
-            ],
-            "Not check-out": [
-                "L\u00edmite de salida"
-            ],
-            "Not stay-in": [
-                "L\u00edmite de estad\u00eda"
-            ],
-            "Comment": [
-                "Comentario"
             ],
             "Minimum advance reservation": [
                 "Antelaci\u00f3n de reserva m\u00ednima"
@@ -193,8 +202,8 @@
             "Notes": [
                 "Notas"
             ],
-            "Booking status\u0004Confirmed": [
-                "Confirmada"
+            "An error has occurred": [
+                "Se ha producido un error"
             ],
             "Booked": [
                 "Reservado"
@@ -208,6 +217,9 @@
             "Blocked": [
                 "Bloqueado"
             ],
+            "Booking status\u0004Confirmed": [
+                "Confirmada"
+            ],
             "Check-in": [
                 "D\u00eda de llegada"
             ],
@@ -215,7 +227,7 @@
                 "D\u00eda de salida"
             ],
             "Blocked because the linked accommodation is booked": [
-                ""
+                "Bloqueado porque el alojamiento vinculado est\u00e1 reservado"
             ],
             "Booking status\u0004Pending User Confirmation": [
                 "Requiere confirmaci\u00f3n de usuario"
@@ -245,19 +257,19 @@
                 "A\u00f1adir nueva tarifa"
             ],
             "Base Adults Occupancy": [
-                ""
+                "Ocupaci\u00f3n base de adultos"
             ],
             "Base Children Occupancy": [
-                ""
+                "Ocupaci\u00f3n base de ni\u00f1os"
             ],
             "Applied for days": [
                 "Aplicado para d\u00edas"
             ],
             "Annual repeats begin on the Start date of the season, for one year from the current date.": [
-                ""
+                "Las repeticiones anuales comienzan en la fecha de inicio de la temporada y abarcan un a\u00f1o a partir de la fecha actual."
             ],
             "Repeat until date": [
-                ""
+                "Repetir hasta la fecha"
             ],
             "Add New Season": [
                 "A\u00f1adir nueva temporada"
@@ -287,7 +299,7 @@
                 "Hacer reserva"
             ],
             "x %d guest": [
-                "x %d huesped",
+                "x %d hu\u00e9sped",
                 "x %d hu\u00e9spedes"
             ],
             "x %d time": [
@@ -327,143 +339,152 @@
             "Nothing found.": [
                 "Nada encontrado."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
-                ""
+                "Una temporada es un periodo que permite establecer distintos precios para los alojamientos."
             ],
             "Block": [
-                ""
+                "Bloquear"
             ],
             "Daily price": [
-                ""
+                "Precio por noche"
             ],
             "Select an action": [
-                ""
+                "Seleccione una acci\u00f3n"
             ],
             "Daily": [
-                ""
+                "Diario"
             ],
             "Rule #%1$d": [
-                ""
+                "Regla #%1$d"
             ],
             "Min. stay": [
-                ""
+                "Estancia m\u00edn."
             ],
             "Max. stay": [
-                ""
+                "Estancia m\u00e1x."
             ],
             "Min. adv. res.": [
-                ""
+                "Antel. m\u00edn. de reserva"
             ],
             "Max. adv. res.": [
-                ""
+                "Antel. m\u00e1x. de reserva"
             ],
             "Allow": [
-                ""
+                "Permitir"
             ],
             "Disallow": [
-                ""
+                "No permitir"
             ],
             "Max. advance reservation": [
-                ""
+                "Antelaci\u00f3n m\u00e1xima de reserva"
             ],
             "Min. advance reservation": [
-                ""
-            ],
-            "Please select at least one accommodation type.": [
-                ""
-            ],
-            "It looks like you haven`t created any accommodation types yet.": [
-                ""
-            ],
-            "Create your first accommodation type.": [
-                ""
-            ],
-            "Next 7 days": [
-                ""
-            ],
-            "Next 14 days": [
-                ""
-            ],
-            "Next 30 days": [
-                ""
-            ],
-            "Previous": [
-                ""
-            ],
-            "Next": [
-                ""
+                "Antelaci\u00f3n m\u00ednima de reserva"
             ],
             "Reload": [
-                ""
+                "Volver a cargar"
+            ],
+            "Please select at least one accommodation type.": [
+                "Seleccione al menos un tipo de alojamiento."
+            ],
+            "It looks like you haven`t created any accommodation types yet.": [
+                "Parece que a\u00fan no ha creado ning\u00fan tipo de alojamiento."
+            ],
+            "Create your first accommodation type.": [
+                "Cree su primer tipo de alojamiento."
+            ],
+            "Next 7 days": [
+                "Pr\u00f3ximos 7 d\u00edas"
+            ],
+            "Next 14 days": [
+                "Pr\u00f3ximos 14 d\u00edas"
+            ],
+            "Next 30 days": [
+                "Pr\u00f3ximos 30 d\u00edas"
+            ],
+            "Previous": [
+                "Anterior"
+            ],
+            "Next": [
+                "Siguiente"
             ],
             "Filter items\u2026": [
-                ""
+                "Filtrar elementos\u2026"
             ],
             "Compact Calendar": [
-                ""
+                "Calendario compacto"
             ],
             "List": [
-                ""
+                "Lista"
+            ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                "<a>Actualiza a Premium<\/a> para activar esta funci\u00f3n."
             ],
             "Booking #%1$d": [
-                ""
+                "Reserva #%1$d"
+            ],
+            "Unable to load rate.": [
+                "No se ha podido cargar la tarifa."
+            ],
+            "Retry": [
+                "Reintentar"
+            ],
+            "Loading\u2026": [
+                "Cargando\u2026"
             ],
             "Total Price": [
-                ""
+                "Precio total"
             ],
             "You haven\u2019t created any seasons yet. Season is a period used to set different property prices.": [
-                ""
+                "A\u00fan no ha creado ninguna temporada. Una temporada es un periodo que permite establecer distintos precios para los alojamientos."
             ],
             "Repeat annually": [
-                ""
+                "Repetir anualmente"
             ],
             "Repeat annually, until %1$s": [
-                ""
+                "Repetir anualmente hasta %1$s"
             ],
             "Priority": [
-                ""
+                "Prioridad"
             ],
             "First": [
-                ""
+                "Al principio"
             ],
             "Last": [
-                ""
+                "Al final"
             ],
             "From\/Till": [
-                ""
+                "Desde\/Hasta"
             ],
             "Edit Block": [
-                ""
+                "Editar bloqueo"
             ],
             "Select\u2026": [
-                ""
+                "Seleccionar\u2026"
             ],
             "Update %1$s rate for %2$s": [
-                ""
+                "Actualizar la tarifa %1$s para %2$s"
             ],
             "Edit Season Price": [
-                ""
+                "Editar precio de temporada"
+            ],
+            "Unable to load rates.": [
+                "No se han podido cargar las tarifas."
             ],
             "Quick booking rules": [
-                ""
+                "Reglas r\u00e1pidas de reserva"
             ],
             "Check-in today": [
-                ""
+                "Llegada hoy"
             ],
             "Check-out today": [
-                ""
+                "Salida hoy"
+            ],
+            "Unable to load bookings.": [
+                "No se han podido cargar las reservas."
             ],
             "In-House": [
-                ""
+                "Estancias en curso"
             ]
         }
     }

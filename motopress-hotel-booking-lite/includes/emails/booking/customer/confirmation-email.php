@@ -9,6 +9,7 @@ class ConfirmationEmail extends BaseEmail {
 	}
 
 	public function getDefaultSubject() {
+		// translators: Email subject. Keep %site_title% and %booking_id% replacement tags unchanged.
 		return __( '%site_title% - Confirm your booking #%booking_id%', 'motopress-hotel-booking' );
 	}
 

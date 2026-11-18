@@ -38,6 +38,7 @@ if ( $user->ID ) {
 	<?php
 		printf(
 			wp_kses(
+				// translators: %1$s: URL of customer bookings. %2$s: URL of customer account and password settings.
 				__( 'From your account dashboard you can view <a href="%1$s">your recent bookings</a> or edit your <a href="%2$s">password and account details</a>.', 'motopress-hotel-booking' ),
 				$allowed_html
 			),

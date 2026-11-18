@@ -515,6 +515,20 @@ class BlocksRepository {
 			);
 		}
 
+		if ( ! empty( $queryArgs['date_from'] ) ) {
+			$preparedSql .= $wpdb->prepare(
+				' AND date_to >= %s',
+				$queryArgs['date_from']
+			);
+		}
+
+		if ( ! empty( $queryArgs['date_to'] ) ) {
+			$preparedSql .= $wpdb->prepare(
+				' AND date_from <= %s',
+				$queryArgs['date_to']
+			);
+		}
+
 		// Build ORDER BY SQL
 		$orderBys = array();
 

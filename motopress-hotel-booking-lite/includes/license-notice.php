@@ -78,6 +78,7 @@ class LicenseNotice {
 						<?php
 						printf(
 							wp_kses(
+								// translators: %s: URL of the plugin license settings page.
 								__( 'Your License Key is not active. Please, <a href="%s">activate your License Key</a> to get plugin updates.', 'motopress-hotel-booking' ),
 								[ 'a' => [ 'href' => [] ] ],
 							),
@@ -151,6 +152,7 @@ class LicenseNotice {
 			case 'site_inactive':
 				$message = sprintf(
 					wp_kses(
+						// translators: %s: URL of the plugin license settings page.
 						__( 'Your License Key is not active for this website. Please <a href="%s">activate your License Key</a> to receive plugin updates and support.', 'motopress-hotel-booking' ),
 						array( 'a' => array( 'href' => array() ) ),
 					),
@@ -160,6 +162,7 @@ class LicenseNotice {
 			case 'expired':
 				$message = sprintf(
 					wp_kses(
+						// translators: %s: URL of the plugin license renewal page.
 						__( 'Your License Key has expired. Please <a href="%s">renew your License Key</a> to continue receiving plugin updates and support.', 'motopress-hotel-booking' ),
 						array( 'a' => array( 'href' => array() ) ),
 					),
@@ -169,6 +172,7 @@ class LicenseNotice {
 			case 'disabled':
 				$message = sprintf(
 					wp_kses(
+						// translators: %s: URL of the plugin license details page.
 						__( 'Your License Key has been disabled. Please <a href="%s">check your license details</a> or contact support for assistance.', 'motopress-hotel-booking' ),
 						array( 'a' => array( 'href' => array() ) ),
 					),
@@ -180,6 +184,7 @@ class LicenseNotice {
 			case 'item_name_mismatch':
 				$message = sprintf(
 					wp_kses(
+						// translators: %s: URL of the plugin license settings page.
 						__(
 							'Your License Key is invalid. Please <a href="%s">enter a valid License Key</a> to enable updates.',
 							'motopress-hotel-booking'
@@ -200,6 +205,7 @@ class LicenseNotice {
 		if ( !$hasLicenseKey ) {
 			$message = sprintf(
 					wp_kses(
+						// translators: %s: URL of the plugin license settings page.
 						__( 'Your License Key is not set for this website. Please <a href="%s">set and activate your License Key</a> to receive plugin updates and support.', 'motopress-hotel-booking' ),
 						array( 'a' => array( 'href' => array() ) ),
 					),

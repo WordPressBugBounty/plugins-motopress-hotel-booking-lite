@@ -47,6 +47,7 @@ class MainSettings {
 					'minimal-blue'   => __( 'Minimal Blue', 'motopress-hotel-booking' ),
 					'minimal-orange' => __( 'Minimal Orange', 'motopress-hotel-booking' ),
 					'minimal'        => __( 'Minimal', 'motopress-hotel-booking' ),
+					// translators: Name of the brown calendar colour theme (CSS colour peru), not the country.
 					'peru'           => __( 'Peru', 'motopress-hotel-booking' ),
 					'sky-blue'       => __( 'Sky Blue', 'motopress-hotel-booking' ),
 					'slate-blue'     => __( 'Slate Blue', 'motopress-hotel-booking' ),

@@ -17,9 +17,13 @@ class SeasonManageCPTPage extends ManageCPTPage {
 
 	public function filterColumns( $columns ) {
 		$customColumns = array(
+			// translators: Start date of a pricing season, not an action to start a process.
 			'start_date'    => esc_html__( 'Start', 'motopress-hotel-booking' ),
+			// translators: End date of a pricing season, not an action to stop a process.
 			'end_date'      => esc_html__( 'End', 'motopress-hotel-booking' ),
+			// translators: Days of the week to which a season or booking rule applies, not a duration.
 			'days'          => esc_html__( 'Days', 'motopress-hotel-booking' ),
+			// translators: Whether a pricing season recurs annually.
 			'repeat_period' => esc_html__( 'Repeat', 'motopress-hotel-booking' ),
 		);
 		$offset        = array_search( 'date', array_keys( $columns ) ); // Set custom columns position before "DATE" column

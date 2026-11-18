@@ -1,0 +1,434 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/dashboard\/index.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "nl_NL",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Accommodation": [
+                "Accommodatie"
+            ],
+            "View": [
+                "Bekijken"
+            ],
+            "Bookings": [
+                "Reserveringen"
+            ],
+            "No news available.": [
+                "Geen nieuws beschikbaar."
+            ],
+            "Create Booking": [
+                "Reservering aanmaken"
+            ],
+            "Date": [
+                "Datum"
+            ],
+            "Status": [
+                "Status"
+            ],
+            "ID": [
+                "ID"
+            ],
+            "Paid: %s": [
+                "Betaald: %s"
+            ],
+            "Amount": [
+                "Bedrag"
+            ],
+            "Customer": [
+                "Klant"
+            ],
+            "Booking": [
+                "Reservering"
+            ],
+            "Gateway": [
+                "Betaalgateway"
+            ],
+            "Payments": [
+                "Betalingen"
+            ],
+            "Available": [
+                "Beschikbaar"
+            ],
+            "Google Hotels": [
+                "Google Hotels"
+            ],
+            "Sync your bookings across all online channels like Booking.com, TripAdvisor, Airbnb etc. via iCalendar file format.": [
+                "Synchroniseer uw boekingen via alle online kanalen zoals Booking.com, TripAdvisor, Airbnb etc. via het bestandsformaat iCalendar."
+            ],
+            "Services": [
+                "Diensten"
+            ],
+            "License": [
+                "Licentie"
+            ],
+            "Booked": [
+                "Gereserveerd"
+            ],
+            "Blocked": [
+                "Geblokkeerd"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Bevestigd"
+            ],
+            "Check-in": [
+                "Inchecken"
+            ],
+            "Check-out": [
+                "Uitchecken"
+            ],
+            "Total": [
+                "Totaal"
+            ],
+            "Booking status\u0004Pending User Confirmation": [
+                "In afwachting van de bevestiging van een gebruiker"
+            ],
+            "Booking status\u0004Pending Payment": [
+                "Betaling is in afwachting"
+            ],
+            "Booking status\u0004Pending Admin": [
+                "In afwachting van beheerder"
+            ],
+            "Booking status\u0004Abandoned": [
+                "Opgegeven"
+            ],
+            "Booking status\u0004Cancelled": [
+                "Geannuleerd"
+            ],
+            "Payment status\u0004Pending": [
+                "In afwachting"
+            ],
+            "Payment status\u0004Completed": [
+                "Voltooid"
+            ],
+            "Payment status\u0004Failed": [
+                "Mislukt"
+            ],
+            "Payment status\u0004Abandoned": [
+                "Opgegeven"
+            ],
+            "Payment status\u0004On Hold": [
+                "In behandeling"
+            ],
+            "Payment status\u0004Refunded": [
+                "Terugbetaald"
+            ],
+            "Payment status\u0004Cancelled": [
+                "Geannuleerd"
+            ],
+            "Revenue": [
+                "Omzet"
+            ],
+            "Period": [
+                "Periode"
+            ],
+            "Today": [
+                "Vandaag"
+            ],
+            "This week": [
+                "Deze week"
+            ],
+            "This month": [
+                "Deze maand"
+            ],
+            "This quarter": [
+                "Dit kwartaal"
+            ],
+            "This year": [
+                "Dit jaar"
+            ],
+            "x %d guest": [
+                "x %d gast",
+                "x %d gasten"
+            ],
+            "x %d time": [
+                "x %d keer",
+                "x %d keren"
+            ],
+            "Availability": [
+                "Beschikbaarheid"
+            ],
+            "Previous": [
+                "Vorige"
+            ],
+            "Next": [
+                "Volgende"
+            ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                "<a>Upgrade naar Premium<\/a> om deze functie te gebruiken."
+            ],
+            "Active widgets": [
+                "Actieve widgets"
+            ],
+            "Booking source\u0004External": [
+                "Extern"
+            ],
+            "View All": [
+                "Alles bekijken"
+            ],
+            "Bookings filter\u0004Recent": [
+                "Recent"
+            ],
+            "Bookings filter\u0004Upcoming": [
+                "Binnenkort"
+            ],
+            "Your 5 most recent bookings": [
+                "Uw 5 meest recente boekingen"
+            ],
+            "Upcoming stays in the next 7 days": [
+                "Komende verblijven in de volgende 7 dagen"
+            ],
+            "%1$d of %2$d": [
+                "%1$d van %2$d"
+            ],
+            "Calendar synchronization status\u0004Waiting": [
+                "Wachtend"
+            ],
+            "Calendar synchronization status\u0004Processing": [
+                "Bezig met verwerken"
+            ],
+            "Calendar synchronization status\u0004Done": [
+                "Gereed"
+            ],
+            "No synchronization data available.": [
+                "Geen synchronisatiegegevens beschikbaar."
+            ],
+            "Calendar synchronization is not configured.": [
+                "Kalendersynchronisatie is niet ingesteld."
+            ],
+            "Configure": [
+                "Instellen"
+            ],
+            "Calendar synchronization statistics label\u0004Succeeded": [
+                "Geslaagd"
+            ],
+            "Calendar synchronization statistics label\u0004Failed": [
+                "Mislukt"
+            ],
+            "Calendar synchronization statistics label\u0004Removed": [
+                "Verwijderd"
+            ],
+            "Calendar synchronization statistics label\u0004Skipped": [
+                "Overgeslagen"
+            ],
+            "Last sync": [
+                "Laatste synchronisatie"
+            ],
+            "Google Hotels submission status\u0004Submitted": [
+                "Verstuurd"
+            ],
+            "Google Hotels submission status\u0004Failed": [
+                "Mislukt"
+            ],
+            "Google Hotels submission status\u0004Unknown": [
+                "Onbekend"
+            ],
+            "Google Hotels integration is not enabled.": [
+                "Google Hotels-integratie is niet ingeschakeld."
+            ],
+            "Last submission": [
+                "Laatste inzending"
+            ],
+            "Server message": [
+                "Serverbericht"
+            ],
+            "Occupancy": [
+                "Bezettingsgraad"
+            ],
+            "Booked Nights": [
+                "Geboekte nachten"
+            ],
+            "Average daily accommodation rate\u0004Average Rate": [
+                "Gemiddelde prijs per nacht"
+            ],
+            "Total booking revenue, including accommodation, services, taxes, and fees.": [
+                "Totale boekingsomzet, inclusief accommodatie, diensten, belastingen en toeslagen."
+            ],
+            "The percentage of available nights that guests have booked, excluding nights blocked by your settings or linked-booking restrictions.": [
+                "Het percentage beschikbare nachten dat gasten hebben geboekt, exclusief nachten die door uw instellingen of beperkingen voor gekoppelde boekingen zijn geblokkeerd."
+            ],
+            "Total booked nights across all accommodations. Each accommodation is counted separately.": [
+                "Het totale aantal geboekte nachten voor alle accommodaties. Elke accommodatie wordt afzonderlijk geteld."
+            ],
+            "Average accommodation revenue per booked night, excluding services, taxes, and fees.": [
+                "Gemiddelde accommodatieomzet per geboekte nacht, exclusief diensten, belastingen en toeslagen."
+            ],
+            "Reservation creation date\u0004Booking date": [
+                "Boekingsdatum"
+            ],
+            "Accommodation stay dates\u0004Stay date": [
+                "Verblijfsdatum"
+            ],
+            "Last %d days": [
+                "Afgelopen %d dagen"
+            ],
+            "Compare with": [
+                "Vergelijken met"
+            ],
+            "No comparison": [
+                "Geen vergelijking"
+            ],
+            "Previous period": [
+                "Vorige periode"
+            ],
+            "Previous year": [
+                "Vorig jaar"
+            ],
+            "Services in your 5 most recent bookings": [
+                "Diensten bij uw 5 meest recente boekingen"
+            ],
+            "Services in your upcoming bookings": [
+                "Diensten bij uw komende boekingen"
+            ],
+            "last 30 days": [
+                "afgelopen 30 dagen"
+            ],
+            "New Bookings": [
+                "Nieuwe boekingen"
+            ],
+            "Create a booking button\u0004New": [
+                "Nieuw"
+            ],
+            "Guests currently staying\u0004In-House": [
+                "Huidige verblijven"
+            ],
+            "today": [
+                "vandaag"
+            ],
+            "Arrivals": [
+                "Aankomsten"
+            ],
+            "Departures": [
+                "Vertrekken"
+            ],
+            "Unable to load upcoming bookings. Please try again.": [
+                "Kan komende boekingen niet laden. Probeer het opnieuw."
+            ],
+            "No recent bookings to display.": [
+                "Geen recente boekingen om weer te geven."
+            ],
+            "No upcoming stays in the next 7 days.": [
+                "Geen komende verblijven in de volgende 7 dagen."
+            ],
+            "Your 5 most recent payments": [
+                "Uw 5 meest recente betalingen"
+            ],
+            "No recent payments found.": [
+                "Geen recente betalingen gevonden."
+            ],
+            "No services were ordered with your 5 most recent bookings.": [
+                "Er zijn geen diensten besteld bij uw 5 meest recente boekingen."
+            ],
+            "No services were ordered with your upcoming bookings.": [
+                "Er zijn geen diensten besteld bij uw komende boekingen."
+            ],
+            "Calendars Sync": [
+                "Kalendersynchronisatie"
+            ],
+            "Booking distribution channels\u0004Channels": [
+                "Kanalen"
+            ],
+            "Booking source\u0004Direct (your website)": [
+                "Rechtstreeks (uw website)"
+            ],
+            "Bookings distribution by platform": [
+                "Verdeling van boekingen per platform"
+            ],
+            "No bookings received in the last 30 days.": [
+                "Geen boekingen ontvangen in de afgelopen 30 dagen."
+            ],
+            "Performance": [
+                "Resultaten"
+            ],
+            "Current period": [
+                "Huidige periode"
+            ],
+            "Unable to load performance data.": [
+                "Kan de resultaatgegevens niet laden."
+            ],
+            "Percentage points abbreviation\u0004pp": [
+                "pp"
+            ],
+            "License status\u0004Active": [
+                "Actief"
+            ],
+            "License status\u0004Inactive": [
+                "Inactief"
+            ],
+            "Activate": [
+                "Activeren"
+            ],
+            "License status\u0004Expired": [
+                "Verlopen"
+            ],
+            "Renew": [
+                "Verlengen"
+            ],
+            "License status\u0004Disabled": [
+                "Uitgeschakeld"
+            ],
+            "Purchase": [
+                "Kopen"
+            ],
+            "License status\u0004Invalid": [
+                "Ongeldig"
+            ],
+            "Change key": [
+                "Sleutel wijzigen"
+            ],
+            "License status\u0004Unknown": [
+                "Onbekend"
+            ],
+            "Check license": [
+                "Licentie controleren"
+            ],
+            "License status\u0004Not set": [
+                "Niet ingesteld"
+            ],
+            "Plugin upgrade card heading\u0004Go Premium": [
+                "Ga voor Premium"
+            ],
+            "Upgrade": [
+                "Upgrade naar Premium"
+            ],
+            "Take full advantage of Hotel Booking with the premium plugin version.": [
+                "Haal alles uit Hotel Booking met de premiumversie van de plugin."
+            ],
+            "Support": [
+                "Ondersteuning"
+            ],
+            "Support availability\u0004Available": [
+                "Beschikbaar"
+            ],
+            "Support availability\u0004Limited": [
+                "Beperkt"
+            ],
+            "Contact support": [
+                "Contact opnemen met ondersteuning"
+            ],
+            "Update now": [
+                "Nu bijwerken"
+            ],
+            "Plugin update card heading\u0004Update": [
+                "Update"
+            ],
+            "Update available": [
+                "Update beschikbaar"
+            ],
+            "Up to date": [
+                "Up-to-date"
+            ],
+            "Quick Links": [
+                "Snelkoppelingen"
+            ],
+            "Latest News": [
+                "Laatste nieuws"
+            ]
+        }
+    }
+}

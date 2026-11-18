@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
@@ -10,6 +10,9 @@
                 "lang": "vi_VN",
                 "plural-forms": "nplurals=1; plural=0;"
             },
+            "Accommodation Type": [
+                "Lo\u1ea1i ch\u1ed7 \u1edf"
+            ],
             "Date": [
                 "Ng\u00e0y"
             ],
@@ -22,8 +25,8 @@
             "Price": [
                 "Gi\u00e1"
             ],
-            "Accommodation Type": [
-                "Lo\u1ea1i ch\u1ed7 \u1edf"
+            "Settings": [
+                "C\u00e0i \u0111\u1eb7t th\u00f4ng tin c\u00e1 nh\u00e2n"
             ],
             "Title": [
                 "T\u1ef1a \u0111\u1ec1"
@@ -42,9 +45,6 @@
             ],
             "Display the currency sign in the availability calendar.": [
                 ""
-            ],
-            "Settings": [
-                "C\u00e0i \u0111\u1eb7t th\u00f4ng tin c\u00e1 nh\u00e2n"
             ],
             "Availability Search Form": [
                 ""
@@ -182,7 +182,7 @@
                 ""
             ],
             "Preset date. Formatted as %s": [
-                ""
+                "Ng\u00e0y \u0111\u1eb7t tr\u01b0\u1edbc. \u0110\u01b0\u1ee3c \u0111\u1ecbnh d\u1ea1ng l\u00e0 %s"
             ],
             "Select an accommodation type. Leave blank to use current.": [
                 ""
@@ -191,22 +191,22 @@
                 ""
             ],
             "Gallery": [
-                ""
+                "H\u00ecnh \u1ea3nh"
             ],
             "View Button": [
                 ""
             ],
             "Order": [
-                ""
+                "\u0110\u1eb7t h\u00e0ng"
             ],
             "Order By": [
-                ""
+                "\u0110\u1eb7t b\u1edfi"
             ],
             "No order": [
                 ""
             ],
             "Post ID": [
-                ""
+                "ID b\u00e0i"
             ],
             "Post author": [
                 ""
@@ -272,7 +272,7 @@
                 ""
             ],
             "Time": [
-                ""
+                "Th\u1eddi gian"
             ],
             "Date and time": [
                 ""

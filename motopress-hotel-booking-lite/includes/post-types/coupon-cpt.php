@@ -69,6 +69,7 @@ class CouponCPT extends EditableCPT {
 			)
 		);
 
+		// translators: Discount amount applied to the accommodation portion of the booking price.
 		$accommodationGroup = new Groups\MetaBoxGroup( 'mphb_accommodation_discount', esc_html__( 'Accommodation Discount', 'motopress-hotel-booking' ), $this->postType, 'normal' );
 		$accommodationGroup->addFields(
 			array(
@@ -79,8 +80,11 @@ class CouponCPT extends EditableCPT {
 						'label'   => esc_html__( 'Type', 'motopress-hotel-booking' ),
 						'list'    => array(
 							self::TYPE_ACCOMMODATION_NONE          => esc_html__( 'None', 'motopress-hotel-booking' ),
+							// translators: Coupon discount expressed as a percentage of the accommodation price.
 							self::TYPE_ACCOMMODATION_PERCENTAGE    => esc_html__( 'Percentage discount on accommodation price', 'motopress-hotel-booking' ),
+							// translators: Fixed monetary coupon discount on the accommodation price for the stay.
 							self::TYPE_ACCOMMODATION_FIXED         => esc_html__( 'Fixed discount on accommodation price', 'motopress-hotel-booking' ),
+							// translators: Fixed monetary coupon discount applied per night of the stay.
 							self::TYPE_ACCOMMODATION_FIXED_PER_DAY => esc_html__( 'Fixed discount on daily/nightly price', 'motopress-hotel-booking' ),
 						),
 						'default' => self::TYPE_ACCOMMODATION_DEFAULT,
@@ -112,6 +116,7 @@ class CouponCPT extends EditableCPT {
 						'list'    => array(
 							self::TYPE_SERVICE_NONE       => esc_html__( 'None', 'motopress-hotel-booking' ),
 							self::TYPE_SERVICE_PERCENTAGE => esc_html__( 'Percentage', 'motopress-hotel-booking' ),
+							// translators: A fixed monetary amount, as opposed to a percentage.
 							self::TYPE_SERVICE_FIXED      => esc_html__( 'Fixed', 'motopress-hotel-booking' ),
 						),
 						'default' => self::TYPE_SERVICE_DEFAULT,
@@ -146,6 +151,7 @@ class CouponCPT extends EditableCPT {
 			)
 		);
 
+		// translators: Coupon discount applied to booking fees, not a discount on payment processor fees.
 		$feeDiscount = new Groups\MetaBoxGroup( 'mphb_fee_discount', esc_html__( 'Fee Discount', 'motopress-hotel-booking' ), $this->postType, 'normal' );
 		$feeDiscount->addFields(
 			array(
@@ -157,6 +163,7 @@ class CouponCPT extends EditableCPT {
 						'list'     => array(
 							self::TYPE_FEE_NONE       => esc_html__( 'None', 'motopress-hotel-booking' ),
 							self::TYPE_FEE_PERCENTAGE => esc_html__( 'Percentage', 'motopress-hotel-booking' ),
+							// translators: A fixed monetary amount, as opposed to a percentage.
 							self::TYPE_FEE_FIXED      => esc_html__( 'Fixed', 'motopress-hotel-booking' ),
 						),
 						'default'  => self::TYPE_FEE_DEFAULT,
@@ -191,9 +198,12 @@ class CouponCPT extends EditableCPT {
 				Fields\FieldFactory::create(
 					'_mphb_check_in_date_after',
 					array(
-						'type'     => 'datepicker',
-						'label'    => esc_html__( 'Check-in After', 'motopress-hotel-booking' ),
-						'readonly' => false,
+						'type'       => 'datepicker',
+						'label'      => esc_html__( 'Check-in After', 'motopress-hotel-booking' ),
+						'readonly'   => false,
+						'dependency' => $this->isCurrentAddNewPage() ? array(
+							'open_on_select' => '_mphb_check_out_date_before',
+						) : array(),
 					)
 				),
 				Fields\FieldFactory::create(
@@ -208,6 +218,7 @@ class CouponCPT extends EditableCPT {
 					'_mphb_min_days_before_check_in',
 					array(
 						'type'        => 'number',
+						// translators: Minimum lead time in days between creating the booking and check-in for an early-booking coupon.
 						'label'       => esc_html__( 'Min days before check-in', 'motopress-hotel-booking' ),
 						'description' => esc_html__( 'For early bird discount. The coupon code applies if a booking is made in a minimum set number of days before the check-in date.', 'motopress-hotel-booking' ),
 						'min'         => 0,
@@ -219,6 +230,7 @@ class CouponCPT extends EditableCPT {
 					'_mphb_max_days_before_check_in',
 					array(
 						'type'        => 'number',
+						// translators: Maximum lead time in days between creating the booking and check-in for a last-minute coupon.
 						'label'       => esc_html__( 'Max days before check-in', 'motopress-hotel-booking' ),
 						'description' => esc_html__( 'For last minute discount. The coupon code applies if a booking is made in a maximum set number of days before the check-in date.', 'motopress-hotel-booking' ),
 						'min'         => 0,
@@ -353,5 +365,4 @@ class CouponCPT extends EditableCPT {
 
 		return $parent_file;
 	}
-
 }

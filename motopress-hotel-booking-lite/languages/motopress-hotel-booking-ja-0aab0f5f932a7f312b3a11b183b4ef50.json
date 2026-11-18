@@ -1,0 +1,69 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/js\/admin\/admin.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "ja_JP",
+                "plural-forms": "nplurals=1; plural=0;"
+            },
+            "Accommodation Type": [
+                "\u304a\u90e8\u5c4b\u30bf\u30a4\u30d7"
+            ],
+            "Accommodation": [
+                "\u304a\u90e8\u5c4b"
+            ],
+            "From": [
+                ""
+            ],
+            "Till": [
+                ""
+            ],
+            "Restriction": [
+                ""
+            ],
+            "Comment": [
+                ""
+            ],
+            "All": [
+                ""
+            ],
+            "Quick edit block #%s inline": [
+                ""
+            ],
+            "Quick Edit": [
+                ""
+            ],
+            "Delete": [
+                "\u524a\u9664"
+            ],
+            "Not check-in": [
+                ""
+            ],
+            "Not check-out": [
+                ""
+            ],
+            "Not stay-in": [
+                ""
+            ],
+            "None": [
+                ""
+            ],
+            "Cancel": [
+                "\u30ad\u30e3\u30f3\u30bb\u30eb\u3059\u308b"
+            ],
+            "Save": [
+                "\u4fdd\u5b58"
+            ],
+            "Unable to save the object. %s": [
+                ""
+            ],
+            "The start and end dates of the block are required.": [
+                ""
+            ]
+        }
+    }
+}

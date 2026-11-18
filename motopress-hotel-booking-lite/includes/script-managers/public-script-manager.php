@@ -50,7 +50,9 @@ class PublicScriptManager extends ScriptManager {
 
 		wp_register_script( 'mphb-vendor-braintree-client-sdk', 'https://js.braintreegateway.com/js/braintree-2.32.1.min.js', null, '2.32.1', true );
 
+		$this->addDependency( 'wp-i18n' );
 		wp_register_script( 'mphb', $this->scriptUrl( 'assets/js/public/mphb.min.js' ), $this->scriptDependencies, MPHB()->getVersion(), true );
+		wp_set_script_translations( 'mphb', 'motopress-hotel-booking', MPHB()->getPluginPath( 'languages/' ) );
 	}
 
 	protected function registerStyles() {
@@ -204,13 +206,18 @@ class PublicScriptManager extends ScriptManager {
 					'errorHasOccured'                  => __( 'An error has occurred, please try again later.', 'motopress-hotel-booking' ),
 					'booked'                           => __( 'Booked', 'motopress-hotel-booking' ),
 					'buffer'                           => __( 'Buffer time.', 'motopress-hotel-booking' ),
+					// translators: Calendar legend or filter for bookings awaiting confirmation or payment.
 					'pending'                          => __( 'Pending', 'motopress-hotel-booking' ),
+					// translators: Accommodation availability: can be booked for the selected dates, not a zero price.
 					'available'                        => __( 'Available', 'motopress-hotel-booking' ),
 					'notAvailable'                     => __( 'Not available', 'motopress-hotel-booking' ),
 					'earlierMinAdvance'                => __( 'This is earlier than allowed by our advance reservation rules.', 'motopress-hotel-booking' ),
 					'laterMaxAdvance'                  => __( 'This is later than allowed by our advance reservation rules.', 'motopress-hotel-booking' ),
+					// translators: Calendar restriction: guests cannot stay overnight on this date.
 					'notStayIn'                        => __( 'Not stay-in', 'motopress-hotel-booking' ),
+					// translators: Calendar restriction: guests cannot arrive on this date. Not a booking status.
 					'notCheckIn'                       => __( 'Not check-in', 'motopress-hotel-booking' ),
+					// translators: Calendar restriction: guests cannot depart on this date. Not a booking status.
 					'notCheckOut'                      => __( 'Not check-out', 'motopress-hotel-booking' ),
 					'past'                             => __( 'Day in the past', 'motopress-hotel-booking' ),
 					'checkInDate'                      => __( 'Check-in date', 'motopress-hotel-booking' ),
@@ -219,10 +226,15 @@ class PublicScriptManager extends ScriptManager {
 					// for dates between "not stay-in" (rules, existsing bookings) date and "max days stay" date
 					'laterThanMaxDate'                 => __( 'Later than max date for current check-in date', 'motopress-hotel-booking' ),
 					'rules'                            => __( 'Rules:', 'motopress-hotel-booking' ),
+					// translators: %s: Error details from payment card tokenization.
 					'tokenizationFailure'              => __( 'Tokenisation failed: %s', 'motopress-hotel-booking' ),
+					// translators: %1$d: Number of accommodations added. %2$s: Accommodation type title. Keep the multiplication and quote entities.
 					'roomsAddedToReservation_singular' => _n( '%1$d &times; &ldquo;%2$s&rdquo; has been added to your reservation.', '%1$d &times; &ldquo;%2$s&rdquo; have been added to your reservation.', 1, 'motopress-hotel-booking' ),
+					// translators: %1$d: Number of accommodations added. %2$s: Accommodation type title. Keep the multiplication and quote entities.
 					'roomsAddedToReservation_plural'   => _n( '%1$d &times; &ldquo;%2$s&rdquo; has been added to your reservation.', '%1$d &times; &ldquo;%2$s&rdquo; have been added to your reservation.', 2, 'motopress-hotel-booking' ),
+					// translators: %s: Number of accommodations selected. Select the plural form using the actual count.
 					'countRoomsSelected_singular'      => _n( '%s accommodation selected.', '%s accommodations selected.', 1, 'motopress-hotel-booking' ),
+					// translators: %s: Number of accommodations selected. Select the plural form using the actual count.
 					'countRoomsSelected_plural'        => _n( '%s accommodation selected.', '%s accommodations selected.', 2, 'motopress-hotel-booking' ),
 					'emptyCouponCode'                  => __( 'Coupon code is empty.', 'motopress-hotel-booking' ),
 					'checkInNotValid'                  => __( 'Check-in date is not valid.', 'motopress-hotel-booking' ),

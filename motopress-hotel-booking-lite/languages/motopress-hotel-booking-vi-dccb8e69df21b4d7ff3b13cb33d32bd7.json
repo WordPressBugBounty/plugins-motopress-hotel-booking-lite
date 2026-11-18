@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "vi_VN",
                 "plural-forms": "nplurals=1; plural=0;"
             },
+            "Accommodation Type": [
+                "Lo\u1ea1i ch\u1ed7 \u1edf"
+            ],
+            "Accommodation": [
+                "Ch\u1ed7 \u1edf"
+            ],
+            "Restriction": [
+                "S\u1ef1 h\u1ea1n ch\u1ebf"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Comment": [
+                "B\u00ecnh lu\u1eadn"
+            ],
+            "All": [
+                "T\u1ea5t c\u1ea3"
+            ],
             "Delete": [
                 "X\u00f3a"
+            ],
+            "Not check-in": [
+                "Kh\u00f4ng Nh\u1eadn ph\u00f2ng"
+            ],
+            "Not check-out": [
+                "Kh\u00f4ng tr\u1ea3 ph\u00f2ng"
+            ],
+            "Not stay-in": [
+                "Kh\u00f4ng \u1edf l\u1ea1i"
             ],
             "Email": [
                 ""
@@ -49,9 +82,6 @@
             "Edit": [
                 "S\u1eeda"
             ],
-            "All": [
-                "T\u1ea5t c\u1ea3"
-            ],
             "Nights": [
                 "\u0110\u00eam"
             ],
@@ -70,14 +100,14 @@
             "Price": [
                 "Gi\u00e1"
             ],
-            "Accommodation": [
-                "Ch\u1ed7 \u1edf"
-            ],
             "Paid: %s": [
                 "\u0110\u00e3 thanh to\u00e1n: %s"
             ],
-            "Accommodation Type": [
-                "Lo\u1ea1i ch\u1ed7 \u1edf"
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
             ],
             "Add New Season Price": [
                 ""
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "Quy t\u1eafc \u0111\u1eb7t ch\u1ed7"
+            ],
+            "Block Accommodations": [
+                ""
             ],
             "Check-in days": [
                 "Ng\u00e0y nh\u1eadn ph\u00f2ng"
@@ -105,30 +138,6 @@
             ],
             "Maximum stay": [
                 "Th\u1eddi gian l\u01b0u tr\u00fa t\u1ed1i \u0111a"
-            ],
-            "Restriction": [
-                "S\u1ef1 h\u1ea1n ch\u1ebf"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                ""
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                ""
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                ""
-            ],
-            "Not check-in": [
-                "Kh\u00f4ng Nh\u1eadn ph\u00f2ng"
-            ],
-            "Not check-out": [
-                "Kh\u00f4ng tr\u1ea3 ph\u00f2ng"
-            ],
-            "Not stay-in": [
-                "Kh\u00f4ng \u1edf l\u1ea1i"
-            ],
-            "Comment": [
-                "B\u00ecnh lu\u1eadn"
             ],
             "Minimum advance reservation": [
                 "\u0110\u1eb7t tr\u01b0\u1edbc t\u1ed1i thi\u1ec3u"
@@ -193,8 +202,8 @@
             "Notes": [
                 ""
             ],
-            "Booking status\u0004Confirmed": [
-                "\u0110\u00e3 x\u00e1c nh\u1eadn"
+            "An error has occurred": [
+                ""
             ],
             "Booked": [
                 "\u0110\u00e3 \u0111\u1eb7t"
@@ -207,6 +216,9 @@
             ],
             "Blocked": [
                 ""
+            ],
+            "Booking status\u0004Confirmed": [
+                "\u0110\u00e3 x\u00e1c nh\u1eadn"
             ],
             "Check-in": [
                 "Nh\u1eadn ph\u00f2ng"
@@ -325,15 +337,6 @@
             "Nothing found.": [
                 "Kh\u00f4ng t\u00ecm th\u1ea5y."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
                 ""
             ],
@@ -376,6 +379,9 @@
             "Min. advance reservation": [
                 ""
             ],
+            "Reload": [
+                ""
+            ],
             "Please select at least one accommodation type.": [
                 ""
             ],
@@ -400,9 +406,6 @@
             "Next": [
                 ""
             ],
-            "Reload": [
-                ""
-            ],
             "Filter items\u2026": [
                 ""
             ],
@@ -412,7 +415,19 @@
             "List": [
                 ""
             ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
             "Booking #%1$d": [
+                ""
+            ],
+            "Unable to load rate.": [
+                ""
+            ],
+            "Retry": [
+                ""
+            ],
+            "Loading\u2026": [
                 ""
             ],
             "Total Price": [
@@ -451,6 +466,9 @@
             "Edit Season Price": [
                 ""
             ],
+            "Unable to load rates.": [
+                ""
+            ],
             "Quick booking rules": [
                 ""
             ],
@@ -458,6 +476,9 @@
                 ""
             ],
             "Check-out today": [
+                ""
+            ],
+            "Unable to load bookings.": [
                 ""
             ],
             "In-House": [

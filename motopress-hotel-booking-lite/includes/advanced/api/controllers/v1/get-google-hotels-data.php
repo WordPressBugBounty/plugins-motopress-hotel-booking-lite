@@ -196,6 +196,7 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 
 		if ( empty( $roomType->getPropertyId() ) ) {
 
+			// translators: Label of the Google Hotels property/location selector. This accommodation type must be assigned to a property location.
 			$fieldName = __( 'Location', 'motopress-hotel-booking' );
 			$roomTypeDataErrors['propertyId'] = sprintf(
 				// translators: %s is data field name
@@ -251,10 +252,11 @@ class GetGoogleHotelsData extends AbstractRestCommandController {
 
 		if ( 1 > $roomType->calcTotalCapacity() ) {
 
-			$fieldName = __( 'Capacity', 'motopress-hotel-booking' );
+			// translators: Maximum total number of guests an accommodation can host, including adults and children.
+			$fieldName = __( 'Max. Capacity', 'motopress-hotel-booking' );
 			$roomTypeDataErrors['capacity'] = sprintf(
-				// translators: %1$s is field name, %2$d is min value
-				__( 'Field "%1$s" must be greater than %2$d.', 'motopress-hotel-booking' ),
+				// translators: %1$s: Field name. %2$d: Inclusive minimum value; the field may equal this value.
+				__( 'Field "%1$s" must be at least %2$d.', 'motopress-hotel-booking' ),
 				$fieldName,
 				1
 			);

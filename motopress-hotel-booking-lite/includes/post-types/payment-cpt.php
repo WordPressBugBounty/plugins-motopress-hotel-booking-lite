@@ -190,8 +190,9 @@ class PaymentCPT extends EditableCPT {
 				'_mphb_fee',
 				array(
 					'type'    => 'number',
+					// translators: Payment processing fee reported by the gateway, distinct from the fee added to the guest booking total.
 					'label'   => __( 'Gateway Fee', 'motopress-hotel-booking' ),
-					'description' => __( 'Reported by some gateways after payment.' ),
+					'description' => __( 'Reported by some gateways after payment.', 'motopress-hotel-booking' ),
 					'default' => 0,
 					'step'    => 0.01,
 					'min'     => 0,
@@ -204,7 +205,7 @@ class PaymentCPT extends EditableCPT {
 					'type'     => 'number',
 					//translators: 'txn' is short for 'transaction'.
 					'label'    => __( 'Added Txn Fee', 'motopress-hotel-booking' ),
-					'description' => __( 'Fee added by the property to cover payment processing costs.' ),
+					'description' => __( 'Fee added by the property to cover payment processing costs.', 'motopress-hotel-booking' ),
 					'default' => 0,
 					'size'     => 'price',
 					'disabled' => true,
@@ -224,6 +225,7 @@ class PaymentCPT extends EditableCPT {
 				'_mphb_payment_type',
 				array(
 					'type'    => 'text',
+					// translators: Gateway payment instrument or method identifier, not the payment status.
 					'label'   => __( 'Payment Type', 'motopress-hotel-booking' ),
 					'default' => '',
 				)

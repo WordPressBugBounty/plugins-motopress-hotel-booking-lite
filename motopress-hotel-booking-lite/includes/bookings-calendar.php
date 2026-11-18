@@ -605,18 +605,21 @@ class BookingsCalendar {
 						esc_html_e( 'Booked', 'motopress-hotel-booking' );
 					?>
 				</span></legend>
-				<legend class="legend-item pending" title="<?php esc_attr_e( 'Pending', 'motopress-hotel-booking' ); ?>"><span>
+				<legend class="legend-item pending" title="<?php /* translators: Calendar legend or filter for bookings awaiting confirmation or payment. */ esc_attr_e( 'Pending', 'motopress-hotel-booking' ); ?>"><span>
 					<?php
+						// translators: Calendar legend or filter for bookings awaiting confirmation or payment.
 						esc_html_e( 'Pending', 'motopress-hotel-booking' );
 					?>
 				</span></legend>
-				<legend class="legend-item external" title="<?php esc_attr_e( 'External', 'motopress-hotel-booking' ); ?>"><span>
+				<legend class="legend-item external" title="<?php /* translators: Calendar legend for bookings imported from external calendars. */ esc_attr_e( 'External', 'motopress-hotel-booking' ); ?>"><span>
 					<?php
+						// translators: Calendar legend for bookings imported from external calendars.
 						esc_html_e( 'External', 'motopress-hotel-booking' );
 					?>
 				</span></legend>
-				<legend class="legend-item blocked" title="<?php esc_attr_e( 'Blocked', 'motopress-hotel-booking' ); ?>"><span>
+				<legend class="legend-item blocked" title="<?php /* translators: Accommodation availability made unavailable by a restriction, not a blocked user account. */ esc_attr_e( 'Blocked', 'motopress-hotel-booking' ); ?>"><span>
 					<?php
+						// translators: Accommodation availability made unavailable by a restriction, not a blocked user account.
 						esc_html_e( 'Blocked', 'motopress-hotel-booking' );
 					?>
 				</span></legend>
@@ -625,7 +628,7 @@ class BookingsCalendar {
 				<div class="mphb-popup-backdrop"></div>
 				<div class="mphb-popup-body">
 					<div class="mphb-header">
-						<h2 class="mphb-title mphb-inline"><?php esc_html_e( 'Booking #%s', 'motopress-hotel-booking' ); ?></h2>
+						<h2 class="mphb-title mphb-inline"><?php /* translators: %s: Booking record ID, not an accommodation number. */ esc_html_e( 'Booking #%s', 'motopress-hotel-booking' ); ?></h2>
 						<span class="mphb-preloader mphb-hide"></span>
 						<span class="mphb-status mphb-hide"><?php echo esc_html_x( 'Confirmed', 'Booking status', 'motopress-hotel-booking' ); ?></span>
 						<button class="mphb-close-popup-button dashicons dashicons-no-alt"></button>
@@ -684,6 +687,7 @@ class BookingsCalendar {
 		?>
 		<h3 class="mphb-booking-calendar-search-description">
 			<?php
+			// translators: Unnumbered placeholders in order: booking status name, start date, end date. Use numbered placeholders if reordering them.
 			echo esc_html( sprintf( __( 'Search results for accommodations that have bookings with status "%s" from %s until %s', 'motopress-hotel-booking' ), $status, $dateFrom, $dateTo ) );
 			?>
 		</h3>
@@ -693,8 +697,10 @@ class BookingsCalendar {
 	private function getSearchRoomAvailabilityStatuses() {
 		return array(
 			''        => __( 'All Statuses', 'motopress-hotel-booking' ),
+			// translators: Accommodation is available to book. Does not mean free of charge.
 			'free'    => __( 'Free', 'motopress-hotel-booking' ),
 			'booked'  => __( 'Booked', 'motopress-hotel-booking' ),
+			// translators: Calendar legend or filter for bookings awaiting confirmation or payment.
 			'pending' => __( 'Pending', 'motopress-hotel-booking' ),
 			'locked'  => __( 'Locked (Booked or Pending)', 'motopress-hotel-booking' ),
 		);
@@ -720,7 +726,7 @@ class BookingsCalendar {
 		<input type="text"
 			   class="mphb-datepick mphb-search-date-from mphb-date-input-width<?php echo esc_attr( $datesFromToClass ); ?>"
 			   name="search_date_from"
-			   placeholder="<?php esc_attr_e( 'From', 'motopress-hotel-booking' ); ?>"
+			   placeholder="<?php /* translators: Start date of a calendar date range; paired with Till or Until. */ esc_attr_e( 'From', 'motopress-hotel-booking' ); ?>"
 			   value="<?php echo esc_attr( $dateFrom ); ?>"
 			   inputmode="none" />
 		<input type="text"
@@ -814,7 +820,7 @@ class BookingsCalendar {
 		?>
 		">
 			<?php // phpcs:ignore ?>
-			<input type="text" class="mphb-datepick mphb-custom-period-from mphb-date-input-width" name="custom_period_from" placeholder="<?php esc_attr_e( 'From', 'motopress-hotel-booking' ); ?>" value="<?php echo esc_attr( $dateFrom ); ?>" inputmode="none" />
+			<input type="text" class="mphb-datepick mphb-custom-period-from mphb-date-input-width" name="custom_period_from" placeholder="<?php /* translators: Start date of a calendar date range; paired with Till or Until. */ esc_attr_e( 'From', 'motopress-hotel-booking' ); ?>" value="<?php echo esc_attr( $dateFrom ); ?>" inputmode="none" />
 			<?php // phpcs:ignore ?>
 			<input type="text" class="mphb-datepick mphb-custom-period-to mphb-date-input-width" name="custom_period_to" placeholder="<?php esc_attr_e( 'Until', 'motopress-hotel-booking' ); ?>" value="<?php echo esc_attr( $dateTo ); ?>" inputmode="none" />
 		</div>
@@ -1120,16 +1126,20 @@ class BookingsCalendar {
 		$titles = array();
 
 		if ( $details['is_check_out'] ) {
+			// translators: %d: Booking record ID whose check-out is shown in the calendar.
 			$titles[] = sprintf( __( 'Check-out #%d', 'motopress-hotel-booking' ), (int) $details['check_out_booking_id'] );
 		}
 
 		if ( $details['is_check_in'] ) {
+			// translators: %d: Booking record ID whose check-in is shown in the calendar.
 			$titles[] = sprintf( __( 'Check-in #%d', 'motopress-hotel-booking' ), (int) $details['booking_id'] );
 		}
 
 		if ( $details['is_locked'] && ! ( $details['is_check_in'] || $details['is_check_out'] ) ) {
+			// translators: %d: Booking record ID.
 			$titles[] = sprintf( __( 'Booking #%d', 'motopress-hotel-booking' ), (int) $details['booking_id'] );
 		} elseif ( $details['is_blocked'] ) {
+			// translators: Accommodation availability made unavailable by a restriction, not a blocked user account.
 			$titles[] = ! empty( $details['comments'] ) ? $details['comments'] : __( 'Blocked', 'motopress-hotel-booking' );
 		} elseif ( $part == 'first' && $details['is_buffer_first'] ) {
 			if ( ! $details['is_check_out'] ) {
@@ -1169,10 +1179,12 @@ class BookingsCalendar {
 		$info = array_filter( $info );
 
 		if ( isset( $info['adults'] ) ) {
+			// translators: %s: Number of adults.
 			$info['adults'] = sprintf( __( 'Adults: %s', 'motopress-hotel-booking' ), $info['adults'] );
 		}
 
 		if ( isset( $info['children'] ) ) {
+			// translators: %s: Number of children.
 			$info['children'] = sprintf( __( 'Children: %s', 'motopress-hotel-booking' ), $info['children'] );
 		}
 
@@ -1180,20 +1192,24 @@ class BookingsCalendar {
 
 		if ( ! empty( $ical ) ) {
 			if ( ! empty( $ical['uid'] ) ) {
+				// translators: %s: Unique event identifier from the imported iCalendar file. Keep the identifier unchanged.
 				$title .= '&#10;' . sprintf( __( 'Booking imported with UID %s.', 'motopress-hotel-booking' ), $ical['uid'] );
 			} else {
 				$title .= '&#10;' . __( 'Imported booking.', 'motopress-hotel-booking' );
 			}
 
 			if ( ! empty( $ical['summary'] ) ) {
+				// translators: %s: Summary of an imported iCalendar event, not a price subtotal.
 				$title .= '&#10;' . sprintf( __( 'Summary: %s.', 'motopress-hotel-booking' ), $ical['summary'] );
 			}
 
 			if ( ! empty( $ical['description'] ) ) {
+				// translators: %s: Description text from an imported iCalendar event.
 				$title .= '&#10;' . sprintf( __( 'Description: %s.', 'motopress-hotel-booking' ), $ical['description'] );
 			}
 
 			if ( ! empty( $ical['prodid'] ) ) {
+				// translators: %s: iCalendar producer identifier from an imported event.
 				$title .= '&#10;' . sprintf( __( 'Source: %s.', 'motopress-hotel-booking' ), $ical['prodid'] );
 			}
 		}

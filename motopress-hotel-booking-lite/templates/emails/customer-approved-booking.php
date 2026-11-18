@@ -12,14 +12,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<?php echo esc_html( sprintf( __( 'Dear %1$s %2$s, your reservation is approved!', 'motopress-hotel-booking' ), '%customer_first_name%', '%customer_last_name%' ) ); ?>
+<?php echo esc_html( sprintf( /* translators: %1$s: Customer first name. %2$s: Customer last name. Use a greeting that does not require changing the supplied names. */ __( 'Dear %1$s %2$s, your reservation is approved!', 'motopress-hotel-booking' ), '%customer_first_name%', '%customer_last_name%' ) ); ?>
 <br/>
 <h4><?php esc_html_e( 'Details of booking', 'motopress-hotel-booking' ); ?></h4>
-<?php echo esc_html( sprintf( __( 'ID: #%s', 'motopress-hotel-booking' ), '%booking_id%' ) ); ?>
+<?php echo esc_html( sprintf( /* translators: %s: Booking record ID. */ __( 'ID: #%s', 'motopress-hotel-booking' ), '%booking_id%' ) ); ?>
 <br/>
-<?php echo esc_html( sprintf( __( 'Check-in: %1$s, from %2$s', 'motopress-hotel-booking' ), '%check_in_date%', '%check_in_time%' ) ); ?>
+<?php echo esc_html( sprintf( /* translators: %1$s: Check-in date. %2$s: Earliest check-in time. */ __( 'Check-in: %1$s, from %2$s', 'motopress-hotel-booking' ), '%check_in_date%', '%check_in_time%' ) ); ?>
 <br/>
-<?php echo esc_html( sprintf( __( 'Check-out: %1$s, until %2$s', 'motopress-hotel-booking' ), '%check_out_date%', '%check_out_time%' ) ); ?>
+<?php echo esc_html( sprintf( /* translators: %1$s: Check-out date. %2$s: Latest check-out time. */ __( 'Check-out: %1$s, until %2$s', 'motopress-hotel-booking' ), '%check_out_date%', '%check_out_time%' ) ); ?>
 <br/><br/>
 <a href="%view_booking_link%"><?php esc_html_e( 'View Booking', 'motopress-hotel-booking' ); ?></a>
 <br/>
@@ -29,13 +29,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 %booking_total_price%
 <br/>
 <h4><?php esc_html_e( 'Customer Information', 'motopress-hotel-booking' ); ?></h4>
-<?php echo esc_html( sprintf( __( 'Name: %1$s %2$s', 'motopress-hotel-booking' ), '%customer_first_name%', '%customer_last_name%' ) ); ?>
+<?php echo esc_html( sprintf( /* translators: %1$s: Customer first name. %2$s: Customer last name. Keep names in the supplied form. */ __( 'Name: %1$s %2$s', 'motopress-hotel-booking' ), '%customer_first_name%', '%customer_last_name%' ) ); ?>
 <br/>
-<?php echo esc_html( sprintf( __( 'Email: %s', 'motopress-hotel-booking' ), '%customer_email%' ) ); ?>
+<?php echo esc_html( sprintf( /* translators: %s: Customer email address. */ __( 'Email: %s', 'motopress-hotel-booking' ), '%customer_email%' ) ); ?>
 <br/>
-<?php echo esc_html( sprintf( __( 'Phone: %s', 'motopress-hotel-booking' ), '%customer_phone%' ) ); ?>
+<?php echo esc_html( sprintf( /* translators: %s: Customer phone number. */ __( 'Phone: %s', 'motopress-hotel-booking' ), '%customer_phone%' ) ); ?>
 <br/>
-<?php echo esc_html( sprintf( __( 'Note: %s', 'motopress-hotel-booking' ), '%customer_note%' ) ); ?>
+<?php echo esc_html( sprintf( /* translators: %s: Note entered by the customer. */ __( 'Note: %s', 'motopress-hotel-booking' ), '%customer_note%' ) ); ?>
 <br/>
 <br/>
 <?php esc_html_e( 'Thank you!', 'motopress-hotel-booking' ); ?>

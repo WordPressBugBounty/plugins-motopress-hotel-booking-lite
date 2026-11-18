@@ -147,6 +147,7 @@ class IpnListener extends Gateways\AbstractNotificationListener {
 			case 'denied':
 			case 'expired':
 			case 'voided':
+				// translators: %s: Payment status code received from PayPal IPN, such as denied, expired, or voided.
 				$failedLog = sprintf( __( 'Payment %s via IPN.', 'motopress-hotel-booking' ), mphb_clean( $this->input['payment_status'] ) );
 				$this->paymentFailed( $failedLog );
 				break;
@@ -290,6 +291,7 @@ class IpnListener extends Gateways\AbstractNotificationListener {
 				break;
 
 			case 'address':
+				// translators: PayPal requires a confirmed customer address. Do not narrow this to an email address.
 				$note = __( 'Payment requires a confirmed customer address and must be accepted manually through PayPal.', 'motopress-hotel-booking' );
 
 				break;
@@ -346,6 +348,7 @@ class IpnListener extends Gateways\AbstractNotificationListener {
 		$refundAmount = abs( $this->input['mc_gross'] );
 
 		if ( number_format( $refundAmount, 2 ) < number_format( (float) $this->payment->getAmount() + $this->payment->getPaymentFee(), 2 ) ) {
+			// translators: %s: Formatted monetary refund amount.
 			$log = sprintf( __( 'Partial PayPal refund processed: %s', 'motopress-hotel-booking' ), empty( $this->input['parent_txn_id'] ) ? $this->input['parent_txn_id'] : '' );
 			$this->payment->addLog( $log );
 
@@ -353,10 +356,12 @@ class IpnListener extends Gateways\AbstractNotificationListener {
 		}
 
 		if ( ! empty( $this->input['parent_txn_id'] ) && ! empty( $this->input['reason_code'] ) ) {
+			// translators: Unnumbered placeholders in order: payment record ID, refund reason. Use numbered placeholders if reordering.
 			$reasonLog = sprintf( __( 'PayPal Payment #%s Refunded for reason: %s', 'motopress-hotel-booking' ), $this->input['parent_txn_id'], $this->input['reason_code'] );
 			$this->payment->addLog( $reasonLog );
 		}
 
+		// translators: %s: PayPal refund transaction ID.
 		$transactionLog = sprintf( __( 'PayPal Refund Transaction ID: %s', 'motopress-hotel-booking' ), $this->input['txn_id'] );
 		$this->payment->addLog( $transactionLog );
 

@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "pt_PT",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "Accommodation Type": [
+                "Tipo de Alojamento"
+            ],
+            "Accommodation": [
+                "Alojamentos"
+            ],
+            "Restriction": [
+                "Restri\u00e7\u00e3o"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                ""
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                ""
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                ""
+            ],
+            "Comment": [
+                "Coment\u00e1rio"
+            ],
+            "All": [
+                "Todos"
+            ],
             "Delete": [
                 "Excluir"
+            ],
+            "Not check-in": [
+                "N\u00e3o fazer check-in"
+            ],
+            "Not check-out": [
+                "N\u00e3o fazer check-out"
+            ],
+            "Not stay-in": [
+                "N\u00e3o ficar"
             ],
             "Email": [
                 "Endere\u00e7o eletr\u00f3nico"
@@ -49,9 +82,6 @@
             "Edit": [
                 "Editar"
             ],
-            "All": [
-                "Todos"
-            ],
             "Nights": [
                 "Noites"
             ],
@@ -70,14 +100,14 @@
             "Price": [
                 "Pre\u00e7o"
             ],
-            "Accommodation": [
-                "Alojamentos"
-            ],
             "Paid: %s": [
                 "Pago: %s"
             ],
-            "Accommodation Type": [
-                "Tipo de Alojamento"
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
             ],
             "Add New Season Price": [
                 "Adicionar Novo Pre\u00e7o de Temporada"
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "Regras de Reservas"
+            ],
+            "Block Accommodations": [
+                ""
             ],
             "Check-in days": [
                 "Dias de Check-in"
@@ -105,30 +138,6 @@
             ],
             "Maximum stay": [
                 "Estadia m\u00e1xima"
-            ],
-            "Restriction": [
-                "Restri\u00e7\u00e3o"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                ""
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                ""
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                ""
-            ],
-            "Not check-in": [
-                "N\u00e3o fazer check-in"
-            ],
-            "Not check-out": [
-                "N\u00e3o fazer check-out"
-            ],
-            "Not stay-in": [
-                "N\u00e3o ficar"
-            ],
-            "Comment": [
-                "Coment\u00e1rio"
             ],
             "Minimum advance reservation": [
                 "Reserva m\u00ednima antecipada"
@@ -193,8 +202,8 @@
             "Notes": [
                 "Notas"
             ],
-            "Booking status\u0004Confirmed": [
-                "Confirmada"
+            "An error has occurred": [
+                "Ocorreu um erro"
             ],
             "Booked": [
                 "Reservado"
@@ -207,6 +216,9 @@
             ],
             "Blocked": [
                 "Bloqueado"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Confirmada"
             ],
             "Check-in": [
                 "Registo de entrada"
@@ -327,15 +339,6 @@
             "Nothing found.": [
                 "Nada encontrado."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
                 ""
             ],
@@ -378,6 +381,9 @@
             "Min. advance reservation": [
                 ""
             ],
+            "Reload": [
+                ""
+            ],
             "Please select at least one accommodation type.": [
                 ""
             ],
@@ -402,9 +408,6 @@
             "Next": [
                 ""
             ],
-            "Reload": [
-                ""
-            ],
             "Filter items\u2026": [
                 ""
             ],
@@ -414,7 +417,19 @@
             "List": [
                 ""
             ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
             "Booking #%1$d": [
+                ""
+            ],
+            "Unable to load rate.": [
+                ""
+            ],
+            "Retry": [
+                ""
+            ],
+            "Loading\u2026": [
                 ""
             ],
             "Total Price": [
@@ -453,6 +468,9 @@
             "Edit Season Price": [
                 ""
             ],
+            "Unable to load rates.": [
+                ""
+            ],
             "Quick booking rules": [
                 ""
             ],
@@ -460,6 +478,9 @@
                 ""
             ],
             "Check-out today": [
+                ""
+            ],
+            "Unable to load bookings.": [
                 ""
             ],
             "In-House": [

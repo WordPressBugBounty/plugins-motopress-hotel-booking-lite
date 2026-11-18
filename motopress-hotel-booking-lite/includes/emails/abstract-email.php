@@ -594,6 +594,7 @@ abstract class AbstractEmail {
 	 * @since 3.8.6
 	 */
 	protected function receiverError() {
+		// translators: %s: Email notification name, not an email address.
 		return sprintf( __( '"%s" email will not be sent: there is no customer email in the booking.', 'motopress-hotel-booking' ), $this->label );
 	}
 
@@ -618,12 +619,15 @@ abstract class AbstractEmail {
 		$hasDeprecatedTagsRegEx = '/' . $deprecatedTagsStr . '/';
 
 		if ( preg_match( $hasDeprecatedTagsRegEx, $this->getMessageHeaderTextTemplate() ) ) {
+			// translators: %s: Email notification name. Tags are email replacement tokens, not taxonomy tags.
 			$notices[] = sprintf( __( 'Deprecated tags in header of %s', 'motopress-hotel-booking' ), $this->label );
 		}
 		if ( preg_match( $hasDeprecatedTagsRegEx, $this->getSubjectTemplate() ) ) {
+			// translators: %s: Email notification name. Tags are email replacement tokens, not taxonomy tags.
 			$notices[] = sprintf( __( 'Deprecated tags in subject of %s', 'motopress-hotel-booking' ), $this->label );
 		}
 		if ( preg_match( $hasDeprecatedTagsRegEx, $this->getMessageTemplate() ) ) {
+			// translators: %s: Email notification name. Tags are email replacement tokens, not taxonomy tags.
 			$notices[] = sprintf( __( 'Deprecated tags in template of %s', 'motopress-hotel-booking' ), $this->label );
 		}
 

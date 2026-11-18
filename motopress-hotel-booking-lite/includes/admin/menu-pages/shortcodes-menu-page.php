@@ -33,11 +33,13 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 				),
 				'check_in_date'  => array(
 					'label'   => __( 'Check-in date presetted in the search form.', 'motopress-hotel-booking' ),
+					// translators: %s: Date format example or pattern; do not translate date format tokens.
 					'values'  => sprintf( __( 'date in format %s', 'motopress-hotel-booking' ), MPHB()->settings()->dateTime()->getDateFormat() ),
 					'default' => '',
 				),
 				'check_out_date' => array(
 					'label'   => __( 'Check-out date presetted in the search form.', 'motopress-hotel-booking' ),
+					// translators: %s: Date format example or pattern; do not translate date format tokens.
 					'values'  => sprintf( __( 'date in format %s', 'motopress-hotel-booking' ), MPHB()->settings()->dateTime()->getDateFormat() ),
 					'default' => '',
 				),
@@ -118,6 +120,7 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 				),
 				'start_date'     => array(
 					'label'       => __( 'Start date', 'motopress-hotel-booking' ),
+					// translators: %s: Date format example or pattern; do not translate date format tokens.
 					'values'      => sprintf( __( 'date in format %s', 'motopress-hotel-booking' ), 'YYYY-MM-DD' ) . ' ' . $this->getOptionalLabel(),
 					'default'     => __( 'Current date', 'motopress-hotel-booking' ),
 				),
@@ -180,6 +183,7 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 				'orderby'         => array(
 					'label'   => __( 'Sort by.', 'motopress-hotel-booking' ),
 					'values'  => sprintf(
+						// translators: %1$s: Literal shortcode parameter values, which must not be translated. %2$s: Documentation URL.
 						__( '%1$s. See the <a href="%2$s" target="_blank">full list</a>.', 'motopress-hotel-booking' ),
 						'price, order, ID, title, date, menu_order',
 						'https://developer.wordpress.org/reference/classes/wp_query/#order-orderby-parameters'
@@ -200,6 +204,7 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 				'meta_type'       => array(
 					'label'   => __( 'Specified type of the custom field. Can be used in conjunction with orderby="meta_value".', 'motopress-hotel-booking' ),
 					'values'  => sprintf(
+						// translators: %1$s: Literal shortcode parameter values, which must not be translated. %2$s: Documentation URL.
 						__( '%1$s. See the <a href="%2$s" target="_blank">full list</a>.', 'motopress-hotel-booking' ),
 						'NUMERIC, CHAR, DATETIME',
 						'https://developer.wordpress.org/reference/classes/wp_query/#order-orderby-parameters'
@@ -231,7 +236,7 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 						'orderby' => 'price',
 					)
 				),
-				'description' => __( 'Search Results sorting by price.' ) . '<br/>' . '<strong>' . __( 'NOTE:', 'motopress-hotel-booking' ) . '</strong>&nbsp;' . sprintf( __( 'Use only on page that you set as Search Results Page in <a href="%s">Settings</a>', 'motopress-hotel-booking' ), MPHB()->getSettingsMenuPage()->getUrl() ),
+				'description' => __( 'Search Results sorting by price.' ) . '<br/>' . '<strong>' . __( 'NOTE:', 'motopress-hotel-booking' ) . '</strong>&nbsp;' . sprintf( /* translators: %s: URL of the plugin settings page. */ __( 'Use only on page that you set as Search Results Page in <a href="%s">Settings</a>', 'motopress-hotel-booking' ), MPHB()->getSettingsMenuPage()->getUrl() ),
 			),
 		);
 
@@ -313,6 +318,7 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 				'orderby'        => array(
 					'label'   => __( 'Sort by.', 'motopress-hotel-booking' ),
 					'values'  => sprintf(
+						// translators: %1$s: Literal shortcode parameter values, which must not be translated. %2$s: Documentation URL.
 						__( '%1$s. See the <a href="%2$s" target="_blank">full list</a>.', 'motopress-hotel-booking' ),
 						'ID, title, date, menu_order, price',
 						'https://developer.wordpress.org/reference/classes/wp_query/#order-orderby-parameters'
@@ -333,6 +339,7 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 				'meta_type'      => array(
 					'label'   => __( 'Specified type of the custom field. Can be used in conjunction with orderby="meta_value".', 'motopress-hotel-booking' ),
 					'values'  => sprintf(
+						// translators: %1$s: Literal shortcode parameter values, which must not be translated. %2$s: Documentation URL.
 						__( '%1$s. See the <a href="%2$s" target="_blank">full list</a>.', 'motopress-hotel-booking' ),
 						'NUMERIC, CHAR, DATETIME',
 						'https://developer.wordpress.org/reference/classes/wp_query/#order-orderby-parameters'
@@ -361,6 +368,7 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 				'orderby'        => array(
 					'label'   => __( 'Sort by.', 'motopress-hotel-booking' ),
 					'values'  => sprintf(
+						// translators: %1$s: Literal shortcode parameter values, which must not be translated. %2$s: Documentation URL.
 						__( '%1$s. See the <a href="%2$s" target="_blank">full list</a>.', 'motopress-hotel-booking' ),
 						'ID, title, date, menu_order',
 						'https://developer.wordpress.org/reference/classes/wp_query/#order-orderby-parameters'
@@ -381,6 +389,7 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 				'meta_type'      => array(
 					'label'   => __( 'Specified type of the custom field. Can be used in conjunction with orderby="meta_value".', 'motopress-hotel-booking' ),
 					'values'  => sprintf(
+						// translators: %1$s: Literal shortcode parameter values, which must not be translated. %2$s: Documentation URL.
 						__( '%1$s. See the <a href="%2$s" target="_blank">full list</a>.', 'motopress-hotel-booking' ),
 						'NUMERIC, CHAR, DATETIME',
 						'https://developer.wordpress.org/reference/classes/wp_query/#order-orderby-parameters'
@@ -484,7 +493,7 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 			),
 			'example'     => array(
 				'shortcode'   => MPHB()->getShortcodes()->getCheckout()->generateShortcode(),
-				'description' => '<strong>' . __( 'NOTE:', 'motopress-hotel-booking' ) . '</strong>&nbsp;' . sprintf( __( 'Use only on page that you set as Checkout Page in <a href="%s">Settings</a>', 'motopress-hotel-booking' ), MPHB()->getSettingsMenuPage()->getUrl() ),
+				'description' => '<strong>' . __( 'NOTE:', 'motopress-hotel-booking' ) . '</strong>&nbsp;' . sprintf( /* translators: %s: URL of the plugin settings page. */ __( 'Use only on page that you set as Checkout Page in <a href="%s">Settings</a>', 'motopress-hotel-booking' ), MPHB()->getSettingsMenuPage()->getUrl() ),
 			),
 		);
 
@@ -630,7 +639,7 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 			<?php echo esc_html( $details['label'] ); ?>
 		</strong>
 		<?php if ( ! empty( $details['deprecated'] ) ) { ?>
-			<em><?php echo esc_html( sprintf( __( 'Deprecated since %s', 'motopress-hotel-booking' ), $details['deprecated'] ) ); ?></em>
+			<em><?php echo esc_html( sprintf( /* translators: %s: Plugin version in which the shortcode parameter became deprecated. */ __( 'Deprecated since %s', 'motopress-hotel-booking' ), $details['deprecated'] ) ); ?></em>
 		<?php } ?>
 		<p>
 			<code>[<?php echo esc_html( $name ); ?>]</code>
@@ -652,7 +661,7 @@ class ShortcodesMenuPage extends AbstractMenuPage {
 				<p>
 					<code><?php echo esc_html( $paramName ); ?></code>
 					<?php if ( isset( $paramDetails['deprecated'] ) && $paramDetails['deprecated'] ) { ?>
-						<strong><?php echo esc_html( sprintf( __( 'Deprecated since %s', 'motopress-hotel-booking' ), $paramDetails['deprecated'] ) ); ?></strong>
+						<strong><?php echo esc_html( sprintf( /* translators: %s: Plugin version in which the shortcode parameter became deprecated. */ __( 'Deprecated since %s', 'motopress-hotel-booking' ), $paramDetails['deprecated'] ) ); ?></strong>
 					<?php } ?>
 					<em><?php echo esc_html( $paramDetails['label'] ); ?></em>
 				</p>

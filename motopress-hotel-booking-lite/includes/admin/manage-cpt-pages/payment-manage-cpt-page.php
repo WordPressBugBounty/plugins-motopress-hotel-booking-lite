@@ -27,6 +27,7 @@ class PaymentManageCPTPage extends ManageCPTPage {
 	public function filterColumns( $columns ) {
 		$customColumns = array(
 			'id'                  => __( 'ID', 'motopress-hotel-booking' ),
+			// translators: The booking client associated with this payment. Use client terminology appropriate to hospitality, not a retail buyer.
 			'mphb_customer'       => __( 'Customer', 'motopress-hotel-booking' ),
 			'mphb_status'         => __( 'Status', 'motopress-hotel-booking' ),
 			'mphb_amount'         => __( 'Amount', 'motopress-hotel-booking' ),
@@ -89,6 +90,7 @@ class PaymentManageCPTPage extends ManageCPTPage {
 						echo '<br/>';
 						echo '<small>';
 						if ( $expireTime > $currentTime ) {
+							// translators: %s: Remaining time until the booking or payment expires, such as 10 minutes. Not an expiration date.
 							echo esc_html( sprintf( __( 'Expire %s', 'motopress-hotel-booking' ), human_time_diff( $currentTime, $expireTime ) ) );
 						} else {
 							esc_html_e( 'Expired', 'motopress-hotel-booking' );
@@ -121,6 +123,7 @@ class PaymentManageCPTPage extends ManageCPTPage {
 			case 'mphb_booking_id':
 				$booking = $payment->getBookingId() ? MPHB()->getBookingRepository()->findById( $payment->getBookingId() ) : null;
 				if ( $booking ) {
+					// translators: %s: Booking record ID, not an accommodation number.
 					printf( '<a href="%s">' . esc_html__( 'Booking #%s', 'motopress-hotel-booking' ) . '</a>', esc_url( get_edit_post_link( $booking->getId() ) ), esc_html( $booking->getId() ) );
 				}
 				break;

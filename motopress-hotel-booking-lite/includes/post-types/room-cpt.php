@@ -42,6 +42,7 @@ class RoomCPT extends EditableCPT {
 			'new_item'              => __( 'New Accommodation', 'motopress-hotel-booking' ),
 			'view_item'             => __( 'View Accommodation', 'motopress-hotel-booking' ),
 			'search_items'          => __( 'Search Accommodation', 'motopress-hotel-booking' ),
+			// translators: No matching physical accommodation records; also used in admin search. Does not necessarily mean all units are booked.
 			'not_found'             => __( 'No accommodations found', 'motopress-hotel-booking' ),
 			'not_found_in_trash'    => __( 'No accommodations found in Trash', 'motopress-hotel-booking' ),
 			'all_items'             => __( 'Accommodations', 'motopress-hotel-booking' ),
@@ -96,6 +97,7 @@ class RoomCPT extends EditableCPT {
 
 		$generalGroup->addField( $roomTypeIdField );
 
+		// translators: Physical accommodations linked by availability: booking one can make another unavailable for the same dates.
 		$linkedRoomsGroup = new Groups\MetaBoxGroup( 'mphb_linked_rooms', esc_html__( 'Linked Accommodations', 'motopress-hotel-booking' ), $this->postType );
 
 		$roomList = MPHB()->getRoomRepository()->getIdTitleList(
@@ -109,6 +111,7 @@ class RoomCPT extends EditableCPT {
 				'mphb_linked_room',
 				array(
 					'type'        => 'multiple-checkbox',
+					// translators: Directional availability link: booking a selected accommodation blocks this accommodation.
 					'label'       => esc_html__( 'Automatically block current accommodation when the selected ones are booked', 'motopress-hotel-booking' ),
 					'unique'      => false,
 					'list'        => $roomList,

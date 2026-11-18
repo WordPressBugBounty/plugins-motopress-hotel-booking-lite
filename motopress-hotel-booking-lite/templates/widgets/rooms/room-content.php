@@ -156,7 +156,7 @@ $wrapperClass = apply_filters( 'mphb_widget_rooms_item_class', join( ' ', mphb_t
 			<?php endif; ?>
 			<?php if ( ! empty( $view ) ) : ?>
 				<li class="mphb-room-type-view">
-					<span class="mphb-attribute-title mphb-view-title"><?php esc_html_e( 'View:', 'motopress-hotel-booking' ); ?></span>
+					<span class="mphb-attribute-title mphb-view-title"><?php /* translators: Scenic view from the accommodation, such as sea or city view. Noun, not a View action. */ esc_html_e( 'View:', 'motopress-hotel-booking' ); ?></span>
 					<span class="mphb-attribute-value">
 						<?php echo esc_html( $view ); ?>
 					</span>

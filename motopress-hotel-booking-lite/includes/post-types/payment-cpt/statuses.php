@@ -75,22 +75,26 @@ class Statuses extends AbstractStatuses {
 
 			case self::STATUS_ABANDONED:
 				$args = array(
+					// translators: An incomplete payment, such as one not completed before its deadline. Not neglected property or an abandoned building.
 					'label'                     => _x( 'Abandoned', 'Payment status', 'motopress-hotel-booking' ),
 					'public'                    => true,
 					'exclude_from_search'       => false,
 					'show_in_admin_all_list'    => true,
 					'show_in_admin_status_list' => true,
+					// translators: %s: Number of incomplete bookings or payments, such as those whose deadline expired. Shared booking/payment status label; not neglected property.
 					'label_count'               => _n_noop( 'Abandoned <span class="count">(%s)</span>', 'Abandoned <span class="count">(%s)</span>', 'motopress-hotel-booking' ),
 				);
 				break;
 
 			case self::STATUS_ON_HOLD:
 				$args = array(
+					// translators: Payment awaiting completion or confirmation, including bank transfer, pay on arrival and Stripe processing. Does not necessarily mean funds are authorized or blocked.
 					'label'                     => _x( 'On Hold', 'Payment status', 'motopress-hotel-booking' ),
 					'public'                    => true,
 					'exclude_from_search'       => false,
 					'show_in_admin_all_list'    => true,
 					'show_in_admin_status_list' => true,
+					// translators: %s: Number of payments awaiting completion or confirmation; funds are not necessarily authorized or blocked.
 					'label_count'               => _n_noop( 'On Hold <span class="count">(%s)</span>', 'On Hold <span class="count">(%s)</span>', 'motopress-hotel-booking' ),
 				);
 				break;
@@ -173,6 +177,7 @@ class Statuses extends AbstractStatuses {
 
 					if ( $booking && $booking->isExpectPayment( $payment->getId() ) ) {
 
+						// translators: %s: Payment record ID. The payment is on hold, not the booking itself.
 						$booking->addLog( sprintf( __( 'Payment (#%s) for this booking is on hold', 'motopress-hotel-booking' ), $payment->getId() ) );
 
 						if ( \MPHB\Payments\Gateways\BankGateway::GATEWAY_ID == $payment->getGatewayId() ) {
@@ -220,6 +225,7 @@ class Statuses extends AbstractStatuses {
 				}
 			}
 
+			// translators: Unnumbered placeholders in order: previous status label, new status label. Use numbered placeholders if reordering.
 			$payment->addLog( sprintf( __( 'Status changed from %s to %s.', 'motopress-hotel-booking' ), mphb_get_status_label( $oldStatus ), mphb_get_status_label( $newStatus ) ) );
 
 			do_action( 'mphb_payment_status_changed', $payment, $oldStatus );

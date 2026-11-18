@@ -103,6 +103,12 @@ abstract class EditableCPT extends AbstractCPT {
 		}
 	}
 
+	public function isCurrentAddNewPage() {
+		global $pagenow;
+
+		return is_admin() && $pagenow === 'post-new.php';
+	}
+
 	public function isCurrentEditPage() {
 		global $typenow, $pagenow;
 		return is_admin() && $typenow === $this->postType && ( $pagenow === 'post.php' || $pagenow === 'post-new.php' );

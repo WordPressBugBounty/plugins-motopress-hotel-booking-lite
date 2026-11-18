@@ -71,6 +71,7 @@ class LicenseSettingsGroup extends SettingsGroup {
 									}
 									break;
 								case 'disabled':
+									// translators: Status adjective for a disabled rate or license. This is a state, not an action button.
 									esc_html_e( 'Disabled', 'motopress-hotel-booking' );
 									break;
 								case 'expired':

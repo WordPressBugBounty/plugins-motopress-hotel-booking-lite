@@ -9,6 +9,7 @@ class RegistrationEmail extends BaseEmail {
 	}
 
 	public function getDefaultSubject() {
+		// translators: Email subject. Keep the %site_title% replacement tag unchanged.
 		return __( '%site_title% - account details', 'motopress-hotel-booking' );
 	}
 

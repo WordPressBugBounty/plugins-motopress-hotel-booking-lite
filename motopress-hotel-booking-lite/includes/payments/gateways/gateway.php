@@ -252,11 +252,13 @@ abstract class Gateway implements GatewayInterface {
 
 	public function captureAuthorizedFunds( Payment $payment ): bool {
 		throw new \RuntimeException(
+			// translators: Payment authorization reserves funds; capturing the authorization actually charges the customer.
 			esc_html__( 'This payment gateway does not support holding payments to be charged later.', 'motopress-hotel-booking' ) );
 	}
 
 	public function releaseAuthorizedFunds( Payment $payment ): bool {
 		throw new \RuntimeException(
+			// translators: Payment authorization reserves funds; capturing the authorization actually charges the customer.
 			esc_html__( 'This payment gateway does not support holding payments to be charged later.', 'motopress-hotel-booking' ) );
 	}
 
@@ -304,6 +306,7 @@ abstract class Gateway implements GatewayInterface {
 			if ( $field['required'] && ( ! isset( $this->postedPaymentFields[ $key ] ) || '' === $this->postedPaymentFields[ $key ] ) ) {
 				$fieldLabel = ( $field['label'] !== '' ) ? $field['label'] : $key;
 
+				// translators: %s: Name of a required payment gateway settings field.
 				$this->paymentFieldsErrors[] = sprintf( __( '%s is a required field.', 'motopress-hotel-booking' ), $fieldLabel );
 			}
 
@@ -316,6 +319,7 @@ abstract class Gateway implements GatewayInterface {
 								$this->postedPaymentFields[ $key ] = strtolower( $this->postedPaymentFields[ $key ] );
 
 								if ( ! is_email( $this->postedPaymentFields[ $key ] ) ) {
+									// translators: %s: Value entered in the payment gateway email field.
 									$this->paymentFieldsErrors[] = sprintf( __( '%s is not a valid email address.', 'motopress-hotel-booking' ), $field['label'] );
 								}
 						}
@@ -497,6 +501,7 @@ abstract class Gateway implements GatewayInterface {
 			'instructions' => array(
 				'type'         => 'textarea',
 				'label'        => __( 'Instructions', 'motopress-hotel-booking' ),
+				// translators: Instructions for completing a payment, not for completing a reservation form.
 				'description'  => __( 'Instructions for a customer on how to complete the payment.', 'motopress-hotel-booking' ),
 				'default'      => $this->getDefaultOption( 'instructions' ),
 				'translatable' => true,
@@ -507,6 +512,7 @@ abstract class Gateway implements GatewayInterface {
 
 			$optionsField['payment_fee_fixed'] = array(
 				'type'         => 'amount',
+				// translators: Fixed fee charged to the guest and added to the booking total to cover payment processing.
 				'label'        => __( 'Fixed Transaction Fee', 'motopress-hotel-booking' ),
 				'description'  => __( 'A fixed fee added to the booking total to cover payment processor fees.', 'motopress-hotel-booking' ),
 				'size'         => 'price',
@@ -517,6 +523,7 @@ abstract class Gateway implements GatewayInterface {
 
 			$optionsField['payment_fee_percentage'] = array(
 				'type'         => 'amount',
+				// translators: Percentage fee charged to the guest and added to the booking total to cover payment processing.
 				'label'        => __( 'Percentage Transaction Fee', 'motopress-hotel-booking' ),
 				'description'  => __( 'A percentage fee added to the booking total to cover payment processor fees.', 'motopress-hotel-booking' ),
 				'size'         => 'price',
@@ -578,6 +585,7 @@ abstract class Gateway implements GatewayInterface {
 	 */
 	public function generateItemName( $booking ) {
 		if ( $booking->getId() > 0 ) {
+			// translators: %d: Booking record ID included in the gateway payment description.
 			return sprintf( __( 'Reservation #%d', 'motopress-hotel-booking' ), $booking->getId() );
 		} else {
 			return __( 'Accommodation(s) reservation', 'motopress-hotel-booking' );

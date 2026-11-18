@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/calendar\/index.js",
     "domain": "messages",
@@ -10,8 +10,41 @@
                 "lang": "sk_SK",
                 "plural-forms": "nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;"
             },
+            "Accommodation Type": [
+                "Typ ubytovania"
+            ],
+            "Accommodation": [
+                "Ubytovanie"
+            ],
+            "Restriction": [
+                "Obmedzenie"
+            ],
+            "Not check-in rule marks the date as unavailable for check-in.": [
+                "Pravidlo Not check-in ozna\u010duje d\u00e1tum ako nedostupn\u00fd pre registr\u00e1ciu pr\u00edchodu."
+            ],
+            "Not check-out rule marks the date as unavailable for check-out.": [
+                "Pravidlo Not check-in ozna\u010duje d\u00e1tum ako nedostupn\u00fd pre odchod z ubytovania."
+            ],
+            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
+                "Pravidlo Not stay-in zobrazuje d\u00e1tum ako zablokovan\u00fd. Tento d\u00e1tum nie je k dispoz\u00edcii na registr\u00e1ciu pr\u00edchodu a odhl\u00e1senie z ubytovania v nasleduj\u00faci de\u0148."
+            ],
+            "Comment": [
+                "Koment\u00e1r"
+            ],
+            "All": [
+                "V\u0161etko"
+            ],
             "Delete": [
                 "Vymaza\u0165"
+            ],
+            "Not check-in": [
+                "Not check-in"
+            ],
+            "Not check-out": [
+                "Not check-out"
+            ],
+            "Not stay-in": [
+                "Not stay-in"
             ],
             "Email": [
                 "Email"
@@ -49,9 +82,6 @@
             "Edit": [
                 "Upravi\u0165"
             ],
-            "All": [
-                "V\u0161etko"
-            ],
             "Nights": [
                 "Noc\u00ed"
             ],
@@ -70,14 +100,14 @@
             "Price": [
                 "Cena"
             ],
-            "Accommodation": [
-                "Ubytovanie"
-            ],
             "Paid: %s": [
                 "Zaplaten\u00e9: %s"
             ],
-            "Accommodation Type": [
-                "Typ ubytovania"
+            "Awaiting charge": [
+                ""
+            ],
+            "+%s txn fee": [
+                ""
             ],
             "Add New Season Price": [
                 "Prida\u0165 nov\u00fa sez\u00f3nnu cenu"
@@ -90,6 +120,9 @@
             ],
             "Booking Rules": [
                 "Rezerva\u010dn\u00e9 pravidl\u00e1"
+            ],
+            "Block Accommodations": [
+                ""
             ],
             "Check-in days": [
                 "Dni pr\u00edchodov"
@@ -105,30 +138,6 @@
             ],
             "Maximum stay": [
                 "Maxim\u00e1lna d\u013a\u017eka pobytu"
-            ],
-            "Restriction": [
-                "Obmedzenie"
-            ],
-            "Not check-in rule marks the date as unavailable for check-in.": [
-                "Pravidlo Not check-in ozna\u010duje d\u00e1tum ako nedostupn\u00fd pre registr\u00e1ciu pr\u00edchodu."
-            ],
-            "Not check-out rule marks the date as unavailable for check-out.": [
-                "Pravidlo Not check-in ozna\u010duje d\u00e1tum ako nedostupn\u00fd pre odchod z ubytovania."
-            ],
-            "Not stay-in rule displays the date as blocked. This date is unavailable for check-in and check-out on the next date.": [
-                "Pravidlo Not stay-in zobrazuje d\u00e1tum ako zablokovan\u00fd. Tento d\u00e1tum nie je k dispoz\u00edcii na registr\u00e1ciu pr\u00edchodu a odhl\u00e1senie z ubytovania v nasleduj\u00faci de\u0148."
-            ],
-            "Not check-in": [
-                "Not check-in"
-            ],
-            "Not check-out": [
-                "Not check-out"
-            ],
-            "Not stay-in": [
-                "Not stay-in"
-            ],
-            "Comment": [
-                "Koment\u00e1r"
             ],
             "Minimum advance reservation": [
                 "Minim\u00e1lny \u010das rezerv\u00e1cie vopred"
@@ -193,8 +202,8 @@
             "Notes": [
                 "Pozn\u00e1mky"
             ],
-            "Booking status\u0004Confirmed": [
-                "Potvrden\u00e9"
+            "An error has occurred": [
+                "Vyskytla sa chyba"
             ],
             "Booked": [
                 "Rezervovan\u00e9"
@@ -207,6 +216,9 @@
             ],
             "Blocked": [
                 "Zablokovn\u00e9"
+            ],
+            "Booking status\u0004Confirmed": [
+                "Potvrden\u00e9"
             ],
             "Check-in": [
                 "Check-in"
@@ -331,15 +343,6 @@
             "Nothing found.": [
                 "Ni\u010d sa nena\u0161lo."
             ],
-            "Awaiting charge": [
-                ""
-            ],
-            "+%s txn fee": [
-                ""
-            ],
-            "Block Accommodations": [
-                ""
-            ],
             "Season is a period used to set different property prices.": [
                 ""
             ],
@@ -382,6 +385,9 @@
             "Min. advance reservation": [
                 ""
             ],
+            "Reload": [
+                ""
+            ],
             "Please select at least one accommodation type.": [
                 ""
             ],
@@ -406,9 +412,6 @@
             "Next": [
                 ""
             ],
-            "Reload": [
-                ""
-            ],
             "Filter items\u2026": [
                 ""
             ],
@@ -418,7 +421,19 @@
             "List": [
                 ""
             ],
+            "<a>Upgrade to Premium<\/a> to enable this feature.": [
+                ""
+            ],
             "Booking #%1$d": [
+                ""
+            ],
+            "Unable to load rate.": [
+                ""
+            ],
+            "Retry": [
+                ""
+            ],
+            "Loading\u2026": [
                 ""
             ],
             "Total Price": [
@@ -457,6 +472,9 @@
             "Edit Season Price": [
                 ""
             ],
+            "Unable to load rates.": [
+                ""
+            ],
             "Quick booking rules": [
                 ""
             ],
@@ -464,6 +482,9 @@
                 ""
             ],
             "Check-out today": [
+                ""
+            ],
+            "Unable to load bookings.": [
                 ""
             ],
             "In-House": [

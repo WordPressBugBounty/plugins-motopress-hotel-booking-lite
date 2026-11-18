@@ -70,6 +70,7 @@ class BlocksListTable extends \WP_List_Table {
 				// phpcs:ignore -- HTML content
 				echo mphb_tmpl_admin_notice(
 					sprintf(
+						// translators: %s: Number of deleted accommodation availability restrictions. A block is unavailable booking time, not an editor block.
 						_n( '%s block deleted.', '%s blocks deleted.', $deleted, 'motopress-hotel-booking' ),
 						$deleted
 					)
@@ -90,7 +91,9 @@ class BlocksListTable extends \WP_List_Table {
 			'cb'                 => '<input type="checkbox">',
 			'accommodation_type' => __( 'Accommodation Type', 'motopress-hotel-booking' ),
 			'accommodation'      => __( 'Accommodation', 'motopress-hotel-booking' ),
+			// translators: Start date of a calendar date range; paired with Till or Until.
 			'date_from'          => __( 'From', 'motopress-hotel-booking' ),
+			// translators: End date of an accommodation availability restriction.
 			'date_to'            => __( 'Till', 'motopress-hotel-booking' ),
 			'restrictions'       => __( 'Restriction', 'motopress-hotel-booking' )
 				. ' '
@@ -237,6 +240,7 @@ class BlocksListTable extends \WP_List_Table {
 					// Translators: %s: Block ID.
 					sprintf( __( 'Quick edit block #%s inline', 'motopress-hotel-booking' ), $item['block_id'] )
 				),
+				// translators: Action to edit an accommodation availability restriction inline in the booking rules table.
 				esc_html__( 'Quick Edit', 'motopress-hotel-booking' )
 			),
 			'delete'     => sprintf(
@@ -314,14 +318,17 @@ class BlocksListTable extends \WP_List_Table {
 		$restrictions = array();
 
 		if ( $item['not_check_in'] ) {
+			// translators: Calendar restriction: guests cannot arrive on this date. Not a booking status.
 			$restrictions[] = __( 'Not check-in', 'motopress-hotel-booking' );
 		}
 
 		if ( $item['not_check_out'] ) {
+			// translators: Calendar restriction: guests cannot depart on this date. Not a booking status.
 			$restrictions[] = __( 'Not check-out', 'motopress-hotel-booking' );
 		}
 
 		if ( $item['not_stay_in'] ) {
+			// translators: Calendar restriction: guests cannot stay overnight on this date.
 			$restrictions[] = __( 'Not stay-in', 'motopress-hotel-booking' );
 		}
 

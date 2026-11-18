@@ -275,6 +275,7 @@ class RoomTypeCPT extends EditableCPT {
 		$minAdults   = mphb_get_min_adults();
 		$minChildren = mphb_get_min_children();
 
+		// translators: Maximum total number of guests an accommodation can host, including adults and children.
 		$capacityGroup = new Groups\MetaBoxGroup( 'mphb_capacity', __( 'Capacity', 'motopress-hotel-booking' ), $this->postType );
 
 		$capacityGroup->addFields(
@@ -293,6 +294,7 @@ class RoomTypeCPT extends EditableCPT {
 					array(
 						'type'        => 'number',
 						'label'       => esc_html__( 'Children', 'motopress-hotel-booking' ),
+						// translators: %s: URL of the plugin settings page for guest age and children options.
 						'description' => sprintf( __( 'State the age or disable children in <a href="%s">settings</a>.', 'motopress-hotel-booking' ), admin_url( 'edit.php?post_type=mphb_room_type&page=mphb_settings' ) ),
 						'min'         => $minChildren,
 						'default'     => $minChildren,
@@ -302,8 +304,9 @@ class RoomTypeCPT extends EditableCPT {
 					'mphb_total_capacity',
 					array(
 						'type'        => 'number',
-						'label'       => esc_html__( 'Capacity', 'motopress-hotel-booking' ),
-						'description' => esc_html__( 'Leave this option empty to calculate total capacity automatically to meet the exact number of adults AND children set above. This is the default behavior. Configure this option to allow any variations of adults OR children set above at checkout so that in total it meets the limit of manually set "Capacity". For example, configuration "adults:5", "children:4", "capacity:5" means the property can accommodate up to 5 adults, up to 4 children, but up to 5 guests in total (not 9).', 'motopress-hotel-booking' ),
+						// translators: Maximum total number of guests an accommodation can host, including adults and children.
+						'label'       => esc_html__( 'Max. Capacity', 'motopress-hotel-booking' ),
+						'description' => esc_html__( 'Leave this option empty to calculate total capacity automatically to meet the exact number of adults AND children set above. This is the default behavior. Configure this option to allow any variations of adults OR children set above at checkout so that in total it meets the limit of manually set "Max. Capacity". For example, configuration "adults:5", "children:4", "capacity:5" means the property can accommodate up to 5 adults, up to 4 children, but up to 5 guests in total (not 9).', 'motopress-hotel-booking' ),
 						'min'         => 0,
 						'default'     => '',
 						'allow_empty' => true,
@@ -313,6 +316,7 @@ class RoomTypeCPT extends EditableCPT {
 					'mphb_base_adults_capacity',
 					array(
 						'type'        => 'number',
+						// translators: Default adult count used to initialize base occupancy when creating seasonal prices; not maximum capacity.
 						'label'       => esc_html__( 'Base Adults Occupancy', 'motopress-hotel-booking' ),
 						'description' => esc_html__( 'An optional starting value used when creating seasonal prices in the Rates menu.', 'motopress-hotel-booking' ),
 						'min'         => $minAdults,
@@ -324,6 +328,7 @@ class RoomTypeCPT extends EditableCPT {
 					'mphb_base_children_capacity',
 					array(
 						'type'        => 'number',
+						// translators: Default child count used to initialize base occupancy when creating seasonal prices; not maximum capacity.
 						'label'       => esc_html__( 'Base Children Occupancy', 'motopress-hotel-booking' ),
 						'description' => esc_html__( 'An optional starting value used when creating seasonal prices in the Rates menu.', 'motopress-hotel-booking' ),
 						'min'         => $minChildren,
@@ -340,6 +345,7 @@ class RoomTypeCPT extends EditableCPT {
 			'mphb_size',
 			array(
 				'type'        => 'number',
+				// translators: %s: Unit of area, such as m² or ft². Refers to the accommodation floor area.
 				'label'       => sprintf( esc_html__( 'Size, %s', 'motopress-hotel-booking' ), MPHB()->settings()->units()->getSquareUnit() ),
 				'description' => esc_html__( 'Leave blank to hide.', 'motopress-hotel-booking' ),
 				'min'         => 0,
@@ -354,7 +360,8 @@ class RoomTypeCPT extends EditableCPT {
 			'mphb_view',
 			array(
 				'type'         => 'text',
-				'label'        => __( 'View', 'motopress-hotel-booking' ),
+				// translators: Scenic view from the accommodation, such as sea, city or garden view. A noun describing the scenery, not an action to open an item.
+				'label'        => _x( 'Accommodation View', 'Accommodation view', 'motopress-hotel-booking' ),
 				'description'  => __( 'City view, seaside, swimming pool etc.', 'motopress-hotel-booking' ),
 				'size'         => 'large',
 				'translatable' => true,
@@ -369,6 +376,7 @@ class RoomTypeCPT extends EditableCPT {
 				'label'        => __( 'Bed type', 'motopress-hotel-booking' ),
 				'list'         => MPHB()->settings()->main()->getBedTypesList(),
 				'description'  => strtr(
+					// translators: %link% is a literal placeholder for the settings URL. Keep it unchanged.
 					__( 'Set bed types list in <a href="%link%" target="_blank">settings</a>.', 'motopress-hotel-booking' ),
 					array(
 						'%link%' => MPHB()->getSettingsMenuPage()->getUrl(),
@@ -390,11 +398,13 @@ class RoomTypeCPT extends EditableCPT {
 		);
 		$galleryGroup->addField( $galleryField );
 
+		// translators: Extra services selectable for this accommodation type, distinct from free amenities.
 		$servicesGroup = new Groups\MetaBoxGroup( 'mphb_services', __( 'Available Services', 'motopress-hotel-booking' ), $this->postType );
 		$servicesField = Fields\FieldFactory::create(
 			'mphb_services',
 			array(
 				'type'         => 'service-chooser',
+				// translators: Extra services selectable for this accommodation type, distinct from free amenities.
 				'label'        => __( 'Available Services', 'motopress-hotel-booking' ),
 				'show_prices'  => true,
 				'show_add_new' => true,

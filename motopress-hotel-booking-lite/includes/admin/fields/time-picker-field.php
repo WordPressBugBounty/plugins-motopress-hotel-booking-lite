@@ -10,6 +10,7 @@ class TimePickerField extends TextField {
 
 	public function __construct( $name, $details, $value = '' ) {
 		parent::__construct( $name, $details, $value );
+		// translators: Time input hint: HH represents hours and MM represents minutes. Keep the colon separator.
 		$this->afterLabel = ( isset( $details['after_label'] ) ) ? $details['after_label'] : __( 'HH:MM', 'motopress-hotel-booking' );
 	}
 

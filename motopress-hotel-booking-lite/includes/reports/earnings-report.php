@@ -93,6 +93,7 @@ class EarningsReport extends AbstractReport {
 		$translation = '';
 		switch ( $filter ) {
 			case 'totalPrice':
+				// translators: Total monetary booking sales, not the number of sales or bookings.
 				$translation = __( 'Total Sales', 'motopress-hotel-booking' );
 				break;
 			case 'totalWithoutTax':
@@ -296,6 +297,7 @@ class EarningsReport extends AbstractReport {
 	}
 
 	public function renderReportTitle() {
+		// translators: Booking revenue, not profit. The dashboard includes accommodation, services, taxes, and fees.
 		$title = __( 'Revenue', 'motopress-hotel-booking' );
 
 		echo sprintf( '<h3>%s — %s</h3>', esc_html( $title ), $this->prepareReportInfoData() );
@@ -525,6 +527,7 @@ class EarningsReport extends AbstractReport {
 			$info .= date( 'd M Y', strtotime( $this->data->getDateFrom() ) );
 		} else {
 			$info .= sprintf(
+				// translators: Unnumbered placeholders in order: date range start, date range end. Use numbered placeholders if reordering.
 				__( 'From %s to %s', 'motopress-hotel-booking' ),
 				date( 'd M Y', strtotime( $this->data->getDateFrom() ) ),
 				date( 'd M Y', strtotime( '-1 day', strtotime( $this->data->getDateTo() ) ) )

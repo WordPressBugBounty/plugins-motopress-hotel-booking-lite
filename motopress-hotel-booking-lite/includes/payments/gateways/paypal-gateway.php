@@ -95,6 +95,7 @@ class PaypalGateway extends Gateway {
 		$description = parent::getDescription();
 
 		if ( $this->isSandbox() ) {
+			// translators: %1$s: Test card number. %2$s: Test card CVC code. Keep these values unchanged.
 			$description .= ' ' . sprintf( __( 'Use the card number %1$s with CVC %2$s and a valid expiration date to test a payment.', 'motopress-hotel-booking' ), '5555555555554444', '123' );
 			$description = trim( $description );
 		}

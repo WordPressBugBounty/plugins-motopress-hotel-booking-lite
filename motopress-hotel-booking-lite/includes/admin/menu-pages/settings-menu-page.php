@@ -138,6 +138,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				'mphb_terms_and_conditions_page',
 				array(
 					'type'        => 'page-select',
+					// translators: Legal booking terms accepted at checkout, not attribute taxonomy terms.
 					'label'       => __( 'Terms & Conditions', 'motopress-hotel-booking' ),
 					'description' => __( 'If you define a "Terms" page the customer will be asked if they accept them when checking out.', 'motopress-hotel-booking' ),
 					'default'     => '',
@@ -230,6 +231,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				'mphb_square_unit',
 				array(
 					'type'    => 'select',
+					// translators: Unit of area used to display accommodation size, such as square metres or square feet.
 					'label'   => __( 'Square Units', 'motopress-hotel-booking' ),
 					'list'    => MPHB()->settings()->units()->getBundle()->getLabels(),
 					'default' => 'm2',
@@ -239,6 +241,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				'mphb_datepicker_date_format',
 				array(
 					'type'    => 'select',
+					// translators: Display format of dates in the date picker, not the date picker layout.
 					'label'   => __( 'Datepicker Date Format', 'motopress-hotel-booking' ),
 					'list'    => MPHB()->settings()->dateTime()->getDateFormatsList(),
 					'default' => MPHB()->settings()->dateTime()->getDefaultDateFormat(),
@@ -283,7 +286,9 @@ class SettingsMenuPage extends AbstractMenuPage {
 				'mphb_average_price_period',
 				array(
 					'type'        => 'number',
+					// translators: Number of days ahead to inspect when choosing a lowest advertised price without selected stay dates.
 					'label'       => __( 'Show Lowest Price for', 'motopress-hotel-booking' ),
+					// translators: Unit following a numeric setting: a number of days. Preserve a form that works with the separate input.
 					'inner_label' => __( 'days', 'motopress-hotel-booking' ),
 					'min'         => 0,
 					'step'        => 1,
@@ -305,6 +310,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				array(
 					'type'        => 'select',
 					'list'        => \MPHB\BookingsCalendar::getPeriodsList(),
+					// translators: Initial period selection for the legacy administrator bookings calendar.
 					'label'       => __( 'Default calendar view', 'motopress-hotel-booking' ),
 					'description' => __( 'Initial display format of the administrator bookings calendar.', 'motopress-hotel-booking' ),
 					'default'     => \MPHB\BookingsCalendar::PERIOD_TYPE_CUSTOM,
@@ -382,6 +388,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				'mphb_user_approval_time',
 				array(
 					'type'        => 'number',
+					// translators: Minutes allowed for the customer to confirm a booking using the email link.
 					'label'       => __( 'Approval Time for User', 'motopress-hotel-booking' ),
 					'description' => __( 'Period of time in minutes the user is given to confirm booking via email. Unconfirmed bookings become Abandoned and accommodation status changes to Available.', 'motopress-hotel-booking' ),
 					'min'         => 5,
@@ -435,6 +442,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				'mphb_unfold_price_breakdown',
 				array(
 					'type'        => 'checkbox',
+					// translators: Itemized booking cost table, including accommodation, services, taxes, fees, and discounts.
 					'label'       => __( 'Price Breakdown', 'motopress-hotel-booking' ),
 					'inner_label' => __( 'Price breakdown unfolded by default.', 'motopress-hotel-booking' ),
 					'default'     => false,
@@ -566,6 +574,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				'mphb_enable_recommendation',
 				array(
 					'type'        => 'checkbox',
+					// translators: Search option that recommends a combination of accommodations for the requested number of guests.
 					'label'       => __( 'Recommendation', 'motopress-hotel-booking' ),
 					'inner_label' => __( 'Enable search form to recommend the best set of accommodations according to a number of guests.', 'motopress-hotel-booking' ),
 					'default'     => true,
@@ -725,6 +734,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				array(
 					'type'        => 'checkbox',
 					'default'     => false,
+					// translators: Export administrator-created availability restrictions as iCalendar events, not editor content blocks.
 					'inner_label' => __( 'Export admin blocks.', 'motopress-hotel-booking' ),
 				)
 			),
@@ -741,6 +751,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				array(
 					'type'        => 'checkbox',
 					'default'     => false,
+					// translators: Booking buffer means unavailable nights before and after a stay; include these in calendar synchronization.
 					'inner_label' => esc_html__( 'Export and import bookings with buffer time included.', 'motopress-hotel-booking' ),
 				)
 			),
@@ -775,6 +786,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				array(
 					'type'        => 'timepicker',
 					'disabled'		 => true,
+					// translators: UTC time of day at which calendar synchronization starts, not a clock widget.
 					'label'       => __( 'Clock', 'motopress-hotel-booking' ),
 					'inner_label' => __( 'Sync calendars at this time (UTC) or starting at this time every interval below.', 'motopress-hotel-booking' ),
 					'default'     => '00:00',
@@ -786,6 +798,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 					'type'    => 'select',
 					'disabled'		 => true,
 					'default' => 'daily',
+					// translators: Time between automatic external calendar synchronization runs.
 					'label'   => __( 'Interval', 'motopress-hotel-booking' ),
 					'list'    => array(
 						'mphb_15m'   => __( 'Quarter an Hour', 'motopress-hotel-booking' ),
@@ -802,6 +815,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 					'type'    => 'select',
 					'disabled'       => true,
 					'default' => 'quarter',
+					// translators: Followed by a retention-period selector, such as Day or Month; refers to synchronization log age.
 					'label'   => __( 'Automatically delete sync logs older than', 'motopress-hotel-booking' ),
 					'list'    => array(
 						'day'       => __( 'Day', 'motopress-hotel-booking' ),
@@ -826,7 +840,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				'mphb_use_block_editor_for_room_types',
 				array(
 					'type'        => 'checkbox',
-					'inner_label' => sprintf( __( 'Enable block editor for "%s".', 'motopress-hotel-booking' ), __( 'Accommodation Types', 'motopress-hotel-booking' ) ),
+					'inner_label' => sprintf( /* translators: %s: Content type label, such as Accommodation Types or Services. */ __( 'Enable block editor for "%s".', 'motopress-hotel-booking' ), __( 'Accommodation Types', 'motopress-hotel-booking' ) ),
 					'default'     => false,
 				)
 			),
@@ -834,7 +848,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				'mphb_use_block_editor_for_services',
 				array(
 					'type'        => 'checkbox',
-					'inner_label' => sprintf( __( 'Enable block editor for "%s".', 'motopress-hotel-booking' ), __( 'Services', 'motopress-hotel-booking' ) ),
+					'inner_label' => sprintf( /* translators: %s: Content type label, such as Accommodation Types or Services. */ __( 'Enable block editor for "%s".', 'motopress-hotel-booking' ), __( 'Services', 'motopress-hotel-booking' ) ),
 					'default'     => false,
 				)
 			),
@@ -906,6 +920,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 					array(
 						'type'         => 'rich-editor',
 						'label'        => __( 'Cancellation Details Template', 'motopress-hotel-booking' ),
+						// translators: %cancellation_details% is a literal email template tag. Keep it unchanged.
 						'description'  => __( 'Used for %cancellation_details% tag.', 'motopress-hotel-booking' ),
 						'description2' => MPHB()->emails()->getCancellationTemplater()->getTagsDescription(),
 						'rows'         => 3,
@@ -1000,6 +1015,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				array(
 					'type'         => 'rich-editor',
 					'label'        => __( 'Reserved Accommodation Details Template', 'motopress-hotel-booking' ),
+					// translators: %reserved_rooms_details% is a literal email template tag. Keep it unchanged.
 					'description'  => __( 'Used for %reserved_rooms_details% tag.', 'motopress-hotel-booking' ),
 					'description2' => MPHB()->emails()->getReservedRoomsTemplater()->getTagsDescription(),
 					'rows'         => 24,
@@ -1073,10 +1089,12 @@ class SettingsMenuPage extends AbstractMenuPage {
 		$mainGroupDescriptions = array();
 
 		if ( MPHB()->settings()->main()->showExtensionLinks() && ! ThirdPartyPluginsUtils::isActiveMphbWoocommercePayments() ) {
+			// translators: %s: URL of the WooCommerce Payments addon product page. Keep the product name unchanged.
 			$mainGroupDescriptions[] = sprintf( __( 'Need more gateways? Use our Hotel Booking <a href="%s" target="_blank">WooCommerce Payments</a> extension.', 'motopress-hotel-booking' ), 'https://motopress.com/products/hotel-booking-woocommerce-payments/?utm_source=customer-website&utm_medium=payment-gateways-tab' );
 		}
 
 		if ( MPHB()->settings()->main()->showExtensionLinks() && ! ThirdPartyPluginsUtils::isActiveMphbPaymentRequest() ) {
+			// translators: %s: URL of the payment request addon product page.
 			$mainGroupDescriptions[] = sprintf( __( 'You may also email the <a href="%s" target="_blank">balance payment request</a> link to your guests.', 'motopress-hotel-booking' ), 'https://motopress.com/products/hotel-booking-payment-request/?utm_source=customer_website&utm_medium=hb_payment_request_addon' );
 		}
 
@@ -1088,9 +1106,11 @@ class SettingsMenuPage extends AbstractMenuPage {
 				'mphb_payment_amount_type',
 				array(
 					'type'    => 'select',
+					// translators: Amount the customer must pay at checkout: the full booking total or an advance payment.
 					'label'   => __( 'User Pays', 'motopress-hotel-booking' ),
 					'list'    => array(
 						'full'    => __( 'Full Amount', 'motopress-hotel-booking' ),
+						// translators: Advance payment toward the booking total, not a refundable security or damage deposit.
 						'deposit' => __( 'Deposit', 'motopress-hotel-booking' ),
 					),
 					'default' => MPHB()->settings()->payment()->getDefaultAmountType(),
@@ -1102,6 +1122,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 					'type'    => 'select',
 					'label'   => __( 'Deposit Type', 'motopress-hotel-booking' ),
 					'list'    => array(
+						// translators: A fixed monetary amount, as opposed to a percentage.
 						'fixed'   => __( 'Fixed', 'motopress-hotel-booking' ),
 						'percent' => __( 'Percent', 'motopress-hotel-booking' ),
 					),
@@ -1123,6 +1144,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				'mphb_payment_deposit_time_frame',
 				array(
 					'type'        => 'number',
+					// translators: Minimum days before check-in required to allow an advance payment instead of full payment at checkout.
 					'label'       => __( 'Deposit Time Frame (days)', 'motopress-hotel-booking' ),
 					'description' => __( 'Apply deposit to bookings made in at least the selected number of days prior to the check-in date. Otherwise, the full amount is charged.', 'motopress-hotel-booking' ),
 					'default'     => '',
@@ -1174,6 +1196,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 				'mphb_payment_pending_time',
 				array(
 					'type'        => 'number',
+					// translators: Minutes allowed to finish an online payment. The bank-transfer setting uses the same label with hours instead.
 					'label'       => __( 'Pending Payment Time', 'motopress-hotel-booking' ),
 					'description' => __( 'Period of time in minutes the user is given to complete payment. Unpaid bookings become Abandoned and accommodation status changes to Available.', 'motopress-hotel-booking' ),
 					'min'         => 5,
@@ -1197,6 +1220,7 @@ class SettingsMenuPage extends AbstractMenuPage {
 		$tab = new Tabs\SettingsTab( self::TAB_EXTENSIONS, __( 'Extensions', 'motopress-hotel-booking' ), $this->name );
 
 		if ( MPHB()->settings()->main()->showExtensionLinks() ) {
+			// translators: %s: URL listing Hotel Booking addons.
 			$mainGroupDescription = sprintf( __( 'Install <a href="%s" target="_blank">Hotel Booking addons</a> to manage their settings.', 'motopress-hotel-booking' ), 'https://motopress.com/products/category/hotel-booking-addons/?utm_source=customer_website&utm_medium=hotel_booking_addons' );
 		} else {
 			$mainGroupDescription = __( 'Install Hotel Booking addons to manage their settings.', 'motopress-hotel-booking' );

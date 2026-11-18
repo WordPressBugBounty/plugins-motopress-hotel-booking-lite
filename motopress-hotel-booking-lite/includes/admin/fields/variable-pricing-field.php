@@ -86,6 +86,7 @@ class VariablePricingField extends InputField {
 				// Render periods
 				$result .= '<tr class="mphb-periods-row">';
 					$result .= '<th>&nbsp;</th>';
+					// translators: Number of overnight stays, not number of days or guests.
 					$result .= '<th>' . esc_html__( 'Nights', 'motopress-hotel-booking' ) . '</th>';
 
 					for ( $i = 0, $count = count( $periods ); $i < $count; $i++ ) {
@@ -106,7 +107,7 @@ class VariablePricingField extends InputField {
 				$result .= '</tr>';
 
 				$result .= '<tr class="mphb-pricing-headers">';
-					$result .= '<th colspan="2">' . esc_html__( 'Base Occupancy', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip( __( 'Number of guests included in the base nightly price.', 'motopress-hotel-booking' ) ) . '</th>';
+					$result .= '<th colspan="2">' . /* translators: Number of adults and children included in the base nightly price, not the maximum accommodation capacity. */ esc_html__( 'Base Occupancy', 'motopress-hotel-booking' ) . '&nbsp;' . mphb_help_tip( __( 'Number of guests included in the base nightly price.', 'motopress-hotel-booking' ) ) . '</th>';
 					$result .= '<th class="mphb-pricing-price-per-night" colspan="' . count( $periods ) . '">' . esc_html__( 'Price per night', 'motopress-hotel-booking' ) . '</th>';
 					$result .= '<th>&nbsp;</th>';
 				$result .= '</tr>';
@@ -165,7 +166,8 @@ class VariablePricingField extends InputField {
 
 			$result .= '<thead class="mphb-pricing-headers">';
 				$result .= '<th>' . esc_html__( 'Adults', 'motopress-hotel-booking' ) . '</th>';
-				$result .= '<th>' . esc_html__( 'Children', 'motopress-hotel-boking' ) . '</th>';
+				// translators: Number of child guests in an occupancy-based nightly pricing variation.
+				$result .= '<th>' . esc_html__( 'Children', 'motopress-hotel-booking' ) . '</th>';
 				$result .= '<th class="mphb-pricing-price-per-night" colspan="' . esc_attr( count( $this->value['periods'] ) ) . '">';
 					$result .= esc_html__( 'Price per night', 'motopress-hotel-booking' );
 				$result .= '</th>';

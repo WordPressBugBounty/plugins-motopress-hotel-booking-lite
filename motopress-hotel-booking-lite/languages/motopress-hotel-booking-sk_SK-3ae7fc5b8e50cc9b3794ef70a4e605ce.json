@@ -1,0 +1,27 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/js\/public\/mphb.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "sk_SK",
+                "plural-forms": "nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;"
+            },
+            "%1$d &times; &ldquo;%2$s&rdquo; has been added to your reservation.": [
+                "%1$d&times;&ldquo;%2$s&rdquo; bola pridan\u00e1 do va\u0161ej rezerv\u00e1cie.",
+                "%1$d&times;&ldquo;%2$s&rdquo; boli pridan\u00e9 do va\u0161ej rezerv\u00e1cie.",
+                "%1$d&times;&ldquo;%2$s&rdquo; boli pridan\u00e9 do va\u0161ej rezerv\u00e1cie.",
+                "%1$d&times;&ldquo;%2$s&rdquo; bola pridan\u00e1 do va\u0161ej rezerv\u00e1cie."
+            ],
+            "%s accommodation selected.": [
+                "%s ubytovanie vybran\u00e9.",
+                "%s ubytovania vybran\u00e9.",
+                "%s ubytovan\u00ed vybran\u00fdch.",
+                "%s ubytovania vybran\u00e9."
+            ]
+        }
+    }
+}

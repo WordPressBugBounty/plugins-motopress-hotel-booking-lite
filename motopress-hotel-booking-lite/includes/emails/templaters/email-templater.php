@@ -196,6 +196,7 @@ class EmailTemplater extends AbstractTemplater {
 			// Other
 			array(
 				'name'        => 'price_breakdown',
+				// translators: Itemized booking cost table, including accommodation, services, taxes, fees, and discounts.
 				'description' => __( 'Price Breakdown', 'motopress-hotel-booking' ),
 			),
 		);

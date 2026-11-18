@@ -28,6 +28,13 @@ class LinkedRooms {
 	 */
 	private static array $cachedLinkedRooms = array();
 
+	/**
+	 * Request-local booking candidates, keyed by room type ID and month.
+	 *
+	 * @var array<int, array<string, Booking[]>>
+	 */
+	private array $cachedLinkedBookingsByMonth = array();
+
 	public function __construct() {
 		add_filter( 'mphb_has_not_stay_in_rules', array( $this, 'checkForLinkedBookings' ) );
 		add_filter( 'mphb_get_booking_rules_for_date', array( $this, 'extendBookingRulesForDate' ), 10, 3 );
@@ -58,7 +65,7 @@ class LinkedRooms {
 			return $bookingRules;
 		}
 
-		$linkedBookings = static::findLinkedBookingsInPeriod( $roomTypeId, $date, $date );
+		$linkedBookings = $this->findLinkedBookingsForDate( $roomTypeId, $date );
 		$linkedBlocks   = BookingUtils::convertAllToBlocks( $linkedBookings, $this->getBlockComment() );
 
 		foreach ( $linkedBlocks as $block ) {
@@ -177,6 +184,7 @@ class LinkedRooms {
 	}
 
 	private function getBlockComment(): string {
+		// translators: Availability restriction caused by a booking of another linked physical accommodation.
 		return __( 'Blocked because the linked accommodation is booked', 'motopress-hotel-booking' );
 	}
 
@@ -212,6 +220,35 @@ class LinkedRooms {
 				'check_out' => false, // Check-outs will create +1 blocked day
 			),
 		) );
+	}
+
+	/**
+	 * Load candidates once per month, then preserve the daily query's overlap rules.
+	 * Only the per-date booking-rule callback uses this request-local cache.
+	 *
+	 * @return Booking[]
+	 */
+	private function findLinkedBookingsForDate( int $roomTypeId, \DateTime $date ): array {
+		$month = $date->format( 'Y-m' );
+
+		if ( ! isset( $this->cachedLinkedBookingsByMonth[ $roomTypeId ][ $month ] ) ) {
+			$this->cachedLinkedBookingsByMonth[ $roomTypeId ][ $month ] = static::findLinkedBookingsInPeriod(
+				$roomTypeId,
+				$date->format( 'Y-m-01' ),
+				$date->format( 'Y-m-t' )
+			);
+		}
+
+		$dateYmd = $date->format( 'Y-m-d' );
+		$result = array_filter(
+			$this->cachedLinkedBookingsByMonth[ $roomTypeId ][ $month ],
+			static function ( Booking $booking ) use ( $dateYmd ): bool {
+				return $booking->getCheckInDate()->format( 'Y-m-d' ) <= $dateYmd
+					&& $booking->getCheckOutDate()->format( 'Y-m-d' ) > $dateYmd;
+			}
+		);
+
+		return $result;
 	}
 
 	/**

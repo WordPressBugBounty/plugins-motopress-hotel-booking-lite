@@ -1,5 +1,5 @@
 {
-    "translation-revision-date": "2026-01-14 08:48",
+    "translation-revision-date": "2026-11-16 12:48",
     "generator": "WP-CLI\/2.12.0",
     "source": "assets\/blocks\/blocks.js",
     "domain": "messages",
@@ -10,6 +10,9 @@
                 "lang": "fr_FR",
                 "plural-forms": "nplurals=2; plural=(n > 1);"
             },
+            "Accommodation Type": [
+                "Type de chambre"
+            ],
             "Date": [
                 "Date"
             ],
@@ -22,8 +25,8 @@
             "Price": [
                 "Prix"
             ],
-            "Accommodation Type": [
-                "Type de chambre"
+            "Settings": [
+                "Param\u00e8tres"
             ],
             "Title": [
                 "Titre"
@@ -35,16 +38,13 @@
                 "Calendrier des disponibilit\u00e9s"
             ],
             "Display per-night prices in the availability calendar.": [
-                ""
+                "Afficher les prix par nuit dans le calendrier des disponibilit\u00e9s."
             ],
             "Truncate per-night prices in the availability calendar.": [
-                ""
+                "Tronquer les prix par nuit dans le calendrier des disponibilit\u00e9s."
             ],
             "Display the currency sign in the availability calendar.": [
-                ""
-            ],
-            "Settings": [
-                "Param\u00e8tres"
+                "Afficher le symbole de la devise dans le calendrier des disponibilit\u00e9s."
             ],
             "Availability Search Form": [
                 "Formulaire de recherche de disponibilit\u00e9"
@@ -110,7 +110,7 @@
                 "Nombre par page"
             ],
             "integer, -1 to display all, default: \"Blog pages show at most\"": [
-                "valeurs, -1 pour tout afficher, par d\u00e9faut : \"Les pages du blog montrent au maximum\"."
+                "nombre entier, -1 pour tout afficher, par d\u00e9faut : \"Les pages du blog doivent afficher au plus\""
             ],
             "IDs of categories that will be shown.": [
                 "IDs des cat\u00e9gories qui seront montr\u00e9s."
@@ -146,7 +146,7 @@
                 "Afficher le formulaire de commande."
             ],
             "Booking Form": [
-                "Formulaire de reservation"
+                "Formulaire de r\u00e9servation"
             ],
             "Accommodation Rates List": [
                 "Liste des tarifs d'h\u00e9bergement"
@@ -179,124 +179,124 @@
                 "Afficher l'extrait (description courte)"
             ],
             "Book Button": [
-                "bouton Livre"
+                "Bouton R\u00e9server"
             ],
             "Preset date. Formatted as %s": [
-                ""
+                "Date pr\u00e9d\u00e9finie. Format\u00e9 en %s"
             ],
             "Select an accommodation type. Leave blank to use current.": [
-                ""
+                "S\u00e9lectionnez un type d\u2019h\u00e9bergement. Laissez vide pour utiliser le type actuel."
             ],
             "ID of an accommodation type. Leave blank to use current.": [
-                ""
+                "ID d\u2019un type d\u2019h\u00e9bergement. Laissez vide pour utiliser le type actuel."
             ],
             "Gallery": [
-                ""
+                "galerie"
             ],
             "View Button": [
-                ""
+                "bouton de visualisation"
             ],
             "Order": [
-                ""
+                "Ordre"
             ],
             "Order By": [
-                ""
+                "Trier par"
             ],
             "No order": [
-                ""
+                "Aucun tri"
             ],
             "Post ID": [
-                ""
+                "ID de publication"
             ],
             "Post author": [
-                ""
+                "Auteur du message"
             ],
             "Post title": [
-                ""
+                "Titre de la publication"
             ],
             "Post name (post slug)": [
-                ""
+                "Nom de la publication (slug)"
             ],
             "Post date": [
-                ""
+                "Date de publication"
             ],
             "Last modified date": [
-                ""
+                "Date de la derni\u00e8re modification"
             ],
             "Parent ID": [
-                ""
+                "num\u00e9ro du parent"
             ],
             "Random order": [
-                ""
+                "Ordre al\u00e9atoire"
             ],
             "Number of comments": [
-                ""
+                "Nombre de commentaires"
             ],
             "Relevance": [
-                ""
+                "Pertinence"
             ],
             "Page order": [
-                ""
+                "Ordre des pages"
             ],
             "Meta value": [
-                ""
+                "Valeur Meta"
             ],
             "Numeric meta value": [
-                ""
+                "Meta value num\u00e9rique "
             ],
             "Ascending (1, 2, 3)": [
-                ""
+                "Croissant (1, 2, 3)"
             ],
             "Descending (3, 2, 1)": [
-                ""
+                "D\u00e9croissant (3, 2, 1)"
             ],
             "Meta Name": [
-                ""
+                "Meta Name"
             ],
             "Meta Type": [
-                ""
+                "Type M\u00e9ta"
             ],
             "Specified type of the custom field. Can be used in conjunction with \"orderby\" = \"meta_value\".": [
-                ""
+                "Type sp\u00e9cifi\u00e9 du champ personnalis\u00e9. Peut \u00eatre utilis\u00e9 avec \"orderby\" = \"meta_value\"."
             ],
             "Any": [
-                ""
+                "n'importe quel"
             ],
             "Numeric": [
-                ""
+                "num\u00e9rique"
             ],
             "Binary": [
-                ""
+                "Binaire"
             ],
             "String": [
-                ""
+                "Cha\u00eene"
             ],
             "Time": [
-                ""
+                "dur\u00e9e"
             ],
             "Date and time": [
-                ""
+                "Date et heure"
             ],
             "Decimal number": [
-                ""
+                "Nombre d\u00e9cimal"
             ],
             "Signed number": [
-                ""
+                "Nombre sign\u00e9"
             ],
             "Unsigned number": [
-                ""
+                "Nombre non sign\u00e9"
             ],
             "Query Settings": [
-                ""
+                "Param\u00e8tres de Query"
             ],
             "Relation": [
-                ""
+                "relation"
             ],
             "Values: integer, -1 to display all, default: \"Blog pages show at most\"": [
-                ""
+                "Valeurs : nombre entier, -1 pour tout afficher, par d\u00e9faut : \"Les pages du blog doivent afficher au plus\""
             ],
             "Select an accommodation type.": [
-                ""
+                "S\u00e9lectionnez un type d\u2019h\u00e9bergement."
             ]
         }
     }

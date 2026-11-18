@@ -1,0 +1,69 @@
+{
+    "translation-revision-date": "2026-11-16 12:48",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "assets\/js\/admin\/admin.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "hu_HU",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Accommodation Type": [
+                "Sz\u00e1ll\u00e1shely t\u00edpus"
+            ],
+            "Accommodation": [
+                "Sz\u00e1ll\u00e1shely"
+            ],
+            "From": [
+                "\u00c9rkez\u00e9s"
+            ],
+            "Till": [
+                "Eddig"
+            ],
+            "Restriction": [
+                "Korl\u00e1toz\u00e1sok"
+            ],
+            "Comment": [
+                "Hozz\u00e1sz\u00f3l\u00e1s"
+            ],
+            "All": [
+                "\u00d6sszes"
+            ],
+            "Quick edit block #%s inline": [
+                ""
+            ],
+            "Quick Edit": [
+                ""
+            ],
+            "Delete": [
+                "T\u00f6rl\u00e9s"
+            ],
+            "Not check-in": [
+                "Nem bejelentkez\u00e9s"
+            ],
+            "Not check-out": [
+                "Nem kijelentkez\u00e9s"
+            ],
+            "Not stay-in": [
+                "Nem tart\u00f3zkod\u00e1s"
+            ],
+            "None": [
+                "Nincs"
+            ],
+            "Cancel": [
+                "M\u00e9gse"
+            ],
+            "Save": [
+                "Ment\u00e9s"
+            ],
+            "Unable to save the object. %s": [
+                ""
+            ],
+            "The start and end dates of the block are required.": [
+                ""
+            ]
+        }
+    }
+}

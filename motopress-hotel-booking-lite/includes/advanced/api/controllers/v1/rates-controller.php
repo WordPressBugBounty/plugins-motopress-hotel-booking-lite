@@ -34,6 +34,42 @@ class RatesController extends AbstractRestObjectController {
 	 */
 	protected $post_type = 'mphb_rate';
 
+	public function get_collection_params() {
+		$params = parent::get_collection_params();
+
+		$params['accommodation_type_id'] = array(
+			'description'       => 'Accommodation type to query when only_active is true.',
+			'type'              => 'integer',
+			'minimum'           => 1,
+			'validate_callback' => 'rest_validate_request_arg',
+			'sanitize_callback' => 'absint',
+		);
+		$params['only_active'] = array(
+			'description'       => 'Return active rates for accommodation_type_id using integration rules. PriceLabs may replace regular rates.',
+			'type'              => 'boolean',
+			'default'           => false,
+			'validate_callback' => static function ( $value, $request, $param ) {
+				$valid = rest_validate_request_arg( $value, $request, $param );
+				if ( is_wp_error( $valid ) ) {
+					return $valid;
+				}
+
+				if ( rest_sanitize_boolean( $value ) && empty( $request['accommodation_type_id'] ) ) {
+					return new \WP_Error(
+						'rest_invalid_param',
+						'accommodation_type_id is required when only_active is true.',
+						array( 'status' => 400 )
+					);
+				}
+
+				return true;
+			},
+			'sanitize_callback' => 'rest_sanitize_boolean',
+		);
+
+		return $params;
+	}
+
 	/**
 	 * Get a collection of posts.
 	 *
@@ -43,8 +79,13 @@ class RatesController extends AbstractRestObjectController {
 	public function get_items( $request ) {
 		$queryArgs = $this->prepareQuery( $request );
 
-		// Find all IDs (including from filters)
-		$allRateIds = mphb_prices_facade()->getAllRateIds();
+		if ( $request['only_active'] ) {
+			$rates = mphb_prices_facade()->getActiveRatesByRoomTypeId( (int) $request['accommodation_type_id'] );
+			$allRateIds = array_map( static fn( $rate ) => $rate->getId(), $rates );
+		} else {
+			// Preserve the general collection, including rates supplied by integrations.
+			$allRateIds = mphb_prices_facade()->getAllRateIds();
+		}
 
 		if ( ! empty( $queryArgs['post__in'] ) ) {
 			$searchInRateIds = array_intersect( $allRateIds, $queryArgs['post__in'] );
@@ -54,9 +95,10 @@ class RatesController extends AbstractRestObjectController {
 			$searchInRateIds = $allRateIds;
 		}
 
-		// Now apply search filters and restrictions
-		$queryArgs['no_found_rows'] = true; // Already known
-		$queryArgs['post__in']      = $searchInRateIds;
+		// Count matching posts for pagination after applying all restrictions.
+		$queryArgs['no_found_rows'] = false;
+		// An empty post__in would make WP_Query return all posts.
+		$queryArgs['post__in'] = ! empty( $searchInRateIds ) ? array_values( $searchInRateIds ) : array( 0 );
 
 		if ( isset( $queryArgs['post__not_in'] ) ) {
 			unset( $queryArgs['post__not_in'] );
@@ -94,7 +136,7 @@ class RatesController extends AbstractRestObjectController {
 		}
 
 		$page       = (int) $queryArgs['paged'];
-		$totalPosts = count( $allRateIds );
+		$totalPosts = (int) $query->found_posts;
 		$maxPages   = ceil( $totalPosts / (int) $queryArgs['posts_per_page'] );
 
 		$response = rest_ensure_response( $posts );

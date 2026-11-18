@@ -807,14 +807,17 @@ class SearchResultsShortcode extends AbstractShortcode {
 		$igGuestHiddenInSearch = MPHB()->settings()->main()->isGuestsHiddenInSearch();
 
 		if ( $childrenAllowed && ! $igGuestHiddenInSearch ) {
+			// translators: %d: Number of adults. If children are present, a separate phrase is appended using the same grammatical construction.
 			$title = sprintf( _n( 'Recommended for %d adult', 'Recommended for %d adults', $this->adults, 'motopress-hotel-booking' ), $this->adults );
 			if ( ! empty( $this->children ) ) {
+				// translators: %d: Number of children. Appended to Recommended for N adults; preserve the leading space and use the same grammatical case.
 				$title .= sprintf( _n( ' and %d child', ' and %d children', $this->children, 'motopress-hotel-booking' ), $this->children );
 			}
 		} else {
 			if ( $igGuestHiddenInSearch || ! $guestsAllowed ) {
 				$title = esc_html__( 'Recommended for your search', 'motopress-hotel-booking' );
 			} else {
+				// translators: %d: Number of guests for whom the accommodation combination is recommended.
 				$title = sprintf( _n( 'Recommended for %d guest', 'Recommended for %d guests', $this->adults, 'motopress-hotel-booking' ), $this->adults );
 			}
 		}
@@ -902,21 +905,21 @@ class SearchResultsShortcode extends AbstractShortcode {
 
 									<?php if ( $roomType->hasLimitedTotalCapacity() ) { ?>
 										<span class="mphb-recommendation-item-total-capacity mphb-total-capacity-<?php echo esc_attr( $roomCapacity ); ?>">
-											<?php echo esc_html( sprintf( _n( '%d guest', '%d guests', $roomCapacity, 'motopress-hotel-booking' ), $roomCapacity ) ); ?>
+											<?php echo esc_html( sprintf( /* translators: %d: Number of guests used in the accommodation or service price calculation. */ _n( '%d guest', '%d guests', $roomCapacity, 'motopress-hotel-booking' ), $roomCapacity ) ); ?>
 										</span>
 									<?php } elseif ( ! $childrenAllowed ) { ?>
 										<span class="mphb-recommendation-item-adults mphb-adults-<?php echo esc_attr( $roomAdults ); ?>">
-											<?php echo esc_html( sprintf( _n( '%d guest', '%d guests', $roomAdults, 'motopress-hotel-booking' ), $roomAdults ) ); ?>
+											<?php echo esc_html( sprintf( /* translators: %d: Number of guests used in the accommodation or service price calculation. */ _n( '%d guest', '%d guests', $roomAdults, 'motopress-hotel-booking' ), $roomAdults ) ); ?>
 										</span>
 									<?php } else { ?>
 										<span class="mphb-recommendation-item-adults mphb-adults-<?php echo esc_attr( $roomAdults ); ?>">
-											<?php echo esc_html( sprintf( _n( '%d adult', '%d adults', $roomAdults, 'motopress-hotel-booking' ), $roomAdults ) ); ?>
+											<?php echo esc_html( sprintf( /* translators: %d: Number of adults used in the accommodation or service price calculation. */ _n( '%d adult', '%d adults', $roomAdults, 'motopress-hotel-booking' ), $roomAdults ) ); ?>
 										</span>
 
 										<?php if ( $roomChildren > 0 ) { ?>
 											<span class="mphb-recommendation-item-adults-children-separator"><?php echo ', '; ?></span>
 											<span class="mphb-recommendation-item-children mphb-children-<?php echo esc_attr( $roomChildren ); ?>">
-												<?php echo esc_html( sprintf( _n( '%d child', '%d children', $roomChildren, 'motopress-hotel-booking' ), $roomChildren ) ); ?>
+												<?php echo esc_html( sprintf( /* translators: %d: Number of children an accommodation can host. A capacity label, not a recommendation for children. */ _n( '%d child', '%d children', $roomChildren, 'motopress-hotel-booking' ), $roomChildren ) ); ?>
 											</span>
 										<?php } ?>
 									<?php } ?>
@@ -1008,6 +1011,7 @@ class SearchResultsShortcode extends AbstractShortcode {
 					</select>
 					<span class="mphb-available-rooms-count">
 					<?php
+						// translators: %d: Total available accommodation count. Follows a separate quantity selector; preserve the meaning of "of".
 						echo esc_html( sprintf( _n( 'of %d accommodation available.', 'of %d accommodations available.', $maxRoomsCount, 'motopress-hotel-booking' ), $maxRoomsCount ) );
 					?>
 						</span>

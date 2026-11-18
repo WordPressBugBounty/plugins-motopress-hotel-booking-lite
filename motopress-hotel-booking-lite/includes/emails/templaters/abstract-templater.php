@@ -74,6 +74,7 @@ abstract class AbstractTemplater {
 	public function getTagsDescription() {
 
 		$description  = '<details>';
+		// translators: Email template replacement tags, not accommodation taxonomy tags. Keep literal tag names unchanged.
 		$description .= '<summary>' . __( 'Email Tags', 'motopress-hotel-booking' ) . '</summary>';
 
 		$deprecatedSection = '';
